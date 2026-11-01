@@ -20,6 +20,7 @@ defmodule Manifests.Application do
       # Start to serve requests, typically the last entry
       {DNSCluster, query: Application.get_env(:manifests, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Manifests.PubSub},
+      Manifests.Catalog.Loader,
       ManifestsWeb.Endpoint
     ]
 

@@ -12,7 +12,8 @@ config :manifests, Manifests.Repo,
   database: "manifests_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  pool_size: 10,
+  log: false
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -79,3 +80,5 @@ config :phoenix_live_view,
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+config :manifests, :registry, import_on_boot: false

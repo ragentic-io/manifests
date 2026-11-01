@@ -72,7 +72,20 @@ config :spark,
 config :manifests,
   ecto_repos: [Manifests.Repo],
   generators: [timestamp_type: :utc_datetime],
-  ash_domains: []
+  ash_domains: [Manifests.Registry, Manifests.Analytics]
+
+# Trust is pinned here, never taken from the catalog: the Ed25519 root (hex)
+# every index and bundle must verify against, and the registry identity they name.
+config :manifests, :registry,
+  id: "manifests.ragentic.io",
+  root_public_key: "c05bcbfb7c82b995f9da7ac36d2c6f4e079be6ce0a169e9a4b65bc262928806b",
+  min_sequence: %{"index" => 1, "browse_index" => 1},
+  # Earlier roots, base64url. Only used to verify history signed before a
+  # rotation (when its commit pins no registry.json); nothing new is accepted from them.
+  retired_roots: ["52AAWwWestgMkDxcvhiaXmMqKKFypiBRMToJAIcPzwg"],
+  # The signed catalog imported at boot. Releases bake it into priv/catalog.
+  catalog_dir: "catalog",
+  import_on_boot: true
 
 # Configure the endpoint
 config :manifests, ManifestsWeb.Endpoint,
