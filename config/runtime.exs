@@ -41,6 +41,22 @@ if config_env() == :dev do
 end
 
 if config_env() == :prod do
+  config :manifests, :registry,
+    id: System.get_env("MANIFESTS_REGISTRY_ID", "manifests.ragentic.io"),
+    root_public_key:
+      System.get_env(
+        "MANIFESTS_ROOT_PUBLIC_KEY",
+        "c05bcbfb7c82b995f9da7ac36d2c6f4e079be6ce0a169e9a4b65bc262928806b"
+      ),
+    min_sequence: %{
+      "index" => String.to_integer(System.get_env("MANIFESTS_MIN_SEQUENCE", "1")),
+      "browse_index" => String.to_integer(System.get_env("MANIFESTS_BROWSE_MIN_SEQUENCE", "1"))
+    },
+    catalog_dir:
+      System.get_env("MANIFESTS_CATALOG_DIR", Application.app_dir(:manifests, "priv/catalog")),
+    import_on_boot: System.get_env("MANIFESTS_IMPORT_ON_BOOT", "true") == "true",
+    catalog_commit: System.get_env("MANIFESTS_CATALOG_COMMIT")
+
   database_url =
     System.get_env("DATABASE_URL") ||
       raise """

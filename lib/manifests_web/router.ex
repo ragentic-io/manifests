@@ -14,18 +14,35 @@ defmodule ManifestsWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :public_cors
+  end
+
+  # The signed transport ragentic's registry client reads. No content
+  # negotiation: whatever the client asks for, it gets the signed bytes.
+  scope "/", ManifestsWeb do
+    get "/healthz", RegistryController, :healthz
+    get "/v1/index.json", RegistryController, :index
+    get "/v1/browse-index.json", RegistryController, :browse_index
+    get "/v1/bundles/:digest", RegistryController, :bundle
+    get "/v1/browse-bundles/:digest", RegistryController, :browse_bundle
+  end
+
+  scope "/api/v1", ManifestsWeb.Api do
+    pipe_through :api
+
+    get "/manifests", ManifestController, :index
+    get "/labels", ManifestController, :labels
+    get "/manifests/:id", ManifestController, :show
+    get "/manifests/:id/bundle", ManifestController, :bundle
+    get "/manifests/:id/versions", ManifestController, :versions
   end
 
   scope "/", ManifestsWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", CatalogLive, :index
+    live "/apps/:id", ManifestLive, :show
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ManifestsWeb do
-  #   pipe_through :api
-  # end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:manifests, :dev_routes) do
@@ -48,6 +65,11 @@ defmodule ManifestsWeb.Router do
 
       oban_dashboard("/oban")
     end
+  end
+
+  # Read-only and unauthenticated, so any site may call it.
+  defp public_cors(conn, _) do
+    Plug.Conn.put_resp_header(conn, "access-control-allow-origin", "*")
   end
 
   if Application.compile_env(:manifests, :dev_routes) do

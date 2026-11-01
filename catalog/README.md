@@ -13,15 +13,20 @@ See [CATALOG.md](CATALOG.md) for every application and its status.
 | Path | What it is | Who writes it |
 | --- | --- | --- |
 | `apps/<id>/manifest.json` | The application's bundle payload, pretty-printed: the connector template, the embedded API definition, its operation graph, provenance, rights and setup | Contributors |
-| `apps/<id>/MANIFEST.md` | Front matter with the catalog listing (`title`, `catalog`, `categories`, optional `logo`), then a generated human-readable summary: endpoint, credential, source, license, review checklist and every operation | Contributors (front matter); `tools/catalog.py docs` (body) |
-| `CATALOG.md` | Generated table of every application | `tools/catalog.py docs` |
+| `apps/<id>/MANIFEST.md` | Front matter with the catalog listing (`title`, `catalog`, `categories`, optional `logo`), then a generated human-readable summary: endpoint, credential, source, license, review checklist and every operation | Contributors (front matter); `mix catalog.docs` (body) |
+| `CATALOG.md` | Generated table of every application | `mix catalog.docs` |
 | `index.json`, `bundles/` | Signed catalog of **published** applications, which people can connect | Sign workflow |
 | `browse-index.json`, `browse-bundles/` | Signed catalog of **draft** applications, which can be browsed but not connected | Sign workflow |
 | `sources.json` | Signed SHA-256 list of every plain-text file under `apps/` plus `CATALOG.md` | Sign workflow |
 | `categories.json` | The categories applications are labelled with, so people can filter the catalog | Maintainers |
 | `deploy/` | The CronJob that deploys the newest signed catalog on `main` to manifests.ragentic.io, after checking it with the server's own loader | Maintainers |
 | `registry.json` | Registry identity, pinned public root and signature lifetimes | Maintainers |
-| `tools/catalog.py` | Scaffolding, validation, docs and signing | Maintainers |
+| `mix catalog.*` | Scaffolding, validation, docs and signing: Mix tasks in the repository root (`lib/mix/tasks/catalog.*.ex`, `lib/manifests/catalog_tools/`) | Maintainers |
+| `tools/catalog.py` | The original Python tool, superseded by the Mix tasks, which write byte-identical output. Kept for reference for now | Maintainers |
+
+Paths in this README are relative to `catalog/`. The Mix tasks run from the
+repository root and use `catalog/` by default; pass `--root DIR` to work on another
+copy.
 
 Signed objects are canonical JSON wrapped in `{"payload", "signature"}` envelopes. The
 signature is Ed25519 over `ragentic.manifests/v1\n` followed by the payload bytes. A
@@ -30,7 +35,7 @@ bundle's file name is the SHA-256 of its payload bytes.
 ## The operation graph
 
 Each OpenAPI application's `graph` is generated from its embedded definition by
-`python tools/catalog.py graph <id>`, and `validate` checks that it is current.
+`mix catalog.graph <id>`, and `validate` checks that it is current.
 
 | Node | Fields |
 | --- | --- |
@@ -53,14 +58,17 @@ against a connection without side effects.
 
 ## Register a new service
 
-You need Python 3.10+ and a public OpenAPI 3 or Swagger 2 definition published by the
-provider.
+You need Elixir (see `mix.exs` in the repository root) and a public OpenAPI 3 or
+Swagger 2 definition published by the provider. Run every command below from the
+repository root, not from `catalog/`.
 
-1. **Fork and clone** this repository, then install the tools:
+1. **Fork and clone** this repository, then fetch the dependencies:
 
    ```sh
-   pip install cryptography pyyaml
+   mix deps.get
    ```
+
+   The catalog tasks don't start the application, so they need no database.
 
 2. **Pick an id.** Use lowercase letters, digits, `.`, `_` and `-`, starting with a
    letter or digit, for example `acme-openapi`. Check that `apps/<id>` doesn't exist
@@ -69,16 +77,16 @@ provider.
 3. **Scaffold the draft** from the provider's definition:
 
    ```sh
-   python tools/catalog.py new acme-openapi \
+   mix catalog.new acme-openapi \
      --openapi https://developer.acme.com/openapi.json \
      --title "Acme" \
      --category finance --category ecommerce \
      --credential api_key_header --header Authorization --prefix Bearer
    ```
 
-   This fetches the definition and embeds it. It records its URL and SHA-256 under
+   This fetches the definition (JSON or YAML; `file://` URLs work too) and embeds it. It records its URL and SHA-256 under
    `provenance`, generates the operation graph and writes
-   `apps/acme-openapi/manifest.json` and `MANIFEST.md`. Leave out `--credential` if
+   `catalog/apps/acme-openapi/manifest.json` and `MANIFEST.md`. Leave out `--credential` if
    you don't know the authentication yet. `--endpoint` overrides the base URL, which
    otherwise comes from the definition's first `https` server.
 
@@ -89,8 +97,8 @@ provider.
      license allows redistribution.
    - `setup.credential`: `none`, `static_bearer`, or `api_key_header` with `header`
      and `prefix`. Never put a real key, token or password anywhere in the file.
-   - If you edit the embedded definition, run `python tools/catalog.py graph <id>`
-     to regenerate the graph.
+   - If you edit the embedded definition, run `mix catalog.graph <id>` to
+     regenerate the graph.
 
 5. **Check the listing** in the front matter of `MANIFEST.md`. Values are JSON:
 
@@ -112,8 +120,8 @@ provider.
 6. **Regenerate the docs and validate:**
 
    ```sh
-   python tools/catalog.py docs
-   python tools/catalog.py validate
+   mix catalog.docs
+   mix catalog.validate
    ```
 
    `validate` must end with `ok`. Your application is reported as
@@ -151,7 +159,7 @@ request how you tested the connection.
 
 ## Validation rules
 
-`python tools/catalog.py validate` checks the following:
+`mix catalog.validate` checks the following:
 
 - **Signatures:** both indexes, every bundle they name and `sources.json` verify
   against the root in `registry.json`. Digests match file names, and no bundle is
@@ -167,13 +175,14 @@ request how you tested the connection.
   every payload is under 16 MiB.
 - **Generated docs:** `MANIFEST.md` bodies and `CATALOG.md` are up to date.
 
-`validate --require-signed` also fails if anything is waiting for signature. The Sign
+`mix catalog.validate --require-signed` also fails if anything is waiting for signature. The Sign
 workflow runs it after signing.
 
 ## Signing (maintainers)
 
 The Sign workflow runs on every push to `main` that touches `apps/`, `registry.json`
-or `tools/catalog.py`, daily on a schedule, and on demand. For each application whose
+or the catalog tools, daily on a schedule, and on demand. It runs
+`mix catalog.sign` with the key in `MANIFESTS_SIGNING_KEY`. For each application whose
 sources differ from its signed bundle, or whose signature expires within
 `refresh_days`, it:
 
@@ -186,7 +195,10 @@ sources differ from its signed bundle, or whose signature expires within
 4. Regenerates the docs and signs `sources.json` over every plain-text file.
 5. Commits the result to `main`.
 
-Preview the plan without a key with `python tools/catalog.py sign --dry-run`.
+Preview the plan without a key with `mix catalog.sign --dry-run`.
+
+`mix catalog.import` rebuilds `apps/` from the signed objects, keeping each
+application's categories.
 
 One-time setup:
 

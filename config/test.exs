@@ -46,3 +46,9 @@ config :phoenix_live_view,
 # Sort query params output of verified routes for robust url comparisons
 config :phoenix,
   sort_verified_routes_query_params: true
+
+# Signed by Manifests.CatalogFixture's throwaway key (seed: 32 bytes of 7).
+config :manifests, :registry,
+  import_on_boot: false,
+  root_public_key: "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+  retired_roots: []

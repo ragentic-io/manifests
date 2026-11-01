@@ -26,47 +26,41 @@ defmodule ManifestsWeb.Layouts do
 
   """
   attr :flash, :map, required: true, doc: "the map of flash messages"
-
-  attr :current_scope, :map,
-    default: nil,
-    doc: "the current [scope](https://phoenix.hexdocs.pm/scopes.html)"
-
+  slot :search, doc: "a search form shown in the header"
   slot :inner_block, required: true
 
   def app(assigns) do
     ~H"""
-    <header class="navbar px-4 sm:px-6 lg:px-8">
-      <div class="flex-1">
-        <a href="/" class="flex-1 flex w-fit items-center gap-2">
-          <img src={~p"/images/logo.svg"} width="36" />
-          <span class="text-sm font-semibold">v{Application.spec(:phoenix, :vsn)}</span>
-        </a>
-      </div>
-      <div class="flex-none">
-        <ul class="flex px-1 space-x-4 items-center">
-          <li>
-            <a href="https://phoenixframework.org/" class="btn btn-ghost">Website</a>
-          </li>
-          <li>
-            <a href="https://github.com/phoenixframework/phoenix" class="btn btn-ghost">GitHub</a>
-          </li>
-          <li>
-            <.theme_toggle />
-          </li>
-          <li>
-            <a href="https://phoenix.hexdocs.pm/overview.html" class="btn btn-primary">
-              Get Started <span aria-hidden="true">&rarr;</span>
-            </a>
-          </li>
-        </ul>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:p-2">Skip to content</a>
+    <header class="sticky top-0 z-30 border-b border-base-300 bg-base-200/90 backdrop-blur">
+      <div class="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
+        <.link
+          navigate={~p"/"}
+          class="flex shrink-0 items-center gap-2"
+          aria-label="Ragentic Manifests home"
+        >
+          <img src={~p"/assets/ragentic/rageface.svg"} alt="" class="size-7" />
+          <span class="font-semibold tracking-tight">Manifests</span>
+        </.link>
+        <div class="min-w-0 flex-1">
+          <div :if={@search != []} class="mx-auto max-w-xl">{render_slot(@search)}</div>
+        </div>
+        <nav class="flex shrink-0 items-center gap-1">
+          <a href="/api/v1/manifests" class="btn btn-ghost btn-sm hidden font-mono sm:inline-flex">API</a>
+          <.theme_toggle />
+        </nav>
       </div>
     </header>
 
-    <main class="px-4 py-20 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl space-y-4">
-        {render_slot(@inner_block)}
-      </div>
+    <main id="main" class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:py-8">
+      {render_slot(@inner_block)}
     </main>
+
+    <footer class="mx-auto max-w-7xl px-4 pb-10 text-xs text-base-content/60 sm:px-6">
+      Every manifest here is an Ed25519-signed bundle; clients verify it against their own pinned root.
+      Signed indexes: <a href="/v1/index.json" class="link font-mono">/v1/index.json</a>
+      · <a href="/v1/browse-index.json" class="link font-mono">/v1/browse-index.json</a>
+    </footer>
 
     <.flash_group flash={@flash} />
     """

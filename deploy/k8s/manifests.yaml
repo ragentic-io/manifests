@@ -1,0 +1,211 @@
+# manifests.ragentic.io on the homelab k3s cluster.
+#
+# The `manifests-secrets` Secret is created out of band (see deploy/README.md):
+#   POSTGRES_PASSWORD, DATABASE_URL, SECRET_KEY_BASE
+# The image is pinned by digest; deploy/README.md has the build/push/rollout steps.
+# The Harbor repo is ragentic-manifests, not manifests: Harbor routes
+# /v2/library/manifests/blobs/... as a manifest request and pushes fail with 400.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: manifests
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: manifests
+spec:
+  clusterIP: None
+  selector:
+    app: postgres
+  ports:
+    - name: postgres
+      port: 5432
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: manifests
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:17
+          env:
+            - name: POSTGRES_DB
+              value: manifests
+            - name: POSTGRES_USER
+              value: manifests
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: manifests-secrets
+                  key: POSTGRES_PASSWORD
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - name: postgres
+              containerPort: 5432
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "manifests", "-d", "manifests"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          livenessProbe:
+            exec:
+              command: ["pg_isready", "-U", "manifests", "-d", "manifests"]
+            initialDelaySeconds: 30
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              memory: 1Gi
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: local-path
+        resources:
+          requests:
+            storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: manifests
+  namespace: manifests
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: manifests
+  template:
+    metadata:
+      labels:
+        app: manifests
+    spec:
+      automountServiceAccountToken: false
+      initContainers:
+        - name: migrate
+          image: harbor.home/library/ragentic-manifests:IMAGE_TAG
+          command: ["/app/bin/manifests", "eval", "Manifests.Release.migrate()"]
+          envFrom:
+            - secretRef:
+                name: manifests-secrets
+          env: &env
+            - name: PHX_HOST
+              value: manifests.ragentic.io
+            - name: MANIFESTS_REGISTRY_ID
+              value: manifests.ragentic.io
+            - name: MANIFESTS_ROOT_PUBLIC_KEY
+              value: c05bcbfb7c82b995f9da7ac36d2c6f4e079be6ce0a169e9a4b65bc262928806b
+            - name: MANIFESTS_MIN_SEQUENCE
+              value: "1"
+            - name: MANIFESTS_BROWSE_MIN_SEQUENCE
+              value: "2"
+            - name: RELEASE_TMP
+              value: /tmp
+            - name: ERL_FLAGS
+              value: "+S 2:2"
+          securityContext: &securityContext
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts: &mounts
+            - name: tmp
+              mountPath: /tmp
+      containers:
+        - name: registry
+          image: harbor.home/library/ragentic-manifests:IMAGE_TAG
+          envFrom:
+            - secretRef:
+                name: manifests-secrets
+          env: *env
+          ports:
+            - name: http
+              containerPort: 4000
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 2
+            failureThreshold: 90
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            periodSeconds: 20
+          # 503 until a signed index has been imported.
+          readinessProbe:
+            httpGet:
+              path: /v1/index.json
+              port: http
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: "2"
+              memory: 1Gi
+          securityContext: *securityContext
+          volumeMounts: *mounts
+      volumes:
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: manifests
+  namespace: manifests
+spec:
+  selector:
+    app: manifests
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: manifests
+  namespace: manifests
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: manifests.ragentic.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: manifests
+                port:
+                  name: http
