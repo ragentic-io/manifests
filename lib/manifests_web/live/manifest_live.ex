@@ -4,8 +4,12 @@ defmodule ManifestsWeb.ManifestLive do
   (`?version=latest`, `?version=<version>` or `?version=sha256:<digest>`); a link
   without one is rewritten to `latest`. `tab`, `op` and `ops` (operation filter)
   are in the URL too, so any view of any version can be deep-linked.
+
+  Download counts on the overview are live: every bundle served for this
+  application is broadcast (`Manifests.Analytics.topic/1`) and folded in here.
   """
   use ManifestsWeb, :live_view
+  alias Manifests.Analytics
   alias Manifests.Registry.Lookup
   import ManifestsWeb.CatalogComponents
 
@@ -17,13 +21,15 @@ defmodule ManifestsWeb.ManifestLive do
   ]
 
   @impl true
-  def mount(_params, _session, socket), do: {:ok, assign(socket, digest: nil)}
+  def mount(_params, _session, socket),
+    do: {:ok, assign(socket, digest: nil, downloads_for: nil)}
 
   @impl true
   def handle_params(%{"id" => id} = params, _uri, socket) do
     case Lookup.resolve(id, params["version"]) do
       {:ok, manifest, version} ->
-        {:noreply, socket |> load(manifest, version) |> assign_view(params)}
+        {:noreply,
+         socket |> load(manifest, version) |> track_downloads(manifest.id) |> assign_view(params)}
 
       {:error, :version_required} ->
         {:noreply,
@@ -69,6 +75,29 @@ defmodule ManifestsWeb.ManifestLive do
         page_title: "#{manifest.title} #{version.version}"
       )
     end
+  end
+
+  defp track_downloads(%{assigns: %{downloads_for: id}} = socket, id), do: socket
+
+  defp track_downloads(socket, id) do
+    if connected?(socket) do
+      if old = socket.assigns.downloads_for,
+        do: Phoenix.PubSub.unsubscribe(Manifests.PubSub, Analytics.topic(old))
+
+      Phoenix.PubSub.subscribe(Manifests.PubSub, Analytics.topic(id))
+    end
+
+    assign(socket, downloads_for: id, downloads: Analytics.summary(id))
+  end
+
+  @impl true
+  def handle_info({:download, digest, day}, socket) do
+    downloads =
+      if day == socket.assigns.downloads.today,
+        do: Analytics.bump(socket.assigns.downloads, digest, day),
+        else: Analytics.summary(socket.assigns.downloads_for)
+
+    {:noreply, assign(socket, downloads: downloads)}
   end
 
   defp assign_view(socket, params) do
@@ -159,6 +188,25 @@ defmodule ManifestsWeb.ManifestLive do
   defp expired?(version), do: DateTime.compare(version.expires, DateTime.utc_now()) == :lt
 
   defp date(dt), do: Calendar.strftime(dt, "%Y-%m-%d")
+
+  # When the latest version string was first signed; re-signings keep the date.
+  defp latest_release(assigns) do
+    assigns.versions
+    |> Enum.filter(&(&1.version == assigns.manifest.latest_version))
+    |> Enum.min_by(& &1.not_before, DateTime, fn -> nil end)
+  end
+
+  defp ago(dt) do
+    case Date.diff(Date.utc_today(), DateTime.to_date(dt)) do
+      0 -> "today"
+      1 -> "yesterday"
+      n -> "#{number(n)} days ago"
+    end
+  end
+
+  defp day_label(d), do: Calendar.strftime(d, "%b %-d")
+  defp week_label(d), do: "Week of " <> Calendar.strftime(d, "%b %-d, %Y")
+  defp year_label(d), do: Integer.to_string(d.year)
 
   @impl true
   def render(assigns) do
@@ -298,7 +346,73 @@ defmodule ManifestsWeb.ManifestLive do
   end
 
   defp overview(assigns) do
+    assigns = assign(assigns, release: latest_release(assigns))
+
     ~H"""
+    <section id="downloads" aria-labelledby="downloads-heading" class="mb-8 space-y-4">
+      <h2 id="downloads-heading" class="sr-only">Downloads</h2>
+      <div class="stats stats-vertical w-full border border-base-300 bg-base-100 sm:stats-horizontal">
+        <div class="stat">
+          <div class="stat-title flex items-center gap-2">
+            Downloads
+            <span class="relative flex size-2" title="Updates live">
+              <span class="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60">
+              </span>
+              <span class="relative inline-flex size-2 rounded-full bg-success"></span>
+            </span>
+          </div>
+          <div id="downloads-total" class="stat-value tabular-nums" aria-live="polite">
+            {number(@downloads.total)}
+          </div>
+          <div class="stat-desc">{number(@downloads.on_day)} today (UTC)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">This version</div>
+          <div id="downloads-version" class="stat-value tabular-nums">
+            {number(Map.get(@downloads.by_digest, @version.digest, 0))}
+          </div>
+          <div class="stat-desc font-mono">
+            {@version.version} · {String.slice(@version.digest, 0, 8)}
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-title">Latest release</div>
+          <div id="latest-release" class="stat-value text-2xl">
+            {if @release, do: date(@release.not_before), else: "—"}
+          </div>
+          <div :if={@release} class="stat-desc">
+            <.link
+              patch={link_to(@manifest.id, %{"version" => "latest"})}
+              class="link link-hover font-mono"
+            >{@manifest.latest_version}</.link>
+            · {ago(@release.not_before)}
+          </div>
+        </div>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        <.bar_chart
+          id="downloads-daily"
+          title="Daily · last 30 days"
+          series={@downloads.days}
+          label={&day_label/1}
+          slots={30}
+        />
+        <.bar_chart
+          id="downloads-weekly"
+          title="Weekly · last 26 weeks"
+          series={@downloads.weeks}
+          label={&week_label/1}
+          slots={26}
+        />
+        <.bar_chart
+          id="downloads-yearly"
+          title="Yearly"
+          series={@downloads.years}
+          label={&year_label/1}
+        />
+      </div>
+    </section>
+
     <div class="grid gap-6 lg:grid-cols-3">
       <dl class="grid grid-cols-[8rem_1fr] gap-x-4 gap-y-3 text-sm lg:col-span-2">
         <dt class="text-base-content/60">Endpoint</dt>

@@ -72,7 +72,7 @@ config :spark,
 config :manifests,
   ecto_repos: [Manifests.Repo],
   generators: [timestamp_type: :utc_datetime],
-  ash_domains: [Manifests.Registry]
+  ash_domains: [Manifests.Registry, Manifests.Analytics]
 
 # Trust is pinned here, never taken from the catalog: the Ed25519 root (hex)
 # every index and bundle must verify against, and the registry identity they name.

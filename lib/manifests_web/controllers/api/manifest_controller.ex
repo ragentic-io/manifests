@@ -58,6 +58,8 @@ defmodule ManifestsWeb.Api.ManifestController do
 
   def bundle(conn, %{"id" => id} = params) do
     with {:ok, _manifest, version} <- Lookup.resolve(id, params["version"]) do
+      Manifests.Analytics.record(id, version.digest)
+
       conn
       |> put_resp_content_type("application/json")
       |> put_resp_header("x-manifest-digest", version.digest)

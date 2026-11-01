@@ -68,4 +68,20 @@ defmodule ManifestsWeb.CatalogLiveTest do
     assert {:error, {:live_redirect, %{to: to}}} = live(conn, ~p"/apps/pay?version=9.9.9")
     assert to =~ "version=latest"
   end
+
+  test "download counts and the latest release date update live", %{conn: conn} do
+    {:ok, view, html} = live(conn, ~p"/apps/pay?version=latest")
+    assert html =~ "Latest release"
+    assert view |> element("#latest-release") |> render() =~ Calendar.strftime(Date.utc_today(), "%Y-%m-%d")
+    assert view |> element("#downloads-total") |> render() =~ ~r/>\s*0\s*</
+
+    {:ok, _, latest} = Manifests.Registry.Lookup.resolve("pay", "latest")
+    Manifests.Analytics.record("pay", latest.digest)
+    Manifests.Analytics.record("pay", latest.digest)
+
+    assert view |> element("#downloads-total") |> render() =~ ~r/>\s*2\s*</
+    assert view |> element("#downloads-version") |> render() =~ ~r/>\s*2\s*</
+    assert has_element?(view, "#downloads-daily rect title", ": 2")
+    assert has_element?(view, "#downloads-yearly rect title", "#{Date.utc_today().year}: 2")
+  end
 end

@@ -31,11 +31,13 @@ defmodule ManifestsWeb.RegistryController do
 
   defp bundle(conn, digest, catalog) do
     with true <- Regex.match?(~r/\A[0-9a-f]{64}\z/, digest),
-         %Version{bundle: body} <-
+         %Version{bundle: body, manifest_id: id} <-
            Version
            |> Ash.Query.filter(digest == ^digest and catalog == ^catalog)
-           |> Ash.Query.select([:bundle])
+           |> Ash.Query.select([:bundle, :manifest_id])
            |> Ash.read_one!() do
+      Manifests.Analytics.record(id, digest)
+
       conn
       |> put_resp_content_type("application/json")
       |> put_resp_header("cache-control", "public, max-age=31536000, immutable")

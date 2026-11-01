@@ -46,6 +46,22 @@ defmodule ManifestsWeb.ApiTest do
     assert json_response(get(build_conn(), "/api/v1/manifests/pay?version=0.0.1"), 404)["error"] == "version_not_found"
   end
 
+  test "every bundle served is a download, whichever route served it", %{conn: conn} do
+    Phoenix.PubSub.subscribe(Manifests.PubSub, Manifests.Analytics.topic("pay"))
+    {:ok, _, version} = Manifests.Registry.Lookup.resolve("pay", "latest")
+
+    assert response(get(conn, "/v1/bundles/#{version.digest}"), 200)
+    assert response(get(build_conn(), "/api/v1/manifests/pay/bundle?version=latest"), 200)
+    assert_receive {:download, digest, _} when digest == version.digest
+
+    # Indexes, manifest views and misses aren't downloads.
+    get(build_conn(), "/v1/index.json")
+    get(build_conn(), "/api/v1/manifests/pay?version=latest")
+    get(build_conn(), "/v1/browse-bundles/#{version.digest}")
+
+    assert %{total: 2, by_digest: %{^digest => 2}} = Manifests.Analytics.summary("pay")
+  end
+
   test "search, labels and versions", %{conn: conn} do
     assert %{"total" => 1, "manifests" => [%{"id" => "tube"}]} =
              json_response(get(conn, "/api/v1/manifests?labels=category:media"), 200)
