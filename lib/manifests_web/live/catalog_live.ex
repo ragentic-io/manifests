@@ -3,8 +3,12 @@ defmodule ManifestsWeb.CatalogLive do
   The catalog: search plus label filters. Every bit of state lives in the URL
   (`q`, `labels`, `protocol`, `catalog`, `sort`, `page`), so any view can be
   linked to and reloaded.
+
+  Download counts (catalog-wide and per card) are live: every bundle served
+  arrives on `Manifests.Analytics.topic/0` and is folded in here.
   """
   use ManifestsWeb, :live_view
+  alias Manifests.Analytics
   alias Manifests.Registry
   alias Manifests.Registry.Lookup
   import ManifestsWeb.CatalogComponents
@@ -13,7 +17,26 @@ defmodule ManifestsWeb.CatalogLive do
   @facet_order ~w(category protocol catalog auth readiness)
 
   @impl true
-  def mount(_params, _session, socket), do: {:ok, socket}
+  def mount(_params, _session, socket) do
+    if connected?(socket), do: Phoenix.PubSub.subscribe(Manifests.PubSub, Analytics.topic())
+    {:ok, assign(socket, downloads: Analytics.summary(:all))}
+  end
+
+  @impl true
+  def handle_info({:download, id, digest, day}, socket) do
+    downloads =
+      if day == socket.assigns.downloads.today,
+        do: Analytics.bump(socket.assigns.downloads, digest, day) |> Map.put(:by_digest, %{}),
+        else: Analytics.summary(:all)
+
+    results =
+      Enum.map(socket.assigns.results, fn
+        %{id: ^id} = m -> %{m | downloads: m.downloads + 1}
+        m -> m
+      end)
+
+    {:noreply, assign(socket, downloads: downloads, results: results)}
+  end
 
   @impl true
   def handle_params(params, _uri, socket) do
@@ -166,6 +189,65 @@ defmodule ManifestsWeb.CatalogLive do
         </form>
       </:search>
 
+      <section
+        id="catalog-downloads"
+        aria-labelledby="catalog-downloads-heading"
+        class="mb-8 grid gap-4 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-8"
+      >
+        <div class="stats stats-horizontal border border-base-300 bg-base-100 lg:stats-vertical">
+          <div class="stat px-4 py-3">
+            <div id="catalog-downloads-heading" class="stat-title flex items-center gap-2">
+              Downloads
+              <span class="relative flex size-2" title="Updates live">
+                <span class="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60"></span>
+                <span class="relative inline-flex size-2 rounded-full bg-success"></span>
+              </span>
+            </div>
+            <div
+              id="catalog-downloads-total"
+              class="stat-value text-3xl tabular-nums"
+              aria-live="polite"
+            >
+              {number(@downloads.total)}
+            </div>
+            <div class="stat-desc">every application, all time</div>
+          </div>
+          <div class="stat px-4 py-3">
+            <div class="stat-title">Today (UTC)</div>
+            <div id="catalog-downloads-today" class="stat-value text-3xl tabular-nums">
+              {number(@downloads.on_day)}
+            </div>
+            <.link
+              patch={catalog_path(%{@filters | sort: "downloads"})}
+              class="stat-desc link link-hover"
+            >Most downloaded →</.link>
+          </div>
+        </div>
+        <div class="grid min-w-0 gap-4 md:grid-cols-3">
+          <.bar_chart
+            id="catalog-downloads-daily"
+            title="Daily · last 30 days"
+            series={@downloads.days}
+            label={&Calendar.strftime(&1, "%b %-d")}
+            slots={30}
+          />
+          <.bar_chart
+            id="catalog-downloads-weekly"
+            title="Weekly · last 26 weeks"
+            series={@downloads.weeks}
+            label={&("Week of " <> Calendar.strftime(&1, "%b %-d, %Y"))}
+            slots={26}
+          />
+          <.bar_chart
+            id="catalog-downloads-yearly"
+            title="Yearly"
+            series={@downloads.years}
+            label={&Integer.to_string(&1.year)}
+            slots={6}
+          />
+        </div>
+      </section>
+
       <div class="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-8">
         <details id="filters" class="group/filters min-w-0 lg:hidden">
           <summary class="btn btn-sm w-full justify-between">
@@ -196,7 +278,8 @@ defmodule ManifestsWeb.CatalogLive do
                   [
                     {"Name", "name"},
                     {"Recently signed", "updated"},
-                    {"Most operations", "operations"}
+                    {"Most operations", "operations"},
+                    {"Most downloaded", "downloads"}
                   ],
                   @filters.sort || "name"
                 )}
@@ -235,10 +318,22 @@ defmodule ManifestsWeb.CatalogLive do
                     <.protocol_badge protocol={m.protocol} />
                     <span :if={m.catalog == "draft"} class="badge badge-sm badge-warning badge-soft">draft</span>
                     <span
-                      class="badge badge-sm badge-ghost max-w-28 truncate font-mono"
+                      class="badge badge-sm badge-ghost max-w-28 font-mono"
                       title={m.latest_version}
-                    >{m.latest_version}</span>
-                    <span class="ml-auto tabular-nums text-base-content/60">{m.operation_count} ops</span>
+                    >
+                      <span class="truncate">{m.latest_version}</span>
+                    </span>
+                    <span class="ml-auto flex items-center gap-2 tabular-nums text-base-content/60">
+                      <span>{m.operation_count} ops</span>
+                      <span
+                        id={"downloads-#{m.id}"}
+                        class="flex items-center gap-0.5"
+                        title={"#{number(m.downloads)} downloads"}
+                      >
+                        <.icon name="hero-arrow-down-tray" class="size-3.5" />{number(m.downloads)}
+                        <span class="sr-only">downloads</span>
+                      </span>
+                    </span>
                   </div>
                 </div>
               </.link>

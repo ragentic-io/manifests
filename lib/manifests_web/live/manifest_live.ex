@@ -356,8 +356,7 @@ defmodule ManifestsWeb.ManifestLive do
           <div class="stat-title flex items-center gap-2">
             Downloads
             <span class="relative flex size-2" title="Updates live">
-              <span class="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60">
-              </span>
+              <span class="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60"></span>
               <span class="relative inline-flex size-2 rounded-full bg-success"></span>
             </span>
           </div>
@@ -409,6 +408,7 @@ defmodule ManifestsWeb.ManifestLive do
           title="Yearly"
           series={@downloads.years}
           label={&year_label/1}
+          slots={6}
         />
       </div>
     </section>

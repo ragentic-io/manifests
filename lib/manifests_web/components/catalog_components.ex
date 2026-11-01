@@ -116,7 +116,13 @@ defmodule ManifestsWeb.CatalogComponents do
       |> Enum.with_index()
       |> Enum.map(fn {{start, n}, i} ->
         h = if n == 0, do: 0, else: max(n / peak * 96, 2)
-        %{x: (offset + i) * 10 + 1, y: 100 - h, h: h, title: "#{assigns.label.(start)}: #{number(n)}"}
+
+        %{
+          x: (offset + i) * 10 + 1,
+          y: 100 - h,
+          h: h,
+          title: "#{assigns.label.(start)}: #{number(n)}"
+        }
       end)
 
     {first, _} = List.first(assigns.series)
@@ -127,6 +133,10 @@ defmodule ManifestsWeb.CatalogComponents do
         bars: bars,
         width: slots * 10,
         pad: Float.round(offset / slots * 100, 2),
+        slots: slots,
+        offset: offset,
+        # A few bars get a label each; a long series just its two ends.
+        each: length(assigns.series) <= 12,
         peak: Enum.max([0 | counts]),
         total: Enum.sum(counts),
         first: assigns.label.(first),
@@ -162,6 +172,20 @@ defmodule ManifestsWeb.CatalogComponents do
         </rect>
       </svg>
       <div
+        :if={@each}
+        class="mt-1 grid font-mono text-[10px] text-base-content/50"
+        style={"grid-template-columns: repeat(#{@slots}, minmax(0, 1fr))"}
+      >
+        <span
+          :for={{{start, _}, i} <- Enum.with_index(@series)}
+          class="text-center"
+          style={"grid-column: #{@offset + i + 1}"}
+        >
+          {@label.(start)}
+        </span>
+      </div>
+      <div
+        :if={!@each}
         class="mt-1 flex justify-between font-mono text-[10px] text-base-content/50"
         style={"padding-left: #{@pad}%"}
       >

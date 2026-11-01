@@ -21,16 +21,28 @@ defmodule Manifests.Analytics do
 
   def topic(manifest_id), do: "downloads:" <> manifest_id
 
+  @doc "Every download, of any application: `{:download, manifest_id, digest, day}`."
+  def topic, do: "downloads"
+
   @doc "Count one download. Never fails the request that served the bundle."
   def record(manifest_id, digest, today \\ Date.utc_today()) do
     Repo.insert_all(
       "manifest_downloads",
-      [%{id: Ecto.UUID.bingenerate(), manifest_id: manifest_id, digest: digest, day: today, count: 1}],
+      [
+        %{
+          id: Ecto.UUID.bingenerate(),
+          manifest_id: manifest_id,
+          digest: digest,
+          day: today,
+          count: 1
+        }
+      ],
       on_conflict: [inc: [count: 1]],
       conflict_target: [:digest, :day]
     )
 
     Phoenix.PubSub.broadcast(Manifests.PubSub, topic(manifest_id), {:download, digest, today})
+    Phoenix.PubSub.broadcast(Manifests.PubSub, topic(), {:download, manifest_id, digest, today})
     :ok
   rescue
     error ->
@@ -39,27 +51,45 @@ defmodule Manifests.Analytics do
   end
 
   @doc """
-  Totals and chart series for one application: the last #{@days} days, the last
-  #{@weeks} weeks (starting Mondays) and every year since its first download,
-  each as `[{start_date, count}]` with empty periods filled in.
+  Totals and chart series for one application, or for every application with
+  `:all`: the last #{@days} days, the last #{@weeks} weeks (starting Mondays) and
+  every year since the first download, each as `[{start_date, count}]` with
+  empty periods filled in. `by_digest` is per bundle, for one application only.
   """
   def summary(manifest_id, today \\ Date.utc_today()) do
-    rows =
-      Repo.all(
-        from d in "manifest_downloads",
-          where: d.manifest_id == ^manifest_id,
-          select: {d.day, d.digest, d.count}
+    scoped =
+      if manifest_id == :all,
+        do: from(d in "manifest_downloads"),
+        else: from(d in "manifest_downloads", where: d.manifest_id == ^manifest_id)
+
+    by_day =
+      Map.new(
+        Repo.all(
+          from d in scoped,
+            group_by: d.day,
+            select: {d.day, type(sum(d.count), :integer)}
+        )
       )
 
-    by_day = Enum.reduce(rows, %{}, fn {day, _, n}, acc -> Map.update(acc, day, n, &(&1 + n)) end)
-    first = rows |> Enum.map(&elem(&1, 0)) |> Enum.min(Date, fn -> today end)
+    by_digest =
+      if manifest_id == :all,
+        do: %{},
+        else:
+          Map.new(
+            Repo.all(
+              from d in scoped,
+                group_by: d.digest,
+                select: {d.digest, type(sum(d.count), :integer)}
+            )
+          )
+
+    first = by_day |> Map.keys() |> Enum.min(Date, fn -> today end)
 
     %{
       today: today,
       total: Enum.sum(Map.values(by_day)),
       on_day: Map.get(by_day, today, 0),
-      by_digest:
-        Enum.reduce(rows, %{}, fn {_, digest, n}, acc -> Map.update(acc, digest, n, &(&1 + n)) end),
+      by_digest: by_digest,
       days: series(by_day, Date.add(today, 1 - @days), today, & &1, &Date.add(&1, 1)),
       weeks:
         series(

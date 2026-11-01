@@ -43,7 +43,7 @@ defmodule ManifestsWeb.Api.ManifestController do
       payload = Lookup.payload(version)
 
       json(conn, %{
-        manifest: summary(conn, manifest),
+        manifest: summary(conn, Ash.load!(manifest, :downloads)),
         version: version_json(conn, manifest, version),
         payload:
           Map.take(
@@ -102,6 +102,7 @@ defmodule ManifestsWeb.Api.ManifestController do
       latest_version: m.latest_version,
       latest_digest: m.latest_digest,
       operations: m.operation_count,
+      downloads: m.downloads,
       url: url(conn, ~p"/apps/#{m.id}?#{[version: "latest"]}"),
       api: url(conn, ~p"/api/v1/manifests/#{m.id}?#{[version: "latest"]}")
     }

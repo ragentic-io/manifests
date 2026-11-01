@@ -111,6 +111,19 @@ defmodule Manifests.Registry.Manifest do
       destination_attribute :manifest_id
       sort inserted_at: :desc
     end
+
+    has_many :download_days, Manifests.Analytics.DownloadDay do
+      domain Manifests.Analytics
+      destination_attribute :manifest_id
+    end
+  end
+
+  aggregates do
+    # Bundles served, every version, all time (Manifests.Analytics).
+    sum :downloads, :download_days, :count do
+      default 0
+      public? true
+    end
   end
 end
 
@@ -129,6 +142,7 @@ defmodule Manifests.Registry.Manifest.Search do
     |> labels(filters[:labels])
     |> eq(:protocol, filters[:protocol])
     |> eq(:catalog, filters[:catalog])
+    |> Ash.Query.load(:downloads)
     |> Ash.Query.sort(sort(filters[:sort]))
   end
 
@@ -150,5 +164,6 @@ defmodule Manifests.Registry.Manifest.Search do
 
   defp sort("updated"), do: [updated_at: :desc, title: :asc]
   defp sort("operations"), do: [operation_count: :desc, title: :asc]
+  defp sort("downloads"), do: [downloads: :desc, title: :asc]
   defp sort(_), do: [title: :asc, id: :asc]
 end
