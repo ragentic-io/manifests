@@ -1,6 +1,6 @@
 # X (API v2): setup guide
 
-Unsigned draft. Independent connector for X; not affiliated with or endorsed by X.
+Published as `apps/x` (readiness `reviewed_publication_user_test_required`; open points in its `review_required`). Independent connector for X; not affiliated with or endorsed by X.
 No logo or brand mark is used.
 
 ## Definition
