@@ -1,0 +1,158 @@
+# GitHub Actions runners for this repository (ragentic-io/manifests), on the
+# homelab k3s cluster's actions-runner-controller (ARC). Apply by hand:
+#
+#   kubectl apply -f deploy/k8s/ci-runners.yaml
+#
+# ARC itself (the controller in arc-systems, the arc-github secret, the
+# ragentic-ci runner image, harbor-push and harbor-ca in arc-runners) is set up
+# by ragentic's k8s/ci/runner.yaml; this file only adds what this repo needs.
+#
+# Two scale sets of its own, since a scale set serves the one repository its
+# githubConfigUrl names (ragentic's all name ragentic-io/ragentic). The same
+# arc-github token registers them; it must be allowed to register runners on
+# ragentic-io/manifests too. (ARC also takes an organization URL,
+# https://github.com/ragentic-io, which would let ragentic-ci serve both
+# repositories with no extra set; that needs a token with admin:org and is
+# DJ's call.)
+#
+# "manifests-ci" runs this repository's CI, Sign and image build: the
+# ragentic-ci runner image and limits, one runner, off k3s-1. It starts only
+# while a manifests job is queued (minRunners 0) and its jobs are short (a
+# compile, the suite, a build), so at rest the cluster runs no more runners
+# than before.
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: manifests-ci
+  namespace: kube-system
+spec:
+  chart: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
+  version: 0.15.0
+  targetNamespace: arc-runners
+  valuesContent: |-
+    githubConfigUrl: https://github.com/ragentic-io/manifests
+    githubConfigSecret: arc-github
+    runnerScaleSetName: manifests-ci
+    minRunners: 0
+    maxRunners: 1
+    containerMode:
+      type: dind
+    controllerServiceAccount:
+      namespace: arc-systems
+      name: arc-gha-rs-controller
+    template:
+      spec:
+        # as ragentic-ci: k3s-1's disk is full, and a build there evicts
+        # production pods
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - { key: kubernetes.io/hostname, operator: NotIn, values: [k3s-1] }
+          # away from a ragentic-ci runner when a node is free
+          podAntiAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+              - weight: 100
+                podAffinityTerm:
+                  topologyKey: kubernetes.io/hostname
+                  labelSelector:
+                    matchExpressions:
+                      - key: actions.github.com/scale-set-name
+                        operator: In
+                        values: [ragentic-ci, manifests-ci]
+        containers:
+          - name: runner
+            image: harbor.home/library/ragentic-ci-runner:2.338.0-2
+            command: ["/home/runner/run.sh"]
+            resources:
+              requests: { cpu: "1", memory: 2Gi, ephemeral-storage: 20Gi }
+              limits: { cpu: "3", memory: 10Gi }
+---
+# "manifests-deploy": rolls deploy/manifests in namespace manifests onto a
+# Harbor digest, as ragentic-deploy does for the ragentic StatefulSet, with its
+# own service account.
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: manifests-deploy
+  namespace: kube-system
+spec:
+  chart: oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set
+  version: 0.15.0
+  targetNamespace: arc-runners
+  valuesContent: |-
+    githubConfigUrl: https://github.com/ragentic-io/manifests
+    githubConfigSecret: arc-github
+    runnerScaleSetName: manifests-deploy
+    minRunners: 0
+    maxRunners: 1
+    controllerServiceAccount:
+      namespace: arc-systems
+      name: arc-gha-rs-controller
+    template:
+      spec:
+        serviceAccountName: manifests-deployer
+        containers:
+          - name: runner
+            image: ghcr.io/actions/actions-runner:latest
+            command: ["/home/runner/run.sh"]
+            resources:
+              requests: { cpu: 100m, memory: 256Mi }
+              limits: { memory: 1Gi }
+            volumeMounts:
+              - { name: harbor, mountPath: /etc/deploy/harbor, readOnly: true }
+              - { name: harbor-ca, mountPath: /etc/deploy/harbor-ca, readOnly: true }
+        volumes:
+          - name: harbor
+            secret:
+              secretName: harbor-push
+              optional: true
+              items: [{ key: .dockerconfigjson, path: .dockerconfigjson }]
+          - name: harbor-ca
+            configMap:
+              name: harbor-ca
+              optional: true
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: manifests-deployer
+  namespace: arc-runners
+---
+# Only in the manifests namespace: patch the manifests Deployment (set image,
+# annotate, undo), watch its rollout and read its pods' logs and events. No
+# Secrets, no Postgres StatefulSet, no other kinds or namespaces.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: manifests-deployer
+  namespace: manifests
+rules:
+  - apiGroups: [apps]
+    resources: [deployments]
+    resourceNames: [manifests]
+    verbs: [get, watch, patch, update]
+  - apiGroups: [apps]
+    resources: [deployments, replicasets]
+    verbs: [list, watch]
+  - apiGroups: [apps]
+    resources: [replicasets]
+    verbs: [get]
+  - apiGroups: [""]
+    resources: [pods, pods/log, events]
+    verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: manifests-deployer
+  namespace: manifests
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: manifests-deployer
+subjects:
+  - kind: ServiceAccount
+    name: manifests-deployer
+    namespace: arc-runners

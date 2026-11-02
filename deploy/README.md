@@ -45,6 +45,33 @@ and are copied in with:
       --inserts --on-conflict-do-nothing -t manifests -t manifest_versions -t catalog_snapshots \
       | kubectl -n manifests exec -i postgres-0 -- psql -q -U manifests -d manifests
 
+## CI runners
+
+`k8s/ci-runners.yaml` registers two GitHub Actions runner scale sets for this
+repository on the cluster's actions-runner-controller (the controller, the
+`arc-github` token secret and the Harbor push credentials come from ragentic's
+`k8s/ci/runner.yaml`):
+
+- `manifests-ci`: CI, Sign and the image build. Same runner image and limits
+  as `ragentic-ci`, one runner, never on k3s-1.
+- `manifests-deploy`: rolls `deploy/manifests` onto a Harbor digest as service
+  account `arc-runners/manifests-deployer`, which may only patch that
+  Deployment and read pods, logs and events in namespace `manifests`: no
+  Secrets, not the Postgres StatefulSet, nothing in other namespaces.
+
+Both scale from zero. Workflows select them with `runs-on: manifests-ci` or
+`runs-on: manifests-deploy`. To install:
+
+1. Let the `arc-github` token register runners on ragentic-io/manifests: add
+   the repo to the fine-grained PAT, or use a classic PAT with `repo`.
+2. `kubectl apply -f deploy/k8s/ci-runners.yaml`
+3. `kubectl auth can-i --as system:serviceaccount:arc-runners:manifests-deployer patch deploy/manifests -n manifests`
+   says yes; the same with `get secrets` says no.
+
+An organization-level `githubConfigUrl` (`https://github.com/ragentic-io`)
+would let `ragentic-ci` serve both repositories instead, but needs a token with
+`admin:org`.
+
 ## Checks
 
     for f in index.json browse-index.json; do curl -s https://manifests.ragentic.io/v1/$f | cmp - catalog/$f; done
