@@ -1,8 +1,13 @@
 # Publishing the social connector drafts
 
-`drafts/<app>/payload.json` are **unsigned** bundle payloads for Bluesky, X, LinkedIn
-and Facebook Pages. Builders never hold the registry key: nothing here is signed, and
-`index.json` and `bundles/` are untouched. Only DJ signs, on a trusted machine.
+**Superseded for signing.** X, LinkedIn, Facebook Pages and Bluesky are now imported
+into `apps/<app>/manifest.json` as `published` applications, and the repository's Sign
+workflow signs them into `index.json` when the change merges to `main`. Do not follow the
+manual signing steps below: they predate the root rotation and the Sign workflow. The
+review in "Before signing (review)" still applies; `drafts/validate` now checks the
+imported `apps/<app>/manifest.json` against the pinned sources here.
+
+`drafts/<app>/payload.json` are the original **unsigned** build outputs of `build.py`.
 
 ## Sequence: 17, not 10
 

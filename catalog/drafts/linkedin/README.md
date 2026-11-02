@@ -1,6 +1,6 @@
 # LinkedIn: setup guide
 
-Unsigned draft. Independent connector for LinkedIn; not affiliated with or endorsed by
+Published as `apps/linkedin` (readiness `reviewed_publication_user_test_required`; open points in its `review_required`). Independent connector for LinkedIn; not affiliated with or endorsed by
 LinkedIn. No logo or brand mark is used.
 
 ## Definition

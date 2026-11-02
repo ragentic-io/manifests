@@ -883,7 +883,7 @@
       "category": "app",
       "connector": {},
       "description": "Connect Facebook Pages through the Meta Graph API v26.0 with an independent Ragentic integration: list your Pages; Page feed and publishing need Page tokens (see setup). Not affiliated with or endorsed by Facebook.",
-      "status": "draft",
+      "status": "published",
       "title": "Facebook Pages"
     }
   },
@@ -912,19 +912,19 @@
     "upstream_sha256": "ac59030745d3d2dd65c203e46e9a8233a83d756161d93e8a257bd4ad9da7b200",
     "url": "https://github.com/ragentic-io/manifests-catalog/blob/main/drafts/facebook/definition.openapi.json"
   },
-  "readiness": "discovered",
+  "readiness": "reviewed_publication_user_test_required",
   "review_required": {
     "authentication": true,
-    "branding": true,
+    "branding": false,
     "connection_test": true,
     "external_references": [
-      "Hand-built definition, not official: compare each operation against the cited documentation before signing.",
-      "getPageFeed and publishPagePost need a Page access token; Ragentic does not yet derive one from the user token, so those two operations fail until it does.",
+      "Hand-built definition, not official: operations /me, /me/accounts and /{page-id}/feed (GET, POST). The cited Graph API pages render client-side and have changed since pinning; re-check the operations against them before relying on the feed operations.",
+      "getPageFeed and publishPagePost need a Page access token; Ragentic's registry connection does not yet derive one from the user token, so those two operations fail until it does. getMe and listPages work with the user token.",
       "Meta documents the token exchange as GET with query parameters; Ragentic POSTs a form with client_secret_post and always adds PKCE. Confirm both in a live authorization.",
       "Meta App Review and Business Verification are needed for Pages the app's own role-holders do not manage."
     ],
-    "rights": true,
-    "setup_guide": true,
+    "rights": false,
+    "setup_guide": false,
     "source_currency": true
   },
   "rights": {
@@ -970,6 +970,5 @@
       "protocol": "openapi"
     }
   },
-  "setup_verification": "not_live_verified",
   "version": "v26.0"
 }

@@ -1,6 +1,6 @@
 # Bluesky (AT Protocol): setup guide
 
-Unsigned draft. Independent connector for Bluesky; not affiliated with or endorsed by
+Published as `apps/bluesky` (readiness `reviewed_publication_user_test_required`; open points in its `review_required`). Independent connector for Bluesky; not affiliated with or endorsed by
 Bluesky Social PBC. No logo or brand mark is used.
 
 ## Definition

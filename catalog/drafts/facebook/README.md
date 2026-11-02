@@ -1,6 +1,6 @@
 # Facebook Pages (Meta Graph API v26.0): setup guide
 
-Unsigned draft. Independent connector for Facebook; not affiliated with or endorsed by
+Published as `apps/facebook` (readiness `reviewed_publication_user_test_required`; open points in its `review_required`). Independent connector for Facebook; not affiliated with or endorsed by
 Meta. No logo or brand mark is used.
 
 ## Definition
