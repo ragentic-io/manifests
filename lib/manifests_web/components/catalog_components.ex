@@ -116,7 +116,13 @@ defmodule ManifestsWeb.CatalogComponents do
       |> Enum.with_index()
       |> Enum.map(fn {{start, n}, i} ->
         h = if n == 0, do: 0, else: max(n / peak * 96, 2)
-        %{x: (offset + i) * 10 + 1, y: 100 - h, h: h, title: "#{assigns.label.(start)}: #{number(n)}"}
+
+        %{
+          x: (offset + i) * 10 + 1,
+          y: 100 - h,
+          h: h,
+          title: "#{assigns.label.(start)}: #{number(n)}"
+        }
       end)
 
     {first, _} = List.first(assigns.series)

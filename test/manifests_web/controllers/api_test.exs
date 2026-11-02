@@ -17,7 +17,9 @@ defmodule ManifestsWeb.ApiTest do
 
   test "legacy transport serves the signed bytes untouched", %{conn: conn, dir: dir} do
     assert response(get(conn, "/v1/index.json"), 200) == File.read!(Path.join(dir, "index.json"))
-    assert response(get(conn, "/v1/browse-index.json"), 200) == File.read!(Path.join(dir, "browse-index.json"))
+
+    assert response(get(conn, "/v1/browse-index.json"), 200) ==
+             File.read!(Path.join(dir, "browse-index.json"))
 
     [bundle] = File.ls!(Path.join(dir, "bundles"))
     digest = Path.rootname(bundle)
@@ -34,16 +36,26 @@ defmodule ManifestsWeb.ApiTest do
     body = json_response(get(conn, "/api/v1/manifests/pay"), 400)
     assert body["error"] == "version_required"
 
-    assert %{"version" => %{"version" => "1.0.0", "latest" => true, "digest" => digest}, "payload" => %{"graph" => _}} =
+    assert %{
+             "version" => %{"version" => "1.0.0", "latest" => true, "digest" => digest},
+             "payload" => %{"graph" => _}
+           } =
              json_response(get(build_conn(), "/api/v1/manifests/pay?version=latest"), 200)
 
     assert %{"version" => %{"digest" => ^digest}} =
-             json_response(get(build_conn(), "/api/v1/manifests/pay?version=sha256:#{digest}"), 200)
+             json_response(
+               get(build_conn(), "/api/v1/manifests/pay?version=sha256:#{digest}"),
+               200
+             )
 
-    assert json_response(get(build_conn(), "/api/v1/manifests/pay/bundle"), 400)["error"] == "version_required"
+    assert json_response(get(build_conn(), "/api/v1/manifests/pay/bundle"), 400)["error"] ==
+             "version_required"
+
     conn = get(build_conn(), "/api/v1/manifests/pay/bundle?version=1.0.0")
     assert get_resp_header(conn, "x-manifest-digest") == [digest]
-    assert json_response(get(build_conn(), "/api/v1/manifests/pay?version=0.0.1"), 404)["error"] == "version_not_found"
+
+    assert json_response(get(build_conn(), "/api/v1/manifests/pay?version=0.0.1"), 404)["error"] ==
+             "version_not_found"
   end
 
   test "every bundle served is a download, whichever route served it", %{conn: conn} do
@@ -67,7 +79,10 @@ defmodule ManifestsWeb.ApiTest do
              json_response(get(conn, "/api/v1/manifests?labels=category:media"), 200)
 
     assert %{"total" => 0} =
-             json_response(get(build_conn(), "/api/v1/manifests?labels=category:media,catalog:published"), 200)
+             json_response(
+               get(build_conn(), "/api/v1/manifests?labels=category:media,catalog:published"),
+               200
+             )
 
     assert %{"total" => 1, "manifests" => [%{"id" => "pay"}]} =
              json_response(get(build_conn(), "/api/v1/manifests?q=pay"), 200)

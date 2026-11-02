@@ -33,7 +33,11 @@ defmodule Manifests.CatalogFixture do
         envelope = Trust.sign(payload, priv)
         digest = Trust.digest(envelope)
         folder = if catalog == "published", do: "bundles", else: "browse-bundles"
-        File.write!(Path.join([dir, folder, "#{digest}.json"]), Jason.encode!(%{"chain" => [], "envelope" => envelope}))
+
+        File.write!(
+          Path.join([dir, folder, "#{digest}.json"]),
+          Jason.encode!(%{"chain" => [], "envelope" => envelope})
+        )
 
         File.mkdir_p!(Path.join([dir, "apps", app.id]))
 
@@ -56,7 +60,10 @@ defmodule Manifests.CatalogFixture do
          }}
       end
 
-    for {kind, file, catalog} <- [{"index", "index.json", "published"}, {"browse_index", "browse-index.json", "draft"}] do
+    for {kind, file, catalog} <- [
+          {"index", "index.json", "published"},
+          {"browse_index", "browse-index.json", "draft"}
+        ] do
       index = %{
         "kind" => kind,
         "registry" => "manifests.ragentic.io",
@@ -87,7 +94,9 @@ defmodule Manifests.CatalogFixture do
         "apiVersion" => "ragentic.io/v1",
         "kind" => "ConnectorTemplate",
         "metadata" => %{"name" => app.id},
-        "spec" => %{"base" => %{"endpoint" => "https://api.#{app.id}.example", "protocol" => "openapi"}}
+        "spec" => %{
+          "base" => %{"endpoint" => "https://api.#{app.id}.example", "protocol" => "openapi"}
+        }
       },
       "graph" => %{
         "nodes" =>

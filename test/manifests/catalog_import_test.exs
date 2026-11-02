@@ -12,7 +12,13 @@ defmodule Manifests.CatalogImportTest do
     dir =
       catalog(tmp, "v1", [
         %{id: "pay", version: "1.0.0", title: "Pay Co", categories: ["finance"]},
-        %{id: "tube", version: "2.0.0", catalog: "draft", categories: ["media"], operations: [{"post", "/videos", "UploadVideo"}]}
+        %{
+          id: "tube",
+          version: "2.0.0",
+          catalog: "draft",
+          categories: ["media"],
+          operations: [{"post", "/videos", "UploadVideo"}]
+        }
       ])
 
     assert {:ok, [{"index", %{new: 1}}, {"browse_index", %{new: 1}}]} = Catalog.import_dir(dir)
@@ -35,8 +41,14 @@ defmodule Manifests.CatalogImportTest do
 
   test "keeps every version and resolves latest, a version, or a digest", %{tmp_dir: tmp} do
     now = System.system_time(:second)
-    {:ok, _} = Catalog.import_dir(catalog(tmp, "a", [%{id: "pay", version: "1.0.0", not_before: now - 600}], sequence: 1))
-    {:ok, _} = Catalog.import_dir(catalog(tmp, "b", [%{id: "pay", version: "1.1.0"}], sequence: 2))
+
+    {:ok, _} =
+      Catalog.import_dir(
+        catalog(tmp, "a", [%{id: "pay", version: "1.0.0", not_before: now - 600}], sequence: 1)
+      )
+
+    {:ok, _} =
+      Catalog.import_dir(catalog(tmp, "b", [%{id: "pay", version: "1.1.0"}], sequence: 2))
 
     assert {:error, :version_required} = Lookup.resolve("pay", nil)
     assert {:ok, m, latest} = Lookup.resolve("pay", "latest")
@@ -51,8 +63,11 @@ defmodule Manifests.CatalogImportTest do
   end
 
   test "an older index never rolls the listing back", %{tmp_dir: tmp} do
-    {:ok, _} = Catalog.import_dir(catalog(tmp, "new", [%{id: "pay", version: "2.0.0"}], sequence: 5))
-    {:ok, _} = Catalog.import_dir(catalog(tmp, "old", [%{id: "pay", version: "1.0.0"}], sequence: 3))
+    {:ok, _} =
+      Catalog.import_dir(catalog(tmp, "new", [%{id: "pay", version: "2.0.0"}], sequence: 5))
+
+    {:ok, _} =
+      Catalog.import_dir(catalog(tmp, "old", [%{id: "pay", version: "1.0.0"}], sequence: 3))
 
     assert Registry.get_manifest!("pay").latest_version == "2.0.0"
     assert {:ok, %{sequence: 5}} = Registry.latest_snapshot("index")
