@@ -2,7 +2,7 @@
 
 # Catalog
 
-539 applications: 20 published and 519 drafts. Drafts can be browsed but not connected until reviewed and published.
+541 applications: 26 published and 515 drafts. Drafts can be browsed but not connected until reviewed and published.
 
 ## Categories
 
@@ -24,17 +24,19 @@ An application can have up to four categories. They are defined in [categories.j
 | `marketing` | Marketing | 5 | 17 |
 | `media` | Media & entertainment | 0 | 64 |
 | `open-data` | Open data & government | 2 | 73 |
-| `productivity` | Productivity & collaboration | 2 | 29 |
+| `productivity` | Productivity & collaboration | 7 | 27 |
 | `security` | Security & identity | 2 | 34 |
 | `social-media` | Social media | 5 | 14 |
-| `software-development` | Software development | 10 | 94 |
+| `software-development` | Software development | 16 | 90 |
 | `travel` | Travel & transport | 0 | 13 |
 
-## Published (20)
+## Published (26)
 
 | Application | Id | Categories | Protocol | Version | Operations | Readiness | Signature |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Ably Control API](apps/ably-control-openapi/MANIFEST.md) | `ably-control-openapi` | communication, software-development | openapi | 1.1.0 | 24 | `isolated_setup_fixture_passed_live_review_required` | signed |
+| [Azure DevOps Git](apps/azure-devops-git/MANIFEST.md) | `azure-devops-git` | software-development, productivity | openapi | 7.1 | 107 | `reviewed_publication_user_test_required` | pending |
+| [Bitbucket Cloud](apps/bitbucket-org-9a1bf340b1/MANIFEST.md) | `bitbucket-org-9a1bf340b1` | software-development, productivity | openapi | 2.0 | 300 | `reviewed_publication_user_test_required` | pending |
 | [Bluesky](apps/bluesky/MANIFEST.md) | `bluesky` | social-media, marketing | openapi | 1.0.0 | 9 | `reviewed_publication_user_test_required` | pending |
 | [Connect to Chatwoot Cloud](apps/chatwoot/MANIFEST.md) | `chatwoot` | business, communication | openapi | 1.1.0 | 157 | `definition_imported` | signed |
 | [Clerk Backend Read API](apps/clerk-openapi/MANIFEST.md) | `clerk-openapi` | security, software-development | openapi | 2026-08-20 | 83 | `reviewed_publication_user_test_required` | signed |
@@ -45,7 +47,11 @@ An application can have up to four categories. They are defined in [categories.j
 | [Connect to the Figma platform](apps/figma-openapi/MANIFEST.md) | `figma-openapi` | productivity, software-development | openapi | 0.46.0 | 59 | `definition_imported` | signed |
 | [Figshare](apps/figshare/MANIFEST.md) | `figshare` | open-data, health | openapi | 2.0 | 158 | `definition_imported` | signed |
 | [Flagsmith Management API](apps/flagsmith-management-openapi/MANIFEST.md) | `flagsmith-management-openapi` | software-development | openapi | v1 | 54 | `reviewed_publication_user_test_required` | signed |
-| [Gitea](apps/gitea/MANIFEST.md) | `gitea` | software-development | openapi | 0.0.0+GITEA-API-APP-VERSION | 554 | `reviewed_publication_user_test_required` | signed |
+| [Forgejo (Codeberg)](apps/forgejo/MANIFEST.md) | `forgejo` | software-development, productivity | openapi | 16.0.7 | 506 | `reviewed_publication_user_test_required` | pending |
+| [Gitea](apps/gitea/MANIFEST.md) | `gitea` | software-development | openapi | 0.0.0+GITEA-API-APP-VERSION | 554 | `reviewed_publication_user_test_required` | pending |
+| [GitHub REST](apps/github-com-3aeb002460/MANIFEST.md) | `github-com-3aeb002460` | software-development, productivity | openapi | 1.1.4 | 1254 | `reviewed_publication_user_test_required` | pending |
+| [GitHub GraphQL](apps/github-graphql/MANIFEST.md) | `github-graphql` | software-development | graphql | 2026-10-27 | 309 | `reviewed_publication_user_test_required` | pending |
+| [GitLab](apps/gitlab-com-20a83b42cd/MANIFEST.md) | `gitlab-com-20a83b42cd` | software-development, productivity | openapi | 19.6 | 1864 | `reviewed_publication_user_test_required` | pending |
 | [GOV.UK Pay](apps/govuk-pay/MANIFEST.md) | `govuk-pay` | finance, open-data | openapi | 1.0.3 | 16 | `definition_imported` | signed |
 | [GrowthBook REST API](apps/growthbook-openapi/MANIFEST.md) | `growthbook-openapi` | software-development, analytics | openapi | 5.1.0 | 442 | `reviewed_publication_user_test_required` | signed |
 | [Connection to Linear](apps/linear-graphql/MANIFEST.md) | `linear-graphql` | productivity, software-development | graphql | 8397645bc0a4+query-mutation.1 | 574 | `reviewed_publication_user_test_required` | signed |
@@ -55,7 +61,7 @@ An application can have up to four categories. They are defined in [categories.j
 | [WorkOS API](apps/workos-openapi/MANIFEST.md) | `workos-openapi` | security, software-development | openapi | 1.0 | 268 | `setup_fixture_reviewed_user_credential_test_required` | signed |
 | [X](apps/x/MANIFEST.md) | `x` | social-media, marketing | openapi | 2.173 | 257 | `reviewed_publication_user_test_required` | pending |
 
-## Drafts (519)
+## Drafts (515)
 
 | Application | Id | Categories | Protocol | Version | Operations | Readiness | Signature |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -128,7 +134,6 @@ An application can have up to four categories. They are defined in [categories.j
 | [Billbee API](apps/billbee-io-15cf84b1c7/MANIFEST.md) | `billbee-io-15cf84b1c7` | ecommerce | openapi | v1 | 76 | `discovered` | signed |
 | [Billingo API v3](apps/billingo-hu-233dabf482/MANIFEST.md) | `billingo-hu-233dabf482` | finance | openapi | 3.0.7 | 31 | `discovered` | signed |
 | [BIN Lookup API](apps/bintable-com-f91c06de36/MANIFEST.md) | `bintable-com-f91c06de36` | finance | openapi | 1.0.0-oas3 | 2 | `discovered` | signed |
-| [Bitbucket API](apps/bitbucket-org-9a1bf340b1/MANIFEST.md) | `bitbucket-org-9a1bf340b1` | software-development, productivity | openapi | 2.0 | 303 | `discovered` | signed |
 | [BizToc](apps/biztoc-com-8a4fa2d963/MANIFEST.md) | `biztoc-com-8a4fa2d963` | media | openapi | v1 | 1 | `discovered` | signed |
 | [IBM Containers API](apps/bluemix-net-containers-a191e8e68a/MANIFEST.md) | `bluemix-net-containers-a191e8e68a` | software-development | openapi | 3.0.0 | 47 | `discovered` | signed |
 | [Botify API](apps/botify-com-f89164fc79/MANIFEST.md) | `botify-com-f89164fc79` | analytics, software-development | openapi | 1.0.0 | 26 | `discovered` | signed |
@@ -264,9 +269,6 @@ An application can have up to four categories. They are defined in [categories.j
 | [Getty Images](apps/gettyimages-com-e8b5b43038/MANIFEST.md) | `gettyimages-com-e8b5b43038` | media | openapi | 3 | 52 | `discovered` | signed |
 | [Giphy API](apps/giphy-com-6652c97fac/MANIFEST.md) | `giphy-com-6652c97fac` | media | openapi | 1.0 | 10 | `discovered` | signed |
 | [Gisgraphy webservices](apps/gisgraphy-com-54d5a6f16c/MANIFEST.md) | `gisgraphy-com-54d5a6f16c` | location | openapi | 4.0.0 | 6 | `discovered` | signed |
-| [GitHub v3 REST API](apps/github-com-3aeb002460/MANIFEST.md) | `github-com-3aeb002460` | productivity, software-development | openapi | 1.1.4 | 845 | `discovered` | signed |
-| [GitHub GraphQL](apps/github-graphql/MANIFEST.md) | `github-graphql` | software-development | graphql | 2026-10-29 | 309 | `discovered` | signed |
-| [Gitlab](apps/gitlab-com-20a83b42cd/MANIFEST.md) | `gitlab-com-20a83b42cd` | software-development | openapi | v3 | 358 | `discovered` | signed |
 | [Go-UPC Barcode-Lookup API](apps/go-upc-com-c023fd8fcd/MANIFEST.md) | `go-upc-com-c023fd8fcd` | ecommerce | openapi | 1.0.0 | 1 | `discovered` | signed |
 | [goog.io \| Unoffical Google Search API](apps/goog-io-47f3b8e321/MANIFEST.md) | `goog-io-47f3b8e321` | software-development | openapi | 0.1.0 | 6 | `discovered` | signed |
 | [Travel Partner API](apps/google-com-d4c9d90273/MANIFEST.md) | `google-com-d4c9d90273` | travel | openapi | v3 | 23 | `discovered` | signed |
