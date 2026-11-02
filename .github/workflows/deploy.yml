@@ -1,0 +1,131 @@
+# Continuous deployment: every commit on main that passes CI rolls out to
+# manifests.ragentic.io (deploy/README.md "Pipeline").
+#
+#   CI       ci.yml on the push to main (or dispatched by sign.yml for its
+#            signing commit, which a GITHUB_TOKEN push would not start)
+#   build    the image, with CATALOG_COMMIT = the last commit that changed
+#            catalog/index.json → ghcr.io/ragentic-io/ragentic-manifests:main-<sha12>,
+#            its layer cache at ghcr.io/ragentic-io/ragentic-manifests:buildcache
+#   deploy   from the in-cluster runner "manifests-deploy" (ragentic's
+#            k8s/ci/runner.yaml): scripts/deploy.sh mirrors the image into
+#            Harbor, pins deploy/manifests to its digest, waits for the rollout
+#            (undoes it on failure) and checks the public index and API
+#
+# The deploy job runs only while the repository variable AUTO_DEPLOY is "true"
+# (Settings → Secrets and variables → Actions → Variables). workflow_dispatch
+# builds a chosen ref by hand and deploys it only with the `deploy` input on:
+#
+#   gh workflow run deploy.yml -f ref=<branch>                 # build only
+#   gh workflow run deploy.yml -f ref=main -f deploy=true      # and roll
+name: deploy
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Commit, branch or tag to build (and deploy)"
+        default: main
+      deploy:
+        description: "Roll manifests.ragentic.io onto the build (off: build only)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# one deploy at a time, never cancelled halfway through a rollout; a manual
+# build that does not deploy has its own lane
+concurrency:
+  group: ${{ (github.event_name == 'workflow_run' || inputs.deploy) && 'deploy-main' || format('build-{0}', inputs.ref) }}
+  cancel-in-progress: false
+
+env:
+  IMAGE: ghcr.io/ragentic-io/ragentic-manifests
+
+jobs:
+  build:
+    # only CI runs of main itself (a push, or sign.yml's dispatch) that passed;
+    # a pull request's CI never deploys
+    if: >-
+      github.event_name == 'workflow_dispatch'
+      || (github.event.workflow_run.conclusion == 'success'
+          && github.event.workflow_run.head_branch == 'main'
+          && contains(fromJSON('["push", "workflow_dispatch"]'), github.event.workflow_run.event))
+    runs-on: manifests-ci
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image: ${{ steps.tag.outputs.image }}
+      sha: ${{ steps.tag.outputs.sha }}
+    steps:
+      # full history (trees, no blobs) to find the commit of catalog/index.json
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || inputs.ref }}
+          fetch-depth: 0
+          filter: blob:none
+      - id: tag
+        run: |
+          sha=$(git rev-parse HEAD)
+          catalog=$(git log -1 --format=%H -- catalog/index.json)
+          {
+            echo "sha=$sha"
+            echo "catalog=$catalog"
+            echo "image=${IMAGE}:main-${sha::12}"
+          } >> "$GITHUB_OUTPUT"
+          echo "commit ${sha::12}, catalog from ${catalog::12}"
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          build-args: CATALOG_COMMIT=${{ steps.tag.outputs.catalog }}
+          tags: ${{ steps.tag.outputs.image }}
+          cache-from: type=registry,ref=${{ env.IMAGE }}:buildcache
+          cache-to: type=registry,ref=${{ env.IMAGE }}:buildcache,mode=max,image-manifest=true,oci-mediatypes=true
+      # the release, its migration entrypoint and the baked catalog
+      - name: check the image
+        run: |
+          docker run --rm --entrypoint sh "${{ steps.tag.outputs.image }}" -c \
+            'test -x /app/bin/manifests && test -s /app/catalog/index.json && test "$MANIFESTS_CATALOG_COMMIT" = "${{ steps.tag.outputs.catalog }}"'
+
+  deploy:
+    needs: build
+    if: (github.event_name == 'workflow_dispatch' && inputs.deploy) || (github.event_name == 'workflow_run' && vars.AUTO_DEPLOY == 'true')
+    runs-on: manifests-deploy
+    timeout-minutes: 30
+    environment:
+      name: manifests
+      url: https://manifests.ragentic.io
+    permissions:
+      contents: read
+      deployments: write
+      packages: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.build.outputs.sha }}
+      - name: tools
+        run: |
+          mkdir -p "$HOME/bin"
+          curl -fsSLo "$HOME/bin/kubectl" "https://dl.k8s.io/release/v1.30.4/bin/linux/amd64/kubectl"
+          chmod +x "$HOME/bin/kubectl"
+          curl -fsSL "https://github.com/google/go-containerregistry/releases/download/v0.20.2/go-containerregistry_Linux_x86_64.tar.gz" \
+            | tar -xz -C "$HOME/bin" crane
+          command -v jq >/dev/null || { curl -fsSLo "$HOME/bin/jq" https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux-amd64; chmod +x "$HOME/bin/jq"; }
+          echo "$HOME/bin" >> "$GITHUB_PATH"
+      - name: deploy
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: scripts/deploy.sh "${{ needs.build.outputs.image }}" "${{ needs.build.outputs.sha }}"

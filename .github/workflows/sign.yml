@@ -1,0 +1,98 @@
+# Signs the catalog with the registry's root key (catalog/README.md "Signing"),
+# ported from ragentic-io/manifests-catalog's Sign workflow to `mix catalog.sign`:
+#
+#   validate → sign → validate --require-signed → commit "Sign catalog: index
+#   sequence N, browse sequence M" as github-actions[bot] → push to main
+#
+# On every push to main that changes an application, registry.json or the
+# signing tools; daily at 06:17 UTC, so signatures are refreshed before they
+# expire; and on demand. The key, MANIFESTS_SIGNING_KEY, lives only in the
+# `registry-signing` environment (deployment branches: main); the tool refuses
+# any key but the root pinned in catalog/registry.json.
+#
+# A push made with the workflow's GITHUB_TOKEN starts no workflow, so after a
+# signing commit this one dispatches CI on main; CI's success there starts
+# deploy.yml, which ships the new index to manifests.ragentic.io.
+name: Sign
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "catalog/apps/**"
+      - "catalog/registry.json"
+      - "lib/mix/tasks/catalog*"
+      - "lib/manifests/catalog_tools/**"
+  schedule:
+    - cron: "17 6 * * *" # re-sign before signatures expire
+  workflow_dispatch:
+
+concurrency:
+  group: sign
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  sign:
+    runs-on: manifests-ci
+    timeout-minutes: 30
+    # Holds MANIFESTS_SIGNING_KEY. Restrict its deployment branches to main.
+    environment: registry-signing
+    env:
+      # the CI job's mix cache (no database: the catalog tasks start no app)
+      MIX_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: erlef/setup-beam@v1
+        with:
+          elixir-version: "1.20.4"
+          otp-version: "29.1.2"
+      - name: Restore deps and _build
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            deps
+            _build
+          key: mix-test-${{ runner.os }}-1.20.4-29.1.2-${{ hashFiles('mix.lock') }}
+          restore-keys: mix-test-${{ runner.os }}-1.20.4-29.1.2-
+      - run: mix deps.get
+      - run: mix compile
+      - run: mix catalog.validate
+      - run: mix catalog.sign
+        env:
+          MANIFESTS_SIGNING_KEY: ${{ secrets.MANIFESTS_SIGNING_KEY }}
+      - run: mix catalog.validate --require-signed
+      - name: Commit signed objects
+        id: commit
+        run: |
+          git add -A catalog
+          if git diff --cached --quiet; then echo "Nothing to sign."; exit 0; fi
+          seq() {
+            mix run --no-start --no-compile -e '
+              [file] = System.argv()
+              File.read!(file) |> JSON.decode!() |> Map.fetch!("payload")
+              |> Base.url_decode64!(padding: false) |> JSON.decode!()
+              |> Map.fetch!("sequence") |> IO.puts()' "$1"
+          }
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "Sign catalog: index sequence $(seq catalog/index.json), browse sequence $(seq catalog/browse-index.json)"
+          # main must let github-actions[bot] push (a ruleset bypass actor)
+          git push origin HEAD:main
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+      # CI on main, and on its success deploy.yml (workflow_run)
+      - name: Dispatch CI for the signing commit
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/dispatches" \
+            -d '{"ref":"main"}'

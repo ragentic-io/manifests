@@ -1,0 +1,74 @@
+# Checks every pull request and every push to main (deploy/README.md "Pipeline"):
+# formatting, a warning-free compile, the test suite against Postgres, and the
+# catalog: every application's sources match its signed bundle or are an
+# unsigned draft waiting for the Sign workflow.
+#
+# Runs on "manifests-ci", the ARC scale set registered to this repository in
+# ragentic's k8s/ci/runner.yaml (image harbor.home/library/ragentic-ci-runner).
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    runs-on: manifests-ci
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      MIX_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@v1
+        with:
+          elixir-version: "1.20.4"
+          otp-version: "29.1.2"
+      - name: Restore deps and _build
+        id: mix-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            deps
+            _build
+          key: mix-test-${{ runner.os }}-1.20.4-29.1.2-${{ hashFiles('mix.lock') }}
+          restore-keys: mix-test-${{ runner.os }}-1.20.4-29.1.2-
+      - run: mix deps.get
+      - name: mix format --check-formatted
+        run: mix format --check-formatted
+      - name: mix compile --warnings-as-errors
+        run: mix compile --warnings-as-errors
+      # saved once compiled, so a later failing step does not lose the compile
+      - name: Save deps and _build
+        if: steps.mix-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ steps.mix-cache.outputs.cache-primary-key }}
+      - name: mix catalog.validate
+        run: mix catalog.validate
+      - name: mix test
+        run: mix test

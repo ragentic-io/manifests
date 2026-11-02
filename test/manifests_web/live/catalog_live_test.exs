@@ -10,7 +10,11 @@ defmodule ManifestsWeb.CatalogLiveTest do
 
     {:ok, _} =
       Catalog.import_dir(
-        CatalogFixture.write!(Path.join(tmp, "a"), [%{id: "pay", version: "1.0.0", categories: ["finance"], not_before: now - 600}], sequence: 1)
+        CatalogFixture.write!(
+          Path.join(tmp, "a"),
+          [%{id: "pay", version: "1.0.0", categories: ["finance"], not_before: now - 600}],
+          sequence: 1
+        )
       )
 
     {:ok, _} =
@@ -18,7 +22,16 @@ defmodule ManifestsWeb.CatalogLiveTest do
         CatalogFixture.write!(
           Path.join(tmp, "b"),
           [
-            %{id: "pay", version: "1.1.0", title: "Pay Co", categories: ["finance"], operations: [{"get", "/charges", "ListCharges"}, {"post", "/charges", "CreateCharge"}]},
+            %{
+              id: "pay",
+              version: "1.1.0",
+              title: "Pay Co",
+              categories: ["finance"],
+              operations: [
+                {"get", "/charges", "ListCharges"},
+                {"post", "/charges", "CreateCharge"}
+              ]
+            },
             %{id: "tube", version: "2.0.0", catalog: "draft", categories: ["media"]}
           ],
           sequence: 2
@@ -43,7 +56,9 @@ defmodule ManifestsWeb.CatalogLiveTest do
   end
 
   test "a manifest link without a version is rewritten to latest", %{conn: conn} do
-    assert {:error, {:live_redirect, %{to: "/apps/pay?version=latest"}}} = live(conn, ~p"/apps/pay")
+    assert {:error, {:live_redirect, %{to: "/apps/pay?version=latest"}}} =
+             live(conn, ~p"/apps/pay")
+
     {:ok, _view, html} = live(conn, ~p"/apps/pay?version=latest")
     assert html =~ "Pay Co"
     refute html =~ "The latest is"
@@ -64,7 +79,9 @@ defmodule ManifestsWeb.CatalogLiveTest do
   end
 
   test "unknown apps and versions fall back", %{conn: conn} do
-    assert {:error, {:live_redirect, %{to: "/?q=nope"}}} = live(conn, ~p"/apps/nope?version=latest")
+    assert {:error, {:live_redirect, %{to: "/?q=nope"}}} =
+             live(conn, ~p"/apps/nope?version=latest")
+
     assert {:error, {:live_redirect, %{to: to}}} = live(conn, ~p"/apps/pay?version=9.9.9")
     assert to =~ "version=latest"
   end
@@ -72,7 +89,10 @@ defmodule ManifestsWeb.CatalogLiveTest do
   test "download counts and the latest release date update live", %{conn: conn} do
     {:ok, view, html} = live(conn, ~p"/apps/pay?version=latest")
     assert html =~ "Latest release"
-    assert view |> element("#latest-release") |> render() =~ Calendar.strftime(Date.utc_today(), "%Y-%m-%d")
+
+    assert view |> element("#latest-release") |> render() =~
+             Calendar.strftime(Date.utc_today(), "%Y-%m-%d")
+
     assert view |> element("#downloads-total") |> render() =~ ~r/>\s*0\s*</
 
     {:ok, _, latest} = Manifests.Registry.Lookup.resolve("pay", "latest")

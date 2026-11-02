@@ -25,7 +25,15 @@ defmodule Manifests.Analytics do
   def record(manifest_id, digest, today \\ Date.utc_today()) do
     Repo.insert_all(
       "manifest_downloads",
-      [%{id: Ecto.UUID.bingenerate(), manifest_id: manifest_id, digest: digest, day: today, count: 1}],
+      [
+        %{
+          id: Ecto.UUID.bingenerate(),
+          manifest_id: manifest_id,
+          digest: digest,
+          day: today,
+          count: 1
+        }
+      ],
       on_conflict: [inc: [count: 1]],
       conflict_target: [:digest, :day]
     )
