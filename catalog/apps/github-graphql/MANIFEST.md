@@ -14,7 +14,7 @@ Connect GitHub's GraphQL API (api.github.com/graphql) with a personal access tok
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `be93822ddd6a5ac33fa4d90082cbbaca660589db15eb0bde892f0c3930307b2b` in `bundles/`, expires 2027-01-31 17:16 UTC |
 | Endpoint | `https://api.github.com/graphql` |
 | Credential | static_bearer |
 | Connection test | `https://api.github.com/graphql` |

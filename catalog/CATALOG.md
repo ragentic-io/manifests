@@ -35,31 +35,31 @@ An application can have up to four categories. They are defined in [categories.j
 | Application | Id | Categories | Protocol | Version | Operations | Readiness | Signature |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Ably Control API](apps/ably-control-openapi/MANIFEST.md) | `ably-control-openapi` | communication, software-development | openapi | 1.1.0 | 24 | `isolated_setup_fixture_passed_live_review_required` | signed |
-| [Azure DevOps Git](apps/azure-devops-git/MANIFEST.md) | `azure-devops-git` | software-development, productivity | openapi | 7.1 | 107 | `reviewed_publication_user_test_required` | pending |
-| [Bitbucket Cloud](apps/bitbucket-org-9a1bf340b1/MANIFEST.md) | `bitbucket-org-9a1bf340b1` | software-development, productivity | openapi | 2.0 | 300 | `reviewed_publication_user_test_required` | pending |
-| [Bluesky](apps/bluesky/MANIFEST.md) | `bluesky` | social-media, marketing | openapi | 1.0.0 | 9 | `reviewed_publication_user_test_required` | pending |
+| [Azure DevOps Git](apps/azure-devops-git/MANIFEST.md) | `azure-devops-git` | software-development, productivity | openapi | 7.1 | 107 | `reviewed_publication_user_test_required` | signed |
+| [Bitbucket Cloud](apps/bitbucket-org-9a1bf340b1/MANIFEST.md) | `bitbucket-org-9a1bf340b1` | software-development, productivity | openapi | 2.0 | 300 | `reviewed_publication_user_test_required` | signed |
+| [Bluesky](apps/bluesky/MANIFEST.md) | `bluesky` | social-media, marketing | openapi | 1.0.0 | 9 | `reviewed_publication_user_test_required` | signed |
 | [Connect to Chatwoot Cloud](apps/chatwoot/MANIFEST.md) | `chatwoot` | business, communication | openapi | 1.1.0 | 157 | `definition_imported` | signed |
 | [Clerk Backend Read API](apps/clerk-openapi/MANIFEST.md) | `clerk-openapi` | security, software-development | openapi | 2026-08-20 | 83 | `reviewed_publication_user_test_required` | signed |
 | [Color Name API](apps/color-pizza-85d41d756d/MANIFEST.md) | `color-pizza-85d41d756d` | software-development | openapi | 1.1.0 | 7 | `public_probe_verified_user_save_review_required` | signed |
 | [DigitalOcean API](apps/digitalocean-com-12effa1d34/MANIFEST.md) | `digitalocean-com-12effa1d34` | cloud | openapi | 2.0 | 858 | `canonical_text_only_setup_reviewed_live_provider_check_required` | signed |
 | [Connect to Discord](apps/discord-openapi/MANIFEST.md) | `discord-openapi` | social-media, communication | openapi | 10 | 250 | `definition_imported` | signed |
-| [Facebook Pages](apps/facebook/MANIFEST.md) | `facebook` | social-media, marketing | openapi | v26.0 | 4 | `reviewed_publication_user_test_required` | pending |
+| [Facebook Pages](apps/facebook/MANIFEST.md) | `facebook` | social-media, marketing | openapi | v26.0 | 4 | `reviewed_publication_user_test_required` | signed |
 | [Connect to the Figma platform](apps/figma-openapi/MANIFEST.md) | `figma-openapi` | productivity, software-development | openapi | 0.46.0 | 59 | `definition_imported` | signed |
 | [Figshare](apps/figshare/MANIFEST.md) | `figshare` | open-data, health | openapi | 2.0 | 158 | `definition_imported` | signed |
 | [Flagsmith Management API](apps/flagsmith-management-openapi/MANIFEST.md) | `flagsmith-management-openapi` | software-development | openapi | v1 | 54 | `reviewed_publication_user_test_required` | signed |
-| [Forgejo (Codeberg)](apps/forgejo/MANIFEST.md) | `forgejo` | software-development, productivity | openapi | 16.0.7 | 506 | `reviewed_publication_user_test_required` | pending |
+| [Forgejo (Codeberg)](apps/forgejo/MANIFEST.md) | `forgejo` | software-development, productivity | openapi | 16.0.7 | 506 | `reviewed_publication_user_test_required` | signed |
 | [Gitea](apps/gitea/MANIFEST.md) | `gitea` | software-development | openapi | 0.0.0+GITEA-API-APP-VERSION | 554 | `reviewed_publication_user_test_required` | signed |
-| [GitHub REST](apps/github-com-3aeb002460/MANIFEST.md) | `github-com-3aeb002460` | software-development, productivity | openapi | 1.1.4 | 1254 | `reviewed_publication_user_test_required` | pending |
-| [GitHub GraphQL](apps/github-graphql/MANIFEST.md) | `github-graphql` | software-development | graphql | 2026-10-27 | 309 | `reviewed_publication_user_test_required` | pending |
-| [GitLab](apps/gitlab-com-20a83b42cd/MANIFEST.md) | `gitlab-com-20a83b42cd` | software-development, productivity | openapi | 19.6 | 1864 | `reviewed_publication_user_test_required` | pending |
+| [GitHub REST](apps/github-com-3aeb002460/MANIFEST.md) | `github-com-3aeb002460` | software-development, productivity | openapi | 1.1.4 | 1254 | `reviewed_publication_user_test_required` | signed |
+| [GitHub GraphQL](apps/github-graphql/MANIFEST.md) | `github-graphql` | software-development | graphql | 2026-10-27 | 309 | `reviewed_publication_user_test_required` | signed |
+| [GitLab](apps/gitlab-com-20a83b42cd/MANIFEST.md) | `gitlab-com-20a83b42cd` | software-development, productivity | openapi | 19.6 | 1864 | `reviewed_publication_user_test_required` | signed |
 | [GOV.UK Pay](apps/govuk-pay/MANIFEST.md) | `govuk-pay` | finance, open-data | openapi | 1.0.3 | 16 | `definition_imported` | signed |
 | [GrowthBook REST API](apps/growthbook-openapi/MANIFEST.md) | `growthbook-openapi` | software-development, analytics | openapi | 5.1.0 | 442 | `reviewed_publication_user_test_required` | signed |
 | [Connection to Linear](apps/linear-graphql/MANIFEST.md) | `linear-graphql` | productivity, software-development | graphql | 8397645bc0a4+query-mutation.1 | 574 | `reviewed_publication_user_test_required` | signed |
-| [LinkedIn](apps/linkedin/MANIFEST.md) | `linkedin` | social-media, marketing | openapi | 202610 | 3 | `reviewed_publication_user_test_required` | pending |
+| [LinkedIn](apps/linkedin/MANIFEST.md) | `linkedin` | social-media, marketing | openapi | 202610 | 3 | `reviewed_publication_user_test_required` | signed |
 | [Connection to Stripe](apps/stripe-openapi/MANIFEST.md) | `stripe-openapi` | finance | openapi | 2026-09-30.endive | 612 | `definition_imported` | signed |
 | [Webflow Site Data API](apps/webflow-data-api/MANIFEST.md) | `webflow-data-api` | software-development, marketing | openapi | 2.0.0 | 112 | `reviewed_publication_user_test_required` | signed |
 | [WorkOS API](apps/workos-openapi/MANIFEST.md) | `workos-openapi` | security, software-development | openapi | 1.0 | 268 | `setup_fixture_reviewed_user_credential_test_required` | signed |
-| [X](apps/x/MANIFEST.md) | `x` | social-media, marketing | openapi | 2.173 | 257 | `reviewed_publication_user_test_required` | pending |
+| [X](apps/x/MANIFEST.md) | `x` | social-media, marketing | openapi | 2.173 | 257 | `reviewed_publication_user_test_required` | signed |
 
 ## Drafts (515)
 

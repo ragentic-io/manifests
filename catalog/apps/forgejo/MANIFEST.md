@@ -14,7 +14,7 @@ Connect Codeberg, the Forgejo-hosted forge, through Forgejo's API v1 with an acc
 | | |
 | --- | --- |
 | Categories | Software development, Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e7ddd220bd874179c66f2c0aa6781dfe32b845f6b169dee2da15bc03cb04eb53` in `bundles/`, expires 2027-01-31 17:16 UTC |
 | Endpoint | `https://codeberg.org/api/v1` |
 | Credential | api_key_header (`Authorization` 'token') |
 | Connection test | GET `https://codeberg.org/api/v1/user` |
