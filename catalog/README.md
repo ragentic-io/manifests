@@ -180,11 +180,16 @@ workflow runs it after signing.
 
 ## Signing (maintainers)
 
-The Sign workflow runs on every push to `main` that touches `apps/`, `registry.json`
-or the catalog tools, daily on a schedule, and on demand. It runs
-`mix catalog.sign` with the key in `MANIFESTS_SIGNING_KEY`. For each application whose
-sources differ from its signed bundle, or whose signature expires within
-`refresh_days`, it:
+This catalog lives in `ragentic-io/manifests`, beside the registry server that
+publishes it, so the repository and the server never sign competing sequence
+numbers. The Sign workflow (`.github/workflows/sign.yml`) runs on every push to
+`main` that touches `catalog/apps/`, `catalog/registry.json` or the signing tools
+(`lib/mix/tasks/catalog*`, `lib/manifests/catalog_tools/`), daily at 06:17 UTC,
+and on demand (`gh workflow run sign.yml`). It runs `mix catalog.validate`,
+`mix catalog.sign` with the key in `MANIFESTS_SIGNING_KEY`, then
+`mix catalog.validate --require-signed`. For each application whose sources
+differ from its signed bundle, or whose signature expires within `refresh_days`,
+`mix catalog.sign`:
 
 1. Sets `not_before` and `expires` (`validity_days` ahead) and signs the canonical
    payload into `bundles/` or `browse-bundles/`.
@@ -193,9 +198,16 @@ sources differ from its signed bundle, or whose signature expires within
    existing order. It increments the sequence and deletes bundles the index no
    longer names.
 4. Regenerates the docs and signs `sources.json` over every plain-text file.
-5. Commits the result to `main`.
 
-Preview the plan without a key with `mix catalog.sign --dry-run`.
+The workflow commits the result to `main` as `github-actions[bot]` ("Sign
+catalog: index sequence N, browse sequence M") and dispatches CI for that commit;
+CI's success on `main` starts the deploy workflow, which bakes the new index into
+the image and rolls manifests.ragentic.io (deploy/README.md "Pipeline").
+
+Preview the plan without a key with `mix catalog.sign --dry-run`. Pull requests
+only change sources: CI's `mix catalog.validate` accepts unsigned drafts and
+rejects sources that disagree with a signed bundle in any other way. Never sign
+on a workstation; a locally signed sequence races the workflow's.
 
 `mix catalog.import` rebuilds `apps/` from the signed objects, keeping each
 application's categories.
@@ -206,13 +218,11 @@ One-time setup:
    restricted to `main`.
 2. Add the root private key to that environment as the secret
    `MANIFESTS_SIGNING_KEY`, as a 32-byte Ed25519 seed in hex or base64url. The tool
-   refuses a key that doesn't match the pinned root.
-3. Protect `main`: require pull requests, the Validate check and a code owner review.
-   Allow GitHub Actions to push the signing commit, for example as a ruleset bypass
-   actor.
-
-The registry server at `manifests.ragentic.io` should publish from this repository,
-so the repository and the server never sign competing sequence numbers.
+   refuses a key that doesn't match the pinned root (`c05bcbfb…` in
+   `registry.json`).
+3. Protect `main`: require pull requests and the CI check. Allow
+   `github-actions[bot]` to push the signing commit, for example as a ruleset
+   bypass actor.
 
 ## Using this catalog
 

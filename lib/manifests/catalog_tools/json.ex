@@ -150,7 +150,7 @@ defmodule Manifests.CatalogTools.Json do
 
   defp string(s, orig, quote, acc) do
     n = plain_len(s, 0)
-    <<chunk::binary-size(n), rest::binary>> = s
+    <<chunk::binary-size(^n), rest::binary>> = s
     acc = [acc | chunk]
 
     case rest do
@@ -292,7 +292,7 @@ defmodule Manifests.CatalogTools.Json do
 
   defp digits(s) do
     n = count_digits(s, 0)
-    <<d::binary-size(n), rest::binary>> = s
+    <<d::binary-size(^n), rest::binary>> = s
     {d, rest}
   end
 

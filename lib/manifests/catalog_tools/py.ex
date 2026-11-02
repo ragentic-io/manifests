@@ -139,7 +139,7 @@ defmodule Manifests.CatalogTools.Py do
         digits <> String.duplicate("0", decpt - n) <> ".0"
 
       true ->
-        <<a::binary-size(decpt), b::binary>> = digits
+        <<a::binary-size(^decpt), b::binary>> = digits
         a <> "." <> b
     end
   end
@@ -277,7 +277,7 @@ defmodule Manifests.CatalogTools.Py do
 
   defp utf8_replace(bin, acc) do
     n = maximal_subpart(bin)
-    <<_::binary-size(n), rest::binary>> = bin
+    <<_::binary-size(^n), rest::binary>> = bin
     utf8_replace(rest, ["\uFFFD" | acc])
   end
 
