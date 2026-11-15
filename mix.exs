@@ -4,6 +4,7 @@ defmodule Manifests.MixProject do
   def project do
     [
       app: :manifests,
+      package: [licenses: ["PolyForm-Noncommercial-1.0.0"]],
       version: "0.1.0",
       elixir: "~> 1.17",
       elixirc_paths: elixirc_paths(Mix.env()),
