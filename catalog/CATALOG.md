@@ -2,7 +2,7 @@
 
 # Catalog
 
-541 applications: 26 published and 515 drafts. Drafts can be browsed but not connected until reviewed and published.
+544 applications: 26 published and 518 drafts. Drafts can be browsed but not connected until reviewed and published.
 
 ## Categories
 
@@ -13,7 +13,7 @@ An application can have up to four categories. They are defined in [categories.j
 | `ai` | AI & language | 0 | 35 |
 | `analytics` | Data & analytics | 1 | 16 |
 | `business` | Business & CRM | 1 | 17 |
-| `cloud` | Cloud & infrastructure | 1 | 28 |
+| `cloud` | Cloud & infrastructure | 1 | 31 |
 | `communication` | Communication | 3 | 33 |
 | `ecommerce` | E-commerce | 0 | 39 |
 | `education` | Education | 0 | 4 |
@@ -22,9 +22,9 @@ An application can have up to four categories. They are defined in [categories.j
 | `iot` | IoT & smart home | 0 | 14 |
 | `location` | Maps & location | 0 | 31 |
 | `marketing` | Marketing | 5 | 17 |
-| `media` | Media & entertainment | 0 | 64 |
+| `media` | Media & entertainment | 0 | 65 |
 | `open-data` | Open data & government | 2 | 73 |
-| `productivity` | Productivity & collaboration | 7 | 27 |
+| `productivity` | Productivity & collaboration | 7 | 28 |
 | `security` | Security & identity | 2 | 34 |
 | `social-media` | Social media | 5 | 14 |
 | `software-development` | Software development | 16 | 90 |
@@ -61,7 +61,7 @@ An application can have up to four categories. They are defined in [categories.j
 | [WorkOS API](apps/workos-openapi/MANIFEST.md) | `workos-openapi` | security, software-development | openapi | 1.0 | 268 | `setup_fixture_reviewed_user_credential_test_required` | signed |
 | [X](apps/x/MANIFEST.md) | `x` | social-media, marketing | openapi | 2.173 | 257 | `reviewed_publication_user_test_required` | signed |
 
-## Drafts (515)
+## Drafts (518)
 
 | Application | Id | Categories | Protocol | Version | Operations | Readiness | Signature |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -114,6 +114,9 @@ An application can have up to four categories. They are defined in [categories.j
 | [Auckland Museum API](apps/aucklandmuseum-com-703afaec5f/MANIFEST.md) | `aucklandmuseum-com-703afaec5f` | open-data | openapi | 2.0.0 | 6 | `discovered` | signed |
 | [Authentiq Connect API](apps/authentiq-io-7873537c51/MANIFEST.md) | `authentiq-io-7873537c51` | security | openapi | 1.0 | 9 | `discovered` | signed |
 | [CIS Automotive API](apps/autodealerdata-com-ec66ea6b25/MANIFEST.md) | `autodealerdata-com-ec66ea6b25` | ecommerce | openapi | 1.0 | 35 | `discovered` | signed |
+| [Autodesk Data Management (Fusion and ACC hubs, projects and files)](apps/autodesk-aps-data-management/MANIFEST.md) | `autodesk-aps-data-management` | cloud, productivity | openapi | 1.0 | 41 | `discovered` | pending |
+| [Autodesk Model Derivative (translate and export designs)](apps/autodesk-aps-model-derivative/MANIFEST.md) | `autodesk-aps-model-derivative` | cloud, media | openapi | 2.0 | 12 | `discovered` | pending |
+| [Autodesk Object Storage Service](apps/autodesk-aps-oss/MANIFEST.md) | `autodesk-aps-oss` | cloud | openapi | 1.0 | 21 | `discovered` | pending |
 | [Datto\|Autotask PSA Rest API](apps/autotask-net-51422169c8/MANIFEST.md) | `autotask-net-51422169c8` | business | openapi | v1 | 2958 | `discovered` | signed |
 | [Avaza API Documentation](apps/avaza-com-1781a9ce58/MANIFEST.md) | `avaza-com-1781a9ce58` | productivity | openapi | v1 | 86 | `discovered` | signed |
 | [Azure Enterprise Knowledge Graph Service](apps/azure-com-enterpriseknowledgegraph-enterpriseknowledgegraphswagger-8169178425/MANIFEST.md) | `azure-com-enterpriseknowledgegraph-enterpriseknowledgegraphswagger-8169178425` | cloud | openapi | 2018-12-03 | 7 | `discovered` | signed |
