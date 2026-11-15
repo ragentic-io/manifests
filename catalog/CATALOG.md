@@ -2,7 +2,7 @@
 
 # Catalog
 
-544 applications: 28 published and 516 drafts. Drafts can be browsed but not connected until reviewed and published.
+546 applications: 30 published and 516 drafts. Drafts can be browsed but not connected until reviewed and published.
 
 ## Categories
 
@@ -24,13 +24,13 @@ An application can have up to four categories. They are defined in [categories.j
 | `marketing` | Marketing | 5 | 17 |
 | `media` | Media & entertainment | 1 | 64 |
 | `open-data` | Open data & government | 2 | 73 |
-| `productivity` | Productivity & collaboration | 8 | 27 |
+| `productivity` | Productivity & collaboration | 10 | 27 |
 | `security` | Security & identity | 2 | 34 |
 | `social-media` | Social media | 5 | 14 |
-| `software-development` | Software development | 16 | 90 |
+| `software-development` | Software development | 17 | 90 |
 | `travel` | Travel & transport | 0 | 13 |
 
-## Published (28)
+## Published (30)
 
 | Application | Id | Categories | Protocol | Version | Operations | Readiness | Signature |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -46,6 +46,7 @@ An application can have up to four categories. They are defined in [categories.j
 | [DigitalOcean API](apps/digitalocean-com-12effa1d34/MANIFEST.md) | `digitalocean-com-12effa1d34` | cloud | openapi | 2.0 | 858 | `canonical_text_only_setup_reviewed_live_provider_check_required` | signed |
 | [Connect to Discord](apps/discord-openapi/MANIFEST.md) | `discord-openapi` | social-media, communication | openapi | 10 | 250 | `definition_imported` | signed |
 | [Facebook Pages](apps/facebook/MANIFEST.md) | `facebook` | social-media, marketing | openapi | v26.0 | 4 | `reviewed_publication_user_test_required` | signed |
+| [Figma and FigJam](apps/figma/MANIFEST.md) | `figma` | productivity, software-development | openapi | 0.47.0 | 59 | `reviewed_publication_user_test_required` | pending |
 | [Connect to the Figma platform](apps/figma-openapi/MANIFEST.md) | `figma-openapi` | productivity, software-development | openapi | 0.46.0 | 59 | `definition_imported` | signed |
 | [Figshare](apps/figshare/MANIFEST.md) | `figshare` | open-data, health | openapi | 2.0 | 158 | `definition_imported` | signed |
 | [Flagsmith Management API](apps/flagsmith-management-openapi/MANIFEST.md) | `flagsmith-management-openapi` | software-development | openapi | v1 | 54 | `reviewed_publication_user_test_required` | signed |
@@ -58,6 +59,7 @@ An application can have up to four categories. They are defined in [categories.j
 | [GrowthBook REST API](apps/growthbook-openapi/MANIFEST.md) | `growthbook-openapi` | software-development, analytics | openapi | 5.1.0 | 442 | `reviewed_publication_user_test_required` | signed |
 | [Connection to Linear](apps/linear-graphql/MANIFEST.md) | `linear-graphql` | productivity, software-development | graphql | 8397645bc0a4+query-mutation.1 | 574 | `reviewed_publication_user_test_required` | signed |
 | [LinkedIn](apps/linkedin/MANIFEST.md) | `linkedin` | social-media, marketing | openapi | 202610 | 3 | `reviewed_publication_user_test_required` | signed |
+| [Miro](apps/miro/MANIFEST.md) | `miro` | productivity | openapi | v2.0 | 197 | `reviewed_publication_user_test_required` | pending |
 | [Connection to Stripe](apps/stripe-openapi/MANIFEST.md) | `stripe-openapi` | finance | openapi | 2026-09-30.endive | 612 | `definition_imported` | signed |
 | [Webflow Site Data API](apps/webflow-data-api/MANIFEST.md) | `webflow-data-api` | software-development, marketing | openapi | 2.0.0 | 112 | `reviewed_publication_user_test_required` | signed |
 | [WorkOS API](apps/workos-openapi/MANIFEST.md) | `workos-openapi` | security, software-development | openapi | 1.0 | 268 | `setup_fixture_reviewed_user_credential_test_required` | signed |
