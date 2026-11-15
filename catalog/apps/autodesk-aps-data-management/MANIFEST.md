@@ -14,7 +14,7 @@ Autodesk Platform Services Data Management API: hubs, projects, folders, items a
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure, Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d558a22b97ca188723078fbf8be0a15c11789563f7a78727267e6f8280e6934e` in `browse-bundles/`, expires 2027-02-13 04:47 UTC |
 | Endpoint | `https://developer.api.autodesk.com` |
 | Credential | — |
 | Connection test | — |

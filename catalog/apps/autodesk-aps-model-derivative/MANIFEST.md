@@ -14,7 +14,7 @@ Autodesk Platform Services Model Derivative API: translate designs (Fusion, Inve
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure, Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8b21316a2d3ae99f902d0a637ac8f68767158a4801c61d902dcf0ab567ee4bd1` in `browse-bundles/`, expires 2027-02-13 04:47 UTC |
 | Endpoint | `https://developer.api.autodesk.com` |
 | Credential | — |
 | Connection test | — |
