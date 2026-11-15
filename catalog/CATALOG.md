@@ -35,8 +35,8 @@ An application can have up to four categories. They are defined in [categories.j
 | Application | Id | Categories | Protocol | Version | Operations | Readiness | Signature |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Ably Control API](apps/ably-control-openapi/MANIFEST.md) | `ably-control-openapi` | communication, software-development | openapi | 1.1.0 | 24 | `isolated_setup_fixture_passed_live_review_required` | signed |
-| [Autodesk Data Management](apps/autodesk-aps-data-management/MANIFEST.md) | `autodesk-aps-data-management` | cloud, productivity | openapi | 1.0 | 41 | `reviewed_publication_user_test_required` | pending |
-| [Autodesk Model Derivative](apps/autodesk-aps-model-derivative/MANIFEST.md) | `autodesk-aps-model-derivative` | cloud, media | openapi | 2.0 | 12 | `reviewed_publication_user_test_required` | pending |
+| [Autodesk Data Management](apps/autodesk-aps-data-management/MANIFEST.md) | `autodesk-aps-data-management` | cloud, productivity | openapi | 1.0 | 41 | `reviewed_publication_user_test_required` | signed |
+| [Autodesk Model Derivative](apps/autodesk-aps-model-derivative/MANIFEST.md) | `autodesk-aps-model-derivative` | cloud, media | openapi | 2.0 | 12 | `reviewed_publication_user_test_required` | signed |
 | [Azure DevOps Git](apps/azure-devops-git/MANIFEST.md) | `azure-devops-git` | software-development, productivity | openapi | 7.1 | 107 | `reviewed_publication_user_test_required` | signed |
 | [Bitbucket Cloud](apps/bitbucket-org-9a1bf340b1/MANIFEST.md) | `bitbucket-org-9a1bf340b1` | software-development, productivity | openapi | 2.0 | 300 | `reviewed_publication_user_test_required` | signed |
 | [Bluesky](apps/bluesky/MANIFEST.md) | `bluesky` | social-media, marketing | openapi | 1.0.0 | 9 | `reviewed_publication_user_test_required` | signed |
