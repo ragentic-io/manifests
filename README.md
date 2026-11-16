@@ -8,15 +8,9 @@ graph, provenance, and setup information. Use these reusable definitions to crea
 connections in your own Ragentic workspace.
 
 Start with the [application directory](catalog/CATALOG.md) or the
-[searchable public catalog](https://manifests.ragentic.io/). As of 15 November 2026,
-main contains **544 applications**:
-
-| API format | Published | Drafts | Total |
-| --- | ---: | ---: | ---: |
-| OpenAPI / Swagger | 26 | 495 | 521 |
-| GraphQL | 2 | 18 | 20 |
-| AsyncAPI | 0 | 3 | 3 |
-| **Total** | **28** | **516** | **544** |
+[searchable public catalog](https://manifests.ragentic.io/). The catalog includes
+OpenAPI / Swagger, GraphQL and AsyncAPI definitions. The generated application
+directory lists the current applications, publication states and counts.
 
 **Published** applications have reviewed setup and can be connected in Ragentic.
 **Drafts** are available for discovery and definition previews; they require
@@ -36,7 +30,7 @@ All paths below are relative to the repository root.
 | [`catalog/registry.json`](catalog/registry.json) | Registry identity, public verification root and signature refresh settings. |
 | [`catalog/index.json`](catalog/index.json), [`catalog/bundles/`](catalog/bundles/) | Signed published index and bundles, written by the Sign workflow. |
 | [`catalog/browse-index.json`](catalog/browse-index.json), [`catalog/browse-bundles/`](catalog/browse-bundles/) | Signed draft index and bundles, also written by Sign. |
-| [`catalog/sources.json`](catalog/sources.json) | Signed SHA-256 inventory of the files under `catalog/apps/` and `catalog/CATALOG.md`. |
+| [`catalog/sources.json`](catalog/sources.json) | Signed SHA-256 inventory of the files under `catalog/apps/`, plus `catalog/CATALOG.md` and `catalog/categories.json`. |
 | [`lib/mix/tasks/`](lib/mix/tasks/), [`lib/manifests/catalog_tools/`](lib/manifests/catalog_tools/) | Current catalog authoring, graph generation, documentation, validation and signing tools. |
 | [`lib/manifests/`](lib/manifests/), [`lib/manifests_web/`](lib/manifests_web/), [`priv/`](priv/) | Registry persistence/import, Phoenix pages and HTTP endpoints, migrations and static assets. |
 | [`test/`](test/), [`config/`](config/), [`assets/`](assets/) | Server tests, environment configuration and web assets. |
