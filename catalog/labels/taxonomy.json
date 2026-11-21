@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "description": "Label taxonomy of the ragentic-io/manifests catalog. Keys and values follow Kubernetes label syntax. Documented in TAXONOMY.md; enforced by label.py and by Ragentic's catalog filters (selector syntax).",
+  "value_pattern": "^[a-z0-9]([-a-z0-9_.]{0,61}[a-z0-9])?$",
+  "keys": {
+    "category": {
+      "description": "Primary category: one id from catalog/categories.json.",
+      "values_from": "../categories.json"
+    },
+    "vendor": {
+      "description": "Company or project behind the API, as a lowercase slug (stripe, google, apache). Not enumerated; must match value_pattern.",
+      "pattern": "^[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?$"
+    },
+    "protocol": {
+      "description": "API description format of the bundle. Set from the bundle, never by the model.",
+      "values": ["openapi", "graphql", "asyncapi", "grpc", "atproto"],
+      "derived": true
+    },
+    "auth": {
+      "description": "How a connection authenticates. From setup.credential when the bundle has one, else from the definition's security schemes.",
+      "values": ["oauth2", "api-key", "bearer", "basic", "app-password", "none"]
+    },
+    "capability": {
+      "description": "What the API lets a connection do. Several allowed: each is its own key capability.<value> with the value \"true\".",
+      "multi": true,
+      "values": ["read", "write", "delete", "post", "files", "search", "webhooks", "streaming", "messaging", "payments", "admin"]
+    },
+    "audience": {
+      "description": "Who mainly uses it.",
+      "values": ["developer", "marketing", "operations", "finance", "sales", "support", "data", "security", "general"]
+    },
+    "region": {
+      "description": "Only when the API serves one jurisdiction or market (a national government API, a regional bank). Omit for global services.",
+      "values": ["us", "eu", "uk", "ca", "au", "in", "apac", "latam", "africa", "mena"]
+    },
+    "compliance": {
+      "description": "Only when the API itself exists for a regulated domain (open banking -> psd2, health records -> hipaa). Omit otherwise; never inferred from a vendor's certifications.",
+      "values": ["gdpr", "hipaa", "pci-dss", "psd2", "fedramp", "sox"]
+    },
+    "pricing": {
+      "description": "How the provider charges for API access. Omit when unknown.",
+      "values": ["free", "freemium", "paid"]
+    },
+    "maturity": {
+      "description": "Catalog state: published or draft. Set from the listing's catalog field, never by the model.",
+      "values": ["published", "draft"],
+      "derived": true
+    }
+  }
+}
