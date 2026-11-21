@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_SwaggerApi_profile_
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | `fa206269f296fdea25637c6b90c079ebcc19696126cfdbd71553bd44162c4631` in `browse-bundles/`, expires 2027-01-30 17:41 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_HERE_profile_image.
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | `f1d8d5f4a13c5bd06766b4faf3d2477028fa6051b9d266639b97679d7b3dda43` in `browse-bundles/`, expires 2027-01-30 17:41 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |
