@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.drchrono.com_site_media_ima
 | | |
 | --- | --- |
 | Categories | Health & science, Business & CRM |
-| Signed bundle | `b7b7f4e8673194148eaeb41014ada7ae1c8de8899dc63a145a182d0131ded084` in `browse-bundles/`, expires 2027-01-30 17:41 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

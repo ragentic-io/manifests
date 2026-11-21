@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_dracoongmbh_profile
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | `033fb0a9e19b054671f8c985ce71f13dcb430b4868ad5935aa35f9ee765f87fe` in `browse-bundles/`, expires 2027-01-30 17:41 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

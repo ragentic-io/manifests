@@ -123,3 +123,42 @@ for reference or be removed.
   `bluesky`, `x`, `linkedin` and `facebook` with the digests above.
 - In Ragentic, `/catalog/registries` verifies and previews each one, with the setup
   form rendered and the independent-integration attribution shown.
+
+## Labels
+
+Taxonomy and tooling: [`../labels/TAXONOMY.md`](../labels/TAXONOMY.md). Labels are part of
+the bundle payload, `manifest.metadata.labels` (flat `key: value` strings, Kubernetes
+syntax), so they are covered by the bundle signature like everything else.
+
+- **Drafts** (`apps/<id>/manifest.json` with `catalog: "drafts"`, and the unsigned
+  `drafts/<app>/payload.json` build outputs): `label.py apply` writes the reviewed labels
+  into the payload. The next Sign run re-signs those draft bundles into `browse-index.json`.
+- **Published bundles** are signed and never edited here. `label.py apply` writes
+  `labels/resign.json`: per application the current signed digest, its source
+  (`apps/<id>/manifest.json`) and the labels to set at `manifest.metadata.labels`. To
+  publish them, DJ copies each entry's labels into its source (one reviewed commit), then
+  runs the Sign workflow / `mix catalog.sign`, which re-signs the changed bundles and the
+  index with a new sequence. Nothing in this repository signs on its own.
+
+### Labels in index entries (proposed field)
+
+Index entries (`index.json`, `browse-index.json`) have no `labels` field today, and
+`Manifests.CatalogTools.Catalog.index_entry/4` notes that the registry server and Ragentic
+validate entries against a fixed schema that rejects unknown fields. Proposal:
+
+```json
+{"id": "stripe-openapi", "digest": "…", "protocol": "openapi", "title": "…", "version": "…",
+ "labels": {"category": "finance", "auth": "bearer", "capability.payments": "true"}}
+```
+
+`labels` is optional, an object of at most 32 string pairs, copied verbatim from the
+payload's `manifest.metadata.labels` so the index and the bundle cannot disagree. Rollout
+order, because older readers reject unknown fields:
+
+1. Ragentic accepts an optional `labels` entry field and filters on it (ragentic-io/ragentic
+   PR on branch `feat/catalog-labels`; until then it reads labels from verified bundles
+   after select).
+2. The registry server here (`lib/manifests/catalog/import.ex`) accepts it and maps it onto
+   its listing labels (`key:value` strings it already supports from front matter).
+3. Only then does the signing tool (`index_entry/4`, `mix catalog.sign`) emit it: the
+   registry/signing tool must add this field; this branch does not change it.
