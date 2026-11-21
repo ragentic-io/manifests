@@ -238,7 +238,10 @@ def facts(item):
                   for s in schemes.values() if isinstance(s, dict)})
     ops = [n for n in (payload.get("graph") or {}).get("nodes", []) if n.get("kind") == "operation"]
     servers = doc.get("servers") or []
-    endpoint = (servers[0].get("url") if servers and isinstance(servers[0], dict) else None) or doc.get("host")
+    if isinstance(servers, dict):  # AsyncAPI: name -> server
+        servers = list(servers.values())
+    first = servers[0] if isinstance(servers, list) and servers else None
+    endpoint = (first.get("url") or first.get("host") if isinstance(first, dict) else None) or doc.get("host")
     cred = (payload.get("setup") or {}).get("credential")
     return {
         "id": item["id"],
@@ -388,7 +391,7 @@ def propose(items, tax, backend, cache_path, batch_size=25, concurrency=4, budge
                     break
             try:
                 text, usage = backend(prompt(tax, pending), f"catalog-labels-{tax['digest']}-{n}-{attempt}")
-            except TransientError as e:
+            except Exception as e:  # noqa: BLE001 — any failure is retried, then reported as failed
                 log(f"batch {n} attempt {attempt + 1}: {e}")
                 time.sleep(backoff * (2 ** attempt))
                 continue
