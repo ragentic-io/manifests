@@ -2,7 +2,7 @@
 
 # Catalog
 
-546 applications: 30 published and 516 drafts. Drafts can be browsed but not connected until reviewed and published.
+547 applications: 30 published and 517 drafts. Drafts can be browsed but not connected until reviewed and published.
 
 ## Categories
 
@@ -13,7 +13,7 @@ An application can have up to four categories. They are defined in [categories.j
 | `ai` | AI & language | 0 | 35 |
 | `analytics` | Data & analytics | 1 | 16 |
 | `business` | Business & CRM | 1 | 17 |
-| `cloud` | Cloud & infrastructure | 3 | 29 |
+| `cloud` | Cloud & infrastructure | 3 | 30 |
 | `communication` | Communication | 3 | 33 |
 | `ecommerce` | E-commerce | 0 | 39 |
 | `education` | Education | 0 | 4 |
@@ -27,7 +27,7 @@ An application can have up to four categories. They are defined in [categories.j
 | `productivity` | Productivity & collaboration | 10 | 27 |
 | `security` | Security & identity | 2 | 34 |
 | `social-media` | Social media | 5 | 14 |
-| `software-development` | Software development | 17 | 90 |
+| `software-development` | Software development | 17 | 91 |
 | `travel` | Travel & transport | 0 | 13 |
 
 ## Published (30)
@@ -65,7 +65,7 @@ An application can have up to four categories. They are defined in [categories.j
 | [WorkOS API](apps/workos-openapi/MANIFEST.md) | `workos-openapi` | security, software-development | openapi | 1.0 | 268 | `setup_fixture_reviewed_user_credential_test_required` | signed |
 | [X](apps/x/MANIFEST.md) | `x` | social-media, marketing | openapi | 2.173 | 257 | `reviewed_publication_user_test_required` | signed |
 
-## Drafts (516)
+## Drafts (517)
 
 | Application | Id | Categories | Protocol | Version | Operations | Readiness | Signature |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -252,6 +252,7 @@ An application can have up to four categories. They are defined in [categories.j
 | [Figshare API](apps/figshare-com-9fa4877926/MANIFEST.md) | `figshare-com-9fa4877926` | open-data | openapi | 2.0.0 | 136 | `discovered` | signed |
 | [Files.com API](apps/files-com-205f715a55/MANIFEST.md) | `files-com-205f715a55` | software-development | openapi | 0.0.1 | 222 | `discovered` | signed |
 | [Fire Financial Services Business API](apps/fire-com-c991b87ce7/MANIFEST.md) | `fire-com-c991b87ce7` | finance | openapi | 1.0 | 39 | `discovered` | signed |
+| [Firecracker](apps/firecracker/MANIFEST.md) | `firecracker` | cloud, software-development | openapi | 1.18.0 | 40 | `discovered` | pending |
 | [IoTVAS API](apps/firmalyzer-com-iotvas-ce683536bd/MANIFEST.md) | `firmalyzer-com-iotvas-ce683536bd` | iot, security | openapi | 1.0 | 8 | `discovered` | signed |
 | [First AML](apps/firstaml-graphql/MANIFEST.md) | `firstaml-graphql` | finance, security | graphql | 2026-10-29-snapshot | 39 | `discovered` | signed |
 | [FRC Events](apps/firstinspires-org-a07d0a3343/MANIFEST.md) | `firstinspires-org-a07d0a3343` | open-data | openapi | 1.0.0 | 0 | `discovered` | signed |
