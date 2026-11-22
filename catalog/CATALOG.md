@@ -29,6 +29,19 @@ An application can have up to four categories. They are defined in [categories.j
 | `social-media` | Social media | 5 | 14 |
 | `software-development` | Software development | 17 | 91 |
 | `travel` | Travel & transport | 0 | 13 |
+| `diagrams` | Diagrams | 0 | 0 |
+| `engineering` | Engineering | 0 | 0 |
+| `design` | Design | 0 | 0 |
+| `product` | Product | 0 | 0 |
+| `sales` | Sales | 0 | 0 |
+| `support` | Support | 0 | 0 |
+| `testing` | Testing | 0 | 0 |
+| `operations` | Operations | 0 | 0 |
+| `industrial` | Industrial | 0 | 0 |
+| `devices` | Devices | 0 | 0 |
+| `home` | Home | 0 | 0 |
+| `examples` | Examples | 0 | 0 |
+| `research` | Research | 0 | 0 |
 
 ## Published (30)
 
