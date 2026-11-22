@@ -46,6 +46,7 @@ defmodule ManifestsWeb.Layouts do
           <div :if={@search != []} class="mx-auto max-w-xl">{render_slot(@search)}</div>
         </div>
         <nav class="flex shrink-0 items-center gap-1">
+          <.link navigate={~p"/items"} class="btn btn-ghost btn-sm">Items</.link>
           <a href="/api/v1/manifests" class="btn btn-ghost btn-sm hidden font-mono sm:inline-flex">API</a>
           <.theme_toggle />
         </nav>
@@ -60,6 +61,7 @@ defmodule ManifestsWeb.Layouts do
       Every manifest here is an Ed25519-signed bundle; clients verify it against their own pinned root.
       Signed indexes: <a href="/v1/index.json" class="link font-mono">/v1/index.json</a>
       · <a href="/v1/browse-index.json" class="link font-mono">/v1/browse-index.json</a>
+      · <a href="/v1/items-index.json" class="link font-mono">/v1/items-index.json</a>
     </footer>
 
     <.flash_group flash={@flash} />

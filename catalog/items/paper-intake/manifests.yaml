@@ -1,0 +1,298 @@
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  name: enrich-paper
+  namespace: research
+spec:
+  edges:
+    - from: submission
+      to: author
+    - from: submission
+      to: seen
+    - from: seen
+      to: remember
+    - from: author
+      to: save_author
+    - from: submission
+      to: paper
+      to_handle: submission
+    - from: author
+      to: paper
+      to_handle: author
+    - from: seen
+      to: paper
+      to_handle: seen
+  nodes:
+    - config:
+        description: one normalised paper submission from the paper-intake stream
+        example:
+          author: vaswani
+          id: attention-is-all-you-need-2017
+          title: Attention Is All You Need
+          venue: NeurIPS
+          year: 2017
+      id: submission
+      position:
+        x: 40
+        'y': 200
+      type: trigger
+    - config:
+        connector: papers-db
+        params:
+          - '{{submission.author}}'
+        query: SELECT name, affiliation FROM authors WHERE name = $1
+      id: author
+      position:
+        x: 320
+        'y': 60
+      type: sql
+    - config:
+        connector: cache
+        key: paper:{{submission.id}}
+        op: get
+      id: seen
+      position:
+        x: 320
+        'y': 340
+      type: kv
+    - config:
+        connector: cache
+        key: paper:{{submission.id}}
+        op: set
+        ttl_ms: 600000
+        value_from: submission
+      id: remember
+      position:
+        x: 600
+        'y': 420
+      type: kv
+    - config:
+        from: author
+        key: name
+        label: Author
+      id: save_author
+      position:
+        x: 600
+        'y': 40
+      type: ingest
+    - config:
+        code: |
+          -- one record for the stream: the submission, the author's
+          -- affiliation (if the database knows them), and whether we saw it
+          local p = input.submission
+          local a = input.author and input.author[1]
+          return {
+            id = p.id, title = p.title, year = p.year,
+            author = p.author, venue = p.venue,
+            affiliation = a and a.affiliation or "unknown",
+            duplicate = input.seen ~= nil and input.seen.value ~= nil
+          }
+        inputs:
+          - submission
+          - author
+          - seen
+        mode: lua
+      id: paper
+      position:
+        x: 880
+        'y': 200
+      type: combine
+  triggers:
+    - type: manual
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  name: paper-report
+  namespace: research
+spec:
+  edges:
+    - from: tick
+      to: by_author
+    - from: tick
+      to: by_venue
+    - from: by_author
+      to: shape
+    - from: by_venue
+      to: shape
+    - from: shape
+      to: announce
+    - from: shape
+      to: cache
+  nodes:
+    - id: tick
+      position:
+        x: 40
+        'y': 160
+      type: trigger
+    - config:
+        cypher: MATCH (a:Author)-[:WROTE]->(p:Paper) RETURN a.name AS author, a.affiliation AS affiliation, count(p) AS papers ORDER BY papers DESC LIMIT 20
+      id: by_author
+      position:
+        x: 300
+        'y': 60
+      type: graph_query
+    - config:
+        cypher: MATCH (p:Paper)-[:PUBLISHED_IN]->(v:Venue) RETURN v.name AS venue, count(p) AS papers ORDER BY papers DESC
+      id: by_venue
+      position:
+        x: 300
+        'y': 260
+      type: graph_query
+    - config:
+        code: |
+          return { authors = input.by_author, venues = input.by_venue, at = input.trigger.at or "manual" }
+      id: shape
+      position:
+        x: 580
+        'y': 160
+      type: lua
+    - config:
+        connector: nats
+        payload_from: shape
+        subject: papers.report
+      id: announce
+      position:
+        x: 860
+        'y': 300
+      type: publish
+    - config:
+        connector: cache
+        key: papers:report
+        op: set
+        value_from: shape
+      id: cache
+      position:
+        x: 860
+        'y': 440
+      type: kv
+  triggers:
+    - type: manual
+    - schedule: 0 * * * *
+      type: cron
+---
+apiVersion: ragentic.io/v1
+kind: Stream
+metadata:
+  name: paper-feed
+  namespace: research
+spec:
+  description: a stand-in for real submissions — one every 4 s, a few of them bad on purpose
+  input:
+    generate:
+      count: 1
+      intervalMs: 4000
+      template:
+        source: demo
+  output:
+    bus:
+      connector: nats
+      subject: papers.submitted
+  pipeline:
+    processors:
+      - lua:
+          code: |
+            local papers = {
+              {title = "Attention Is All You Need", year = 2017, author = "vaswani", venue = "NeurIPS"},
+              {title = "BERT: Pre-training of Deep Bidirectional Transformers", year = 2019, author = "devlin", venue = "NAACL"},
+              {title = "Language Models are Few-Shot Learners", year = 2020, author = "brown", venue = "NeurIPS"},
+              {title = "Semi-Supervised Classification with Graph Convolutional Networks", year = 2017, author = "kipf", venue = "ICLR"},
+              {title = "Inductive Representation Learning on Large Graphs", year = 2017, author = "hamilton", venue = "NeurIPS"},
+              {title = "Graph Attention Networks", year = 2018, author = "velickovic", venue = "ICLR"},
+              {title = "Retrieval-Augmented Generation for Knowledge-Intensive NLP", year = 2020, author = "lewis", venue = "NeurIPS"},
+              {title = "  dense passage retrieval for open-domain QA  ", year = "2020", author = "Karpukhin", venue = "EMNLP"},
+              {title = "LLaMA: Open and Efficient Foundation Language Models", year = 2023, author = "touvron", venue = "arXiv"},
+              {title = "LoRA: Low-Rank Adaptation of Large Language Models", year = 2022, author = "hu", venue = "ICLR"},
+              {title = "Gradient-Based Learning Applied to Document Recognition", year = 1998, author = "lecun", venue = "IEEE"},
+              {year = 2024, author = "anonymous", venue = "arXiv"},
+              {title = "Graphs All the Way Down", year = 2026, author = "carpenter", venue = "ragentic"},
+            }
+            local p = papers[(input.message.seq - 1) % #papers + 1]
+            p.source = input.message.source
+            p.submitted_at = input.message.at
+            return p
+---
+apiVersion: ragentic.io/v1
+kind: Stream
+metadata:
+  name: paper-intake
+  namespace: research
+spec:
+  batch:
+    count: 10
+    periodMs: 500
+  concurrency:
+    workers: 2
+  deadLetter:
+    connector: nats
+    subject: papers.rejected
+  description: turns submissions into Paper, Author and Venue nodes, enriched and deduplicated
+  input:
+    bus:
+      connector: nats
+      queue: paper-intake
+      subject: papers.submitted
+  output:
+    graph:
+      edges:
+        - direction: in
+          from: author
+          from_label: Author
+          type: WROTE
+        - direction: out
+          from: venue
+          from_label: Venue
+          type: PUBLISHED_IN
+      key: id
+      label: Paper
+  pipeline:
+    processors:
+      - lua:
+          code: |
+            local m = input.message
+            if not m.title or m.title == "" then error("submission has no title") end
+            local title = m.title:gsub("^%s+", ""):gsub("%s+$", "")
+            local year = tonumber(m.year)
+            if not year then error("year is not a number: " .. tostring(m.year)) end
+            local slug = title:lower():gsub("[^%w]+", "-"):gsub("^-+", ""):gsub("-+$", "")
+            return {
+              id = slug .. "-" .. year, title = title, year = year,
+              author = string.lower(m.author or "unknown"), venue = m.venue or "unknown",
+            }
+      - filter:
+          expr: input.message.year >= 2000
+      - workflow:
+          name: enrich-paper
+      - lua:
+          code: return input.message.paper
+      - filter:
+          expr: not input.message.duplicate
+      - log: {}
+---
+apiVersion: ragentic.io/v1
+kind: Stream
+metadata:
+  name: paper-rejections
+  namespace: research
+spec:
+  description: every dead letter from paper-intake, recorded in the papers database's events table
+  input:
+    bus:
+      connector: nats
+      queue: paper-rejections
+      subject: papers.rejected
+  output:
+    postgres:
+      connector: papers-db
+      params:
+        - '{{error}}'
+        - '{{title}}'
+        - '{{stream}}'
+      statement: "INSERT INTO events (kind, payload) VALUES ('paper.rejected', jsonb_build_object('error', $1::text, 'title', $2::text, 'stream', $3::text))"
+  pipeline:
+    processors:
+      - lua:
+          code: |
+            local m = input.message
+            return { error = m.error, stream = m.stream, title = (m.message and m.message.title) or "(none)" }

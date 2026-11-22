@@ -1,0 +1,25 @@
+---
+kind: Package
+metadata:
+  name: research-desk
+spec:
+  description: a research agent on DeepSeek, answering in Slack
+  manifests:
+    - kind: Workspace
+      metadata:
+        name: research
+      spec: {}
+    - kind: Agent
+      metadata:
+        name: researcher
+        namespace: research
+      spec:
+        memory: true
+        system: |
+          You research questions against the organization's data and apps.
+          Cite what you used. Say when you could not find something.
+        tools:
+          - platform
+          - graph
+          - context
+  version: 1.0.0

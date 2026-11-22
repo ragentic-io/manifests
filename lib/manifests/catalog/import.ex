@@ -14,7 +14,7 @@ defmodule Manifests.Catalog.Import do
   """
   require Logger
   alias Manifests.Registry
-  alias Manifests.Registry.{Manifest, Snapshot, Version}
+  alias Manifests.Registry.{Item, Manifest, Snapshot, Version}
   alias Manifests.Trust
 
   @kinds [
@@ -36,7 +36,8 @@ defmodule Manifests.Catalog.Import do
       list(source, verified)
     end
 
-    {:ok, Enum.map(results, &summary/1)}
+    items = import_items(source, opts)
+    {:ok, Enum.map(results, &summary/1) ++ [items_summary(items)]}
   end
 
   @doc "A source reading from a directory on disk."
@@ -225,6 +226,131 @@ defmodule Manifests.Catalog.Import do
 
   defp truncate(s) when is_binary(s) and byte_size(s) > 240, do: String.slice(s, 0, 237) <> "…"
   defp truncate(s), do: s
+
+  ## Items of any kind
+
+  # items-index.json and item-bundles/: each bundle verified with Trust.verify_item before it
+  # is stored; only an index at least as new as the one served moves the listing.
+  defp import_items(source, opts) do
+    root = Keyword.fetch!(opts, :root)
+    min = opts |> Keyword.get(:min_sequence, %{}) |> Map.get("items_index", 0)
+
+    with {:ok, body} <- source.("items-index.json") |> or_skip(:missing),
+         {:ok, envelope} <- Jason.decode(body) |> or_skip(:not_json),
+         now = check_time(envelope, opts),
+         {:ok, index} <-
+           Trust.verify_index(envelope, root, Keyword.fetch!(opts, :registry), min,
+             now: now,
+             catalog_kind: "items_index"
+           )
+           |> or_skip(:untrusted_index) do
+      current =
+        case Registry.latest_snapshot("items_index") do
+          {:ok, %{sequence: s}} -> s
+          _ -> -1
+        end
+
+      fresh? = index["sequence"] >= current
+      sequence = index["sequence"]
+
+      stored =
+        Enum.flat_map(index["entries"], &record_item(source, &1, sequence, fresh?, opts))
+
+      if fresh? do
+        live = MapSet.new(stored)
+
+        Item
+        |> Ash.Query.filter_input(%{listed: %{eq: true}})
+        |> Ash.read!()
+        |> Enum.reject(&MapSet.member?(live, &1.digest))
+        |> Enum.each(&(&1 |> Ash.Changeset.for_update(:list, %{listed: false}) |> Ash.update!()))
+      end
+
+      Snapshot
+      |> Ash.Changeset.for_create(:record, %{
+        kind: "items_index",
+        sequence: sequence,
+        body: body,
+        entries: length(index["entries"]),
+        expires: DateTime.from_unix!(index["expires"]),
+        commit: opts[:commit]
+      })
+      |> Ash.create!()
+
+      {:ok, %{sequence: sequence, entries: length(stored)}}
+    else
+      {:skip, reason} -> {:skip, reason}
+    end
+  end
+
+  defp items_summary({:ok, r}), do: {"items_index", r}
+  defp items_summary({:skip, reason}), do: {"items_index", reason}
+
+  defp record_item(source, entry, sequence, false = _fresh?, opts) do
+    # an older index than the one served never changes what is listed
+    case Registry.item_by_digest(entry["digest"]) do
+      {:ok, _} -> [entry["digest"]]
+      _ -> record_new_item(source, entry, sequence, false, opts)
+    end
+  end
+
+  defp record_item(source, entry, sequence, true, opts),
+    do: record_new_item(source, entry, sequence, true, opts)
+
+  defp record_new_item(source, entry, sequence, fresh?, opts) do
+    digest = entry["digest"]
+    expected = %{id: entry["id"], version: entry["version"], digest: digest}
+
+    with {:ok, body} <- source.("item-bundles/#{digest}.json"),
+         {:ok, bundle} <- Jason.decode(body),
+         now = bundle_time(bundle, opts),
+         {:ok, payload} <- Trust.verify_item(bundle, opts[:root], expected, now: now),
+         true <- get_in(payload, ["item", "kind"]) == entry["kind"] do
+      tiers = List.wrap(entry["tiers"])
+
+      Item
+      |> Ash.Changeset.for_create(:record, %{
+        item_id: entry["id"],
+        version: entry["version"],
+        digest: digest,
+        kind: entry["kind"],
+        title: entry["title"],
+        description: entry["description"],
+        publisher: entry["publisher"],
+        categories: List.wrap(entry["categories"]),
+        keywords: List.wrap(entry["keywords"]),
+        provides: List.wrap(entry["provides"]),
+        tiers: tiers,
+        sizes: tiers |> Enum.map(&hd(String.split(&1, "+"))) |> Enum.uniq(),
+        count: entry["count"] || length(payload["manifests"] || []),
+        logo: entry["logo"],
+        bundle: body,
+        search_text:
+          [entry["id"], entry["title"], entry["description"], entry["kind"], entry["publisher"]]
+          |> Kernel.++(List.wrap(entry["keywords"]) ++ List.wrap(entry["categories"]))
+          |> Enum.filter(&is_binary/1)
+          |> Enum.join(" ")
+          |> String.downcase(),
+        listed: fresh?,
+        signed_by: Trust.key_id(opts[:root]),
+        not_before: DateTime.from_unix!(payload["not_before"]),
+        expires: DateTime.from_unix!(payload["expires"]),
+        first_sequence: sequence,
+        last_sequence: sequence,
+        commit: opts[:commit]
+      })
+      |> Ash.create!()
+
+      [digest]
+    else
+      other ->
+        Logger.warning(
+          "item #{entry["id"]}@#{entry["version"]} #{digest}: rejected (#{inspect(other)})"
+        )
+
+        []
+    end
+  end
 
   ## Listing
 

@@ -17,8 +17,12 @@ See [CATALOG.md](CATALOG.md) for every application and its status.
 | `CATALOG.md` | Generated table of every application | `mix catalog.docs` |
 | `index.json`, `bundles/` | Signed catalog of **published** applications, which people can connect | Sign workflow |
 | `browse-index.json`, `browse-bundles/` | Signed catalog of **draft** applications, which can be browsed but not connected | Sign workflow |
-| `sources.json` | Signed SHA-256 list of every plain-text file under `apps/` plus `CATALOG.md` | Sign workflow |
-| `categories.json` | The categories applications are labelled with, so people can filter the catalog | Maintainers |
+| `sources.json` | Signed SHA-256 list of every plain-text file under `apps/`, `items/` and `sources/` plus `CATALOG.md` and `categories.json` | Sign workflow |
+| `categories.json` | The categories applications and items are labelled with, so people can filter the catalog | Maintainers |
+| `items/<id>/item.json`, `manifests.yaml` | An **item**: any ragentic manifest or bundle of them (Agent, Team, Workflow, Site, Package, …), with each Agent's suggested model tier. See "Items" below | Contributors; importers |
+| `items/<id>/ITEM.md` | Generated listing of an item | importers, `mix catalog.items.docs` |
+| `items-index.json`, `item-bundles/` | Signed catalog of items (payload kind `item`, index kind `items_index`, its own sequence) | Sign workflow |
+| `sources/` | Reviewed importer config: `agency-agents/tiers.json`, `ragentic-examples/items.json`, `model-examples.json` | Maintainers |
 | `deploy/` | The CronJob that deploys the newest signed catalog on `main` to manifests.ragentic.io, after checking it with the server's own loader | Maintainers |
 | `registry.json` | Registry identity, pinned public root and signature lifetimes | Maintainers |
 | `mix catalog.*` | Scaffolding, validation, docs and signing: Mix tasks in the repository root (`lib/mix/tasks/catalog.*.ex`, `lib/manifests/catalog_tools/`) | Maintainers |
@@ -31,6 +35,38 @@ copy.
 Signed objects are canonical JSON wrapped in `{"payload", "signature"}` envelopes. The
 signature is Ed25519 over `ragentic.manifests/v1\n` followed by the payload bytes. A
 bundle's file name is the SHA-256 of its payload bytes.
+
+## Items
+
+Anything that is a ragentic manifest, preconfigured, is an item (ragentic's
+docs/registry.md is the design). An item is `manifests` (1 to 200) plus:
+
+- `item`: `kind` (what people browse by, or `Bundle` for a mix), `title`,
+  `description`, `categories` (1 to 4 from `categories.json`), `keywords`,
+  `publisher`, `provides` (what install offers resolve, e.g.
+  `agent-label:diagrams.ragentic.io/designer`), `requires`, `params`
+  (`workspace` and other install-time choices);
+- `models`: one suggested model per Agent, keyed by the Agent's name: `tier`
+  (`large`, `medium` or `small`), `tools`, `vision`, optional
+  `minContextTokens`, `why` and `examples` (concrete models per vendor, from
+  `sources/model-examples.json`). An Agent never carries `spec.model`: ragentic
+  maps the tier to one of the organization's providers when it installs;
+- `provenance`, `rights`.
+
+No item ships a `Credential`, `Identity`, `Authority`, `Person`, `Middleware` or
+`ModelProvider`, nor anything that looks like a secret; `mix catalog.validate`
+refuses them. Ids are one namespace with applications.
+
+Two importers write items and the Import workflow (daily, and on demand) opens a
+pull request with what changed upstream:
+
+    mix catalog.import agency-agents [--from DIR]        # msitarzewski/agency-agents
+    mix catalog.import ragentic-examples --from DIR      # ragentic's examples/
+
+Versions are bumped by what changed: a removed manifest is MAJOR, an added one
+or a changed tier MINOR, any other change PATCH. The agency conversion is a copy
+of ragentic's TeamSource mapping, held equal by `test/fixtures/agency-mini/`
+(present in both repositories with the same `expected.json`).
 
 ## The operation graph
 

@@ -25,6 +25,8 @@ defmodule ManifestsWeb.Router do
     get "/v1/browse-index.json", RegistryController, :browse_index
     get "/v1/bundles/:digest", RegistryController, :bundle
     get "/v1/browse-bundles/:digest", RegistryController, :browse_bundle
+    get "/v1/items-index.json", RegistryController, :items_index
+    get "/v1/item-bundles/:digest", RegistryController, :item_bundle
   end
 
   scope "/api/v1", ManifestsWeb.Api do
@@ -35,6 +37,11 @@ defmodule ManifestsWeb.Router do
     get "/manifests/:id", ManifestController, :show
     get "/manifests/:id/bundle", ManifestController, :bundle
     get "/manifests/:id/versions", ManifestController, :versions
+
+    get "/items", ItemController, :index
+    get "/items/:id", ItemController, :show
+    get "/items/:id/versions", ItemController, :versions
+    get "/items/:id/bundle", ItemController, :bundle
   end
 
   scope "/", ManifestsWeb do
@@ -42,6 +49,7 @@ defmodule ManifestsWeb.Router do
 
     live "/", CatalogLive, :index
     live "/apps/:id", ManifestLive, :show
+    live "/items", ItemsLive, :index
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

@@ -1,0 +1,462 @@
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  labels:
+    example: pi-gpio
+  name: pi-blink
+  namespace: home
+spec:
+  description: 'Blinks an LED: inputs pin (default GPIO17), times (default 5, at most 20) and interval_ms (default 500). Sets the pin to output, writes 1 then 0 times times (each round is the pi-blink-step workflow), leaves it at 0 and answers how many toggles it made. Needs an LED on GPIO17 through a 330 ohm resistor to GND; with nothing wired it drives the pin all the same.'
+  edges:
+    - from: start
+      to: settings
+    - from: settings
+      to: output
+    - from: output
+      to: blink
+    - from: settings
+      to: blink
+    - from: blink
+      from_handle: pass
+      to: 'off'
+    - from: settings
+      to: 'off'
+    - from: 'off'
+      to: done
+    - from: settings
+      to: done
+    - from: blink
+      from_handle: pass
+      to: done
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        code: |
+          local t = input.start or input.trigger or {}
+          local times = math.floor(tonumber(t.times) or 5)
+          if times < 1 then times = 1 end
+          if times > 20 then times = 20 end
+          local interval = math.floor(tonumber(t.interval_ms) or 500)
+          if interval < 20 then interval = 20 end
+          if interval > 10000 then interval = 10000 end
+          return { pin = t.pin or "GPIO17", times = times, interval_ms = interval }
+      id: settings
+      type: lua
+    - config:
+        args:
+          direction: output
+          pin: '{{settings.pin}}'
+        fill_args:
+          - pin
+        tool: __DEVICE__.gpio.setup
+      id: output
+      type: tool_call
+    - config:
+        from: settings
+        maxAttempts: 20
+        name: pi-blink-step
+        until:
+          lua: "return { pass = input.attempt >= input.result.step.times, note = input.attempt .. ' of ' .. input.result.step.times }"
+      id: blink
+      type: loop
+    - config:
+        args:
+          pin: '{{settings.pin}}'
+          value: 0
+        fill_args:
+          - pin
+        tool: __DEVICE__.gpio.write
+      id: 'off'
+      type: tool_call
+    - config:
+        code: |
+          return { pin = input.settings.pin, toggles = input.blink.attempts * 2, value = input.off.value }
+      id: done
+      type: lua
+  summary: '{{done.toggles}} toggles on {{settings.pin}}'
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  labels:
+    example: pi-gpio
+  name: pi-blink-step
+  namespace: home
+spec:
+  description: "One round of pi-blink: the pin at 1 for interval_ms, then at 0 for interval_ms. Its input is pi-blink's settings (pin, times, interval_ms) and the round (attempt)."
+  edges:
+    - from: start
+      to: 'on'
+    - from: 'on'
+      to: low
+    - from: start
+      to: low
+    - from: low
+      to: step
+    - from: start
+      to: step
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        args:
+          holdMs: '{{start.interval_ms}}'
+          pin: '{{start.pin}}'
+          value: 1
+        fill_args:
+          - pin
+          - holdMs
+        tool: __DEVICE__.gpio.write
+      id: 'on'
+      type: tool_call
+    - config:
+        args:
+          holdMs: '{{start.interval_ms}}'
+          pin: '{{start.pin}}'
+          value: 0
+        fill_args:
+          - pin
+          - holdMs
+        tool: __DEVICE__.gpio.write
+      id: low
+      type: tool_call
+    - config:
+        code: |
+          return { times = tonumber(input.start.times) or 1, round = input.start.attempt or 1 }
+      id: step
+      type: lua
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  labels:
+    example: pi-gpio
+  name: pi-weather-lamp
+  namespace: home
+spec:
+  description: 'A weather lamp, every 10 minutes once resumed (it starts paused, so nothing fires until someone resumes it): asks Open-Meteo (free, no key) for the weather at lat/lon (inputs; default Austin, TX), and turns GPIO17 on when rain is expected within the hour (precipitation now or in the next hour, or a 50 % chance or more), off otherwise. Answers the decision and the numbers. Needs an LED on GPIO17 through a 330 ohm resistor to GND; with nothing wired it drives the pin all the same.'
+  edges:
+    - from: start
+      to: settings
+    - from: settings
+      to: weather
+    - from: weather
+      to: decide
+    - from: settings
+      to: decide
+    - from: decide
+      to: output
+    - from: settings
+      to: output
+    - from: output
+      to: lamp
+    - from: decide
+      to: lamp
+    - from: settings
+      to: lamp
+    - from: lamp
+      to: result
+    - from: decide
+      to: result
+    - from: settings
+      to: result
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        code: |
+          local t = input.start or input.trigger or {}
+          return { lat = tonumber(t.lat) or 30.2672, lon = tonumber(t.lon) or -97.7431, pin = t.pin or "GPIO17" }
+      id: settings
+      type: lua
+    - config:
+        method: GET
+        url: https://api.open-meteo.com/v1/forecast?latitude={{settings.lat}}&longitude={{settings.lon}}&current=temperature_2m,precipitation&hourly=precipitation,precipitation_probability&forecast_hours=1&timezone=auto
+      id: weather
+      type: http
+    - config:
+        code: |
+          local b = input.weather.body
+          if type(b) ~= "table" or input.weather.status ~= 200 then
+            error("the weather service answered " .. tostring(input.weather.status))
+          end
+          local current = b.current or {}
+          local hourly = b.hourly or {}
+          local temp = current.temperature_2m
+          local now = current.precipitation or 0
+          local next_mm = (hourly.precipitation or {})[1] or 0
+          local chance = (hourly.precipitation_probability or {})[1] or 0
+          local rain = now > 0 or next_mm > 0 or chance >= 50
+          local reason
+          if rain then
+            reason = "rain expected: " .. now .. " mm now, " .. next_mm .. " mm next hour, " .. chance .. " % chance"
+          else
+            reason = "no rain expected: " .. chance .. " % chance in the next hour"
+          end
+          return {
+            lamp = rain and "on" or "off", value = rain and 1 or 0, reason = reason,
+            temperatureC = temp, precipitationMm = now, nextHourMm = next_mm, nextHourChance = chance,
+            lat = input.settings.lat, lon = input.settings.lon
+          }
+      id: decide
+      type: lua
+    - config:
+        args:
+          direction: output
+          pin: '{{settings.pin}}'
+        fill_args:
+          - pin
+        tool: __DEVICE__.gpio.setup
+      id: output
+      type: tool_call
+    - config:
+        args:
+          pin: '{{settings.pin}}'
+          value: '{{decide.value}}'
+        fill_args:
+          - pin
+          - value
+        tool: __DEVICE__.gpio.write
+      id: lamp
+      type: tool_call
+    - config:
+        code: |
+          local d = input.decide
+          return {
+            lamp = d.lamp, reason = d.reason, pin = input.settings.pin, value = input.lamp.value,
+            temperatureC = d.temperatureC, precipitationMm = d.precipitationMm,
+            nextHourMm = d.nextHourMm, nextHourChance = d.nextHourChance
+          }
+      id: result
+      type: lua
+  paused: true
+  summary: 'lamp {{decide.lamp}}: {{decide.reason}}'
+  triggers:
+    - description: every 10 minutes
+      schedule: '*/10 * * * *'
+      type: cron
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  labels:
+    example: pi-gpio
+  name: pi-button-to-web
+  namespace: home
+spec:
+  description: 'A button that posts to the web: watches GPIO27 (pull-up, falling edge) for ms (input; default 30000, at most 60000). On a press it reads GPIO17, GPIO22 and GPIO27, makes a JSON summary of the board and the press, and POSTs it to url (input; default https://httpbin.org/post, which echoes it back), answering the response status and the echoed fields. Needs a push button from GPIO27 to GND; with nothing wired no press comes and it stops after the watch.'
+  edges:
+    - from: start
+      to: settings
+    - from: settings
+      to: button
+    - from: button
+      to: watch
+    - from: settings
+      to: watch
+    - from: watch
+      to: pressed
+    - from: pressed
+      from_handle: pass
+      to: led
+    - from: led
+      to: spare
+    - from: spare
+      to: now
+    - from: settings
+      to: now
+    - from: pressed
+      from_handle: pass
+      to: now
+    - from: pressed
+      from_handle: pass
+      to: summary
+    - from: pressed
+      from_handle: pass
+      to: post
+    - from: now
+      to: summary
+    - from: led
+      to: summary
+    - from: spare
+      to: summary
+    - from: watch
+      to: summary
+    - from: settings
+      to: summary
+    - from: summary
+      to: post
+    - from: settings
+      to: post
+    - from: post
+      to: result
+    - from: summary
+      to: result
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        code: |
+          local t = input.start or input.trigger or {}
+          local ms = math.floor(tonumber(t.ms) or 30000)
+          if ms < 1 then ms = 1 end
+          if ms > 60000 then ms = 60000 end
+          return { ms = ms, url = t.url or "https://httpbin.org/post", button = t.button or "GPIO27" }
+      id: settings
+      type: lua
+    - config:
+        args:
+          direction: input
+          pin: '{{settings.button}}'
+          pull: up
+        fill_args:
+          - pin
+        tool: __DEVICE__.gpio.setup
+      id: button
+      type: tool_call
+    - config:
+        args:
+          edge: falling
+          maxEvents: 1
+          ms: '{{settings.ms}}'
+          pin: '{{settings.button}}'
+        fill_args:
+          - pin
+          - ms
+        tool: __DEVICE__.gpio.watch
+      id: watch
+      type: tool_call
+    - config:
+        check:
+          lua: "return { pass = input.watch.count > 0, note = input.watch.count > 0 and 'pressed' or 'no press in ' .. input.watch.ms .. ' ms' }"
+      id: pressed
+      type: gate
+    - config:
+        args:
+          pin: GPIO17
+        on_error: output
+        tool: __DEVICE__.gpio.read
+      id: led
+      type: tool_call
+    - config:
+        args:
+          pin: GPIO22
+        on_error: output
+        tool: __DEVICE__.gpio.read
+      id: spare
+      type: tool_call
+    - config:
+        args:
+          pin: '{{settings.button}}'
+        fill_args:
+          - pin
+        tool: __DEVICE__.gpio.read
+      id: now
+      type: tool_call
+    - config:
+        code: |
+          local press = input.watch.events[1] or {}
+          return {
+            device = "__DEVICE__",
+            pressedAt = press.at,
+            edge = press.edge,
+            pins = { GPIO17 = input.led.value, GPIO22 = input.spare.value, [input.settings.button] = input.now.value },
+            sentAt = ragentic.now()
+          }
+      id: summary
+      type: lua
+    - config:
+        body_from: summary
+        method: POST
+        url: '{{settings.url}}'
+      id: post
+      type: http
+    - config:
+        code: |
+          local body = input.post.body
+          local echoed = nil
+          if type(body) == "table" then echoed = body.json end
+          return { status = input.post.status, echoed = echoed, sent = input.summary }
+      id: result
+      type: lua
+  summary: posted {{result.status}}
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  labels:
+    example: pi-gpio
+  name: pi-health
+  namespace: home
+spec:
+  description: "Reads this board's CPU and memory: calls __DEVICE__.system.info (read in-process, the CPU sampled for half a second) and answers the CPU utilisation %, memory used %, the hottest temperature (°C), the 1-minute load, uptime and a one-line summary, and whether any is high (cpu over cpu_max, default 80 %; memory over mem_max, default 90 %; temperature over temp_max, default 75 °C). Reads only; drives no pin. pi-health-schedule runs it on a schedule once resumed."
+  edges:
+    - from: start
+      to: info
+    - from: info
+      to: health
+    - from: start
+      to: health
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        args:
+          sampleMs: 500
+        tool: __DEVICE__.system.info
+      id: info
+      type: tool_call
+    - config:
+        code: |
+          local t = input.start or input.trigger or {}
+          local i = input.info or {}
+          local cpu = (i.cpu or {}).utilisation
+          local mem = (i.memory or {}).usedPercent
+          local temp = nil
+          for _, c in pairs(i.temperatures or {}) do
+            if temp == nil or c > temp then temp = c end
+          end
+          local load1 = (i.load or {})[1]
+          local cpu_max = tonumber(t.cpu_max) or 80
+          local mem_max = tonumber(t.mem_max) or 90
+          local temp_max = tonumber(t.temp_max) or 75
+          local high = {}
+          if cpu ~= nil and cpu > cpu_max then table.insert(high, "cpu " .. cpu .. " %") end
+          if mem ~= nil and mem > mem_max then table.insert(high, "memory " .. mem .. " %") end
+          if temp ~= nil and temp > temp_max then table.insert(high, "temperature " .. temp .. " °C") end
+          return {
+            cpu = cpu, memory = mem, temperature = temp, load1 = load1, uptime = i.uptime,
+            alert = #high > 0, high = table.concat(high, ", "), summary = i.summary
+          }
+      id: health
+      type: lua
+  summary: '{{health.summary}}'
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  labels:
+    example: pi-gpio
+  name: pi-health-schedule
+  namespace: home
+spec:
+  description: pi-health every 5 minutes once resumed (it starts paused, so nothing fires until someone resumes it); pi-health itself runs by hand any time.
+  edges:
+    - from: start
+      to: health
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        from: trigger
+        name: pi-health
+      id: health
+      type: workflow
+  paused: true
+  summary: '{{health.summary}}'
+  triggers:
+    - description: every 5 minutes
+      schedule: '*/5 * * * *'
+      type: cron

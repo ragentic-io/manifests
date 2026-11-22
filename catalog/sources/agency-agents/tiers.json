@@ -1,0 +1,236 @@
+{
+  "_note": "Reviewed config of `mix catalog.import agency-agents` (docs/registry.md 3.1). Upstream text only becomes prompts, descriptions and profiles; tiers, tools, leads and categories come from here. Order: default < division tier < rules (by slug glob, in order) < lead < overrides.",
+  "upstream": {
+    "repository": "msitarzewski/agency-agents",
+    "ref": "main",
+    "commit": "8ae6164602c95ca78828b148b9052460ee426885"
+  },
+  "requires": ">= 2026.11.0",
+  "params": {
+    "workspace": {
+      "default": "agency"
+    }
+  },
+  "exclude": [
+    "**/README.md"
+  ],
+  "tools": [
+    "graph",
+    "context"
+  ],
+  "default": {
+    "tier": "medium",
+    "tools": true
+  },
+  "lead": {
+    "tier": "large",
+    "tools": true,
+    "why": "plans the division's work and judges its members' results"
+  },
+  "leads": {
+    "engineering": "engineering-software-architect"
+  },
+  "rules": [
+    {
+      "match": "*architect*",
+      "tier": "large",
+      "tools": true,
+      "why": "designs systems and weighs trade-offs across many steps"
+    },
+    {
+      "match": "*commander*",
+      "tier": "large",
+      "tools": true
+    },
+    {
+      "match": "*strategist*",
+      "tier": "large",
+      "tools": true
+    },
+    {
+      "match": "*writer*",
+      "tier": "medium",
+      "tools": false,
+      "why": "writes; needs no tools"
+    },
+    {
+      "match": "*copywriter*",
+      "tier": "medium",
+      "tools": false
+    },
+    {
+      "match": "*content*",
+      "tier": "medium",
+      "tools": false
+    },
+    {
+      "match": "*designer*",
+      "tier": "medium",
+      "tools": true,
+      "vision": true,
+      "why": "reviews screens and images"
+    },
+    {
+      "match": "*artist*",
+      "tier": "medium",
+      "tools": true,
+      "vision": true
+    },
+    {
+      "match": "*visual*",
+      "tier": "medium",
+      "tools": true,
+      "vision": true
+    },
+    {
+      "match": "*image*",
+      "tier": "medium",
+      "tools": true,
+      "vision": true
+    }
+  ],
+  "overrides": {
+    "engineering-senior-developer": {
+      "tier": "large",
+      "tools": true
+    }
+  },
+  "divisions": {
+    "academic": {
+      "label": "Academic",
+      "categories": [
+        "education",
+        "research"
+      ],
+      "tier": {
+        "tier": "medium",
+        "tools": false
+      }
+    },
+    "design": {
+      "label": "Design",
+      "categories": [
+        "design"
+      ],
+      "tier": {
+        "tier": "medium",
+        "tools": true,
+        "vision": true
+      }
+    },
+    "engineering": {
+      "label": "Engineering",
+      "categories": [
+        "engineering",
+        "software-development"
+      ]
+    },
+    "finance": {
+      "label": "Finance",
+      "categories": [
+        "finance"
+      ]
+    },
+    "game-development": {
+      "label": "Game Development",
+      "categories": [
+        "software-development",
+        "media"
+      ]
+    },
+    "gis": {
+      "label": "GIS",
+      "categories": [
+        "location",
+        "analytics"
+      ]
+    },
+    "healthcare": {
+      "label": "Healthcare",
+      "categories": [
+        "health"
+      ]
+    },
+    "marketing": {
+      "label": "Marketing",
+      "categories": [
+        "marketing"
+      ],
+      "tier": {
+        "tier": "medium",
+        "tools": false
+      }
+    },
+    "paid-media": {
+      "label": "Paid Media",
+      "categories": [
+        "marketing"
+      ],
+      "tier": {
+        "tier": "medium",
+        "tools": false
+      }
+    },
+    "product": {
+      "label": "Product",
+      "categories": [
+        "product"
+      ]
+    },
+    "project-management": {
+      "label": "Project Management",
+      "categories": [
+        "operations",
+        "productivity"
+      ]
+    },
+    "research": {
+      "label": "Research",
+      "categories": [
+        "research"
+      ]
+    },
+    "sales": {
+      "label": "Sales",
+      "categories": [
+        "sales"
+      ],
+      "tier": {
+        "tier": "medium",
+        "tools": false
+      }
+    },
+    "security": {
+      "label": "Security",
+      "categories": [
+        "security"
+      ]
+    },
+    "spatial-computing": {
+      "label": "Spatial Computing",
+      "categories": [
+        "design",
+        "software-development"
+      ]
+    },
+    "specialized": {
+      "label": "Specialized",
+      "categories": [
+        "ai"
+      ]
+    },
+    "support": {
+      "label": "Support",
+      "categories": [
+        "support"
+      ]
+    },
+    "testing": {
+      "label": "Testing",
+      "categories": [
+        "testing",
+        "software-development"
+      ]
+    }
+  }
+}

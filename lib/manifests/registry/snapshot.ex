@@ -1,7 +1,7 @@
 defmodule Manifests.Registry.Snapshot do
   @moduledoc """
   A signed catalog index (`index` for published applications, `browse_index` for
-  drafts), kept byte for byte so `/v1/index.json` serves exactly what was signed.
+  drafts, `items_index` for items of any kind), kept byte for byte so `/v1/index.json` serves exactly what was signed.
   """
   use Ash.Resource,
     otp_app: :manifests,
@@ -36,7 +36,7 @@ defmodule Manifests.Registry.Snapshot do
     attribute :kind, :string,
       allow_nil?: false,
       public?: true,
-      constraints: [match: ~r/\A(index|browse_index)\z/]
+      constraints: [match: ~r/\A(index|browse_index|items_index)\z/]
 
     attribute :sequence, :integer, allow_nil?: false, public?: true
     attribute :body, :string, allow_nil?: false

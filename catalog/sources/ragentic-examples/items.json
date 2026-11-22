@@ -1,0 +1,381 @@
+{
+  "_note": "Reviewed config of `mix catalog.import ragentic-examples` (docs/registry.md 3.2): example path in ragentic -> item. Not imported: examples/stub-dev-team.yaml (only stub providers and credentials once stripped), examples/ticketing.yaml (connectors need the installer's credentials: needs credential params first).",
+  "repository": "ragentic-io/ragentic",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "requires": ">= 2026.11.0",
+  "items": [
+    {
+      "path": "examples/diagram-designer.yaml",
+      "id": "diagram-designer",
+      "kind": "Agent",
+      "title": "Diagram designer",
+      "description": "Draws flows on a diagram from a sentence, as operations Blobly applies: the designer Blobly asks when a request is more than he can read word for word.",
+      "categories": [
+        "diagrams",
+        "ai"
+      ],
+      "keywords": [
+        "diagram",
+        "blobly",
+        "draw",
+        "designer"
+      ],
+      "provides": [
+        "agent-label:diagrams.ragentic.io/designer"
+      ],
+      "models": {
+        "diagram-designer": {
+          "tier": "large",
+          "tools": true,
+          "why": "plans a whole flow from a loose sentence"
+        }
+      }
+    },
+    {
+      "path": "examples/page-builder.yaml",
+      "id": "page-builder",
+      "kind": "Agent",
+      "title": "Page builder",
+      "description": "Builds A2UI pages from a description in the page builder, with the site it works on.",
+      "categories": [
+        "design",
+        "ai"
+      ],
+      "keywords": [
+        "a2ui",
+        "page",
+        "site",
+        "builder"
+      ],
+      "strip": [
+        "Credential",
+        "ModelProvider"
+      ],
+      "models": {
+        "page-builder": {
+          "tier": "large",
+          "tools": true,
+          "why": "composes whole pages and their data model"
+        }
+      }
+    },
+    {
+      "path": "examples/blobly-program.yaml",
+      "id": "blobly-composer",
+      "kind": "Agent",
+      "title": "Blobly composer",
+      "description": "Composes Blobly programs (workflows Blobly runs) from what a person asks, with an example program.",
+      "categories": [
+        "ai",
+        "examples"
+      ],
+      "keywords": [
+        "blobly",
+        "program",
+        "workflow"
+      ],
+      "models": {
+        "blobly-composer": {
+          "tier": "medium",
+          "tools": true,
+          "why": "writes a short workflow from a request"
+        }
+      }
+    },
+    {
+      "path": "examples/librarian-agent.yaml",
+      "id": "librarian",
+      "kind": "Agent",
+      "title": "Librarian",
+      "description": "Finds and files the organization's documents and answers from them.",
+      "categories": [
+        "ai",
+        "productivity"
+      ],
+      "keywords": [
+        "documents",
+        "search",
+        "library"
+      ],
+      "models": {
+        "librarian": {
+          "tier": "medium",
+          "tools": true,
+          "why": "searches and summarises with tools"
+        }
+      }
+    },
+    {
+      "path": "examples/orchestrator.yaml",
+      "id": "orchestrator",
+      "kind": "Agent",
+      "title": "Orchestrator and builder",
+      "description": "An orchestrator that creates and changes anything in the organization with apply_manifest and asks other agents, and a builder that develops ragentic in a git worktree.",
+      "categories": [
+        "ai",
+        "operations"
+      ],
+      "keywords": [
+        "orchestrator",
+        "builder",
+        "platform"
+      ],
+      "strip": [
+        "ModelProvider",
+        "ChatBot"
+      ],
+      "models": {
+        "orchestrator": {
+          "tier": "large",
+          "tools": true,
+          "why": "plans across apps, workflows and agents"
+        },
+        "builder": {
+          "tier": "large",
+          "tools": true,
+          "why": "changes and tests code over many steps"
+        }
+      }
+    },
+    {
+      "path": "examples/goal-supervisor-agent.yaml",
+      "id": "goal-supervisor",
+      "kind": "Agent",
+      "title": "Goal supervisor",
+      "description": "Watches durable goals and says why a stuck one is stuck, who acts and what comes next.",
+      "categories": [
+        "operations",
+        "ai"
+      ],
+      "keywords": [
+        "goal",
+        "supervisor",
+        "tasks"
+      ],
+      "models": {
+        "supervisor": {
+          "tier": "medium",
+          "tools": true,
+          "why": "reads goal state and decides the next step"
+        }
+      }
+    },
+    {
+      "path": "examples/vision-reader.yaml",
+      "id": "vision-reader",
+      "kind": "Agent",
+      "title": "Vision reader",
+      "description": "Reads pictures (labels, gauges, documents) with a vision model, from a workflow and a page to upload to.",
+      "categories": [
+        "ai",
+        "examples"
+      ],
+      "keywords": [
+        "vision",
+        "image",
+        "ocr",
+        "picture"
+      ],
+      "models": {
+        "reader": {
+          "tier": "medium",
+          "tools": true,
+          "why": "reads what is in a picture",
+          "vision": true
+        }
+      }
+    },
+    {
+      "path": "priv/examples/pi-gpio-workflows.yaml",
+      "id": "pi-gpio-workflows",
+      "kind": "Workflow",
+      "title": "Raspberry Pi GPIO workflows",
+      "description": "Workflows that drive the pins of a Raspberry Pi: blink an LED on GPIO17, watch a button on GPIO27 and show presses on the web. Replace __DEVICE__ with the device's name when installing.",
+      "categories": [
+        "devices",
+        "iot"
+      ],
+      "keywords": [
+        "raspberry-pi",
+        "gpio",
+        "led",
+        "button",
+        "nerves"
+      ],
+      "replace": {
+        "__NAMESPACE__": "home"
+      },
+      "params": {
+        "device": {
+          "placeholder": "__DEVICE__",
+          "description": "the device whose GPIO tools the workflows call (its name)"
+        }
+      }
+    },
+    {
+      "path": "examples/porch-station.yaml",
+      "id": "porch-station",
+      "kind": "Site",
+      "title": "Porch station",
+      "description": "A porch kiosk site: lamp, rain and events components on one page.",
+      "categories": [
+        "home",
+        "iot"
+      ],
+      "keywords": [
+        "kiosk",
+        "porch",
+        "site",
+        "components"
+      ]
+    },
+    {
+      "path": "examples/social-team.yaml",
+      "id": "social-team",
+      "kind": "Package",
+      "title": "Social media team",
+      "description": "A social media team: a lead, a writer, a community manager, an analyst and a screener, with their workflows for content, publishing, engagement and metrics.",
+      "categories": [
+        "social-media",
+        "marketing"
+      ],
+      "keywords": [
+        "social",
+        "team",
+        "content",
+        "publishing"
+      ],
+      "models": {
+        "social-lead": {
+          "tier": "medium",
+          "tools": true
+        },
+        "writer": {
+          "tier": "medium",
+          "tools": true
+        },
+        "community": {
+          "tier": "medium",
+          "tools": true
+        },
+        "analyst": {
+          "tier": "medium",
+          "tools": true
+        },
+        "screener": {
+          "tier": "small",
+          "tools": true,
+          "why": "screens messages quickly"
+        }
+      }
+    },
+    {
+      "path": "examples/research-desk-package.yaml",
+      "id": "research-desk",
+      "kind": "Package",
+      "title": "Research desk",
+      "description": "A research agent with its workspace, as one package.",
+      "categories": [
+        "research",
+        "ai"
+      ],
+      "keywords": [
+        "research",
+        "package"
+      ],
+      "strip": [
+        "Credential",
+        "ModelProvider"
+      ],
+      "models": {
+        "researcher": {
+          "tier": "medium",
+          "tools": true
+        }
+      }
+    },
+    {
+      "path": "examples/dev-team-package.yaml",
+      "id": "dev-team",
+      "kind": "Package",
+      "title": "Dev team",
+      "description": "A software team: triage, architect, developer, reviewer, QA, release manager and scrum master, with their workflows.",
+      "categories": [
+        "engineering",
+        "software-development"
+      ],
+      "keywords": [
+        "dev",
+        "team",
+        "software",
+        "github"
+      ],
+      "strip": [
+        "ChatBot"
+      ],
+      "models": {
+        "triage": {
+          "tier": "medium",
+          "tools": true
+        },
+        "architect": {
+          "tier": "large",
+          "tools": true
+        },
+        "developer": {
+          "tier": "large",
+          "tools": true
+        },
+        "reviewer": {
+          "tier": "large",
+          "tools": true
+        },
+        "qa": {
+          "tier": "medium",
+          "tools": true
+        },
+        "release-manager": {
+          "tier": "medium",
+          "tools": true
+        },
+        "scrum-master": {
+          "tier": "large",
+          "tools": true
+        }
+      }
+    },
+    {
+      "path": "examples/mock-plc.yaml",
+      "id": "mock-plc",
+      "kind": "PlcSimulator",
+      "title": "Mock PLC tank",
+      "description": "A simulated PLC driving a tank, with its connectors, tag streams, workflows and pages: a PLC to try ragentic's industrial tools on without hardware.",
+      "categories": [
+        "industrial",
+        "iot"
+      ],
+      "keywords": [
+        "plc",
+        "simulator",
+        "tank",
+        "s7"
+      ]
+    },
+    {
+      "path": "priv/examples/paper-intake.yaml",
+      "id": "paper-intake",
+      "kind": "Bundle",
+      "title": "Paper intake",
+      "description": "Streams and workflows that take in research papers, enrich them and report on them.",
+      "categories": [
+        "research",
+        "examples"
+      ],
+      "keywords": [
+        "papers",
+        "streams",
+        "intake"
+      ]
+    }
+  ]
+}
