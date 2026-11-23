@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.fire.com_wp-content_uploads
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | `430243d28fa9fa7fdeb8a208fddb8a0b8034a956857ebe573fd577786a568dbf` in `browse-bundles/`, expires 2027-01-30 17:41 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

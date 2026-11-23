@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_waterlinkedas_profi
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | `d5a720f42bae528584bc20196fc5a5330ab364b5d1e9f8a76de11629ab8b5ba3` in `browse-bundles/`, expires 2027-01-30 17:41 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |
