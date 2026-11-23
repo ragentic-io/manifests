@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_thebluealliance.com_icons_apple
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | `ecfd6a4ded58e37d94de7a007d898f208c739cf7ce4131829a8470a584435e49` in `browse-bundles/`, expires 2027-01-30 17:41 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |
