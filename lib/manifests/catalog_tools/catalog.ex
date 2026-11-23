@@ -290,6 +290,16 @@ defmodule Manifests.CatalogTools.Catalog do
         do: Map.put(entry, "logo", Json.get(listing, "logo")),
         else: entry
 
+    # the bundle's signed labels (labels/TAXONOMY.md), so a client filters and matches on
+    # them from the index alone: Ragentic offers an app on the Connect card for a need that
+    # `provides` what its `provides` label says (RagenticManifests.Entry keeps them)
+    entry =
+      case payload |> Json.get("manifest") |> Json.get("metadata") |> Json.get("labels") do
+        {:o, [_ | _]} = labels -> Map.put(entry, "labels", labels)
+        labels when is_map(labels) and map_size(labels) > 0 -> Map.put(entry, "labels", labels)
+        _ -> entry
+      end
+
     if Json.fetch!(listing, "catalog") == "drafts" do
       entry
       |> Map.put("readiness", Json.fetch!(payload, "readiness"))

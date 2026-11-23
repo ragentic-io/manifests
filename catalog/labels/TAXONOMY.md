@@ -20,6 +20,7 @@ the bundle payload at `manifest.metadata.labels`, a flat object of strings:
     "capability.read": "true",
     "capability.write": "true",
     "capability.payments": "true",
+    "provides": "payments",
     "audience": "finance",
     "pricing": "paid",
     "maturity": "published"
@@ -36,6 +37,7 @@ the bundle payload at `manifest.metadata.labels`, a flat object of strings:
 | `protocol` | `openapi`, `graphql`, `asyncapi`, `grpc`, `atproto` | **Derived** from the bundle's `protocol`, never from the model. |
 | `auth` | `oauth2`, `api-key`, `bearer`, `basic`, `app-password`, `none` | Derived from `setup.credential` when present (`static_bearer`→`bearer`, `api_key_header`→`api-key`, `oauth2_authorization_code`→`oauth2`, `basic`, `none`, `atproto_session`→`app-password`); otherwise from the definition's security schemes. |
 | `capability.<x>` | `"true"`; `<x>` one of `read`, `write`, `delete`, `post`, `files`, `search`, `webhooks`, `streaming`, `messaging`, `payments`, `admin` | Several allowed, one key each. |
+| `provides` | `payments`, `source-control`, `tickets`, `chat`, `customer-support`, `realtime-messaging`, `social-media`, `design`, `design-files`, `whiteboard`, `identity`, `feature-flags`, `cloud-infra`, `research-data`, `website-cms` | The one job a coworker's need asks the app for. Ragentic offers the app on the Connect card for a need `{provides: payments}` (ragentic `docs/filling-gaps.md`). One value; omit when no single job fits. Set by hand for published apps. |
 | `audience` | `developer`, `marketing`, `operations`, `finance`, `sales`, `support`, `data`, `security`, `general` | Who mainly uses it. |
 | `region` | `us`, `eu`, `uk`, `ca`, `au`, `in`, `apac`, `latam`, `africa`, `mena` | Only for APIs bound to one jurisdiction or market; omitted for global services. |
 | `compliance` | `gdpr`, `hipaa`, `pci-dss`, `psd2`, `fedramp`, `sox` | Only when the API exists for a regulated domain (open banking → `psd2`); never inferred from a vendor's certifications. |
@@ -67,3 +69,10 @@ the Ragentic agent `engineering/catalog-labeler` (model `claude-max/sonnet`) thr
 failures, saves `cache.json` after every batch (an interrupted run resumes), and only asks
 about payloads whose digest changed. `last-run.json` reports tokens and cost.
 How labels reach signed index entries: [`../drafts/PUBLISHING.md`](../drafts/PUBLISHING.md#labels).
+
+## Labels in the index
+
+`mix catalog.sign` (and `tools/catalog.py sign`) copies a bundle's `manifest.metadata.labels`
+into its index entry as `labels`, so clients filter and match on them from the signed index
+alone, without selecting each bundle. Ragentic's entry schema (`RagenticManifests.Entry`) keeps
+them; Ragentic before 2026-11-21 (#679) has no `labels` field.
