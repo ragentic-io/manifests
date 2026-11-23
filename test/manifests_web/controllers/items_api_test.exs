@@ -87,7 +87,9 @@ defmodule ManifestsWeb.ItemsApiTest do
     # and an older one never brings them back
     CatalogFixture.write_items!(
       dir,
-      [%{id: "agency-team-design", version: "1.1.0", kind: "Agent"}], sequence: 1)
+      [%{id: "agency-team-design", version: "1.1.0", kind: "Agent"}],
+      sequence: 1
+    )
 
     {:ok, _} = Catalog.import_dir(dir)
     assert %{"total" => 1} = json_response(get(build_conn(), "/api/v1/items"), 200)
