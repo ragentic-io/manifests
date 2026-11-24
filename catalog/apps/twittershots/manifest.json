@@ -1,0 +1,371 @@
+{
+  "a2ui": {},
+  "app": "twittershots",
+  "graph": {
+    "edges": [
+      {
+        "from": "twittershots",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/screenshot/{tweetId}"
+      },
+      {
+        "from": "twittershots",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/usage"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "twittershots",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a rendered screenshot of a public tweet as PNG, SVG, or HTML.",
+        "id": "operation:get:/api/v1/screenshot/{tweetId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getTweetScreenshot",
+        "parameters": [
+          {
+            "description": "Tweet status ID (numeric) or full tweet URL",
+            "in": "path",
+            "name": "tweetId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "svg",
+            "description": "Output format",
+            "enum": [
+              "svg",
+              "png",
+              "html"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "light",
+            "description": "Color theme",
+            "enum": [
+              "light",
+              "dark"
+            ],
+            "in": "query",
+            "name": "theme",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "buffer",
+            "description": "buffer returns image bytes; url returns JSON with a hosted image URL",
+            "enum": [
+              "buffer",
+              "url"
+            ],
+            "in": "query",
+            "name": "returnType",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/screenshot/{tweetId}",
+        "pointer": "#/paths/~1api~1v1~1screenshot~1{tweetId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Generate a tweet screenshot"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api/v1/usage",
+        "kind": "operation",
+        "method": "get",
+        "name": "getApiUsage",
+        "path": "/api/v1/usage",
+        "pointer": "#/paths/~1api~1v1~1usage/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Check remaining API quota"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "twittershots"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.twittershots.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "securitySchemes": {
+                "ApiKeyAuth": {
+                  "description": "API key from https://twittershots.com/settings/keys",
+                  "in": "header",
+                  "name": "X-API-KEY",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "support@twittershots.com",
+                "name": "TwitterShots",
+                "url": "https://twittershots.com"
+              },
+              "description": "Generate high-quality Twitter/X tweet screenshots via REST.\nNo Twitter/X developer API key required — authenticate with a TwitterShots API key only.\n",
+              "license": {
+                "name": "Proprietary"
+              },
+              "title": "TwitterShots Tweet Screenshot API",
+              "version": "0.9.1"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/api/v1/screenshot/{tweetId}": {
+                "get": {
+                  "description": "Returns a rendered screenshot of a public tweet as PNG, SVG, or HTML.\nQuota remaining is returned in X-Quota-Remaining and X-Quota-Limit response headers.\n",
+                  "operationId": "getTweetScreenshot",
+                  "parameters": [
+                    {
+                      "description": "Tweet status ID (numeric) or full tweet URL",
+                      "example": "1981415642981888505",
+                      "in": "path",
+                      "name": "tweetId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Output format",
+                      "in": "query",
+                      "name": "format",
+                      "required": false,
+                      "schema": {
+                        "default": "svg",
+                        "enum": [
+                          "svg",
+                          "png",
+                          "html"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Color theme",
+                      "in": "query",
+                      "name": "theme",
+                      "required": false,
+                      "schema": {
+                        "default": "light",
+                        "enum": [
+                          "light",
+                          "dark"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "buffer returns image bytes; url returns JSON with a hosted image URL",
+                      "in": "query",
+                      "name": "returnType",
+                      "required": false,
+                      "schema": {
+                        "default": "buffer",
+                        "enum": [
+                          "buffer",
+                          "url"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "format": {
+                                "type": "string"
+                              },
+                              "tweetId": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "format": "uri",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "image/png": {
+                          "schema": {
+                            "format": "binary",
+                            "type": "string"
+                          }
+                        },
+                        "image/svg+xml": {
+                          "schema": {
+                            "format": "binary",
+                            "type": "string"
+                          }
+                        },
+                        "text/html": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "Screenshot image (buffer) or JSON with url when returnType=url",
+                      "headers": {
+                        "X-Quota-Limit": {
+                          "description": "Total API credits for the current period",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        },
+                        "X-Quota-Remaining": {
+                          "description": "Remaining API credits in the current period",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    "401": {
+                      "description": "Missing or invalid X-API-KEY"
+                    },
+                    "403": {
+                      "description": "Quota exceeded or plan restriction"
+                    },
+                    "404": {
+                      "description": "Tweet not found or unavailable"
+                    }
+                  },
+                  "summary": "Generate a tweet screenshot"
+                }
+              },
+              "/api/v1/usage": {
+                "get": {
+                  "operationId": "getApiUsage",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "limit": {
+                                "type": "integer"
+                              },
+                              "remaining": {
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Usage for the authenticated key"
+                    },
+                    "401": {
+                      "description": "Missing or invalid X-API-KEY"
+                    }
+                  },
+                  "summary": "Check remaining API quota"
+                }
+              }
+            },
+            "security": [
+              {
+                "ApiKeyAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://api.twittershots.com"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "TwitterShots"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:54.590157+00:00",
+    "license": {
+      "name": "Proprietary"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://twittershots.com/openapi.yaml",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "d5b8a382f40a7ee8ccd343e33cdea31cfe74ac0bf449b0b0e506d9b8b220b20d",
+    "source_id": "twittershots",
+    "source_updated": null,
+    "url": "https://twittershots.com/openapi.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "0.9.1"
+}

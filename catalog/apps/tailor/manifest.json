@@ -1,0 +1,3541 @@
+{
+  "a2ui": {},
+  "app": "tailor",
+  "graph": {
+    "edges": [
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:get:/auth/verify"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:get:/campaigns"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:get:/campaigns/{campaignId}"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:get:/datasets"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:post:/datasets"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:get:/datasets/{id}"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:post:/datasets/{id}/complete"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:put:/datasets/{id}/upload"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:get:/hooks"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:post:/hooks"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:get:/hooks/{id}"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/hooks/{id}"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:post:/render"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:post:/render/batch"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:post:/render/inline-batch"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:post:/render/realtime"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:post:/render/{id}/cancel"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:get:/render/{id}/deliverables"
+      },
+      {
+        "from": "tailor",
+        "kind": "EXPOSES",
+        "to": "operation:get:/render/{id}/status"
+      },
+      {
+        "from": "operation:post:/datasets",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateDatasetRequest"
+      },
+      {
+        "from": "operation:get:/datasets/{id}",
+        "kind": "RETURNS",
+        "to": "schema:DatasetDetail"
+      },
+      {
+        "from": "operation:post:/hooks",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateHookRequest"
+      },
+      {
+        "from": "operation:post:/hooks",
+        "kind": "RETURNS",
+        "to": "schema:HookSubscription"
+      },
+      {
+        "from": "operation:get:/hooks/{id}",
+        "kind": "RETURNS",
+        "to": "schema:HookSubscription"
+      },
+      {
+        "from": "operation:post:/render",
+        "kind": "ACCEPTS",
+        "to": "schema:SingleRenderRequest"
+      },
+      {
+        "from": "operation:post:/render/batch",
+        "kind": "ACCEPTS",
+        "to": "schema:BatchRenderRequest"
+      },
+      {
+        "from": "operation:post:/render/inline-batch",
+        "kind": "ACCEPTS",
+        "to": "schema:InlineBatchRequest"
+      },
+      {
+        "from": "operation:post:/render/realtime",
+        "kind": "ACCEPTS",
+        "to": "schema:SingleRenderRequest"
+      },
+      {
+        "from": "operation:get:/render/{id}/status",
+        "kind": "RETURNS",
+        "to": "schema:BatchRenderStatus"
+      },
+      {
+        "from": "operation:get:/render/{id}/status",
+        "kind": "RETURNS",
+        "to": "schema:SingleRenderStatus"
+      },
+      {
+        "from": "schema:Campaign",
+        "kind": "REFERENCES",
+        "to": "schema:CampaignField"
+      },
+      {
+        "from": "schema:InlineBatchRequest",
+        "kind": "REFERENCES",
+        "to": "schema:FieldValues"
+      },
+      {
+        "from": "schema:InlineBatchRequest",
+        "kind": "REFERENCES",
+        "to": "schema:VideoId"
+      },
+      {
+        "from": "schema:SingleRenderRequest",
+        "kind": "REFERENCES",
+        "to": "schema:FieldValues"
+      },
+      {
+        "from": "schema:SingleRenderRequest",
+        "kind": "REFERENCES",
+        "to": "schema:VideoId"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "tailor",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Validates the credential on the request and returns the team it belongs to.",
+        "id": "operation:get:/auth/verify",
+        "kind": "operation",
+        "method": "get",
+        "name": "verifyAuth",
+        "path": "/auth/verify",
+        "pointer": "#/paths/~1auth~1verify/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Verify credentials",
+        "tags": [
+          "Auth"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns every active (non-archived) campaign on your team, with each campaign's field schema.",
+        "id": "operation:get:/campaigns",
+        "kind": "operation",
+        "method": "get",
+        "name": "listCampaigns",
+        "parameters": [
+          {
+            "description": "Pass the literal string `true` to include smart fields (fields Tailor fills automatically at render time) in the field schema.",
+            "enum": [
+              "true"
+            ],
+            "in": "query",
+            "name": "include_smart_fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/campaigns",
+        "pointer": "#/paths/~1campaigns/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "List campaigns",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a single campaign and its field schema.",
+        "id": "operation:get:/campaigns/{campaignId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCampaign",
+        "parameters": [
+          {
+            "description": "The campaign ID.",
+            "in": "path",
+            "name": "campaignId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Pass the literal string `true` to include smart fields (fields Tailor fills automatically at render time) in the field schema.",
+            "enum": [
+              "true"
+            ],
+            "in": "query",
+            "name": "include_smart_fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/campaigns/{campaignId}",
+        "pointer": "#/paths/~1campaigns~1{campaignId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Get a campaign",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns your team's datasets, newest first.",
+        "id": "operation:get:/datasets",
+        "kind": "operation",
+        "method": "get",
+        "name": "listDatasets",
+        "parameters": [
+          {
+            "description": "Restrict results to datasets belonging to this campaign.",
+            "in": "query",
+            "name": "campaign_id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/datasets",
+        "pointer": "#/paths/~1datasets/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "List datasets",
+        "tags": [
+          "Datasets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a dataset and returns the URL to upload its CSV to.",
+        "id": "operation:post:/datasets",
+        "kind": "operation",
+        "method": "post",
+        "name": "createDataset",
+        "path": "/datasets",
+        "pointer": "#/paths/~1datasets/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateDatasetRequest"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Create a dataset",
+        "tags": [
+          "Datasets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a dataset's processing status and, once processed, its detected columns.",
+        "id": "operation:get:/datasets/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDataset",
+        "parameters": [
+          {
+            "description": "The dataset ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/datasets/{id}",
+        "pointer": "#/paths/~1datasets~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DatasetDetail"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Get dataset status",
+        "tags": [
+          "Datasets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Marks the upload finished and starts processing: the CSV is parsed, columns are detected, and the dataset moves to status `ready`.",
+        "id": "operation:post:/datasets/{id}/complete",
+        "kind": "operation",
+        "method": "post",
+        "name": "completeDatasetUpload",
+        "parameters": [
+          {
+            "description": "The dataset ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/datasets/{id}/complete",
+        "pointer": "#/paths/~1datasets~1{id}~1complete/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Finish upload and start processing",
+        "tags": [
+          "Datasets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Uploads the dataset's raw CSV.",
+        "id": "operation:put:/datasets/{id}/upload",
+        "kind": "operation",
+        "method": "put",
+        "name": "uploadDatasetCsv",
+        "parameters": [
+          {
+            "description": "The dataset ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/datasets/{id}/upload",
+        "pointer": "#/paths/~1datasets~1{id}~1upload/put",
+        "request": {
+          "content_types": [
+            "text/csv"
+          ],
+          "required": true,
+          "type": "string:binary"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Upload the CSV",
+        "tags": [
+          "Datasets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns your team's webhook subscriptions, newest first.",
+        "id": "operation:get:/hooks",
+        "kind": "operation",
+        "method": "get",
+        "name": "listWebhookSubscriptions",
+        "parameters": [
+          {
+            "description": "Only return subscriptions scoped to this campaign.",
+            "in": "query",
+            "name": "campaign_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Only return subscriptions for this event type.",
+            "enum": [
+              "render.completed",
+              "render.failed",
+              "batch.completed",
+              "batch.failed"
+            ],
+            "in": "query",
+            "name": "event_type",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/hooks",
+        "pointer": "#/paths/~1hooks/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "List webhook subscriptions",
+        "tags": [
+          "Webhooks"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Subscribes a URL to an event type.",
+        "id": "operation:post:/hooks",
+        "kind": "operation",
+        "method": "post",
+        "name": "createWebhookSubscription",
+        "path": "/hooks",
+        "pointer": "#/paths/~1hooks/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateHookRequest"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "HookSubscription"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Subscribe a webhook",
+        "tags": [
+          "Webhooks"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/hooks/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getWebhookSubscription",
+        "parameters": [
+          {
+            "description": "The subscription ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/hooks/{id}",
+        "pointer": "#/paths/~1hooks~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "HookSubscription"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Get a webhook subscription",
+        "tags": [
+          "Webhooks"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:delete:/hooks/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "deleteWebhookSubscription",
+        "parameters": [
+          {
+            "description": "The subscription ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/hooks/{id}",
+        "pointer": "#/paths/~1hooks~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Delete a webhook subscription",
+        "tags": [
+          "Webhooks"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Starts an asynchronous MP4 render of one video.",
+        "id": "operation:post:/render",
+        "kind": "operation",
+        "method": "post",
+        "name": "startSingleRender",
+        "path": "/render",
+        "pointer": "#/paths/~1render/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SingleRenderRequest"
+        },
+        "responses": [
+          {
+            "status": "202",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "402",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          },
+          {
+            "status": "409",
+            "type": "ApiError"
+          },
+          {
+            "status": "502",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Start a single render",
+        "tags": [
+          "Renders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Renders one video per row of an uploaded dataset.",
+        "id": "operation:post:/render/batch",
+        "kind": "operation",
+        "method": "post",
+        "name": "startBatchRender",
+        "path": "/render/batch",
+        "pointer": "#/paths/~1render~1batch/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "BatchRenderRequest"
+        },
+        "responses": [
+          {
+            "status": "202",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "402",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          },
+          {
+            "status": "409",
+            "type": "ApiError"
+          },
+          {
+            "status": "502",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Start a batch render from a dataset",
+        "tags": [
+          "Renders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Renders up to 500 videos from field values supplied directly in the request — no dataset upload required.",
+        "id": "operation:post:/render/inline-batch",
+        "kind": "operation",
+        "method": "post",
+        "name": "startInlineBatch",
+        "path": "/render/inline-batch",
+        "pointer": "#/paths/~1render~1inline-batch/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "InlineBatchRequest"
+        },
+        "responses": [
+          {
+            "status": "202",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "402",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          },
+          {
+            "status": "409",
+            "type": "ApiError"
+          },
+          {
+            "status": "502",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Start an inline batch render",
+        "tags": [
+          "Renders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Starts a realtime (HLS streaming) render.",
+        "id": "operation:post:/render/realtime",
+        "kind": "operation",
+        "method": "post",
+        "name": "startRealtimeRender",
+        "path": "/render/realtime",
+        "pointer": "#/paths/~1render~1realtime/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SingleRenderRequest"
+        },
+        "responses": [
+          {
+            "status": "202",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "402",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          },
+          {
+            "status": "409",
+            "type": "ApiError"
+          },
+          {
+            "status": "502",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Start a realtime render",
+        "tags": [
+          "Renders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Requests cancellation of an in-flight batch.",
+        "id": "operation:post:/render/{id}/cancel",
+        "kind": "operation",
+        "method": "post",
+        "name": "cancelBatch",
+        "parameters": [
+          {
+            "description": "The batch ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/render/{id}/cancel",
+        "pointer": "#/paths/~1render~1{id}~1cancel/post",
+        "responses": [
+          {
+            "status": "202",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          },
+          {
+            "status": "409",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Cancel a batch",
+        "tags": [
+          "Renders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the per-video results of a batch, paginated with a cursor.",
+        "id": "operation:get:/render/{id}/deliverables",
+        "kind": "operation",
+        "method": "get",
+        "name": "listBatchDeliverables",
+        "parameters": [
+          {
+            "description": "The batch ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 100,
+            "description": "Page size, 1–500.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Opaque cursor from the previous page's `next_cursor`.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Pass the literal string `true` to include each video's resolved field values.",
+            "enum": [
+              "true"
+            ],
+            "in": "query",
+            "name": "include_fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/render/{id}/deliverables",
+        "pointer": "#/paths/~1render~1{id}~1deliverables/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "List batch deliverables",
+        "tags": [
+          "Renders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Polls a render by ID.",
+        "id": "operation:get:/render/{id}/status",
+        "kind": "operation",
+        "method": "get",
+        "name": "getRenderStatus",
+        "parameters": [
+          {
+            "description": "A render ID or batch ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/render/{id}/status",
+        "pointer": "#/paths/~1render~1{id}~1status/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SingleRenderStatus|BatchRenderStatus"
+          },
+          {
+            "status": "401",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauthBearer": []
+          }
+        ],
+        "summary": "Poll render or batch status",
+        "tags": [
+          "Renders"
+        ]
+      },
+      {
+        "id": "schema:ApiError",
+        "kind": "schema",
+        "name": "ApiError",
+        "type": "object"
+      },
+      {
+        "id": "schema:BatchRenderRequest",
+        "kind": "schema",
+        "name": "BatchRenderRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:BatchRenderStatus",
+        "kind": "schema",
+        "name": "BatchRenderStatus",
+        "type": "object"
+      },
+      {
+        "id": "schema:Campaign",
+        "kind": "schema",
+        "name": "Campaign",
+        "type": "object"
+      },
+      {
+        "id": "schema:CampaignField",
+        "kind": "schema",
+        "name": "CampaignField",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateDatasetRequest",
+        "kind": "schema",
+        "name": "CreateDatasetRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateHookRequest",
+        "kind": "schema",
+        "name": "CreateHookRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:DatasetDetail",
+        "kind": "schema",
+        "name": "DatasetDetail",
+        "type": "object"
+      },
+      {
+        "id": "schema:DatasetSummary",
+        "kind": "schema",
+        "name": "DatasetSummary",
+        "type": "object"
+      },
+      {
+        "id": "schema:Deliverable",
+        "kind": "schema",
+        "name": "Deliverable",
+        "type": "object"
+      },
+      {
+        "description": "Field values for a render, keyed by field key.",
+        "id": "schema:FieldValues",
+        "kind": "schema",
+        "name": "FieldValues",
+        "type": "object"
+      },
+      {
+        "id": "schema:HookSubscription",
+        "kind": "schema",
+        "name": "HookSubscription",
+        "type": "object"
+      },
+      {
+        "id": "schema:InlineBatchRequest",
+        "kind": "schema",
+        "name": "InlineBatchRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:SingleRenderRequest",
+        "kind": "schema",
+        "name": "SingleRenderRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:SingleRenderStatus",
+        "kind": "schema",
+        "name": "SingleRenderStatus",
+        "type": "object"
+      },
+      {
+        "description": "Your identifier for the output video — up to 128 characters, letters/digits/hyphens/underscores only.",
+        "id": "schema:VideoId",
+        "kind": "schema",
+        "name": "VideoId",
+        "type": "string"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "tailor"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://app.tailor.video/api/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "IncludeSmartFields": {
+                  "description": "Pass the literal string `true` to include smart fields (fields Tailor fills automatically at render time) in the field schema.",
+                  "in": "query",
+                  "name": "include_smart_fields",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "true"
+                    ],
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "BatchAccepted": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "batch_id": {
+                            "description": "ID of the batch. Use it with the status, deliverables, and cancel endpoints.",
+                            "example": "b7f2mx0qwo4l0x3f9c2j5h7d",
+                            "type": "string"
+                          },
+                          "status": {
+                            "enum": [
+                              "processing"
+                            ],
+                            "example": "processing",
+                            "type": "string"
+                          },
+                          "total_videos": {
+                            "example": 1500,
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "batch_id",
+                          "total_videos",
+                          "status"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "Batch accepted and started."
+                },
+                "BatchNotFound": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "NOT_FOUND",
+                          "message": "Batch not found"
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "No batch with this ID."
+                },
+                "CampaignNotFound": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "CAMPAIGN_NOT_FOUND",
+                          "message": "Campaign not found or access denied"
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "Campaign not found or access denied."
+                },
+                "CampaignPaused": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "CAMPAIGN_PAUSED",
+                          "message": "Campaign is paused — resume it to start new renders"
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "The campaign is paused; resume it to start new renders."
+                },
+                "DatasetNotFound": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "NOT_FOUND",
+                          "message": "Dataset not found"
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "No dataset with this ID."
+                },
+                "HookNotFound": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "NOT_FOUND",
+                          "message": "Webhook subscription not found"
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "No webhook subscription with this ID."
+                },
+                "InsufficientCredits": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "INSUFFICIENT_CREDITS",
+                          "message": "Insufficient credits. Required: ~1500, Available: 900"
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "Your team does not have enough credits for this render.\n\nCodes: `INSUFFICIENT_CREDITS`, `INSUFFICIENT_DATA_CREDITS`."
+                },
+                "RenderBadRequest": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "VALIDATION_ERROR",
+                          "details": {
+                            "campaign_id": [
+                              "campaign_id is required"
+                            ]
+                          },
+                          "message": "Invalid request"
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "Invalid JSON, failed validation, or an unpublished campaign.\n\n- `INVALID_JSON` — body is not valid JSON\n- `VALIDATION_ERROR` — schema validation failed; `details` maps field names to error messages\n- `NOT_PUBLISHED` — the campaign template is not published"
+                },
+                "RenderUpstreamError": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "RENDER_ERROR",
+                          "message": "Failed to reach render service"
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "The render service could not be reached or failed to accept the job. Any credits deducted for the request are automatically refunded.\n\nCodes: `RENDER_FAILED`, `RENDER_ERROR`, `REALTIME_RENDER_FAILED`."
+                },
+                "Unauthorized": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "INVALID_API_KEY",
+                          "message": "Invalid or expired API key"
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "Missing, invalid, or expired credential.\n\nCodes: `MISSING_API_KEY`, `INVALID_API_KEY`, `EXPIRED_API_KEY`, `AUTH_FAILED`."
+                }
+              },
+              "schemas": {
+                "ApiError": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Machine-readable error code, e.g. `VALIDATION_ERROR`, `CAMPAIGN_NOT_FOUND`, `INSUFFICIENT_CREDITS`.",
+                          "type": "string"
+                        },
+                        "details": {
+                          "additionalProperties": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "description": "For `VALIDATION_ERROR`: maps each invalid field name to an array of error messages.",
+                          "type": "object"
+                        },
+                        "message": {
+                          "description": "Human-readable error message.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                },
+                "BatchRenderRequest": {
+                  "properties": {
+                    "allow_missing_fields": {
+                      "description": "By default the batch is rejected if any campaign field has no matching CSV column. Set to `true` to let such fields fall back to their campaign default values instead. A field with neither a column nor a non-empty default still rejects the batch.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "campaign_id": {
+                      "example": "u2vp1n8qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "completion_webhook_url": {
+                      "description": "Optional URL that receives one signed `batch.completed` or `batch.failed` event when the whole batch finishes.",
+                      "example": "https://example.com/webhooks/tailor",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "dataset_id": {
+                      "description": "A dataset belonging to this campaign with status `ready`.",
+                      "example": "d4tm2x0qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "video_id_column": {
+                      "description": "Name of a CSV column whose value names each output video (same role as `video_id` on single renders).",
+                      "example": "lead_id",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "campaign_id",
+                    "dataset_id"
+                  ],
+                  "type": "object"
+                },
+                "BatchRenderStatus": {
+                  "properties": {
+                    "cancelled": {
+                      "type": "integer"
+                    },
+                    "completed": {
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "failed": {
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "rendering": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "enum": [
+                        "rendering",
+                        "completed",
+                        "failed",
+                        "cancelled"
+                      ],
+                      "type": "string"
+                    },
+                    "total_videos": {
+                      "type": "integer"
+                    },
+                    "type": {
+                      "enum": [
+                        "batch"
+                      ],
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "status",
+                    "total_videos",
+                    "completed",
+                    "rendering",
+                    "failed",
+                    "cancelled",
+                    "created_at",
+                    "updated_at"
+                  ],
+                  "title": "Batch render",
+                  "type": "object"
+                },
+                "Campaign": {
+                  "properties": {
+                    "fields": {
+                      "items": {
+                        "$ref": "#/components/schemas/CampaignField"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "example": "u2vp1n8qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "Spring Listings",
+                      "type": "string"
+                    },
+                    "workspaceName": {
+                      "example": "Main Workspace",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "workspaceName",
+                    "fields"
+                  ],
+                  "type": "object"
+                },
+                "CampaignField": {
+                  "properties": {
+                    "description": {
+                      "description": "Present only when `isSmartField` is true.",
+                      "type": "string"
+                    },
+                    "isSmartField": {
+                      "description": "True when Tailor fills this field automatically at render time. Provide a value to override it.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "key": {
+                      "description": "Stable field key. Use it as the property name in the `fields` object of render requests, and as the CSV column header for batch renders.",
+                      "example": "lead_name",
+                      "type": "string"
+                    },
+                    "label": {
+                      "example": "lead_name",
+                      "type": "string"
+                    },
+                    "required": {
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "smartFieldId": {
+                      "description": "Present only when `isSmartField` is true.",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Field value type, e.g. `text`.",
+                      "example": "text",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "label",
+                    "type",
+                    "required",
+                    "isSmartField"
+                  ],
+                  "type": "object"
+                },
+                "CreateDatasetRequest": {
+                  "properties": {
+                    "campaign_id": {
+                      "description": "The campaign this dataset belongs to.",
+                      "example": "u2vp1n8qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "content_type": {
+                      "description": "Content type of the upcoming upload. Defaults to `text/csv`.",
+                      "example": "text/csv",
+                      "type": "string"
+                    },
+                    "file_size_bytes": {
+                      "example": 1048576,
+                      "type": "number"
+                    },
+                    "name": {
+                      "example": "Q3 leads",
+                      "type": "string"
+                    },
+                    "original_file_name": {
+                      "example": "q3-leads.csv",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "campaign_id",
+                    "name"
+                  ],
+                  "type": "object"
+                },
+                "CreateHookRequest": {
+                  "properties": {
+                    "campaign_id": {
+                      "description": "Restrict the subscription to one campaign. Omit to receive the event for all campaigns on your team.",
+                      "type": "string"
+                    },
+                    "event_type": {
+                      "enum": [
+                        "render.completed",
+                        "render.failed",
+                        "batch.completed",
+                        "batch.failed"
+                      ],
+                      "example": "render.completed",
+                      "type": "string"
+                    },
+                    "target_url": {
+                      "description": "Public URL to deliver events to.",
+                      "example": "https://example.com/webhooks/tailor",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "event_type",
+                    "target_url"
+                  ],
+                  "type": "object"
+                },
+                "DatasetDetail": {
+                  "properties": {
+                    "campaign_id": {
+                      "example": "u2vp1n8qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "column_count": {
+                      "example": 8,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "columns": {
+                      "description": "Detected CSV columns, in order. Column names must exactly match campaign field keys to be auto-mapped in batch renders.",
+                      "items": {
+                        "properties": {
+                          "data_type": {
+                            "example": "string",
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "index": {
+                            "example": 0,
+                            "type": "integer"
+                          },
+                          "name": {
+                            "example": "lead_name",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "index"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "error_message": {
+                      "example": null,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "id": {
+                      "example": "d4tm2x0qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "Q3 leads",
+                      "type": "string"
+                    },
+                    "processing_progress": {
+                      "description": "Processing progress, 0–100.",
+                      "example": 100,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "row_count": {
+                      "example": 1500,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "pending",
+                        "uploading",
+                        "processing",
+                        "ready",
+                        "failed"
+                      ],
+                      "example": "ready",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "status",
+                    "row_count",
+                    "column_count",
+                    "processing_progress",
+                    "error_message",
+                    "campaign_id",
+                    "columns"
+                  ],
+                  "type": "object"
+                },
+                "DatasetSummary": {
+                  "properties": {
+                    "campaign_id": {
+                      "example": "u2vp1n8qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "column_count": {
+                      "example": 8,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "d4tm2x0qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "Q3 leads",
+                      "type": "string"
+                    },
+                    "row_count": {
+                      "example": 1500,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "pending",
+                        "uploading",
+                        "processing",
+                        "ready",
+                        "failed"
+                      ],
+                      "example": "ready",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "status",
+                    "row_count",
+                    "column_count",
+                    "campaign_id",
+                    "created_at"
+                  ],
+                  "type": "object"
+                },
+                "Deliverable": {
+                  "properties": {
+                    "credits_charged": {
+                      "example": 2,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "duration_ms": {
+                      "example": 15000,
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "error": {
+                      "description": "Failure reason when `status` is `failed`.",
+                      "example": null,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "fields": {
+                      "additionalProperties": true,
+                      "description": "The video's resolved field values. Present only when `include_fields=true`.",
+                      "type": "object"
+                    },
+                    "id": {
+                      "example": "k8sm2x0qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "rendering",
+                        "completed",
+                        "failed",
+                        "cancelled"
+                      ],
+                      "example": "completed",
+                      "type": "string"
+                    },
+                    "thumbnail_url": {
+                      "example": "https://media.tailor.video/thumbnails/lead-4821.jpg",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "video_id": {
+                      "description": "The `video_id` you supplied (or the value of `video_id_column` for dataset batches).",
+                      "example": "lead-4821",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "video_url": {
+                      "example": "https://media.tailor.video/videos/lead-4821.mp4",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "video_id",
+                    "status",
+                    "video_url",
+                    "thumbnail_url",
+                    "duration_ms",
+                    "credits_charged",
+                    "error"
+                  ],
+                  "type": "object"
+                },
+                "FieldValues": {
+                  "additionalProperties": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
+                  },
+                  "description": "Field values for a render, keyed by field key. Values may be strings or numbers; nested objects are not allowed. Omitted fields fall back to their campaign defaults (and smart fields are filled automatically).",
+                  "example": {
+                    "lead_name": "Jane Smith",
+                    "list_price": 749000
+                  },
+                  "type": "object"
+                },
+                "HookSubscription": {
+                  "properties": {
+                    "campaign_id": {
+                      "description": "`null` when the subscription covers all campaigns.",
+                      "example": null,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "event_type": {
+                      "enum": [
+                        "render.completed",
+                        "render.failed",
+                        "batch.completed",
+                        "batch.failed"
+                      ],
+                      "example": "render.completed",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "h0kw2x0qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "success": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "target_url": {
+                      "example": "https://example.com/webhooks/tailor",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "success",
+                    "id",
+                    "event_type",
+                    "target_url",
+                    "campaign_id"
+                  ],
+                  "type": "object"
+                },
+                "InlineBatchRequest": {
+                  "properties": {
+                    "campaign_id": {
+                      "example": "u2vp1n8qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "completion_webhook_url": {
+                      "description": "Optional URL that receives one signed `batch.completed` or `batch.failed` event when the whole batch finishes.",
+                      "example": "https://example.com/webhooks/tailor",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "items": {
+                      "description": "One entry per video, at most 500. For larger jobs, upload a dataset and use `POST /render/batch`.",
+                      "items": {
+                        "properties": {
+                          "fields": {
+                            "$ref": "#/components/schemas/FieldValues"
+                          },
+                          "video_id": {
+                            "$ref": "#/components/schemas/VideoId"
+                          }
+                        },
+                        "required": [
+                          "fields"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 500,
+                      "minItems": 1,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "campaign_id",
+                    "items"
+                  ],
+                  "type": "object"
+                },
+                "SingleRenderRequest": {
+                  "properties": {
+                    "campaign_id": {
+                      "description": "The campaign to render from.",
+                      "example": "u2vp1n8qwo4l0x3f9c2j5h7d",
+                      "type": "string"
+                    },
+                    "completion_webhook_url": {
+                      "description": "Optional URL that receives one signed `render.completed` or `render.failed` event when the render finishes. See the Webhooks guide for the payload and signature scheme.",
+                      "example": "https://example.com/webhooks/tailor",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "fields": {
+                      "$ref": "#/components/schemas/FieldValues"
+                    },
+                    "video_id": {
+                      "$ref": "#/components/schemas/VideoId"
+                    },
+                    "webhook_url": {
+                      "description": "Optional URL that receives unsigned render-progress callbacks. Most integrations should use `completion_webhook_url` instead.",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "campaign_id",
+                    "fields"
+                  ],
+                  "type": "object"
+                },
+                "SingleRenderStatus": {
+                  "properties": {
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "rendering",
+                        "completed",
+                        "failed",
+                        "cancelled"
+                      ],
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "single"
+                      ],
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "video_url": {
+                      "description": "URL of the finished MP4, or the HLS playlist for realtime renders. `null` until available.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "id",
+                    "status",
+                    "video_url",
+                    "created_at",
+                    "updated_at"
+                  ],
+                  "title": "Single render",
+                  "type": "object"
+                },
+                "VideoId": {
+                  "description": "Your identifier for the output video — up to 128 characters, letters/digits/hyphens/underscores only. Used as the video's filename and returned with results so you can correlate them with your records.",
+                  "example": "lead-4821",
+                  "maxLength": 128,
+                  "pattern": "^[a-zA-Z0-9_-]+$",
+                  "type": "string"
+                }
+              },
+              "securitySchemes": {
+                "apiKey": {
+                  "description": "API key from Settings → API Keys, e.g. `tlr_4f9c2j5h7d8e0a1b3c6d9f2e`.",
+                  "in": "header",
+                  "name": "X-API-Key",
+                  "type": "apiKey"
+                },
+                "oauthBearer": {
+                  "description": "OAuth access token (used by integrations such as Zapier). Scoped: `campaigns:read`, `render:read`, `render:write`.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "Programmatic access to Tailor: list campaigns, render personalized videos one at a time or in bulk, manage datasets, and subscribe to webhooks.",
+              "title": "Tailor API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/auth/verify": {
+                "get": {
+                  "description": "Validates the credential on the request and returns the team it belongs to. Useful as a connection test (this is what Zapier calls when you connect your account).",
+                  "operationId": "verifyAuth",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "teamId": {
+                                "description": "ID of the team the credential belongs to.",
+                                "example": "u2vp1n8qwo4l0x3f9c2j5h7d",
+                                "type": "string"
+                              },
+                              "teamName": {
+                                "example": "Acme Realty",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "success",
+                              "teamId",
+                              "teamName"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "The credential is valid."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Verify credentials",
+                  "tags": [
+                    "Auth"
+                  ]
+                }
+              },
+              "/campaigns": {
+                "get": {
+                  "description": "Returns every active (non-archived) campaign on your team, with each campaign's field schema. This list is not paginated.\n\nFields backed by an active smart field are omitted by default because Tailor fills them automatically at render time — pass `include_smart_fields=true` to see them (any value you provide for a smart field at render time overrides the automatic one).",
+                  "operationId": "listCampaigns",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/IncludeSmartFields"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "campaigns": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Campaign"
+                                },
+                                "type": "array"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "success",
+                              "campaigns"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "The team's campaigns."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "List campaigns",
+                  "tags": [
+                    "Campaigns"
+                  ]
+                }
+              },
+              "/campaigns/{campaignId}": {
+                "get": {
+                  "description": "Returns a single campaign and its field schema.",
+                  "operationId": "getCampaign",
+                  "parameters": [
+                    {
+                      "description": "The campaign ID.",
+                      "in": "path",
+                      "name": "campaignId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/IncludeSmartFields"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "fields": {
+                                "items": {
+                                  "$ref": "#/components/schemas/CampaignField"
+                                },
+                                "type": "array"
+                              },
+                              "id": {
+                                "example": "u2vp1n8qwo4l0x3f9c2j5h7d",
+                                "type": "string"
+                              },
+                              "name": {
+                                "example": "Spring Listings",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "workspaceName": {
+                                "example": "Main Workspace",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "success",
+                              "id",
+                              "name",
+                              "workspaceName",
+                              "fields"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "The campaign."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": {
+                              "code": "CAMPAIGN_NOT_FOUND",
+                              "message": "Campaign not found"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "Campaign not found."
+                    }
+                  },
+                  "summary": "Get a campaign",
+                  "tags": [
+                    "Campaigns"
+                  ]
+                }
+              },
+              "/datasets": {
+                "get": {
+                  "description": "Returns your team's datasets, newest first. This list is not paginated.",
+                  "operationId": "listDatasets",
+                  "parameters": [
+                    {
+                      "description": "Restrict results to datasets belonging to this campaign.",
+                      "in": "query",
+                      "name": "campaign_id",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "datasets": {
+                                "items": {
+                                  "$ref": "#/components/schemas/DatasetSummary"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "required": [
+                              "datasets"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "The team's datasets."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "List datasets",
+                  "tags": [
+                    "Datasets"
+                  ]
+                },
+                "post": {
+                  "description": "Creates a dataset and returns the URL to upload its CSV to. The full flow is:\n\n1. `POST /datasets` → returns `upload_url`\n2. `PUT` the raw CSV bytes to `upload_url` (with your normal auth header)\n3. `POST /datasets/{id}/complete` to start processing\n4. Poll `GET /datasets/{id}` until `status` is `ready`\n5. Start a batch with `POST /render/batch`",
+                  "operationId": "createDataset",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateDatasetRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "dataset_id": {
+                                "example": "d4tm2x0qwo4l0x3f9c2j5h7d",
+                                "type": "string"
+                              },
+                              "r2_key": {
+                                "description": "Internal storage key of the upload.",
+                                "example": "team_123/d4tm2x0qwo4l0x3f9c2j5h7d/original.csv",
+                                "type": "string"
+                              },
+                              "status": {
+                                "enum": [
+                                  "uploading"
+                                ],
+                                "example": "uploading",
+                                "type": "string"
+                              },
+                              "upload_url": {
+                                "description": "URL to `PUT` the CSV to. Include your auth header on the upload request — this is a Tailor API endpoint, not a presigned storage URL.",
+                                "example": "https://app.tailor.video/api/v1/datasets/d4tm2x0qwo4l0x3f9c2j5h7d/upload",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "dataset_id",
+                              "upload_url",
+                              "r2_key",
+                              "status"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Dataset created; upload the CSV next."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/RenderBadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/CampaignNotFound"
+                    }
+                  },
+                  "summary": "Create a dataset",
+                  "tags": [
+                    "Datasets"
+                  ]
+                }
+              },
+              "/datasets/{id}": {
+                "get": {
+                  "description": "Returns a dataset's processing status and, once processed, its detected columns. Before launching a batch, confirm each `columns[].name` exactly matches the key of the campaign field it should fill.",
+                  "operationId": "getDataset",
+                  "parameters": [
+                    {
+                      "description": "The dataset ID.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DatasetDetail"
+                          }
+                        }
+                      },
+                      "description": "The dataset."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/DatasetNotFound"
+                    }
+                  },
+                  "summary": "Get dataset status",
+                  "tags": [
+                    "Datasets"
+                  ]
+                }
+              },
+              "/datasets/{id}/complete": {
+                "post": {
+                  "description": "Marks the upload finished and starts processing: the CSV is parsed, columns are detected, and the dataset moves to status `ready`. Poll `GET /datasets/{id}` to follow progress. No request body.",
+                  "operationId": "completeDatasetUpload",
+                  "parameters": [
+                    {
+                      "description": "The dataset ID.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "status": {
+                                "enum": [
+                                  "processing"
+                                ],
+                                "example": "processing",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "status"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Processing started."
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": {
+                              "code": "NOT_UPLOADED",
+                              "message": "No upload found — PUT the CSV to /upload first"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "No CSV has been uploaded yet."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/DatasetNotFound"
+                    }
+                  },
+                  "summary": "Finish upload and start processing",
+                  "tags": [
+                    "Datasets"
+                  ]
+                }
+              },
+              "/datasets/{id}/upload": {
+                "put": {
+                  "description": "Uploads the dataset's raw CSV. Send the file bytes directly as the request body — not as JSON and not as multipart form data — and include your normal auth header. After a successful upload, call `POST /datasets/{id}/complete`.",
+                  "operationId": "uploadDatasetCsv",
+                  "parameters": [
+                    {
+                      "description": "The dataset ID.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "text/csv": {
+                        "schema": {
+                          "format": "binary",
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "success"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Upload stored."
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": {
+                              "code": "NO_UPLOAD_KEY",
+                              "message": "Upload key not set — create the dataset first"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "The dataset has no upload key yet — create the dataset first."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/DatasetNotFound"
+                    }
+                  },
+                  "summary": "Upload the CSV",
+                  "tags": [
+                    "Datasets"
+                  ]
+                }
+              },
+              "/hooks": {
+                "get": {
+                  "description": "Returns your team's webhook subscriptions, newest first. This list is not paginated.",
+                  "operationId": "listWebhookSubscriptions",
+                  "parameters": [
+                    {
+                      "description": "Only return subscriptions scoped to this campaign.",
+                      "in": "query",
+                      "name": "campaign_id",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Only return subscriptions for this event type.",
+                      "in": "query",
+                      "name": "event_type",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "render.completed",
+                          "render.failed",
+                          "batch.completed",
+                          "batch.failed"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "hooks": {
+                                "items": {
+                                  "properties": {
+                                    "campaign_id": {
+                                      "description": "`null` when the subscription covers all campaigns.",
+                                      "example": null,
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    },
+                                    "created_at": {
+                                      "format": "date-time",
+                                      "type": "string"
+                                    },
+                                    "event_type": {
+                                      "enum": [
+                                        "render.completed",
+                                        "render.failed",
+                                        "batch.completed",
+                                        "batch.failed"
+                                      ],
+                                      "example": "render.completed",
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "example": "h0kw2x0qwo4l0x3f9c2j5h7d",
+                                      "type": "string"
+                                    },
+                                    "target_url": {
+                                      "example": "https://example.com/webhooks/tailor",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "event_type",
+                                    "target_url",
+                                    "campaign_id",
+                                    "created_at"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "success",
+                              "hooks"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "The team's webhook subscriptions."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "List webhook subscriptions",
+                  "tags": [
+                    "Webhooks"
+                  ]
+                },
+                "post": {
+                  "description": "Subscribes a URL to an event type. Tailor will `POST` a signed JSON payload to `target_url` every time the event occurs — see the [Webhooks guide](/api-reference/webhooks) for payload shapes and signature verification.\n\n`target_url` must be a public `https://` (or `http://`) URL; URLs that resolve to private or internal addresses are rejected.",
+                  "operationId": "createWebhookSubscription",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateHookRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HookSubscription"
+                          }
+                        }
+                      },
+                      "description": "Subscription created."
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": {
+                              "code": "INVALID_TARGET_URL",
+                              "message": "URLs to private/internal IP addresses are not allowed"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "Invalid JSON, failed validation, or a disallowed `target_url`.\n\n- `INVALID_JSON` — body is not valid JSON\n- `VALIDATION_ERROR` — schema validation failed (`details` maps field names to error messages)\n- `INVALID_TARGET_URL` — the URL is unsupported or resolves to a private/internal address"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": {
+                              "code": "CAMPAIGN_NOT_FOUND",
+                              "message": "Campaign not found or access denied"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "The `campaign_id` filter does not match a campaign on your team."
+                    }
+                  },
+                  "summary": "Subscribe a webhook",
+                  "tags": [
+                    "Webhooks"
+                  ]
+                }
+              },
+              "/hooks/{id}": {
+                "delete": {
+                  "operationId": "deleteWebhookSubscription",
+                  "parameters": [
+                    {
+                      "description": "The subscription ID.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "deleted": {
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "id": {
+                                "example": "h0kw2x0qwo4l0x3f9c2j5h7d",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "success",
+                              "id",
+                              "deleted"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Subscription deleted."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/HookNotFound"
+                    }
+                  },
+                  "summary": "Delete a webhook subscription",
+                  "tags": [
+                    "Webhooks"
+                  ]
+                },
+                "get": {
+                  "operationId": "getWebhookSubscription",
+                  "parameters": [
+                    {
+                      "description": "The subscription ID.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HookSubscription"
+                          }
+                        }
+                      },
+                      "description": "The subscription."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/HookNotFound"
+                    }
+                  },
+                  "summary": "Get a webhook subscription",
+                  "tags": [
+                    "Webhooks"
+                  ]
+                }
+              },
+              "/render": {
+                "post": {
+                  "description": "Starts an asynchronous MP4 render of one video. Returns `202 Accepted` immediately; poll `poll_url` or pass `completion_webhook_url` to be notified when the video is ready.",
+                  "operationId": "startSingleRender",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SingleRenderRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "202": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "id": {
+                                "description": "ID of the render. Use it with the status endpoint.",
+                                "example": "k8sm2x0qwo4l0x3f9c2j5h7d",
+                                "type": "string"
+                              },
+                              "poll_url": {
+                                "description": "URL to poll for status.",
+                                "example": "https://app.tailor.video/api/v1/render/k8sm2x0qwo4l0x3f9c2j5h7d/status",
+                                "type": "string"
+                              },
+                              "status": {
+                                "enum": [
+                                  "rendering"
+                                ],
+                                "example": "rendering",
+                                "type": "string"
+                              },
+                              "video_id": {
+                                "description": "The `video_id` you supplied, or the render ID when omitted.",
+                                "example": "lead-4821",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "video_id",
+                              "status",
+                              "poll_url"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Render accepted and started."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/RenderBadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "402": {
+                      "$ref": "#/components/responses/InsufficientCredits"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/CampaignNotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/CampaignPaused"
+                    },
+                    "502": {
+                      "$ref": "#/components/responses/RenderUpstreamError"
+                    }
+                  },
+                  "summary": "Start a single render",
+                  "tags": [
+                    "Renders"
+                  ]
+                }
+              },
+              "/render/batch": {
+                "post": {
+                  "description": "Renders one video per row of an uploaded dataset. The dataset must belong to the campaign and have status `ready`.\n\nColumns are mapped to campaign fields by exact name match: a CSV column named `lead_name` fills the field with key `lead_name`. Use `GET /datasets/{id}` to confirm your column names before launching.\n\nOnly one batch per dataset can be in flight at a time — a second launch while one is rendering returns `409 BATCH_ALREADY_RENDERING`.",
+                  "operationId": "startBatchRender",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/BatchRenderRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "202": {
+                      "$ref": "#/components/responses/BatchAccepted"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": {
+                              "code": "UNMAPPED_FIELDS",
+                              "message": "CSV has no column for required field(s): lead_name, property_address. Rename your CSV headers to exactly match these field keys, or set allow_missing_fields to fall back to defaults."
+                            },
+                            "fields": [
+                              "lead_name",
+                              "property_address"
+                            ]
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "Invalid JSON, failed validation, or unmapped fields.\n\n- `INVALID_JSON` — body is not valid JSON\n- `VALIDATION_ERROR` — schema validation failed (`details` maps field names to error messages)\n- `NOT_PUBLISHED` — the campaign template is not published\n- `UNMAPPED_FIELDS` — the CSV has no column for one or more required fields (the missing keys are listed in `fields`)\n- `MISSING_FIELDS_NO_DEFAULT` — with `allow_missing_fields`, one or more fields have neither a CSV column nor a default value (listed in `fields`)"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "402": {
+                      "$ref": "#/components/responses/InsufficientCredits"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": {
+                              "code": "DATASET_NOT_FOUND",
+                              "message": "Dataset not found, not ready, or does not belong to campaign"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "Campaign or dataset not found.\n\n- `CAMPAIGN_NOT_FOUND` — campaign not found or access denied\n- `DATASET_NOT_FOUND` — dataset not found, not `ready`, or does not belong to the campaign"
+                    },
+                    "409": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "batch_id": "b7f2mx0qwo4l0x3f9c2j5h7d",
+                            "error": {
+                              "code": "BATCH_ALREADY_RENDERING",
+                              "message": "A batch render for this dataset is already in progress (batch b7f2…). Cancel it or wait for it to finish before starting another."
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "The campaign is paused, or a batch for this dataset is already rendering.\n\n- `CAMPAIGN_PAUSED` — resume the campaign to start new renders\n- `BATCH_ALREADY_RENDERING` — the in-flight batch's ID is returned as `batch_id`"
+                    },
+                    "502": {
+                      "$ref": "#/components/responses/RenderUpstreamError"
+                    }
+                  },
+                  "summary": "Start a batch render from a dataset",
+                  "tags": [
+                    "Renders"
+                  ]
+                }
+              },
+              "/render/inline-batch": {
+                "post": {
+                  "description": "Renders up to 500 videos from field values supplied directly in the request — no dataset upload required. For larger jobs, upload a dataset and use `POST /render/batch`.",
+                  "operationId": "startInlineBatch",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/InlineBatchRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "202": {
+                      "$ref": "#/components/responses/BatchAccepted"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/RenderBadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "402": {
+                      "$ref": "#/components/responses/InsufficientCredits"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/CampaignNotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/CampaignPaused"
+                    },
+                    "502": {
+                      "$ref": "#/components/responses/RenderUpstreamError"
+                    }
+                  },
+                  "summary": "Start an inline batch render",
+                  "tags": [
+                    "Renders"
+                  ]
+                }
+              },
+              "/render/realtime": {
+                "post": {
+                  "description": "Starts a realtime (HLS streaming) render. The response includes an HLS `playlist_url` that starts playing while the video is still being produced. The same URL is also returned as `video_url` by the status endpoint once the stream is live.",
+                  "operationId": "startRealtimeRender",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SingleRenderRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "202": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "deliverable_id": {
+                                "deprecated": true,
+                                "description": "Deprecated alias for `id`.",
+                                "example": "k8sm2x0qwo4l0x3f9c2j5h7d",
+                                "type": "string"
+                              },
+                              "id": {
+                                "description": "ID of the render. Use it with the status endpoint.",
+                                "example": "k8sm2x0qwo4l0x3f9c2j5h7d",
+                                "type": "string"
+                              },
+                              "playlist_url": {
+                                "description": "HLS playlist (`.m3u8`) URL for the stream.",
+                                "example": "https://media.tailor.video/realtime/k8sm2x0/playlist.m3u8",
+                                "type": "string"
+                              },
+                              "poll_url": {
+                                "description": "URL to poll for status.",
+                                "example": "https://app.tailor.video/api/v1/render/k8sm2x0qwo4l0x3f9c2j5h7d/status",
+                                "type": "string"
+                              },
+                              "status": {
+                                "enum": [
+                                  "streaming"
+                                ],
+                                "example": "streaming",
+                                "type": "string"
+                              },
+                              "video_id": {
+                                "example": "lead-4821",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "deliverable_id",
+                              "video_id",
+                              "status",
+                              "playlist_url",
+                              "poll_url"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Realtime render accepted and started."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/RenderBadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "402": {
+                      "$ref": "#/components/responses/InsufficientCredits"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/CampaignNotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/CampaignPaused"
+                    },
+                    "502": {
+                      "$ref": "#/components/responses/RenderUpstreamError"
+                    }
+                  },
+                  "summary": "Start a realtime render",
+                  "tags": [
+                    "Renders"
+                  ]
+                }
+              },
+              "/render/{id}/cancel": {
+                "post": {
+                  "description": "Requests cancellation of an in-flight batch. Cancellation is cooperative: videos already rendering finish or stop shortly after, queued work is dropped, and the batch finalizes with status `cancelled`. Only batches currently in status `rendering` can be cancelled.",
+                  "operationId": "cancelBatch",
+                  "parameters": [
+                    {
+                      "description": "The batch ID.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "202": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "batch_id": {
+                                "example": "b7f2mx0qwo4l0x3f9c2j5h7d",
+                                "type": "string"
+                              },
+                              "status": {
+                                "enum": [
+                                  "cancel_requested"
+                                ],
+                                "example": "cancel_requested",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "batch_id",
+                              "status"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Cancellation requested."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/BatchNotFound"
+                    },
+                    "409": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": {
+                              "code": "NOT_CANCELLABLE",
+                              "message": "Batch is completed and cannot be cancelled"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "The batch is not in a cancellable state (only `rendering` batches can be cancelled)."
+                    }
+                  },
+                  "summary": "Cancel a batch",
+                  "tags": [
+                    "Renders"
+                  ]
+                }
+              },
+              "/render/{id}/deliverables": {
+                "get": {
+                  "description": "Returns the per-video results of a batch, paginated with a cursor. Iterate by passing the previous response's `next_cursor` until it is `null`.",
+                  "operationId": "listBatchDeliverables",
+                  "parameters": [
+                    {
+                      "description": "The batch ID.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Page size, 1–500. Defaults to 100.",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": 100,
+                        "maximum": 500,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Opaque cursor from the previous page's `next_cursor`.",
+                      "in": "query",
+                      "name": "cursor",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Pass the literal string `true` to include each video's resolved field values.",
+                      "in": "query",
+                      "name": "include_fields",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "true"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "batch_id": {
+                                "example": "b7f2mx0qwo4l0x3f9c2j5h7d",
+                                "type": "string"
+                              },
+                              "deliverables": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Deliverable"
+                                },
+                                "type": "array"
+                              },
+                              "next_cursor": {
+                                "description": "Cursor for the next page, or `null` when there are no more results.",
+                                "example": null,
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "batch_id",
+                              "deliverables",
+                              "next_cursor"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "A page of deliverables."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/BatchNotFound"
+                    }
+                  },
+                  "summary": "List batch deliverables",
+                  "tags": [
+                    "Renders"
+                  ]
+                }
+              },
+              "/render/{id}/status": {
+                "get": {
+                  "description": "Polls a render by ID. The ID may be a single render ID (from `POST /render` or `POST /render/realtime`) or a batch ID (from `POST /render/batch` or `POST /render/inline-batch`) — the response's `type` field tells you which it was.\n\nFor per-video results of a batch, use `GET /render/{id}/deliverables`.",
+                  "operationId": "getRenderStatus",
+                  "parameters": [
+                    {
+                      "description": "A render ID or batch ID.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "batch": {
+                              "summary": "Batch render",
+                              "value": {
+                                "cancelled": 0,
+                                "completed": 1420,
+                                "created_at": "2026-08-05T12:00:00.000Z",
+                                "failed": 2,
+                                "id": "b7f2mx0qwo4l0x3f9c2j5h7d",
+                                "rendering": 78,
+                                "status": "rendering",
+                                "total_videos": 1500,
+                                "type": "batch",
+                                "updated_at": "2026-08-05T12:41:12.000Z"
+                              }
+                            },
+                            "single": {
+                              "summary": "Single render",
+                              "value": {
+                                "created_at": "2026-08-05T12:00:00.000Z",
+                                "id": "k8sm2x0qwo4l0x3f9c2j5h7d",
+                                "status": "completed",
+                                "type": "single",
+                                "updated_at": "2026-08-05T12:00:31.000Z",
+                                "video_url": "https://media.tailor.video/videos/lead-4821.mp4"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/SingleRenderStatus"
+                              },
+                              {
+                                "$ref": "#/components/schemas/BatchRenderStatus"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Current status."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": {
+                              "code": "NOT_FOUND",
+                              "message": "Render job not found"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "No render or batch with this ID."
+                    }
+                  },
+                  "summary": "Poll render or batch status",
+                  "tags": [
+                    "Renders"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "apiKey": []
+              },
+              {
+                "oauthBearer": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://app.tailor.video/api/v1"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Credential verification",
+                "name": "Auth"
+              },
+              {
+                "description": "Campaigns and their field schemas",
+                "name": "Campaigns"
+              },
+              {
+                "description": "Start and monitor video renders",
+                "name": "Renders"
+              },
+              {
+                "description": "Upload lists for batch rendering",
+                "name": "Datasets"
+              },
+              {
+                "description": "Webhook subscriptions",
+                "name": "Webhooks"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Tailor"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.141907+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://docs.tailor.video/api-reference/openapi.json",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "9080e6ed8f5f37af00e20adaa38053d3d876d61d8994cca4063ad4999ebaa067",
+    "source_id": "tailor",
+    "source_updated": null,
+    "url": "https://docs.tailor.video/api-reference/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

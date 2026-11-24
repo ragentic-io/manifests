@@ -1,0 +1,707 @@
+{
+  "a2ui": {},
+  "app": "oopspam",
+  "graph": {
+    "edges": [
+      {
+        "from": "oopspam",
+        "kind": "EXPOSES",
+        "to": "operation:post:/reputation/domain"
+      },
+      {
+        "from": "oopspam",
+        "kind": "EXPOSES",
+        "to": "operation:post:/spamdetection"
+      },
+      {
+        "from": "oopspam",
+        "kind": "EXPOSES",
+        "to": "operation:post:/spamdetection/report"
+      },
+      {
+        "from": "operation:post:/reputation/domain",
+        "kind": "ACCEPTS",
+        "to": "schema:DomainReputationRequest"
+      },
+      {
+        "from": "operation:post:/reputation/domain",
+        "kind": "RETURNS",
+        "to": "schema:DomainReputationResult"
+      },
+      {
+        "from": "operation:post:/spamdetection",
+        "kind": "ACCEPTS",
+        "to": "schema:SpamDetectionRequest"
+      },
+      {
+        "from": "operation:post:/spamdetection",
+        "kind": "RETURNS",
+        "to": "schema:SpamDetectionResult"
+      },
+      {
+        "from": "operation:post:/spamdetection/report",
+        "kind": "ACCEPTS",
+        "to": "schema:SpamDetectionReportRequest"
+      },
+      {
+        "from": "schema:SpamDetectionReportRequest",
+        "kind": "REFERENCES",
+        "to": "schema:SpamDetectionRequest"
+      },
+      {
+        "from": "schema:SpamDetectionResult",
+        "kind": "REFERENCES",
+        "to": "schema:SpamDetectionDetails"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "oopspam",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/reputation/domain",
+        "kind": "operation",
+        "method": "post",
+        "name": "checkDomainReputation",
+        "path": "/reputation/domain",
+        "pointer": "#/paths/~1reputation~1domain/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "DomainReputationRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "DomainReputationResult"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "406"
+          },
+          {
+            "status": "429"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "OOPSpamApiKey": []
+          }
+        ],
+        "summary": "Check a domain against reputation sources",
+        "tags": [
+          "Domain reputation"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Some fields in `Details` may be omitted when an analysis returns early.",
+        "id": "operation:post:/spamdetection",
+        "kind": "operation",
+        "method": "post",
+        "name": "checkForSpam",
+        "path": "/spamdetection",
+        "pointer": "#/paths/~1spamdetection/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SpamDetectionRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "SpamDetectionResult"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "406"
+          },
+          {
+            "status": "429"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "OOPSpamApiKey": []
+          }
+        ],
+        "summary": "Analyze a submission for spam",
+        "tags": [
+          "Spam detection"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/spamdetection/report",
+        "kind": "operation",
+        "method": "post",
+        "name": "reportSpamDetectionResult",
+        "path": "/spamdetection/report",
+        "pointer": "#/paths/~1spamdetection~1report/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SpamDetectionReportRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "406"
+          },
+          {
+            "status": "429"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "OOPSpamApiKey": []
+          }
+        ],
+        "summary": "Report a false positive or false negative",
+        "tags": [
+          "Spam detection"
+        ]
+      },
+      {
+        "id": "schema:DomainReputationRequest",
+        "kind": "schema",
+        "name": "DomainReputationRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:DomainReputationResult",
+        "kind": "schema",
+        "name": "DomainReputationResult",
+        "type": "object"
+      },
+      {
+        "description": "Available analyses; fields may be omitted when an analysis returns early.",
+        "id": "schema:SpamDetectionDetails",
+        "kind": "schema",
+        "name": "SpamDetectionDetails",
+        "type": "object"
+      },
+      {
+        "id": "schema:SpamDetectionReportRequest",
+        "kind": "schema",
+        "name": "SpamDetectionReportRequest",
+        "type": "SpamDetectionRequest|object"
+      },
+      {
+        "id": "schema:SpamDetectionRequest",
+        "kind": "schema",
+        "name": "SpamDetectionRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:SpamDetectionResult",
+        "kind": "schema",
+        "name": "SpamDetectionResult",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "oopspam"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.oopspam.com/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "BadRequest": {
+                  "description": "The request is invalid."
+                },
+                "NotAcceptable": {
+                  "description": "The requested response format is not JSON."
+                },
+                "NotFound": {
+                  "description": "The requested resource was not found."
+                },
+                "RateLimited": {
+                  "description": "The API key exceeded its request limit."
+                },
+                "ServerError": {
+                  "description": "An internal server error occurred."
+                },
+                "Unauthorized": {
+                  "description": "The API key is invalid."
+                }
+              },
+              "schemas": {
+                "DomainReputationRequest": {
+                  "properties": {
+                    "domain": {
+                      "description": "Fully qualified domain name without a scheme or `www` prefix.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "domain"
+                  ],
+                  "type": "object"
+                },
+                "DomainReputationResult": {
+                  "properties": {
+                    "Blocked": {
+                      "type": "boolean"
+                    },
+                    "Blocker": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "Blocked",
+                    "Blocker"
+                  ],
+                  "type": "object"
+                },
+                "SpamDetectionDetails": {
+                  "additionalProperties": true,
+                  "description": "Available analyses; fields may be omitted when an analysis returns early.",
+                  "properties": {
+                    "countryMatch": {
+                      "type": "boolean"
+                    },
+                    "isContentSpam": {
+                      "type": "string"
+                    },
+                    "isContentTooShort": {
+                      "type": "boolean"
+                    },
+                    "isEmailBlocked": {
+                      "type": "boolean"
+                    },
+                    "isIPBlocked": {
+                      "type": "boolean"
+                    },
+                    "langMatch": {
+                      "type": "boolean"
+                    },
+                    "numberOfSpamWords": {
+                      "type": "number"
+                    },
+                    "spamWords": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SpamDetectionReportRequest": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SpamDetectionRequest"
+                    },
+                    {
+                      "properties": {
+                        "shouldBeSpam": {
+                          "description": "Whether the reported content should be classified as spam.",
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "shouldBeSpam"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                },
+                "SpamDetectionRequest": {
+                  "properties": {
+                    "allowedCountries": {
+                      "description": "Allowed ISO 3166-1 alpha-2 country codes; requires `senderIP`.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "allowedLanguages": {
+                      "description": "Expected ISO 639-1 language codes.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "blockDC": {
+                      "default": false,
+                      "description": "Block IP addresses from data centers.",
+                      "type": "boolean"
+                    },
+                    "blockTempEmail": {
+                      "default": false,
+                      "description": "Block temporary or disposable email addresses.",
+                      "type": "boolean"
+                    },
+                    "blockVPN": {
+                      "default": false,
+                      "description": "Block VPN, proxy, and Tor IP addresses.",
+                      "type": "boolean"
+                    },
+                    "blockedCountries": {
+                      "description": "Blocked ISO 3166-1 alpha-2 country codes; requires `senderIP`.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "checkForLength": {
+                      "default": true,
+                      "description": "Treat content shorter than 20 characters as spam.",
+                      "type": "boolean"
+                    },
+                    "content": {
+                      "description": "Message or content to analyze.",
+                      "type": "string"
+                    },
+                    "context": {
+                      "description": "Describe the site's purpose and what submissions count as spam or legitimate. When a non-empty value is supplied, contextual detection is used instead of standard spam detection.",
+                      "type": "string"
+                    },
+                    "email": {
+                      "description": "Original submitter's email address.",
+                      "type": "string"
+                    },
+                    "logIt": {
+                      "default": false,
+                      "description": "Enable dashboard logging; requires `source`.",
+                      "type": "boolean"
+                    },
+                    "senderIP": {
+                      "description": "Original submitter's IP address; required for country filters.",
+                      "type": "string"
+                    },
+                    "source": {
+                      "description": "Unique site or application identifier used for dashboard logging.",
+                      "type": "string"
+                    },
+                    "urlFriendly": {
+                      "default": false,
+                      "description": "Beta option to reduce the impact of links in `content` on its spam score.",
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SpamDetectionResult": {
+                  "properties": {
+                    "Details": {
+                      "$ref": "#/components/schemas/SpamDetectionDetails"
+                    },
+                    "Score": {
+                      "description": "Overall spam score; higher values indicate a greater likelihood of spam.",
+                      "maximum": 6,
+                      "minimum": 0,
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "Score",
+                    "Details"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "OOPSpamApiKey": {
+                  "in": "header",
+                  "name": "X-Api-Key",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "OOPSpam API documentation",
+              "url": "https://www.oopspam.com/docs/"
+            },
+            "info": {
+              "description": "Community-maintained description of OOPSpam's direct API. This document does not describe the separate RapidAPI base URL and authentication header.",
+              "title": "OOPSpam API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/reputation/domain": {
+                "post": {
+                  "operationId": "checkDomainReputation",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/DomainReputationRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DomainReputationResult"
+                          }
+                        }
+                      },
+                      "description": "Domain reputation result."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "406": {
+                      "$ref": "#/components/responses/NotAcceptable"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "OOPSpamApiKey": []
+                    }
+                  ],
+                  "summary": "Check a domain against reputation sources",
+                  "tags": [
+                    "Domain reputation"
+                  ]
+                }
+              },
+              "/spamdetection": {
+                "post": {
+                  "description": "Some fields in `Details` may be omitted when an analysis returns early.",
+                  "operationId": "checkForSpam",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SpamDetectionRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SpamDetectionResult"
+                          }
+                        }
+                      },
+                      "description": "Spam score and available analysis details."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "406": {
+                      "$ref": "#/components/responses/NotAcceptable"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "OOPSpamApiKey": []
+                    }
+                  ],
+                  "summary": "Analyze a submission for spam",
+                  "tags": [
+                    "Spam detection"
+                  ]
+                }
+              },
+              "/spamdetection/report": {
+                "post": {
+                  "operationId": "reportSpamDetectionResult",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SpamDetectionReportRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Report accepted."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "406": {
+                      "$ref": "#/components/responses/NotAcceptable"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "OOPSpamApiKey": []
+                    }
+                  ],
+                  "summary": "Report a false positive or false negative",
+                  "tags": [
+                    "Spam detection"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "OOPSpam direct API",
+                "url": "https://api.oopspam.com/v1"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Spam detection"
+              },
+              {
+                "name": "Domain reputation"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OOPSpam"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.558326+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/oopspam/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "a0eb4b8eea16a3542b070e6bc0d7875a3ce66cc15c561f7834603c032cefc39c",
+    "source_id": "oopspam",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/oopspam/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

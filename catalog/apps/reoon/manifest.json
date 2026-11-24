@@ -1,0 +1,1023 @@
+{
+  "a2ui": {},
+  "app": "reoon",
+  "graph": {
+    "edges": [
+      {
+        "from": "reoon",
+        "kind": "EXPOSES",
+        "to": "operation:get:/check-account-balance/"
+      },
+      {
+        "from": "reoon",
+        "kind": "EXPOSES",
+        "to": "operation:post:/create-bulk-verification-task/"
+      },
+      {
+        "from": "reoon",
+        "kind": "EXPOSES",
+        "to": "operation:get:/get-result-bulk-verification-task/"
+      },
+      {
+        "from": "reoon",
+        "kind": "EXPOSES",
+        "to": "operation:get:/verify"
+      },
+      {
+        "from": "operation:get:/check-account-balance/",
+        "kind": "RETURNS",
+        "to": "schema:AccountBalance"
+      },
+      {
+        "from": "operation:post:/create-bulk-verification-task/",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateBulkTaskRequest"
+      },
+      {
+        "from": "operation:post:/create-bulk-verification-task/",
+        "kind": "RETURNS",
+        "to": "schema:CreateBulkTaskResponse"
+      },
+      {
+        "from": "operation:get:/get-result-bulk-verification-task/",
+        "kind": "RETURNS",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "operation:get:/get-result-bulk-verification-task/",
+        "kind": "RETURNS",
+        "to": "schema:BulkTaskResult"
+      },
+      {
+        "from": "operation:get:/verify",
+        "kind": "RETURNS",
+        "to": "schema:PowerEmailVerificationResult"
+      },
+      {
+        "from": "operation:get:/verify",
+        "kind": "RETURNS",
+        "to": "schema:QuickEmailVerificationResult"
+      },
+      {
+        "from": "schema:BulkEmailVerificationResult",
+        "kind": "REFERENCES",
+        "to": "schema:EmailVerificationResult"
+      },
+      {
+        "from": "schema:BulkTaskResult",
+        "kind": "REFERENCES",
+        "to": "schema:BulkEmailVerificationResult"
+      },
+      {
+        "from": "schema:PowerEmailVerificationResult",
+        "kind": "REFERENCES",
+        "to": "schema:EmailVerificationResult"
+      },
+      {
+        "from": "schema:QuickEmailVerificationResult",
+        "kind": "REFERENCES",
+        "to": "schema:EmailVerificationResult"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "reoon",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the account's API status and remaining daily and instant credits.",
+        "id": "operation:get:/check-account-balance/",
+        "kind": "operation",
+        "method": "get",
+        "name": "checkAccountBalance",
+        "path": "/check-account-balance/",
+        "pointer": "#/paths/~1check-account-balance~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "AccountBalance"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ReoonApiKey": []
+          }
+        ],
+        "summary": "Check remaining credits",
+        "tags": [
+          "Account"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Submits up to 50,000 email addresses for asynchronous verification in power mode.",
+        "id": "operation:post:/create-bulk-verification-task/",
+        "kind": "operation",
+        "method": "post",
+        "name": "createBulkVerificationTask",
+        "path": "/create-bulk-verification-task/",
+        "pointer": "#/paths/~1create-bulk-verification-task~1/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateBulkTaskRequest"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "CreateBulkTaskResponse"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Create a bulk verification task",
+        "tags": [
+          "Bulk verification"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns task progress while verification is running and email results when they are ready.",
+        "id": "operation:get:/get-result-bulk-verification-task/",
+        "kind": "operation",
+        "method": "get",
+        "name": "getBulkVerificationTaskResult",
+        "parameters": [
+          {
+            "description": "Task ID returned by the bulk task creation operation.",
+            "in": "query",
+            "name": "task_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/get-result-bulk-verification-task/",
+        "pointer": "#/paths/~1get-result-bulk-verification-task~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "BulkTaskResult|ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ReoonApiKey": []
+          }
+        ],
+        "summary": "Get bulk task progress or results",
+        "tags": [
+          "Bulk verification"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Quick mode is the default and checks syntax, disposable status, MX and related signals without checking whether the individual inbox exists.",
+        "id": "operation:get:/verify",
+        "kind": "operation",
+        "method": "get",
+        "name": "verifyEmail",
+        "parameters": [
+          {
+            "description": "Email address to verify.",
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "quick",
+            "description": "Verification depth.",
+            "enum": [
+              "quick",
+              "power"
+            ],
+            "in": "query",
+            "name": "mode",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/verify",
+        "pointer": "#/paths/~1verify/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "QuickEmailVerificationResult|PowerEmailVerificationResult"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ReoonApiKey": []
+          }
+        ],
+        "summary": "Verify one email address",
+        "tags": [
+          "Email verification"
+        ]
+      },
+      {
+        "id": "schema:AccountBalance",
+        "kind": "schema",
+        "name": "AccountBalance",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiError",
+        "kind": "schema",
+        "name": "ApiError",
+        "type": "object"
+      },
+      {
+        "id": "schema:BulkEmailVerificationResult",
+        "kind": "schema",
+        "name": "BulkEmailVerificationResult",
+        "type": "EmailVerificationResult|object"
+      },
+      {
+        "id": "schema:BulkTaskResult",
+        "kind": "schema",
+        "name": "BulkTaskResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateBulkTaskRequest",
+        "kind": "schema",
+        "name": "CreateBulkTaskRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateBulkTaskResponse",
+        "kind": "schema",
+        "name": "CreateBulkTaskResponse",
+        "type": "object"
+      },
+      {
+        "description": "Fields differ by verification mode.",
+        "id": "schema:EmailVerificationResult",
+        "kind": "schema",
+        "name": "EmailVerificationResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:PowerEmailVerificationResult",
+        "kind": "schema",
+        "name": "PowerEmailVerificationResult",
+        "type": "EmailVerificationResult|object"
+      },
+      {
+        "id": "schema:QuickEmailVerificationResult",
+        "kind": "schema",
+        "name": "QuickEmailVerificationResult",
+        "type": "EmailVerificationResult|object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "reoon"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://emailverifier.reoon.com/api/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "AccountBalance": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "api_status": {
+                      "type": "string"
+                    },
+                    "remaining_daily_credits": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "remaining_instant_credits": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "status": {
+                      "const": "success",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "api_status",
+                    "remaining_daily_credits",
+                    "remaining_instant_credits",
+                    "status"
+                  ],
+                  "type": "object"
+                },
+                "ApiError": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "reason": {
+                      "description": "Human-readable description of the API error.",
+                      "type": "string"
+                    },
+                    "status": {
+                      "const": "error",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "BulkEmailVerificationResult": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/EmailVerificationResult"
+                    },
+                    {
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "safe",
+                            "invalid",
+                            "disabled",
+                            "disposable",
+                            "inbox_full",
+                            "catch_all",
+                            "role_account",
+                            "spamtrap",
+                            "unknown"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "BulkTaskResult": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "count_checked": {
+                      "type": "integer"
+                    },
+                    "count_total": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "progress_percentage": {
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    "results": {
+                      "description": "Reoon's prose describes an array, while its worked example is an object keyed by email address. Both documented shapes are accepted.",
+                      "oneOf": [
+                        {
+                          "items": {
+                            "$ref": "#/components/schemas/BulkEmailVerificationResult"
+                          },
+                          "type": "array"
+                        },
+                        {
+                          "additionalProperties": {
+                            "$ref": "#/components/schemas/BulkEmailVerificationResult"
+                          },
+                          "type": "object"
+                        }
+                      ]
+                    },
+                    "status": {
+                      "description": "Known values include waiting, running, completed, file_not_found, and file_loading_error; other values may be returned.",
+                      "type": "string"
+                    },
+                    "task_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "task_id",
+                    "status"
+                  ],
+                  "type": "object"
+                },
+                "CreateBulkTaskRequest": {
+                  "properties": {
+                    "emails": {
+                      "description": "Email addresses to verify. Malformed addresses are rejected and included in count_rejected_emails rather than processed.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "maxItems": 50000,
+                      "type": "array"
+                    },
+                    "key": {
+                      "description": "Active Reoon API key.",
+                      "format": "password",
+                      "type": "string",
+                      "writeOnly": true
+                    },
+                    "name": {
+                      "description": "Optional task name, up to 25 characters.",
+                      "maxLength": 25,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "emails",
+                    "key"
+                  ],
+                  "type": "object"
+                },
+                "CreateBulkTaskResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "count_duplicates_removed": {
+                      "type": "integer"
+                    },
+                    "count_processing": {
+                      "type": "integer"
+                    },
+                    "count_rejected_emails": {
+                      "type": "integer"
+                    },
+                    "count_submitted": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "const": "success",
+                      "type": "string"
+                    },
+                    "task_id": {
+                      "description": "Unique ID to use when retrieving task results.",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "task_id",
+                    "count_submitted",
+                    "count_duplicates_removed",
+                    "count_rejected_emails",
+                    "count_processing"
+                  ],
+                  "type": "object"
+                },
+                "EmailVerificationResult": {
+                  "additionalProperties": true,
+                  "description": "Fields differ by verification mode. Quick status values are valid, invalid, disposable, and spamtrap. Power status values are safe, invalid, disabled, disposable, inbox_full, catch_all, role_account, spamtrap, and unknown.",
+                  "properties": {
+                    "can_connect_smtp": {
+                      "type": "boolean"
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "has_inbox_full": {
+                      "type": "boolean"
+                    },
+                    "is_catch_all": {
+                      "type": "boolean"
+                    },
+                    "is_deliverable": {
+                      "type": "boolean"
+                    },
+                    "is_disabled": {
+                      "type": "boolean"
+                    },
+                    "is_disposable": {
+                      "type": "boolean"
+                    },
+                    "is_free_email": {
+                      "type": "boolean"
+                    },
+                    "is_role_account": {
+                      "type": "boolean"
+                    },
+                    "is_safe_to_send": {
+                      "type": "boolean"
+                    },
+                    "is_spamtrap": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "enum": [
+                            "None"
+                          ],
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "is_valid_syntax": {
+                      "type": "boolean"
+                    },
+                    "mx_accepts_mail": {
+                      "type": "boolean"
+                    },
+                    "mx_records": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "overall_score": {
+                      "description": "Power mode score out of 100.",
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "status": {
+                      "enum": [
+                        "valid",
+                        "invalid",
+                        "disposable",
+                        "spamtrap",
+                        "safe",
+                        "disabled",
+                        "inbox_full",
+                        "catch_all",
+                        "role_account",
+                        "unknown"
+                      ],
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "verification_mode": {
+                      "enum": [
+                        "quick",
+                        "power"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "email",
+                    "status"
+                  ],
+                  "type": "object"
+                },
+                "PowerEmailVerificationResult": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/EmailVerificationResult"
+                    },
+                    {
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "safe",
+                            "invalid",
+                            "disabled",
+                            "disposable",
+                            "inbox_full",
+                            "catch_all",
+                            "role_account",
+                            "spamtrap",
+                            "unknown"
+                          ],
+                          "type": "string"
+                        },
+                        "verification_mode": {
+                          "const": "power",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "verification_mode"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                },
+                "QuickEmailVerificationResult": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/EmailVerificationResult"
+                    },
+                    {
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "valid",
+                            "invalid",
+                            "disposable",
+                            "spamtrap"
+                          ],
+                          "type": "string"
+                        },
+                        "verification_mode": {
+                          "const": "quick",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "verification_mode"
+                      ],
+                      "type": "object"
+                    }
+                  ]
+                }
+              },
+              "securitySchemes": {
+                "ReoonApiKey": {
+                  "description": "Used by GET operations. Bulk task creation instead requires `key` in its JSON request body.",
+                  "in": "query",
+                  "name": "key",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Official Reoon Email Verifier API documentation",
+              "url": "https://www.reoon.com/articles/api-documentation-of-reoon-email-verifier/"
+            },
+            "info": {
+              "description": "OpenAPI description of Reoon Email Verifier's documented API v1.\nThe API key is sent in the query string for GET operations and in the JSON\nbody when creating a bulk task, as required by Reoon's API.",
+              "title": "Reoon Email Verifier API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.2.1",
+            "paths": {
+              "/check-account-balance/": {
+                "get": {
+                  "description": "Returns the account's API status and remaining daily and instant credits.",
+                  "operationId": "checkAccountBalance",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "api_status": "active",
+                            "remaining_daily_credits": 150,
+                            "remaining_instant_credits": 5000,
+                            "status": "success"
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/AccountBalance"
+                          }
+                        }
+                      },
+                      "description": "Current account balance."
+                    }
+                  },
+                  "security": [
+                    {
+                      "ReoonApiKey": []
+                    }
+                  ],
+                  "summary": "Check remaining credits",
+                  "tags": [
+                    "Account"
+                  ]
+                }
+              },
+              "/create-bulk-verification-task/": {
+                "post": {
+                  "description": "Submits up to 50,000 email addresses for asynchronous verification in power mode. Reoon removes duplicate addresses before processing. The API key must be included in the JSON body.",
+                  "operationId": "createBulkVerificationTask",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "emails": [
+                            "user@example.com",
+                            "person@example.net"
+                          ],
+                          "key": "YOUR_API_KEY",
+                          "name": "Spring leads"
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateBulkTaskRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "count_duplicates_removed": 0,
+                            "count_processing": 2,
+                            "count_rejected_emails": 0,
+                            "count_submitted": 2,
+                            "status": "success",
+                            "task_id": 40676
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/CreateBulkTaskResponse"
+                          }
+                        }
+                      },
+                      "description": "Bulk task created."
+                    },
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "Reoon returned an API-level error. The HTTP status is not specified in the documentation."
+                    }
+                  },
+                  "summary": "Create a bulk verification task",
+                  "tags": [
+                    "Bulk verification"
+                  ]
+                }
+              },
+              "/get-result-bulk-verification-task/": {
+                "get": {
+                  "description": "Returns task progress while verification is running and email results when they are ready. Reoon's formal request URL uses `task_id`; one Python example in its documentation uses `task-id` instead.",
+                  "operationId": "getBulkVerificationTaskResult",
+                  "parameters": [
+                    {
+                      "description": "Task ID returned by the bulk task creation operation.",
+                      "in": "query",
+                      "name": "task_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "apiError": {
+                              "summary": "API-level error",
+                              "value": {
+                                "reason": "Task not found",
+                                "status": "error"
+                              }
+                            },
+                            "completed": {
+                              "summary": "Completed task with results keyed by email",
+                              "value": {
+                                "count_checked": 2,
+                                "count_total": 2,
+                                "name": "Spring leads",
+                                "progress_percentage": 100,
+                                "results": {
+                                  "jhon200@outlook.com": {
+                                    "can_connect_smtp": true,
+                                    "domain": "outlook.com",
+                                    "email": "jhon200@outlook.com",
+                                    "has_inbox_full": false,
+                                    "is_catch_all": false,
+                                    "is_deliverable": true,
+                                    "is_disabled": false,
+                                    "is_disposable": false,
+                                    "is_role_account": false,
+                                    "is_safe_to_send": true,
+                                    "is_spamtrap": false,
+                                    "is_valid_syntax": true,
+                                    "mx_accepts_mail": true,
+                                    "mx_records": [
+                                      "outlook-com.olc.protection.outlook.com"
+                                    ],
+                                    "status": "safe",
+                                    "username": "jhon200"
+                                  }
+                                },
+                                "status": "completed",
+                                "task_id": "40676"
+                              }
+                            },
+                            "running": {
+                              "summary": "Task still processing",
+                              "value": {
+                                "count_checked": 1,
+                                "count_total": 2,
+                                "name": "Spring leads",
+                                "progress_percentage": 50,
+                                "status": "running",
+                                "task_id": "40676"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/BulkTaskResult"
+                              },
+                              {
+                                "$ref": "#/components/schemas/ApiError"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Task progress, completed results, or an API-level error."
+                    }
+                  },
+                  "security": [
+                    {
+                      "ReoonApiKey": []
+                    }
+                  ],
+                  "summary": "Get bulk task progress or results",
+                  "tags": [
+                    "Bulk verification"
+                  ]
+                }
+              },
+              "/verify": {
+                "get": {
+                  "description": "Quick mode is the default and checks syntax, disposable status, MX and related signals without checking whether the individual inbox exists. Power mode performs deeper checks and can take from seconds to over a minute. Reoon advises against continuously using this endpoint with more than five concurrent threads; use the bulk API for larger lists.",
+                  "operationId": "verifyEmail",
+                  "parameters": [
+                    {
+                      "description": "Email address to verify.",
+                      "in": "query",
+                      "name": "email",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Verification depth. Omit to use quick mode.",
+                      "in": "query",
+                      "name": "mode",
+                      "schema": {
+                        "default": "quick",
+                        "enum": [
+                          "quick",
+                          "power"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "power": {
+                              "summary": "Power mode result",
+                              "value": {
+                                "can_connect_smtp": true,
+                                "domain": "gmail.com",
+                                "email": "jhon123@gmail.com",
+                                "has_inbox_full": false,
+                                "is_catch_all": false,
+                                "is_deliverable": true,
+                                "is_disabled": false,
+                                "is_disposable": false,
+                                "is_free_email": true,
+                                "is_role_account": false,
+                                "is_safe_to_send": true,
+                                "is_spamtrap": false,
+                                "is_valid_syntax": true,
+                                "mx_accepts_mail": true,
+                                "mx_records": [
+                                  "gmail-smtp-in.l.google.com",
+                                  "alt1.gmail-smtp-in.l.google.com",
+                                  "alt2.gmail-smtp-in.l.google.com",
+                                  "alt3.gmail-smtp-in.l.google.com",
+                                  "alt4.gmail-smtp-in.l.google.com"
+                                ],
+                                "overall_score": 98,
+                                "status": "safe",
+                                "username": "jhon123",
+                                "verification_mode": "power"
+                              }
+                            },
+                            "quick": {
+                              "summary": "Quick mode result",
+                              "value": {
+                                "domain": "gmail.com",
+                                "email": "jhon123@gmail.com",
+                                "is_disposable": false,
+                                "is_free_email": true,
+                                "is_role_account": false,
+                                "is_spamtrap": false,
+                                "is_valid_syntax": true,
+                                "mx_accepts_mail": true,
+                                "mx_records": [
+                                  "gmail-smtp-in.l.google.com",
+                                  "alt1.gmail-smtp-in.l.google.com",
+                                  "alt2.gmail-smtp-in.l.google.com",
+                                  "alt3.gmail-smtp-in.l.google.com",
+                                  "alt4.gmail-smtp-in.l.google.com"
+                                ],
+                                "status": "valid",
+                                "username": "jhon123",
+                                "verification_mode": "quick"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/QuickEmailVerificationResult"
+                              },
+                              {
+                                "$ref": "#/components/schemas/PowerEmailVerificationResult"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Verification result. Available fields vary by mode."
+                    }
+                  },
+                  "security": [
+                    {
+                      "ReoonApiKey": []
+                    }
+                  ],
+                  "summary": "Verify one email address",
+                  "tags": [
+                    "Email verification"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Reoon Email Verifier API v1",
+                "url": "https://emailverifier.reoon.com/api/v1"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Verify one email address in quick or power mode.",
+                "name": "Email verification"
+              },
+              {
+                "description": "Create bulk verification tasks and retrieve their progress or results.",
+                "name": "Bulk verification"
+              },
+              {
+                "description": "Check remaining verification credits.",
+                "name": "Account"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Reoon"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:33.908484+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/reoon/openapi.yml",
+        "version": "3.2.1"
+      }
+    ],
+    "sha256": "84b499dc9e27d75eb2bc2b4f2a6137d11d4a0fef9fc9bb356648d831cdc8fd6d",
+    "source_id": "reoon",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/reoon/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

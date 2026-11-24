@@ -1,0 +1,983 @@
+{
+  "a2ui": {},
+  "app": "bureau-of-labor-statistics",
+  "graph": {
+    "edges": [
+      {
+        "from": "bureau-of-labor-statistics",
+        "kind": "EXPOSES",
+        "to": "operation:post:/publicAPI/v1/timeseries/data/"
+      },
+      {
+        "from": "bureau-of-labor-statistics",
+        "kind": "EXPOSES",
+        "to": "operation:get:/publicAPI/v1/timeseries/data/{seriesId}"
+      },
+      {
+        "from": "bureau-of-labor-statistics",
+        "kind": "EXPOSES",
+        "to": "operation:get:/publicAPI/v2/surveys"
+      },
+      {
+        "from": "bureau-of-labor-statistics",
+        "kind": "EXPOSES",
+        "to": "operation:get:/publicAPI/v2/surveys/{surveyAbbreviation}"
+      },
+      {
+        "from": "bureau-of-labor-statistics",
+        "kind": "EXPOSES",
+        "to": "operation:post:/publicAPI/v2/timeseries/data/"
+      },
+      {
+        "from": "bureau-of-labor-statistics",
+        "kind": "EXPOSES",
+        "to": "operation:get:/publicAPI/v2/timeseries/data/{seriesId}"
+      },
+      {
+        "from": "bureau-of-labor-statistics",
+        "kind": "EXPOSES",
+        "to": "operation:get:/publicAPI/v2/timeseries/popular"
+      },
+      {
+        "from": "operation:post:/publicAPI/v1/timeseries/data/",
+        "kind": "ACCEPTS",
+        "to": "schema:V1TimeSeriesRequest"
+      },
+      {
+        "from": "operation:post:/publicAPI/v1/timeseries/data/",
+        "kind": "RETURNS",
+        "to": "schema:TimeSeriesResponse"
+      },
+      {
+        "from": "operation:get:/publicAPI/v1/timeseries/data/{seriesId}",
+        "kind": "RETURNS",
+        "to": "schema:TimeSeriesResponse"
+      },
+      {
+        "from": "operation:get:/publicAPI/v2/surveys",
+        "kind": "RETURNS",
+        "to": "schema:SurveyResponse"
+      },
+      {
+        "from": "operation:get:/publicAPI/v2/surveys/{surveyAbbreviation}",
+        "kind": "RETURNS",
+        "to": "schema:SurveyResponse"
+      },
+      {
+        "from": "operation:post:/publicAPI/v2/timeseries/data/",
+        "kind": "ACCEPTS",
+        "to": "schema:V2TimeSeriesRequest"
+      },
+      {
+        "from": "operation:post:/publicAPI/v2/timeseries/data/",
+        "kind": "RETURNS",
+        "to": "schema:TimeSeriesResponse"
+      },
+      {
+        "from": "operation:get:/publicAPI/v2/timeseries/data/{seriesId}",
+        "kind": "RETURNS",
+        "to": "schema:TimeSeriesResponse"
+      },
+      {
+        "from": "operation:get:/publicAPI/v2/timeseries/popular",
+        "kind": "RETURNS",
+        "to": "schema:PopularSeriesResponse"
+      },
+      {
+        "from": "schema:Aspect",
+        "kind": "REFERENCES",
+        "to": "schema:Footnote"
+      },
+      {
+        "from": "schema:DataPoint",
+        "kind": "REFERENCES",
+        "to": "schema:Aspect"
+      },
+      {
+        "from": "schema:DataPoint",
+        "kind": "REFERENCES",
+        "to": "schema:Footnote"
+      },
+      {
+        "from": "schema:SeriesData",
+        "kind": "REFERENCES",
+        "to": "schema:DataPoint"
+      },
+      {
+        "from": "schema:SeriesResults",
+        "kind": "REFERENCES",
+        "to": "schema:SeriesData"
+      },
+      {
+        "from": "schema:SurveyResponse",
+        "kind": "REFERENCES",
+        "to": "schema:Survey"
+      },
+      {
+        "from": "schema:TimeSeriesResponse",
+        "kind": "REFERENCES",
+        "to": "schema:SeriesResults"
+      },
+      {
+        "from": "schema:V1TimeSeriesRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Year"
+      },
+      {
+        "from": "schema:V2TimeSeriesRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Year"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "bureau-of-labor-statistics",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Accepts up to 25 series IDs.",
+        "id": "operation:post:/publicAPI/v1/timeseries/data/",
+        "kind": "operation",
+        "method": "post",
+        "name": "queryV1TimeSeries",
+        "path": "/publicAPI/v1/timeseries/data/",
+        "pointer": "#/paths/~1publicAPI~1v1~1timeseries~1data~1/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "V1TimeSeriesRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "TimeSeriesResponse"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Query one or more time series"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns up to the past three years of data for a series.",
+        "id": "operation:get:/publicAPI/v1/timeseries/data/{seriesId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getV1TimeSeries",
+        "parameters": [
+          {
+            "description": "BLS series identifier.",
+            "in": "path",
+            "name": "seriesId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/publicAPI/v1/timeseries/data/{seriesId}",
+        "pointer": "#/paths/~1publicAPI~1v1~1timeseries~1data~1{seriesId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "TimeSeriesResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a single time series"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/publicAPI/v2/surveys",
+        "kind": "operation",
+        "method": "get",
+        "name": "listSurveys",
+        "path": "/publicAPI/v2/surveys",
+        "pointer": "#/paths/~1publicAPI~1v2~1surveys/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SurveyResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List BLS surveys"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/publicAPI/v2/surveys/{surveyAbbreviation}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSurvey",
+        "parameters": [
+          {
+            "description": "BLS survey abbreviation, such as TU.",
+            "in": "path",
+            "name": "surveyAbbreviation",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/publicAPI/v2/surveys/{surveyAbbreviation}",
+        "pointer": "#/paths/~1publicAPI~1v2~1surveys~1{surveyAbbreviation}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SurveyResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get survey details"
+      },
+      {
+        "deprecated": false,
+        "description": "Accepts up to 50 series IDs.",
+        "id": "operation:post:/publicAPI/v2/timeseries/data/",
+        "kind": "operation",
+        "method": "post",
+        "name": "queryV2TimeSeries",
+        "path": "/publicAPI/v2/timeseries/data/",
+        "pointer": "#/paths/~1publicAPI~1v2~1timeseries~1data~1/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "V2TimeSeriesRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "TimeSeriesResponse"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Query one or more time series"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns data for one series.",
+        "id": "operation:get:/publicAPI/v2/timeseries/data/{seriesId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getV2TimeSeries",
+        "parameters": [
+          {
+            "description": "BLS series identifier.",
+            "in": "path",
+            "name": "seriesId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Set to true to return the most recent data point only.",
+            "in": "query",
+            "name": "latest",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/publicAPI/v2/timeseries/data/{seriesId}",
+        "pointer": "#/paths/~1publicAPI~1v2~1timeseries~1data~1{seriesId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "TimeSeriesResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a single time series"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the 25 most popular series, optionally for one survey.",
+        "id": "operation:get:/publicAPI/v2/timeseries/popular",
+        "kind": "operation",
+        "method": "get",
+        "name": "listPopularSeries",
+        "parameters": [
+          {
+            "description": "Survey abbreviation used to filter popular series.",
+            "in": "query",
+            "name": "survey",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/publicAPI/v2/timeseries/popular",
+        "pointer": "#/paths/~1publicAPI~1v2~1timeseries~1popular/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "PopularSeriesResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List popular time series"
+      },
+      {
+        "id": "schema:Aspect",
+        "kind": "schema",
+        "name": "Aspect",
+        "type": "object"
+      },
+      {
+        "id": "schema:DataPoint",
+        "kind": "schema",
+        "name": "DataPoint",
+        "type": "object"
+      },
+      {
+        "id": "schema:Footnote",
+        "kind": "schema",
+        "name": "Footnote",
+        "type": "object"
+      },
+      {
+        "id": "schema:PopularSeriesResponse",
+        "kind": "schema",
+        "name": "PopularSeriesResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:SeriesData",
+        "kind": "schema",
+        "name": "SeriesData",
+        "type": "object"
+      },
+      {
+        "id": "schema:SeriesResults",
+        "kind": "schema",
+        "name": "SeriesResults",
+        "type": "object"
+      },
+      {
+        "id": "schema:Survey",
+        "kind": "schema",
+        "name": "Survey",
+        "type": "object"
+      },
+      {
+        "id": "schema:SurveyResponse",
+        "kind": "schema",
+        "name": "SurveyResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:TimeSeriesResponse",
+        "kind": "schema",
+        "name": "TimeSeriesResponse",
+        "type": "object"
+      },
+      {
+        "description": "Supply startyear and endyear together to select a period.",
+        "id": "schema:V1TimeSeriesRequest",
+        "kind": "schema",
+        "name": "V1TimeSeriesRequest",
+        "type": "object"
+      },
+      {
+        "description": "Supply startyear and endyear together to select a period.",
+        "id": "schema:V2TimeSeriesRequest",
+        "kind": "schema",
+        "name": "V2TimeSeriesRequest",
+        "type": "object"
+      },
+      {
+        "description": "Four-digit year.",
+        "id": "schema:Year",
+        "kind": "schema",
+        "name": "Year",
+        "type": "string"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "bureau-of-labor-statistics"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.bls.gov",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "latest": {
+                  "description": "Set to true to return the most recent data point only.",
+                  "in": "query",
+                  "name": "latest",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                "seriesId": {
+                  "description": "BLS series identifier. IDs use uppercase letters and may contain digits, underscores, hyphens, and hash characters.",
+                  "in": "path",
+                  "name": "seriesId",
+                  "required": true,
+                  "schema": {
+                    "pattern": "^[A-Z0-9_#-]+$",
+                    "type": "string"
+                  }
+                }
+              },
+              "schemas": {
+                "Aspect": {
+                  "properties": {
+                    "footnotes": {
+                      "items": {
+                        "$ref": "#/components/schemas/Footnote"
+                      },
+                      "type": "array"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "DataPoint": {
+                  "properties": {
+                    "aspects": {
+                      "items": {
+                        "$ref": "#/components/schemas/Aspect"
+                      },
+                      "type": "array"
+                    },
+                    "footnotes": {
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "$ref": "#/components/schemas/Footnote"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "latest": {
+                      "type": "string"
+                    },
+                    "period": {
+                      "type": "string"
+                    },
+                    "periodName": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    },
+                    "year": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Footnote": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PopularSeriesResponse": {
+                  "properties": {
+                    "Results": {
+                      "properties": {
+                        "series": {
+                          "items": {
+                            "properties": {
+                              "seriesID": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "responseTime": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "Results"
+                  ],
+                  "type": "object"
+                },
+                "SeriesData": {
+                  "properties": {
+                    "catalog": {
+                      "additionalProperties": true,
+                      "description": "BLS series metadata; fields vary by series.",
+                      "type": "object"
+                    },
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/DataPoint"
+                      },
+                      "type": "array"
+                    },
+                    "seriesID": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "seriesID",
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "SeriesResults": {
+                  "properties": {
+                    "series": {
+                      "items": {
+                        "$ref": "#/components/schemas/SeriesData"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "series"
+                  ],
+                  "type": "object"
+                },
+                "Survey": {
+                  "properties": {
+                    "allowsNetChange": {
+                      "type": "string"
+                    },
+                    "allowsPercentChange": {
+                      "type": "string"
+                    },
+                    "hasAnnualAverages": {
+                      "type": "string"
+                    },
+                    "survey_abbreviation": {
+                      "type": "string"
+                    },
+                    "survey_name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SurveyResponse": {
+                  "properties": {
+                    "Results": {
+                      "properties": {
+                        "survey": {
+                          "items": {
+                            "$ref": "#/components/schemas/Survey"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "responseTime": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "Results"
+                  ],
+                  "type": "object"
+                },
+                "TimeSeriesResponse": {
+                  "properties": {
+                    "Results": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/SeriesResults"
+                        },
+                        {
+                          "items": {
+                            "$ref": "#/components/schemas/SeriesResults"
+                          },
+                          "type": "array"
+                        }
+                      ]
+                    },
+                    "message": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "responseTime": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "Results"
+                  ],
+                  "type": "object"
+                },
+                "V1TimeSeriesRequest": {
+                  "description": "Supply startyear and endyear together to select a period.",
+                  "properties": {
+                    "endyear": {
+                      "$ref": "#/components/schemas/Year"
+                    },
+                    "seriesid": {
+                      "description": "One or more BLS series identifiers.",
+                      "items": {
+                        "pattern": "^[A-Z0-9_#-]+$",
+                        "type": "string"
+                      },
+                      "maxItems": 25,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "startyear": {
+                      "$ref": "#/components/schemas/Year"
+                    }
+                  },
+                  "required": [
+                    "seriesid"
+                  ],
+                  "type": "object"
+                },
+                "V2TimeSeriesRequest": {
+                  "description": "Supply startyear and endyear together to select a period.",
+                  "properties": {
+                    "annualaverage": {
+                      "description": "Include annual averages where available.",
+                      "type": "boolean"
+                    },
+                    "aspects": {
+                      "description": "Include documented aspects data where available.",
+                      "type": "boolean"
+                    },
+                    "calculations": {
+                      "description": "Include net and percent calculations where available.",
+                      "type": "boolean"
+                    },
+                    "catalog": {
+                      "description": "Include series description information when available.",
+                      "type": "boolean"
+                    },
+                    "endyear": {
+                      "$ref": "#/components/schemas/Year"
+                    },
+                    "registrationkey": {
+                      "description": "BLS registration key for expanded access and optional data.",
+                      "type": "string"
+                    },
+                    "seriesid": {
+                      "description": "One or more BLS series identifiers.",
+                      "items": {
+                        "pattern": "^[A-Z0-9_#-]+$",
+                        "type": "string"
+                      },
+                      "maxItems": 50,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "startyear": {
+                      "$ref": "#/components/schemas/Year"
+                    }
+                  },
+                  "required": [
+                    "seriesid"
+                  ],
+                  "type": "object"
+                },
+                "Year": {
+                  "description": "Four-digit year.",
+                  "pattern": "^\\d{4}$",
+                  "type": "string"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained specification for the documented JSON time-series, survey, and popular-series signatures. BLS API version 1.0 is open without registration. Version 2.0 documents higher limits and additional features; registration keys are described by BLS for those features. Excel output signatures are outside this specification.",
+              "externalDocs": {
+                "description": "BLS Public Data API signatures, version 2.0",
+                "url": "https://www.bls.gov/developers/api_signature_v2.htm"
+              },
+              "title": "BLS Public Data API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/publicAPI/v1/timeseries/data/": {
+                "post": {
+                  "description": "Accepts up to 25 series IDs. Include both startyear and endyear to request a selected period of up to 10 years; without them, the API returns the default recent period.",
+                  "operationId": "queryV1TimeSeries",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/V1TimeSeriesRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TimeSeriesResponse"
+                          }
+                        }
+                      },
+                      "description": "BLS time-series response."
+                    }
+                  },
+                  "summary": "Query one or more time series"
+                }
+              },
+              "/publicAPI/v1/timeseries/data/{seriesId}": {
+                "get": {
+                  "description": "Returns up to the past three years of data for a series.",
+                  "operationId": "getV1TimeSeries",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/seriesId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TimeSeriesResponse"
+                          }
+                        }
+                      },
+                      "description": "BLS time-series response."
+                    }
+                  },
+                  "summary": "Get a single time series"
+                }
+              },
+              "/publicAPI/v2/surveys": {
+                "get": {
+                  "operationId": "listSurveys",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SurveyResponse"
+                          }
+                        }
+                      },
+                      "description": "BLS survey list response."
+                    }
+                  },
+                  "summary": "List BLS surveys"
+                }
+              },
+              "/publicAPI/v2/surveys/{surveyAbbreviation}": {
+                "get": {
+                  "operationId": "getSurvey",
+                  "parameters": [
+                    {
+                      "description": "BLS survey abbreviation, such as TU.",
+                      "in": "path",
+                      "name": "surveyAbbreviation",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SurveyResponse"
+                          }
+                        }
+                      },
+                      "description": "BLS survey details response."
+                    }
+                  },
+                  "summary": "Get survey details"
+                }
+              },
+              "/publicAPI/v2/timeseries/data/": {
+                "post": {
+                  "description": "Accepts up to 50 series IDs. Include startyear and endyear to select a period of up to 20 years. BLS documents registration keys for the higher limits and optional catalog, calculation, annual-average, and aspect data.",
+                  "operationId": "queryV2TimeSeries",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/V2TimeSeriesRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TimeSeriesResponse"
+                          }
+                        }
+                      },
+                      "description": "BLS time-series response."
+                    }
+                  },
+                  "summary": "Query one or more time series"
+                }
+              },
+              "/publicAPI/v2/timeseries/data/{seriesId}": {
+                "get": {
+                  "description": "Returns data for one series. Set latest to true to request only its most recent data point.",
+                  "operationId": "getV2TimeSeries",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/seriesId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/latest"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TimeSeriesResponse"
+                          }
+                        }
+                      },
+                      "description": "BLS time-series response."
+                    }
+                  },
+                  "summary": "Get a single time series"
+                }
+              },
+              "/publicAPI/v2/timeseries/popular": {
+                "get": {
+                  "description": "Returns the 25 most popular series, optionally for one survey.",
+                  "operationId": "listPopularSeries",
+                  "parameters": [
+                    {
+                      "description": "Survey abbreviation used to filter popular series.",
+                      "in": "query",
+                      "name": "survey",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PopularSeriesResponse"
+                          }
+                        }
+                      },
+                      "description": "BLS popular-series response."
+                    }
+                  },
+                  "summary": "List popular time series"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "U.S. Bureau of Labor Statistics Public Data API",
+                "url": "https://api.bls.gov"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Bureau of Labor Statistics"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.327764+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/bls/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "ad08cb709e097439f7d1863e73eabd442dfcbc50ac982197d0dc5acdc69abb08",
+    "source_id": "bureau-of-labor-statistics",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/bls/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

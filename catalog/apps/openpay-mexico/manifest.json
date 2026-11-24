@@ -1,0 +1,803 @@
+{
+  "a2ui": {},
+  "app": "openpay-mexico",
+  "graph": {
+    "edges": [
+      {
+        "from": "openpay-mexico",
+        "kind": "EXPOSES",
+        "to": "operation:post:/charges"
+      },
+      {
+        "from": "openpay-mexico",
+        "kind": "EXPOSES",
+        "to": "operation:get:/charges/{transactionId}"
+      },
+      {
+        "from": "openpay-mexico",
+        "kind": "EXPOSES",
+        "to": "operation:post:/customers"
+      },
+      {
+        "from": "openpay-mexico",
+        "kind": "EXPOSES",
+        "to": "operation:get:/customers/{customerId}"
+      },
+      {
+        "from": "operation:post:/charges",
+        "kind": "ACCEPTS",
+        "to": "schema:CardChargeRequest"
+      },
+      {
+        "from": "operation:post:/customers",
+        "kind": "ACCEPTS",
+        "to": "schema:CustomerRequest"
+      },
+      {
+        "from": "schema:CardChargeRequest",
+        "kind": "REFERENCES",
+        "to": "schema:CustomerRequest"
+      },
+      {
+        "from": "schema:Customer",
+        "kind": "REFERENCES",
+        "to": "schema:Address"
+      },
+      {
+        "from": "schema:CustomerRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Address"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "openpay-mexico",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a merchant-level card charge using a stored card or a token.",
+        "id": "operation:post:/charges",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /charges",
+        "parameters": [
+          {
+            "description": "IP address of the customer's device.",
+            "in": "header",
+            "name": "X-Forwarded-For",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/charges",
+        "pointer": "#/paths/~1charges/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CardChargeRequest"
+        },
+        "responses": [
+          {
+            "status": "default",
+            "type": "Transaction|Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Create a card charge",
+        "tags": [
+          "Card charges"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieves a charge by its transaction identifier.",
+        "id": "operation:get:/charges/{transactionId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /charges/{transactionId}",
+        "parameters": [
+          {
+            "description": "Charge identifier.",
+            "in": "path",
+            "name": "transactionId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/charges/{transactionId}",
+        "pointer": "#/paths/~1charges~1{transactionId}/get",
+        "responses": [
+          {
+            "status": "default",
+            "type": "Transaction|Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Retrieve a charge",
+        "tags": [
+          "Card charges"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/customers",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /customers",
+        "path": "/customers",
+        "pointer": "#/paths/~1customers/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CustomerRequest"
+        },
+        "responses": [
+          {
+            "status": "default",
+            "type": "Customer|Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Create a customer",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/customers/{customerId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /customers/{customerId}",
+        "parameters": [
+          {
+            "description": "Identifier returned when the customer was created.",
+            "in": "path",
+            "name": "customerId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/customers/{customerId}",
+        "pointer": "#/paths/~1customers~1{customerId}/get",
+        "responses": [
+          {
+            "status": "default",
+            "type": "Customer|Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Retrieve a customer",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "id": "schema:Address",
+        "kind": "schema",
+        "name": "Address",
+        "type": "object"
+      },
+      {
+        "id": "schema:CardChargeRequest",
+        "kind": "schema",
+        "name": "CardChargeRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:Customer",
+        "kind": "schema",
+        "name": "Customer",
+        "type": "object"
+      },
+      {
+        "id": "schema:CustomerRequest",
+        "kind": "schema",
+        "name": "CustomerRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:Transaction",
+        "kind": "schema",
+        "name": "Transaction",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "openpay-mexico"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://sandbox-api.openpay.mx/v1/{merchantId}",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "Address": {
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "country_code": {
+                      "type": "string"
+                    },
+                    "line1": {
+                      "type": "string"
+                    },
+                    "line2": {
+                      "type": "string"
+                    },
+                    "line3": {
+                      "type": "string"
+                    },
+                    "postal_code": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CardChargeRequest": {
+                  "properties": {
+                    "amount": {
+                      "description": "Charge amount with up to two decimal places.",
+                      "exclusiveMinimum": 0,
+                      "multipleOf": 0.01,
+                      "type": "number"
+                    },
+                    "capture": {
+                      "default": true,
+                      "description": "Set false to authorize the amount for later capture or cancellation.",
+                      "type": "boolean"
+                    },
+                    "currency": {
+                      "description": "Optional charge currency; Openpay documents MXN and USD.",
+                      "enum": [
+                        "MXN",
+                        "USD"
+                      ],
+                      "type": "string"
+                    },
+                    "customer": {
+                      "$ref": "#/components/schemas/CustomerRequest"
+                    },
+                    "description": {
+                      "maxLength": 250,
+                      "type": "string"
+                    },
+                    "device_session_id": {
+                      "description": "Device session identifier generated by the Openpay JavaScript API.",
+                      "maxLength": 32,
+                      "minLength": 32,
+                      "type": "string"
+                    },
+                    "method": {
+                      "const": "card",
+                      "description": "Charge method; this focused operation documents card charges.",
+                      "type": "string"
+                    },
+                    "order_id": {
+                      "description": "Optional merchant identifier, unique among transactions.",
+                      "maxLength": 100,
+                      "type": "string"
+                    },
+                    "source_id": {
+                      "description": "Identifier of a stored card or a previously created token.",
+                      "maxLength": 45,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "method",
+                    "source_id",
+                    "amount",
+                    "description",
+                    "device_session_id",
+                    "customer"
+                  ],
+                  "type": "object"
+                },
+                "Customer": {
+                  "properties": {
+                    "address": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/Address"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "clabe": {
+                      "type": "string"
+                    },
+                    "creation_date": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "external_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "id": {
+                      "maxLength": 45,
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "phone_number": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "store": {
+                      "properties": {
+                        "barcode_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "reference": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CustomerRequest": {
+                  "properties": {
+                    "address": {
+                      "$ref": "#/components/schemas/Address"
+                    },
+                    "email": {
+                      "format": "email",
+                      "maxLength": 100,
+                      "type": "string"
+                    },
+                    "external_id": {
+                      "description": "Optional merchant-assigned unique customer identifier.",
+                      "maxLength": 100,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "last_name": {
+                      "maxLength": 100,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "name": {
+                      "maxLength": 100,
+                      "type": "string"
+                    },
+                    "phone_number": {
+                      "maxLength": 100,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "requires_account": {
+                      "default": false,
+                      "description": "Set true to create a customer balance account.",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "email"
+                  ],
+                  "type": "object"
+                },
+                "Error": {
+                  "properties": {
+                    "category": {
+                      "enum": [
+                        "request",
+                        "internal",
+                        "gateway"
+                      ],
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "type": "integer"
+                    },
+                    "fraud_rules": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "http_code": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ]
+                    },
+                    "request_id": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Transaction": {
+                  "properties": {
+                    "amount": {
+                      "type": "number"
+                    },
+                    "authorization": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "creation_date": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "currency": {
+                      "type": "string"
+                    },
+                    "customer_id": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "error_message": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "id": {
+                      "maxLength": 45,
+                      "type": "string"
+                    },
+                    "method": {
+                      "type": "string"
+                    },
+                    "operation_date": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "operation_type": {
+                      "type": "string"
+                    },
+                    "order_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "transaction_type": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "basicAuth": {
+                  "description": "Use the private API key as the username and leave the password blank.",
+                  "scheme": "basic",
+                  "type": "http"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Official Openpay API documentation",
+              "url": "https://documents.openpay.mx/docs/api/index.html"
+            },
+            "info": {
+              "description": "Focused community-maintained coverage for customer create/retrieve and merchant-level card charge create/retrieve operations. Other payment methods and resources are documented by Openpay but are outside this spec.",
+              "title": "Openpay Mexico API (focused)",
+              "version": "v1"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/charges": {
+                "post": {
+                  "description": "Creates a merchant-level card charge using a stored card or a token. The documented request also requires the customer's details. Send the cardholder device IP in X-Forwarded-For as required by Openpay.",
+                  "parameters": [
+                    {
+                      "description": "IP address of the customer's device.",
+                      "in": "header",
+                      "name": "X-Forwarded-For",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CardChargeRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/Transaction"
+                              },
+                              {
+                                "$ref": "#/components/schemas/Error"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Returns a transaction object on success or an Openpay error object."
+                    }
+                  },
+                  "summary": "Create a card charge",
+                  "tags": [
+                    "Card charges"
+                  ]
+                }
+              },
+              "/charges/{transactionId}": {
+                "get": {
+                  "description": "Retrieves a charge by its transaction identifier.",
+                  "parameters": [
+                    {
+                      "description": "Charge identifier.",
+                      "in": "path",
+                      "name": "transactionId",
+                      "required": true,
+                      "schema": {
+                        "maxLength": 45,
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/Transaction"
+                              },
+                              {
+                                "$ref": "#/components/schemas/Error"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Returns a transaction object on success or an Openpay error object."
+                    }
+                  },
+                  "summary": "Retrieve a charge",
+                  "tags": [
+                    "Card charges"
+                  ]
+                }
+              },
+              "/customers": {
+                "post": {
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CustomerRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/Customer"
+                              },
+                              {
+                                "$ref": "#/components/schemas/Error"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Returns a customer object on success or an Openpay error object."
+                    }
+                  },
+                  "summary": "Create a customer",
+                  "tags": [
+                    "Customers"
+                  ]
+                }
+              },
+              "/customers/{customerId}": {
+                "get": {
+                  "parameters": [
+                    {
+                      "description": "Identifier returned when the customer was created.",
+                      "in": "path",
+                      "name": "customerId",
+                      "required": true,
+                      "schema": {
+                        "maxLength": 45,
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/Customer"
+                              },
+                              {
+                                "$ref": "#/components/schemas/Error"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Returns a customer object on success or an Openpay error object."
+                    }
+                  },
+                  "summary": "Retrieve a customer",
+                  "tags": [
+                    "Customers"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "basicAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Sandbox",
+                "url": "https://sandbox-api.openpay.mx/v1/{merchantId}",
+                "variables": {
+                  "merchantId": {
+                    "default": "your-merchant-id",
+                    "description": "Merchant identifier from the Openpay dashboard."
+                  }
+                }
+              },
+              {
+                "description": "Production",
+                "url": "https://api.openpay.mx/v1/{merchantId}",
+                "variables": {
+                  "merchantId": {
+                    "default": "your-merchant-id",
+                    "description": "Merchant identifier from the Openpay dashboard."
+                  }
+                }
+              }
+            ],
+            "tags": [
+              {
+                "name": "Customers"
+              },
+              {
+                "name": "Card charges"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Openpay Mexico"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:36.979857+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openpay-mexico/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "533970ecd7864d827d52169d9472fd106cbbe8f5ee97230c7b6f7ea241f177d0",
+    "source_id": "openpay-mexico",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openpay-mexico/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "v1"
+}

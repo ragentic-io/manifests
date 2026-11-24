@@ -1,0 +1,450 @@
+{
+  "a2ui": {},
+  "app": "universe-oauth",
+  "graph": {
+    "edges": [
+      {
+        "from": "universe-oauth",
+        "kind": "EXPOSES",
+        "to": "operation:get:/authorize"
+      },
+      {
+        "from": "universe-oauth",
+        "kind": "EXPOSES",
+        "to": "operation:post:/token"
+      },
+      {
+        "from": "universe-oauth",
+        "kind": "EXPOSES",
+        "to": "operation:get:/token/info"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "universe-oauth",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/authorize",
+        "kind": "operation",
+        "method": "get",
+        "name": "testinput-1",
+        "parameters": [
+          {
+            "default": "your_client_id",
+            "description": "Your application client id",
+            "in": "query",
+            "name": "client_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "code",
+            "in": "query",
+            "name": "response_type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "https://your_app.com/callback",
+            "description": "Your application's registered redirect URI",
+            "in": "query",
+            "name": "redirect_uri",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/authorize",
+        "pointer": "#/paths/~1authorize/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Authorize"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/token",
+        "kind": "operation",
+        "method": "post",
+        "name": "token",
+        "path": "/token",
+        "pointer": "#/paths/~1token/post",
+        "request": {
+          "content_types": [
+            "application/x-www-form-urlencoded"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Token"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/token/info",
+        "kind": "operation",
+        "method": "get",
+        "name": "token-info",
+        "parameters": [
+          {
+            "default": "Bearer YOUR_TOKEN",
+            "description": "You MUST prefix the value with 'Bearer '",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/token/info",
+        "pointer": "#/paths/~1token~1info/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {}
+        ],
+        "summary": "Token Info"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "universe-oauth"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://www.universe.com/oauth",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "securitySchemes": {}
+            },
+            "info": {
+              "title": "OAuth",
+              "version": "unknown"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/authorize": {
+                "get": {
+                  "deprecated": false,
+                  "description": "",
+                  "operationId": "testinput-1",
+                  "parameters": [
+                    {
+                      "description": "Your application client id",
+                      "in": "query",
+                      "name": "client_id",
+                      "required": true,
+                      "schema": {
+                        "default": "your_client_id",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "response_type",
+                      "required": true,
+                      "schema": {
+                        "default": "code",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Your application's registered redirect URI",
+                      "in": "query",
+                      "name": "redirect_uri",
+                      "required": true,
+                      "schema": {
+                        "default": "https://your_app.com/callback",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "200"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "400"
+                    }
+                  },
+                  "security": [],
+                  "summary": "Authorize"
+                }
+              },
+              "/token": {
+                "post": {
+                  "deprecated": false,
+                  "description": "",
+                  "operationId": "token",
+                  "requestBody": {
+                    "content": {
+                      "application/x-www-form-urlencoded": {
+                        "schema": {
+                          "properties": {
+                            "client_id": {
+                              "default": "YOUR_CLIENT_ID",
+                              "description": "Your application client id",
+                              "type": "string"
+                            },
+                            "client_secret": {
+                              "default": "YOUR_CLIENT_SECRET",
+                              "description": "Your application client secret",
+                              "type": "string"
+                            },
+                            "code": {
+                              "default": "AUTH_CODE",
+                              "description": "Auth code received from /authorize flow",
+                              "type": "string"
+                            },
+                            "grant_type": {
+                              "default": "authorization_code",
+                              "type": "string"
+                            },
+                            "redirect_uri": {
+                              "default": "https://your_app.com/callback",
+                              "description": "Your application redirect URI. This must match the redirect_uri value provided in the authorize step.",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "grant_type",
+                            "client_id",
+                            "client_secret",
+                            "redirect_uri"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{\n    \"access_token\": \"844...bbb\",\n    \"token_type\":\"bearer\",\n    \"expires_in\": 2592000,\n    \"refresh_token\": \"006...686\",\n    \"scope\": \"public\", \n    \"created_at\": 1494964915\n}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {
+                              "access_token": {
+                                "example": "844...bbb",
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "default": 0,
+                                "example": 1494964915,
+                                "type": "integer"
+                              },
+                              "expires_in": {
+                                "default": 0,
+                                "example": 2592000,
+                                "type": "integer"
+                              },
+                              "refresh_token": {
+                                "example": "006...686",
+                                "type": "string"
+                              },
+                              "scope": {
+                                "example": "public",
+                                "type": "string"
+                              },
+                              "token_type": {
+                                "example": "bearer",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "200"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{\n  \"error\": \"invalid_grant\",\n  \"error_description\": \"The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.\"\n}⏎"
+                            }
+                          }
+                        }
+                      },
+                      "description": "401"
+                    }
+                  },
+                  "security": [],
+                  "summary": "Token"
+                }
+              },
+              "/token/info": {
+                "get": {
+                  "deprecated": false,
+                  "description": "",
+                  "operationId": "token-info",
+                  "parameters": [
+                    {
+                      "description": "You MUST prefix the value with 'Bearer '",
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "default": "Bearer YOUR_TOKEN",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{\n  \"resource_owner_id\": String,\n  \"scopes\": Array<String>,\n  \"expires_in_seconds\": Integer,\n  \"application\": {\n    \"uid\": String\n  },\n  \"created_at\": UnixEpochInteger\n}"
+                            }
+                          }
+                        }
+                      },
+                      "description": "200"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{\n  \"error\":\"invalid_request\",\n  \"error_description\": \"The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.\"\n}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "invalid_request",
+                                "type": "string"
+                              },
+                              "error_description": {
+                                "example": "The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "401"
+                    }
+                  },
+                  "summary": "Token Info"
+                }
+              }
+            },
+            "security": [
+              {}
+            ],
+            "servers": [
+              {
+                "url": "https://www.universe.com/oauth"
+              }
+            ],
+            "x-readme": {
+              "headers": []
+            },
+            "x-readme-fauxas": true
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Universe OAuth"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.063427+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://dash.readme.com/api/v1/api-registry/1mld74kq6vtujq",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "254819a413d8809ecb00bb7caeb0f8d5675303a8c3c64fe20cb310ca53369d6f",
+    "source_id": "universe-oauth",
+    "source_updated": null,
+    "url": "https://dash.readme.com/api/v1/api-registry/1mld74kq6vtujq"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "unknown"
+}

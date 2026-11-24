@@ -1,0 +1,918 @@
+{
+  "a2ui": {},
+  "app": "homedrop",
+  "graph": {
+    "edges": [
+      {
+        "from": "homedrop",
+        "kind": "EXPOSES",
+        "to": "operation:post:/addoneoff"
+      },
+      {
+        "from": "homedrop",
+        "kind": "EXPOSES",
+        "to": "operation:get:/get_designs"
+      },
+      {
+        "from": "homedrop",
+        "kind": "EXPOSES",
+        "to": "operation:get:/get_open_campaigns"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "homedrop",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "This endpoint allows users to add a one-off mail request with detailed recipient information.",
+        "id": "operation:post:/addoneoff",
+        "kind": "operation",
+        "method": "post",
+        "name": "addOneOffMail",
+        "parameters": [
+          {
+            "description": "**Authentication**: This API requires a Bearer token for authentication.",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/addoneoff",
+        "pointer": "#/paths/~1addoneoff/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Add a one-off mail request"
+      },
+      {
+        "deprecated": false,
+        "description": "Fetches the available email designs with details like class, name, artwork, message, and status.",
+        "id": "operation:get:/get_designs",
+        "kind": "operation",
+        "method": "get",
+        "name": "getEmailDesigns",
+        "parameters": [
+          {
+            "description": "**Authentication**: This API requires a Bearer token for authentication.",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/get_designs",
+        "pointer": "#/paths/~1get_designs/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve email designs"
+      },
+      {
+        "deprecated": false,
+        "description": "Fetches the available open campaigns with details like campaign type, mail design, status, and more.",
+        "id": "operation:get:/get_open_campaigns",
+        "kind": "operation",
+        "method": "get",
+        "name": "getOpenCampaigns",
+        "parameters": [
+          {
+            "description": "**Authentication**: This API requires a Bearer token for authentication.",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/get_open_campaigns",
+        "pointer": "#/paths/~1get_open_campaigns/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve open campaigns"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "homedrop"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://app.homedrop.io/api/1.1/wf",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {},
+            "info": {
+              "contact": {
+                "name": "HomeDrop"
+              },
+              "description": "API for retrieving mail designs, campaigns, and sending direct mail through HomeDrop.",
+              "title": "HomeDrop API Docs",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/addoneoff": {
+                "post": {
+                  "description": "This endpoint allows users to add a one-off mail request with detailed recipient information. The request includes recipient details, sender details, and mail customization.",
+                  "operationId": "addOneOffMail",
+                  "parameters": [
+                    {
+                      "description": "**Authentication**: This API requires a Bearer token for authentication. Include the token in the `Authorization` header of the request. The token format is `Bearer {token}`.\n- Example token: `Bearer API_KEY`\n",
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "example": "Bearer API_KEY",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "Sample": {
+                            "value": {
+                              "blind_send": false,
+                              "city": "Washington",
+                              "company": "Persona Technologies Ltd",
+                              "custom_1": "Additional Metadata",
+                              "custom_2": "Custom Field 2",
+                              "custom_3": "Custom Field 3",
+                              "custom_4": "Custom Field 4",
+                              "custom_5": "More custom fields",
+                              "email": "rendolf.jones@slart.com",
+                              "first_name": "Renard",
+                              "from_city": "Arlington",
+                              "from_company": "Defense Corp",
+                              "from_first_name": "Jane",
+                              "from_last_name": "Smith",
+                              "from_state": "VA",
+                              "from_street_address": "1400 Defense Pentagon",
+                              "from_zip_code": "20301",
+                              "last_name": "Plastique",
+                              "mail": "1723208643631x895868956464644100",
+                              "phone": "555-1234",
+                              "send_date": "2025-08-15",
+                              "state": "DC",
+                              "street_address_1": "1600 Pennsylvania Avenue NW",
+                              "zip_code": "20500"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "properties": {
+                            "blind_send": {
+                              "description": "**Blind Send**: Indicates if the mail should be sent without revealing the sender's information to the recipient.\n- Example: `false`\n",
+                              "type": "boolean"
+                            },
+                            "city": {
+                              "description": "**Recipient's City**: The city where the recipient resides.\n- Example: `Washington`\n",
+                              "type": "string"
+                            },
+                            "company": {
+                              "description": "**Recipient's Company**: The name of the recipient's company, if applicable.\n- Example: `Persona Technologies Ltd`\n",
+                              "type": "string"
+                            },
+                            "custom_1": {
+                              "description": "**Custom Field 1**: A customizable field for additional metadata or personalization.\n- Example: `Additional Metadata`\n",
+                              "type": "string"
+                            },
+                            "custom_2": {
+                              "description": "**Custom Field 2**: A second customizable field for additional data.\n- Example: `Custom Field 2`\n",
+                              "type": "string"
+                            },
+                            "custom_3": {
+                              "description": "**Custom Field 3**: A third customizable field for additional data.\n- Example: `Custom Field 3`\n",
+                              "type": "string"
+                            },
+                            "custom_4": {
+                              "description": "**Custom Field 4**: A fourth customizable field for additional data.\n- Example: `Custom Field 4`\n",
+                              "type": "string"
+                            },
+                            "custom_5": {
+                              "description": "**Custom Field 5**: A fifth customizable field for more additional data.\n- Example: `More custom fields`\n",
+                              "type": "string"
+                            },
+                            "email": {
+                              "description": "**Recipient's Email Address**: Email address of the recipient for any electronic notifications or confirmations.\n- Example: `rendolf.jones@slart.com`\n",
+                              "type": "string"
+                            },
+                            "first_name": {
+                              "description": "**Recipient's First Name**: The first name of the recipient. Used for personalization in the mail design.\n- Example: `Renard`\n",
+                              "type": "string"
+                            },
+                            "from_city": {
+                              "description": "**Sender's City**: The city where the sender resides.\n- Example: `Arlington`\n",
+                              "type": "string"
+                            },
+                            "from_company": {
+                              "description": "**Sender's Company**: The company name of the sender.\n- Example: `Defense Corp`\n",
+                              "type": "string"
+                            },
+                            "from_first_name": {
+                              "description": "**Sender's First Name**: The first name of the sender.\n- Example: `Jane`\n",
+                              "type": "string"
+                            },
+                            "from_last_name": {
+                              "description": "**Sender's Last Name**: The last name of the sender.\n- Example: `Smith`\n",
+                              "type": "string"
+                            },
+                            "from_state": {
+                              "description": "**Sender's State**: The state or province where the sender resides.\n- Example: `VA`\n",
+                              "type": "string"
+                            },
+                            "from_street_address": {
+                              "description": "**Sender's Street Address**: The street address of the sender.\n- Example: `1400 Defense Pentagon`\n",
+                              "type": "string"
+                            },
+                            "from_zip_code": {
+                              "description": "**Sender's ZIP Code**: The ZIP or postal code of the sender's address.\n- Example: `20301`\n",
+                              "type": "string"
+                            },
+                            "last_name": {
+                              "description": "**Recipient's Last Name**: The last name of the recipient. Used for personalization in the mail design.\n- Example: `Plastique`\n",
+                              "type": "string"
+                            },
+                            "mail": {
+                              "description": "**Mail Design ID**: The unique identifier for the mail design to be used. This specifies which design template will be applied to the one-off mail request.\n- Example: `1723208113631x895868956464644100`\n",
+                              "type": "string"
+                            },
+                            "phone": {
+                              "description": "**Recipient's Phone Number**: Contact number of the recipient.\n- Example: `555-1234`\n",
+                              "type": "string"
+                            },
+                            "send_date": {
+                              "description": "**Send Date**: The date on which the mail request is scheduled to be sent.\n- Example: `2025-08-15`\n",
+                              "format": "date",
+                              "type": "string"
+                            },
+                            "state": {
+                              "description": "**Recipient's State**: The state or province where the recipient resides.\n- Example: `DC`\n",
+                              "type": "string"
+                            },
+                            "street_address_1": {
+                              "description": "**Recipient's Street Address**: The primary street address of the recipient.\n- Example: `1600 Pennsylvania Avenue NW`\n",
+                              "type": "string"
+                            },
+                            "zip_code": {
+                              "description": "**Recipient's ZIP Code**: The ZIP or postal code of the recipient's address.\n- Example: `20500`\n",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "description": "",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Sample Response": {
+                              "value": {
+                                "response": {
+                                  "address_id": "36820",
+                                  "city": "Washington",
+                                  "first_name": "Renard",
+                                  "last_name": "Plastique",
+                                  "mail": "Website Visitors",
+                                  "state": "DC",
+                                  "street_address": "1600 Pennsylvania Avenue NW",
+                                  "zip_code": "20500"
+                                },
+                                "status": "success"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "properties": {
+                              "response": {
+                                "properties": {
+                                  "address_id": {
+                                    "description": "Unique identifier for the address within the system.",
+                                    "example": "36820",
+                                    "type": "string"
+                                  },
+                                  "city": {
+                                    "description": "The recipient's city.",
+                                    "example": "Washington",
+                                    "type": "string"
+                                  },
+                                  "first_name": {
+                                    "description": "The recipient's first name.",
+                                    "example": "Renard",
+                                    "type": "string"
+                                  },
+                                  "last_name": {
+                                    "description": "The recipient's last name.",
+                                    "example": "Plastique",
+                                    "type": "string"
+                                  },
+                                  "mail": {
+                                    "description": "Name of the mail design used in the one-off request.",
+                                    "example": "Website Visitors",
+                                    "type": "string"
+                                  },
+                                  "state": {
+                                    "description": "The recipient's state or province.",
+                                    "example": "DC",
+                                    "type": "string"
+                                  },
+                                  "street_address": {
+                                    "description": "The recipient's street address.",
+                                    "example": "1600 Pennsylvania Avenue NW",
+                                    "type": "string"
+                                  },
+                                  "zip_code": {
+                                    "description": "The recipient's ZIP or postal code.",
+                                    "example": "20500",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "status": {
+                                "description": "The status of the API request.",
+                                "example": "success",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successfully added a one-off mail request"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "description": "Explanation for the unauthorized request.",
+                                "example": "Unauthorized",
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "The status of the API request.",
+                                "example": "error",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized. The request was not authorized due to invalid or missing credentials."
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "description": "Explanation for the internal server error.",
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "The status of the API request.",
+                                "example": "error",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal Server Error. The server encountered an error while processing the request."
+                    }
+                  },
+                  "summary": "Add a one-off mail request"
+                }
+              },
+              "/get_designs": {
+                "get": {
+                  "description": "Fetches the available email designs with details like class, name, artwork, message, and status.",
+                  "operationId": "getEmailDesigns",
+                  "parameters": [
+                    {
+                      "description": "**Authentication**: This API requires a Bearer token for authentication. You need to include the token in the `Authorization` header of the request. The token format is `Bearer {token}`.\n- Example token: `Bearer API_KEY`\n",
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "example": "Bearer API_KEY",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Sample Response": {
+                              "value": {
+                                "response": {
+                                  "Mail": [
+                                    {
+                                      "Amazon Products": [],
+                                      "Back Postcard": "//5fb93d91ba89aa1928d90a18b737e813.cdn.bubble.io/f1723208683579x824909356373562800/dashboard.png",
+                                      "Back Postcard Artwork": "art_66a3b8cce1326",
+                                      "Blind Send": false,
+                                      "Class": "Handwritten Letter",
+                                      "Custom Design": "1721749726325x453041102112970750",
+                                      "Destination URL": "homedrop.io",
+                                      "Front Postcard": "//5fb93d91ba89aa1928d90a18b737e813.cdn.bubble.io/f1723208674618x109768619589924780/billing.png",
+                                      "Front Postcard Artwork": "art_66a3b67a75bc5",
+                                      "Handwriting": "1712607560386x634411292796518400",
+                                      "Handwritten Letter Design": "//5fb93d91ba89aa1928d90a18b737e813.cdn.bubble.io/f1721749723165x314972026900930000/Welcome%20%2810%29.png",
+                                      "Max Price (Amazon)": 10000,
+                                      "Message": "Hello, {{first_name}}! We received the order of {{custom_1}} and want to say thank you! \n\nBest,\nDylan\n{{website}}",
+                                      "Name": "Zapier test",
+                                      "Organization": "1720524946242x513500311998058200",
+                                      "Postcard Size": "6x9",
+                                      "Status": "Active",
+                                      "Type": "Postcard",
+                                      "_id": "1723208643631x895868911464644100"
+                                    }
+                                  ]
+                                },
+                                "status": "success"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "properties": {
+                              "response": {
+                                "properties": {
+                                  "Mail": {
+                                    "description": "List of email designs returned by the API.",
+                                    "items": {
+                                      "properties": {
+                                        "Amazon Products": {
+                                          "description": "List of Amazon products associated with the design, if any.",
+                                          "example": [],
+                                          "items": {
+                                            "type": "string"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "Back Postcard": {
+                                          "description": "URL of the image on the back of the postcard.",
+                                          "example": "//5fb93d91ba89aa1928d90a18b737e813.cdn.bubble.io/f1723208683579x824909356373562800/dashboard.png",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Back Postcard Artwork": {
+                                          "description": "Identifier or URL for the artwork on the back of the postcard, if available.",
+                                          "example": "art_66a3b8cce1326",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Blind Send": {
+                                          "description": "Whether the postcard is sent anonymously.",
+                                          "example": false,
+                                          "type": "boolean"
+                                        },
+                                        "Class": {
+                                          "description": "The category or type of the design, e.g., \"Handwritten Letter\" or \"Postcard\".",
+                                          "example": "Handwritten Letter",
+                                          "type": "string"
+                                        },
+                                        "Custom Design": {
+                                          "description": "Identifier for any custom design elements, if applicable.",
+                                          "example": "1721749726325x453040402112970750",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Destination URL": {
+                                          "description": "URL to which the recipient is directed, if applicable.",
+                                          "example": "homedrop.io",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Error Code": {
+                                          "description": "Error code associated with the design, if any.",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "From Name (AMZ)": {
+                                          "description": "The name displayed as the sender for Amazon services, if applicable.",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Front Postcard": {
+                                          "description": "URL of the image used on the front of the postcard.",
+                                          "example": "//5fb93d91ba89aa1928d90a18b737e813.cdn.bubble.io/f1723208674618x109768619589924780/billing.png",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Front Postcard Artwork": {
+                                          "description": "Identifier or URL for the artwork used on the front of a postcard, if available.",
+                                          "example": "art_66a3b67a75bc5",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Handwriting": {
+                                          "description": "Identifier for the handwriting style used in the design, if any.",
+                                          "example": "1712607560386x634443292796518400",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Handwritten Letter Design": {
+                                          "description": "URL of the image used in the handwritten letter design.",
+                                          "example": "//5fb93d91ba89aa1928d90a18b737e813.cdn.bubble.io/f1721749723165x314972026900930000/Welcome%20%2810%29.png",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Max Price (Amazon)": {
+                                          "description": "Maximum price set for Amazon products associated with the design, if any.",
+                                          "example": 10000,
+                                          "nullable": true,
+                                          "type": "number"
+                                        },
+                                        "Message": {
+                                          "description": "Message content included in the design, possibly with placeholders for personalization.",
+                                          "example": "Hello, {{first_name}}! We received the order of {{custom_1}} and want to say thank you! \n\nBest,\nDylan\n{{website}}",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Name": {
+                                          "description": "The name assigned to the specific email design.",
+                                          "example": "Zapier test",
+                                          "type": "string"
+                                        },
+                                        "Organization": {
+                                          "description": "Identifier of the organization associated with the design.",
+                                          "example": "1720524912242x513500368998058200",
+                                          "type": "string"
+                                        },
+                                        "Postcard Size": {
+                                          "description": "Size of the postcard, if applicable.",
+                                          "example": "6x9",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "Status": {
+                                          "description": "Current status of the design, e.g., \"Active\".",
+                                          "example": "Active",
+                                          "type": "string"
+                                        },
+                                        "Type": {
+                                          "description": "Type of the design, such as \"Handwritten Letter\" or \"Postcard\".",
+                                          "example": "Postcard",
+                                          "type": "string"
+                                        },
+                                        "_id": {
+                                          "description": "Unique identifier for the design.",
+                                          "example": "1723208643631x895868116464644100",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "status": {
+                                "description": "The status of the API request.",
+                                "example": "success",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response with mail designs"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "description": "Explanation for the unauthorized request.",
+                                "example": "Unauthorized",
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "The status of the API request.",
+                                "example": "error",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized. The request was not authorized due to invalid or missing credentials."
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "description": "Explanation for the internal server error.",
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "The status of the API request.",
+                                "example": "error",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal Server Error. The server encountered an error while processing the request."
+                    }
+                  },
+                  "summary": "Retrieve email designs"
+                }
+              },
+              "/get_open_campaigns": {
+                "get": {
+                  "description": "Fetches the available open campaigns with details like campaign type, mail design, status, and more.",
+                  "operationId": "getOpenCampaigns",
+                  "parameters": [
+                    {
+                      "description": "**Authentication**: This API requires a Bearer token for authentication. Include the token in the `Authorization` header of the request. The token format is `Bearer {token}`.\n- Example token: `Bearer API_KEY`\n",
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "example": "Bearer API_KEY",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Sample Response": {
+                              "value": {
+                                "response": {
+                                  "Campaign": [
+                                    {
+                                      "Blind Send": true,
+                                      "Campaign Type": "Open List",
+                                      "Created By": "1712607248708x724764214294533600",
+                                      "Created Date": 1721750718385,
+                                      "Include Condos/Townhouses": true,
+                                      "Mail Design": "1721749656680x275777367410737150",
+                                      "Modified Date": 1723208397793,
+                                      "Name": "1",
+                                      "Organization": "1720521146242x513500368998058200",
+                                      "Status": "Active",
+                                      "_id": "1721750718111x789198714485342200"
+                                    }
+                                  ]
+                                },
+                                "status": "success"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "properties": {
+                              "response": {
+                                "properties": {
+                                  "Campaign": {
+                                    "description": "List of open campaigns returned by the API.",
+                                    "items": {
+                                      "properties": {
+                                        "Blind Send": {
+                                          "description": "Whether the campaign is sent anonymously.",
+                                          "example": true,
+                                          "type": "boolean"
+                                        },
+                                        "Campaign Type": {
+                                          "description": "Type of the campaign, e.g., \"Open List\".",
+                                          "example": "Open List",
+                                          "type": "string"
+                                        },
+                                        "Created By": {
+                                          "description": "Unique identifier of the user who created the campaign.",
+                                          "example": "1712601148708x724764214294533600",
+                                          "type": "string"
+                                        },
+                                        "Created Date": {
+                                          "description": "Unix timestamp when the campaign was created.",
+                                          "example": 1721750718385,
+                                          "type": "integer"
+                                        },
+                                        "Include Condos/Townhouses": {
+                                          "description": "Whether condos and townhouses are included in the campaign.",
+                                          "example": true,
+                                          "type": "boolean"
+                                        },
+                                        "Mail Design": {
+                                          "description": "Unique identifier of the mail design associated with the campaign.",
+                                          "example": "1721749651180x275777367410737150",
+                                          "type": "string"
+                                        },
+                                        "Modified Date": {
+                                          "description": "Unix timestamp when the campaign was last modified.",
+                                          "example": 1723208397793,
+                                          "type": "integer"
+                                        },
+                                        "Name": {
+                                          "description": "Name of the campaign.",
+                                          "example": "Campaign Name",
+                                          "type": "string"
+                                        },
+                                        "Organization": {
+                                          "description": "Unique identifier of the organization associated with the campaign.",
+                                          "example": "1720524911242x513500368998058200",
+                                          "type": "string"
+                                        },
+                                        "Status": {
+                                          "description": "Current status of the campaign, e.g., \"Active\".",
+                                          "example": "Active",
+                                          "type": "string"
+                                        },
+                                        "_id": {
+                                          "description": "Unique identifier for the campaign.",
+                                          "example": "1721750711144x789198714485342200",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "status": {
+                                "description": "The status of the API request.",
+                                "example": "success",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response with open campaigns"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "description": "Explanation for the unauthorized request.",
+                                "example": "Unauthorized",
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "The status of the API request.",
+                                "example": "error",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized. The request was not authorized due to invalid or missing credentials."
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "description": "Explanation for the internal server error.",
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "The status of the API request.",
+                                "example": "error",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal Server Error. The server encountered an error while processing the request."
+                    }
+                  },
+                  "summary": "Retrieve open campaigns"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Production server",
+                "url": "https://app.homedrop.io/api/1.1/wf"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "HomeDrop"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:29.157031+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.swaggerhub.com/apis/HomeDrop/HomeDropDocs/1.0.0?resolved=true",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "1908b01d9ff9525720eb0d4fbeb88b5c82bb2f635df2b9fa607e8412122d90d1",
+    "source_id": "homedrop",
+    "source_updated": null,
+    "url": "https://api.swaggerhub.com/apis/HomeDrop/HomeDropDocs/1.0.0?resolved=true"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

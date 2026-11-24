@@ -1,0 +1,4284 @@
+{
+  "a2ui": {},
+  "app": "firecrawl",
+  "graph": {
+    "edges": [
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:post:/batch/scrape"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:get:/batch/scrape/{id}"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/batch/scrape/{id}"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:get:/batch/scrape/{id}/errors"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:post:/crawl"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:get:/crawl/active"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:get:/crawl/{id}"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/crawl/{id}"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:get:/crawl/{id}/errors"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:post:/extract"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:get:/extract/{id}"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:post:/map"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:post:/scrape"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:post:/search"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:get:/team/credit-usage"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:get:/team/credit-usage/historical"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:get:/team/token-usage"
+      },
+      {
+        "from": "firecrawl",
+        "kind": "EXPOSES",
+        "to": "operation:get:/team/token-usage/historical"
+      },
+      {
+        "from": "operation:post:/batch/scrape",
+        "kind": "ACCEPTS",
+        "to": "schema:ScrapeOptions"
+      },
+      {
+        "from": "operation:post:/batch/scrape",
+        "kind": "RETURNS",
+        "to": "schema:BatchScrapeResponseObj"
+      },
+      {
+        "from": "operation:get:/batch/scrape/{id}",
+        "kind": "RETURNS",
+        "to": "schema:BatchScrapeStatusResponseObj"
+      },
+      {
+        "from": "operation:get:/batch/scrape/{id}/errors",
+        "kind": "RETURNS",
+        "to": "schema:CrawlErrorsResponseObj"
+      },
+      {
+        "from": "operation:post:/crawl",
+        "kind": "RETURNS",
+        "to": "schema:CrawlResponse"
+      },
+      {
+        "from": "operation:get:/crawl/{id}",
+        "kind": "RETURNS",
+        "to": "schema:CrawlStatusResponseObj"
+      },
+      {
+        "from": "operation:get:/crawl/{id}/errors",
+        "kind": "RETURNS",
+        "to": "schema:CrawlErrorsResponseObj"
+      },
+      {
+        "from": "operation:post:/extract",
+        "kind": "RETURNS",
+        "to": "schema:ExtractResponse"
+      },
+      {
+        "from": "operation:get:/extract/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ExtractStatusResponse"
+      },
+      {
+        "from": "operation:post:/map",
+        "kind": "RETURNS",
+        "to": "schema:MapResponse"
+      },
+      {
+        "from": "operation:post:/scrape",
+        "kind": "ACCEPTS",
+        "to": "schema:ScrapeOptions"
+      },
+      {
+        "from": "operation:post:/scrape",
+        "kind": "RETURNS",
+        "to": "schema:ScrapeResponse"
+      },
+      {
+        "from": "schema:ScrapeOptions",
+        "kind": "REFERENCES",
+        "to": "schema:Formats"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "firecrawl",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/batch/scrape",
+        "kind": "operation",
+        "method": "post",
+        "name": "scrapeAndExtractFromUrls",
+        "path": "/batch/scrape",
+        "pointer": "#/paths/~1batch~1scrape/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object|ScrapeOptions"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "BatchScrapeResponseObj"
+          },
+          {
+            "status": "402",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Scrape multiple URLs and optionally extract information using an LLM",
+        "tags": [
+          "Scraping"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/batch/scrape/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getBatchScrapeStatus",
+        "parameters": [
+          {
+            "description": "The ID of the batch scrape job",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/batch/scrape/{id}",
+        "pointer": "#/paths/~1batch~1scrape~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "BatchScrapeStatusResponseObj"
+          },
+          {
+            "status": "402",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get the status of a batch scrape job",
+        "tags": [
+          "Scraping"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:delete:/batch/scrape/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "cancelBatchScrape",
+        "parameters": [
+          {
+            "description": "The ID of the batch scrape job",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/batch/scrape/{id}",
+        "pointer": "#/paths/~1batch~1scrape~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Cancel a batch scrape job",
+        "tags": [
+          "Scraping"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/batch/scrape/{id}/errors",
+        "kind": "operation",
+        "method": "get",
+        "name": "getBatchScrapeErrors",
+        "parameters": [
+          {
+            "description": "The ID of the batch scrape job",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/batch/scrape/{id}/errors",
+        "pointer": "#/paths/~1batch~1scrape~1{id}~1errors/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CrawlErrorsResponseObj"
+          },
+          {
+            "status": "402",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get the errors of a batch scrape job",
+        "tags": [
+          "Scraping"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/crawl",
+        "kind": "operation",
+        "method": "post",
+        "name": "crawlUrls",
+        "path": "/crawl",
+        "pointer": "#/paths/~1crawl/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "CrawlResponse"
+          },
+          {
+            "status": "402",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Crawl multiple URLs based on options",
+        "tags": [
+          "Crawling"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/crawl/active",
+        "kind": "operation",
+        "method": "get",
+        "name": "getActiveCrawls",
+        "path": "/crawl/active",
+        "pointer": "#/paths/~1crawl~1active/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "402",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get all active crawls for the authenticated team",
+        "tags": [
+          "Crawling"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/crawl/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCrawlStatus",
+        "parameters": [
+          {
+            "description": "The ID of the crawl job",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/crawl/{id}",
+        "pointer": "#/paths/~1crawl~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CrawlStatusResponseObj"
+          },
+          {
+            "status": "402",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get the status of a crawl job",
+        "tags": [
+          "Crawling"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:delete:/crawl/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "cancelCrawl",
+        "parameters": [
+          {
+            "description": "The ID of the crawl job",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/crawl/{id}",
+        "pointer": "#/paths/~1crawl~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Cancel a crawl job",
+        "tags": [
+          "Crawling"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/crawl/{id}/errors",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCrawlErrors",
+        "parameters": [
+          {
+            "description": "The ID of the crawl job",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/crawl/{id}/errors",
+        "pointer": "#/paths/~1crawl~1{id}~1errors/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CrawlErrorsResponseObj"
+          },
+          {
+            "status": "402",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get the errors of a crawl job",
+        "tags": [
+          "Crawling"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/extract",
+        "kind": "operation",
+        "method": "post",
+        "name": "extractData",
+        "path": "/extract",
+        "pointer": "#/paths/~1extract/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "ExtractResponse"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Extract structured data from pages using LLMs",
+        "tags": [
+          "Extraction"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/extract/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getExtractStatus",
+        "parameters": [
+          {
+            "description": "The ID of the extract job",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/extract/{id}",
+        "pointer": "#/paths/~1extract~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ExtractStatusResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get the status of an extract job",
+        "tags": [
+          "Extraction"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/map",
+        "kind": "operation",
+        "method": "post",
+        "name": "mapUrls",
+        "path": "/map",
+        "pointer": "#/paths/~1map/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "MapResponse"
+          },
+          {
+            "status": "402",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Map multiple URLs based on options",
+        "tags": [
+          "Mapping"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/scrape",
+        "kind": "operation",
+        "method": "post",
+        "name": "scrapeAndExtractFromUrl",
+        "path": "/scrape",
+        "pointer": "#/paths/~1scrape/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object|ScrapeOptions"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "ScrapeResponse"
+          },
+          {
+            "status": "402",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Scrape a single URL and optionally extract information using an LLM",
+        "tags": [
+          "Scraping"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/search",
+        "kind": "operation",
+        "method": "post",
+        "name": "searchAndScrape",
+        "path": "/search",
+        "pointer": "#/paths/~1search/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "408",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Search and optionally scrape search results",
+        "tags": [
+          "Search"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/team/credit-usage",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCreditUsage",
+        "path": "/team/credit-usage",
+        "pointer": "#/paths/~1team~1credit-usage/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get remaining credits for the authenticated team",
+        "tags": [
+          "Billing"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/team/credit-usage/historical",
+        "kind": "operation",
+        "method": "get",
+        "name": "getHistoricalCreditUsage",
+        "parameters": [
+          {
+            "default": false,
+            "description": "Get historical credit usage by API key",
+            "in": "query",
+            "name": "byApiKey",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/team/credit-usage/historical",
+        "pointer": "#/paths/~1team~1credit-usage~1historical/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get historical credit usage for the authenticated team",
+        "tags": [
+          "Billing"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/team/token-usage",
+        "kind": "operation",
+        "method": "get",
+        "name": "getTokenUsage",
+        "path": "/team/token-usage",
+        "pointer": "#/paths/~1team~1token-usage/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get remaining tokens for the authenticated team (Extract only)",
+        "tags": [
+          "Billing"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/team/token-usage/historical",
+        "kind": "operation",
+        "method": "get",
+        "name": "getHistoricalTokenUsage",
+        "parameters": [
+          {
+            "default": false,
+            "description": "Get historical token usage by API key",
+            "in": "query",
+            "name": "byApiKey",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/team/token-usage/historical",
+        "pointer": "#/paths/~1team~1token-usage~1historical/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get historical token usage for the authenticated team (Extract only)",
+        "tags": [
+          "Billing"
+        ]
+      },
+      {
+        "id": "schema:BatchScrapeResponseObj",
+        "kind": "schema",
+        "name": "BatchScrapeResponseObj",
+        "type": "object"
+      },
+      {
+        "id": "schema:BatchScrapeStatusResponseObj",
+        "kind": "schema",
+        "name": "BatchScrapeStatusResponseObj",
+        "type": "object"
+      },
+      {
+        "id": "schema:CrawlErrorsResponseObj",
+        "kind": "schema",
+        "name": "CrawlErrorsResponseObj",
+        "type": "object"
+      },
+      {
+        "id": "schema:CrawlResponse",
+        "kind": "schema",
+        "name": "CrawlResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:CrawlStatusResponseObj",
+        "kind": "schema",
+        "name": "CrawlStatusResponseObj",
+        "type": "object"
+      },
+      {
+        "id": "schema:ExtractResponse",
+        "kind": "schema",
+        "name": "ExtractResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:ExtractStatusResponse",
+        "kind": "schema",
+        "name": "ExtractStatusResponse",
+        "type": "object"
+      },
+      {
+        "description": "Output formats to include in the response.",
+        "id": "schema:Formats",
+        "kind": "schema",
+        "name": "Formats",
+        "type": "object[]"
+      },
+      {
+        "id": "schema:MapResponse",
+        "kind": "schema",
+        "name": "MapResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScrapeOptions",
+        "kind": "schema",
+        "name": "ScrapeOptions",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScrapeResponse",
+        "kind": "schema",
+        "name": "ScrapeResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "firecrawl"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.firecrawl.dev/v2",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "BatchScrapeResponseObj": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "invalidURLs": {
+                      "description": "If ignoreInvalidURLs is true, this is an array containing the invalid URLs that were specified in the request. If there were no invalid URLs, this will be an empty array. If ignoreInvalidURLs is false, this field will be undefined.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "BatchScrapeStatusResponseObj": {
+                  "properties": {
+                    "completed": {
+                      "description": "The number of pages that have been successfully scraped.",
+                      "type": "integer"
+                    },
+                    "creditsUsed": {
+                      "description": "The number of credits used for the batch scrape.",
+                      "type": "integer"
+                    },
+                    "data": {
+                      "description": "The data of the batch scrape.",
+                      "items": {
+                        "properties": {
+                          "html": {
+                            "description": "HTML version of the content on page if `includeHtml`  is true",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "links": {
+                            "description": "List of links on the page if `includeLinks` is true",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "markdown": {
+                            "type": "string"
+                          },
+                          "metadata": {
+                            "properties": {
+                              "<any other metadata> ": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "error": {
+                                "description": "The error message of the page",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "language": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "sourceURL": {
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "statusCode": {
+                                "description": "The status code of the page",
+                                "type": "integer"
+                              },
+                              "title": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "rawHtml": {
+                            "description": "Raw HTML content of the page if `includeRawHtml`  is true",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "screenshot": {
+                            "description": "Screenshot of the page if `includeScreenshot` is true",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "expiresAt": {
+                      "description": "The date and time when the batch scrape will expire.",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "next": {
+                      "description": "The URL to retrieve the next 10MB of data. Returned if the batch scrape is not completed or if the response is larger than 10MB.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "The current status of the batch scrape. Can be `scraping`, `completed`, or `failed`.",
+                      "type": "string"
+                    },
+                    "total": {
+                      "description": "The total number of pages that were attempted to be scraped.",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CrawlErrorsResponseObj": {
+                  "properties": {
+                    "errors": {
+                      "description": "Errored scrape jobs and error details",
+                      "items": {
+                        "properties": {
+                          "error": {
+                            "description": "Error message",
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "string"
+                          },
+                          "timestamp": {
+                            "description": "ISO timestamp of failure",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "url": {
+                            "description": "Scraped URL",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "robotsBlocked": {
+                      "description": "List of URLs that were attempted in scraping but were blocked by robots.txt",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CrawlResponse": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CrawlStatusResponseObj": {
+                  "properties": {
+                    "completed": {
+                      "description": "The number of pages that have been successfully crawled.",
+                      "type": "integer"
+                    },
+                    "creditsUsed": {
+                      "description": "The number of credits used for the crawl.",
+                      "type": "integer"
+                    },
+                    "data": {
+                      "description": "The data of the crawl.",
+                      "items": {
+                        "properties": {
+                          "html": {
+                            "description": "HTML version of the content on page if `includeHtml`  is true",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "links": {
+                            "description": "List of links on the page if `includeLinks` is true",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "markdown": {
+                            "type": "string"
+                          },
+                          "metadata": {
+                            "properties": {
+                              "<any other metadata> ": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "error": {
+                                "description": "The error message of the page",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "language": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "sourceURL": {
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "statusCode": {
+                                "description": "The status code of the page",
+                                "type": "integer"
+                              },
+                              "title": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "rawHtml": {
+                            "description": "Raw HTML content of the page if `includeRawHtml`  is true",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "screenshot": {
+                            "description": "Screenshot of the page if `includeScreenshot` is true",
+                            "nullable": true,
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "expiresAt": {
+                      "description": "The date and time when the crawl will expire.",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "next": {
+                      "description": "The URL to retrieve the next 10MB of data. Returned if the crawl is not completed or if the response is larger than 10MB.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "The current status of the crawl. Can be `scraping`, `completed`, or `failed`.",
+                      "type": "string"
+                    },
+                    "total": {
+                      "description": "The total number of pages that were attempted to be crawled.",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ExtractResponse": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "invalidURLs": {
+                      "description": "If ignoreInvalidURLs is true, this is an array containing the invalid URLs that were specified in the request. If there were no invalid URLs, this will be an empty array. If ignoreInvalidURLs is false, this field will be undefined.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ExtractStatusResponse": {
+                  "properties": {
+                    "data": {
+                      "type": "object"
+                    },
+                    "expiresAt": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "The current status of the extract job",
+                      "enum": [
+                        "completed",
+                        "processing",
+                        "failed",
+                        "cancelled"
+                      ],
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "tokensUsed": {
+                      "description": "The number of tokens used by the extract job. Only available if the job is completed.",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Formats": {
+                  "default": [
+                    "markdown"
+                  ],
+                  "description": "Output formats to include in the response. You can specify one or more formats, either as strings (e.g., `'markdown'`) or as objects with additional options (e.g., `{ type: 'json', schema: {...} }`). Some formats require specific options to be set. Example: `['markdown', { type: 'json', schema: {...} }]`.",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "markdown"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "Markdown",
+                        "type": "object"
+                      },
+                      {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "summary"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "Summary",
+                        "type": "object"
+                      },
+                      {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "html"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "HTML",
+                        "type": "object"
+                      },
+                      {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "rawHtml"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "Raw HTML",
+                        "type": "object"
+                      },
+                      {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "links"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "Links",
+                        "type": "object"
+                      },
+                      {
+                        "properties": {
+                          "type": {
+                            "enum": [
+                              "summary"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "Summary",
+                        "type": "object"
+                      },
+                      {
+                        "properties": {
+                          "fullPage": {
+                            "default": false,
+                            "description": "Whether to capture a full-page screenshot or limit to the current viewport.",
+                            "type": "boolean"
+                          },
+                          "quality": {
+                            "description": "The quality of the screenshot, from 1 to 100. 100 is the highest quality.",
+                            "type": "integer"
+                          },
+                          "type": {
+                            "enum": [
+                              "screenshot"
+                            ],
+                            "type": "string"
+                          },
+                          "viewport": {
+                            "properties": {
+                              "height": {
+                                "description": "The height of the viewport in pixels",
+                                "type": "integer"
+                              },
+                              "width": {
+                                "description": "The width of the viewport in pixels",
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "width",
+                              "height"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "Screenshot",
+                        "type": "object"
+                      },
+                      {
+                        "properties": {
+                          "prompt": {
+                            "description": "The prompt to use for the JSON output",
+                            "type": "string"
+                          },
+                          "schema": {
+                            "description": "The schema to use for the JSON output. Must conform to [JSON Schema](https://json-schema.org/).",
+                            "type": "object"
+                          },
+                          "type": {
+                            "enum": [
+                              "json"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "JSON",
+                        "type": "object"
+                      },
+                      {
+                        "properties": {
+                          "modes": {
+                            "description": "The mode to use for change tracking. 'git-diff' provides a detailed diff, and 'json' compares extracted JSON data.",
+                            "items": {
+                              "enum": [
+                                "git-diff",
+                                "json"
+                              ],
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "prompt": {
+                            "description": "Prompt to use for change tracking when using 'json' mode. If not provided, the default prompt will be used.",
+                            "type": "string"
+                          },
+                          "schema": {
+                            "description": "Schema for JSON extraction when using 'json' mode. Defines the structure of data to extract and compare. Must conform to [JSON Schema](https://json-schema.org/).",
+                            "type": "object"
+                          },
+                          "tag": {
+                            "default": null,
+                            "description": "Tag to use for change tracking. Tags can separate change tracking history into separate \"branches\", where change tracking with a specific tagwill only compare to scrapes made in the same tag. If not provided, the default tag (null) will be used.",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "changeTracking"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "type"
+                        ],
+                        "title": "Change Tracking",
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "MapResponse": {
+                  "properties": {
+                    "links": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScrapeOptions": {
+                  "properties": {
+                    "actions": {
+                      "description": "Actions to perform on the page before grabbing the content",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "properties": {
+                              "milliseconds": {
+                                "description": "Number of milliseconds to wait",
+                                "minimum": 1,
+                                "type": "integer"
+                              },
+                              "selector": {
+                                "description": "Query selector to find the element by",
+                                "example": "#my-element",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "Wait for a specified amount of milliseconds",
+                                "enum": [
+                                  "wait"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type"
+                            ],
+                            "title": "Wait",
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "fullPage": {
+                                "default": false,
+                                "description": "Whether to capture a full-page screenshot or limit to the current viewport.",
+                                "type": "boolean"
+                              },
+                              "quality": {
+                                "description": "The quality of the screenshot, from 1 to 100. 100 is the highest quality.",
+                                "type": "integer"
+                              },
+                              "type": {
+                                "description": "Take a screenshot. The links will be in the response's `actions.screenshots` array.",
+                                "enum": [
+                                  "screenshot"
+                                ],
+                                "type": "string"
+                              },
+                              "viewport": {
+                                "properties": {
+                                  "height": {
+                                    "description": "The height of the viewport in pixels",
+                                    "type": "integer"
+                                  },
+                                  "width": {
+                                    "description": "The width of the viewport in pixels",
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "width",
+                                  "height"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "type"
+                            ],
+                            "title": "Screenshot",
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "all": {
+                                "default": false,
+                                "description": "Clicks all elements matched by the selector, not just the first one. Does not throw an error if no elements match the selector.",
+                                "type": "boolean"
+                              },
+                              "selector": {
+                                "description": "Query selector to find the element by",
+                                "example": "#load-more-button",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "Click on an element",
+                                "enum": [
+                                  "click"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "selector"
+                            ],
+                            "title": "Click",
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "text": {
+                                "description": "Text to type",
+                                "example": "Hello, world!",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "Write text into an input field, text area, or contenteditable element. Note: You must first focus the element using a 'click' action before writing. The text will be typed character by character to simulate keyboard input.",
+                                "enum": [
+                                  "write"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "text"
+                            ],
+                            "title": "Write text",
+                            "type": "object"
+                          },
+                          {
+                            "description": "Press a key on the page. See https://asawicki.info/nosense/doc/devices/keyboard/key_codes.html for key codes.",
+                            "properties": {
+                              "key": {
+                                "description": "Key to press",
+                                "example": "Enter",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "Press a key on the page",
+                                "enum": [
+                                  "press"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "key"
+                            ],
+                            "title": "Press a key",
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "direction": {
+                                "default": "down",
+                                "description": "Direction to scroll",
+                                "enum": [
+                                  "up",
+                                  "down"
+                                ],
+                                "type": "string"
+                              },
+                              "selector": {
+                                "description": "Query selector for the element to scroll",
+                                "example": "#my-element",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "Scroll the page or a specific element",
+                                "enum": [
+                                  "scroll"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type"
+                            ],
+                            "title": "Scroll",
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "type": {
+                                "description": "Scrape the current page content, returns the url and the html.",
+                                "enum": [
+                                  "scrape"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type"
+                            ],
+                            "title": "Scrape",
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "script": {
+                                "description": "JavaScript code to execute",
+                                "example": "document.querySelector('.button').click();",
+                                "type": "string"
+                              },
+                              "type": {
+                                "description": "Execute JavaScript code on the page",
+                                "enum": [
+                                  "executeJavascript"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "script"
+                            ],
+                            "title": "Execute JavaScript",
+                            "type": "object"
+                          },
+                          {
+                            "properties": {
+                              "format": {
+                                "default": "Letter",
+                                "description": "The page size of the resulting PDF",
+                                "enum": [
+                                  "A0",
+                                  "A1",
+                                  "A2",
+                                  "A3",
+                                  "A4",
+                                  "A5",
+                                  "A6",
+                                  "Letter",
+                                  "Legal",
+                                  "Tabloid",
+                                  "Ledger"
+                                ],
+                                "type": "string"
+                              },
+                              "landscape": {
+                                "default": false,
+                                "description": "Whether to generate the PDF in landscape orientation",
+                                "type": "boolean"
+                              },
+                              "scale": {
+                                "default": 1,
+                                "description": "The scale multiplier of the resulting PDF",
+                                "type": "number"
+                              },
+                              "type": {
+                                "description": "Generate a PDF of the current page. The PDF will be returned in the `actions.pdfs` array of the response.",
+                                "enum": [
+                                  "pdf"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "type"
+                            ],
+                            "title": "Generate PDF",
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "blockAds": {
+                      "default": true,
+                      "description": "Enables ad-blocking and cookie popup blocking.",
+                      "type": "boolean"
+                    },
+                    "excludeTags": {
+                      "description": "Tags to exclude from the output.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "formats": {
+                      "$ref": "#/components/schemas/Formats"
+                    },
+                    "headers": {
+                      "description": "Headers to send with the request. Can be used to send cookies, user-agent, etc.",
+                      "type": "object"
+                    },
+                    "includeTags": {
+                      "description": "Tags to include in the output.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "location": {
+                      "description": "Location settings for the request. When specified, this will use an appropriate proxy if available and emulate the corresponding language and timezone settings. Defaults to 'US' if not specified.",
+                      "properties": {
+                        "country": {
+                          "default": "US",
+                          "description": "ISO 3166-1 alpha-2 country code (e.g., 'US', 'AU', 'DE', 'JP')",
+                          "pattern": "^[A-Z]{2}$",
+                          "type": "string"
+                        },
+                        "languages": {
+                          "description": "Preferred languages and locales for the request in order of priority. Defaults to the language of the specified location. See https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language",
+                          "items": {
+                            "example": "en-US",
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "maxAge": {
+                      "default": 172800000,
+                      "description": "Returns a cached version of the page if it is younger than this age in milliseconds. If a cached version of the page is older than this value, the page will be scraped. If you do not need extremely fresh data, enabling this can speed up your scrapes by 500%. Defaults to 2 days.",
+                      "type": "integer"
+                    },
+                    "mobile": {
+                      "default": false,
+                      "description": "Set to true if you want to emulate scraping from a mobile device. Useful for testing responsive pages and taking mobile screenshots.",
+                      "type": "boolean"
+                    },
+                    "onlyMainContent": {
+                      "default": true,
+                      "description": "Only return the main content of the page excluding headers, navs, footers, etc.",
+                      "type": "boolean"
+                    },
+                    "parsers": {
+                      "default": [
+                        "pdf"
+                      ],
+                      "description": "Controls how files are processed during scraping. When \"pdf\" is included (default), the PDF content is extracted and converted to markdown format, with billing based on the number of pages (1 credit per page). When an empty array is passed, the PDF file is returned in base64 encoding with a flat rate of 1 credit total.",
+                      "items": {
+                        "enum": [
+                          "pdf"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "proxy": {
+                      "default": "auto",
+                      "description": "Specifies the type of proxy to use.\n\n - **basic**: Proxies for scraping sites with none to basic anti-bot solutions. Fast and usually works.\n - **enhanced**: Enhanced proxies for scraping sites with advanced anti-bot solutions. Slower, but more reliable on certain sites. Billed at the same credit cost as basic.\n - **auto**: Firecrawl will automatically retry scraping with enhanced proxies if the basic proxy fails. Enhanced proxies carry no credit surcharge, so either way only the regular cost is billed.\n\nIf you do not specify a proxy, Firecrawl will default to auto.",
+                      "enum": [
+                        "basic",
+                        "enhanced",
+                        "auto"
+                      ],
+                      "type": "string"
+                    },
+                    "removeBase64Images": {
+                      "default": true,
+                      "description": "Removes all base 64 images from the output, which may be overwhelmingly long. The image's alt text remains in the output, but the URL is replaced with a placeholder.",
+                      "type": "boolean"
+                    },
+                    "skipTlsVerification": {
+                      "default": true,
+                      "description": "Skip TLS certificate verification when making requests",
+                      "type": "boolean"
+                    },
+                    "storeInCache": {
+                      "default": true,
+                      "description": "If true, the page will be stored in the Firecrawl index and cache. Setting this to false is useful if your scraping activity may have data protection concerns. Using some parameters associated with sensitive scraping (actions, headers) will force this parameter to be false.",
+                      "type": "boolean"
+                    },
+                    "timeout": {
+                      "description": "Timeout in milliseconds for the request.",
+                      "type": "integer"
+                    },
+                    "waitFor": {
+                      "default": 0,
+                      "description": "Specify a delay in milliseconds before fetching the content, allowing the page sufficient time to load.",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScrapeResponse": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "actions": {
+                          "description": "Results of the actions specified in the `actions` parameter. Only present if the `actions` parameter was provided in the request",
+                          "nullable": true,
+                          "properties": {
+                            "javascriptReturns": {
+                              "description": "JavaScript return values, in the same order as the executeJavascript actions provided.",
+                              "items": {
+                                "properties": {
+                                  "type": {
+                                    "type": "string"
+                                  },
+                                  "value": {}
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "pdfs": {
+                              "description": "PDFs generated, in the same order as the pdf actions provided.",
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "scrapes": {
+                              "description": "Scrape contents, in the same order as the scrape actions provided.",
+                              "items": {
+                                "properties": {
+                                  "html": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "screenshots": {
+                              "description": "Screenshot URLs, in the same order as the screenshot actions provided.",
+                              "items": {
+                                "format": "url",
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "changeTracking": {
+                          "description": "Change tracking information if `changeTracking` is in `formats`. Only present when the `changeTracking` format is requested.",
+                          "nullable": true,
+                          "properties": {
+                            "changeStatus": {
+                              "description": "The result of the comparison between the two page versions. 'new' means this page did not exist before, 'same' means content has not changed, 'changed' means content has changed, 'removed' means the page was removed.",
+                              "enum": [
+                                "new",
+                                "same",
+                                "changed",
+                                "removed"
+                              ],
+                              "type": "string"
+                            },
+                            "diff": {
+                              "description": "Git-style diff of changes when using 'git-diff' mode. Only present when the mode is set to 'git-diff'.",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "json": {
+                              "description": "JSON comparison results when using 'json' mode. Only present when the mode is set to 'json'. This will emit a list of all the keys and their values from the `previous` and `current` scrapes based on the type defined in the `schema`. Example [here](/features/change-tracking)",
+                              "nullable": true,
+                              "type": "object"
+                            },
+                            "previousScrapeAt": {
+                              "description": "The timestamp of the previous scrape that the current page is being compared against. Null if no previous scrape exists.",
+                              "format": "date-time",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "visibility": {
+                              "description": "The visibility of the current page/URL. 'visible' means the URL was discovered through an organic route (links or sitemap), 'hidden' means the URL was discovered through memory from previous crawls.",
+                              "enum": [
+                                "visible",
+                                "hidden"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "html": {
+                          "description": "HTML version of the content on page if `html` is in `formats`",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "links": {
+                          "description": "List of links on the page if `links` is in `formats`",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "markdown": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "properties": {
+                            "<any other metadata> ": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            },
+                            "error": {
+                              "description": "The error message of the page",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "language": {
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "sourceURL": {
+                              "format": "uri",
+                              "type": "string"
+                            },
+                            "statusCode": {
+                              "description": "The status code of the page",
+                              "type": "integer"
+                            },
+                            "title": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "rawHtml": {
+                          "description": "Raw HTML content of the page if `rawHtml` is in `formats`",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "screenshot": {
+                          "description": "Screenshot of the page if `screenshot` is in `formats`",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "summary": {
+                          "description": "Summary of the page if `summary` is in `formats`",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "warning": {
+                          "description": "Can be displayed when using LLM Extraction. Warning message will let you know any issues with the extraction.",
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "support@firecrawl.dev",
+                "name": "Firecrawl Support",
+                "url": "https://firecrawl.dev/support"
+              },
+              "description": "API for interacting with Firecrawl services to perform web scraping and crawling tasks.",
+              "title": "Firecrawl API",
+              "version": "v2"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/batch/scrape": {
+                "post": {
+                  "operationId": "scrapeAndExtractFromUrls",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "allOf": [
+                            {
+                              "properties": {
+                                "ignoreInvalidURLs": {
+                                  "default": true,
+                                  "description": "If invalid URLs are specified in the urls array, they will be ignored. Instead of them failing the entire request, a batch scrape using the remaining valid URLs will be created, and the invalid URLs will be returned in the invalidURLs field of the response.",
+                                  "type": "boolean"
+                                },
+                                "maxConcurrency": {
+                                  "description": "Maximum number of concurrent scrapes. This parameter allows you to set a concurrency limit for this batch scrape. If not specified, the batch scrape adheres to your team's concurrency limit.",
+                                  "type": "integer"
+                                },
+                                "urls": {
+                                  "items": {
+                                    "description": "The URL to scrape",
+                                    "format": "uri",
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                },
+                                "webhook": {
+                                  "description": "A webhook specification object.",
+                                  "properties": {
+                                    "events": {
+                                      "description": "Type of events that should be sent to the webhook URL. (default: all)",
+                                      "items": {
+                                        "enum": [
+                                          "completed",
+                                          "page",
+                                          "failed",
+                                          "started"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "headers": {
+                                      "additionalProperties": {
+                                        "type": "string"
+                                      },
+                                      "description": "Headers to send to the webhook URL.",
+                                      "type": "object"
+                                    },
+                                    "metadata": {
+                                      "additionalProperties": true,
+                                      "description": "Custom metadata that will be included in all webhook payloads for this crawl",
+                                      "type": "object"
+                                    },
+                                    "url": {
+                                      "description": "The URL to send the webhook to. This will trigger for batch scrape started (batch_scrape.started), every page scraped (batch_scrape.page) and when the batch scrape is completed (batch_scrape.completed or batch_scrape.failed). The response will be the same as the `/scrape` endpoint.",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "url"
+                                  ],
+                                  "type": "object"
+                                }
+                              },
+                              "required": [
+                                "urls"
+                              ],
+                              "type": "object"
+                            },
+                            {
+                              "$ref": "#/components/schemas/ScrapeOptions"
+                            },
+                            {
+                              "properties": {
+                                "zeroDataRetention": {
+                                  "default": false,
+                                  "description": "If true, this will enable zero data retention for this batch scrape. To enable this feature, please contact help@firecrawl.dev",
+                                  "type": "boolean"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/BatchScrapeResponseObj"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Payment required to access this resource.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Payment required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Request rate limit exceeded. Please wait and try again later.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Scrape multiple URLs and optionally extract information using an LLM",
+                  "tags": [
+                    "Scraping"
+                  ]
+                }
+              },
+              "/batch/scrape/{id}": {
+                "delete": {
+                  "operationId": "cancelBatchScrape",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Batch scrape job successfully cancelled.",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful cancellation"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Batch scrape job not found.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Batch scrape job not found"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Cancel a batch scrape job",
+                  "tags": [
+                    "Scraping"
+                  ]
+                },
+                "get": {
+                  "operationId": "getBatchScrapeStatus",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/BatchScrapeStatusResponseObj"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Payment required to access this resource.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Payment required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Request rate limit exceeded. Please wait and try again later.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Get the status of a batch scrape job",
+                  "tags": [
+                    "Scraping"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "description": "The ID of the batch scrape job",
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                      "format": "uuid",
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/batch/scrape/{id}/errors": {
+                "get": {
+                  "operationId": "getBatchScrapeErrors",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CrawlErrorsResponseObj"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Payment required to access this resource.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Payment required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Request rate limit exceeded. Please wait and try again later.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Get the errors of a batch scrape job",
+                  "tags": [
+                    "Scraping"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "description": "The ID of the batch scrape job",
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                      "format": "uuid",
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/crawl": {
+                "post": {
+                  "operationId": "crawlUrls",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "allowExternalLinks": {
+                              "default": false,
+                              "description": "Allows the crawler to follow links to external websites.",
+                              "type": "boolean"
+                            },
+                            "allowSubdomains": {
+                              "default": false,
+                              "description": "Allows the crawler to follow links to subdomains of the main domain.",
+                              "type": "boolean"
+                            },
+                            "crawlEntireDomain": {
+                              "default": false,
+                              "description": "Allows the crawler to follow internal links to sibling or parent URLs, not just child paths.\n\nfalse: Only crawls deeper (child) URLs.\n→ e.g. /features/feature-1 → /features/feature-1/tips ✅\n→ Won't follow /pricing or / ❌\n\ntrue: Crawls any internal links, including siblings and parents.\n→ e.g. /features/feature-1 → /pricing, /, etc. ✅\n\nUse true for broader internal coverage beyond nested paths.",
+                              "type": "boolean"
+                            },
+                            "delay": {
+                              "description": "Delay in seconds between scrapes. This helps respect website rate limits.",
+                              "type": "number"
+                            },
+                            "excludePaths": {
+                              "description": "URL pathname regex patterns that exclude matching URLs from the crawl. For example, if you set \"excludePaths\": [\"blog/.*\"] for the base URL firecrawl.dev, any results matching that pattern will be excluded, such as https://www.firecrawl.dev/blog/firecrawl-launch-week-1-recap.",
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "ignoreQueryParameters": {
+                              "default": false,
+                              "description": "Do not re-scrape the same path with different (or none) query parameters",
+                              "type": "boolean"
+                            },
+                            "includePaths": {
+                              "description": "URL pathname regex patterns that include matching URLs in the crawl. Only the paths that match the specified patterns will be included in the response. For example, if you set \"includePaths\": [\"blog/.*\"] for the base URL firecrawl.dev, only results matching that pattern will be included, such as https://www.firecrawl.dev/blog/firecrawl-launch-week-1-recap.",
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "limit": {
+                              "default": 10000,
+                              "description": "Maximum number of pages to crawl. Default limit is 10000.",
+                              "type": "integer"
+                            },
+                            "maxConcurrency": {
+                              "description": "Maximum number of concurrent scrapes. This parameter allows you to set a concurrency limit for this crawl. If not specified, the crawl adheres to your team's concurrency limit.",
+                              "type": "integer"
+                            },
+                            "maxDiscoveryDepth": {
+                              "description": "Maximum depth to crawl based on discovery order. The root site and sitemapped pages has a discovery depth of 0. For example, if you set it to 1, and you set ignoreSitemap, you will only crawl the entered URL and all URLs that are linked on that page.",
+                              "type": "integer"
+                            },
+                            "prompt": {
+                              "description": "A prompt to use to generate the crawler options (all the parameters below) from natural language. Explicitly set parameters will override the generated equivalents.",
+                              "type": "string"
+                            },
+                            "scrapeOptions": {
+                              "$ref": "#/components/schemas/ScrapeOptions"
+                            },
+                            "sitemap": {
+                              "default": "include",
+                              "description": "Sitemap mode when crawling. If you set it to 'skip', the crawler will ignore the website sitemap and only crawl the entered URL and discover pages from there onwards.",
+                              "enum": [
+                                "skip",
+                                "include"
+                              ],
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "The base URL to start crawling from",
+                              "format": "uri",
+                              "type": "string"
+                            },
+                            "webhook": {
+                              "description": "A webhook specification object.",
+                              "properties": {
+                                "events": {
+                                  "description": "Type of events that should be sent to the webhook URL. (default: all)",
+                                  "items": {
+                                    "enum": [
+                                      "completed",
+                                      "page",
+                                      "failed",
+                                      "started"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                },
+                                "headers": {
+                                  "additionalProperties": {
+                                    "type": "string"
+                                  },
+                                  "description": "Headers to send to the webhook URL.",
+                                  "type": "object"
+                                },
+                                "metadata": {
+                                  "additionalProperties": true,
+                                  "description": "Custom metadata that will be included in all webhook payloads for this crawl",
+                                  "type": "object"
+                                },
+                                "url": {
+                                  "description": "The URL to send the webhook to. This will trigger for crawl started (crawl.started), every page crawled (crawl.page) and when the crawl is completed (crawl.completed or crawl.failed). The response will be the same as the `/scrape` endpoint.",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "url"
+                              ],
+                              "type": "object"
+                            },
+                            "zeroDataRetention": {
+                              "default": false,
+                              "description": "If true, this will enable zero data retention for this crawl. To enable this feature, please contact help@firecrawl.dev",
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "url"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CrawlResponse"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Payment required to access this resource.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Payment required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Request rate limit exceeded. Please wait and try again later.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Crawl multiple URLs based on options",
+                  "tags": [
+                    "Crawling"
+                  ]
+                }
+              },
+              "/crawl/active": {
+                "get": {
+                  "operationId": "getActiveCrawls",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "crawls": {
+                                "items": {
+                                  "properties": {
+                                    "id": {
+                                      "description": "The unique identifier of the crawl",
+                                      "format": "uuid",
+                                      "type": "string"
+                                    },
+                                    "options": {
+                                      "description": "The crawler options used for this crawl",
+                                      "properties": {
+                                        "scrapeOptions": {
+                                          "$ref": "#/components/schemas/ScrapeOptions"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "teamId": {
+                                      "description": "The ID of the team that owns the crawl",
+                                      "type": "string"
+                                    },
+                                    "url": {
+                                      "description": "The origin URL of the crawl",
+                                      "format": "uri",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "teamId",
+                                    "url",
+                                    "status",
+                                    "options"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "success",
+                              "data"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Payment required to access this resource.",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Payment required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Request rate limit exceeded. Please wait and try again later.",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Get all active crawls for the authenticated team",
+                  "tags": [
+                    "Crawling"
+                  ]
+                }
+              },
+              "/crawl/{id}": {
+                "delete": {
+                  "operationId": "cancelCrawl",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "status": {
+                                "enum": [
+                                  "cancelled"
+                                ],
+                                "example": "cancelled",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful cancellation"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Crawl job not found.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Crawl job not found"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Cancel a crawl job",
+                  "tags": [
+                    "Crawling"
+                  ]
+                },
+                "get": {
+                  "operationId": "getCrawlStatus",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CrawlStatusResponseObj"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Payment required to access this resource.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Payment required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Request rate limit exceeded. Please wait and try again later.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Get the status of a crawl job",
+                  "tags": [
+                    "Crawling"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "description": "The ID of the crawl job",
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                      "format": "uuid",
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/crawl/{id}/errors": {
+                "get": {
+                  "operationId": "getCrawlErrors",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CrawlErrorsResponseObj"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Payment required to access this resource.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Payment required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Request rate limit exceeded. Please wait and try again later.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Get the errors of a crawl job",
+                  "tags": [
+                    "Crawling"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "description": "The ID of the crawl job",
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                      "format": "uuid",
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/extract": {
+                "post": {
+                  "operationId": "extractData",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "enableWebSearch": {
+                              "default": false,
+                              "description": "When true, the extraction will use web search to find additional data",
+                              "type": "boolean"
+                            },
+                            "ignoreInvalidURLs": {
+                              "default": true,
+                              "description": "If invalid URLs are specified in the urls array, they will be ignored. Instead of them failing the entire request, an extract using the remaining valid URLs will be performed, and the invalid URLs will be returned in the invalidURLs field of the response.",
+                              "type": "boolean"
+                            },
+                            "ignoreSitemap": {
+                              "default": false,
+                              "description": "When true, sitemap.xml files will be ignored during website scanning",
+                              "type": "boolean"
+                            },
+                            "includeSubdomains": {
+                              "default": true,
+                              "description": "When true, subdomains of the provided URLs will also be scanned",
+                              "type": "boolean"
+                            },
+                            "prompt": {
+                              "description": "Prompt to guide the extraction process",
+                              "type": "string"
+                            },
+                            "schema": {
+                              "description": "Schema to define the structure of the extracted data. Must conform to [JSON Schema](https://json-schema.org/).",
+                              "type": "object"
+                            },
+                            "scrapeOptions": {
+                              "$ref": "#/components/schemas/ScrapeOptions"
+                            },
+                            "showSources": {
+                              "default": false,
+                              "description": "When true, the sources used to extract the data will be included in the response as `sources` key",
+                              "type": "boolean"
+                            },
+                            "urls": {
+                              "items": {
+                                "description": "The URLs to extract data from. URLs should be in glob format.",
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "required": [
+                            "urls"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ExtractResponse"
+                          }
+                        }
+                      },
+                      "description": "Successful extraction"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Invalid input data.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Invalid request"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Extract structured data from pages using LLMs",
+                  "tags": [
+                    "Extraction"
+                  ]
+                }
+              },
+              "/extract/{id}": {
+                "get": {
+                  "operationId": "getExtractStatus",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ExtractStatusResponse"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Get the status of an extract job",
+                  "tags": [
+                    "Extraction"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "description": "The ID of the extract job",
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                      "format": "uuid",
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/map": {
+                "post": {
+                  "operationId": "mapUrls",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "ignoreQueryParameters": {
+                              "default": true,
+                              "description": "Do not return URLs with query parameters",
+                              "type": "boolean"
+                            },
+                            "includeSubdomains": {
+                              "default": true,
+                              "description": "Include subdomains of the website",
+                              "type": "boolean"
+                            },
+                            "limit": {
+                              "default": 5000,
+                              "description": "Maximum number of links to return",
+                              "maximum": 30000,
+                              "type": "integer"
+                            },
+                            "search": {
+                              "description": "Search query to use for mapping. During the Alpha phase, the 'smart' part of the search functionality is limited to 500 search results. However, if map finds more results, there is no limit applied.",
+                              "type": "string"
+                            },
+                            "sitemap": {
+                              "default": "include",
+                              "description": "Sitemap mode when mapping. If you set it to `skip`, the sitemap won't be used to find URLs. If you set it to `only`, only URLs that are in the sitemap will be returned. By default (`include`), the sitemap and other methods will be used together to find URLs.",
+                              "enum": [
+                                "skip",
+                                "include",
+                                "only"
+                              ],
+                              "type": "string"
+                            },
+                            "timeout": {
+                              "description": "Timeout in milliseconds. There is no timeout by default.",
+                              "type": "integer"
+                            },
+                            "url": {
+                              "description": "The base URL to start crawling from",
+                              "format": "uri",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "url"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/MapResponse"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Payment required to access this resource.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Payment required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Request rate limit exceeded. Please wait and try again later.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Map multiple URLs based on options",
+                  "tags": [
+                    "Mapping"
+                  ]
+                }
+              },
+              "/scrape": {
+                "post": {
+                  "operationId": "scrapeAndExtractFromUrl",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "allOf": [
+                            {
+                              "properties": {
+                                "url": {
+                                  "description": "The URL to scrape",
+                                  "format": "uri",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "url"
+                              ],
+                              "type": "object"
+                            },
+                            {
+                              "$ref": "#/components/schemas/ScrapeOptions"
+                            },
+                            {
+                              "properties": {
+                                "zeroDataRetention": {
+                                  "default": false,
+                                  "description": "If true, this will enable zero data retention for this scrape. To enable this feature, please contact help@firecrawl.dev",
+                                  "type": "boolean"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ScrapeResponse"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Payment required to access this resource.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Payment required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Request rate limit exceeded. Please wait and try again later.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "code": {
+                                "example": "UNKNOWN_ERROR",
+                                "type": "string"
+                              },
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Scrape a single URL and optionally extract information using an LLM",
+                  "tags": [
+                    "Scraping"
+                  ]
+                }
+              },
+              "/search": {
+                "post": {
+                  "operationId": "searchAndScrape",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "ignoreInvalidURLs": {
+                              "default": false,
+                              "description": "Excludes URLs from the search results that are invalid for other Firecrawl endpoints. This helps reduce errors if you are piping data from search into other Firecrawl API endpoints.",
+                              "type": "boolean"
+                            },
+                            "limit": {
+                              "default": 5,
+                              "description": "Maximum number of results to return",
+                              "maximum": 100,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "location": {
+                              "description": "Location parameter for search results",
+                              "type": "string"
+                            },
+                            "query": {
+                              "description": "The search query",
+                              "type": "string"
+                            },
+                            "scrapeOptions": {
+                              "allOf": [
+                                {
+                                  "$ref": "#/components/schemas/ScrapeOptions"
+                                }
+                              ],
+                              "default": {},
+                              "description": "Options for scraping search results"
+                            },
+                            "sources": {
+                              "default": [
+                                "web"
+                              ],
+                              "description": "Sources to search. Will determine the arrays available in the response.",
+                              "items": {
+                                "oneOf": [
+                                  {
+                                    "properties": {
+                                      "location": {
+                                        "description": "Location parameter for search results",
+                                        "type": "string"
+                                      },
+                                      "tbs": {
+                                        "description": "Time-based search parameter. Supports predefined time ranges (`qdr:h`, `qdr:d`, `qdr:w`, `qdr:m`, `qdr:y`) and custom date ranges (`cdr:1,cd_min:MM/DD/YYYY,cd_max:MM/DD/YYYY`)",
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "enum": [
+                                          "web"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type"
+                                    ],
+                                    "title": "Web",
+                                    "type": "object"
+                                  },
+                                  {
+                                    "properties": {
+                                      "type": {
+                                        "enum": [
+                                          "images"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type"
+                                    ],
+                                    "title": "Images",
+                                    "type": "object"
+                                  },
+                                  {
+                                    "properties": {
+                                      "type": {
+                                        "enum": [
+                                          "news"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "type"
+                                    ],
+                                    "title": "News",
+                                    "type": "object"
+                                  }
+                                ]
+                              },
+                              "type": "array"
+                            },
+                            "tbs": {
+                              "description": "Time-based search parameter. Supports predefined time ranges (`qdr:h`, `qdr:d`, `qdr:w`, `qdr:m`, `qdr:y`) and custom date ranges (`cdr:1,cd_min:MM/DD/YYYY,cd_max:MM/DD/YYYY`)",
+                              "type": "string"
+                            },
+                            "timeout": {
+                              "default": 60000,
+                              "description": "Timeout in milliseconds",
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "query"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "description": "The search results. The arrays available will depend on the sources you specified in the request. By default, the `web` array will be returned.",
+                                "properties": {
+                                  "images": {
+                                    "items": {
+                                      "properties": {
+                                        "imageHeight": {
+                                          "description": "Height of the image",
+                                          "type": "integer"
+                                        },
+                                        "imageUrl": {
+                                          "description": "URL of the image",
+                                          "type": "string"
+                                        },
+                                        "imageWidth": {
+                                          "description": "Width of the image",
+                                          "type": "integer"
+                                        },
+                                        "position": {
+                                          "description": "Position of the search result",
+                                          "type": "integer"
+                                        },
+                                        "title": {
+                                          "description": "Title from search result",
+                                          "type": "string"
+                                        },
+                                        "url": {
+                                          "description": "URL of the search result",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "news": {
+                                    "items": {
+                                      "properties": {
+                                        "date": {
+                                          "description": "Date of the article",
+                                          "type": "string"
+                                        },
+                                        "html": {
+                                          "description": "HTML content if requested in formats",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "imageUrl": {
+                                          "description": "Image URL of the article",
+                                          "type": "string"
+                                        },
+                                        "links": {
+                                          "description": "Links found if requested in formats",
+                                          "items": {
+                                            "type": "string"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "markdown": {
+                                          "description": "Markdown content if scraping was requested",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "metadata": {
+                                          "properties": {
+                                            "description": {
+                                              "type": "string"
+                                            },
+                                            "error": {
+                                              "nullable": true,
+                                              "type": "string"
+                                            },
+                                            "sourceURL": {
+                                              "type": "string"
+                                            },
+                                            "statusCode": {
+                                              "type": "integer"
+                                            },
+                                            "title": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "position": {
+                                          "description": "Position of the article",
+                                          "type": "integer"
+                                        },
+                                        "rawHtml": {
+                                          "description": "Raw HTML content if requested in formats",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "screenshot": {
+                                          "description": "Screenshot URL if requested in formats",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "snippet": {
+                                          "description": "Snippet from the article",
+                                          "type": "string"
+                                        },
+                                        "title": {
+                                          "description": "Title of the article",
+                                          "type": "string"
+                                        },
+                                        "url": {
+                                          "description": "URL of the article",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "web": {
+                                    "items": {
+                                      "properties": {
+                                        "description": {
+                                          "description": "Description from search result",
+                                          "type": "string"
+                                        },
+                                        "html": {
+                                          "description": "HTML content if requested in formats",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "links": {
+                                          "description": "Links found if requested in formats",
+                                          "items": {
+                                            "type": "string"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "markdown": {
+                                          "description": "Markdown content if scraping was requested",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "metadata": {
+                                          "properties": {
+                                            "description": {
+                                              "type": "string"
+                                            },
+                                            "error": {
+                                              "nullable": true,
+                                              "type": "string"
+                                            },
+                                            "sourceURL": {
+                                              "type": "string"
+                                            },
+                                            "statusCode": {
+                                              "type": "integer"
+                                            },
+                                            "title": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "type": "object"
+                                        },
+                                        "rawHtml": {
+                                          "description": "Raw HTML content if requested in formats",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "screenshot": {
+                                          "description": "Screenshot URL if requested in formats",
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "title": {
+                                          "description": "Title from search result",
+                                          "type": "string"
+                                        },
+                                        "url": {
+                                          "description": "URL of the search result",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "success": {
+                                "type": "boolean"
+                              },
+                              "warning": {
+                                "description": "Warning message if any issues occurred",
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "408": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Request timed out",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Request timeout"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "code": {
+                                "example": "UNKNOWN_ERROR",
+                                "type": "string"
+                              },
+                              "error": {
+                                "example": "An unexpected error occurred on the server.",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Search and optionally scrape search results",
+                  "tags": [
+                    "Search"
+                  ]
+                }
+              },
+              "/team/credit-usage": {
+                "get": {
+                  "operationId": "getCreditUsage",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "billingPeriodEnd": {
+                                    "description": "End date of the billing period. null if using the free plan",
+                                    "example": "2025-01-31T23:59:59Z",
+                                    "format": "date-time",
+                                    "nullable": true,
+                                    "type": "string"
+                                  },
+                                  "billingPeriodStart": {
+                                    "description": "Start date of the billing period. null if using the free plan",
+                                    "example": "2025-01-01T00:00:00Z",
+                                    "format": "date-time",
+                                    "nullable": true,
+                                    "type": "string"
+                                  },
+                                  "planCredits": {
+                                    "description": "Number of credits in the plan. This does not include coupon credits or credits added by pay-as-you-go.",
+                                    "example": 500000,
+                                    "type": "number"
+                                  },
+                                  "remainingCredits": {
+                                    "description": "Number of credits remaining for the team",
+                                    "example": 1000,
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Could not find credit usage information",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Credit usage information not found"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Internal server error while fetching credit usage",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Get remaining credits for the authenticated team",
+                  "tags": [
+                    "Billing"
+                  ]
+                }
+              },
+              "/team/credit-usage/historical": {
+                "get": {
+                  "operationId": "getHistoricalCreditUsage",
+                  "parameters": [
+                    {
+                      "description": "Get historical credit usage by API key",
+                      "in": "query",
+                      "name": "byApiKey",
+                      "required": false,
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "periods": {
+                                "items": {
+                                  "properties": {
+                                    "apiKey": {
+                                      "description": "Name of the API key used for the billing period. null if byApiKey is false (default)",
+                                      "nullable": true,
+                                      "type": "string"
+                                    },
+                                    "endDate": {
+                                      "description": "End date of the billing period",
+                                      "example": "2025-01-31T23:59:59Z",
+                                      "format": "date-time",
+                                      "type": "string"
+                                    },
+                                    "startDate": {
+                                      "description": "Start date of the billing period",
+                                      "example": "2025-01-01T00:00:00Z",
+                                      "format": "date-time",
+                                      "type": "string"
+                                    },
+                                    "totalCredits": {
+                                      "description": "Total number of credits used in the billing period",
+                                      "example": 1000,
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Internal server error while fetching historical credit usage",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Get historical credit usage for the authenticated team",
+                  "tags": [
+                    "Billing"
+                  ]
+                }
+              },
+              "/team/token-usage": {
+                "get": {
+                  "operationId": "getTokenUsage",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "billingPeriodEnd": {
+                                    "description": "End date of the billing period. null if using the free plan",
+                                    "example": "2025-01-31T23:59:59Z",
+                                    "format": "date-time",
+                                    "nullable": true,
+                                    "type": "string"
+                                  },
+                                  "billingPeriodStart": {
+                                    "description": "Start date of the billing period. null if using the free plan",
+                                    "example": "2025-01-01T00:00:00Z",
+                                    "format": "date-time",
+                                    "nullable": true,
+                                    "type": "string"
+                                  },
+                                  "planTokens": {
+                                    "description": "Number of tokens in the plan. This does not include coupon tokens.",
+                                    "example": 500000,
+                                    "type": "number"
+                                  },
+                                  "remainingTokens": {
+                                    "description": "Number of tokens remaining for the team",
+                                    "example": 1000,
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Could not find token usage information",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Token usage information not found"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Internal server error while fetching token usage",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Get remaining tokens for the authenticated team (Extract only)",
+                  "tags": [
+                    "Billing"
+                  ]
+                }
+              },
+              "/team/token-usage/historical": {
+                "get": {
+                  "operationId": "getHistoricalTokenUsage",
+                  "parameters": [
+                    {
+                      "description": "Get historical token usage by API key",
+                      "in": "query",
+                      "name": "byApiKey",
+                      "required": false,
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "periods": {
+                                "items": {
+                                  "properties": {
+                                    "apiKey": {
+                                      "description": "Name of the API key used for the billing period. null if byApiKey is false (default)",
+                                      "nullable": true,
+                                      "type": "string"
+                                    },
+                                    "endDate": {
+                                      "description": "End date of the billing period",
+                                      "example": "2025-01-31T23:59:59Z",
+                                      "format": "date-time",
+                                      "type": "string"
+                                    },
+                                    "startDate": {
+                                      "description": "Start date of the billing period",
+                                      "example": "2025-01-01T00:00:00Z",
+                                      "format": "date-time",
+                                      "type": "string"
+                                    },
+                                    "totalTokens": {
+                                      "description": "Total number of tokens used in the billing period",
+                                      "example": 1000,
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Internal server error while fetching historical token usage",
+                                "type": "string"
+                              },
+                              "success": {
+                                "example": false,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Get historical token usage for the authenticated team (Extract only)",
+                  "tags": [
+                    "Billing"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://api.firecrawl.dev/v2"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Firecrawl"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:36.788660+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/firecrawl/firecrawl-docs/main/v1/api-reference/v2-openapi.json",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "52004f84f717c09aa87b334102340be55ca27fc1e181ab15c2488987156dd522",
+    "source_id": "firecrawl",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/firecrawl/firecrawl-docs/main/v1/api-reference/v2-openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "v2"
+}

@@ -2,7 +2,7 @@
 
 # Catalog
 
-547 applications: 30 published and 517 drafts. Drafts can be browsed but not connected until reviewed and published.
+943 applications: 30 published and 913 drafts. Drafts can be browsed but not connected until reviewed and published.
 
 ## Categories
 
@@ -10,25 +10,25 @@ An application can have up to four categories. They are defined in [categories.j
 
 | Id | Category | Published | Drafts |
 | --- | --- | --- | --- |
-| `ai` | AI & language | 0 | 35 |
-| `analytics` | Data & analytics | 1 | 16 |
-| `business` | Business & CRM | 1 | 17 |
-| `cloud` | Cloud & infrastructure | 3 | 30 |
-| `communication` | Communication | 3 | 33 |
-| `ecommerce` | E-commerce | 0 | 39 |
-| `education` | Education | 0 | 4 |
-| `finance` | Finance & payments | 2 | 60 |
-| `health` | Health & science | 1 | 10 |
-| `iot` | IoT & smart home | 0 | 14 |
-| `location` | Maps & location | 0 | 31 |
-| `marketing` | Marketing | 5 | 17 |
-| `media` | Media & entertainment | 1 | 64 |
-| `open-data` | Open data & government | 2 | 73 |
-| `productivity` | Productivity & collaboration | 10 | 27 |
-| `security` | Security & identity | 2 | 34 |
-| `social-media` | Social media | 5 | 14 |
-| `software-development` | Software development | 17 | 91 |
-| `travel` | Travel & transport | 0 | 13 |
+| `ai` | AI & language | 0 | 52 |
+| `analytics` | Data & analytics | 1 | 43 |
+| `business` | Business & CRM | 1 | 35 |
+| `cloud` | Cloud & infrastructure | 3 | 47 |
+| `communication` | Communication | 3 | 42 |
+| `ecommerce` | E-commerce | 0 | 52 |
+| `education` | Education | 0 | 11 |
+| `finance` | Finance & payments | 2 | 90 |
+| `health` | Health & science | 1 | 22 |
+| `iot` | IoT & smart home | 0 | 17 |
+| `location` | Maps & location | 0 | 42 |
+| `marketing` | Marketing | 5 | 146 |
+| `media` | Media & entertainment | 1 | 88 |
+| `open-data` | Open data & government | 2 | 110 |
+| `productivity` | Productivity & collaboration | 10 | 36 |
+| `security` | Security & identity | 2 | 44 |
+| `social-media` | Social media | 5 | 39 |
+| `software-development` | Software development | 17 | 109 |
+| `travel` | Travel & transport | 0 | 23 |
 
 ## Published (30)
 
@@ -65,7 +65,7 @@ An application can have up to four categories. They are defined in [categories.j
 | [WorkOS API](apps/workos-openapi/MANIFEST.md) | `workos-openapi` | security, software-development | openapi | 1.0 | 268 | `setup_fixture_reviewed_user_credential_test_required` | pending |
 | [X](apps/x/MANIFEST.md) | `x` | social-media, marketing | openapi | 2.173 | 257 | `reviewed_publication_user_test_required` | pending |
 
-## Drafts (517)
+## Drafts (913)
 
 | Application | Id | Categories | Protocol | Version | Operations | Readiness | Signature |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -75,19 +75,35 @@ An application can have up to four categories. They are defined in [categories.j
 | [Platform API](apps/ably-io-platform-640c6f8fb1/MANIFEST.md) | `ably-io-platform-640c6f8fb1` | cloud | openapi | 1.1.0 | 22 | `discovered` | pending |
 | [Control API v1](apps/ably-net-control-ded2e27e6e/MANIFEST.md) | `ably-net-control-ded2e27e6e` | cloud | openapi | 1.0.14 | 22 | `discovered` | pending |
 | [IP geolocation API](apps/abstractapi-com-geolocation-f50d3a81df/MANIFEST.md) | `abstractapi-com-geolocation-f50d3a81df` | location | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [ActiveCampaign](apps/activecampaign/MANIFEST.md) | `activecampaign` | marketing | openapi | 3 | 337 | `discovered` | pending |
+| [Activepieces](apps/activepieces/MANIFEST.md) | `activepieces` | software-development | openapi | 0.0.0 | 119 | `discovered` | pending |
 | [Adafruit IO REST API](apps/adafruit-com-eaefac1842/MANIFEST.md) | `adafruit-com-eaefac1842` | iot | openapi | 2.0.0 | 71 | `discovered` | pending |
+| [AddCal](apps/addcal/MANIFEST.md) | `addcal` | productivity | openapi | 1.0.0 | 33 | `discovered` | pending |
+| [Adhook](apps/adhook/MANIFEST.md) | `adhook` | social-media | openapi | 1.0 | 213 | `discovered` | pending |
 | [Adobe Experience Manager (AEM) API](apps/adobe-com-aem-bce9eb2146/MANIFEST.md) | `adobe-com-aem-bce9eb2146` | marketing | openapi | 3.7.1-pre.0 | 48 | `discovered` | pending |
+| [Adrapid](apps/adrapid/MANIFEST.md) | `adrapid` | marketing | openapi | 1.0.0 | 1 | `discovered` | pending |
 | [Account API](apps/adyen-com-accountservice-c646f56f31/MANIFEST.md) | `adyen-com-accountservice-c646f56f31` | finance | openapi | 6 | 20 | `discovered` | pending |
+| [AEMET OpenData](apps/aemet-opendata/MANIFEST.md) | `aemet-opendata` | open-data | openapi | 2.0 | 64 | `discovered` | pending |
 | [Afterbanks API](apps/afterbanks-com-13b0a66f26/MANIFEST.md) | `afterbanks-com-13b0a66f26` | finance | openapi | 3.0.0 | 3 | `discovered` | pending |
 | [AGCO API](apps/agco-ats-com-2c21633b46/MANIFEST.md) | `agco-ats-com-2c21633b46` | ecommerce | openapi | v1 | 277 | `discovered` | pending |
+| [AgendaForge](apps/agendaforge/MANIFEST.md) | `agendaforge` | marketing | openapi | 1.0.0 | 14 | `discovered` | pending |
+| [Agorapulse](apps/agorapulse/MANIFEST.md) | `agorapulse` | social-media | openapi | 1.0 | 59 | `discovered` | pending |
+| [AI Connector](apps/ai-connector/MANIFEST.md) | `ai-connector` | ai | openapi | 1.0.0 | 53 | `discovered` | pending |
+| [Airbyte](apps/airbyte/MANIFEST.md) | `airbyte` | analytics | openapi | 1.0.0 | 92 | `discovered` | pending |
 | [Airbyte Configuration API](apps/airbyte-local-config-5178b90805/MANIFEST.md) | `airbyte-local-config-5178b90805` | analytics, software-development | openapi | 1.0.0 | 102 | `discovered` | pending |
 | [airportsapi](apps/airport-web-appspot-com-4e1eee65bb/MANIFEST.md) | `airport-web-appspot-com-4e1eee65bb` | travel | openapi | v1 | 1 | `discovered` | pending |
+| [Airtable](apps/airtable/MANIFEST.md) | `airtable` | analytics | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [Akeneo PIM REST API](apps/akeneo-com-388235a66f/MANIFEST.md) | `akeneo-com-388235a66f` | ecommerce | openapi | 1.0.0 | 140 | `discovered` | pending |
+| [Akeneo PIM GraphQL](apps/akeneo-graphql/MANIFEST.md) | `akeneo-graphql` | ecommerce, business | graphql | 2026-11-18-snapshot | 17 | `discovered` | pending |
 | [Alerter System API](apps/alertersystem-com-2bbb44cd25/MANIFEST.md) | `alertersystem-com-2bbb44cd25` | communication | openapi | 1.6.0 | 422 | `discovered` | pending |
+| [Alpaca](apps/alpaca/MANIFEST.md) | `alpaca` | finance | openapi | 2.0.1 | 58 | `discovered` | pending |
 | [Flight Offers Search](apps/amadeus-com-f4570d52ea/MANIFEST.md) | `amadeus-com-f4570d52ea` | travel | openapi | 2.2.0 | 2 | `discovered` | pending |
+| [Amazon](apps/amazon/MANIFEST.md) | `amazon` | ecommerce | openapi | v1 | 2 | `discovered` | pending |
 | [AWS Migration Hub](apps/amazonaws-com-awsmigrationhub-c8f041be05/MANIFEST.md) | `amazonaws-com-awsmigrationhub-c8f041be05` | cloud | openapi | 2017-05-31 | 17 | `discovered` | pending |
 | [Atmosphere API](apps/amentum-space-atmosphere-8f1f0b180f/MANIFEST.md) | `amentum-space-atmosphere-8f1f0b180f` | location | openapi | 1.1.1 | 3 | `discovered` | pending |
 | [Anchore Engine API Server](apps/anchore-io-e3b0971f3b/MANIFEST.md) | `anchore-io-e3b0971f3b` | security, software-development | openapi | 0.1.20 | 112 | `discovered` | pending |
+| [AniList](apps/anilist-graphql/MANIFEST.md) | `anilist-graphql` | media | graphql | 2026-11-18-snapshot | 58 | `discovered` | pending |
+| [Apache Airflow](apps/apache-airflow/MANIFEST.md) | `apache-airflow` | software-development | openapi | 2 | 134 | `discovered` | pending |
 | [Airflow API (Stable)](apps/apache-org-87f12485ac/MANIFEST.md) | `apache-org-87f12485ac` | analytics, software-development | openapi | 2.5.1 | 73 | `discovered` | pending |
 | [Apacta](apps/apacta-com-a902934201/MANIFEST.md) | `apacta-com-a902934201` | productivity | openapi | 0.0.42 | 290 | `discovered` | pending |
 | [Account API](apps/api-ebay-com-sell-account-788bb05560/MANIFEST.md) | `api-ebay-com-sell-account-788bb05560` | ecommerce | openapi | v1.9.0 | 36 | `discovered` | pending |
@@ -95,38 +111,55 @@ An application can have up to four categories. They are defined in [categories.j
 | [api.video](apps/api-video-3e22d65e37/MANIFEST.md) | `api-video-3e22d65e37` | media | openapi | 1 | 47 | `discovered` | pending |
 | [Swagger API2Cart](apps/api2cart-com-c7c27215ce/MANIFEST.md) | `api2cart-com-c7c27215ce` | ecommerce | openapi | 1.1 | 146 | `discovered` | pending |
 | [Apicurio Registry API [v2]](apps/apicurio-local-registry-f8e8ccae25/MANIFEST.md) | `apicurio-local-registry-f8e8ccae25` | software-development | openapi | 2.4.x | 64 | `discovered` | pending |
+| [Apicurio Registry](apps/apicurio-registry/MANIFEST.md) | `apicurio-registry` | software-development | openapi | 3.4.x | 140 | `discovered` | pending |
 | [ApiDapp](apps/apidapp-com-e898718cf9/MANIFEST.md) | `apidapp-com-e898718cf9` | finance | openapi | 2019-02-14T16:47:01Z | 54 | `discovered` | pending |
 | [Accounting API](apps/apideck-com-accounting-dbb8c0a771/MANIFEST.md) | `apideck-com-accounting-dbb8c0a771` | finance, software-development | openapi | 9.3.0 | 53 | `discovered` | pending |
+| [Apify](apps/apify/MANIFEST.md) | `apify` | marketing | openapi | v2-2026-11-18T151559Z | 242 | `discovered` | pending |
 | [Registry API](apps/apigee-local-registry-71b81033ab/MANIFEST.md) | `apigee-local-registry-71b81033ab` | software-development | openapi | 0.0.1 | 35 | `discovered` | pending |
 | [Marketcheck APIs](apps/apigee-net-marketcheck-cars-73e0b295bb/MANIFEST.md) | `apigee-net-marketcheck-cars-73e0b295bb` | ecommerce | openapi | 2.01 | 71 | `discovered` | pending |
+| [Apigee Registry](apps/apigee-registry/MANIFEST.md) | `apigee-registry` | software-development | openapi | 0.0.1 | 35 | `discovered` | pending |
 | [APIMATIC API Transformer](apps/apimatic-io-e0ac7dd13d/MANIFEST.md) | `apimatic-io-e0ac7dd13d` | software-development | openapi | 1.0 | 1 | `discovered` | pending |
 | [APIs.guru](apps/apis-guru-4c890897bd/MANIFEST.md) | `apis-guru-4c890897bd` | open-data, software-development | openapi | 2.2.0 | 7 | `discovered` | pending |
 | [Department of Food, Public Distribution & Consumer Affairs (PDS), Jharkhand](apps/apisetu-gov-in-aaharjh-0c7ff9a89a/MANIFEST.md) | `apisetu-gov-in-aaharjh-0c7ff9a89a` | open-data | openapi | 3.0.0 | 1 | `discovered` | pending |
 | [Bulk WHOIS API](apps/apispot-io-whois-9c5a8b22f5/MANIFEST.md) | `apispot-io-whois-9c5a8b22f5` | software-development | openapi | 1.0 | 8 | `discovered` | pending |
 | [Identity API](apps/apiz-ebay-com-commerce-identity-2a70f54e01/MANIFEST.md) | `apiz-ebay-com-commerce-identity-2a70f54e01` | ecommerce | openapi | v1.1.0 | 1 | `discovered` | pending |
+| [Apollo GraphOS Platform API](apps/apollo-graphos-graphql/MANIFEST.md) | `apollo-graphos-graphql` | software-development, cloud | graphql | 2026-11-18-snapshot | 26 | `discovered` | pending |
+| [ApostropheCMS](apps/apostrophecms/MANIFEST.md) | `apostrophecms` | productivity, media | openapi | 1.0.0 | 195 | `discovered` | pending |
 | [App Center Client](apps/appcenter-ms-c7565593d8/MANIFEST.md) | `appcenter-ms-c7565593d8` | software-development | openapi | v0.1 | 352 | `discovered` | pending |
 | [App Store Connect API](apps/apple-com-app-store-connect-4363eb7323/MANIFEST.md) | `apple-com-app-store-connect-4363eb7323` | software-development | openapi | 1.4.1 | 252 | `discovered` | pending |
 | [PowerTools Developer](apps/apptigent-com-9cf2f231e5/MANIFEST.md) | `apptigent-com-9cf2f231e5` | software-development | openapi | 2021.1.01 | 88 | `discovered` | pending |
 | [AppVeyor REST API](apps/appveyor-com-d1bbef2745/MANIFEST.md) | `appveyor-com-d1bbef2745` | software-development | openapi | 1.0.0 | 53 | `discovered` | pending |
 | [Appwrite](apps/appwrite-io-client-848307f56a/MANIFEST.md) | `appwrite-io-client-848307f56a` | software-development | openapi | 0.9.3 | 61 | `discovered` | pending |
+| [Aptos Indexer API](apps/aptos-graphql/MANIFEST.md) | `aptos-graphql` | finance | graphql | 2026-11-18-snapshot | 79 | `discovered` | pending |
 | [Search Services](apps/archive-org-search-473d8271c4/MANIFEST.md) | `archive-org-search-473d8271c4` | media, open-data | openapi | 1.0.0 | 3 | `discovered` | pending |
 | [Arespass](apps/arespass-net-20b4b2ccd1/MANIFEST.md) | `arespass-net-20b4b2ccd1` | security | openapi | 1.0 | 2 | `discovered` | pending |
 | [ART19 Content API Documentation](apps/art19-com-9669d3806e/MANIFEST.md) | `art19-com-9669d3806e` | media | openapi | 1.0.0 | 22 | `discovered` | pending |
+| [Artsy Metaphysics](apps/artsy-graphql/MANIFEST.md) | `artsy-graphql` | media | graphql | 2026-11-18-snapshot | 528 | `discovered` | pending |
+| [Arweave Gateway GraphQL](apps/arweave-graphql/MANIFEST.md) | `arweave-graphql` | cloud | graphql | 2026-11-18-snapshot | 6 | `discovered` | pending |
 | [Asana](apps/asana-com-6cdd16e9a7/MANIFEST.md) | `asana-com-6cdd16e9a7` | productivity | openapi | 1.0 | 167 | `discovered` | pending |
+| [AssemblyAI](apps/assemblyai/MANIFEST.md) | `assemblyai` | ai | openapi | 1.3.4 | 10 | `discovered` | pending |
 | [SearchLy API v1](apps/asuarez-dev-searchly-d1e368a75f/MANIFEST.md) | `asuarez-dev-searchly-d1e368a75f` | media | openapi | 1.0 | 3 | `discovered` | pending |
 | [The Jira Cloud platform REST API](apps/atlassian-com-jira-97765110a1/MANIFEST.md) | `atlassian-com-jira-97765110a1` | productivity, software-development | openapi | 1001.0.0-SNAPSHOT | 487 | `discovered` | pending |
+| [Attentive](apps/attentive/MANIFEST.md) | `attentive` | marketing | openapi | 2.0.0 | 13 | `discovered` | pending |
+| [Attio](apps/attio/MANIFEST.md) | `attio` | business | openapi | 2.0.0 | 108 | `discovered` | pending |
 | [Auckland Museum API](apps/aucklandmuseum-com-703afaec5f/MANIFEST.md) | `aucklandmuseum-com-703afaec5f` | open-data | openapi | 2.0.0 | 6 | `discovered` | pending |
+| [Audienceful](apps/audienceful/MANIFEST.md) | `audienceful` | marketing | openapi | 1.0.0 | 48 | `discovered` | pending |
+| [Auth0](apps/auth0/MANIFEST.md) | `auth0` | security | openapi | 2.0 | 490 | `discovered` | pending |
 | [Authentiq Connect API](apps/authentiq-io-7873537c51/MANIFEST.md) | `authentiq-io-7873537c51` | security | openapi | 1.0 | 9 | `discovered` | pending |
+| [AutoContent API](apps/autocontent-api/MANIFEST.md) | `autocontent-api` | marketing | openapi | 1.0.0 | 109 | `discovered` | pending |
 | [CIS Automotive API](apps/autodealerdata-com-ec66ea6b25/MANIFEST.md) | `autodealerdata-com-ec66ea6b25` | ecommerce | openapi | 1.0 | 35 | `discovered` | pending |
 | [Autodesk Object Storage Service](apps/autodesk-aps-oss/MANIFEST.md) | `autodesk-aps-oss` | cloud | openapi | 1.0 | 21 | `discovered` | pending |
 | [Datto\|Autotask PSA Rest API](apps/autotask-net-51422169c8/MANIFEST.md) | `autotask-net-51422169c8` | business | openapi | v1 | 2958 | `discovered` | pending |
 | [Avaza API Documentation](apps/avaza-com-1781a9ce58/MANIFEST.md) | `avaza-com-1781a9ce58` | productivity | openapi | v1 | 86 | `discovered` | pending |
+| [AWeber](apps/aweber/MANIFEST.md) | `aweber` | marketing | openapi | 1.0 | 0 | `discovered` | pending |
 | [Azure Enterprise Knowledge Graph Service](apps/azure-com-enterpriseknowledgegraph-enterpriseknowledgegraphswagger-8169178425/MANIFEST.md) | `azure-com-enterpriseknowledgegraph-enterpriseknowledgegraphswagger-8169178425` | cloud | openapi | 2018-12-03 | 7 | `discovered` | pending |
 | [balldontlie](apps/balldontlie-io-93779ca935/MANIFEST.md) | `balldontlie-io-93779ca935` | open-data | openapi | 1.0.0 | 7 | `discovered` | pending |
 | [Bandsintown API](apps/bandsintown-com-11dc9b9fd7/MANIFEST.md) | `bandsintown-com-11dc9b9fd7` | media, social-media | openapi | 3.0.0 | 2 | `discovered` | pending |
+| [BART](apps/bart/MANIFEST.md) | `bart` | open-data | openapi | 1.0.0 | 1 | `discovered` | pending |
 | [BBC Nitro API](apps/bbc-com-48de9242cd/MANIFEST.md) | `bbc-com-48de9242cd` | media, open-data | openapi | 1.0.0 | 25 | `discovered` | pending |
 | [BBC iPlayer Business Layer](apps/bbci-co-uk-0e500193fa/MANIFEST.md) | `bbci-co-uk-0e500193fa` | media | openapi | 1.0 | 30 | `discovered` | pending |
 | [BC Laws](apps/bclaws-ca-bclaws-3d8bc64e33/MANIFEST.md) | `bclaws-ca-bclaws-3d8bc64e33` | open-data | openapi | 1.0.0 | 7 | `discovered` | pending |
+| [beehiiv](apps/beehiiv/MANIFEST.md) | `beehiiv` | marketing | openapi | 1 | 119 | `discovered` | pending |
 | [BeezUP Merchant API](apps/beezup-com-8a3b4ef40f/MANIFEST.md) | `beezup-com-8a3b4ef40f` | ecommerce | openapi | 2.0 | 226 | `discovered` | pending |
 | [Betfair: Exchange Streaming API](apps/betfair-com-84ad41b192/MANIFEST.md) | `betfair-com-84ad41b192` | finance, media | openapi | 1.0.1423 | 1 | `discovered` | pending |
 | [SEDRA IV API](apps/bethmardutho-org-2075c1f937/MANIFEST.md) | `bethmardutho-org-2075c1f937` | education, open-data | openapi | 1.0.0 | 2 | `discovered` | pending |
@@ -137,99 +170,162 @@ An application can have up to four categories. They are defined in [categories.j
 | [1,000,000+ Recipe and Grocery List API (v2)](apps/bigoven-com-6088c28d5c/MANIFEST.md) | `bigoven-com-6088c28d5c` | media | openapi | partner | 66 | `discovered` | pending |
 | [Big Red Cloud API](apps/bigredcloud-com-7c629f8ab5/MANIFEST.md) | `bigredcloud-com-7c629f8ab5` | finance | openapi | v1 | 111 | `discovered` | pending |
 | [Billbee API](apps/billbee-io-15cf84b1c7/MANIFEST.md) | `billbee-io-15cf84b1c7` | ecommerce | openapi | v1 | 76 | `discovered` | pending |
+| [Billetweb](apps/billetweb/MANIFEST.md) | `billetweb` | marketing | openapi | 1 | 42 | `discovered` | pending |
 | [Billingo API v3](apps/billingo-hu-233dabf482/MANIFEST.md) | `billingo-hu-233dabf482` | finance | openapi | 3.0.7 | 31 | `discovered` | pending |
 | [BIN Lookup API](apps/bintable-com-f91c06de36/MANIFEST.md) | `bintable-com-f91c06de36` | finance | openapi | 1.0.0-oas3 | 2 | `discovered` | pending |
+| [Bitly](apps/bitly/MANIFEST.md) | `bitly` | marketing | openapi | 4.0.0 | 145 | `discovered` | pending |
 | [BizToc](apps/biztoc-com-8a4fa2d963/MANIFEST.md) | `biztoc-com-8a4fa2d963` | media | openapi | v1 | 1 | `discovered` | pending |
+| [Blastable](apps/blastable/MANIFEST.md) | `blastable` | marketing | openapi | 0.1.0 | 79 | `discovered` | pending |
 | [IBM Containers API](apps/bluemix-net-containers-a191e8e68a/MANIFEST.md) | `bluemix-net-containers-a191e8e68a` | software-development | openapi | 3.0.0 | 47 | `discovered` | pending |
+| [Blueshift](apps/blueshift/MANIFEST.md) | `blueshift` | marketing | openapi | 1.0.0 | 85 | `discovered` | pending |
+| [BonusQR](apps/bonusqr/MANIFEST.md) | `bonusqr` | marketing | openapi | 2.0.0 | 17 | `discovered` | pending |
+| [BotConversa](apps/botconversa/MANIFEST.md) | `botconversa` | marketing | openapi | BETA | 30 | `discovered` | pending |
 | [Botify API](apps/botify-com-f89164fc79/MANIFEST.md) | `botify-com-f89164fc79` | analytics, software-development | openapi | 1.0.0 | 26 | `discovered` | pending |
 | [FastAPI](apps/botschaft-local-2fbcac135f/MANIFEST.md) | `botschaft-local-2fbcac135f` | communication | openapi | 0.1.0 | 10 | `discovered` | pending |
 | [Box Platform API](apps/box-com-a4158c78f7/MANIFEST.md) | `box-com-a4158c78f7` | cloud | openapi | 2.0.0 | 260 | `discovered` | pending |
 | [brainbi](apps/brainbi-net-732f3972f9/MANIFEST.md) | `brainbi-net-732f3972f9` | ecommerce | openapi | 1.0.0 | 14 | `discovered` | pending |
+| [Braintree (PayPal)](apps/braintree-graphql/MANIFEST.md) | `braintree-graphql` | finance, ecommerce | graphql | 2026-11-18-snapshot | 143 | `discovered` | pending |
+| [Braintrust](apps/braintrust/MANIFEST.md) | `braintrust` | ai | openapi | 1.0.0 | 162 | `discovered` | pending |
 | [BrandLovers Marketplace API V1](apps/brandlovers-com-f9d45876ac/MANIFEST.md) | `brandlovers-com-f9d45876ac` | ecommerce | openapi | 1.0.0 | 36 | `discovered` | pending |
 | [Braze Endpoints](apps/braze-com-cbda575be3/MANIFEST.md) | `braze-com-cbda575be3` | marketing | openapi | 1.0.0 | 31 | `discovered` | pending |
+| [Brevo](apps/brevo/MANIFEST.md) | `brevo` | marketing | openapi | 3.0.0 | 292 | `discovered` | pending |
 | [KYC API Documentation](apps/brex-io-1f5cc76f03/MANIFEST.md) | `brex-io-1f5cc76f03` | finance, security | openapi | 2021.12 | 54 | `discovered` | pending |
 | [bridgedb webservices](apps/bridgedb-org-8ce3b0faf4/MANIFEST.md) | `bridgedb-org-8ce3b0faf4` | health | openapi | 0.9.0 | 13 | `discovered` | pending |
 | [Rocket Services](apps/britbox-co-uk-07791e265a/MANIFEST.md) | `britbox-co-uk-07791e265a` | media | openapi | 3.730.300-ref-1-39-0 | 121 | `discovered` | pending |
+| [Browserbase](apps/browserbase/MANIFEST.md) | `browserbase` | ai | openapi | v1 | 76 | `discovered` | pending |
 | [Browshot API](apps/browshot-com-27bf3eba3b/MANIFEST.md) | `browshot-com-27bf3eba3b` | software-development | openapi | 1.17.0 | 17 | `discovered` | pending |
 | [Bufferapp](apps/bufferapp-com-413edb6b6c/MANIFEST.md) | `bufferapp-com-413edb6b6c` | social-media, marketing | openapi | 1 | 18 | `discovered` | pending |
+| [Buildkite](apps/buildkite-graphql/MANIFEST.md) | `buildkite-graphql` | software-development | graphql | 2026-11-18-snapshot | 107 | `discovered` | pending |
+| [BulkPublish](apps/bulkpublish/MANIFEST.md) | `bulkpublish` | social-media | openapi | 1.0.0 | 116 | `discovered` | pending |
 | [BulkSMS JSON REST API](apps/bulksms-com-fefe281aa1/MANIFEST.md) | `bulksms-com-fefe281aa1` | communication | openapi | 1.0.0 | 15 | `discovered` | pending |
 | [Bungie.Net API](apps/bungie-net-06a4b6db6c/MANIFEST.md) | `bungie-net-06a4b6db6c` | media | openapi | 2.18.0 | 134 | `discovered` | pending |
 | [bunq API](apps/bunq-com-a0d7cc5912/MANIFEST.md) | `bunq-com-a0d7cc5912` | finance | openapi | 1.0 | 421 | `discovered` | pending |
+| [Bureau of Labor Statistics](apps/bureau-of-labor-statistics/MANIFEST.md) | `bureau-of-labor-statistics` | open-data | openapi | 1.0.0 | 7 | `discovered` | pending |
+| [Buttondown](apps/buttondown/MANIFEST.md) | `buttondown` | marketing | openapi | 1.0.0 | 133 | `discovered` | pending |
 | [Automata Market Intelligence API](apps/byautomata-io-2a34e3c15d/MANIFEST.md) | `byautomata-io-2a34e3c15d` | marketing, analytics | openapi | 1.0.1 | 4 | `discovered` | pending |
 | [API for the COVID-19 Tracking QR Code Signin Server.](apps/c19qrserver-local-b3fc02e2b6/MANIFEST.md) | `c19qrserver-local-b3fc02e2b6` | open-data | openapi | 1.1 | 14 | `discovered` | pending |
+| [Cal.com](apps/cal-com/MANIFEST.md) | `cal-com` | productivity | openapi | 1.0.0 | 121 | `discovered` | pending |
 | [Call Control API](apps/callcontrol-com-65c8280166/MANIFEST.md) | `callcontrol-com-65c8280166` | communication | openapi | 2015-11-01 | 6 | `discovered` | pending |
 | [CallFire API Documentation](apps/callfire-com-f193375214/MANIFEST.md) | `callfire-com-f193375214` | communication | openapi | V2 | 122 | `discovered` | pending |
 | [CalorieNinjas](apps/calorieninjas-com-a55829e7a9/MANIFEST.md) | `calorieninjas-com-a55829e7a9` | health | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [Campaign Monitor](apps/campaign-monitor/MANIFEST.md) | `campaign-monitor` | marketing | openapi | 3.3 | 47 | `discovered` | pending |
 | [Canada Holidays API](apps/canada-holidays-ca-b17af93a11/MANIFEST.md) | `canada-holidays-ca-b17af93a11` | open-data | openapi | 1.8.0 | 6 | `discovered` | pending |
+| [Canva](apps/canva/MANIFEST.md) | `canva` | productivity | openapi | 2024-06-18 | 67 | `discovered` | pending |
+| [CarAPI.dev](apps/carapi-dev/MANIFEST.md) | `carapi-dev` | analytics | openapi | 1.0.0 | 19 | `discovered` | pending |
+| [Cardly](apps/cardly/MANIFEST.md) | `cardly` | marketing | openapi | 2.2.0 | 48 | `discovered` | pending |
 | [Prime ReportStream](apps/cdcgov-local-prime-data-hub-2c85ef0e0b/MANIFEST.md) | `cdcgov-local-prime-data-hub-2c85ef0e0b` | open-data, productivity | openapi | 0.2.0-oas3 | 14 | `discovered` | pending |
 | [Cenit IO - REST API Specification](apps/cenit-io-748c6627e2/MANIFEST.md) | `cenit-io-748c6627e2` | software-development, business | openapi | v1 | 40 | `discovered` | pending |
+| [CFPB Consumer Complaint Database](apps/cfpb-consumer-complaint-database/MANIFEST.md) | `cfpb-consumer-complaint-database` | open-data | openapi | 1.0.0 | 4 | `discovered` | pending |
+| [CFPB HMDA Data Browser API](apps/cfpb-hmda-data-browser-api/MANIFEST.md) | `cfpb-hmda-data-browser-api` | open-data | openapi | 1.0.0 | 5 | `discovered` | pending |
 | [Chaingateway.io](apps/chaingateway-io-de83e31e78/MANIFEST.md) | `chaingateway-io-de83e31e78` | finance | openapi | 1.0 | 21 | `discovered` | pending |
 | [API V1](apps/change-local-7214c70ad9/MANIFEST.md) | `change-local-7214c70ad9` | finance | openapi | v1 | 8 | `discovered` | pending |
 | [Channel 4 API](apps/channel4-com-37709f74ee/MANIFEST.md) | `channel4-com-37709f74ee` | media | openapi | 1.0.0 | 68 | `discovered` | pending |
+| [Chargebee](apps/chargebee/MANIFEST.md) | `chargebee` | finance, business | openapi | 2026-11-12.8ccf0f3db732eac5f7c79ffeda97bd8acdf9e0a7 | 499 | `discovered` | pending |
 | [Chomp Food Database API Documentation](apps/chompthis-com-c0c31d1cc4/MANIFEST.md) | `chompthis-com-c0c31d1cc4` | health | openapi | 1.0.0-oas3 | 4 | `discovered` | pending |
+| [Churchpool](apps/churchpool/MANIFEST.md) | `churchpool` | marketing | openapi | 1.0.0 | 2 | `discovered` | pending |
+| [CIRCL Hashlookup](apps/circl-hashlookup/MANIFEST.md) | `circl-hashlookup` | security | openapi | 1.3 | 11 | `discovered` | pending |
 | [hashlookup CIRCL API](apps/circl-lu-hashlookup-915d37343f/MANIFEST.md) | `circl-lu-hashlookup-915d37343f` | security | openapi | 1.2 | 11 | `discovered` | pending |
 | [CircleCI REST API](apps/circleci-com-63cac92d73/MANIFEST.md) | `circleci-com-63cac92d73` | software-development | openapi | v1 | 22 | `discovered` | pending |
 | [REST API Version 2](apps/circuitsandbox-net-8e8b0c9d27/MANIFEST.md) | `circuitsandbox-net-8e8b0c9d27` | communication | openapi | 2.9.235 | 123 | `discovered` | pending |
+| [CIViC (Clinical Interpretation of Variants in Cancer)](apps/civic-graphql/MANIFEST.md) | `civic-graphql` | health, open-data | graphql | 2026-11-18-snapshot | 159 | `discovered` | pending |
 | [ClearBlade API](apps/clearblade-com-e6cc33d043/MANIFEST.md) | `clearblade-com-e6cc33d043` | iot | openapi | 3.0 | 220 | `discovered` | pending |
 | [Clever-Cloud API](apps/clever-cloud-com-801b4557a6/MANIFEST.md) | `clever-cloud-com-801b4557a6` | cloud | openapi | 1.0.0 | 324 | `discovered` | pending |
 | [Data API](apps/clever-com-95c826aebb/MANIFEST.md) | `clever-com-95c826aebb` | education | openapi | 1.2.0 | 44 | `discovered` | pending |
+| [CleverReach](apps/cleverreach/MANIFEST.md) | `cleverreach` | marketing | openapi | 3 | 138 | `discovered` | pending |
+| [ClickFunnels](apps/clickfunnels/MANIFEST.md) | `clickfunnels` | marketing | openapi | 2.0.0 | 489 | `discovered` | pending |
 | [ClickMeter API](apps/clickmeter-com-be34dda88d/MANIFEST.md) | `clickmeter-com-be34dda88d` | marketing | openapi | v2 | 104 | `discovered` | pending |
 | [ClickSend REST API v3](apps/clicksend-com-55845bae13/MANIFEST.md) | `clicksend-com-55845bae13` | communication | openapi | 1.0.0 | 205 | `discovered` | pending |
 | [clickup20](apps/clickup-com-9bd7bad2b4/MANIFEST.md) | `clickup-com-9bd7bad2b4` | productivity | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [Climate FieldView Platform APIs](apps/climate-com-1100609298/MANIFEST.md) | `climate-com-1100609298` | open-data | openapi | 4.0.11 | 26 | `discovered` | pending |
 | [climateKuul live](apps/climatekuul-com-70382207ed/MANIFEST.md) | `climatekuul-com-70382207ed` | open-data | openapi | 1.0 | 26 | `discovered` | pending |
+| [Climbo 2.0](apps/climbo-2-0/MANIFEST.md) | `climbo-2-0` | business | openapi | 1.0.0 | 12 | `discovered` | pending |
+| [ClinicalTrials.gov](apps/clinicaltrials-gov/MANIFEST.md) | `clinicaltrials-gov` | health | openapi | 2.0.5 | 3 | `discovered` | pending |
+| [Close](apps/close/MANIFEST.md) | `close` | business | openapi | 1.0.0 | 308 | `discovered` | pending |
 | [ecwid](apps/cloud-elements-com-ecwid-910423229a/MANIFEST.md) | `cloud-elements-com-ecwid-910423229a` | ecommerce | openapi | api-v2 | 42 | `discovered` | pending |
 | [ocrapi](apps/cloudmersive-com-ocr-287ded8748/MANIFEST.md) | `cloudmersive-com-ocr-287ded8748` | ai | openapi | v1 | 19 | `discovered` | pending |
 | [Cloud-RF API](apps/cloudrf-com-f64ed5319f/MANIFEST.md) | `cloudrf-com-f64ed5319f` | communication, location | openapi | 2.0.0 | 11 | `discovered` | pending |
 | [Clubhouse API](apps/clubhouseapi-com-fd1214f521/MANIFEST.md) | `clubhouseapi-com-fd1214f521` | social-media | openapi | 1 | 41 | `discovered` | pending |
 | [Cnab Online](apps/cnab-online-herokuapp-com-e385dc6c46/MANIFEST.md) | `cnab-online-herokuapp-com-e385dc6c46` | finance | openapi | 1.0.0 | 4 | `discovered` | pending |
+| [Coda](apps/coda/MANIFEST.md) | `coda` | productivity | openapi | 1.7.0 | 123 | `discovered` | pending |
 | [Accounting API](apps/codat-io-accounting-3dbdf3c172/MANIFEST.md) | `codat-io-accounting-3dbdf3c172` | finance | openapi | 2.1.0 | 127 | `discovered` | pending |
 | [CodeScan API](apps/code-scan-com-5784d82ef7/MANIFEST.md) | `code-scan-com-5784d82ef7` | security, software-development | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [Debian Code Search](apps/codesearch-debian-net-715c51c8ba/MANIFEST.md) | `codesearch-debian-net-715c51c8ba` | software-development | openapi | 1.4.0 | 2 | `discovered` | pending |
+| [CoinCap](apps/coincap/MANIFEST.md) | `coincap` | finance | openapi | 3.0.0 | 40 | `discovered` | pending |
+| [Collectform](apps/collectform/MANIFEST.md) | `collectform` | marketing | openapi | 1.0.0 | 2 | `discovered` | pending |
+| [College Football Data](apps/college-football-data/MANIFEST.md) | `college-football-data` | media | openapi | 5.34.0 | 93 | `discovered` | pending |
 | [College Football Data API](apps/collegefootballdata-com-9746553a52/MANIFEST.md) | `collegefootballdata-com-9746553a52` | open-data | openapi | 4.4.12 | 51 | `discovered` | pending |
 | [Public Api](apps/combell-com-f719729799/MANIFEST.md) | `combell-com-f719729799` | cloud | openapi | v2 | 75 | `discovered` | pending |
+| [Composio](apps/composio/MANIFEST.md) | `composio` | ai | openapi | 3.0.0 | 93 | `discovered` | pending |
 | [ConfigCat Public Management API](apps/configcat-com-bfd2d36664/MANIFEST.md) | `configcat-com-bfd2d36664` | software-development | openapi | v1 | 62 | `discovered` | pending |
+| [Congress.gov](apps/congress-gov/MANIFEST.md) | `congress-gov` | open-data | openapi | 3 | 108 | `discovered` | pending |
 | [Conjur](apps/conjur-local-ddb00d9d8d/MANIFEST.md) | `conjur-local-ddb00d9d8d` | security | openapi | 5.3.0 | 41 | `discovered` | pending |
+| [Connectif](apps/connectif/MANIFEST.md) | `connectif` | marketing | openapi | 1.0.0 | 48 | `discovered` | pending |
+| [Constant Contact](apps/constant-contact/MANIFEST.md) | `constant-contact` | marketing | openapi | 3.0.213 | 128 | `discovered` | pending |
 | [ContentGroove API](apps/contentgroove-com-b799901b88/MANIFEST.md) | `contentgroove-com-b799901b88` | media, ai | openapi | 1.0.0 | 15 | `discovered` | pending |
 | [Contract.fit API](apps/contract-p-fit-3cae6b0d08/MANIFEST.md) | `contract-p-fit-3cae6b0d08` | ai | openapi | 1.0 | 135 | `discovered` | pending |
 | [Contribly](apps/contribly-com-527754d439/MANIFEST.md) | `contribly-com-527754d439` | social-media | openapi | 1.0.0 | 44 | `discovered` | pending |
+| [Convex](apps/convex/MANIFEST.md) | `convex` | software-development | openapi | 1.0.0 | 49 | `discovered` | pending |
 | [Corrently.io](apps/corrently-io-5f679f3b65/MANIFEST.md) | `corrently-io-5f679f3b65` | open-data | openapi | 2.0.0 | 26 | `discovered` | pending |
+| [Countries (trevorblades)](apps/countries-graphql/MANIFEST.md) | `countries-graphql` | open-data, location | graphql | 2026-11-18-snapshot | 6 | `discovered` | pending |
+| [Country](apps/country/MANIFEST.md) | `country` | location | openapi | 4.2.3 | 4 | `discovered` | pending |
+| [Coursebricks](apps/coursebricks/MANIFEST.md) | `coursebricks` | education | openapi | 1.0.0 | 8 | `discovered` | pending |
 | [COVID-19 data API](apps/covid19-api-com-bd13d781dc/MANIFEST.md) | `covid19-api-com-bd13d781dc` | open-data | openapi | 1.2.6 | 9 | `discovered` | pending |
 | [Co-WIN Certificate API](apps/cowin-gov-cin-cowincert-f94c72eff9/MANIFEST.md) | `cowin-gov-cin-cowincert-f94c72eff9` | open-data | openapi | 1.0.0 | 1 | `discovered` | pending |
 | [PeerTube](apps/cpy-re-peertube-048871dd3b/MANIFEST.md) | `cpy-re-peertube-048871dd3b` | social-media | openapi | 5.1.0 | 186 | `discovered` | pending |
 | [Credas API](apps/credas-co-uk-pi-88bd05e53d/MANIFEST.md) | `credas-co-uk-pi-88bd05e53d` | security, finance | openapi | v1 | 37 | `discovered` | pending |
 | [Crediwatch's Covid APIs](apps/crediwatch-com-covid19-25fc1f38e3/MANIFEST.md) | `crediwatch-com-covid19-25fc1f38e3` | open-data | openapi | 1.3.0 | 5 | `discovered` | pending |
 | [Crossbrowsertesting.com Screenshot Comparisons API](apps/crossbrowsertesting-com-f5b404ed74/MANIFEST.md) | `crossbrowsertesting-com-f5b404ed74` | software-development | openapi | 3.0.0 | 3 | `discovered` | pending |
+| [Customer.io](apps/customer-io/MANIFEST.md) | `customer-io` | marketing | openapi | 1.0.0 | 165 | `discovered` | pending |
 | [CyCAT.org API](apps/cycat-org-939e89e150/MANIFEST.md) | `cycat-org-939e89e150` | security | openapi | 0.9 | 14 | `discovered` | pending |
 | [D7SMS](apps/d7networks-com-8c57f59e9d/MANIFEST.md) | `d7networks-com-8c57f59e9d` | communication | openapi | 1.0.2 | 3 | `discovered` | pending |
 | [Dagster](apps/dagster/MANIFEST.md) | `dagster` | analytics, software-development | graphql | 2026-10-30-snapshot | 107 | `discovered` | pending |
+| [D&D 5e SRD API (2014)](apps/dandd-5e-srd-api-2014/MANIFEST.md) | `dandd-5e-srd-api-2014` | media | openapi | 0.1 | 46 | `discovered` | pending |
 | [DaniWeb Connect API](apps/daniweb-com-e816d1eb1c/MANIFEST.md) | `daniweb-com-e816d1eb1c` | software-development | openapi | 4 | 67 | `discovered` | pending |
 | [Data2CRM.API](apps/data2crm-com-31e48d6ffa/MANIFEST.md) | `data2crm-com-31e48d6ffa` | business | openapi | 1 | 336 | `discovered` | pending |
 | [Open Skills API](apps/dataatwork-org-4b0e1658ba/MANIFEST.md) | `dataatwork-org-4b0e1658ba` | open-data | openapi | 1.0 | 13 | `discovered` | pending |
+| [Datafast](apps/datafast/MANIFEST.md) | `datafast` | analytics | openapi | 1.0.0 | 82 | `discovered` | pending |
 | [Dataflow Kit Web Scraper](apps/dataflowkit-com-eedf72e8eb/MANIFEST.md) | `dataflowkit-com-eedf72e8eb` | software-development | openapi | 1.3 | 5 | `discovered` | pending |
 | [Datasette API](apps/datasette-local-0cff3b0c02/MANIFEST.md) | `datasette-local-0cff3b0c02` | analytics, open-data | openapi | v1 | 1 | `discovered` | pending |
+| [Deel](apps/deel/MANIFEST.md) | `deel` | business | openapi | 1.25.0+a2af3986e25c | 584 | `discovered` | pending |
 | [Deep Art Effects](apps/deeparteffects-com-fe0b952af1/MANIFEST.md) | `deeparteffects-com-fe0b952af1` | ai, media | openapi | 2017-02-10T16:24:46Z | 3 | `discovered` | pending |
+| [Deepgram](apps/deepgram/MANIFEST.md) | `deepgram` | ai | openapi | 1.0.0 | 50 | `discovered` | pending |
 | [DeepL Voice](apps/deepl-voice/MANIFEST.md) | `deepl-voice` | ai, communication | asyncapi | 1.0.0 | 2 | `discovered` | pending |
 | [Forem API V1](apps/dev-to-48023251c6/MANIFEST.md) | `dev-to-48023251c6` | social-media | openapi | 1.0.0 | 40 | `discovered` | pending |
+| [DGIdb (Drug-Gene Interaction Database)](apps/dgidb-graphql/MANIFEST.md) | `dgidb-graphql` | health, open-data | graphql | 2026-11-18-snapshot | 37 | `discovered` | pending |
 | [DLx](apps/digitallinguistics-io-e31f6be2a6/MANIFEST.md) | `digitallinguistics-io-e31f6be2a6` | ai | openapi | 0.3.1 | 18 | `discovered` | pending |
 | [Authorized Partner API Specification](apps/digitallocker-gov-in-authpartner-1c66ef17bf/MANIFEST.md) | `digitallocker-gov-in-authpartner-1c66ef17bf` | open-data | openapi | 1.0.0 | 22 | `discovered` | pending |
 | [DigitalNZ API](apps/digitalnz-org-111321483a/MANIFEST.md) | `digitalnz-org-111321483a` | open-data | openapi | 3 | 3 | `discovered` | pending |
+| [Digitransit / OpenTripPlanner GTFS API](apps/digitransit-graphql/MANIFEST.md) | `digitransit-graphql` | travel, location | graphql | 2026-11-18-snapshot | 47 | `discovered` | pending |
 | [Discourse API Documentation](apps/discourse-local-6ace1b2d2f/MANIFEST.md) | `discourse-local-6ace1b2d2f` | social-media | openapi | latest | 84 | `discovered` | pending |
 | [D&D 5e API](apps/dnd5eapi-co-ce075b330f/MANIFEST.md) | `dnd5eapi-co-ce075b330f` | open-data | openapi | 0.1 | 47 | `discovered` | pending |
 | [DVP Data API](apps/docker-com-dvp-d259e12592/MANIFEST.md) | `docker-com-dvp-d259e12592` | software-development | openapi | 1.0.0 | 8 | `discovered` | pending |
+| [Documenso](apps/documenso/MANIFEST.md) | `documenso` | productivity | openapi | 1.0.0 | 89 | `discovered` | pending |
 | [DocuSign REST API](apps/docusign-net-8246642800/MANIFEST.md) | `docusign-net-8246642800` | productivity, business | openapi | v2.1 | 393 | `discovered` | pending |
 | [Nookipedia](apps/dodo-ac-72323481b6/MANIFEST.md) | `dodo-ac-72323481b6` | media | openapi | 1.5.0 | 30 | `discovered` | pending |
 | [Domains-Index API](apps/domainsdb-info-e32ca676df/MANIFEST.md) | `domainsdb-info-e32ca676df` | cloud | openapi | 1.0 | 14 | `discovered` | pending |
 | [doqs.dev \| PDF filling API](apps/doqs-dev-2471eafdc4/MANIFEST.md) | `doqs-dev-2471eafdc4` | productivity, software-development | openapi | 1.0 | 14 | `discovered` | pending |
+| [Dotdigital](apps/dotdigital/MANIFEST.md) | `dotdigital` | marketing | openapi | 3 | 10 | `discovered` | pending |
 | [DRACOON API](apps/dracoon-team-58f03219ef/MANIFEST.md) | `dracoon-team-58f03219ef` | cloud | openapi | 4.42.2 | 297 | `discovered` | pending |
 | [drchrono-com-cff45834a4](apps/drchrono-com-cff45834a4/MANIFEST.md) | `drchrono-com-cff45834a4` | health, business | openapi | v4 (Hunt Valley) | 263 | `discovered` | pending |
+| [Dropbox](apps/dropbox/MANIFEST.md) | `dropbox` | productivity, media | openapi | 1.0.0 | 3 | `discovered` | pending |
+| [Dub](apps/dub/MANIFEST.md) | `dub` | marketing | openapi | 0.0.1 | 57 | `discovered` | pending |
 | [dxFeed dxLink](apps/dxfeed-dxlink/MANIFEST.md) | `dxfeed-dxlink` | finance | asyncapi | 1.0.2 | 2 | `discovered` | pending |
+| [E2B](apps/e2b/MANIFEST.md) | `e2b` | ai | openapi | 0.1.0 | 130 | `discovered` | pending |
 | [EasyPDFServer](apps/easypdfserver-com-cb3e565957/MANIFEST.md) | `easypdfserver-com-cb3e565957` | productivity | openapi | 1 | 1 | `discovered` | pending |
+| [eBay](apps/ebay/MANIFEST.md) | `ebay` | ecommerce | openapi | v1.20.7 | 15 | `discovered` | pending |
 | [CROssBAR Data API](apps/ebi-ac-uk-fa28fcb75b/MANIFEST.md) | `ebi-ac-uk-fa28fcb75b` | open-data | openapi | 1.0 | 13 | `discovered` | pending |
+| [EHRI Portal](apps/ehri-graphql/MANIFEST.md) | `ehri-graphql` | open-data, education | graphql | 2026-11-18-snapshot | 20 | `discovered` | pending |
+| [Elastic (Kibana)](apps/elastic-kibana/MANIFEST.md) | `elastic-kibana` | software-development | openapi | 1 | 773 | `discovered` | pending |
 | [ElevenLabs Agents](apps/elevenlabs-agents/MANIFEST.md) | `elevenlabs-agents` | ai, communication | asyncapi | 1.0.0 | 2 | `discovered` | pending |
 | [ElevenLabs API Documentation](apps/elevenlabs-io-e2d214894a/MANIFEST.md) | `elevenlabs-io-e2d214894a` | ai | openapi | 1.0 | 19 | `discovered` | pending |
+| [Ellipsend](apps/ellipsend/MANIFEST.md) | `ellipsend` | marketing | openapi | 1.2.0 | 31 | `discovered` | pending |
 | [elmah.io API](apps/elmah-io-b51946df5c/MANIFEST.md) | `elmah-io-b51946df5c` | software-development, cloud | openapi | v3 | 22 | `discovered` | pending |
+| [Emailchef](apps/emailchef/MANIFEST.md) | `emailchef` | marketing | openapi | 1.4 | 76 | `discovered` | pending |
+| [EmailOctopus](apps/emailoctopus/MANIFEST.md) | `emailoctopus` | marketing | openapi | 2.1.0 | 25 | `discovered` | pending |
+| [Endless Fairs](apps/endless-fairs/MANIFEST.md) | `endless-fairs` | marketing | openapi | 1.0.0 | 198 | `discovered` | pending |
+| [Enginemailer](apps/enginemailer/MANIFEST.md) | `enginemailer` | marketing | openapi | v1 | 28 | `discovered` | pending |
 | [Enode API](apps/enode-io-d73ca68d82/MANIFEST.md) | `enode-io-d73ca68d82` | iot | openapi | 1.3.10 | 28 | `discovered` | pending |
+| [Entur Journey Planner (Norway)](apps/entur-graphql/MANIFEST.md) | `entur-graphql` | travel, location | graphql | 2026-11-18-snapshot | 35 | `discovered` | pending |
 | [API v1.0.0](apps/envoice-in-6968a8aaf9/MANIFEST.md) | `envoice-in-6968a8aaf9` | finance | openapi | v1 | 61 | `discovered` | pending |
 | [Net API](apps/eos-local-c77cfae7a1/MANIFEST.md) | `eos-local-c77cfae7a1` | cloud | openapi | 1.0.0 | 4 | `discovered` | pending |
 | [U.S. EPA Enforcement and Compliance History Online (ECHO) - Clean Air Act](apps/epa-gov-air-680387149c/MANIFEST.md) | `epa-gov-air-680387149c` | open-data | openapi | 2019.10.15 | 16 | `discovered` | pending |
@@ -239,6 +335,10 @@ An application can have up to four categories. They are defined in [categories.j
 | [ETSI GS MEC 010-2 - Part 2: Application lifecycle, rules and requirements management](apps/etsi-local-mec010-2-apppkgmgmt-6e0798eb16/MANIFEST.md) | `etsi-local-mec010-2-apppkgmgmt-6e0798eb16` | communication | openapi | 2.1.1 | 16 | `discovered` | pending |
 | [Europeana Search & Record API](apps/europeana-eu-4419263958/MANIFEST.md) | `europeana-eu-4419263958` | open-data | openapi | version unknown | 9 | `discovered` | pending |
 | [EVEMarketer Marketstat API](apps/evemarketer-com-95d38a14c4/MANIFEST.md) | `evemarketer-com-95d38a14c4` | media | openapi | 1.0.1 | 4 | `discovered` | pending |
+| [Event Cadence](apps/event-cadence/MANIFEST.md) | `event-cadence` | marketing | openapi | 1.0.5 | 1 | `discovered` | pending |
+| [Eventbrite](apps/eventbrite/MANIFEST.md) | `eventbrite` | marketing | openapi | 3 | 14 | `discovered` | pending |
+| [Eventleaf](apps/eventleaf/MANIFEST.md) | `eventleaf` | marketing | openapi | v1 | 43 | `discovered` | pending |
+| [Exa](apps/exa/MANIFEST.md) | `exa` | ai | openapi | 2.0.0 | 64 | `discovered` | pending |
 | [ExaVault](apps/exavault-com-3410475e44/MANIFEST.md) | `exavault-com-3410475e44` | cloud | openapi | 2.0 | 59 | `discovered` | pending |
 | [ExchangeRate-API](apps/exchangerate-api-com-847890cf3d/MANIFEST.md) | `exchangerate-api-com-847890cf3d` | finance | openapi | 4 | 1 | `discovered` | pending |
 | [Ex Libris APIs](apps/exlibrisgroup-com-tasklists-323d004164/MANIFEST.md) | `exlibrisgroup-com-tasklists-323d004164` | education | openapi | 1.0 | 10 | `discovered` | pending |
@@ -247,47 +347,78 @@ An application can have up to four categories. They are defined in [categories.j
 | [Exude API Service](apps/exude-api-herokuapp-com-dc28fe10a9/MANIFEST.md) | `exude-api-herokuapp-com-dc28fe10a9` | ai | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [Facial Recognition Reverse Image Face Search API](apps/facecheck-id-3199066b65/MANIFEST.md) | `facecheck-id-3199066b65` | security, ai | openapi | v1.02 | 4 | `discovered` | pending |
 | [Api Documentation](apps/faceidentity-beta-azurewebsites-net-06d671ca37/MANIFEST.md) | `faceidentity-beta-azurewebsites-net-06d671ca37` | security | openapi | 1.0 | 2 | `discovered` | pending |
+| [Factorial](apps/factorial/MANIFEST.md) | `factorial` | business | openapi | 2026-10-01 | 615 | `discovered` | pending |
 | [Faretrotter Travel API](apps/faretrotter-com-73ce579405/MANIFEST.md) | `faretrotter-com-73ce579405` | travel | openapi | 2.0 | 2 | `discovered` | pending |
 | [OpenFEC](apps/fec-gov-beb9ee76e4/MANIFEST.md) | `fec-gov-beb9ee76e4` | open-data | openapi | 1.0 | 91 | `discovered` | pending |
+| [Feedly](apps/feedly/MANIFEST.md) | `feedly` | marketing | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [Figshare API](apps/figshare-com-9fa4877926/MANIFEST.md) | `figshare-com-9fa4877926` | open-data | openapi | 2.0.0 | 136 | `discovered` | pending |
 | [Files.com API](apps/files-com-205f715a55/MANIFEST.md) | `files-com-205f715a55` | software-development | openapi | 0.0.1 | 222 | `discovered` | pending |
 | [Fire Financial Services Business API](apps/fire-com-c991b87ce7/MANIFEST.md) | `fire-com-c991b87ce7` | finance | openapi | 1.0 | 39 | `discovered` | pending |
 | [Firecracker](apps/firecracker/MANIFEST.md) | `firecracker` | cloud, software-development | openapi | 1.18.0 | 40 | `discovered` | pending |
+| [Firecrawl](apps/firecrawl/MANIFEST.md) | `firecrawl` | ai | openapi | v2 | 18 | `discovered` | pending |
 | [IoTVAS API](apps/firmalyzer-com-iotvas-ce683536bd/MANIFEST.md) | `firmalyzer-com-iotvas-ce683536bd` | iot, security | openapi | 1.0 | 8 | `discovered` | pending |
 | [First AML](apps/firstaml-graphql/MANIFEST.md) | `firstaml-graphql` | finance, security | graphql | 2026-10-29-snapshot | 39 | `discovered` | pending |
 | [FRC Events](apps/firstinspires-org-a07d0a3343/MANIFEST.md) | `firstinspires-org-a07d0a3343` | open-data | openapi | 1.0.0 | 0 | `discovered` | pending |
 | [Flat API](apps/flat-io-1bc724239a/MANIFEST.md) | `flat-io-1bc724239a` | media, productivity | openapi | 2.13.0 | 81 | `discovered` | pending |
+| [Flexmail](apps/flexmail/MANIFEST.md) | `flexmail` | marketing | openapi | 1.2.0 | 43 | `discovered` | pending |
 | [Flickr API Schema](apps/flickr-com-85b010c898/MANIFEST.md) | `flickr-com-85b010c898` | media | openapi | 1.0.0 | 25 | `discovered` | pending |
+| [Fly.io](apps/fly-io/MANIFEST.md) | `fly-io` | cloud | openapi | 1.0 | 104 | `discovered` | pending |
+| [Fly.io Machines/Platform](apps/fly-io-graphql/MANIFEST.md) | `fly-io-graphql` | cloud | graphql | 2026-11-18-snapshot | 180 | `discovered` | pending |
+| [Flyn](apps/flyn/MANIFEST.md) | `flyn` | marketing | openapi | 1.0.0 | 29 | `discovered` | pending |
+| [Foreplay](apps/foreplay/MANIFEST.md) | `foreplay` | marketing | openapi | 0.26.12b | 22 | `discovered` | pending |
 | [API v1](apps/formapi-io-469f613c31/MANIFEST.md) | `formapi-io-469f613c31` | productivity | openapi | v1 | 35 | `discovered` | pending |
+| [Frankfurter](apps/frankfurter/MANIFEST.md) | `frankfurter` | finance | openapi | 2.1.1 | 9 | `discovered` | pending |
 | [Frankie Financial API](apps/frankiefinancial-io-2c8a494465/MANIFEST.md) | `frankiefinancial-io-2c8a494465` | finance, security | openapi | 1.5.3 | 46 | `discovered` | pending |
 | [Freesound](apps/freesound-org-fc3603d552/MANIFEST.md) | `freesound-org-fc3603d552` | media | openapi | 2.0.0 | 2 | `discovered` | pending |
 | [News Plugin](apps/freetv-app-com-dadd2d75dd/MANIFEST.md) | `freetv-app-com-dadd2d75dd` | media | openapi | v1 | 1 | `discovered` | pending |
 | [Fulfillment.com APIv2](apps/fulfillment-com-74465b75d4/MANIFEST.md) | `fulfillment-com-74465b75d4` | ecommerce | openapi | 2.0 | 13 | `discovered` | pending |
 | [Barcode API](apps/fungenerators-com-barcode-6fa2b2cfff/MANIFEST.md) | `fungenerators-com-barcode-6fa2b2cfff` | software-development | openapi | 1.5 | 4 | `discovered` | pending |
+| [Funnelr](apps/funnelr/MANIFEST.md) | `funnelr` | marketing | openapi | 1.0 | 1220 | `discovered` | pending |
 | [FunTranslations Braille API](apps/funtranslations-com-braile-2493978c25/MANIFEST.md) | `funtranslations-com-braile-2493978c25` | ai | openapi | 2.3 | 5 | `discovered` | pending |
 | [Furkot Trips](apps/furkot-com-c8f9ba9424/MANIFEST.md) | `furkot-com-c8f9ba9424` | location | openapi | 1.0.0 | 2 | `discovered` | pending |
+| [FusionAuth](apps/fusionauth/MANIFEST.md) | `fusionauth` | security | openapi | 1.72.0 | 364 | `discovered` | pending |
+| [Gadjian](apps/gadjian/MANIFEST.md) | `gadjian` | business | openapi | 1.0.1 | 5 | `discovered` | pending |
+| [GaggleAMP](apps/gaggleamp/MANIFEST.md) | `gaggleamp` | social-media | openapi | 1.0 | 86 | `discovered` | pending |
 | [MIMIC REST API](apps/gambitcomm-local-mimic-39ac5b4efb/MANIFEST.md) | `gambitcomm-local-mimic-39ac5b4efb` | iot | openapi | 21.00 | 356 | `discovered` | pending |
 | [GameSparks Game Details API](apps/gamesparks-net-game-details-c877dd97b6/MANIFEST.md) | `gamesparks-net-game-details-c877dd97b6` | software-development, media | openapi | v2 | 76 | `discovered` | pending |
+| [Gathr](apps/gathr/MANIFEST.md) | `gathr` | marketing | openapi | 1.3.0 | 11 | `discovered` | pending |
+| [GBIF Occurrence Search API](apps/gbif-occurrence-search-api/MANIFEST.md) | `gbif-occurrence-search-api` | analytics | openapi | v1 | 43 | `discovered` | pending |
+| [GenPage](apps/genpage/MANIFEST.md) | `genpage` | marketing | openapi | 1.0.0 | 40 | `discovered` | pending |
 | [GererMesAffaires {REST:API}](apps/gerermesaffaires-com-6928ccda14/MANIFEST.md) | `gerermesaffaires-com-6928ccda14` | business, finance | openapi | 1.0.6 | 280 | `discovered` | pending |
 | [Postman API](apps/getpostman-com-03c9f8ed78/MANIFEST.md) | `getpostman-com-03c9f8ed78` | software-development | openapi | 1.20.0 | 57 | `discovered` | pending |
+| [GetResponse](apps/getresponse/MANIFEST.md) | `getresponse` | marketing | openapi | 3.2026-10-19T11:35:24+00:00 | 220 | `discovered` | pending |
 | [Sandbox API](apps/getsandbox-com-5c68c9c38b/MANIFEST.md) | `getsandbox-com-5c68c9c38b` | software-development | openapi | v1 | 9 | `discovered` | pending |
 | [bng2latlong](apps/getthedata-com-bng2latlong-9dc97c7bf4/MANIFEST.md) | `getthedata-com-bng2latlong-9dc97c7bf4` | location | openapi | 1.0 | 1 | `discovered` | pending |
 | [Getty Images](apps/gettyimages-com-e8b5b43038/MANIFEST.md) | `gettyimages-com-e8b5b43038` | media | openapi | 3 | 52 | `discovered` | pending |
+| [Ghost](apps/ghost/MANIFEST.md) | `ghost` | productivity, media | openapi | 5.0.0 | 14 | `discovered` | pending |
 | [Giphy API](apps/giphy-com-6652c97fac/MANIFEST.md) | `giphy-com-6652c97fac` | media | openapi | 1.0 | 10 | `discovered` | pending |
 | [Gisgraphy webservices](apps/gisgraphy-com-54d5a6f16c/MANIFEST.md) | `gisgraphy-com-54d5a6f16c` | location | openapi | 4.0.0 | 6 | `discovered` | pending |
+| [GitLab](apps/gitlab/MANIFEST.md) | `gitlab` | cloud | openapi | 19.6 | 1865 | `discovered` | pending |
+| [GitLab](apps/gitlab-graphql/MANIFEST.md) | `gitlab-graphql` | software-development | graphql | 2026-11-18-snapshot | 909 | `discovered` | pending |
+| [gnomAD](apps/gnomad-graphql/MANIFEST.md) | `gnomad-graphql` | health, open-data | graphql | 2026-11-18-snapshot | 16 | `discovered` | pending |
 | [Go-UPC Barcode-Lookup API](apps/go-upc-com-c023fd8fcd/MANIFEST.md) | `go-upc-com-c023fd8fcd` | ecommerce | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [GoodAPI](apps/goodapi/MANIFEST.md) | `goodapi` | marketing | openapi | 2.0.0 | 16 | `discovered` | pending |
 | [goog.io \| Unoffical Google Search API](apps/goog-io-47f3b8e321/MANIFEST.md) | `goog-io-47f3b8e321` | software-development | openapi | 0.1.0 | 6 | `discovered` | pending |
 | [Travel Partner API](apps/google-com-d4c9d90273/MANIFEST.md) | `google-com-d4c9d90273` | travel | openapi | v3 | 23 | `discovered` | pending |
 | [Google Home](apps/google-home-be124b1ba0/MANIFEST.md) | `google-home-be124b1ba0` | iot | openapi | 2.0 | 30 | `discovered` | pending |
 | [Abusive Experience Report API](apps/googleapis-com-abusiveexperiencereport-d174cfabf6/MANIFEST.md) | `googleapis-com-abusiveexperiencereport-d174cfabf6` | analytics, media | openapi | v1 | 2 | `discovered` | pending |
+| [Gotify](apps/gotify/MANIFEST.md) | `gotify` | communication | openapi | 2.1.0 | 42 | `discovered` | pending |
+| [GoTo Webinar](apps/goto-webinar/MANIFEST.md) | `goto-webinar` | marketing | openapi | 2.0.0 | 35 | `discovered` | pending |
 | [BC Data Catalogue API](apps/gov-bc-ca-bcdc-d237132223/MANIFEST.md) | `gov-bc-ca-bcdc-d237132223` | open-data | openapi | 3.0.1 | 22 | `discovered` | pending |
+| [Grafana](apps/grafana/MANIFEST.md) | `grafana` | software-development | openapi | 0.0.1 | 314 | `discovered` | pending |
 | [GraphHopper Directions API](apps/graphhopper-com-9a0c28adb4/MANIFEST.md) | `graphhopper-com-9a0c28adb4` | location | openapi | 1.0.0 | 16 | `discovered` | pending |
+| [GraphJSON](apps/graphjson/MANIFEST.md) | `graphjson` | analytics | openapi | 2026-07-26 | 5 | `discovered` | pending |
+| [GraphQLZero (JSONPlaceholder)](apps/graphqlzero-graphql/MANIFEST.md) | `graphqlzero-graphql` | software-development, education | graphql | 2026-11-18-snapshot | 32 | `discovered` | pending |
 | [Greenwire Public API](apps/greenpeace-org-47606de21e/MANIFEST.md) | `greenpeace-org-47606de21e` | productivity | openapi | 1.0.0 | 6 | `discovered` | pending |
 | [Greip API](apps/greip-io-85d4b0136f/MANIFEST.md) | `greip-io-85d4b0136f` | security, location | openapi | 1.0.0 | 5 | `discovered` | pending |
+| [Groq](apps/groq/MANIFEST.md) | `groq` | ai | openapi | v1 | 1 | `discovered` | pending |
 | [Groundhog Day API](apps/groundhog-day-com-fe02f748d7/MANIFEST.md) | `groundhog-day-com-fe02f748d7` | open-data | openapi | 1.2.1 | 5 | `discovered` | pending |
 | [GSMTasks Project API](apps/gsmtasks-com-dc6969f2df/MANIFEST.md) | `gsmtasks-com-dc6969f2df` | productivity, travel | openapi | 2.4.13 | 261 | `discovered` | pending |
+| [Hacker News](apps/hacker-news/MANIFEST.md) | `hacker-news` | social-media | openapi | 1.0.0 | 10 | `discovered` | pending |
 | [Metadata](apps/haloapi-com-metadata-8dcfd8ffc9/MANIFEST.md) | `haloapi-com-metadata-8dcfd8ffc9` | media | openapi | 1.0 | 37 | `discovered` | pending |
 | [Handwrytten API](apps/handwrytten-com-50ca2009b6/MANIFEST.md) | `handwrytten-com-50ca2009b6` | marketing | openapi | 1.0.0 | 30 | `discovered` | pending |
+| [Happily.ai](apps/happily-ai/MANIFEST.md) | `happily-ai` | business | openapi | 1.0 | 12 | `discovered` | pending |
+| [Harvard Art Museums](apps/harvard-art-museums/MANIFEST.md) | `harvard-art-museums` | analytics | openapi | 1.0.0 | 14 | `discovered` | pending |
 | [Hashnode](apps/hashnode-graphql/MANIFEST.md) | `hashnode-graphql` | media, social-media | graphql | 2026-10-29-snapshot | 24 | `discovered` | pending |
 | [Healthcare](apps/healthcare-gov-f236f25289/MANIFEST.md) | `healthcare-gov-f236f25289` | open-data | openapi | 1.0.0 | 16 | `discovered` | pending |
 | [HERE Network Positioning API v2](apps/here-com-positioning-3020113342/MANIFEST.md) | `here-com-positioning-3020113342` | location | openapi | 2.1.1 | 3 | `discovered` | pending |
@@ -296,12 +427,19 @@ An application can have up to four categories. They are defined in [categories.j
 | [Highways England API](apps/highwaysengland-co-uk-d4909a20c3/MANIFEST.md) | `highwaysengland-co-uk-d4909a20c3` | open-data | openapi | v1 | 10 | `discovered` | pending |
 | [shinobiapi](apps/hillbillysoftware-com-shinobi-008fa86dcd/MANIFEST.md) | `hillbillysoftware-com-shinobi-008fa86dcd` | media | openapi | v1 | 58 | `discovered` | pending |
 | [Hodoflow](apps/hodoflow-graphql/MANIFEST.md) | `hodoflow-graphql` | business | graphql | 2026-10-29-snapshot | 2 | `discovered` | pending |
+| [HomeDrop](apps/homedrop/MANIFEST.md) | `homedrop` | marketing | openapi | 1.0.0 | 3 | `discovered` | pending |
+| [Hootsuite](apps/hootsuite/MANIFEST.md) | `hootsuite` | social-media | openapi | 1.0 | 48 | `discovered` | pending |
+| [Hostinger](apps/hostinger/MANIFEST.md) | `hostinger` | cloud | openapi | 3.3.0 | 451 | `discovered` | pending |
+| [Hrider](apps/hrider/MANIFEST.md) | `hrider` | business | openapi | 1.0 | 88 | `discovered` | pending |
 | [ATM Locator API](apps/hsbc-com-atm-9287ac2c86/MANIFEST.md) | `hsbc-com-atm-9287ac2c86` | finance | openapi | 2.2.1 | 5 | `discovered` | pending |
 | [httpbin.org](apps/httpbin-org-917ed08996/MANIFEST.md) | `httpbin-org-917ed08996` | software-development | openapi | 0.9.2 | 78 | `discovered` | pending |
 | [Custom Behavioral Events API](apps/hubapi-com-analytics-4cfce89b8c/MANIFEST.md) | `hubapi-com-analytics-4cfce89b8c` | marketing, analytics, business | openapi | v3 | 1 | `discovered` | pending |
 | [Hubhopper Partner Integration API(s) - Production](apps/hubhopper-com-1105ceb6a4/MANIFEST.md) | `hubhopper-com-1105ceb6a4` | media | openapi | v5 | 7 | `discovered` | pending |
+| [Hugging Face](apps/hugging-face/MANIFEST.md) | `hugging-face` | ai | openapi | 0.0.1 | 386 | `discovered` | pending |
+| [Huwise (OpenDataSoft)](apps/huwise-opendatasoft/MANIFEST.md) | `huwise-opendatasoft` | analytics | openapi | v2.1 | 16 | `discovered` | pending |
 | [Growth Services](apps/i-cue-solutions-eaeeb81dee/MANIFEST.md) | `i-cue-solutions-eaeeb81dee` | analytics | openapi | v1 | 64 | `discovered` | pending |
 | [IBANAPI OpenApi Documentation](apps/ibanapi-com-93066a4fb5/MANIFEST.md) | `ibanapi-com-93066a4fb5` | finance | openapi | 1.0.0 | 3 | `discovered` | pending |
+| [Iconosquare](apps/iconosquare/MANIFEST.md) | `iconosquare` | social-media | openapi | 1.0.0 | 11 | `discovered` | pending |
 | [Use a [New Version](https://icons8.github.io/icons8-docs/) Instead](apps/icons8-com-9b3b0d9003/MANIFEST.md) | `icons8-com-9b3b0d9003` | media | openapi | 1.0.0 | 8 | `discovered` | pending |
 | [ID4i API](apps/id4i-de-2c0d200710/MANIFEST.md) | `id4i-de-2c0d200710` | business | openapi | 1.0.2 | 107 | `discovered` | pending |
 | [eNanoMapper database](apps/ideaconsult-net-enanomapper-80144d64c7/MANIFEST.md) | `ideaconsult-net-enanomapper-80144d64c7` | open-data | openapi | 4.0.0 | 13 | `discovered` | pending |
@@ -311,6 +449,8 @@ An application can have up to four categories. They are defined in [categories.j
 | [Increase API](apps/increase-com-c7bcfd5c22/MANIFEST.md) | `increase-com-c7bcfd5c22` | finance | openapi | 0.0.1 | 115 | `discovered` | pending |
 | [Infermedica API](apps/infermedica-com-cb2bbdb64a/MANIFEST.md) | `infermedica-com-cb2bbdb64a` | health, ai | openapi | v2 | 20 | `discovered` | pending |
 | [Influx OSS API Service](apps/influxdata-com-df14225f6f/MANIFEST.md) | `influxdata-com-df14225f6f` | analytics, iot | openapi | 2.0.0 | 197 | `discovered` | pending |
+| [InfluxDB](apps/influxdb/MANIFEST.md) | `influxdb` | analytics | openapi | 2.0.1 | 178 | `discovered` | pending |
+| [Inngest](apps/inngest/MANIFEST.md) | `inngest` | software-development | openapi | 2.0.0 | 77 | `discovered` | pending |
 | [Dados Abertos - API](apps/inpe-br-dados-abertos-d92349b925/MANIFEST.md) | `inpe-br-dados-abertos-d92349b925` | location | openapi | 1.0 | 6 | `discovered` | pending |
 | [Instagram API](apps/instagram-com-055878d4c9/MANIFEST.md) | `instagram-com-055878d4c9` | social-media, media | openapi | 1.0.0 | 27 | `discovered` | pending |
 | [Intel Product Catalogue Service](apps/intel-com-product-catalogue-520fbcba9a/MANIFEST.md) | `intel-com-product-catalogue-520fbcba9a` | ecommerce | openapi | 0.1.0 | 4 | `discovered` | pending |
@@ -332,239 +472,484 @@ An application can have up to four categories. They are defined in [categories.j
 | [Product Library API](apps/izettle-com-products-9b34a9848d/MANIFEST.md) | `izettle-com-products-9b34a9848d` | ecommerce | openapi | 1.0.0 | 32 | `discovered` | pending |
 | [Firebase Cloud Messaging API](apps/javatpoint-com-313b35ffad/MANIFEST.md) | `javatpoint-com-313b35ffad` | communication, software-development | openapi | v1 | 1 | `discovered` | pending |
 | [Jellyfin API](apps/jellyfin-local-3effdb3793/MANIFEST.md) | `jellyfin-local-3effdb3793` | media | openapi | v1 | 408 | `discovered` | pending |
+| [Jira Cloud](apps/jira-cloud/MANIFEST.md) | `jira-cloud` | productivity | openapi | 1001.0.0-SNAPSHOT-e92d688328ae175f94e88e52762c76ef7566d5c3 | 630 | `discovered` | pending |
 | [Jokes One API](apps/jokes-one-805b77145f/MANIFEST.md) | `jokes-one-805b77145f` | media | openapi | 1.1 | 12 | `discovered` | pending |
 | [Developer documentation](apps/journy-io-0a221123fd/MANIFEST.md) | `journy-io-0a221123fd` | analytics, marketing | openapi | 1.0.0 | 16 | `discovered` | pending |
 | [JSON2Video API](apps/json2video-com-8ab8cbe92b/MANIFEST.md) | `json2video-com-8ab8cbe92b` | media | openapi | 2.0.0 | 2 | `discovered` | pending |
 | [Jumpseller API](apps/jumpseller-com-22da8fd5e7/MANIFEST.md) | `jumpseller-com-22da8fd5e7` | ecommerce | openapi | 1.0.0 | 142 | `discovered` | pending |
 | [Just Eat UK](apps/just-eat-co-uk-89d3d5b6d6/MANIFEST.md) | `just-eat-co-uk-89d3d5b6d6` | ecommerce | openapi | 1.0.0 | 98 | `discovered` | pending |
+| [Keap](apps/keap/MANIFEST.md) | `keap` | business | openapi | v2 | 403 | `discovered` | pending |
 | [Keycloak Admin REST API](apps/keycloak-local-9baab45f69/MANIFEST.md) | `keycloak-local-9baab45f69` | security | openapi | 1 | 281 | `discovered` | pending |
 | [KeyServ](apps/keyserv-solutions-f3d640eee5/MANIFEST.md) | `keyserv-solutions-f3d640eee5` | iot | openapi | 1.4.5 | 24 | `discovered` | pending |
+| [Kit](apps/kit/MANIFEST.md) | `kit` | marketing | openapi | 4.0 | 87 | `discovered` | pending |
+| [Kitsu](apps/kitsu-graphql/MANIFEST.md) | `kitsu-graphql` | media | graphql | 2026-11-18-snapshot | 60 | `discovered` | pending |
 | [Open AI Klarna product Api](apps/klarna-com-openai-72c869c37f/MANIFEST.md) | `klarna-com-openai-72c869c37f` | ecommerce | openapi | v0 | 1 | `discovered` | pending |
+| [KlickTipp](apps/klicktipp/MANIFEST.md) | `klicktipp` | marketing | openapi | 1.0.0 | 25 | `discovered` | pending |
+| [KNMI Data Platform EDR](apps/knmi-data-platform-edr/MANIFEST.md) | `knmi-data-platform-edr` | open-data | openapi | 1.0.0 | 75 | `discovered` | pending |
+| [KNMI Data Platform Open Data](apps/knmi-data-platform-open-data/MANIFEST.md) | `knmi-data-platform-open-data` | open-data | openapi | v1 | 2 | `discovered` | pending |
+| [Knock](apps/knock/MANIFEST.md) | `knock` | communication | openapi | 1.0 | 118 | `discovered` | pending |
 | [koomalooma Partner API](apps/koomalooma-com-27e3ebc477/MANIFEST.md) | `koomalooma-com-27e3ebc477` | ecommerce | openapi | 1.0 | 2 | `discovered` | pending |
 | [Kubernetes](apps/kubernetes-io-6c0e3bccbd/MANIFEST.md) | `kubernetes-io-6c0e3bccbd` | cloud, software-development | openapi | unversioned | 833 | `discovered` | pending |
 | [KumpeApps API](apps/kumpeapps-com-40be117e32/MANIFEST.md) | `kumpeapps-com-40be117e32` | software-development | openapi | 5.0.0 | 33 | `discovered` | pending |
+| [Kundenschreiber](apps/kundenschreiber/MANIFEST.md) | `kundenschreiber` | marketing | openapi | 1.0.0 | 33 | `discovered` | pending |
 | [LambdaTest Screenshots API Documentation](apps/lambdatest-com-9a395c4957/MANIFEST.md) | `lambdatest-com-9a395c4957` | software-development | openapi | 1.0.1 | 9 | `discovered` | pending |
 | [Deed API](apps/landregistry-gov-uk-deed-35efd8af96/MANIFEST.md) | `landregistry-gov-uk-deed-35efd8af96` | open-data | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [LanguageTool API](apps/languagetool-org-8df7992099/MANIFEST.md) | `languagetool-org-8df7992099` | ai | openapi | 1.1.2 | 5 | `discovered` | pending |
 | [LaunchDarkly REST API](apps/launchdarkly-com-4d65c261b6/MANIFEST.md) | `launchdarkly-com-4d65c261b6` | software-development | openapi | 5.3.0 | 105 | `discovered` | pending |
+| [Lazada](apps/lazada/MANIFEST.md) | `lazada` | ecommerce | openapi | 1.0.0 | 2 | `discovered` | pending |
+| [LeadMagic](apps/leadmagic/MANIFEST.md) | `leadmagic` | marketing | openapi | 1.4.35 | 92 | `discovered` | pending |
+| [LeadMetrics](apps/leadmetrics/MANIFEST.md) | `leadmetrics` | marketing | openapi | 1.0.0 | 7 | `discovered` | pending |
+| [lemlist](apps/lemlist/MANIFEST.md) | `lemlist` | marketing | openapi | 1.0.0 | 243 | `discovered` | pending |
+| [Lens Protocol API](apps/lens-graphql/MANIFEST.md) | `lens-graphql` | social-media | graphql | 2026-11-18-snapshot | 189 | `discovered` | pending |
+| [Lettermint Sending](apps/lettermint-sending/MANIFEST.md) | `lettermint-sending` | marketing | openapi | 0.0.1 | 3 | `discovered` | pending |
+| [Lettermint Team](apps/lettermint-team/MANIFEST.md) | `lettermint-team` | marketing | openapi | 0.0.1 | 76 | `discovered` | pending |
 | [LGTM API specification](apps/lgtm-com-080c155f0f/MANIFEST.md) | `lgtm-com-080c155f0f` | security, software-development | openapi | v1.0 | 29 | `discovered` | pending |
 | [LibreTranslate](apps/libretranslate-local-21d0e2362f/MANIFEST.md) | `libretranslate-local-21d0e2362f` | ai | openapi | 1.3.9 | 6 | `discovered` | pending |
+| [Limpi](apps/limpi/MANIFEST.md) | `limpi` | marketing | openapi | 1.1.0 | 8 | `discovered` | pending |
 | [Linode API](apps/linode-com-8d975483fd/MANIFEST.md) | `linode-com-8d975483fd` | cloud | openapi | 4.145.0 | 350 | `discovered` | pending |
 | [LinQR](apps/linqr-app-a03ea78590/MANIFEST.md) | `linqr-app-a03ea78590` | marketing | openapi | 2.0 | 14 | `discovered` | pending |
 | [Reimbursements API](apps/linuxfoundation-org-reimbursement-9815e25777/MANIFEST.md) | `linuxfoundation-org-reimbursement-9815e25777` | finance | openapi | 1.0 | 5 | `discovered` | pending |
 | [Listen API: Podcast Search, Directory, and Insights API](apps/listennotes-com-dcc1252509/MANIFEST.md) | `listennotes-com-dcc1252509` | media | openapi | 2.0 | 23 | `discovered` | pending |
+| [Live Tennis API](apps/live-tennis-api/MANIFEST.md) | `live-tennis-api` | media | openapi | 1.13.87 | 49 | `discovered` | pending |
+| [Livestorm](apps/livestorm/MANIFEST.md) | `livestorm` | marketing | openapi | 1 | 41 | `discovered` | pending |
 | [DFlight API](apps/ljaero-com-dflight-018a8d4928/MANIFEST.md) | `ljaero-com-dflight-018a8d4928` | travel | openapi | V 1.0.0 | 24 | `discovered` | pending |
 | [API docs \| logoraisr.com](apps/logoraisr-com-61f17073dd/MANIFEST.md) | `logoraisr-com-61f17073dd` | media | openapi | v1 | 10 | `discovered` | pending |
 | [Loket.nl API](apps/loket-nl-b4aae265b0/MANIFEST.md) | `loket-nl-b4aae265b0` | business, finance | openapi | V2 | 641 | `discovered` | pending |
+| [Loops](apps/loops/MANIFEST.md) | `loops` | marketing | openapi | 1.23.0 | 73 | `discovered` | pending |
 | [LH Partner API](apps/lufthansa-com-partner-25682f4f90/MANIFEST.md) | `lufthansa-com-partner-25682f4f90` | travel | openapi | 1.0 | 16 | `discovered` | pending |
+| [Luma](apps/luma/MANIFEST.md) | `luma` | marketing | openapi | 1.0.0 | 74 | `discovered` | pending |
 | [Lumar](apps/lumar-graphql/MANIFEST.md) | `lumar-graphql` | marketing, analytics | graphql | 2026-10-29-snapshot | 444 | `discovered` | pending |
 | [Lumminary API](apps/lumminary-com-f4e9c61a8b/MANIFEST.md) | `lumminary-com-f4e9c61a8b` | open-data | openapi | 1.0 | 17 | `discovered` | pending |
 | [Magento B2B](apps/magento-com-b78b77639d/MANIFEST.md) | `magento-com-b78b77639d` | ecommerce | openapi | 2.2.10 | 455 | `discovered` | pending |
 | [Otoroshi Admin API](apps/maif-local-otoroshi-fc34aa53a6/MANIFEST.md) | `maif-local-otoroshi-fc34aa53a6` | software-development | openapi | 1.5.0-dev | 102 | `discovered` | pending |
+| [Mail-in-a-Box](apps/mail-in-a-box/MANIFEST.md) | `mail-in-a-box` | communication | openapi | 0.51.0 | 49 | `discovered` | pending |
 | [MailboxValidator Free Email Checker](apps/mailboxvalidator-com-checker-3102385c42/MANIFEST.md) | `mailboxvalidator-com-checker-3102385c42` | communication | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [MailChannels](apps/mailchannels/MANIFEST.md) | `mailchannels` | communication | openapi | 1.8.0 | 42 | `discovered` | pending |
+| [Mailchimp Transactional](apps/mailchimp-transactional/MANIFEST.md) | `mailchimp-transactional` | marketing | openapi | 1.4.0 | 99 | `discovered` | pending |
+| [Maildroppa](apps/maildroppa/MANIFEST.md) | `maildroppa` | marketing | openapi | 1.2.0 | 106 | `discovered` | pending |
+| [MailerLite](apps/mailerlite/MANIFEST.md) | `mailerlite` | marketing | openapi | 2026-10-02 | 17 | `discovered` | pending |
+| [MailerSend](apps/mailersend/MANIFEST.md) | `mailersend` | marketing | openapi | 1.0.0-oas3.1 | 97 | `discovered` | pending |
+| [MailGraf](apps/mailgraf/MANIFEST.md) | `mailgraf` | marketing | openapi | 1.0 | 22 | `discovered` | pending |
+| [Mailgun](apps/mailgun/MANIFEST.md) | `mailgun` | communication | openapi | 3.0.0 | 267 | `discovered` | pending |
+| [Mailjet Content](apps/mailjet-content/MANIFEST.md) | `mailjet-content` | marketing | openapi | 1.0.0 | 26 | `discovered` | pending |
+| [Mailjet Email](apps/mailjet-email/MANIFEST.md) | `mailjet-email` | marketing | openapi | 1.0.0 | 151 | `discovered` | pending |
+| [Mailmojo](apps/mailmojo/MANIFEST.md) | `mailmojo` | marketing | openapi | 1.1.0 | 55 | `discovered` | pending |
+| [Mailrith](apps/mailrith/MANIFEST.md) | `mailrith` | marketing | openapi | v1 | 117 | `discovered` | pending |
 | [Mailscript](apps/mailscript-com-2fc9dce0ed/MANIFEST.md) | `mailscript-com-2fc9dce0ed` | communication | openapi | 0.4.0 | 38 | `discovered` | pending |
+| [Mailsoftly](apps/mailsoftly/MANIFEST.md) | `mailsoftly` | marketing | openapi | v3 | 150 | `discovered` | pending |
 | [Mandrill](apps/mandrillapp-com-0c6ef759e0/MANIFEST.md) | `mandrillapp-com-0c6ef759e0` | communication, marketing | openapi | 1.0 | 90 | `discovered` | pending |
+| [ManyChat Page](apps/manychat-page/MANIFEST.md) | `manychat-page` | marketing | openapi | beta | 34 | `discovered` | pending |
+| [ManyChat Profile](apps/manychat-profile/MANIFEST.md) | `manychat-profile` | marketing | openapi | beta | 1 | `discovered` | pending |
+| [ManyReach](apps/manyreach/MANIFEST.md) | `manyreach` | marketing | openapi | 2.25.0 | 142 | `discovered` | pending |
+| [MarketGo](apps/marketgo/MANIFEST.md) | `marketgo` | marketing | openapi | 2.0.0 | 312 | `discovered` | pending |
 | [GeoDB Cities API](apps/mashape-com-geodb-0d164f19c5/MANIFEST.md) | `mashape-com-geodb-0d164f19c5` | software-development, location | openapi | 1.0.0 | 26 | `discovered` | pending |
 | [Mastodon API Specification (https://github.com/mastodon/mastodon)](apps/mastodon-local-d03546f163/MANIFEST.md) | `mastodon-local-d03546f163` | social-media | openapi | 1.0 | 127 | `discovered` | pending |
 | [Numbers API](apps/math-tools-2090b3ff5e/MANIFEST.md) | `math-tools-2090b3ff5e` | open-data | openapi | 1.5 | 26 | `discovered` | pending |
 | [M-Bus HTTPD API](apps/mbus-local-d629a8851d/MANIFEST.md) | `mbus-local-d629a8851d` | iot | openapi | 0.3.5 | 7 | `discovered` | pending |
 | [Rat Genome Database REST API](apps/mcw-edu-c4c97b14b0/MANIFEST.md) | `mcw-edu-c4c97b14b0` | open-data | openapi | 1.1 | 100 | `discovered` | pending |
 | [Medium API](apps/medium-com-4609d127e3/MANIFEST.md) | `medium-com-4609d127e3` | media, social-media | openapi | 1.0 | 32 | `discovered` | pending |
+| [Medusa](apps/medusa/MANIFEST.md) | `medusa` | ecommerce | openapi | 2.22.7 | 79 | `discovered` | pending |
 | [Meilisearch v1.0](apps/meilisearch-com-d0461774bf/MANIFEST.md) | `meilisearch-com-d0461774bf` | software-development | openapi | 1.0.0 | 65 | `discovered` | pending |
 | [Meraki Dashboard API](apps/meraki-com-053c3fac06/MANIFEST.md) | `meraki-com-053c3fac06` | iot, cloud | openapi | 0.0.0-streaming | 263 | `discovered` | pending |
 | [The Mercure protocol](apps/mercure-local-d0b0cbfe99/MANIFEST.md) | `mercure-local-d0b0cbfe99` | communication | openapi | 0.3.2 | 5 | `discovered` | pending |
 | [Swagger2OpenAPI Converter](apps/mermade-org-uk-openapi-converter-d0feefa17b/MANIFEST.md) | `mermade-org-uk-openapi-converter-d0feefa17b` | software-development | openapi | 1.0.0 | 6 | `discovered` | pending |
+| [Meser 10](apps/meser-10/MANIFEST.md) | `meser-10` | marketing | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [Meshery API.](apps/meshery-local-7c5633eeaa/MANIFEST.md) | `meshery-local-7c5633eeaa` | cloud | openapi | 0.4.27 | 75 | `discovered` | pending |
+| [Metabase](apps/metabase/MANIFEST.md) | `metabase` | analytics | openapi | v0.66.1-SNAPSHOT | 763 | `discovered` | pending |
 | [Interactive documentation for your Premium plan](apps/meteosource-com-72db3e6009/MANIFEST.md) | `meteosource-com-72db3e6009` | location | openapi | v1 | 7 | `discovered` | pending |
+| [Metricool](apps/metricool/MANIFEST.md) | `metricool` | marketing | openapi | 2.0.0 | 717 | `discovered` | pending |
 | [Miataru](apps/miataru-com-27315a2077/MANIFEST.md) | `miataru-com-27315a2077` | location | openapi | 1.0.0 | 5 | `discovered` | pending |
 | [Microcks API v1.7](apps/microcks-local-ed7da239dc/MANIFEST.md) | `microcks-local-ed7da239dc` | software-development | openapi | 1.7.0 | 44 | `discovered` | pending |
 | [AutoSuggest Client](apps/microsoft-com-cognitiveservices-autosuggest-7e2db34f52/MANIFEST.md) | `microsoft-com-cognitiveservices-autosuggest-7e2db34f52` | software-development, cloud | openapi | 1.0 | 1 | `discovered` | pending |
 | [MineSkin API](apps/mineskin-org-98730fc013/MANIFEST.md) | `mineskin-org-98730fc013` | media | openapi | 1.0.0 | 9 | `discovered` | pending |
+| [MISP](apps/misp/MANIFEST.md) | `misp` | security | openapi | 2.5 | 166 | `discovered` | pending |
 | [Mist API](apps/mist-com-b9dbb1cecf/MANIFEST.md) | `mist-com-b9dbb1cecf` | cloud | openapi | 0.36.1 | 775 | `discovered` | pending |
+| [MOCO](apps/moco/MANIFEST.md) | `moco` | finance, business | openapi | 1.0.0 | 0 | `discovered` | pending |
 | [Image Moderation](apps/moderatecontent-com-10f789603a/MANIFEST.md) | `moderatecontent-com-10f789603a` | ai, media | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [Modern Treasury](apps/modern-treasury/MANIFEST.md) | `modern-treasury` | finance | openapi | v1 | 191 | `discovered` | pending |
 | [Mon-voyage-pas-cher.com Public API](apps/mon-voyage-pas-cher-com-e13a6fe77e/MANIFEST.md) | `mon-voyage-pas-cher-com-e13a6fe77e` | travel | openapi | 0.0.1 | 21 | `discovered` | pending |
 | [BioLink API](apps/monarchinitiative-org-b3281a94c1/MANIFEST.md) | `monarchinitiative-org-b3281a94c1` | open-data | openapi | 1.1.14 | 168 | `discovered` | pending |
 | [monday.com](apps/monday-graphql/MANIFEST.md) | `monday-graphql` | productivity | graphql | 2026-10-29-snapshot | 336 | `discovered` | pending |
+| [Moosend](apps/moosend/MANIFEST.md) | `moosend` | marketing | openapi | 3 | 12 | `discovered` | pending |
+| [Morpho API](apps/morpho-graphql/MANIFEST.md) | `morpho-graphql` | finance | graphql | 2026-11-18-snapshot | 39 | `discovered` | pending |
 | [MotaWord API](apps/motaword-com-d28be915b5/MANIFEST.md) | `motaword-com-d28be915b5` | ai | openapi | 1.0 | 222 | `discovered` | pending |
 | [Remote Settings PROD](apps/mozilla-com-kinto-6c569c5493/MANIFEST.md) | `mozilla-com-kinto-6c569c5493` | cloud | openapi | 1.22 | 19 | `discovered` | pending |
 | [Mtaa API Documentation](apps/mtaa-api-herokuapp-com-298576f9ea/MANIFEST.md) | `mtaa-api-herokuapp-com-298576f9ea` | open-data, location | openapi | 1.0 | 5 | `discovered` | pending |
 | [Musixmatch API](apps/musixmatch-com-e9d207a949/MANIFEST.md) | `musixmatch-com-e9d207a949` | media | openapi | 1.1.0 | 16 | `discovered` | pending |
+| [Mux](apps/mux/MANIFEST.md) | `mux` | media | openapi | v1 | 192 | `discovered` | pending |
+| [My Most Trusted Network](apps/my-most-trusted-network/MANIFEST.md) | `my-most-trusted-network` | marketing | openapi | 1.0.6 | 43 | `discovered` | pending |
 | [nextAuth API](apps/n-auth-com-2b8277647d/MANIFEST.md) | `n-auth-com-2b8277647d` | security | openapi | 2.2 | 55 | `discovered` | pending |
+| [Nager.Date](apps/nager-date/MANIFEST.md) | `nager-date` | open-data | openapi | v4 | 6 | `discovered` | pending |
 | [NamSor API v2](apps/namsor-com-a0324e0999/MANIFEST.md) | `namsor-com-a0324e0999` | ai | openapi | 2.0.24 | 84 | `discovered` | pending |
+| [NASA Astronomy Picture of the Day (APOD)](apps/nasa-astronomy-picture-of-the-day-apod/MANIFEST.md) | `nasa-astronomy-picture-of-the-day-apod` | media | openapi | 1.0.0 | 1 | `discovered` | pending |
 | [APOD](apps/nasa-gov-apod-a37cfd6576/MANIFEST.md) | `nasa-gov-apod-a37cfd6576` | media, open-data | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [NASA Image and Video Library](apps/nasa-image-and-video-library/MANIFEST.md) | `nasa-image-and-video-library` | media | openapi | 1.0.0 | 5 | `discovered` | pending |
+| [NASA TechPort](apps/nasa-techport/MANIFEST.md) | `nasa-techport` | open-data | openapi | 4.5.3 | 102 | `discovered` | pending |
+| [National Archives Catalog API](apps/national-archives-catalog-api/MANIFEST.md) | `national-archives-catalog-api` | open-data | openapi | 0.2.0 | 64 | `discovered` | pending |
+| [National Park Service](apps/national-park-service/MANIFEST.md) | `national-park-service` | open-data | openapi | 1.0.0 | 29 | `discovered` | pending |
+| [NationBuilder](apps/nationbuilder/MANIFEST.md) | `nationbuilder` | business | openapi | 2.0 | 196 | `discovered` | pending |
 | [Native Ads Publisher API](apps/nativeads-com-bf9e25b35d/MANIFEST.md) | `nativeads-com-bf9e25b35d` | marketing | openapi | 1.0.0 | 4 | `discovered` | pending |
+| [NAVER Open API](apps/naver-open-api/MANIFEST.md) | `naver-open-api` | software-development | openapi | 1.1.0 | 25 | `discovered` | pending |
 | [Advicent.FactFinderService](apps/naviplancentral-com-factfinder-e19a60b7bc/MANIFEST.md) | `naviplancentral-com-factfinder-e19a60b7bc` | finance | openapi | v1 | 151 | `discovered` | pending |
 | [NBA Stats API](apps/nba-com-7ea8a5e2ab/MANIFEST.md) | `nba-com-7ea8a5e2ab` | media, open-data | openapi | version | 91 | `discovered` | pending |
 | [Account and Transaction API Specification - UK](apps/nbg-gr-5fdc9d2f20/MANIFEST.md) | `nbg-gr-5fdc9d2f20` | finance | openapi | v3.1.5 | 21 | `discovered` | pending |
+| [NCBI Datasets API](apps/ncbi-datasets-api/MANIFEST.md) | `ncbi-datasets-api` | health | openapi | v2 | 111 | `discovered` | pending |
+| [NCEI Access Data Service](apps/ncei-access-data-service/MANIFEST.md) | `ncei-access-data-service` | open-data | openapi | 1 | 1 | `discovered` | pending |
+| [NCEI Climate Data Online (CDO)](apps/ncei-climate-data-online-cdo/MANIFEST.md) | `ncei-climate-data-online-cdo` | open-data | openapi | 2 | 13 | `discovered` | pending |
+| [NCEI Space Weather Portal](apps/ncei-space-weather-portal/MANIFEST.md) | `ncei-space-weather-portal` | open-data | openapi | v1 (build v20261030a) | 14 | `discovered` | pending |
 | [Health Data Consent Manager](apps/ndhm-gov-in-ndhm-cm-06c88a9e22/MANIFEST.md) | `ndhm-gov-in-ndhm-cm-06c88a9e22` | open-data | openapi | 0.5 | 22 | `discovered` | pending |
 | [Neblio REST API Suite](apps/nebl-io-5c42dec023/MANIFEST.md) | `nebl-io-5c42dec023` | finance | openapi | 1.3.0 | 50 | `discovered` | pending |
+| [Neocities](apps/neocities/MANIFEST.md) | `neocities` | cloud | openapi | 2026-10-01 | 8 | `discovered` | pending |
+| [Neon](apps/neon/MANIFEST.md) | `neon` | cloud | openapi | v2 | 195 | `discovered` | pending |
 | [Netatmo](apps/netatmo-net-ca25a67633/MANIFEST.md) | `netatmo-net-ca25a67633` | iot | openapi | 1.1.5 | 22 | `discovered` | pending |
 | [NetBox API](apps/netbox-dev-a623bf2fd2/MANIFEST.md) | `netbox-dev-a623bf2fd2` | cloud | openapi | 3.4 | 844 | `discovered` | pending |
+| [NetBox REST API](apps/netbox-rest-api/MANIFEST.md) | `netbox-rest-api` | cloud | openapi | 4.7.5 | 1256 | `discovered` | pending |
+| [Netlas](apps/netlas/MANIFEST.md) | `netlas` | security | openapi | v1 | 47 | `discovered` | pending |
 | [Labs64 NetLicensing RESTful API Test Center](apps/netlicensing-io-3a1d6c96b5/MANIFEST.md) | `netlicensing-io-3a1d6c96b5` | software-development | openapi | 2.x | 40 | `discovered` | pending |
 | [Netlify's API documentation](apps/netlify-com-28ad9919fb/MANIFEST.md) | `netlify-com-28ad9919fb` | cloud, software-development | openapi | 2.15.0 | 120 | `discovered` | pending |
 | [Neutrino API](apps/neutrinoapi-net-b4a869ab3d/MANIFEST.md) | `neutrinoapi-net-b4a869ab3d` | communication, location, ai | openapi | 3.6.3 | 27 | `discovered` | pending |
+| [NewReleases.io](apps/newreleases-io/MANIFEST.md) | `newreleases-io` | software-development | openapi | 1 | 10 | `discovered` | pending |
 | [Account API](apps/nexmo-com-account-c8d34fd206/MANIFEST.md) | `nexmo-com-account-c8d34fd206` | communication | openapi | 1.0.4 | 8 | `discovered` | pending |
+| [Nextcloud Core OCS API](apps/nextcloud-core-ocs-api/MANIFEST.md) | `nextcloud-core-ocs-api` | cloud | openapi | 0.0.1 | 69 | `discovered` | pending |
 | [nFusion Solutions Market Data API](apps/nfusionsolutions-biz-d68285160b/MANIFEST.md) | `nfusionsolutions-biz-d68285160b` | finance | openapi | 1 | 17 | `discovered` | pending |
+| [ngrok API](apps/ngrok-api/MANIFEST.md) | `ngrok-api` | cloud | openapi | 1.0.0 | 247 | `discovered` | pending |
+| [NHTSA vPIC](apps/nhtsa-vpic/MANIFEST.md) | `nhtsa-vpic` | open-data | openapi | 1.0.0 | 26 | `discovered` | pending |
 | [nic.at Domainfinder API Documentation](apps/nic-at-domainfinder-84dc5ebe84/MANIFEST.md) | `nic-at-domainfinder-84dc5ebe84` | software-development | openapi | 1.1.0 | 1 | `discovered` | pending |
 | [NLPCloud](apps/nlpcloud-io-cdafe2a1bb/MANIFEST.md) | `nlpcloud-io-cdafe2a1bb` | ai | openapi | 1.0.0 | 5 | `discovered` | pending |
+| [NLR Transportation Laws and Incentives](apps/nlr-transportation-laws-and-incentives/MANIFEST.md) | `nlr-transportation-laws-and-incentives` | open-data | openapi | 0.1.0 | 4 | `discovered` | pending |
+| [NOAA CO-OPS Data Retrieval API](apps/noaa-co-ops-data-retrieval-api/MANIFEST.md) | `noaa-co-ops-data-retrieval-api` | open-data | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [Nobel Prize API](apps/nobel-prize-api/MANIFEST.md) | `nobel-prize-api` | open-data | openapi | 2.1 | 4 | `discovered` | pending |
+| [Nominatim](apps/nominatim/MANIFEST.md) | `nominatim` | location | openapi | 1.0.0 | 3 | `discovered` | pending |
 | [Noosh API application](apps/noosh-com-ae3325b2d7/MANIFEST.md) | `noosh-com-ae3325b2d7` | productivity | openapi | 1.0 | 102 | `discovered` | pending |
 | [Nordigen Account Information Services API](apps/nordigen-com-e20fcb5af6/MANIFEST.md) | `nordigen-com-e20fcb5af6` | finance | openapi | 2.0 (v2) | 28 | `discovered` | pending |
 | [Notion API](apps/notion-com-880f7ff4c2/MANIFEST.md) | `notion-com-880f7ff4c2` | productivity | openapi | 1.0.0 | 13 | `discovered` | pending |
+| [Novu](apps/novu/MANIFEST.md) | `novu` | communication | openapi | 3.20.0 | 149 | `discovered` | pending |
 | [NOWPayments API](apps/nowpayments-io-a656a5bbe0/MANIFEST.md) | `nowpayments-io-a656a5bbe0` | finance | openapi | 1.0.0 | 16 | `discovered` | pending |
 | [NPR Authorization Service](apps/npr-org-authorization-f33fb39fcf/MANIFEST.md) | `npr-org-authorization-f33fb39fcf` | media | openapi | 2 | 3 | `discovered` | pending |
 | [High Performance Building Database](apps/nrel-gov-building-case-studies-0836f80ff7/MANIFEST.md) | `nrel-gov-building-case-studies-0836f80ff7` | open-data | openapi | 1.0 | 2 | `discovered` | pending |
 | [Georg API](apps/nrm-se-georg-9ff5845303/MANIFEST.md) | `nrm-se-georg-9ff5845303` | location | openapi | 2.1 | 5 | `discovered` | pending |
 | [Ntropy Transaction API v1](apps/ntropy-network-72b2892c97/MANIFEST.md) | `ntropy-network-72b2892c97` | finance | openapi | 1.0.0 | 2 | `discovered` | pending |
+| [Nylas](apps/nylas/MANIFEST.md) | `nylas` | communication | openapi | v3 | 244 | `discovered` | pending |
 | [Archive API](apps/nytimes-com-archive-b66b63c9da/MANIFEST.md) | `nytimes-com-archive-b66b63c9da` | media, open-data | openapi | 1.0.0 | 1 | `discovered` | pending |
 | [Mobility API](apps/o2-cz-mobility-ec9c923929/MANIFEST.md) | `o2-cz-mobility-ec9c923929` | communication | openapi | 1.2.0 | 2 | `discovered` | pending |
 | [obono RKSV API](apps/obono-at-882246735b/MANIFEST.md) | `obono-at-882246735b` | finance, ecommerce | openapi | 1.4.0.0 | 18 | `discovered` | pending |
+| [OCR.space](apps/ocr-space/MANIFEST.md) | `ocr-space` | analytics | openapi | 1.0.0 | 2 | `discovered` | pending |
+| [Octopus Energy](apps/octopus-energy/MANIFEST.md) | `octopus-energy` | analytics | openapi | v1 | 24 | `discovered` | pending |
+| [Octopus Energy (Kraken)](apps/octopus-energy-graphql/MANIFEST.md) | `octopus-energy-graphql` | iot, business | graphql | 2026-11-18-snapshot | 822 | `discovered` | pending |
+| [oHRis](apps/ohris/MANIFEST.md) | `ohris` | business | openapi | 2.2.0 | 63 | `discovered` | pending |
+| [OilPriceAPI](apps/oilpriceapi/MANIFEST.md) | `oilpriceapi` | finance | openapi | v1 | 137 | `discovered` | pending |
 | [Users (Okta API)](apps/okta-local-b103a1863b/MANIFEST.md) | `okta-local-b103a1863b` | security | openapi | 1.0.0 | 19 | `discovered` | pending |
+| [OKX](apps/okx/MANIFEST.md) | `okx` | finance | openapi | 1.0.0 | 5 | `discovered` | pending |
 | [OMDb](apps/omdbapi-com-c93ec4ffd7/MANIFEST.md) | `omdbapi-com-c93ec4ffd7` | media, open-data | openapi | 1 | 1 | `discovered` | pending |
+| [Ometria](apps/ometria/MANIFEST.md) | `ometria` | marketing | openapi | 1.1.0 | 39 | `discovered` | pending |
+| [Omnisend](apps/omnisend/MANIFEST.md) | `omnisend` | marketing | openapi | 3.0.0 | 42 | `discovered` | pending |
+| [OneMap Singapore](apps/onemap-singapore/MANIFEST.md) | `onemap-singapore` | location | openapi | 1.0.0 | 4 | `discovered` | pending |
+| [OneSignal](apps/onesignal/MANIFEST.md) | `onesignal` | marketing | openapi | 1.2.2 | 37 | `discovered` | pending |
+| [Onetime Secret](apps/onetime-secret/MANIFEST.md) | `onetime-secret` | security | openapi | 2026-11-11 | 23 | `discovered` | pending |
 | [OnSched Consumer API](apps/onsched-com-consumer-31633d1114/MANIFEST.md) | `onsched-com-consumer-31633d1114` | productivity | openapi | v1 | 38 | `discovered` | pending |
+| [ONYPHE](apps/onyphe/MANIFEST.md) | `onyphe` | security | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [OOPSpam](apps/oopspam/MANIFEST.md) | `oopspam` | security | openapi | 1.0.0 | 3 | `discovered` | pending |
+| [Open Banking ATM Locator API](apps/open-banking-atm-locator-api/MANIFEST.md) | `open-banking-atm-locator-api` | finance | openapi | v2.3 | 2 | `discovered` | pending |
+| [Open Banking Branch Locator API](apps/open-banking-branch-locator-api/MANIFEST.md) | `open-banking-branch-locator-api` | finance | openapi | v2.3 | 2 | `discovered` | pending |
+| [Open Banking Business Current Account API](apps/open-banking-business-current-account-api/MANIFEST.md) | `open-banking-business-current-account-api` | finance | openapi | v2.4 | 2 | `discovered` | pending |
+| [Open Banking Personal Current Account API](apps/open-banking-personal-current-account-api/MANIFEST.md) | `open-banking-personal-current-account-api` | finance | openapi | v2.4 | 2 | `discovered` | pending |
+| [Open Banking Project.ch (Swiss NextGen API)](apps/open-banking-project-ch-swiss-nextgen-api/MANIFEST.md) | `open-banking-project-ch-swiss-nextgen-api` | finance | openapi | 1.3.8_2020-12-14 - Swiss edition 1.3.8.1-CH | 34 | `discovered` | pending |
+| [Open Banking SME Commercial Credit Card API](apps/open-banking-sme-commercial-credit-card-api/MANIFEST.md) | `open-banking-sme-commercial-credit-card-api` | finance | openapi | v2.3 | 2 | `discovered` | pending |
+| [Open Banking SME Loan API](apps/open-banking-sme-loan-api/MANIFEST.md) | `open-banking-sme-loan-api` | finance | openapi | v2.3 | 2 | `discovered` | pending |
+| [Open Brewery DB API](apps/open-brewery-db-api/MANIFEST.md) | `open-brewery-db-api` | analytics | openapi | 1.0.0 | 5 | `discovered` | pending |
+| [Open Charge Map](apps/open-charge-map/MANIFEST.md) | `open-charge-map` | location | openapi | 3.1 | 6 | `discovered` | pending |
+| [Open Exchange Rates API](apps/open-exchange-rates-api/MANIFEST.md) | `open-exchange-rates-api` | finance | openapi | 0.7.0 | 4 | `discovered` | pending |
+| [Open Food Facts](apps/open-food-facts/MANIFEST.md) | `open-food-facts` | analytics | openapi | 3 | 12 | `discovered` | pending |
+| [Open Health Hub](apps/open-health-hub/MANIFEST.md) | `open-health-hub` | health | openapi | 1.0.0 | 23 | `discovered` | pending |
+| [Open Library](apps/open-library/MANIFEST.md) | `open-library` | media | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [Open Library](apps/open-library-2/MANIFEST.md) | `open-library-2` | media | openapi | 1.0.0 | 8 | `discovered` | pending |
+| [Open-Meteo](apps/open-meteo/MANIFEST.md) | `open-meteo` | open-data | openapi | 1.0 | 1 | `discovered` | pending |
+| [Open Payments](apps/open-payments/MANIFEST.md) | `open-payments` | finance | openapi | 2026-10-02 | 5 | `discovered` | pending |
+| [Open Trivia Database](apps/open-trivia-database/MANIFEST.md) | `open-trivia-database` | education | openapi | 1.0.0 | 5 | `discovered` | pending |
+| [Open Wearables](apps/open-wearables/MANIFEST.md) | `open-wearables` | health | openapi | 1.0.0 | 136 | `discovered` | pending |
 | [OpenAI API](apps/openai-com-bb438e1309/MANIFEST.md) | `openai-com-bb438e1309` | ai | openapi | 1.2.0 | 28 | `discovered` | pending |
+| [OpenAIRE Graph API](apps/openaire-graph-api/MANIFEST.md) | `openaire-graph-api` | analytics | openapi | 1 | 43 | `discovered` | pending |
+| [OpenAlex API](apps/openalex-api/MANIFEST.md) | `openalex-api` | analytics | openapi | 1.0.0 | 44 | `discovered` | pending |
 | [OpenAPI Generator Online](apps/openapi-generator-tech-0b013007c7/MANIFEST.md) | `openapi-generator-tech-0b013007c7` | software-development | openapi | 6.2.1 | 7 | `discovered` | pending |
 | [OpenAQ](apps/openaq-local-3b051985ed/MANIFEST.md) | `openaq-local-3b051985ed` | location | openapi | 2.0.0 | 36 | `discovered` | pending |
 | [Swiss NextGen Banking API-Framework](apps/openbankingproject-ch-715d175c21/MANIFEST.md) | `openbankingproject-ch-715d175c21` | finance | openapi | 1.3.8_2020-12-14 - Swiss edition 1.3.8.1-CH | 34 | `discovered` | pending |
+| [OpenCage Geocoding API](apps/opencage-geocoding-api/MANIFEST.md) | `opencage-geocoding-api` | location | openapi | 1.1.0 | 4 | `discovered` | pending |
 | [OpenCage Geocoder](apps/opencagedata-com-e1532a6c2d/MANIFEST.md) | `opencagedata-com-e1532a6c2d` | location | openapi | 1 | 1 | `discovered` | pending |
 | [OpenChannel Market API](apps/openchannel-io-market-b0e1f704bc/MANIFEST.md) | `openchannel-io-market-b0e1f704bc` | ecommerce, software-development | openapi | 2.0.24 | 72 | `discovered` | pending |
+| [OpenCorporates](apps/opencorporates/MANIFEST.md) | `opencorporates` | analytics | openapi | 0.4.8 | 2 | `discovered` | pending |
 | [ODN API](apps/opendatanetwork-com-56f4360ca6/MANIFEST.md) | `opendatanetwork-com-56f4360ca6` | open-data | openapi | 1.0.0 | 9 | `discovered` | pending |
 | [opendatasoft](apps/opendatasoft-com-cfab2567e0/MANIFEST.md) | `opendatasoft-com-cfab2567e0` | open-data | openapi | 2.1.0 | 36 | `discovered` | pending |
+| [OpenDota API](apps/opendota-api/MANIFEST.md) | `opendota-api` | media | openapi | 31.1.1 | 55 | `discovered` | pending |
+| [openEHR EHR API](apps/openehr-ehr-api/MANIFEST.md) | `openehr-ehr-api` | health | openapi | latest | 33 | `discovered` | pending |
+| [OpenF1 REST API](apps/openf1-rest-api/MANIFEST.md) | `openf1-rest-api` | analytics | openapi | 1.0.0 | 18 | `discovered` | pending |
+| [openFDA](apps/openfda/MANIFEST.md) | `openfda` | health | openapi | 1.0.0 | 6 | `discovered` | pending |
 | [OpenFIGI API](apps/openfigi-com-b83b2ae1c2/MANIFEST.md) | `openfigi-com-b83b2ae1c2` | open-data | openapi | 1.4.0 | 2 | `discovered` | pending |
+| [OpenHue API](apps/openhue-api/MANIFEST.md) | `openhue-api` | cloud | openapi | v2 | 133 | `discovered` | pending |
 | [OpenIndex Retrieval Plugin API](apps/openindex-ai-0fd697d1d0/MANIFEST.md) | `openindex-ai-0fd697d1d0` | ai | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [OpenIndex Wiki API](apps/openindex-wiki-api/MANIFEST.md) | `openindex-wiki-api` | analytics | openapi | 1.0.0 | 46 | `discovered` | pending |
+| [openITCOCKPIT](apps/openitcockpit/MANIFEST.md) | `openitcockpit` | cloud | openapi | 5.6.1 | 0 | `discovered` | pending |
+| [OpenLigaDB](apps/openligadb/MANIFEST.md) | `openligadb` | media | openapi | v1 | 23 | `discovered` | pending |
 | [OSDB REST API v1](apps/openlinksw-com-osdb-11d1c23341/MANIFEST.md) | `openlinksw-com-osdb-11d1c23341` | software-development | openapi | 1.0.0 | 10 | `discovered` | pending |
+| [OpenObserve](apps/openobserve/MANIFEST.md) | `openobserve` | software-development | openapi | 0.1.0 | 886 | `discovered` | pending |
+| [OpenPageRank](apps/openpagerank/MANIFEST.md) | `openpagerank` | marketing | openapi | 1.0.0 | 3 | `discovered` | pending |
+| [Openpay Mexico](apps/openpay-mexico/MANIFEST.md) | `openpay-mexico` | finance | openapi | v1 | 4 | `discovered` | pending |
+| [OpenPayd](apps/openpayd/MANIFEST.md) | `openpayd` | finance | openapi | 1.0 | 6 | `discovered` | pending |
 | [Open Policy Agent (OPA) REST API](apps/openpolicy-local-cdf95308f7/MANIFEST.md) | `openpolicy-local-cdf95308f7` | security, software-development | openapi | 0.28.0 | 16 | `discovered` | pending |
+| [OpenRouter](apps/openrouter/MANIFEST.md) | `openrouter` | ai | openapi | 1.0.0 | 174 | `discovered` | pending |
+| [OpenRouteService](apps/openrouteservice/MANIFEST.md) | `openrouteservice` | location | openapi | 1.0.0 | 9 | `discovered` | pending |
+| [openrouteservice API v2](apps/openrouteservice-api-v2/MANIFEST.md) | `openrouteservice-api-v2` | analytics | openapi | 1 | 9 | `discovered` | pending |
+| [OpenSanctions](apps/opensanctions/MANIFEST.md) | `opensanctions` | open-data | openapi | yente 5.5.0 | 12 | `discovered` | pending |
+| [OpenSea API](apps/opensea-api/MANIFEST.md) | `opensea-api` | ecommerce | openapi | 2.0.0 | 169 | `discovered` | pending |
 | [Open States API v3](apps/openstates-org-422d8ecd69/MANIFEST.md) | `openstates-org-422d8ecd69` | open-data | openapi | 2021.11.12 | 12 | `discovered` | pending |
 | [Smartphone Test Farm](apps/openstf-io-9473238017/MANIFEST.md) | `openstf-io-9473238017` | software-development | openapi | 2.3.0 | 10 | `discovered` | pending |
+| [OpenStreetMap](apps/openstreetmap/MANIFEST.md) | `openstreetmap` | location | openapi | 0.6 | 17 | `discovered` | pending |
 | [Open Build Service API](apps/opensuse-org-obs-2814b66dd3/MANIFEST.md) | `opensuse-org-obs-2814b66dd3` | software-development | openapi | 2.10.50 | 81 | `discovered` | pending |
 | [Open Targets Platform](apps/opentargets-graphql/MANIFEST.md) | `opentargets-graphql` | health | graphql | 2026-10-29-snapshot | 20 | `discovered` | pending |
 | [Open Targets Platform REST API](apps/opentargets-io-dae9422126/MANIFEST.md) | `opentargets-io-dae9422126` | open-data | openapi | 19.02.1 | 31 | `discovered` | pending |
 | [OpenTrials API](apps/opentrials-local-56db3f8f72/MANIFEST.md) | `opentrials-local-56db3f8f72` | open-data | openapi | 0.0.1 | 17 | `discovered` | pending |
+| [OpenTripMap API](apps/opentripmap-api/MANIFEST.md) | `opentripmap-api` | travel | openapi | 0.0.1 | 5 | `discovered` | pending |
 | [OpenUV - Global Real-Time UV Index Forecast API](apps/openuv-io-7353da1170/MANIFEST.md) | `openuv-io-7353da1170` | location, health | openapi | v1 | 3 | `discovered` | pending |
+| [Openverse](apps/openverse/MANIFEST.md) | `openverse` | media | openapi | da17b8703a2926524721ed0525ee9ea05d09f398 (v1) | 17 | `discovered` | pending |
+| [OpenWeather](apps/openweather/MANIFEST.md) | `openweather` | analytics | openapi | 1.0.0 | 6 | `discovered` | pending |
+| [OpenWeatherMap](apps/openweathermap/MANIFEST.md) | `openweathermap` | analytics | openapi | 1.0.0 | 5 | `discovered` | pending |
 | [OpsLevel](apps/opslevel-graphql/MANIFEST.md) | `opslevel-graphql` | software-development | graphql | 2026-10-29-snapshot | 197 | `discovered` | pending |
 | [OPTIMADE API](apps/optimade-local-7867449a19/MANIFEST.md) | `optimade-local-7867449a19` | open-data | openapi | 1.1.0~develop | 8 | `discovered` | pending |
+| [Optimizely Campaign](apps/optimizely-campaign/MANIFEST.md) | `optimizely-campaign` | marketing | openapi | 1 | 234 | `discovered` | pending |
 | [groov View Public API](apps/opto22-com-groov-3a44b2112c/MANIFEST.md) | `opto22-com-groov-3a44b2112c` | iot | openapi | R4.2a | 10 | `discovered` | pending |
+| [Oracle Eloqua](apps/oracle-eloqua/MANIFEST.md) | `oracle-eloqua` | marketing | openapi | 2026.08.07 | 649 | `discovered` | pending |
+| [Oracle REST Data Services](apps/oracle-rest-data-services/MANIFEST.md) | `oracle-rest-data-services` | analytics | openapi | 1.0.0 | 3 | `discovered` | pending |
 | [Orbit API](apps/orbit-love-477bc7bc1b/MANIFEST.md) | `orbit-love-477bc7bc1b` | business | openapi | v1 | 33 | `discovered` | pending |
 | [Daymet Single Pixel Extraction Tool API](apps/ornl-gov-daymet-fc5cda01d0/MANIFEST.md) | `ornl-gov-daymet-fc5cda01d0` | location | openapi | 1.0.2 | 4 | `discovered` | pending |
 | [Orthanc API](apps/orthanc-server-com-9e673aad78/MANIFEST.md) | `orthanc-server-com-9e673aad78` | health | openapi | 1.11.3 | 274 | `discovered` | pending |
 | [OSF APIv2 Documentation](apps/osf-io-6b10e45113/MANIFEST.md) | `osf-io-6b10e45113` | open-data | openapi | 2.0 | 156 | `discovered` | pending |
 | [ote-godaddy-com-abuse-3db64ec434](apps/ote-godaddy-com-abuse-3db64ec434/MANIFEST.md) | `ote-godaddy-com-abuse-3db64ec434` | cloud | openapi | 1.0.0 | 3 | `discovered` | pending |
+| [Outrank](apps/outrank/MANIFEST.md) | `outrank` | marketing | openapi | 0.1.0 | 31 | `discovered` | pending |
+| [OutReachBin](apps/outreachbin/MANIFEST.md) | `outreachbin` | marketing | openapi | 1.1 | 19 | `discovered` | pending |
+| [Overpass API](apps/overpass-api/MANIFEST.md) | `overpass-api` | location | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [Oxford Dictionaries](apps/oxforddictionaries-com-916cc3e965/MANIFEST.md) | `oxforddictionaries-com-916cc3e965` | ai | openapi | 1.11.0 | 26 | `discovered` | pending |
 | [paccurate.io](apps/paccurate-io-23b050f64b/MANIFEST.md) | `paccurate-io-23b050f64b` | ecommerce | openapi | 0.1.1 | 1 | `discovered` | pending |
+| [Paddle](apps/paddle/MANIFEST.md) | `paddle` | finance | openapi | 1.0 | 126 | `discovered` | pending |
+| [PagerDuty](apps/pagerduty/MANIFEST.md) | `pagerduty` | software-development | openapi | 2.0.0 | 473 | `discovered` | pending |
 | [PandaScore REST API for All Videogames](apps/pandascore-co-0e0b5c263d/MANIFEST.md) | `pandascore-co-0e0b5c263d` | media | openapi | 2.23.1 | 56 | `discovered` | pending |
 | [papiNet API](apps/papinet-io-order-status-1ef573d634/MANIFEST.md) | `papinet-io-order-status-1ef573d634` | ecommerce | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [Bills API](apps/parliament-uk-bills-65239ef3fd/MANIFEST.md) | `parliament-uk-bills-65239ef3fd` | open-data | openapi | v1 | 19 | `discovered` | pending |
 | [Swagger API-REST for Patrowl Engines](apps/patrowl-local-8281d88f9b/MANIFEST.md) | `patrowl-local-8281d88f9b` | security | openapi | 1.0.0 | 14 | `discovered` | pending |
+| [Paved](apps/paved/MANIFEST.md) | `paved` | marketing | openapi | v1 | 37 | `discovered` | pending |
 | [PAYONE Link API](apps/pay1-de-link-9d67ce3f6d/MANIFEST.md) | `pay1-de-link-9d67ce3f6d` | finance | openapi | v1 | 4 | `discovered` | pending |
 | [Paylocity API](apps/paylocity-com-070d82ac4a/MANIFEST.md) | `paylocity-com-070d82ac4a` | business, finance | openapi | 2 | 30 | `discovered` | pending |
 | [GOV.UK Pay API](apps/payments-service-gov-uk-payments-a694dce2a0/MANIFEST.md) | `payments-service-gov-uk-payments-a694dce2a0` | finance, open-data | openapi | 1.0.3 | 10 | `discovered` | pending |
 | [EmailVerify](apps/paypi-dev-5c2f79e765/MANIFEST.md) | `paypi-dev-5c2f79e765` | communication | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [PayRun.IO](apps/payrun-io-4b1646c290/MANIFEST.md) | `payrun-io-4b1646c290` | finance | openapi | 22.23.10.42 | 389 | `discovered` | pending |
+| [Paystack](apps/paystack/MANIFEST.md) | `paystack` | finance | openapi | 1.0.0 | 163 | `discovered` | pending |
 | [PDF Blocks API](apps/pdfblocks-com-83f72fb0ee/MANIFEST.md) | `pdfblocks-com-83f72fb0ee` | productivity | openapi | 1.5.0 | 12 | `discovered` | pending |
 | [PdfBroker.io API](apps/pdfbroker-io-5463dfcff3/MANIFEST.md) | `pdfbroker-io-5463dfcff3` | productivity | openapi | v1 | 7 | `discovered` | pending |
 | [PDF Generator API](apps/pdfgeneratorapi-com-ab7f0ee2fb/MANIFEST.md) | `pdfgeneratorapi-com-ab7f0ee2fb` | productivity | openapi | 3.1.1 | 11 | `discovered` | pending |
 | [Pendo Feedback API](apps/pendo-io-75e6e214e8/MANIFEST.md) | `pendo-io-75e6e214e8` | analytics, business | openapi | 1.0.0 | 31 | `discovered` | pending |
+| [People Data Labs](apps/people-data-labs/MANIFEST.md) | `people-data-labs` | marketing | openapi | 5.0 | 21 | `discovered` | pending |
 | [Self Service Developer API](apps/peoplefinderspro-com-8806392105/MANIFEST.md) | `peoplefinderspro-com-8806392105` | marketing | openapi | 1.0.0 | 5 | `discovered` | pending |
 | [OpenAPI definition](apps/peoplegeneratorapi-live-61ad92f0d0/MANIFEST.md) | `peoplegeneratorapi-live-61ad92f0d0` | software-development | openapi | v0 | 46 | `discovered` | pending |
+| [Perkstar](apps/perkstar/MANIFEST.md) | `perkstar` | ecommerce | openapi | 2026-05-04.oauth | 27 | `discovered` | pending |
+| [Permit.io](apps/permit-io/MANIFEST.md) | `permit-io` | security | openapi | 2.0.0 | 264 | `discovered` | pending |
 | [PhantAuth](apps/phantauth-net-2309dfa94a/MANIFEST.md) | `phantauth-net-2309dfa94a` | security, software-development | openapi | 1.0.0 | 10 | `discovered` | pending |
+| [PhantomBuster](apps/phantombuster/MANIFEST.md) | `phantombuster` | marketing | openapi | 2.0.0 | 71 | `discovered` | pending |
+| [Pharos (NCATS / IDG)](apps/pharos-graphql/MANIFEST.md) | `pharos-graphql` | health, open-data | graphql | 2026-11-18-snapshot | 38 | `discovered` | pending |
 | [Polling Places API](apps/phila-gov-pollingplaces-3de61822ed/MANIFEST.md) | `phila-gov-pollingplaces-3de61822ed` | open-data | openapi | 1.0 | 1 | `discovered` | pending |
 | [Pickware](apps/pickware-graphql/MANIFEST.md) | `pickware-graphql` | ecommerce | graphql | 2026-10-29-snapshot | 131 | `discovered` | pending |
 | [Pinecone API](apps/pinecone-io-7ac816b553/MANIFEST.md) | `pinecone-io-7ac816b553` | ai, cloud | openapi | 20230401.1 | 15 | `discovered` | pending |
+| [Pinterest](apps/pinterest/MANIFEST.md) | `pinterest` | social-media | openapi | 5.28.0 | 266 | `discovered` | pending |
 | [The Plaid API](apps/plaid-com-04cea18042/MANIFEST.md) | `plaid-com-04cea18042` | finance | openapi | 2020-09-14_1.334.0 | 198 | `discovered` | pending |
+| [PlanetScale](apps/planetscale/MANIFEST.md) | `planetscale` | cloud | openapi | v1 | 298 | `discovered` | pending |
+| [Plural Open (Open States) API v3](apps/plural-open-open-states-api-v3/MANIFEST.md) | `plural-open-open-states-api-v3` | open-data | openapi | 2021.11.12 | 12 | `discovered` | pending |
 | [PocketSmith](apps/pocketsmith-com-f56bf574eb/MANIFEST.md) | `pocketsmith-com-f56bf574eb` | finance | openapi | 2.0 | 56 | `discovered` | pending |
+| [PokÃ©API](apps/pok-api/MANIFEST.md) | `pok-api` | media | openapi | 2.10.0 | 102 | `discovered` | pending |
+| [PokeAPI GraphQL](apps/pokeapi-graphql/MANIFEST.md) | `pokeapi-graphql` | media, open-data | graphql | 2026-11-18-snapshot | 327 | `discovered` | pending |
+| [Polar](apps/polar/MANIFEST.md) | `polar` | finance | openapi | 2026-10 | 178 | `discovered` | pending |
+| [Police API (data.police.uk)](apps/police-api-data-police-uk/MANIFEST.md) | `police-api-data-police-uk` | open-data | openapi | 1.0.0 | 12 | `discovered` | pending |
 | [Portfolio Optimizer](apps/portfoliooptimizer-io-2ce2df2cd0/MANIFEST.md) | `portfoliooptimizer-io-2ce2df2cd0` | finance | openapi | 1.0.9 | 83 | `discovered` | pending |
+| [Post Bridge](apps/post-bridge/MANIFEST.md) | `post-bridge` | social-media | openapi | 1.0 | 21 | `discovered` | pending |
+| [PostHog](apps/posthog/MANIFEST.md) | `posthog` | analytics | openapi | 1.0.0 | 2769 | `discovered` | pending |
+| [Postmark Account](apps/postmark-account/MANIFEST.md) | `postmark-account` | marketing | openapi | 0.9.0 | 23 | `discovered` | pending |
+| [Postmark Server](apps/postmark-server/MANIFEST.md) | `postmark-server` | marketing | openapi | 1.0.0 | 43 | `discovered` | pending |
 | [Postmark Account-level API](apps/postmarkapp-com-account-39dab9caa5/MANIFEST.md) | `postmarkapp-com-account-39dab9caa5` | communication | openapi | 0.9.0 | 23 | `discovered` | pending |
+| [Postproxy](apps/postproxy/MANIFEST.md) | `postproxy` | social-media | openapi | 2026-09-21 | 163 | `discovered` | pending |
 | [PowerDNS Authoritative HTTP API](apps/powerdns-local-fc48b17403/MANIFEST.md) | `powerdns-local-fc48b17403` | software-development | openapi | 0.0.13 | 32 | `discovered` | pending |
 | [TV API](apps/pressassociation-io-3fa8464cd6/MANIFEST.md) | `pressassociation-io-3fa8464cd6` | media | openapi | 2.0 | 18 | `discovered` | pending |
 | [Probely Developers](apps/probely-com-092bb6642e/MANIFEST.md) | `probely-com-092bb6642e` | security | openapi | 1.2.0 | 147 | `discovered` | pending |
+| [Product Hunt API v2](apps/product-hunt-graphql/MANIFEST.md) | `product-hunt-graphql` | social-media, marketing | graphql | 2026-11-18-snapshot | 21 | `discovered` | pending |
 | [ProxyKingdom-Api](apps/proxykingdom-com-3dd647724e/MANIFEST.md) | `proxykingdom-com-3dd647724e` | software-development | openapi | v1 | 1 | `discovered` | pending |
 | [ContentDepot](apps/prss-org-599d96e6d4/MANIFEST.md) | `prss-org-599d96e6d4` | media | openapi | 2.0.0 | 36 | `discovered` | pending |
 | [PTV Timetable API - Version 3](apps/ptv-vic-gov-au-77681cf73d/MANIFEST.md) | `ptv-vic-gov-au-77681cf73d` | travel | openapi | v3 | 26 | `discovered` | pending |
+| [Publora](apps/publora/MANIFEST.md) | `publora` | social-media | openapi | 1.0.0 | 57 | `discovered` | pending |
+| [Pulseem](apps/pulseem/MANIFEST.md) | `pulseem` | marketing | openapi | v1 | 20 | `discovered` | pending |
 | [Qualpay Payment Gateway API](apps/qualpay-com-d5378a1db7/MANIFEST.md) | `qualpay-com-d5378a1db7` | finance, ecommerce | openapi | 1.7.0 | 14 | `discovered` | pending |
 | [Qualtrics API](apps/qualtrics-com-80ca3be788/MANIFEST.md) | `qualtrics-com-80ca3be788` | productivity | openapi | 0.2 | 8 | `discovered` | pending |
 | [Coronavirus API](apps/quarantine-country-5342519b30/MANIFEST.md) | `quarantine-country-5342519b30` | open-data | openapi | 1.0 | 6 | `discovered` | pending |
 | [QuickChart API](apps/quickchart-io-a104c26918/MANIFEST.md) | `quickchart-io-a104c26918` | software-development, analytics | openapi | 1.0.0 | 4 | `discovered` | pending |
 | [They Said So Quotes API](apps/quotes-rest-7bbda97284/MANIFEST.md) | `quotes-rest-7bbda97284` | open-data | openapi | 3.1 | 47 | `discovered` | pending |
+| [Radarr](apps/radarr/MANIFEST.md) | `radarr` | media | openapi | 3.0.0 | 240 | `discovered` | pending |
 | [Railway Public GraphQL API](apps/railway-platform/MANIFEST.md) | `railway-platform` | cloud, software-development | graphql | 2026-10-29-snapshot | 391 | `discovered` | pending |
 | [Random Lovecraft](apps/randomlovecraft-com-0853fbaaf8/MANIFEST.md) | `randomlovecraft-com-0853fbaaf8` | ai | openapi | 1.0 | 4 | `discovered` | pending |
 | [Randommer API](apps/randommer-io-2330eea89c/MANIFEST.md) | `randommer-io-2330eea89c` | software-development | openapi | v1 | 25 | `discovered` | pending |
 | [DynamicDocs](apps/rapidapi-com-dynamicdocs-6243f48336/MANIFEST.md) | `rapidapi-com-dynamicdocs-6243f48336` | ai, software-development | openapi | 1.0 | 1 | `discovered` | pending |
+| [rasa.io](apps/rasa-io/MANIFEST.md) | `rasa-io` | marketing | openapi | 2 | 51 | `discovered` | pending |
 | [RAWG Video Games Database API](apps/rawg-io-0750ed3858/MANIFEST.md) | `rawg-io-0750ed3858` | media | openapi | v1.0 | 30 | `discovered` | pending |
 | [Request Baskets API](apps/rbaskets-in-5fff6e45ef/MANIFEST.md) | `rbaskets-in-5fff6e45ef` | software-development, cloud | openapi | 1.0.0 | 20 | `discovered` | pending |
+| [RCSB PDB Search API](apps/rcsb-pdb-search-api/MANIFEST.md) | `rcsb-pdb-search-api` | analytics | openapi | 2.6.0 | 7 | `discovered` | pending |
 | [Rebilly REST API](apps/rebilly-com-f3e32461fd/MANIFEST.md) | `rebilly-com-f3e32461fd` | finance, ecommerce | openapi | 2.1 | 184 | `discovered` | pending |
+| [Rebrandly](apps/rebrandly/MANIFEST.md) | `rebrandly` | marketing | openapi | 7.0.2 | 178 | `discovered` | pending |
 | [Redeal Analytics API](apps/redeal-io-00133e3edb/MANIFEST.md) | `redeal-io-00133e3edb` | analytics | openapi | 1.0.0 | 1 | `discovered` | pending |
 | [Catalog Inventory](apps/redhat-com-catalog-inventory-d1b1c69129/MANIFEST.md) | `redhat-com-catalog-inventory-d1b1c69129` | software-development | openapi | 1.0.0 | 38 | `discovered` | pending |
 | [Patchman-engine API](apps/redhat-local-patchman-engine-598e8711ee/MANIFEST.md) | `redhat-local-patchman-engine-598e8711ee` | software-development | openapi | v1.15.3 | 21 | `discovered` | pending |
 | [Refuge Restrooms API](apps/refugerestrooms-org-1e8c318003/MANIFEST.md) | `refugerestrooms-org-1e8c318003` | open-data | openapi | 0.0.1 | 4 | `discovered` | pending |
 | [Car Registration API](apps/regcheck-org-uk-5b89c209bd/MANIFEST.md) | `regcheck-org-uk-5b89c209bd` | travel, open-data | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [Reloadify](apps/reloadify/MANIFEST.md) | `reloadify` | marketing | openapi | v1 | 20 | `discovered` | pending |
 | [topupsapi](apps/reloadly-com-150ea11299/MANIFEST.md) | `reloadly-com-150ea11299` | communication | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [Background Removal API](apps/remove-bg-2cf8b7596a/MANIFEST.md) | `remove-bg-2cf8b7596a` | media, ai | openapi | 1.0.0 | 3 | `discovered` | pending |
+| [Render](apps/render/MANIFEST.md) | `render` | cloud | openapi | 1.0.0 | 264 | `discovered` | pending |
+| [Reoon](apps/reoon/MANIFEST.md) | `reoon` | marketing | openapi | 1.0.0 | 4 | `discovered` | pending |
+| [Replicate](apps/replicate/MANIFEST.md) | `replicate` | ai | openapi | 1.0.0-a1 | 36 | `discovered` | pending |
+| [Repudoc](apps/repudoc/MANIFEST.md) | `repudoc` | marketing | openapi | v1 | 2 | `discovered` | pending |
+| [Resend](apps/resend/MANIFEST.md) | `resend` | marketing | openapi | 1.5.1 | 142 | `discovered` | pending |
+| [REST Countries](apps/rest-countries/MANIFEST.md) | `rest-countries` | open-data | openapi | 1.0.0 | 5 | `discovered` | pending |
 | [RESTful4Up](apps/restful4up-local-a468beb1ee/MANIFEST.md) | `restful4up-local-a468beb1ee` | software-development | openapi | 1.0.0 | 5 | `discovered` | pending |
+| [Reteno](apps/reteno/MANIFEST.md) | `reteno` | marketing | openapi | 1.0 | 101 | `discovered` | pending |
+| [Rick and Morty API](apps/rick-and-morty-graphql/MANIFEST.md) | `rick-and-morty-graphql` | media, education | graphql | 2026-11-18-snapshot | 9 | `discovered` | pending |
+| [Roaspy](apps/roaspy/MANIFEST.md) | `roaspy` | marketing | openapi | 1.0.0 | 87 | `discovered` | pending |
 | [ChannelShipper & Royal Mail Public API](apps/royalmail-com-click-and-drop-ddba8709b1/MANIFEST.md) | `royalmail-com-click-and-drop-ddba8709b1` | ecommerce | openapi | 1.0.0 | 12 | `discovered` | pending |
 | [Rudder API](apps/rudder-example-local-a609ff0aef/MANIFEST.md) | `rudder-example-local-a609ff0aef` | software-development | openapi | 16 | 134 | `discovered` | pending |
 | [Rumble API (deprecated)](apps/rumble-run-2952170141/MANIFEST.md) | `rumble-run-2952170141` | security | openapi | 2.15.0 | 116 | `discovered` | pending |
+| [RunDossier](apps/rundossier/MANIFEST.md) | `rundossier` | ai | openapi | 1.0.0 | 5 | `discovered` | pending |
 | [Runscope API](apps/runscope-com-ee9ccc6b2c/MANIFEST.md) | `runscope-com-ee9ccc6b2c` | software-development | openapi | 1.0.0 | 29 | `discovered` | pending |
+| [RxNorm API](apps/rxnorm-api/MANIFEST.md) | `rxnorm-api` | health | openapi | 3.1.355 | 34 | `discovered` | pending |
 | [Sakari](apps/sakari-io-92946e5b52/MANIFEST.md) | `sakari-io-92946e5b52` | communication | openapi | 1.0.1 | 26 | `discovered` | pending |
 | [Saleor](apps/saleor-graphql/MANIFEST.md) | `saleor-graphql` | ecommerce | graphql | 2026-10-29-snapshot | 423 | `discovered` | pending |
+| [Saleshandy](apps/saleshandy/MANIFEST.md) | `saleshandy` | marketing | openapi | 1.0 | 115 | `discovered` | pending |
 | [SalesLoft Platform](apps/salesloft-com-078b31c4c8/MANIFEST.md) | `salesloft-com-078b31c4c8` | business | openapi | v2 | 118 | `discovered` | pending |
 | [SAP Developer Center](apps/sap-developers-graphql/MANIFEST.md) | `sap-developers-graphql` | software-development, business | graphql | 2026-10-29-snapshot | 6 | `discovered` | pending |
+| [SARE](apps/sare/MANIFEST.md) | `sare` | marketing | openapi | 0.19.0 | 76 | `discovered` | pending |
 | [perfectpdf api](apps/scideas-net-perfectpdf-d6d996ea76/MANIFEST.md) | `scideas-net-perfectpdf-d6d996ea76` | productivity | openapi | 1.0 | 1 | `discovered` | pending |
+| [SEC EDGAR](apps/sec-edgar/MANIFEST.md) | `sec-edgar` | finance | openapi | 1.0.0 | 4 | `discovered` | pending |
+| [SendFox](apps/sendfox/MANIFEST.md) | `sendfox` | marketing | openapi | 1.6.0 | 74 | `discovered` | pending |
+| [SendGrid](apps/sendgrid/MANIFEST.md) | `sendgrid` | marketing | openapi | 1.0.0 | 3 | `discovered` | pending |
 | [Email Activity (beta)](apps/sendgrid-com-14227c25de/MANIFEST.md) | `sendgrid-com-14227c25de` | communication, marketing | openapi | 1.0.0 | 334 | `discovered` | pending |
+| [Sendible](apps/sendible/MANIFEST.md) | `sendible` | social-media | openapi | 1.0.0 | 8 | `discovered` | pending |
+| [SendPulse Bulk Email](apps/sendpulse-bulk-email/MANIFEST.md) | `sendpulse-bulk-email` | marketing | openapi | 1.0.0 | 55 | `discovered` | pending |
+| [SendPulse Chatbots](apps/sendpulse-chatbots/MANIFEST.md) | `sendpulse-chatbots` | marketing | openapi | 1.0.0 | 19 | `discovered` | pending |
+| [SendPulse CRM](apps/sendpulse-crm/MANIFEST.md) | `sendpulse-crm` | marketing | openapi | 0.1.0 | 216 | `discovered` | pending |
+| [SendPulse SMS](apps/sendpulse-sms/MANIFEST.md) | `sendpulse-sms` | marketing | openapi | 1.0.0 | 18 | `discovered` | pending |
+| [SEOmatic](apps/seomatic/MANIFEST.md) | `seomatic` | analytics | openapi | 1.0.0 | 41 | `discovered` | pending |
+| [ServiceNow](apps/servicenow/MANIFEST.md) | `servicenow` | business | openapi | 1.0.0 | 6 | `discovered` | pending |
+| [Sessionboard](apps/sessionboard/MANIFEST.md) | `sessionboard` | marketing | openapi | 1.0 | 246 | `discovered` | pending |
 | [setlist.fm API](apps/setlist-fm-0233f7d3cc/MANIFEST.md) | `setlist-fm-0233f7d3cc` | media | openapi | 1.0 | 15 | `discovered` | pending |
 | [ShipEngine API](apps/shipengine-com-51597320a1/MANIFEST.md) | `shipengine-com-51597320a1` | ecommerce, travel | openapi | 1.1.202303022103 | 84 | `discovered` | pending |
+| [Shippo](apps/shippo/MANIFEST.md) | `shippo` | ecommerce, travel | openapi | 2018-02-08 | 71 | `discovered` | pending |
 | [Shop](apps/shop-app-8b1cb6422b/MANIFEST.md) | `shop-app-8b1cb6422b` | ecommerce | openapi | v1 | 2 | `discovered` | pending |
 | [カラーミーショップアプリストア API](apps/shop-pro-jp-57b39c5557/MANIFEST.md) | `shop-pro-jp-57b39c5557` | ecommerce | openapi | 1.0.0 | 18 | `discovered` | pending |
 | [Shopify Storefront](apps/shopify-graphql/MANIFEST.md) | `shopify-graphql` | ecommerce | graphql | 2026-10-29-snapshot+rights.20261030 | 75 | `source_reviewed` | pending |
+| [Shopify Storefront API](apps/shopify-storefront-graphql/MANIFEST.md) | `shopify-storefront-graphql` | ecommerce | graphql | 2026-11-18-snapshot | 75 | `discovered` | pending |
 | [Shorten.REST API Documentation](apps/shorten-rest-5530e0df56/MANIFEST.md) | `shorten-rest-5530e0df56` | software-development | openapi | 1.0.0 | 7 | `discovered` | pending |
+| [ShoutOut](apps/shoutout/MANIFEST.md) | `shoutout` | social-media | openapi | 1.0 | 17 | `discovered` | pending |
 | [Shutterstock API Explorer](apps/shutterstock-com-1aa777c288/MANIFEST.md) | `shutterstock-com-1aa777c288` | media | openapi | 1.1.32 | 118 | `discovered` | pending |
 | [SimpliVPNAPI](apps/simplivpn-net-fda50abd90/MANIFEST.md) | `simplivpn-net-fda50abd90` | security | openapi | 1.0 | 7 | `discovered` | pending |
 | [Sinao API](apps/sinao-app-cd45c696e1/MANIFEST.md) | `sinao-app-cd45c696e1` | finance | openapi | 1.1.0 | 272 | `discovered` | pending |
 | [Slack Web API](apps/slack-com-03caecac84/MANIFEST.md) | `slack-com-03caecac84` | communication, productivity | openapi | 1.7.0 | 174 | `discovered` | pending |
 | [smart-me](apps/smart-me-com-06c3e616ff/MANIFEST.md) | `smart-me-com-06c3e616ff` | iot | openapi | v1 | 64 | `discovered` | pending |
 | [sms77.io API](apps/sms77-io-9ba4cb17e2/MANIFEST.md) | `sms77-io-9ba4cb17e2` | communication | openapi | 1.0.0 | 16 | `discovered` | pending |
+| [Snapshot Hub](apps/snapshot-graphql/MANIFEST.md) | `snapshot-graphql` | finance, social-media | graphql | 2026-11-18-snapshot | 25 | `discovered` | pending |
 | [Snyk API](apps/snyk-io-0e8bc5e0ab/MANIFEST.md) | `snyk-io-0e8bc5e0ab` | security, software-development | openapi | 1.0.0 | 103 | `discovered` | pending |
+| [SocialRails](apps/socialrails/MANIFEST.md) | `socialrails` | social-media | openapi | 1.6.0 | 22 | `discovered` | pending |
+| [sona.to](apps/sona-to/MANIFEST.md) | `sona-to` | social-media | openapi | 1.0.0 | 42 | `discovered` | pending |
+| [Sonarr](apps/sonarr/MANIFEST.md) | `sonarr` | media | openapi | 3.0.0 | 240 | `discovered` | pending |
 | [Sorare](apps/sorare-graphql/MANIFEST.md) | `sorare-graphql` | media | graphql | 2026-10-29-snapshot | 316 | `discovered` | pending |
+| [Sourcegraph](apps/sourcegraph-graphql/MANIFEST.md) | `sourcegraph-graphql` | software-development | graphql | 2026-11-18-snapshot | 395 | `discovered` | pending |
+| [SpaceX (community)](apps/spacex-graphql/MANIFEST.md) | `spacex-graphql` | open-data, education | graphql | 2026-11-18-snapshot | 44 | `discovered` | pending |
 | [spoonacular API](apps/spoonacular-com-2e36b48e0d/MANIFEST.md) | `spoonacular-com-2e36b48e0d` | media, health | openapi | 1.1 | 99 | `discovered` | pending |
 | [CBB v3 Scores](apps/sportsdata-io-cbb-v3-scores-8229e6f14e/MANIFEST.md) | `sportsdata-io-cbb-v3-scores-8229e6f14e` | media | openapi | 1.0 | 16 | `discovered` | pending |
 | [Spotify Web API](apps/spotify-com-0fa3d40aff/MANIFEST.md) | `spotify-com-0fa3d40aff` | media | openapi | 1.0.0 | 88 | `discovered` | pending |
+| [Spotler UK](apps/spotler-uk/MANIFEST.md) | `spotler-uk` | marketing | openapi | 1.7.0 | 93 | `discovered` | pending |
+| [Stage Captions](apps/stage-captions/MANIFEST.md) | `stage-captions` | marketing | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [StatSocial Platform API](apps/statsocial-com-ed8c05108a/MANIFEST.md) | `statsocial-com-ed8c05108a` | social-media, marketing | openapi | 1.0.0 | 17 | `discovered` | pending |
 | [Stellastra](apps/stellastra-com-9ea4f017d5/MANIFEST.md) | `stellastra-com-9ea4f017d5` | security | openapi | 1.0 | 1 | `discovered` | pending |
 | [Storecove API](apps/storecove-com-afe802be92/MANIFEST.md) | `storecove-com-afe802be92` | finance, business | openapi | 2.0.1 | 30 | `discovered` | pending |
 | [Stream Chat API](apps/stream-io-api-com-267f68179f/MANIFEST.md) | `stream-io-api-com-267f68179f` | communication, software-development | openapi | v79.19.1 | 116 | `discovered` | pending |
 | [Stripe API](apps/stripe-com-1ffda32ad7/MANIFEST.md) | `stripe-com-1ffda32ad7` | finance | openapi | 2022-11-15 | 446 | `discovered` | pending |
+| [Stytch](apps/stytch/MANIFEST.md) | `stytch` | security | openapi | 2.1.1 | 184 | `discovered` | pending |
+| [Sui GraphQL RPC](apps/sui-graphql/MANIFEST.md) | `sui-graphql` | finance, software-development | graphql | 2026-11-18-snapshot | 38 | `discovered` | pending |
+| [Supabase](apps/supabase/MANIFEST.md) | `supabase` | cloud | openapi | 1.0.0 | 172 | `discovered` | pending |
+| [Super Send](apps/super-send/MANIFEST.md) | `super-send` | marketing | openapi | 2.0 | 50 | `discovered` | pending |
+| [SuperX](apps/superx/MANIFEST.md) | `superx` | social-media | openapi | 1.0.0 | 106 | `discovered` | pending |
 | [Svix API](apps/svix-com-f7fd464e48/MANIFEST.md) | `svix-com-f7fd464e48` | software-development | openapi | 1.4 | 52 | `discovered` | pending |
 | [Swagger Generator](apps/swagger-io-generator-9f67f712c0/MANIFEST.md) | `swagger-io-generator-9f67f712c0` | software-development | openapi | 2.4.30 | 7 | `discovered` | pending |
 | [SwaggerHub Registry API](apps/swaggerhub-com-0409d1f446/MANIFEST.md) | `swaggerhub-com-0409d1f446` | software-development | openapi | 1.0.66 | 87 | `discovered` | pending |
+| [SWAPI GraphQL (Star Wars)](apps/swapi-graphql/MANIFEST.md) | `swapi-graphql` | open-data, education | graphql | 2026-11-18-snapshot | 13 | `discovered` | pending |
+| [Sympla](apps/sympla/MANIFEST.md) | `sympla` | marketing | openapi | 2.0.71 | 15 | `discovered` | pending |
 | [TAGGUN Receipt OCR Scanning API](apps/taggun-io-8c34f7b2b9/MANIFEST.md) | `taggun-io-8c34f7b2b9` | ai | openapi | 1.10.9 | 13 | `discovered` | pending |
+| [Tailor](apps/tailor/MANIFEST.md) | `tailor` | media | openapi | 1.0.0 | 19 | `discovered` | pending |
 | [Taxrates.io API](apps/taxrates-io-7e2f0ff23c/MANIFEST.md) | `taxrates-io-7e2f0ff23c` | finance | openapi | 1.0.0 | 3 | `discovered` | pending |
+| [TCGdex (Pokemon TCG)](apps/tcgdex-graphql/MANIFEST.md) | `tcgdex-graphql` | media, open-data | graphql | 2026-11-18-snapshot | 6 | `discovered` | pending |
 | [TCGdex API](apps/tcgdex-net-a9745c06e8/MANIFEST.md) | `tcgdex-net-a9745c06e8` | media | openapi | 2.0.0 | 33 | `discovered` | pending |
+| [Temso AI](apps/temso-ai/MANIFEST.md) | `temso-ai` | marketing | openapi | 1.0.0 | 41 | `discovered` | pending |
 | [Transport for London Unified API](apps/tfl-gov-uk-584d61302c/MANIFEST.md) | `tfl-gov-uk-584d61302c` | travel, open-data | openapi | v1 | 84 | `discovered` | pending |
 | [The Blue Alliance API v3](apps/thebluealliance-com-1d53178261/MANIFEST.md) | `thebluealliance-com-1d53178261` | open-data | openapi | 3.8.2 | 65 | `discovered` | pending |
 | [The SMS Works API](apps/thesmsworks-co-uk-ac6836a868/MANIFEST.md) | `thesmsworks-co-uk-ac6836a868` | communication | openapi | 1.8.0 | 18 | `discovered` | pending |
 | [ThreatJammer.com User API](apps/threatjammer-com-d1cf944e09/MANIFEST.md) | `threatjammer-com-d1cf944e09` | security | openapi | 1.2.20 | 96 | `discovered` | pending |
+| [Tibber](apps/tibber-graphql/MANIFEST.md) | `tibber-graphql` | iot | graphql | 2026-11-18-snapshot | 4 | `discovered` | pending |
+| [TicketSource](apps/ticketsource/MANIFEST.md) | `ticketsource` | marketing | openapi | 1.1 | 21 | `discovered` | pending |
+| [TikTok Display API](apps/tiktok-display-api/MANIFEST.md) | `tiktok-display-api` | social-media | openapi | 2.0.0 | 3 | `discovered` | pending |
 | [Tisane API Documentation](apps/tisane-ai-eca83f791d/MANIFEST.md) | `tisane-ai-eca83f791d` | ai | openapi | 1.0.0 | 6 | `discovered` | pending |
+| [TktPlz by Dreamcast Event Management v2](apps/tktplz-by-dreamcast-event-management-v2/MANIFEST.md) | `tktplz-by-dreamcast-event-management-v2` | travel | openapi | 2.0.0 | 1 | `discovered` | pending |
+| [TktPlz by Dreamcast Zapier v1](apps/tktplz-by-dreamcast-zapier-v1/MANIFEST.md) | `tktplz-by-dreamcast-zapier-v1` | travel | openapi | 1.0.0 | 10 | `discovered` | pending |
+| [TLY Link Shortener](apps/tly-link-shortener/MANIFEST.md) | `tly-link-shortener` | marketing | openapi | 1.0.0 | 52 | `discovered` | pending |
 | [TokenJay API services](apps/tokenjay-app-db8a58094e/MANIFEST.md) | `tokenjay-app-db8a58094e` | finance | openapi | 1.0.0 | 27 | `discovered` | pending |
 | [Endpoints](apps/tokenmetrics-com-7f730a49f5/MANIFEST.md) | `tokenmetrics-com-7f730a49f5` | finance | openapi | 1.0.0 | 14 | `discovered` | pending |
+| [Topia](apps/topia/MANIFEST.md) | `topia` | marketing | openapi | 1.0.0 | 0 | `discovered` | pending |
 | [Traccar](apps/traccar-org-8fbc86ce89/MANIFEST.md) | `traccar-org-8fbc86ce89` | location | openapi | 5.6 | 61 | `discovered` | pending |
+| [Tracknow](apps/tracknow/MANIFEST.md) | `tracknow` | marketing | openapi | 2.0 | 149 | `discovered` | pending |
+| [Traffic Orchestrator](apps/traffic-orchestrator/MANIFEST.md) | `traffic-orchestrator` | finance | openapi | 4.8.0 | 183 | `discovered` | pending |
 | [Trakt API](apps/trakt-tv-c82682b8ff/MANIFEST.md) | `trakt-tv-c82682b8ff` | media | openapi | 1.0.0 | 183 | `discovered` | pending |
+| [Transport for NSW Trip Planner API](apps/transport-for-nsw-trip-planner-api/MANIFEST.md) | `transport-for-nsw-trip-planner-api` | ecommerce, travel | openapi | 1.0.0 | 5 | `discovered` | pending |
 | [trash nothing](apps/trashnothing-com-873315e544/MANIFEST.md) | `trashnothing-com-873315e544` | social-media | openapi | 1.3 | 76 | `discovered` | pending |
+| [TrekkSoft](apps/trekksoft/MANIFEST.md) | `trekksoft` | marketing | openapi | 2.0 | 44 | `discovered` | pending |
 | [Trello](apps/trello-com-2545d6f01d/MANIFEST.md) | `trello-com-2545d6f01d` | productivity | openapi | 1.0 | 324 | `discovered` | pending |
+| [Trove API](apps/trove-api/MANIFEST.md) | `trove-api` | open-data | openapi | 3.0.0 | 14 | `discovered` | pending |
+| [TrustMRR](apps/trustmrr/MANIFEST.md) | `trustmrr` | finance | openapi | 1.0.0 | 2 | `discovered` | pending |
+| [Turso](apps/turso/MANIFEST.md) | `turso` | analytics | openapi | 0.1.0 | 49 | `discovered` | pending |
 | [TVmaze user API](apps/tvmaze-com-b69e30cda5/MANIFEST.md) | `tvmaze-com-b69e30cda5` | media | openapi | 1.0 | 42 | `discovered` | pending |
 | [Twilio - Api](apps/twilio-com-api-4d65470668/MANIFEST.md) | `twilio-com-api-4d65470668` | communication | openapi | 1.42.0 | 199 | `discovered` | pending |
+| [Twilio Segment](apps/twilio-segment/MANIFEST.md) | `twilio-segment` | marketing | openapi | 73.5.0 | 202 | `discovered` | pending |
 | [Fitbit Plus API](apps/twinehealth-com-f0b7b71379/MANIFEST.md) | `twinehealth-com-f0b7b71379` | health | openapi | v7.78.1 | 62 | `discovered` | pending |
 | [Twitter API v2](apps/twitter-com-current-073e1829da/MANIFEST.md) | `twitter-com-current-073e1829da` | social-media, marketing | openapi | 2.61 | 80 | `discovered` | pending |
+| [TwitterShots](apps/twittershots/MANIFEST.md) | `twittershots` | social-media | openapi | 0.9.1 | 2 | `discovered` | pending |
+| [TypeSafe AI](apps/typesafe-ai/MANIFEST.md) | `typesafe-ai` | ai | openapi | 0.2.0 | 2 | `discovered` | pending |
+| [U.S. Census Bureau](apps/u-s-census-bureau/MANIFEST.md) | `u-s-census-bureau` | open-data | openapi | 1.0.0 | 1 | `discovered` | pending |
+| [U.S. National Weather Service](apps/u-s-national-weather-service/MANIFEST.md) | `u-s-national-weather-service` | open-data | openapi | 3.12.2 | 69 | `discovered` | pending |
+| [U2L AI](apps/u2l-ai/MANIFEST.md) | `u2l-ai` | marketing | openapi | 1.0.0 | 17 | `discovered` | pending |
 | [UniCourt Enterprise APIs](apps/unicourt-com-38149da945/MANIFEST.md) | `unicourt-com-38149da945` | open-data | openapi | 1.0.0 | 158 | `discovered` | pending |
+| [Universe OAuth](apps/universe-oauth/MANIFEST.md) | `universe-oauth` | travel | openapi | unknown | 3 | `discovered` | pending |
+| [Universe REST](apps/universe-rest/MANIFEST.md) | `universe-rest` | travel | openapi | unknown | 7 | `discovered` | pending |
+| [Universe Ticketmanager](apps/universe-ticketmanager/MANIFEST.md) | `universe-ticketmanager` | travel | openapi | unknown | 2 | `discovered` | pending |
+| [Unraid API](apps/unraid-graphql/MANIFEST.md) | `unraid-graphql` | iot, cloud | graphql | 2026-11-18-snapshot | 103 | `discovered` | pending |
+| [Unstructured](apps/unstructured/MANIFEST.md) | `unstructured` | ai | openapi | 3.3.0 | 49 | `discovered` | pending |
 | [Up API](apps/up-com-au-18d891e465/MANIFEST.md) | `up-com-au-18d891e465` | finance | openapi | v1 | 18 | `discovered` | pending |
+| [UpContent](apps/upcontent/MANIFEST.md) | `upcontent` | marketing | openapi | 2.0.0 | 49 | `discovered` | pending |
+| [Upstash](apps/upstash/MANIFEST.md) | `upstash` | communication | openapi | 2.0.0 | 43 | `discovered` | pending |
 | [Urlbox API](apps/urlbox-io-dc1e4c4a07/MANIFEST.md) | `urlbox-io-dc1e4c4a07` | software-development | openapi | v1 | 1 | `discovered` | pending |
+| [USDA FoodData Central](apps/usda-fooddata-central/MANIFEST.md) | `usda-fooddata-central` | health | openapi | 1.0.1 | 9 | `discovered` | pending |
+| [Usertour](apps/usertour/MANIFEST.md) | `usertour` | business | openapi | 2.0 | 79 | `discovered` | pending |
 | [Benefits Intake](apps/va-gov-benefits-9d3147018c/MANIFEST.md) | `va-gov-benefits-9d3147018c` | open-data | openapi | 1.0.0 | 6 | `discovered` | pending |
+| [VBO Tickets](apps/vbo-tickets/MANIFEST.md) | `vbo-tickets` | marketing | openapi | v1 | 13 | `discovered` | pending |
 | [Vectara REST API](apps/vectara-io-78a472cb88/MANIFEST.md) | `vectara-io-78a472cb88` | ai | openapi | 1.0.0 | 9 | `discovered` | pending |
 | [Velo Payments APIs](apps/velopayments-com-69c6a6efc4/MANIFEST.md) | `velopayments-com-69c6a6efc4` | finance | openapi | 2.34.63 | 100 | `discovered` | pending |
 | [Vendure](apps/vendure/MANIFEST.md) | `vendure` | ecommerce | graphql | 2026-10-29-snapshot | 51 | `discovered` | pending |
 | [Vercel API](apps/vercel-com-9baad27eab/MANIFEST.md) | `vercel-com-9baad27eab` | cloud, software-development | openapi | 0.0.1 | 113 | `discovered` | pending |
 | [Verse](apps/verse-graphql/MANIFEST.md) | `verse-graphql` | finance | graphql | 2026-10-29-snapshot | 27 | `discovered` | pending |
 | [API V1](apps/versioneye-com-cab673ae67/MANIFEST.md) | `versioneye-com-cab673ae67` | open-data, software-development | openapi | v1 | 3 | `discovered` | pending |
+| [Vibes](apps/vibes/MANIFEST.md) | `vibes` | communication | openapi | 1.0.0 | 75 | `discovered` | pending |
+| [ViralNote](apps/viralnote/MANIFEST.md) | `viralnote` | social-media | openapi | 1.0.0-v1 | 97 | `discovered` | pending |
 | [Visual Crossing Weather API](apps/visualcrossing-com-weather-2eea0e78d5/MANIFEST.md) | `visualcrossing-com-weather-2eea0e78d5` | location | openapi | 4.6 | 5 | `discovered` | pending |
 | [VSOnline](apps/visualstudio-com-d7342c2c4a/MANIFEST.md) | `visualstudio-com-d7342c2c4a` | software-development, productivity | openapi | v1 | 152 | `discovered` | pending |
 | [VocaDbWeb](apps/vocadb-net-e468ab3366/MANIFEST.md) | `vocadb-net-e468ab3366` | media | openapi | 1.0 | 129 | `discovered` | pending |
+| [Vouchery.io](apps/vouchery-io/MANIFEST.md) | `vouchery-io` | ecommerce | openapi | dev-vouchery-go | 204 | `discovered` | pending |
 | [VTEX Intelligent Search](apps/vtex-graphql/MANIFEST.md) | `vtex-graphql` | ecommerce | graphql | 2026-10-29-snapshot | 18 | `discovered` | pending |
 | [Catalog API](apps/vtex-local-catalog-api-161bece793/MANIFEST.md) | `vtex-local-catalog-api-161bece793` | ecommerce | openapi | 1.0 | 162 | `discovered` | pending |
 | [Google Pay Passes API](apps/walletobjects-googleapis-com-pay-passes-3fbd126eff/MANIFEST.md) | `walletobjects-googleapis-com-pay-passes-3fbd126eff` | finance, marketing | openapi | v1 | 95 | `discovered` | pending |
@@ -575,14 +960,25 @@ An application can have up to four categories. They are defined in [categories.j
 | [Weatherbit - Interactive Swagger UI Documentation](apps/weatherbit-io-174e1e3888/MANIFEST.md) | `weatherbit-io-174e1e3888` | location | openapi | 2.0.0 | 47 | `discovered` | pending |
 | [WeGA API](apps/weber-gesamtausgabe-de-26b96f06de/MANIFEST.md) | `weber-gesamtausgabe-de-26b96f06de` | open-data | openapi | 1.0.0 | 10 | `discovered` | pending |
 | [Lucidtech API](apps/webflow-com-1130fb3c56/MANIFEST.md) | `webflow-com-1130fb3c56` | ai, productivity | openapi | 2023-03-01T16:45:37Z | 121 | `discovered` | pending |
+| [WebinarGeek](apps/webinargeek/MANIFEST.md) | `webinargeek` | marketing | openapi | 2.0 | 9 | `discovered` | pending |
 | [WebScraping.AI](apps/webscraping-ai-748fba92d8/MANIFEST.md) | `webscraping-ai-748fba92d8` | software-development | openapi | 2.0.7 | 4 | `discovered` | pending |
 | [Wellknown](apps/wellknown-ai-c559d4e640/MANIFEST.md) | `wellknown-ai-c559d4e640` | ai | openapi | 1.0.0 | 2 | `discovered` | pending |
 | [WINSMS](apps/winsms-co-za-c6d3c336e8/MANIFEST.md) | `winsms-co-za-c6d3c336e8` | communication | openapi | 1.0.0 | 11 | `discovered` | pending |
 | [WireMock](apps/wiremock-org-admin-ae75783bb4/MANIFEST.md) | `wiremock-org-admin-ae75783bb4` | software-development | openapi | 2.35.0 | 33 | `discovered` | pending |
+| [WithFriends Events](apps/withfriends-events/MANIFEST.md) | `withfriends-events` | marketing | openapi | 1.0.0 | 5 | `discovered` | pending |
+| [Wix GraphQL API](apps/wix-graphql/MANIFEST.md) | `wix-graphql` | ecommerce, business | graphql | 2026-11-18-snapshot | 831 | `discovered` | pending |
+| [Wiza](apps/wiza/MANIFEST.md) | `wiza` | marketing | openapi | v1 | 13 | `discovered` | pending |
 | [Wolfram](apps/wolframalpha-com-9dcbc6dc41/MANIFEST.md) | `wolframalpha-com-9dcbc6dc41` | ai | openapi | v0.1 | 2 | `discovered` | pending |
+| [WoopSocial](apps/woopsocial/MANIFEST.md) | `woopsocial` | social-media | openapi | 1.0.0 | 27 | `discovered` | pending |
 | [Wordnik](apps/wordnik-com-8111655317/MANIFEST.md) | `wordnik-com-8111655317` | ai | openapi | 4.0 | 16 | `discovered` | pending |
 | [XTRF Home Portal API](apps/xtrf-eu-95e6c80a3b/MANIFEST.md) | `xtrf-eu-95e6c80a3b` | business, ai | openapi | 2.0 | 284 | `discovered` | pending |
+| [Yespo](apps/yespo/MANIFEST.md) | `yespo` | marketing | openapi | 1.0 | 116 | `discovered` | pending |
 | [YNAB API Endpoints](apps/youneedabudget-com-f2aa706446/MANIFEST.md) | `youneedabudget-com-f2aa706446` | finance | openapi | 1.0.0 | 31 | `discovered` | pending |
+| [ZAP POST](apps/zap-post/MANIFEST.md) | `zap-post` | marketing | openapi | 1.0.0 | 21 | `discovered` | pending |
 | [Zapier Natural Language Actions (NLA) API - Beta](apps/zapier-com-nla-9baaf2d99e/MANIFEST.md) | `zapier-com-nla-9baaf2d99e` | productivity, ai | openapi | 1.0.0 | 4 | `discovered` | pending |
 | [Aggregators API Service](apps/zeno-fm-066551a7d3/MANIFEST.md) | `zeno-fm-066551a7d3` | media | openapi | 0.6-99cfdac | 18 | `discovered` | pending |
+| [Zernio](apps/zernio/MANIFEST.md) | `zernio` | social-media | openapi | 1.663.0 | 1311 | `discovered` | pending |
+| [Zhipu AI (BigModel)](apps/zhipu-ai-bigmodel/MANIFEST.md) | `zhipu-ai-bigmodel` | ai | openapi | 1.0.0 | 149 | `discovered` | pending |
+| [Zoho Campaigns](apps/zoho-campaigns/MANIFEST.md) | `zoho-campaigns` | marketing | openapi | 1.1 | 12 | `discovered` | pending |
 | [Zoom API](apps/zoom-us-caf3a7abc4/MANIFEST.md) | `zoom-us-caf3a7abc4` | communication | openapi | 2.0.0 | 373 | `discovered` | pending |
+| [Zulip](apps/zulip/MANIFEST.md) | `zulip` | social-media | openapi | 1.0.0 | 167 | `discovered` | pending |

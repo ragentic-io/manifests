@@ -1,0 +1,3376 @@
+{
+  "a2ui": {},
+  "app": "coursebricks",
+  "graph": {
+    "edges": [
+      {
+        "from": "coursebricks",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/auth/verify"
+      },
+      {
+        "from": "coursebricks",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/courses"
+      },
+      {
+        "from": "coursebricks",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/courses/{id}"
+      },
+      {
+        "from": "coursebricks",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/courses/{id}/sessions"
+      },
+      {
+        "from": "coursebricks",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/registrations/email"
+      },
+      {
+        "from": "coursebricks",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/sessions"
+      },
+      {
+        "from": "coursebricks",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/templates/emails"
+      },
+      {
+        "from": "coursebricks",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/webconnect/sessions"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "coursebricks",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Verifies if the provided API key is valid and returns authentication status.",
+        "id": "operation:get:/api/v1/auth/verify",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /api/v1/auth/verify",
+        "path": "/api/v1/auth/verify",
+        "pointer": "#/paths/~1api~1v1~1auth~1verify/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Verify authentication",
+        "tags": [
+          "Auth"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieves a list of published courses including essential course information such as pricing, duration, and course overview.",
+        "id": "operation:get:/api/v1/courses",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /api/v1/courses",
+        "parameters": [
+          {
+            "default": "1",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "20",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "title",
+            "enum": [
+              "title",
+              "createdAt"
+            ],
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "asc",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "categoryIds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "accreditationIds",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/courses",
+        "pointer": "#/paths/~1api~1v1~1courses/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List courses",
+        "tags": [
+          "Courses"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieve a published course by its unique identifier.",
+        "id": "operation:get:/api/v1/courses/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /api/v1/courses/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/courses/{id}",
+        "pointer": "#/paths/~1api~1v1~1courses~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a course",
+        "tags": [
+          "Courses"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieve all upcoming sessions for a course.",
+        "id": "operation:get:/api/v1/courses/{id}/sessions",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /api/v1/courses/{id}/sessions",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "Online",
+              "Face-to-Face"
+            ],
+            "in": "query",
+            "name": "trainingFormat",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/courses/{id}/sessions",
+        "pointer": "#/paths/~1api~1v1~1courses~1{id}~1sessions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List course sessions",
+        "tags": [
+          "Courses"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Send a predefined email to a registrant using a specified email template.",
+        "id": "operation:post:/api/v1/registrations/email",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /api/v1/registrations/email",
+        "path": "/api/v1/registrations/email",
+        "pointer": "#/paths/~1api~1v1~1registrations~1email/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Send an email",
+        "tags": [
+          "Registrations"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieves a list of upcoming sessions including essential session information such as pricing, duration, venue, and instructor details.",
+        "id": "operation:get:/api/v1/sessions",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /api/v1/sessions",
+        "parameters": [
+          {
+            "default": "1",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "enum": [
+              "Online",
+              "Face-to-Face"
+            ],
+            "in": "query",
+            "name": "trainingFormat",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "cities",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "dateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "dateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "categoryIds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "accreditationIds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "courseIds",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/sessions",
+        "pointer": "#/paths/~1api~1v1~1sessions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List sessions",
+        "tags": [
+          "Sessions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieves a paginated list of email templates for the organization.",
+        "id": "operation:get:/api/v1/templates/emails",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /api/v1/templates/emails",
+        "parameters": [
+          {
+            "default": "1",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "10",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "name",
+            "enum": [
+              "name",
+              "createdAt"
+            ],
+            "in": "query",
+            "name": "sortBy",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "asc",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "Registration",
+              "Contact",
+              "Instructor offer",
+              "Session",
+              "Session Class",
+              "Order",
+              "Session Instructor",
+              "Opportunity",
+              "Feedback",
+              "Data Collection Form",
+              "Agreement",
+              "Agreement Assignee",
+              "Instructor Request",
+              "Payment Plan",
+              "Installment"
+            ],
+            "in": "query",
+            "name": "scope",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/templates/emails",
+        "pointer": "#/paths/~1api~1v1~1templates~1emails/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List email templates",
+        "tags": [
+          "Email Templates"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieves a list of upcoming sessions including essential session information such as pricing, duration, venue, and instructor details.",
+        "id": "operation:get:/api/v1/webconnect/sessions",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /api/v1/webconnect/sessions",
+        "parameters": [
+          {
+            "default": "1",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "20",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "Online",
+              "Face-to-Face"
+            ],
+            "in": "query",
+            "name": "trainingFormat",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "cities",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "dateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "dateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "categoryIds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "accreditationIds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "courseIds",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/webconnect/sessions",
+        "pointer": "#/paths/~1api~1v1~1webconnect~1sessions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List sessions (public)",
+        "tags": [
+          "Webconnect"
+        ]
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "coursebricks"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://{subdomain}.coursebricks.app",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {},
+              "schemas": {},
+              "securitySchemes": {
+                "ApiKeyAuth": {
+                  "in": "header",
+                  "name": "X-API-KEY",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Coursebricks API generated from the OpenAPI specification.",
+              "title": "Coursebricks API (v1)",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/api/v1/auth/verify": {
+                "get": {
+                  "description": "Verifies if the provided API key is valid and returns authentication status.",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Successfully authenticated",
+                                "type": "string"
+                              },
+                              "orgName": {
+                                "example": "Your company name",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message",
+                              "orgName"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successfully verified authentication"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Bad Request",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request due to invalid query parameters"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Unauthorized",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized access due to invalid API key"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Verify authentication",
+                  "tags": [
+                    "Auth"
+                  ]
+                }
+              },
+              "/api/v1/courses": {
+                "get": {
+                  "description": "Retrieves a list of published courses including essential course information such as pricing, duration, and course overview.",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "page",
+                      "required": false,
+                      "schema": {
+                        "default": "1",
+                        "description": "Page number for pagination (starts from 1)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": "20",
+                        "description": "Number of courses per page (default: 20, maximum: 100)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "sortBy",
+                      "required": false,
+                      "schema": {
+                        "default": "title",
+                        "description": "Field to sort by (title or createdAt)",
+                        "enum": [
+                          "title",
+                          "createdAt"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "sortOrder",
+                      "required": false,
+                      "schema": {
+                        "default": "asc",
+                        "description": "Sort order (asc or desc)",
+                        "enum": [
+                          "asc",
+                          "desc"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "categoryIds",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter courses by category IDs (comma-separated)",
+                        "example": "cat1,cat2,cat3",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "accreditationIds",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter courses by accreditation IDs (comma-separated)",
+                        "example": "acc1,acc2,acc3",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "accreditation": {
+                                      "description": "Accreditation details if the course is accredited",
+                                      "properties": {
+                                        "description": {
+                                          "description": "Detailed description of the accreditation",
+                                          "type": "string"
+                                        },
+                                        "id": {
+                                          "description": "Unique identifier of the accreditation",
+                                          "type": "string"
+                                        },
+                                        "logoImageUrl": {
+                                          "description": "URL to the accreditation provider's logo",
+                                          "type": "string"
+                                        },
+                                        "slug": {
+                                          "description": "URL-friendly version of the accreditation title",
+                                          "type": "string"
+                                        },
+                                        "title": {
+                                          "description": "Title of the accreditation",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "slug",
+                                        "title",
+                                        "logoImageUrl",
+                                        "description"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
+                                    },
+                                    "categories": {
+                                      "description": "List of categories this course belongs to",
+                                      "items": {
+                                        "properties": {
+                                          "id": {
+                                            "description": "Unique identifier of the category",
+                                            "type": "string"
+                                          },
+                                          "name": {
+                                            "description": "Name of the category",
+                                            "type": "string"
+                                          },
+                                          "slug": {
+                                            "description": "URL-friendly version of the category name",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "id",
+                                          "name",
+                                          "slug"
+                                        ],
+                                        "type": "object"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "code": {
+                                      "description": "Unique course code identifier",
+                                      "type": "string"
+                                    },
+                                    "duration": {
+                                      "description": "Numerical value representing the course duration",
+                                      "type": "number"
+                                    },
+                                    "durationType": {
+                                      "description": "Unit of measurement for the course duration (e.g., days, hours)",
+                                      "type": "string"
+                                    },
+                                    "featuredImage": {
+                                      "description": "URL to the featured image of the course",
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    },
+                                    "heroImage": {
+                                      "description": "URL to the hero/banner image of the course",
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    },
+                                    "id": {
+                                      "description": "Unique identifier of the course",
+                                      "type": "string"
+                                    },
+                                    "overview": {
+                                      "description": "Comprehensive overview describing the course content and objectives",
+                                      "type": "string"
+                                    },
+                                    "price": {
+                                      "description": "Course pricing structure including tax details",
+                                      "properties": {
+                                        "amountExcludingTaxes": {
+                                          "description": "Base price amount before tax application",
+                                          "type": "number"
+                                        },
+                                        "currency": {
+                                          "description": "Three-letter currency code (e.g., USD, EUR, GBP)",
+                                          "type": "string"
+                                        },
+                                        "tax": {
+                                          "description": "Tax information when applicable",
+                                          "properties": {
+                                            "label": {
+                                              "description": "Tax identifier (e.g., VAT, GST)",
+                                              "type": "string"
+                                            },
+                                            "percentage": {
+                                              "description": "Tax rate as a percentage",
+                                              "type": "number"
+                                            }
+                                          },
+                                          "required": [
+                                            "label",
+                                            "percentage"
+                                          ],
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ]
+                                        },
+                                        "totalAmount": {
+                                          "description": "Final price including all applicable taxes",
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "currency",
+                                        "amountExcludingTaxes",
+                                        "totalAmount"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "slug": {
+                                      "description": "URL-friendly version of the course title",
+                                      "type": "string"
+                                    },
+                                    "subtitle": {
+                                      "description": "Secondary descriptive title of the course, if available",
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    },
+                                    "title": {
+                                      "description": "Primary title of the course",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "title",
+                                    "subtitle",
+                                    "code",
+                                    "slug",
+                                    "overview",
+                                    "categories",
+                                    "duration",
+                                    "durationType",
+                                    "featuredImage",
+                                    "heroImage",
+                                    "accreditation",
+                                    "price"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "pagination": {
+                                "description": "Pagination metadata",
+                                "properties": {
+                                  "currentPage": {
+                                    "description": "Current page number",
+                                    "type": "number"
+                                  },
+                                  "itemsPerPage": {
+                                    "description": "Number of items per page",
+                                    "type": "number"
+                                  },
+                                  "nextPage": {
+                                    "description": "Next page number if available",
+                                    "type": [
+                                      "number",
+                                      "null"
+                                    ]
+                                  },
+                                  "totalItems": {
+                                    "description": "Total number of items",
+                                    "type": "number"
+                                  },
+                                  "totalPages": {
+                                    "description": "Total number of pages",
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "currentPage",
+                                  "nextPage",
+                                  "totalPages",
+                                  "totalItems",
+                                  "itemsPerPage"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "pagination"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successfully retrieved the list of courses"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Bad Request",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request due to invalid query parameters"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Unauthorized",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized access due to invalid API key"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List courses",
+                  "tags": [
+                    "Courses"
+                  ]
+                }
+              },
+              "/api/v1/courses/{id}": {
+                "get": {
+                  "description": "Retrieve a published course by its unique identifier. This endpoint requires a valid API key.",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "description": "Unique identifier of the course",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "accreditation": {
+                                    "description": "Accreditation details if the course is accredited",
+                                    "properties": {
+                                      "description": {
+                                        "description": "Detailed description of the accreditation",
+                                        "type": "string"
+                                      },
+                                      "id": {
+                                        "description": "Unique identifier of the accreditation",
+                                        "type": "string"
+                                      },
+                                      "logoImageUrl": {
+                                        "description": "URL to the accreditation provider's logo",
+                                        "type": "string"
+                                      },
+                                      "slug": {
+                                        "description": "URL-friendly version of the accreditation title",
+                                        "type": "string"
+                                      },
+                                      "title": {
+                                        "description": "Title of the accreditation",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "slug",
+                                      "title",
+                                      "logoImageUrl",
+                                      "description"
+                                    ],
+                                    "type": [
+                                      "object",
+                                      "null"
+                                    ]
+                                  },
+                                  "categories": {
+                                    "description": "List of categories this course belongs to",
+                                    "items": {
+                                      "properties": {
+                                        "id": {
+                                          "description": "Unique identifier of the category",
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "description": "Name of the category",
+                                          "type": "string"
+                                        },
+                                        "slug": {
+                                          "description": "URL-friendly version of the category name",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name",
+                                        "slug"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "code": {
+                                    "description": "Unique course code identifier",
+                                    "type": "string"
+                                  },
+                                  "details": {
+                                    "description": "Course details sections",
+                                    "items": {
+                                      "properties": {
+                                        "content": {
+                                          "type": "string"
+                                        },
+                                        "title": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "title",
+                                        "content"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "duration": {
+                                    "description": "Numerical value representing the course duration",
+                                    "type": "number"
+                                  },
+                                  "durationType": {
+                                    "description": "Unit of measurement for the course duration (e.g., days, hours)",
+                                    "type": "string"
+                                  },
+                                  "featuredImage": {
+                                    "description": "URL to the featured image of the course",
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ]
+                                  },
+                                  "heroImage": {
+                                    "description": "URL to the hero/banner image of the course",
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ]
+                                  },
+                                  "id": {
+                                    "description": "Unique identifier of the course",
+                                    "type": "string"
+                                  },
+                                  "inHouseRequestsAllowed": {
+                                    "description": "Whether in-house training requests are allowed",
+                                    "type": "boolean"
+                                  },
+                                  "outline": {
+                                    "description": "Course outline sections",
+                                    "items": {
+                                      "properties": {
+                                        "content": {
+                                          "type": "string"
+                                        },
+                                        "title": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "title",
+                                        "content"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "overview": {
+                                    "description": "Comprehensive overview describing the course content and objectives",
+                                    "type": "string"
+                                  },
+                                  "pdType": {
+                                    "description": "Type of professional development",
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ]
+                                  },
+                                  "pdValue": {
+                                    "description": "Professional development value",
+                                    "type": [
+                                      "number",
+                                      "null"
+                                    ]
+                                  },
+                                  "price": {
+                                    "description": "Course pricing structure including tax details",
+                                    "properties": {
+                                      "amountExcludingTaxes": {
+                                        "description": "Base price amount before tax application",
+                                        "type": "number"
+                                      },
+                                      "currency": {
+                                        "description": "Three-letter currency code (e.g., USD, EUR, GBP)",
+                                        "type": "string"
+                                      },
+                                      "tax": {
+                                        "description": "Tax information when applicable",
+                                        "properties": {
+                                          "label": {
+                                            "description": "Tax identifier (e.g., VAT, GST)",
+                                            "type": "string"
+                                          },
+                                          "percentage": {
+                                            "description": "Tax rate as a percentage",
+                                            "type": "number"
+                                          }
+                                        },
+                                        "required": [
+                                          "label",
+                                          "percentage"
+                                        ],
+                                        "type": [
+                                          "object",
+                                          "null"
+                                        ]
+                                      },
+                                      "totalAmount": {
+                                        "description": "Final price including all applicable taxes",
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "currency",
+                                      "amountExcludingTaxes",
+                                      "totalAmount"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "published": {
+                                    "description": "Whether the course is published",
+                                    "type": "boolean"
+                                  },
+                                  "slug": {
+                                    "description": "URL-friendly version of the course title",
+                                    "type": "string"
+                                  },
+                                  "subtitle": {
+                                    "description": "Secondary descriptive title of the course, if available",
+                                    "type": [
+                                      "string",
+                                      "null"
+                                    ]
+                                  },
+                                  "title": {
+                                    "description": "Primary title of the course",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "title",
+                                  "subtitle",
+                                  "code",
+                                  "slug",
+                                  "overview",
+                                  "categories",
+                                  "duration",
+                                  "durationType",
+                                  "pdValue",
+                                  "pdType",
+                                  "published",
+                                  "inHouseRequestsAllowed",
+                                  "outline",
+                                  "details",
+                                  "featuredImage",
+                                  "heroImage",
+                                  "accreditation",
+                                  "price"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "data"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successfully retrieved the course"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Bad Request",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request due to invalid parameters"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Unauthorized",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized access due to invalid API key"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Not Found",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Course not found"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Get a course",
+                  "tags": [
+                    "Courses"
+                  ]
+                }
+              },
+              "/api/v1/courses/{id}/sessions": {
+                "get": {
+                  "description": "Retrieve all upcoming sessions for a course. This endpoint requires a valid API key.",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "description": "Unique identifier of the course",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "trainingFormat",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by training format",
+                        "enum": [
+                          "Online",
+                          "Face-to-Face"
+                        ],
+                        "example": "Online",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "code": {
+                                      "description": "Session code",
+                                      "type": "string"
+                                    },
+                                    "courseTitle": {
+                                      "description": "Course title",
+                                      "type": "string"
+                                    },
+                                    "durationType": {
+                                      "description": "Duration type (Hour, Day, Week, Month)",
+                                      "type": "string"
+                                    },
+                                    "durationValue": {
+                                      "description": "Duration value of the session",
+                                      "type": "number"
+                                    },
+                                    "endDate": {
+                                      "description": "Session end date",
+                                      "type": "string"
+                                    },
+                                    "endTime": {
+                                      "description": "Session end time (12-hour format)",
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "description": "Unique identifier of the session",
+                                      "type": "string"
+                                    },
+                                    "instructor": {
+                                      "description": "Session instructor details",
+                                      "properties": {
+                                        "firstName": {
+                                          "type": "string"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "lastName": {
+                                          "type": "string"
+                                        },
+                                        "picture": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        },
+                                        "title": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "firstName",
+                                        "lastName",
+                                        "title",
+                                        "picture"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
+                                    },
+                                    "maxRegistrations": {
+                                      "description": "Maximum number of registrations allowed",
+                                      "type": [
+                                        "number",
+                                        "null"
+                                      ]
+                                    },
+                                    "minRegistrations": {
+                                      "description": "Minimum number of registrations required",
+                                      "type": [
+                                        "number",
+                                        "null"
+                                      ]
+                                    },
+                                    "pd": {
+                                      "description": "Professional development details",
+                                      "properties": {
+                                        "type": {
+                                          "description": "Professional development type (Unit, Hour)",
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "description": "Professional development value",
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "value",
+                                        "type"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "price": {
+                                      "description": "Session pricing details",
+                                      "properties": {
+                                        "amountExcludingTaxes": {
+                                          "type": "number"
+                                        },
+                                        "currency": {
+                                          "type": "string"
+                                        },
+                                        "tax": {
+                                          "properties": {
+                                            "label": {
+                                              "type": "string"
+                                            },
+                                            "percentage": {
+                                              "type": "number"
+                                            }
+                                          },
+                                          "required": [
+                                            "label",
+                                            "percentage"
+                                          ],
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ]
+                                        },
+                                        "totalAmount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "currency",
+                                        "amountExcludingTaxes",
+                                        "totalAmount"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "registrationDeadline": {
+                                      "description": "Registration deadline date",
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    },
+                                    "registrationUrl": {
+                                      "description": "Registration URL",
+                                      "type": "string"
+                                    },
+                                    "startDate": {
+                                      "description": "Session start date",
+                                      "type": "string"
+                                    },
+                                    "startTime": {
+                                      "description": "Session start time (12-hour format)",
+                                      "type": "string"
+                                    },
+                                    "status": {
+                                      "description": "Session status (Planned, Confirmed)",
+                                      "enum": [
+                                        "Confirmed",
+                                        "Planned"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "timezone": {
+                                      "description": "Session timezone",
+                                      "type": "string"
+                                    },
+                                    "trainingFormat": {
+                                      "description": "Training format (Online, Face-to-Face)",
+                                      "type": "string"
+                                    },
+                                    "venue": {
+                                      "description": "Venue details for face-to-face sessions",
+                                      "properties": {
+                                        "city": {
+                                          "type": "string"
+                                        },
+                                        "country": {
+                                          "type": "string"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "venueAddress": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name",
+                                        "country",
+                                        "city",
+                                        "venueAddress"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "courseTitle",
+                                    "code",
+                                    "durationValue",
+                                    "durationType",
+                                    "startDate",
+                                    "endDate",
+                                    "startTime",
+                                    "endTime",
+                                    "timezone",
+                                    "instructor",
+                                    "trainingFormat",
+                                    "venue",
+                                    "minRegistrations",
+                                    "maxRegistrations",
+                                    "price",
+                                    "registrationDeadline",
+                                    "status",
+                                    "registrationUrl"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "required": [
+                              "data"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successfully retrieved the course sessions"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Bad Request",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request due to invalid parameters"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Unauthorized",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized access due to invalid API key"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Not Found",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Course not found"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List course sessions",
+                  "tags": [
+                    "Courses"
+                  ]
+                }
+              },
+              "/api/v1/registrations/email": {
+                "post": {
+                  "description": "\nSend a predefined email to a registrant using a specified email template.\n\n**Rate limit:** 50 requests per 60 seconds per organization.\nExceeding this limit will result in a 429 Too Many Requests response.\n\nThis endpoint requires a valid API key.\n",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "emailTemplateId": {
+                              "description": "Unique identifier of the email template",
+                              "type": "string"
+                            },
+                            "registrantEmail": {
+                              "description": "Registrant email address",
+                              "type": "string"
+                            },
+                            "sessionCode": {
+                              "description": "Session Code",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "registrantEmail",
+                            "sessionCode",
+                            "emailTemplateId"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "email_body": {
+                                "description": "HTML content of the email body",
+                                "example": "<html><body>Dear John, welcome to our event!</body></html>",
+                                "type": "string"
+                              },
+                              "email_subject": {
+                                "description": "Subject line of the email",
+                                "example": "Welcome to Our Event!",
+                                "type": "string"
+                              },
+                              "recipient_email": {
+                                "description": "Email address of the recipient",
+                                "example": "john.doe@example.com",
+                                "format": "email",
+                                "type": "string"
+                              },
+                              "recipient_name": {
+                                "description": "Full name of the recipient",
+                                "example": "John Doe",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "recipient_email",
+                              "recipient_name",
+                              "email_subject",
+                              "email_body"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Email queued successfully"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Bad Request",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request due to invalid parameters"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Unauthorized",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized access due to invalid API key"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Not Found",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Registration or email template not found"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Rate limit exceeded. Please try again later.",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Rate limit exceeded"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Send an email",
+                  "tags": [
+                    "Registrations"
+                  ]
+                }
+              },
+              "/api/v1/sessions": {
+                "get": {
+                  "description": "Retrieves a list of upcoming sessions including essential session information such as pricing, duration, venue, and instructor details.",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "page",
+                      "required": false,
+                      "schema": {
+                        "default": "1",
+                        "description": "Page number for pagination (starts from 1)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": 20,
+                        "description": "Number of sessions per page (default: 20, maximum: 100)",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "trainingFormat",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by training format",
+                        "enum": [
+                          "Online",
+                          "Face-to-Face"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "cities",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by cities (comma-separated)",
+                        "example": "Dubai,London,New York",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "dateFrom",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions starting from this date (ISO format)",
+                        "example": "2024-03-01",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "dateTo",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions up to this date (ISO format)",
+                        "example": "2024-12-31",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "categoryIds",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by category IDs (comma-separated)",
+                        "example": "cat1,cat2,cat3",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "accreditationIds",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by accreditation IDs (comma-separated)",
+                        "example": "acc1,acc2,acc3",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "courseIds",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by course IDs (comma-separated)",
+                        "example": "course1,course2,course3",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "applicableDiscounts": {
+                                      "description": "Applicable discounts for the session",
+                                      "items": {
+                                        "properties": {
+                                          "label": {
+                                            "description": "Discount label",
+                                            "type": "string"
+                                          },
+                                          "percentage": {
+                                            "description": "Discount percentage",
+                                            "type": "number"
+                                          }
+                                        },
+                                        "required": [
+                                          "label",
+                                          "percentage"
+                                        ],
+                                        "type": "object"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "code": {
+                                      "description": "Session code",
+                                      "type": "string"
+                                    },
+                                    "course": {
+                                      "description": "Course details",
+                                      "properties": {
+                                        "accreditation": {
+                                          "properties": {
+                                            "description": {
+                                              "type": "string"
+                                            },
+                                            "id": {
+                                              "type": "string"
+                                            },
+                                            "logoImageUrl": {
+                                              "type": "string"
+                                            },
+                                            "slug": {
+                                              "type": "string"
+                                            },
+                                            "title": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "id",
+                                            "title",
+                                            "slug",
+                                            "logoImageUrl",
+                                            "description"
+                                          ],
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ]
+                                        },
+                                        "categories": {
+                                          "items": {
+                                            "properties": {
+                                              "id": {
+                                                "type": "string"
+                                              },
+                                              "name": {
+                                                "type": "string"
+                                              },
+                                              "slug": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "required": [
+                                              "id",
+                                              "name",
+                                              "slug"
+                                            ],
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "overview": {
+                                          "type": "string"
+                                        },
+                                        "slug": {
+                                          "type": "string"
+                                        },
+                                        "subtitle": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        },
+                                        "title": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "title",
+                                        "subtitle",
+                                        "slug",
+                                        "overview",
+                                        "categories",
+                                        "accreditation"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "durationType": {
+                                      "description": "Duration type (Hour, Day, Week, Month)",
+                                      "type": "string"
+                                    },
+                                    "durationValue": {
+                                      "description": "Duration value of the session",
+                                      "type": "number"
+                                    },
+                                    "endDate": {
+                                      "description": "Session end date",
+                                      "type": "string"
+                                    },
+                                    "endTime": {
+                                      "description": "Session end time",
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "description": "Unique identifier of the session",
+                                      "type": "string"
+                                    },
+                                    "instructor": {
+                                      "description": "Session instructor details",
+                                      "properties": {
+                                        "firstName": {
+                                          "type": "string"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "lastName": {
+                                          "type": "string"
+                                        },
+                                        "picture": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        },
+                                        "title": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "firstName",
+                                        "lastName",
+                                        "title",
+                                        "picture"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
+                                    },
+                                    "maxRegistrations": {
+                                      "description": "Maximum number of registrations allowed",
+                                      "type": [
+                                        "number",
+                                        "null"
+                                      ]
+                                    },
+                                    "minRegistrations": {
+                                      "description": "Minimum number of registrations required",
+                                      "type": [
+                                        "number",
+                                        "null"
+                                      ]
+                                    },
+                                    "price": {
+                                      "description": "Session pricing details",
+                                      "properties": {
+                                        "amountExcludingTaxes": {
+                                          "type": "number"
+                                        },
+                                        "currency": {
+                                          "type": "string"
+                                        },
+                                        "tax": {
+                                          "properties": {
+                                            "label": {
+                                              "type": "string"
+                                            },
+                                            "percentage": {
+                                              "type": "number"
+                                            }
+                                          },
+                                          "required": [
+                                            "label",
+                                            "percentage"
+                                          ],
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ]
+                                        },
+                                        "totalAmount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "currency",
+                                        "amountExcludingTaxes",
+                                        "totalAmount"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "registrationDeadline": {
+                                      "description": "Registration deadline date",
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    },
+                                    "registrationUrl": {
+                                      "description": "Registration URL",
+                                      "type": "string"
+                                    },
+                                    "startDate": {
+                                      "description": "Session start date",
+                                      "type": "string"
+                                    },
+                                    "startTime": {
+                                      "description": "Session start time",
+                                      "type": "string"
+                                    },
+                                    "status": {
+                                      "description": "Session status",
+                                      "type": "string"
+                                    },
+                                    "timezone": {
+                                      "description": "Session timezone",
+                                      "type": "string"
+                                    },
+                                    "trainingFormat": {
+                                      "description": "Training format (Online, Face-to-Face)",
+                                      "type": "string"
+                                    },
+                                    "venue": {
+                                      "description": "Venue details for face-to-face sessions",
+                                      "properties": {
+                                        "city": {
+                                          "type": "string"
+                                        },
+                                        "country": {
+                                          "type": "string"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "venueAddress": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name",
+                                        "country",
+                                        "city",
+                                        "venueAddress"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "code",
+                                    "course",
+                                    "durationValue",
+                                    "durationType",
+                                    "startDate",
+                                    "endDate",
+                                    "startTime",
+                                    "endTime",
+                                    "timezone",
+                                    "instructor",
+                                    "trainingFormat",
+                                    "venue",
+                                    "minRegistrations",
+                                    "maxRegistrations",
+                                    "price",
+                                    "applicableDiscounts",
+                                    "registrationDeadline",
+                                    "registrationUrl",
+                                    "status"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "pagination": {
+                                "description": "Pagination metadata",
+                                "properties": {
+                                  "currentPage": {
+                                    "type": "number"
+                                  },
+                                  "itemsPerPage": {
+                                    "type": "number"
+                                  },
+                                  "nextPage": {
+                                    "type": [
+                                      "number",
+                                      "null"
+                                    ]
+                                  },
+                                  "totalItems": {
+                                    "type": "number"
+                                  },
+                                  "totalPages": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "currentPage",
+                                  "nextPage",
+                                  "totalPages",
+                                  "totalItems",
+                                  "itemsPerPage"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "pagination"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successfully retrieved the list of sessions"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Bad Request",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request due to invalid query parameters"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Unauthorized",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized access due to invalid API key"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List sessions",
+                  "tags": [
+                    "Sessions"
+                  ]
+                }
+              },
+              "/api/v1/templates/emails": {
+                "get": {
+                  "description": "Retrieves a paginated list of email templates for the organization. Supports sorting and filtering by scope.",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "page",
+                      "required": false,
+                      "schema": {
+                        "default": "1",
+                        "description": "Page number for pagination (starts from 1)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": "10",
+                        "description": "Number of email templates per page (default: 10, maximum: 100)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "sortBy",
+                      "required": false,
+                      "schema": {
+                        "default": "name",
+                        "description": "Field to sort by (name or createdAt)",
+                        "enum": [
+                          "name",
+                          "createdAt"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "sortOrder",
+                      "required": false,
+                      "schema": {
+                        "default": "asc",
+                        "description": "Sort order (ascending or descending)",
+                        "enum": [
+                          "asc",
+                          "desc"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "scope",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter templates by scope (e.g., 'Registration', 'Order', 'Contact')",
+                        "enum": [
+                          "Registration",
+                          "Contact",
+                          "Instructor offer",
+                          "Session",
+                          "Session Class",
+                          "Order",
+                          "Session Instructor",
+                          "Opportunity",
+                          "Feedback",
+                          "Data Collection Form",
+                          "Agreement",
+                          "Agreement Assignee",
+                          "Instructor Request",
+                          "Payment Plan",
+                          "Installment"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "config": {
+                                      "additionalProperties": {},
+                                      "description": "Configuration object for the email template",
+                                      "type": "object"
+                                    },
+                                    "description": {
+                                      "description": "Description of the email template",
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    },
+                                    "id": {
+                                      "description": "Unique identifier of the email template",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "description": "Name of the email template",
+                                      "type": "string"
+                                    },
+                                    "scope": {
+                                      "description": "Scope of the email template (e.g., Contact, Order, Registration)",
+                                      "enum": [
+                                        "Registration",
+                                        "Contact",
+                                        "Instructor offer",
+                                        "Session",
+                                        "Session Class",
+                                        "Order",
+                                        "Session Instructor",
+                                        "Opportunity",
+                                        "Feedback",
+                                        "Data Collection Form",
+                                        "Agreement",
+                                        "Agreement Assignee",
+                                        "Instructor Request",
+                                        "Payment Plan",
+                                        "Installment"
+                                      ],
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "name",
+                                    "description",
+                                    "scope",
+                                    "config"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "pagination": {
+                                "description": "Pagination metadata",
+                                "properties": {
+                                  "currentPage": {
+                                    "description": "Current page number",
+                                    "type": "number"
+                                  },
+                                  "itemsPerPage": {
+                                    "description": "Number of items per page",
+                                    "type": "number"
+                                  },
+                                  "nextPage": {
+                                    "description": "Next page number if available",
+                                    "type": [
+                                      "number",
+                                      "null"
+                                    ]
+                                  },
+                                  "totalItems": {
+                                    "description": "Total number of items",
+                                    "type": "number"
+                                  },
+                                  "totalPages": {
+                                    "description": "Total number of pages",
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "currentPage",
+                                  "nextPage",
+                                  "totalPages",
+                                  "totalItems",
+                                  "itemsPerPage"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "pagination"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successfully retrieved the list of email templates"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Bad Request",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request due to invalid query parameters"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Unauthorized",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized access due to invalid API key"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List email templates",
+                  "tags": [
+                    "Email Templates"
+                  ]
+                }
+              },
+              "/api/v1/webconnect/sessions": {
+                "get": {
+                  "description": "Retrieves a list of upcoming sessions including essential session information such as pricing, duration, venue, and instructor details.",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "page",
+                      "required": false,
+                      "schema": {
+                        "default": "1",
+                        "description": "Page number for pagination (starts from 1)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": "20",
+                        "description": "Number of sessions per page (default: 20, maximum: 100)",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "trainingFormat",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by training format",
+                        "enum": [
+                          "Online",
+                          "Face-to-Face"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "cities",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by cities (comma-separated)",
+                        "example": "Dubai,London,New York",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "dateFrom",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions starting from this date (ISO format)",
+                        "example": "2024-03-01",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "dateTo",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions up to this date (ISO format)",
+                        "example": "2024-12-31",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "categoryIds",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by category IDs (comma-separated)",
+                        "example": "cat1,cat2,cat3",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "accreditationIds",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by accreditation IDs (comma-separated)",
+                        "example": "acc1,acc2,acc3",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "courseIds",
+                      "required": false,
+                      "schema": {
+                        "description": "Filter sessions by course IDs (comma-separated)",
+                        "example": "course1,course2,course3",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "code": {
+                                      "description": "Session code",
+                                      "type": "string"
+                                    },
+                                    "course": {
+                                      "description": "Course details",
+                                      "properties": {
+                                        "accreditation": {
+                                          "properties": {
+                                            "description": {
+                                              "type": "string"
+                                            },
+                                            "id": {
+                                              "type": "string"
+                                            },
+                                            "logoImageUrl": {
+                                              "type": "string"
+                                            },
+                                            "slug": {
+                                              "type": "string"
+                                            },
+                                            "title": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "id",
+                                            "title",
+                                            "slug",
+                                            "logoImageUrl",
+                                            "description"
+                                          ],
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ]
+                                        },
+                                        "categories": {
+                                          "items": {
+                                            "properties": {
+                                              "id": {
+                                                "type": "string"
+                                              },
+                                              "name": {
+                                                "type": "string"
+                                              },
+                                              "slug": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "required": [
+                                              "id",
+                                              "name",
+                                              "slug"
+                                            ],
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "overview": {
+                                          "type": "string"
+                                        },
+                                        "slug": {
+                                          "type": "string"
+                                        },
+                                        "subtitle": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        },
+                                        "title": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "title",
+                                        "subtitle",
+                                        "slug",
+                                        "overview",
+                                        "categories",
+                                        "accreditation"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "durationType": {
+                                      "description": "Duration type (Hour, Day, Week, Month)",
+                                      "type": "string"
+                                    },
+                                    "durationValue": {
+                                      "description": "Duration value of the session",
+                                      "type": "number"
+                                    },
+                                    "endDate": {
+                                      "description": "Session end date",
+                                      "type": "string"
+                                    },
+                                    "endTime": {
+                                      "description": "Session end time",
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "description": "Unique identifier of the session",
+                                      "type": "string"
+                                    },
+                                    "instructor": {
+                                      "description": "Session instructor details",
+                                      "properties": {
+                                        "firstName": {
+                                          "type": "string"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "lastName": {
+                                          "type": "string"
+                                        },
+                                        "picture": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        },
+                                        "title": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "firstName",
+                                        "lastName",
+                                        "title",
+                                        "picture"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
+                                    },
+                                    "price": {
+                                      "description": "Session pricing details",
+                                      "properties": {
+                                        "amountExcludingTaxes": {
+                                          "type": "number"
+                                        },
+                                        "currency": {
+                                          "type": "string"
+                                        },
+                                        "tax": {
+                                          "properties": {
+                                            "label": {
+                                              "type": "string"
+                                            },
+                                            "percentage": {
+                                              "type": "number"
+                                            }
+                                          },
+                                          "required": [
+                                            "label",
+                                            "percentage"
+                                          ],
+                                          "type": [
+                                            "object",
+                                            "null"
+                                          ]
+                                        },
+                                        "totalAmount": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "currency",
+                                        "amountExcludingTaxes",
+                                        "totalAmount"
+                                      ],
+                                      "type": "object"
+                                    },
+                                    "registrationDeadline": {
+                                      "description": "Registration deadline date",
+                                      "type": [
+                                        "string",
+                                        "null"
+                                      ]
+                                    },
+                                    "registrationUrl": {
+                                      "description": "Registration URL",
+                                      "type": "string"
+                                    },
+                                    "startDate": {
+                                      "description": "Session start date",
+                                      "type": "string"
+                                    },
+                                    "startTime": {
+                                      "description": "Session start time",
+                                      "type": "string"
+                                    },
+                                    "timezone": {
+                                      "description": "Session timezone",
+                                      "type": "string"
+                                    },
+                                    "trainingFormat": {
+                                      "description": "Training format (Online, Face-to-Face)",
+                                      "type": "string"
+                                    },
+                                    "venue": {
+                                      "description": "Venue details for face-to-face sessions",
+                                      "properties": {
+                                        "city": {
+                                          "type": "string"
+                                        },
+                                        "country": {
+                                          "type": "string"
+                                        },
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "venueAddress": {
+                                          "type": [
+                                            "string",
+                                            "null"
+                                          ]
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "name",
+                                        "country",
+                                        "city",
+                                        "venueAddress"
+                                      ],
+                                      "type": [
+                                        "object",
+                                        "null"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "code",
+                                    "course",
+                                    "durationValue",
+                                    "durationType",
+                                    "startDate",
+                                    "endDate",
+                                    "startTime",
+                                    "endTime",
+                                    "timezone",
+                                    "instructor",
+                                    "trainingFormat",
+                                    "venue",
+                                    "price",
+                                    "registrationDeadline",
+                                    "registrationUrl"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "pagination": {
+                                "description": "Pagination metadata",
+                                "properties": {
+                                  "currentPage": {
+                                    "type": "number"
+                                  },
+                                  "itemsPerPage": {
+                                    "type": "number"
+                                  },
+                                  "nextPage": {
+                                    "type": [
+                                      "number",
+                                      "null"
+                                    ]
+                                  },
+                                  "totalItems": {
+                                    "type": "number"
+                                  },
+                                  "totalPages": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "currentPage",
+                                  "nextPage",
+                                  "totalPages",
+                                  "totalItems",
+                                  "itemsPerPage"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "pagination"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successfully retrieved the list of sessions"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Bad Request",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request due to invalid query parameters"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Unauthorized",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Unauthorized access due to workspace url"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Internal Server Error",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "message"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "summary": "List sessions (public)",
+                  "tags": [
+                    "Webconnect"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "ApiKeyAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Your coursebricks workspace url",
+                "url": "https://{subdomain}.coursebricks.app",
+                "variables": {
+                  "subdomain": {
+                    "default": "",
+                    "description": "Workspace identifier (subdomain)"
+                  }
+                }
+              }
+            ],
+            "tags": [
+              {
+                "description": "Course related endpoints.",
+                "name": "Courses"
+              },
+              {
+                "description": "Session related endpoints.",
+                "name": "Sessions"
+              },
+              {
+                "description": "Registration related endpoints.",
+                "name": "Registrations"
+              }
+            ],
+            "webhooks": {}
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Coursebricks"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.284616+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://coursebricks.app/api/openapi.json",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "bc29305a2ab2483f4544a42372534e78e662929e9588e20a03cbc1e9c6671db8",
+    "source_id": "coursebricks",
+    "source_updated": null,
+    "url": "https://coursebricks.app/api/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

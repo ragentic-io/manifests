@@ -1,0 +1,1328 @@
+{
+  "a2ui": {},
+  "app": "sendible",
+  "graph": {
+    "edges": [
+      {
+        "from": "sendible",
+        "kind": "EXPOSES",
+        "to": "operation:get:/0.2/tw/media"
+      },
+      {
+        "from": "sendible",
+        "kind": "EXPOSES",
+        "to": "operation:post:/0.2/tw/media"
+      },
+      {
+        "from": "sendible",
+        "kind": "EXPOSES",
+        "to": "operation:post:/0.2/tw/uploads"
+      },
+      {
+        "from": "sendible",
+        "kind": "EXPOSES",
+        "to": "operation:get:/1.0/api/linkpreview"
+      },
+      {
+        "from": "sendible",
+        "kind": "EXPOSES",
+        "to": "operation:get:/1.0/api/queues"
+      },
+      {
+        "from": "sendible",
+        "kind": "EXPOSES",
+        "to": "operation:get:/1.1/api/services"
+      },
+      {
+        "from": "sendible",
+        "kind": "EXPOSES",
+        "to": "operation:post:/2.0/api/message"
+      },
+      {
+        "from": "sendible",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v2/auth"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "sendible",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns one or more media (queried via the `ids` parameter).",
+        "id": "operation:get:/0.2/tw/media",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /0.2/tw/media",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "ids",
+            "required": false,
+            "type": "integer:int64[]"
+          }
+        ],
+        "path": "/0.2/tw/media",
+        "pointer": "#/paths/~10.2~1tw~1media/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BasicAuth": []
+          }
+        ],
+        "summary": "Retrieve one or more media."
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a media from an uploaded file.",
+        "id": "operation:post:/0.2/tw/media",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /0.2/tw/media",
+        "path": "/0.2/tw/media",
+        "pointer": "#/paths/~10.2~1tw~1media/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BasicAuth": []
+          }
+        ],
+        "summary": "Create a media"
+      },
+      {
+        "deprecated": false,
+        "description": "Uploads a file to be used for creating media.",
+        "id": "operation:post:/0.2/tw/uploads",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /0.2/tw/uploads",
+        "path": "/0.2/tw/uploads",
+        "pointer": "#/paths/~10.2~1tw~1uploads/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BasicAuth": []
+          }
+        ],
+        "summary": "Upload a file"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/1.0/api/linkpreview",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /1.0/api/linkpreview",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "url",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/1.0/api/linkpreview",
+        "pointer": "#/paths/~11.0~1api~1linkpreview/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BasicAuth": []
+          }
+        ],
+        "summary": "Get link preview"
+      },
+      {
+        "deprecated": false,
+        "description": "Get all queues.",
+        "id": "operation:get:/1.0/api/queues",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /1.0/api/queues",
+        "path": "/1.0/api/queues",
+        "pointer": "#/paths/~11.0~1api~1queues/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BasicAuth": []
+          }
+        ],
+        "summary": "Get queues"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/1.1/api/services",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /1.1/api/services",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/1.1/api/services",
+        "pointer": "#/paths/~11.1~1api~1services/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BasicAuth": []
+          }
+        ],
+        "summary": "Get profiles"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/2.0/api/message",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /2.0/api/message",
+        "path": "/2.0/api/message",
+        "pointer": "#/paths/~12.0~1api~1message/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BasicAuth": []
+          }
+        ],
+        "summary": "Schedule a message"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/api/v2/auth",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /api/v2/auth",
+        "path": "/api/v2/auth",
+        "pointer": "#/paths/~1api~1v2~1auth/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Authenticate a user"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "sendible"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.sendible.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "securitySchemes": {
+                "BasicAuth": {
+                  "scheme": "basic",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "This is the API documentation for Sendible's API endpoints used by the Zapier integration.\n",
+              "title": "Sendible API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/0.2/tw/media": {
+                "get": {
+                  "description": "Returns one or more media (queried via the `ids` parameter).",
+                  "parameters": [
+                    {
+                      "example": "12345",
+                      "in": "query",
+                      "name": "ids",
+                      "schema": {
+                        "description": "A list of media id to retrieve",
+                        "items": {
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "type": "array"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "paging": {
+                                "properties": {
+                                  "firstUrl": {
+                                    "type": "string"
+                                  },
+                                  "lastUrl": {
+                                    "type": "string"
+                                  },
+                                  "nextUrl": {
+                                    "type": "string"
+                                  },
+                                  "page": {
+                                    "type": "integer"
+                                  },
+                                  "pageSize": {
+                                    "type": "integer"
+                                  },
+                                  "prevUrl": {
+                                    "type": "string"
+                                  },
+                                  "selfUrl": {
+                                    "type": "string"
+                                  },
+                                  "totalSize": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "page",
+                                  "pageSize",
+                                  "totalSize",
+                                  "selfUrl",
+                                  "firstUrl",
+                                  "lastUrl"
+                                ],
+                                "type": "object"
+                              },
+                              "result": {
+                                "items": {
+                                  "properties": {
+                                    "createdAt": {
+                                      "format": "date-time",
+                                      "type": "string"
+                                    },
+                                    "createdById": {
+                                      "type": "integer"
+                                    },
+                                    "deletedAt": {
+                                      "format": "date-time",
+                                      "type": "string"
+                                    },
+                                    "deletedById": {
+                                      "type": "integer"
+                                    },
+                                    "downloadUrl": {
+                                      "format": "uri",
+                                      "type": "string"
+                                    },
+                                    "errorCode": {
+                                      "type": "string"
+                                    },
+                                    "failureReason": {
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "type": "integer"
+                                    },
+                                    "metadata": {
+                                      "properties": {
+                                        "contentType": {
+                                          "type": "string"
+                                        },
+                                        "height": {
+                                          "type": "integer"
+                                        },
+                                        "size": {
+                                          "type": "integer"
+                                        },
+                                        "type": {
+                                          "type": "string"
+                                        },
+                                        "width": {
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "originalUrl": {
+                                      "format": "uri",
+                                      "type": "string"
+                                    },
+                                    "posterUrl": {
+                                      "format": "uri",
+                                      "type": "string"
+                                    },
+                                    "sourceSets": {
+                                      "items": {},
+                                      "type": "array"
+                                    },
+                                    "status": {
+                                      "type": "string"
+                                    },
+                                    "thumbnailUrl": {
+                                      "format": "uri",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "updatedAt": {
+                                      "format": "date-time",
+                                      "type": "string"
+                                    },
+                                    "updatedById": {
+                                      "type": "integer"
+                                    },
+                                    "validations": {
+                                      "additionalProperties": {
+                                        "additionalProperties": {
+                                          "items": {
+                                            "properties": {
+                                              "allowed": {
+                                                "additionalProperties": true,
+                                                "type": "object"
+                                              },
+                                              "code": {
+                                                "type": "string"
+                                              },
+                                              "level": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "type": "object"
+                                      },
+                                      "type": "object"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "name",
+                                    "type",
+                                    "status",
+                                    "createdById",
+                                    "createdAt"
+                                  ],
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "required": [
+                              "result",
+                              "paging"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Media list returned successfully"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "properties": {
+                                  "code": {
+                                    "type": "string"
+                                  },
+                                  "message": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "properties": {
+                                  "code": {
+                                    "type": "string"
+                                  },
+                                  "message": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Media not found"
+                    }
+                  },
+                  "summary": "Retrieve one or more media."
+                },
+                "post": {
+                  "description": "Creates a media from an uploaded file.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "example": "{\n    \"name\": \"media.jpg\",\n    \"components\": {\n        \"original\": 12345\n    }\n}",
+                        "schema": {
+                          "properties": {
+                            "components": {
+                              "description": "Components of the media.",
+                              "properties": {
+                                "original": {
+                                  "description": "The identifier of the uploaded file to be used as the original component.",
+                                  "format": "int64",
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "name": {
+                              "description": "The name of the media.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "result": {
+                                "properties": {
+                                  "createdAt": {
+                                    "format": "date-time",
+                                    "type": "string"
+                                  },
+                                  "createdById": {
+                                    "type": "integer"
+                                  },
+                                  "deletedAt": {
+                                    "format": "date-time",
+                                    "type": "string"
+                                  },
+                                  "deletedById": {
+                                    "type": "integer"
+                                  },
+                                  "downloadUrl": {
+                                    "format": "uri",
+                                    "type": "string"
+                                  },
+                                  "errorCode": {
+                                    "type": "string"
+                                  },
+                                  "failureReason": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "integer"
+                                  },
+                                  "metadata": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "originalUrl": {
+                                    "format": "uri",
+                                    "type": "string"
+                                  },
+                                  "posterUrl": {
+                                    "format": "uri",
+                                    "type": "string"
+                                  },
+                                  "sourceSets": {
+                                    "items": {},
+                                    "type": "array"
+                                  },
+                                  "status": {
+                                    "example": "New",
+                                    "type": "string"
+                                  },
+                                  "thumbnailUrl": {
+                                    "format": "uri",
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "example": "Video",
+                                    "type": "string"
+                                  },
+                                  "updatedAt": {
+                                    "format": "date-time",
+                                    "type": "string"
+                                  },
+                                  "updatedById": {
+                                    "type": "integer"
+                                  },
+                                  "validations": {
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Media created successfully"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "properties": {
+                                  "code": {
+                                    "type": "string"
+                                  },
+                                  "message": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Invalid request."
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "properties": {
+                                  "code": {
+                                    "type": "string"
+                                  },
+                                  "message": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Invalid component provided."
+                    }
+                  },
+                  "summary": "Create a media"
+                }
+              },
+              "/0.2/tw/uploads": {
+                "post": {
+                  "description": "Uploads a file to be used for creating media.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "source": {
+                              "description": "The source of the file.",
+                              "properties": {
+                                "type": {
+                                  "description": "Set to Url for URL upload.",
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "description": "The URL of the file to be uploaded.",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "id": {
+                                "description": "The identifier of the uploaded file.",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "File uploaded successfully"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "properties": {
+                                  "code": {
+                                    "type": "string"
+                                  },
+                                  "message": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request"
+                    }
+                  },
+                  "summary": "Upload a file"
+                }
+              },
+              "/1.0/api/linkpreview": {
+                "get": {
+                  "parameters": [
+                    {
+                      "example": "{{url}}",
+                      "in": "query",
+                      "name": "url",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": "{\n  \"url\": \"https://example.com/article/123\",\n  \"name\": \"Example Title\",\n  \"description\": \"This is an example description for the provided URL.\",\n  \"caption\": \"Category · Example Site\",\n  \"media\": [\n    {\n      \"url\": \"https://example.com/image.jpg\",\n      \"type\": \"image\"\n    }\n  ]\n}",
+                          "schema": {
+                            "properties": {
+                              "caption": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "type": "string"
+                              },
+                              "media": {
+                                "items": {
+                                  "properties": {
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "url": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Link preview returned successfully"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "properties": {
+                                  "code": {
+                                    "type": "string"
+                                  },
+                                  "message": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request"
+                    }
+                  },
+                  "summary": "Get link preview"
+                }
+              },
+              "/1.0/api/queues": {
+                "get": {
+                  "description": "Get all queues.",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "properties": {
+                                "can_repeat": {
+                                  "type": "integer"
+                                },
+                                "id": {
+                                  "type": "integer"
+                                },
+                                "is_paused": {
+                                  "type": "boolean"
+                                },
+                                "paused_until": {
+                                  "format": "date-time",
+                                  "type": "string"
+                                },
+                                "queue_name": {
+                                  "type": "string"
+                                },
+                                "queue_times": {
+                                  "items": {
+                                    "properties": {
+                                      "hour": {
+                                        "type": "integer"
+                                      },
+                                      "minute": {
+                                        "type": "integer"
+                                      },
+                                      "weekday": {
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Queues returned successfully"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "properties": {
+                                  "code": {
+                                    "type": "string"
+                                  },
+                                  "message": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request"
+                    }
+                  },
+                  "summary": "Get queues"
+                }
+              },
+              "/1.1/api/services": {
+                "get": {
+                  "parameters": [
+                    {
+                      "example": "{{group | social_and_all_groups | social}}",
+                      "in": "query",
+                      "name": "type",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "example": "1",
+                      "in": "query",
+                      "name": "page",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "example": "3500",
+                      "in": "query",
+                      "name": "per_page",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": "[\n  {\"list_type\": \"\", \"account_id\": 1001, \"account_name\": \"example_account_1\", \"account_type\": \"Instagram\", \"icon_url\": \"https://example.com/icons/instagram.png\", \"recipient_id\": \"r001\"},\n  {\"list_type\": \"\", \"account_id\": 1002, \"account_name\": \"example_account_2\", \"account_type\": \"Threads\", \"icon_url\": \"https://example.com/icons/threads.png\", \"recipient_id\": \"1002\"},\n  {\"list_type\": \"\", \"account_id\": 1003, \"account_name\": \"example_account_3\", \"account_type\": \"TikTok\", \"icon_url\": \"https://example.com/icons/tiktok.png\", \"recipient_id\": \"1003\"},\n  {\"list_type\": \"\", \"account_id\": 1004, \"account_name\": \"example_account_4\", \"account_type\": \"Facebook\", \"icon_url\": \"https://example.com/icons/facebook.png\", \"recipient_id\": \"1004\"}\n]",
+                          "schema": {
+                            "items": {
+                              "properties": {
+                                "account_id": {
+                                  "type": "integer"
+                                },
+                                "account_name": {
+                                  "type": "string"
+                                },
+                                "account_type": {
+                                  "type": "string"
+                                },
+                                "icon_url": {
+                                  "type": "string"
+                                },
+                                "list_type": {
+                                  "type": "string"
+                                },
+                                "recipient_id": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "account_id",
+                                "account_name",
+                                "account_type",
+                                "recipient_id"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Services returned successfully"
+                    }
+                  },
+                  "summary": "Get profiles"
+                }
+              },
+              "/2.0/api/message": {
+                "post": {
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "example": "{\n    \"name\": \"media.jpg\",\n    \"components\": {\n        \"original\": 12345\n    }\n}",
+                        "schema": {
+                          "properties": {
+                            "fb_post_as_reel": {
+                              "description": "Whether to post as a reel on Facebook.",
+                              "type": "boolean"
+                            },
+                            "fb_post_as_story": {
+                              "description": "Whether to post as a story on Facebook.",
+                              "type": "boolean"
+                            },
+                            "ig_post_as_reel": {
+                              "description": "Whether to post as a reel on Instagram.",
+                              "type": "boolean"
+                            },
+                            "ig_post_as_story": {
+                              "description": "Whether to post as a story on Instagram.",
+                              "type": "boolean"
+                            },
+                            "link_caption": {
+                              "description": "The caption of the link associated with the message.",
+                              "type": "string"
+                            },
+                            "link_description": {
+                              "description": "The description of the link associated with the message.",
+                              "type": "string"
+                            },
+                            "link_thumbnail": {
+                              "description": "The thumbnail URL of the link associated with the message.",
+                              "type": "string"
+                            },
+                            "link_title": {
+                              "description": "The title of the link associated with the message.",
+                              "type": "string"
+                            },
+                            "link_url": {
+                              "description": "The URL of the link associated with the message.",
+                              "type": "string"
+                            },
+                            "media": {
+                              "description": "List of media objects to attach to the message.",
+                              "items": {
+                                "properties": {
+                                  "altText": {
+                                    "description": "The alternative text for the media.",
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "description": "The name of the media.",
+                                    "type": "string"
+                                  },
+                                  "twMedia": {
+                                    "description": "Media system related properties.",
+                                    "properties": {
+                                      "id": {
+                                        "description": "The identifier of the media in the media system.",
+                                        "type": "integer"
+                                      },
+                                      "type": {
+                                        "description": "The mime type of the media.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "url": {
+                                    "description": "The URL of the media.",
+                                    "type": "string"
+                                  },
+                                  "videoFileZie": {
+                                    "description": "The size of the video file in bytes.",
+                                    "type": "integer"
+                                  },
+                                  "videoProperties": {
+                                    "description": "Video related properties.",
+                                    "properties": {
+                                      "thumbnailOffset": {
+                                        "description": "Offset for the thumbnail in milliseconds.",
+                                        "type": "integer"
+                                      },
+                                      "thumbnailUrl": {
+                                        "description": "URL of the video thumbnail.",
+                                        "type": "string"
+                                      },
+                                      "title": {
+                                        "description": "Title of the video.",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "message_text": {
+                              "description": "The text content of the message.",
+                              "type": "string"
+                            },
+                            "queue_id": {
+                              "description": "The identifier of the queue.",
+                              "type": "integer"
+                            },
+                            "send_date_client": {
+                              "description": "The date and time to send the message (in user timezone).",
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "send_to": {
+                              "description": "Comma separated list of profile/profile list IDs.",
+                              "type": "string"
+                            },
+                            "status": {
+                              "description": "The status of the message.",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {},
+                      "description": "Mesasge created successfully"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "properties": {
+                                  "code": {
+                                    "type": "string"
+                                  },
+                                  "message": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bad request"
+                    }
+                  },
+                  "summary": "Schedule a message"
+                }
+              },
+              "/api/v2/auth": {
+                "post": {
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "api_key": "your password",
+                          "source": "no_redirect",
+                          "username": "user@example.com"
+                        },
+                        "schema": {
+                          "properties": {
+                            "api_key": {
+                              "description": "API key or password",
+                              "type": "string"
+                            },
+                            "source": {
+                              "description": "Set to no_redirect for API use.",
+                              "type": "string"
+                            },
+                            "username": {
+                              "description": "User email or username",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "username",
+                            "api_key"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "access_token": {
+                                "description": "Provided if authentication successful",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Authentication result"
+                    }
+                  },
+                  "security": [],
+                  "summary": "Authenticate a user"
+                }
+              }
+            },
+            "security": [
+              {
+                "BasicAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://api.sendible.com"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Sendible"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:55.279021+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://assets.sendible.com/api/documentation/swagger/sendible_zapier_api.yaml",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "2e289d589fd0b86521ceb0012f1aa20599ce91a3bb5c0f264612da8cd0bb6dab",
+    "source_id": "sendible",
+    "source_updated": null,
+    "url": "https://assets.sendible.com/api/documentation/swagger/sendible_zapier_api.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

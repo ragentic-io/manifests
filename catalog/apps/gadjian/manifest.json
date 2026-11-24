@@ -1,0 +1,1820 @@
+{
+  "a2ui": {},
+  "app": "gadjian",
+  "graph": {
+    "edges": [
+      {
+        "from": "gadjian",
+        "kind": "EXPOSES",
+        "to": "operation:get:/attendance"
+      },
+      {
+        "from": "gadjian",
+        "kind": "EXPOSES",
+        "to": "operation:post:/auth"
+      },
+      {
+        "from": "gadjian",
+        "kind": "EXPOSES",
+        "to": "operation:get:/company/npwp-pemotong"
+      },
+      {
+        "from": "gadjian",
+        "kind": "EXPOSES",
+        "to": "operation:get:/employee"
+      },
+      {
+        "from": "gadjian",
+        "kind": "EXPOSES",
+        "to": "operation:post:/employee"
+      },
+      {
+        "from": "operation:post:/auth",
+        "kind": "RETURNS",
+        "to": "schema:SuccessResponse"
+      },
+      {
+        "from": "operation:post:/employee",
+        "kind": "ACCEPTS",
+        "to": "schema:AddNewEmployeeRequest"
+      },
+      {
+        "from": "operation:post:/employee",
+        "kind": "RETURNS",
+        "to": "schema:SuccessResponse"
+      },
+      {
+        "from": "schema:AttendanceResponse",
+        "kind": "REFERENCES",
+        "to": "schema:AttendanceDetail"
+      },
+      {
+        "from": "schema:Employee",
+        "kind": "REFERENCES",
+        "to": "schema:Career"
+      },
+      {
+        "from": "schema:Employee",
+        "kind": "REFERENCES",
+        "to": "schema:CustomField"
+      },
+      {
+        "from": "schema:NPWPPemotong",
+        "kind": "REFERENCES",
+        "to": "schema:NITKUPemotong"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "gadjian",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns merged attendance data within a date range.",
+        "id": "operation:get:/attendance",
+        "kind": "operation",
+        "method": "get",
+        "name": "getAttendance",
+        "parameters": [
+          {
+            "description": "JWT token from `/auth`",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Employee internal ID (`idk`).",
+            "in": "query",
+            "name": "idk",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Start date of the range (format `YYYY-mm-dd`)",
+            "in": "query",
+            "name": "start_date",
+            "required": true,
+            "type": "string:date"
+          },
+          {
+            "description": "End date of the range (format `YYYY-mm-dd`)",
+            "in": "query",
+            "name": "end_date",
+            "required": true,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter by attendance status (applied after merge).",
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/attendance",
+        "pointer": "#/paths/~1attendance/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "BadRequest"
+          },
+          {
+            "status": "401",
+            "type": "Unauthorized"
+          },
+          {
+            "status": "500",
+            "type": "InternalServerError"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get attendance data",
+        "tags": [
+          "• Attendance"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get JWT token by sending the credential key and credential secret in headers.",
+        "id": "operation:post:/auth",
+        "kind": "operation",
+        "method": "post",
+        "name": "auth",
+        "parameters": [
+          {
+            "description": "Credential key generated from your Gadjian account",
+            "in": "header",
+            "name": "Key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Credential secret generated from your Gadjian account",
+            "in": "header",
+            "name": "Secret",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/auth",
+        "pointer": "#/paths/~1auth/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SuccessResponse"
+          },
+          {
+            "status": "400",
+            "type": "BadRequest"
+          },
+          {
+            "status": "401",
+            "type": "Unauthorized"
+          },
+          {
+            "status": "500",
+            "type": "InternalServerError"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Get authorization token",
+        "tags": [
+          "• Auth"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns list of NPWP Pemotong for the authenticated company.",
+        "id": "operation:get:/company/npwp-pemotong",
+        "kind": "operation",
+        "method": "get",
+        "name": "getListNpwpPemotong",
+        "parameters": [
+          {
+            "description": "JWT token from `/auth`",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/company/npwp-pemotong",
+        "pointer": "#/paths/~1company~1npwp-pemotong/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "BadRequest"
+          },
+          {
+            "status": "401",
+            "type": "Unauthorized"
+          },
+          {
+            "status": "500",
+            "type": "InternalServerError"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get company NPWP Pemotong",
+        "tags": [
+          "• Company"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns employee data for the authenticated company.",
+        "id": "operation:get:/employee",
+        "kind": "operation",
+        "method": "get",
+        "name": "getEmployee",
+        "parameters": [
+          {
+            "description": "JWT token from `/auth`",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Filter employee by name (partial match)",
+            "in": "query",
+            "name": "nama",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter employee by personnel ID (exact match)",
+            "in": "query",
+            "name": "id_karyawan",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/employee",
+        "pointer": "#/paths/~1employee/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "BadRequest"
+          },
+          {
+            "status": "401",
+            "type": "Unauthorized"
+          },
+          {
+            "status": "500",
+            "type": "InternalServerError"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get company employees",
+        "tags": [
+          "• Employee"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a new employee for the authenticated company.",
+        "id": "operation:post:/employee",
+        "kind": "operation",
+        "method": "post",
+        "name": "addNewEmployee",
+        "parameters": [
+          {
+            "description": "JWT token from `/auth`",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/employee",
+        "pointer": "#/paths/~1employee/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "AddNewEmployeeRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "SuccessResponse"
+          },
+          {
+            "status": "400",
+            "type": "BadRequest"
+          },
+          {
+            "status": "401",
+            "type": "Unauthorized"
+          },
+          {
+            "status": "500",
+            "type": "InternalServerError"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Create new employee",
+        "tags": [
+          "• Employee"
+        ]
+      },
+      {
+        "id": "schema:AddNewEmployeeRequest",
+        "kind": "schema",
+        "name": "AddNewEmployeeRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:AttendanceDetail",
+        "kind": "schema",
+        "name": "AttendanceDetail",
+        "type": "object"
+      },
+      {
+        "id": "schema:AttendanceResponse",
+        "kind": "schema",
+        "name": "AttendanceResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:BadRequest",
+        "kind": "schema",
+        "name": "BadRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:Career",
+        "kind": "schema",
+        "name": "Career",
+        "type": "object"
+      },
+      {
+        "id": "schema:CustomField",
+        "kind": "schema",
+        "name": "CustomField",
+        "type": "object"
+      },
+      {
+        "id": "schema:Employee",
+        "kind": "schema",
+        "name": "Employee",
+        "type": "object"
+      },
+      {
+        "id": "schema:InternalServerError",
+        "kind": "schema",
+        "name": "InternalServerError",
+        "type": "object"
+      },
+      {
+        "id": "schema:NITKUPemotong",
+        "kind": "schema",
+        "name": "NITKUPemotong",
+        "type": "object"
+      },
+      {
+        "id": "schema:NPWPPemotong",
+        "kind": "schema",
+        "name": "NPWPPemotong",
+        "type": "object"
+      },
+      {
+        "id": "schema:SuccessResponse",
+        "kind": "schema",
+        "name": "SuccessResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:Unauthorized",
+        "kind": "schema",
+        "name": "Unauthorized",
+        "type": "object"
+      },
+      {
+        "id": "schema:UserLab",
+        "kind": "schema",
+        "name": "UserLab",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "gadjian"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://developer.gadjian.com/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "BadRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/BadRequest"
+                      }
+                    }
+                  },
+                  "description": "Bad request"
+                },
+                "InternalServerError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/InternalServerError"
+                      }
+                    }
+                  },
+                  "description": "Internal server error"
+                },
+                "Unauthorized": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Unauthorized"
+                      }
+                    }
+                  },
+                  "description": "Unauthorized"
+                }
+              },
+              "schemas": {
+                "AddNewEmployeeRequest": {
+                  "properties": {
+                    "email": {
+                      "description": "Email address - Must be a valid email format",
+                      "example": "budi@example.com",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "id_nitku_pemotong": {
+                      "description": "ID of NITKU Pemotong from /company/npwp-pemotong endpoint (id_nitku_pemotong)",
+                      "example": 525,
+                      "type": "integer"
+                    },
+                    "id_npwp_pemotong": {
+                      "description": "ID of NPWP Pemotong from /company/npwp-pemotong endpoint (id_npwp_pemotong)",
+                      "example": 1208393,
+                      "type": "integer"
+                    },
+                    "id_personalia": {
+                      "description": "Personnel ID - Max 40 characters, alphanumeric with dash and dot allowed",
+                      "example": "EMP-001",
+                      "type": "string"
+                    },
+                    "kewarganegaraan": {
+                      "description": "Nationality - Only accepts WNI or WNA",
+                      "enum": [
+                        "WNI",
+                        "WNA"
+                      ],
+                      "example": "WNI",
+                      "type": "string"
+                    },
+                    "nama": {
+                      "description": "Employee name - Alphanumeric with dash, single quote, dot, and comma allowed",
+                      "example": "Budi",
+                      "type": "string"
+                    },
+                    "no_npwp": {
+                      "description": "Optional. Defaults to \"0000000000000000\" if not provided",
+                      "example": "0000000000000000",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "nomor_identitas": {
+                      "description": "Identity number - Max 21 characters, alphanumeric only",
+                      "example": "1092750127059710",
+                      "type": "string"
+                    },
+                    "status_pajak": {
+                      "enum": [
+                        "K0",
+                        "K1",
+                        "K2",
+                        "K3",
+                        "TK0",
+                        "TK1",
+                        "TK2",
+                        "TK3",
+                        "TK4",
+                        "HB0",
+                        "HB1",
+                        "HB2",
+                        "HB3",
+                        "HB4"
+                      ],
+                      "example": "TK0",
+                      "type": "string"
+                    },
+                    "tempat_lahir": {
+                      "description": "Place of birth",
+                      "example": "Jakarta",
+                      "type": "string"
+                    },
+                    "tgl_lahir": {
+                      "description": "Date of birth - Format YYYY-mm-dd",
+                      "example": "2011-02-01",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "tgl_mulai_kerja": {
+                      "description": "Start work date - Format YYYY-mm-dd",
+                      "example": "2026-02-03",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "tipe_identitas": {
+                      "description": "Identity type - Only accepts KTP, Paspor, KITAS, or KITAP",
+                      "enum": [
+                        "KTP",
+                        "Paspor",
+                        "KITAS",
+                        "KITAP"
+                      ],
+                      "example": "KTP",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_personalia",
+                    "nama",
+                    "tgl_mulai_kerja",
+                    "kewarganegaraan",
+                    "tipe_identitas",
+                    "nomor_identitas",
+                    "tempat_lahir",
+                    "tgl_lahir",
+                    "email",
+                    "status_pajak",
+                    "id_npwp_pemotong",
+                    "id_nitku_pemotong"
+                  ],
+                  "type": "object"
+                },
+                "AttendanceDetail": {
+                  "properties": {
+                    "counted_lembur": {
+                      "example": null,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "jam_lembur": {
+                      "example": null,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "keluar": {
+                      "example": "2026-06-02 17:05:00",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "keluar_alamat": {
+                      "example": "Jl. Sudirman No.1, Jakarta",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "keluar_foto": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "keluar_gmt": {
+                      "example": "Asia/Jakarta",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "keluar_gps_status": {
+                      "enum": [
+                        "Dalam Jangkauan",
+                        "Luar Jangkauan",
+                        "Tidak Terdeteksi"
+                      ],
+                      "example": "Dalam Jangkauan",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "keluar_latitude": {
+                      "example": -6.2088,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "keluar_longitude": {
+                      "example": 106.8456,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "keluar_note": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "keluar_spot_name": {
+                      "example": "Kantor Pusat",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "libur_nasional": {
+                      "enum": [
+                        "Ya",
+                        "Tidak"
+                      ],
+                      "example": "Tidak",
+                      "type": "string"
+                    },
+                    "masuk": {
+                      "example": "2026-06-02 08:01:00",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "masuk_alamat": {
+                      "example": "Jl. Sudirman No.1, Jakarta",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "masuk_foto": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "masuk_gmt": {
+                      "example": "Asia/Jakarta",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "masuk_gps_status": {
+                      "enum": [
+                        "Dalam Jangkauan",
+                        "Luar Jangkauan",
+                        "Tidak Terdeteksi"
+                      ],
+                      "example": "Dalam Jangkauan",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "masuk_latitude": {
+                      "example": -6.2088,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "masuk_longitude": {
+                      "example": 106.8456,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "masuk_note": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "masuk_spot_name": {
+                      "example": "Kantor Pusat",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "mulai_lembur_alamat": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "mulai_lembur_foto": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "mulai_lembur_gmt": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "mulai_lembur_gps_status": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "mulai_lembur_latitude": {
+                      "example": null,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "mulai_lembur_longitude": {
+                      "example": null,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "mulai_lembur_note": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "mulai_lembur_spot_name": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "note_terlambat": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "selesai_lembur_alamat": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "selesai_lembur_foto": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "selesai_lembur_gmt": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "selesai_lembur_gps_status": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "selesai_lembur_latitude": {
+                      "example": null,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "selesai_lembur_longitude": {
+                      "example": null,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "selesai_lembur_note": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "selesai_lembur_spot_name": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Merged status (user override takes priority when present)",
+                      "example": "Masuk",
+                      "type": "string"
+                    },
+                    "status_terlambat": {
+                      "enum": [
+                        "Ya",
+                        "Tidak"
+                      ],
+                      "example": "Tidak",
+                      "type": "string"
+                    },
+                    "tgl": {
+                      "example": "2026-06-02",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "tipe_lembur": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "waktu_mulai_lembur": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "waktu_selesai_lembur": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "AttendanceResponse": {
+                  "properties": {
+                    "attendances": {
+                      "items": {
+                        "$ref": "#/components/schemas/AttendanceDetail"
+                      },
+                      "type": "array"
+                    },
+                    "idk": {
+                      "example": 42,
+                      "type": "integer"
+                    },
+                    "name": {
+                      "example": "Budi Santoso",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "BadRequest": {
+                  "properties": {
+                    "data": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "message": {
+                      "example": "Bad Request",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": 400,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Career": {
+                  "properties": {
+                    "department": {
+                      "example": "Product & Technology",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "division": {
+                      "example": "Technology",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "employee_status": {
+                      "example": "Karyawan Tetap Permanen",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "jobtitle": {
+                      "example": "Backend Developer",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "resign_date": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "start_date": {
+                      "example": "2012-01-01",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CustomField": {
+                  "properties": {
+                    "nama_en": {
+                      "example": "Uniform Number",
+                      "type": "string"
+                    },
+                    "nama_in": {
+                      "example": "Nomor Seragam",
+                      "type": "string"
+                    },
+                    "value": {
+                      "example": "A-01",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Employee": {
+                  "properties": {
+                    "agama": {
+                      "example": "Islam",
+                      "type": "string"
+                    },
+                    "akhir_berlaku_identitas": {
+                      "example": "2012-01-01",
+                      "format": "date",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "alamat_kc_bank": {
+                      "example": "KC A",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "alamat_rumah": {
+                      "example": "Jl. Jambu RT 01 RW 01 Jakarta",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "blood": {
+                      "example": "O",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "custom_field": {
+                      "items": {
+                        "$ref": "#/components/schemas/CustomField"
+                      },
+                      "type": "array"
+                    },
+                    "email": {
+                      "example": "aaa@mail.com",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "file_cv": {
+                      "example": "https://gadjian.com/a.jpg",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "file_identitas": {
+                      "example": "https://gadjian.com/c.jpg",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "file_lain": {
+                      "example": "https://gadjian.com/d.jpg",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "file_photo": {
+                      "example": "https://gadjian.com/photo.jpg",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "file_trans": {
+                      "example": "https://gadjian.com/b.jpg",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "gender": {
+                      "enum": [
+                        "L",
+                        "P"
+                      ],
+                      "example": "L",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id_karyawan": {
+                      "example": "F01",
+                      "type": "string"
+                    },
+                    "id_perusahaan": {
+                      "example": 11223344,
+                      "type": "integer"
+                    },
+                    "idk": {
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "institusi_pendidikan": {
+                      "example": "Universitas A",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "jurusan": {
+                      "example": "Teknik Informatika",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "karir": {
+                      "$ref": "#/components/schemas/Career"
+                    },
+                    "kewarganegaraan": {
+                      "example": "WNI",
+                      "type": "string"
+                    },
+                    "motto": {
+                      "example": "My trip my adventure",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "nama": {
+                      "example": "Budi",
+                      "type": "string"
+                    },
+                    "nama_bank": {
+                      "example": "Bank A",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "nama_kontak_darurat": {
+                      "example": "Agus",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "nama_pemegang_rekening": {
+                      "example": "Budi",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "negara": {
+                      "example": "Indonesia",
+                      "type": "string"
+                    },
+                    "no_bpjs_kes": {
+                      "example": "001122334455",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "no_bpjs_naker": {
+                      "example": "001122334455",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "no_hp": {
+                      "example": "08128877665544",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "no_kontak_darurat": {
+                      "example": "08121122334455",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "no_npwp": {
+                      "example": "00112233445566",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "no_rek": {
+                      "example": "0011223344",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "nomor_identitas": {
+                      "example": "112233445566778899",
+                      "type": "string"
+                    },
+                    "pendidikan_terakhir": {
+                      "example": "SMA",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "status_kawin": {
+                      "example": "Lajang",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "status_pajak": {
+                      "example": "TK0",
+                      "type": "string"
+                    },
+                    "tempat_lahir": {
+                      "example": "Jakarta",
+                      "type": "string"
+                    },
+                    "tgl_efektif_npp_kes": {
+                      "example": "02-2026",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "tgl_efektif_npp_naker": {
+                      "example": "02-2026",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "tgl_lahir": {
+                      "example": "1990-01-01",
+                      "type": "string"
+                    },
+                    "tgl_mulai_kerja": {
+                      "example": "2012-01-01",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "tipe_identitas": {
+                      "enum": [
+                        "KTP",
+                        "Paspor",
+                        "KITAS",
+                        "KITAP"
+                      ],
+                      "example": "KTP",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "InternalServerError": {
+                  "properties": {
+                    "data": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "message": {
+                      "example": "Internal Server Error",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": 500,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "NITKUPemotong": {
+                  "properties": {
+                    "id_nitku_pemotong": {
+                      "example": 525,
+                      "type": "integer"
+                    },
+                    "id_npwp_pemotong": {
+                      "example": 1208393,
+                      "type": "integer"
+                    },
+                    "nitku": {
+                      "example": "212121212121212000000",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "NPWPPemotong": {
+                  "properties": {
+                    "id_npwp_pemotong": {
+                      "example": 1208393,
+                      "type": "integer"
+                    },
+                    "id_perusahaan": {
+                      "example": 230300059,
+                      "type": "integer"
+                    },
+                    "nama_pemotong": {
+                      "example": "Pemotong A",
+                      "type": "string"
+                    },
+                    "nama_pimpinan": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "nitku_pemotong": {
+                      "items": {
+                        "$ref": "#/components/schemas/NITKUPemotong"
+                      },
+                      "type": "array"
+                    },
+                    "no_npwp": {
+                      "example": "212121212121212",
+                      "type": "string"
+                    },
+                    "no_npwp_pimpinan": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SuccessResponse": {
+                  "properties": {
+                    "data": {
+                      "example": null,
+                      "nullable": true
+                    },
+                    "message": {
+                      "example": "",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": 200,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Unauthorized": {
+                  "properties": {
+                    "data": {
+                      "example": null,
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "message": {
+                      "example": "Unauthorized",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": 401,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "UserLab": {
+                  "properties": {
+                    "created": {
+                      "example": "2026-04-08 12:00:00",
+                      "type": "string"
+                    },
+                    "keys": {
+                      "example": "7NBtWBY3f6Z7fA0P",
+                      "type": "string"
+                    },
+                    "last_used": {
+                      "example": "",
+                      "type": "string"
+                    },
+                    "secrets": {
+                      "example": "9lAbMZvy5m6EcL1gkYe7UuZodfcn2dWg",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "team@gadjian.com"
+              },
+              "description": "Welcome to the Gadjian Open API. This API allows you to integrate your systems with Gadjian's HR and payroll platform.\n\n## Getting Started\n\nFollow these steps to start using the API:\n\n### Step 1: Generate API Credentials\n1. Ask our customer support to open your access to Gadjian Open API\n2. Log in to your Gadjian account\n3. Navigate to Company Profile > Secret Key - Integration > Gadjian Open API\n4. Generate a new key and key will be downloaded automatically\n5. Store your credentials securely (never commit them to version control)\n\n### Step 2: Authenticate\nUse the `POST /auth` endpoint to exchange your credentials for a token:\n- Send your `Key` and `Secret` in the request headers\n- Receive a token in the `X-Access-Token` response header\n- This token is valid for a limited time and will be refreshed with each API call\n\n### Step 3: Make API Calls\nInclude the JWT token in the `Authorization` header for all subsequent requests:\n```\nAuthorization: Bearer {your-token}\n```\n\n### Step 4: Handle Token Refresh\n- Each successful API response includes a refreshed token in the `X-Access-Token` header\n- Always use the latest token for your next request\n- If you receive a 401 Unauthorized error, re-authenticate using Step 2\n\n## Response Format\n\nAll responses use JSON format with the following structure:\n\n**Success Response:**\n```json\n{\n  \"status\": 200,\n  \"message\": \"\",\n  \"data\": { ... }\n}\n```\n\n**Error Response:**\n```json\n{\n  \"status\": 400,\n  \"message\": \"Bad Request\",\n  \"data\": null,\n}\n```\n\n## Rate Limiting\n\nThe API enforces a rate limit of **5 requests per second** per IP address.\n\nWhen the rate limit is exceeded, the API will return HTTP 429 (Too Many Requests) with the following response:\n```json\n{\n  \"status\": 429,\n  \"data\": null,\n  \"message\": \"Rate limit exceeded. Maximum 5 requests per second allowed.\"\n}\n```\n\nTo avoid hitting the rate limit, consider implementing exponential backoff or request queuing in your integration.\n",
+              "termsOfService": "https://www.gadjian.com/termofservice/",
+              "title": "Gadjian Open API",
+              "version": "1.0.1",
+              "x-logo": {
+                "altText": "Gadjian Logo",
+                "href": "https://www.gadjian.com",
+                "url": "https://www.gadjian.com/static/images/gadjian_logo_white.png"
+              }
+            },
+            "openapi": "3.0.1",
+            "paths": {
+              "/attendance": {
+                "get": {
+                  "description": "Returns merged attendance data within a date range.\n\nAttendance records are merged with any user overrides (joined by date + employee ID).\nWhen an override exists, the values for `status`, `status_terlambat`, `note_terlambat`, and `tipe_lembur` from the override take priority.\n\nSpot names for check-in, check-out, and overtime clock-in/out are resolved and included in the response.\n\nWhen `idk` is provided, returns data for that employee only (must belong to the authenticated company).\nWhen `idk` is omitted, returns attendance for all employees in the company.\n",
+                  "operationId": "getAttendance",
+                  "parameters": [
+                    {
+                      "description": "JWT token from `/auth`",
+                      "example": "Bearer {your-jwt-token}",
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Employee internal ID (`idk`). Optional — omit to get attendance for all employees in the company.",
+                      "example": 42,
+                      "in": "query",
+                      "name": "idk",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Start date of the range (format `YYYY-mm-dd`)",
+                      "example": "2026-06-01",
+                      "in": "query",
+                      "name": "start_date",
+                      "required": true,
+                      "schema": {
+                        "example": "2026-06-01",
+                        "format": "date",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "End date of the range (format `YYYY-mm-dd`)",
+                      "example": "2026-06-30",
+                      "in": "query",
+                      "name": "end_date",
+                      "required": true,
+                      "schema": {
+                        "example": "2026-06-30",
+                        "format": "date",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by attendance status (applied after merge). Accepts multiple values as a comma-separated string.\nPossible values: `Cuti`, `Cuti Bersama`, `Tugas Luar`, `Unpaid`, `Tidak`, `Belum Ada Status`\n",
+                      "example": "Cuti,Lembur",
+                      "in": "query",
+                      "name": "status",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "data": {
+                              "attendances": [
+                                {
+                                  "counted_lembur": null,
+                                  "jam_lembur": null,
+                                  "keluar": "2026-06-02 17:05:00",
+                                  "keluar_alamat": "Jl. Sudirman No.1, Jakarta",
+                                  "keluar_foto": null,
+                                  "keluar_gmt": "Asia/Jakarta",
+                                  "keluar_gps_status": "Dalam Jangkauan",
+                                  "keluar_latitude": -6.2088,
+                                  "keluar_longitude": 106.8456,
+                                  "keluar_note": null,
+                                  "keluar_spot_name": "Kantor Pusat",
+                                  "libur_nasional": "Tidak",
+                                  "masuk": "2026-06-02 08:01:00",
+                                  "masuk_alamat": "Jl. Sudirman No.1, Jakarta",
+                                  "masuk_foto": null,
+                                  "masuk_gmt": "Asia/Jakarta",
+                                  "masuk_gps_status": "Dalam Jangkauan",
+                                  "masuk_latitude": -6.2088,
+                                  "masuk_longitude": 106.8456,
+                                  "masuk_note": null,
+                                  "masuk_spot_name": "Kantor Pusat",
+                                  "mulai_lembur_alamat": null,
+                                  "mulai_lembur_foto": null,
+                                  "mulai_lembur_gmt": null,
+                                  "mulai_lembur_gps_status": null,
+                                  "mulai_lembur_latitude": null,
+                                  "mulai_lembur_longitude": null,
+                                  "mulai_lembur_note": null,
+                                  "mulai_lembur_spot_name": null,
+                                  "note_terlambat": null,
+                                  "selesai_lembur_alamat": null,
+                                  "selesai_lembur_foto": null,
+                                  "selesai_lembur_gmt": null,
+                                  "selesai_lembur_gps_status": null,
+                                  "selesai_lembur_latitude": null,
+                                  "selesai_lembur_longitude": null,
+                                  "selesai_lembur_note": null,
+                                  "selesai_lembur_spot_name": null,
+                                  "status": "Masuk",
+                                  "status_terlambat": "Tidak",
+                                  "tgl": "2026-06-02",
+                                  "tipe_lembur": null,
+                                  "waktu_mulai_lembur": null,
+                                  "waktu_selesai_lembur": null
+                                }
+                              ],
+                              "idk": 42,
+                              "name": "Budi Santoso"
+                            },
+                            "message": "success",
+                            "status": 200
+                          },
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/AttendanceResponse"
+                                },
+                                "type": "array"
+                              },
+                              "message": {
+                                "example": "success",
+                                "type": "string"
+                              },
+                              "status": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful operation",
+                      "headers": {
+                        "X-Access-Token": {
+                          "description": "Refreshed JWT token",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalServerError"
+                    }
+                  },
+                  "summary": "Get attendance data",
+                  "tags": [
+                    "• Attendance"
+                  ]
+                }
+              },
+              "/auth": {
+                "post": {
+                  "description": "Get JWT token by sending the credential key and credential secret in headers.",
+                  "operationId": "auth",
+                  "parameters": [
+                    {
+                      "description": "Credential key generated from your Gadjian account",
+                      "in": "header",
+                      "name": "Key",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Credential secret generated from your Gadjian account",
+                      "in": "header",
+                      "name": "Secret",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SuccessResponse"
+                          }
+                        }
+                      },
+                      "description": "Successful operation",
+                      "headers": {
+                        "X-Access-Token": {
+                          "description": "JWT token used to access protected APIs",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalServerError"
+                    }
+                  },
+                  "summary": "Get authorization token",
+                  "tags": [
+                    "• Auth"
+                  ]
+                }
+              },
+              "/company/npwp-pemotong": {
+                "get": {
+                  "description": "Returns list of NPWP Pemotong for the authenticated company.",
+                  "operationId": "getListNpwpPemotong",
+                  "parameters": [
+                    {
+                      "description": "JWT token from `/auth`",
+                      "example": "Bearer {your-jwt-token}",
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "data": [
+                              {
+                                "id_npwp_pemotong": 1208393,
+                                "id_perusahaan": 230300059,
+                                "nama_pemotong": "Pemotong A",
+                                "nama_pimpinan": null,
+                                "nitku_pemotong": [
+                                  {
+                                    "id_nitku_pemotong": 525,
+                                    "id_npwp_pemotong": 1208393,
+                                    "nitku": "212121212121212000000"
+                                  }
+                                ],
+                                "no_npwp": "212121212121212",
+                                "no_npwp_pimpinan": null
+                              },
+                              {
+                                "id_npwp_pemotong": 1209063,
+                                "id_perusahaan": 230300059,
+                                "nama_pemotong": "tes",
+                                "nama_pimpinan": "Pemotong B",
+                                "nitku_pemotong": [
+                                  {
+                                    "id_nitku_pemotong": 608,
+                                    "id_npwp_pemotong": 1209063,
+                                    "nitku": "3334234233333333000000"
+                                  }
+                                ],
+                                "no_npwp": "3334234233333333",
+                                "no_npwp_pimpinan": "3342422222222222"
+                              }
+                            ],
+                            "message": "",
+                            "status": 200
+                          },
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/NPWPPemotong"
+                                },
+                                "nullable": true,
+                                "type": "array"
+                              },
+                              "message": {
+                                "example": "",
+                                "type": "string"
+                              },
+                              "status": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful operation",
+                      "headers": {
+                        "X-Access-Token": {
+                          "description": "Refreshed JWT token",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalServerError"
+                    }
+                  },
+                  "summary": "Get company NPWP Pemotong",
+                  "tags": [
+                    "• Company"
+                  ]
+                }
+              },
+              "/employee": {
+                "get": {
+                  "description": "Returns employee data for the authenticated company.",
+                  "operationId": "getEmployee",
+                  "parameters": [
+                    {
+                      "description": "JWT token from `/auth`",
+                      "example": "Bearer {your-jwt-token}",
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter employee by name (partial match)",
+                      "example": "budi",
+                      "in": "query",
+                      "name": "nama",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter employee by personnel ID (exact match)",
+                      "example": "EMP-001",
+                      "in": "query",
+                      "name": "id_karyawan",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Employee"
+                                },
+                                "nullable": true,
+                                "type": "array"
+                              },
+                              "message": {
+                                "example": "",
+                                "type": "string"
+                              },
+                              "status": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful operation",
+                      "headers": {
+                        "X-Access-Token": {
+                          "description": "Refreshed JWT token",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalServerError"
+                    }
+                  },
+                  "summary": "Get company employees",
+                  "tags": [
+                    "• Employee"
+                  ]
+                },
+                "post": {
+                  "description": "Creates a new employee for the authenticated company.",
+                  "operationId": "addNewEmployee",
+                  "parameters": [
+                    {
+                      "description": "JWT token from `/auth`",
+                      "example": "Bearer {your-jwt-token}",
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/AddNewEmployeeRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SuccessResponse"
+                          }
+                        }
+                      },
+                      "description": "Successful operation",
+                      "headers": {
+                        "X-Access-Token": {
+                          "description": "Refreshed JWT token",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalServerError"
+                    }
+                  },
+                  "summary": "Create new employee",
+                  "tags": [
+                    "• Employee"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "url": "https://developer.gadjian.com/v1"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Authentication and token exchange endpoints",
+                "name": "• Auth"
+              },
+              {
+                "description": "Attendance endpoints",
+                "name": "• Attendance"
+              },
+              {
+                "description": "Company endpoints",
+                "name": "• Company"
+              },
+              {
+                "description": "Employee endpoints",
+                "name": "• Employee"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Gadjian"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:37:40.506611+00:00",
+    "license": null,
+    "normalization": "YAML timestamps and non-string mapping keys converted to strings",
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://developer.gadjian.com/docs/swagger.yaml",
+        "version": "3.0.1"
+      }
+    ],
+    "sha256": "1773342bc60bc59e4bdd11c826d6d2f122f6ff6760b68c6355aa5ea10f0c7e8f",
+    "source_id": "gadjian",
+    "source_updated": null,
+    "url": "https://developer.gadjian.com/docs/swagger.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.1"
+}

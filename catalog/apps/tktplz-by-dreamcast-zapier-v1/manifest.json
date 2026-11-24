@@ -1,0 +1,1851 @@
+{
+  "a2ui": {},
+  "app": "tktplz-by-dreamcast-zapier-v1",
+  "graph": {
+    "edges": [
+      {
+        "from": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/zapier/actions/create-guest"
+      },
+      {
+        "from": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/zapier/fields/categories"
+      },
+      {
+        "from": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/zapier/fields/input-fields"
+      },
+      {
+        "from": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/zapier/guest-statuses"
+      },
+      {
+        "from": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/zapier/me"
+      },
+      {
+        "from": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/api/v1/zapier/triggers/subscriptions/{id}"
+      },
+      {
+        "from": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/zapier/triggers/{type}/list"
+      },
+      {
+        "from": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/zapier/triggers/{type}/samples"
+      },
+      {
+        "from": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/zapier/triggers/{type}/subscribe"
+      },
+      {
+        "from": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "EXPOSES",
+        "to": "operation:post:/zapier/oauth/token"
+      },
+      {
+        "from": "operation:post:/api/v1/zapier/actions/create-guest",
+        "kind": "RETURNS",
+        "to": "schema:Guest"
+      },
+      {
+        "from": "operation:get:/api/v1/zapier/fields/categories",
+        "kind": "RETURNS",
+        "to": "schema:Category"
+      },
+      {
+        "from": "operation:get:/api/v1/zapier/fields/categories",
+        "kind": "RETURNS",
+        "to": "schema:Subcategory"
+      },
+      {
+        "from": "operation:get:/api/v1/zapier/fields/input-fields",
+        "kind": "RETURNS",
+        "to": "schema:InputField"
+      },
+      {
+        "from": "operation:get:/api/v1/zapier/guest-statuses",
+        "kind": "RETURNS",
+        "to": "schema:GuestStatus"
+      },
+      {
+        "from": "operation:get:/api/v1/zapier/triggers/{type}/samples",
+        "kind": "RETURNS",
+        "to": "schema:Guest"
+      },
+      {
+        "from": "operation:post:/api/v1/zapier/triggers/{type}/subscribe",
+        "kind": "RETURNS",
+        "to": "schema:Subscription"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "tktplz-by-dreamcast-zapier-v1",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Registers a new guest.",
+        "id": "operation:post:/api/v1/zapier/actions/create-guest",
+        "kind": "operation",
+        "method": "post",
+        "name": "zapierCreateGuest",
+        "parameters": [
+          {
+            "description": "Event API Key bound to the connection.",
+            "in": "header",
+            "name": "X-Event-ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Set on write requests.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/zapier/actions/create-guest",
+        "pointer": "#/paths/~1api~1v1~1zapier~1actions~1create-guest/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "Guest"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "ValidationError"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "zapier_oauth2": []
+          }
+        ],
+        "summary": "Create a guest",
+        "tags": [
+          "Actions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Lists top-level categories.",
+        "id": "operation:get:/api/v1/zapier/fields/categories",
+        "kind": "operation",
+        "method": "get",
+        "name": "zapierCategories",
+        "parameters": [
+          {
+            "description": "Event API Key bound to the connection.",
+            "in": "header",
+            "name": "X-Event-ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Return subcategories of this category",
+            "in": "query",
+            "name": "category_id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/zapier/fields/categories",
+        "pointer": "#/paths/~1api~1v1~1zapier~1fields~1categories/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Category[]|Subcategory[]"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "zapier_oauth2": []
+          }
+        ],
+        "summary": "List categories (or subcategories)",
+        "tags": [
+          "Dropdowns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Custom registration fields for a category.",
+        "id": "operation:get:/api/v1/zapier/fields/input-fields",
+        "kind": "operation",
+        "method": "get",
+        "name": "zapierInputFields",
+        "parameters": [
+          {
+            "description": "Event API Key bound to the connection.",
+            "in": "header",
+            "name": "X-Event-ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "category_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "guest_id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/zapier/fields/input-fields",
+        "pointer": "#/paths/~1api~1v1~1zapier~1fields~1input-fields/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "InputField[]"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "zapier_oauth2": []
+          }
+        ],
+        "summary": "Dynamic registration form fields",
+        "tags": [
+          "Dropdowns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api/v1/zapier/guest-statuses",
+        "kind": "operation",
+        "method": "get",
+        "name": "zapierGuestStatuses",
+        "parameters": [
+          {
+            "description": "Event API Key bound to the connection.",
+            "in": "header",
+            "name": "X-Event-ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/zapier/guest-statuses",
+        "pointer": "#/paths/~1api~1v1~1zapier~1guest-statuses/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "GuestStatus[]"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "zapier_oauth2": []
+          }
+        ],
+        "summary": "List guest statuses",
+        "tags": [
+          "Dropdowns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Validates the token + event scope and returns a human-readable connection label (`{event_name} @ {tenant_name}`).",
+        "id": "operation:get:/api/v1/zapier/me",
+        "kind": "operation",
+        "method": "get",
+        "name": "zapierMe",
+        "parameters": [
+          {
+            "description": "Event API Key bound to the connection.",
+            "in": "header",
+            "name": "X-Event-ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/zapier/me",
+        "pointer": "#/paths/~1api~1v1~1zapier~1me/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "zapier_oauth2": []
+          }
+        ],
+        "summary": "Connection test and label",
+        "tags": [
+          "Connection"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Removes a previously registered webhook.",
+        "id": "operation:delete:/api/v1/zapier/triggers/subscriptions/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "zapierUnsubscribe",
+        "parameters": [
+          {
+            "description": "Event API Key bound to the connection.",
+            "in": "header",
+            "name": "X-Event-ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/zapier/triggers/subscriptions/{id}",
+        "pointer": "#/paths/~1api~1v1~1zapier~1triggers~1subscriptions~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "zapier_oauth2": []
+          }
+        ],
+        "summary": "Unsubscribe a REST hook",
+        "tags": [
+          "Triggers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Cursor-based poll.",
+        "id": "operation:get:/api/v1/zapier/triggers/{type}/list",
+        "kind": "operation",
+        "method": "get",
+        "name": "zapierTriggerList",
+        "parameters": [
+          {
+            "description": "Event API Key bound to the connection.",
+            "in": "header",
+            "name": "X-Event-ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "new_guest_registered",
+              "guest_updated",
+              "guest_status_updated"
+            ],
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "event_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "since_at",
+            "required": true,
+            "type": "string:date-time"
+          },
+          {
+            "in": "query",
+            "name": "since_id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "category_id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/zapier/triggers/{type}/list",
+        "pointer": "#/paths/~1api~1v1~1zapier~1triggers~1{type}~1list/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "zapier_oauth2": []
+          }
+        ],
+        "summary": "Polling list (incremental)",
+        "tags": [
+          "Triggers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Up to 3 lightweight sample records shown in the 'Test your trigger' step.",
+        "id": "operation:get:/api/v1/zapier/triggers/{type}/samples",
+        "kind": "operation",
+        "method": "get",
+        "name": "zapierTriggerSamples",
+        "parameters": [
+          {
+            "description": "Event API Key bound to the connection.",
+            "in": "header",
+            "name": "X-Event-ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "new_guest_registered",
+              "guest_updated",
+              "guest_status_updated"
+            ],
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "event_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "category_id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/zapier/triggers/{type}/samples",
+        "pointer": "#/paths/~1api~1v1~1zapier~1triggers~1{type}~1samples/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Guest[]"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "zapier_oauth2": []
+          }
+        ],
+        "summary": "Sample records for Zap editor",
+        "tags": [
+          "Triggers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Registers a webhook for an instant trigger.",
+        "id": "operation:post:/api/v1/zapier/triggers/{type}/subscribe",
+        "kind": "operation",
+        "method": "post",
+        "name": "zapierSubscribe",
+        "parameters": [
+          {
+            "description": "Event API Key bound to the connection.",
+            "in": "header",
+            "name": "X-Event-ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Set on write requests.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "new_guest_registered",
+              "guest_updated",
+              "guest_status_updated"
+            ],
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/zapier/triggers/{type}/subscribe",
+        "pointer": "#/paths/~1api~1v1~1zapier~1triggers~1{type}~1subscribe/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "Subscription"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "ValidationError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "zapier_oauth2": []
+          }
+        ],
+        "summary": "Subscribe a REST hook",
+        "tags": [
+          "Triggers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "`grant_type=authorization_code` exchanges the code for tokens; `grant_type=refresh_token` refreshes.",
+        "id": "operation:post:/zapier/oauth/token",
+        "kind": "operation",
+        "method": "post",
+        "name": "zapierOauthToken",
+        "path": "/zapier/oauth/token",
+        "pointer": "#/paths/~1zapier~1oauth~1token/post",
+        "request": {
+          "content_types": [
+            "application/x-www-form-urlencoded"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "client_credentials_authorization": []
+          }
+        ],
+        "summary": "Exchange or refresh OAuth2 tokens",
+        "tags": [
+          "OAuth"
+        ]
+      },
+      {
+        "id": "schema:Category",
+        "kind": "schema",
+        "name": "Category",
+        "type": "object"
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:Guest",
+        "kind": "schema",
+        "name": "Guest",
+        "type": "object"
+      },
+      {
+        "id": "schema:GuestStatus",
+        "kind": "schema",
+        "name": "GuestStatus",
+        "type": "object"
+      },
+      {
+        "id": "schema:InputField",
+        "kind": "schema",
+        "name": "InputField",
+        "type": "object"
+      },
+      {
+        "id": "schema:Subcategory",
+        "kind": "schema",
+        "name": "Subcategory",
+        "type": "object"
+      },
+      {
+        "id": "schema:Subscription",
+        "kind": "schema",
+        "name": "Subscription",
+        "type": "object"
+      },
+      {
+        "id": "schema:ValidationError",
+        "kind": "schema",
+        "name": "ValidationError",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "tktplz-by-dreamcast-zapier-v1"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://staging-diy-reg.godreamcast.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "IdempotencyKey": {
+                  "description": "Set on write requests. Identical retries reuse the same key so the server can dedupe.",
+                  "in": "header",
+                  "name": "Idempotency-Key",
+                  "required": false,
+                  "schema": {
+                    "example": "zapier_3f9a1c8e2b7d4f60a1c8e2b7d4f60a1c",
+                    "type": "string"
+                  }
+                },
+                "XEventId": {
+                  "description": "Event API Key bound to the connection.",
+                  "in": "header",
+                  "name": "X-Event-ID",
+                  "required": true,
+                  "schema": {
+                    "example": "api-a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6",
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "Forbidden": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "403 — account lacks permission for this event"
+                },
+                "TooManyRequests": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "429 — rate limited (60/min); honour Retry-After header"
+                },
+                "Unauthorized": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "401 — token expired; Zapier auto-refreshes and retries"
+                },
+                "UnprocessableEntity": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ValidationError"
+                      }
+                    }
+                  },
+                  "description": "422 — validation failed"
+                }
+              },
+              "schemas": {
+                "Category": {
+                  "properties": {
+                    "capacity": {
+                      "example": 500,
+                      "type": "integer"
+                    },
+                    "description": {
+                      "example": "Full conference access including workshops and the speaker dinner.",
+                      "type": "string"
+                    },
+                    "event_id": {
+                      "example": "e7p2k9",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "c4m1z8",
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "example": "Pro Pass",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Error": {
+                  "properties": {
+                    "message": {
+                      "example": "Resource not found",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Guest": {
+                  "properties": {
+                    "created_at": {
+                      "example": "2026-04-15T09:32:18Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "email": {
+                      "example": "priya.iyer@northstarcapital.com",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "first_name": {
+                      "example": "Priya",
+                      "type": "string"
+                    },
+                    "guest_category": {
+                      "example": "Pro Pass > Early Bird",
+                      "type": "string"
+                    },
+                    "guest_id": {
+                      "example": "g7k9p2",
+                      "type": "string"
+                    },
+                    "guest_status": {
+                      "example": "Going",
+                      "type": "string"
+                    },
+                    "guest_unique_code": {
+                      "example": "TKT-2026-00042",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Zapier dedupe key (mirrors guest_id)",
+                      "example": "g7k9p2",
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "example": "Iyer",
+                      "type": "string"
+                    },
+                    "quantity": {
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "ticket_quantity": {
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "updated_at": {
+                      "example": "2026-04-15T09:32:18Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "user_type": {
+                      "example": "online",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "GuestStatus": {
+                  "properties": {
+                    "id": {
+                      "example": "Going",
+                      "type": "string"
+                    },
+                    "label": {
+                      "example": "Going",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "InputField": {
+                  "properties": {
+                    "choices": {
+                      "description": "Optional allowed values",
+                      "example": [
+                        "vegetarian",
+                        "non-vegetarian",
+                        "vegan",
+                        "jain"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "key": {
+                      "example": "company",
+                      "type": "string"
+                    },
+                    "label": {
+                      "example": "Company",
+                      "type": "string"
+                    },
+                    "required": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "type": {
+                      "example": "string",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Subcategory": {
+                  "properties": {
+                    "available": {
+                      "example": 148,
+                      "type": "integer"
+                    },
+                    "capacity": {
+                      "example": 200,
+                      "type": "integer"
+                    },
+                    "category_id": {
+                      "example": "c4m1z8",
+                      "type": "string"
+                    },
+                    "currency": {
+                      "example": "INR",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "s3q9w7",
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "example": "Early Bird",
+                      "type": "string"
+                    },
+                    "price": {
+                      "example": 4999,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Subscription": {
+                  "properties": {
+                    "event": {
+                      "example": "new_guest_registered",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "hook_8fa31c",
+                      "type": "string"
+                    },
+                    "target_url": {
+                      "example": "https://hooks.zapier.com/hooks/standard/abc123/",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ValidationError": {
+                  "properties": {
+                    "errors": {
+                      "example": {
+                        "email": [
+                          "The email field must be a valid email address."
+                        ]
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "example": "The given data was invalid.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "client_credentials_authorization": {
+                  "bearerFormat": "JWT",
+                  "description": "Response Details: \n\n\nThe Bearer JWT access_token valid for 15 day's (see expires_in).\n\n\nUse this token in the Authorization header of other APIs as Bearer <access_token>.",
+                  "flows": {
+                    "clientCredentials": {
+                      "refreshUrl": "/token/refresh",
+                      "scopes": [],
+                      "tokenUrl": "/oauth/token"
+                    }
+                  },
+                  "in": "header",
+                  "name": "Authorization",
+                  "scheme": "bearer",
+                  "type": "oauth2"
+                },
+                "zapier_oauth2": {
+                  "description": "OAuth2 Authorization Code. The `event_id` (Event API Key) is supplied at authorize time and binds the token to one event.",
+                  "flows": {
+                    "authorizationCode": {
+                      "authorizationUrl": "/zapier/oauth/authorize",
+                      "refreshUrl": "/zapier/oauth/token",
+                      "scopes": {
+                        "attendees:read": "Read guests",
+                        "attendees:write": "Create/update guests",
+                        "events:read": "Read event metadata",
+                        "webhooks:manage": "Manage REST hook subscriptions"
+                      },
+                      "tokenUrl": "/zapier/oauth/token"
+                    }
+                  },
+                  "type": "oauth2"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "madhuri@dreamcast.co",
+                "name": "TktPlz Support"
+              },
+              "description": "Endpoints consumed by the published TktPlz Zapier app. One OAuth connection = one event: the Event API Key is bound to the access token at authorize time and echoed on every request via the `X-Event-ID` header.<br/><br/>**Authentication** — OAuth2 Authorization Code. The Event API Key (`event_id`) is found in TktPlz admin → select event → More Settings → Third Party Apps (format `api-` + 32 chars).<br/><br/>**Idempotency** — write requests (POST/PATCH) carry an `Idempotency-Key`; identical retries do not create duplicates (a 409 is treated as success).<br/><br/>**Rate limits** — 60 requests/minute per connection. Throttled requests return 429 with a `Retry-After` header (seconds).<br/><br/>**Webhook delivery** (API → Zapier) is signed `X-Webhook-Signature: sha256=<hex>` (HMAC-SHA256 of the raw body); missing/mismatched signatures are rejected.",
+              "title": "Zapier API V1",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/api/v1/zapier/actions/create-guest": {
+                "post": {
+                  "description": "Registers a new guest. Idempotent via Idempotency-Key — identical retries return the original result; a 409 is treated as success (no duplicate).",
+                  "operationId": "zapierCreateGuest",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/XEventId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/IdempotencyKey"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "custom_fields": {
+                              "example": {
+                                "company": "Northstar Capital",
+                                "designation": "VP Engineering",
+                                "dietary_preference": "vegetarian"
+                              },
+                              "type": "object"
+                            },
+                            "email": {
+                              "example": "priya.iyer@northstarcapital.com",
+                              "format": "email",
+                              "type": "string"
+                            },
+                            "event_id": {
+                              "example": "api-a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6",
+                              "type": "string"
+                            },
+                            "first_name": {
+                              "example": "Priya",
+                              "type": "string"
+                            },
+                            "guest_category": {
+                              "example": "c4m1z8",
+                              "type": "string"
+                            },
+                            "guest_status": {
+                              "example": "Going",
+                              "type": "string"
+                            },
+                            "last_name": {
+                              "example": "Iyer",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "event_id",
+                            "guest_category",
+                            "custom_fields"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Guest"
+                          }
+                        }
+                      },
+                      "description": "Created guest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/UnprocessableEntity"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/TooManyRequests"
+                    }
+                  },
+                  "security": [
+                    {
+                      "zapier_oauth2": []
+                    }
+                  ],
+                  "summary": "Create a guest",
+                  "tags": [
+                    "Actions"
+                  ]
+                }
+              },
+              "/api/v1/zapier/fields/categories": {
+                "get": {
+                  "description": "Lists top-level categories. Pass `category_id` to list subcategories of that category instead.",
+                  "operationId": "zapierCategories",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/XEventId"
+                    },
+                    {
+                      "description": "Return subcategories of this category",
+                      "in": "query",
+                      "name": "category_id",
+                      "required": false,
+                      "schema": {
+                        "example": "c4m1z8",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "oneOf": [
+                              {
+                                "items": {
+                                  "$ref": "#/components/schemas/Category"
+                                },
+                                "type": "array"
+                              },
+                              {
+                                "items": {
+                                  "$ref": "#/components/schemas/Subcategory"
+                                },
+                                "type": "array"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Categories, or subcategories when category_id is set"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "security": [
+                    {
+                      "zapier_oauth2": []
+                    }
+                  ],
+                  "summary": "List categories (or subcategories)",
+                  "tags": [
+                    "Dropdowns"
+                  ]
+                }
+              },
+              "/api/v1/zapier/fields/input-fields": {
+                "get": {
+                  "description": "Custom registration fields for a category. Pass `category_id` (Create Guest) or `guest_id` (Update Guest — category resolved server-side). In Zapier these keys are namespaced `cf__` and grouped under `custom_fields` on write.",
+                  "operationId": "zapierInputFields",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/XEventId"
+                    },
+                    {
+                      "in": "query",
+                      "name": "category_id",
+                      "required": false,
+                      "schema": {
+                        "example": "c4m1z8",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "guest_id",
+                      "required": false,
+                      "schema": {
+                        "example": "g7k9p2",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/InputField"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Field definitions"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "security": [
+                    {
+                      "zapier_oauth2": []
+                    }
+                  ],
+                  "summary": "Dynamic registration form fields",
+                  "tags": [
+                    "Dropdowns"
+                  ]
+                }
+              },
+              "/api/v1/zapier/guest-statuses": {
+                "get": {
+                  "operationId": "zapierGuestStatuses",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/XEventId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/GuestStatus"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Predefined guest statuses"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "security": [
+                    {
+                      "zapier_oauth2": []
+                    }
+                  ],
+                  "summary": "List guest statuses",
+                  "tags": [
+                    "Dropdowns"
+                  ]
+                }
+              },
+              "/api/v1/zapier/me": {
+                "get": {
+                  "description": "Validates the token + event scope and returns a human-readable connection label (`{event_name} @ {tenant_name}`).",
+                  "operationId": "zapierMe",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/XEventId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "email": {
+                                "example": "priya.iyer@northstarcapital.com",
+                                "format": "email",
+                                "type": "string"
+                              },
+                              "event_id": {
+                                "example": "e7p2k9",
+                                "type": "string"
+                              },
+                              "event_name": {
+                                "example": "TechSummit 2026",
+                                "type": "string"
+                              },
+                              "tenant_name": {
+                                "example": "Northstar Events",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Connection details"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "security": [
+                    {
+                      "zapier_oauth2": []
+                    }
+                  ],
+                  "summary": "Connection test and label",
+                  "tags": [
+                    "Connection"
+                  ]
+                }
+              },
+              "/api/v1/zapier/triggers/subscriptions/{id}": {
+                "delete": {
+                  "description": "Removes a previously registered webhook. `{id}` is the subscription id returned by subscribe.",
+                  "operationId": "zapierUnsubscribe",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/XEventId"
+                    },
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "example": "hook_8fa31c",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "deleted": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Deleted"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "security": [
+                    {
+                      "zapier_oauth2": []
+                    }
+                  ],
+                  "summary": "Unsubscribe a REST hook",
+                  "tags": [
+                    "Triggers"
+                  ]
+                }
+              },
+              "/api/v1/zapier/triggers/{type}/list": {
+                "get": {
+                  "description": "Cursor-based poll. `since_at`/`since_id` form the cursor (id breaks ties for records sharing a timestamp).",
+                  "operationId": "zapierTriggerList",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/XEventId"
+                    },
+                    {
+                      "in": "path",
+                      "name": "type",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "new_guest_registered",
+                          "guest_updated",
+                          "guest_status_updated"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "event_id",
+                      "required": true,
+                      "schema": {
+                        "example": "api-a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "since_at",
+                      "required": true,
+                      "schema": {
+                        "example": "2026-04-01T00:00:00Z",
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "since_id",
+                      "required": true,
+                      "schema": {
+                        "example": 0,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "sort_by",
+                      "required": true,
+                      "schema": {
+                        "example": "created_at",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "sort_order",
+                      "required": true,
+                      "schema": {
+                        "example": "asc",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "per_page",
+                      "required": true,
+                      "schema": {
+                        "example": 100,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "category_id",
+                      "required": false,
+                      "schema": {
+                        "example": "c4m1z8",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Guest"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Guest records (newest cursor advances on each poll)"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/TooManyRequests"
+                    }
+                  },
+                  "security": [
+                    {
+                      "zapier_oauth2": []
+                    }
+                  ],
+                  "summary": "Polling list (incremental)",
+                  "tags": [
+                    "Triggers"
+                  ]
+                }
+              },
+              "/api/v1/zapier/triggers/{type}/samples": {
+                "get": {
+                  "description": "Up to 3 lightweight sample records shown in the 'Test your trigger' step.",
+                  "operationId": "zapierTriggerSamples",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/XEventId"
+                    },
+                    {
+                      "in": "path",
+                      "name": "type",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "new_guest_registered",
+                          "guest_updated",
+                          "guest_status_updated"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "event_id",
+                      "required": true,
+                      "schema": {
+                        "example": "api-a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "category_id",
+                      "required": false,
+                      "schema": {
+                        "example": "c4m1z8",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Guest"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Sample guests"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "security": [
+                    {
+                      "zapier_oauth2": []
+                    }
+                  ],
+                  "summary": "Sample records for Zap editor",
+                  "tags": [
+                    "Triggers"
+                  ]
+                }
+              },
+              "/api/v1/zapier/triggers/{type}/subscribe": {
+                "post": {
+                  "description": "Registers a webhook for an instant trigger. Webhook deliveries are signed `X-Webhook-Signature: sha256=<hex>`.",
+                  "operationId": "zapierSubscribe",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/XEventId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/IdempotencyKey"
+                    },
+                    {
+                      "in": "path",
+                      "name": "type",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "new_guest_registered",
+                          "guest_updated",
+                          "guest_status_updated"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "category_id": {
+                              "example": "c4m1z8",
+                              "type": "string"
+                            },
+                            "event": {
+                              "example": "new_guest_registered",
+                              "type": "string"
+                            },
+                            "event_id": {
+                              "example": "api-a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6",
+                              "type": "string"
+                            },
+                            "include_history": {
+                              "example": false,
+                              "type": "boolean"
+                            },
+                            "target_url": {
+                              "example": "https://hooks.zapier.com/hooks/standard/abc123/",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "target_url",
+                            "event",
+                            "event_id"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Subscription"
+                          }
+                        }
+                      },
+                      "description": "Subscription created (must include id)"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/UnprocessableEntity"
+                    }
+                  },
+                  "security": [
+                    {
+                      "zapier_oauth2": []
+                    }
+                  ],
+                  "summary": "Subscribe a REST hook",
+                  "tags": [
+                    "Triggers"
+                  ]
+                }
+              },
+              "/zapier/oauth/token": {
+                "post": {
+                  "description": "`grant_type=authorization_code` exchanges the code for tokens; `grant_type=refresh_token` refreshes. A 401 here means the connection is dead and the user must reconnect.",
+                  "operationId": "zapierOauthToken",
+                  "requestBody": {
+                    "content": {
+                      "application/x-www-form-urlencoded": {
+                        "schema": {
+                          "properties": {
+                            "client_id": {
+                              "type": "string"
+                            },
+                            "client_secret": {
+                              "type": "string"
+                            },
+                            "code": {
+                              "description": "Required for authorization_code",
+                              "type": "string"
+                            },
+                            "grant_type": {
+                              "enum": [
+                                "authorization_code",
+                                "refresh_token"
+                              ],
+                              "type": "string"
+                            },
+                            "redirect_uri": {
+                              "type": "string"
+                            },
+                            "refresh_token": {
+                              "description": "Required for refresh_token",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "access_token": {
+                                "example": "eyJ0eXAiOiJKV1Qi...",
+                                "type": "string"
+                              },
+                              "expires_in": {
+                                "example": 86400,
+                                "type": "integer"
+                              },
+                              "refresh_token": {
+                                "example": "def502004f1c...",
+                                "type": "string"
+                              },
+                              "token_type": {
+                                "example": "Bearer",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Token issued"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Refresh failed — reconnect required"
+                    }
+                  },
+                  "summary": "Exchange or refresh OAuth2 tokens",
+                  "tags": [
+                    "OAuth"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "client_credentials_authorization": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Local Development Server",
+                "url": "http://localhost:8000"
+              },
+              {
+                "description": "Staging Server",
+                "url": "https://staging-diy-reg.godreamcast.com"
+              },
+              {
+                "description": "Production Server",
+                "url": "https://apis-events.diy.godreamcast.com"
+              }
+            ],
+            "tags": [
+              {
+                "description": "OAuth2 token exchange and refresh",
+                "name": "OAuth"
+              },
+              {
+                "description": "Connection test and label",
+                "name": "Connection"
+              },
+              {
+                "description": "Dynamic dropdown sources used in the Zap editor",
+                "name": "Dropdowns"
+              },
+              {
+                "description": "REST hooks and polling endpoints",
+                "name": "Triggers"
+              },
+              {
+                "description": "Write operations",
+                "name": "Actions"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "TktPlz by Dreamcast Zapier  v1"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.068966+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://apis-events.diy.godreamcast.com/storage/api-docs/zapier?api-docs-zapier.json",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "12f2d5d399a4d6bd211233d657b389f7764f6b2c88337e123c9611856cf33a4c",
+    "source_id": "tktplz-by-dreamcast-zapier-v1",
+    "source_updated": null,
+    "url": "https://apis-events.diy.godreamcast.com/storage/api-docs/zapier?api-docs-zapier.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

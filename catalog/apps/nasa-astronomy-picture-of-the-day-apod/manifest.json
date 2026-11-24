@@ -1,0 +1,271 @@
+{
+  "a2ui": {},
+  "app": "nasa-astronomy-picture-of-the-day-apod",
+  "graph": {
+    "edges": [
+      {
+        "from": "nasa-astronomy-picture-of-the-day-apod",
+        "kind": "EXPOSES",
+        "to": "operation:get:/apod-basic"
+      },
+      {
+        "from": "operation:get:/apod-basic",
+        "kind": "RETURNS",
+        "to": "schema:ApodEntry"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "nasa-astronomy-picture-of-the-day-apod",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a JSON array of APOD entries.",
+        "id": "operation:get:/apod-basic",
+        "kind": "operation",
+        "method": "get",
+        "name": "listApodEntries",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "Result page; defaults to 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 25,
+            "description": "Number of entries per page; defaults to 25.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Declared by the endpoint's OPTIONS metadata.",
+            "in": "query",
+            "name": "date_from",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Declared by the endpoint's OPTIONS metadata.",
+            "in": "query",
+            "name": "date_to",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/apod-basic",
+        "pointer": "#/paths/~1apod-basic/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApodEntry[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List Astronomy Picture of the Day entries"
+      },
+      {
+        "description": "APOD entry fields documented by NASA; optional values may vary by entry.",
+        "id": "schema:ApodEntry",
+        "kind": "schema",
+        "name": "ApodEntry",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "nasa-astronomy-picture-of-the-day-apod"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://science.nasa.gov/wp-json/wp/v2",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "ApodEntry": {
+                  "description": "APOD entry fields documented by NASA; optional values may vary by entry.",
+                  "properties": {
+                    "alt": {
+                      "type": "string"
+                    },
+                    "basic_html": {
+                      "description": "APOD Basic HTML document as a JSON string.",
+                      "type": "string"
+                    },
+                    "basic_html_url": {
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "copyright": {
+                      "type": "string"
+                    },
+                    "credit": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "explanation": {
+                      "type": "string"
+                    },
+                    "hdurl": {
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "media_type": {
+                      "description": "Normalized APOD media type, such as image, video, or iframe.",
+                      "type": "string"
+                    },
+                    "permalink": {
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "post_id": {
+                      "description": "WordPress post identifier.",
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained specification for NASA's public APOD WordPress endpoint. It returns APOD entries as a JSON array. This describes the current endpoint at science.nasa.gov; the legacy api.nasa.gov wrapper is scheduled for retirement on December 1, 2026.",
+              "externalDocs": {
+                "description": "Official NASA APOD API documentation",
+                "url": "https://api.nasa.gov/#apod"
+              },
+              "title": "NASA Astronomy Picture of the Day API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/apod-basic": {
+                "get": {
+                  "description": "Returns a JSON array of APOD entries. The endpoint advertises page, per_page, date_from, and date_to in its OPTIONS metadata. NASA's public catalog documents different date/count filters for this URL; those filters are not included because direct requests did not demonstrate that behavior.",
+                  "operationId": "listApodEntries",
+                  "parameters": [
+                    {
+                      "description": "Result page; defaults to 1.",
+                      "in": "query",
+                      "name": "page",
+                      "required": false,
+                      "schema": {
+                        "default": 1,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Number of entries per page; defaults to 25.",
+                      "in": "query",
+                      "name": "per_page",
+                      "required": false,
+                      "schema": {
+                        "default": 25,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Declared by the endpoint's OPTIONS metadata. NASA's public documentation does not specify its accepted format or behavior.",
+                      "in": "query",
+                      "name": "date_from",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Declared by the endpoint's OPTIONS metadata. NASA's public documentation does not specify its accepted format or behavior.",
+                      "in": "query",
+                      "name": "date_to",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/ApodEntry"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "APOD entries, returned as an array."
+                    }
+                  },
+                  "summary": "List Astronomy Picture of the Day entries"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "NASA Science WordPress REST API",
+                "url": "https://science.nasa.gov/wp-json/wp/v2"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "NASA Astronomy Picture of the Day (APOD)"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:55.969054+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/nasa-apod/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "71d32a011335f7e1562a6462c08da15c166eb14fb5daeac0202c70a75fb3fd71",
+    "source_id": "nasa-astronomy-picture-of-the-day-apod",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/nasa-apod/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

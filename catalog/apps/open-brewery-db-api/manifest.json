@@ -1,0 +1,1270 @@
+{
+  "a2ui": {},
+  "app": "open-brewery-db-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "open-brewery-db-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/breweries"
+      },
+      {
+        "from": "open-brewery-db-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/breweries/meta"
+      },
+      {
+        "from": "open-brewery-db-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/breweries/random"
+      },
+      {
+        "from": "open-brewery-db-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/breweries/search"
+      },
+      {
+        "from": "open-brewery-db-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/breweries/{id}"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "open-brewery-db-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a paginated list of breweries based on optional filters and sorting.",
+        "id": "operation:get:/v1/breweries",
+        "kind": "operation",
+        "method": "get",
+        "name": "listBreweries",
+        "path": "/v1/breweries",
+        "pointer": "#/paths/~1v1~1breweries/get",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "422",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List breweries.",
+        "tags": [
+          "Endpoints"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Takes the same filters as List Breweries.",
+        "id": "operation:get:/v1/breweries/meta",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMetadataAboutTheBrewery",
+        "path": "/v1/breweries/meta",
+        "pointer": "#/paths/~1v1~1breweries~1meta/get",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "422",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get metadata about the brewery",
+        "tags": [
+          "Endpoints"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/v1/breweries/random",
+        "kind": "operation",
+        "method": "get",
+        "name": "getARandomBrewery",
+        "path": "/v1/breweries/random",
+        "pointer": "#/paths/~1v1~1breweries~1random/get",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a random brewery.",
+        "tags": [
+          "Endpoints"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The search performs partial, case-insensitive matching against brewery names.",
+        "id": "operation:get:/v1/breweries/search",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchForBreweries",
+        "path": "/v1/breweries/search",
+        "pointer": "#/paths/~1v1~1breweries~1search/get",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "422",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search for breweries.",
+        "tags": [
+          "Endpoints"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/v1/breweries/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getASingleBrewery",
+        "parameters": [
+          {
+            "description": "The ID of the brewery.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/breweries/{id}",
+        "pointer": "#/paths/~1v1~1breweries~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a single brewery.",
+        "tags": [
+          "Endpoints"
+        ]
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "open-brewery-db-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.openbrewerydb.org",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "info": {
+              "description": "Open Brewery DB is a free dataset and API with public information on breweries, cideries, brewpubs, and bottleshops",
+              "title": "Open Brewery DB API Documentation",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/v1/breweries": {
+                "get": {
+                  "description": "Returns a paginated list of breweries based on optional filters and sorting.",
+                  "operationId": "listBreweries",
+                  "parameters": [],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "by_city": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "n"
+                              ],
+                              "type": "string"
+                            },
+                            "by_country": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "g"
+                              ],
+                              "type": "string"
+                            },
+                            "by_dist": {
+                              "description": "",
+                              "examples": [
+                                "architecto"
+                              ],
+                              "type": "string"
+                            },
+                            "by_dist_radius": {
+                              "description": "Must be at least 0.1. Must not be greater than 10000.",
+                              "examples": [
+                                22
+                              ],
+                              "type": "number"
+                            },
+                            "by_dist_unit": {
+                              "description": "",
+                              "enum": [
+                                "km",
+                                "mi"
+                              ],
+                              "examples": [
+                                "km"
+                              ],
+                              "type": "string"
+                            },
+                            "by_ids": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "g"
+                              ],
+                              "type": "string"
+                            },
+                            "by_name": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "z"
+                              ],
+                              "type": "string"
+                            },
+                            "by_postal": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "m"
+                              ],
+                              "type": "string"
+                            },
+                            "by_state": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "i"
+                              ],
+                              "type": "string"
+                            },
+                            "by_type": {
+                              "description": "",
+                              "examples": [
+                                "architecto"
+                              ],
+                              "type": "string"
+                            },
+                            "exclude_types": {
+                              "description": "",
+                              "examples": [
+                                "architecto"
+                              ],
+                              "type": "string"
+                            },
+                            "page": {
+                              "description": "Must be at least 1.",
+                              "examples": [
+                                22
+                              ],
+                              "type": "integer"
+                            },
+                            "per_page": {
+                              "description": "Must be at least 1. Must not be greater than 200.",
+                              "examples": [
+                                1
+                              ],
+                              "type": "integer"
+                            },
+                            "sort": {
+                              "description": "",
+                              "examples": [
+                                "architecto"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  "responses": {
+                    "422": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "examples": [
+                              {
+                                "errors": {
+                                  "by_city": [
+                                    "The by city field must be at least 3 characters."
+                                  ],
+                                  "by_country": [
+                                    "The by country field must be at least 3 characters."
+                                  ],
+                                  "by_dist": [
+                                    "The by dist must be a valid coordinate pair (latitude,longitude)."
+                                  ],
+                                  "by_ids": [
+                                    "The by ids field must be at least 3 characters."
+                                  ],
+                                  "by_name": [
+                                    "The by name field must be at least 3 characters."
+                                  ],
+                                  "by_postal": [
+                                    "The by postal field must be at least 3 characters."
+                                  ],
+                                  "by_state": [
+                                    "The by state field must be at least 3 characters."
+                                  ],
+                                  "by_type": [
+                                    "The by_type contains invalid brewery type: architecto"
+                                  ],
+                                  "exclude_types": [
+                                    "The exclude_types contains invalid brewery type: architecto"
+                                  ],
+                                  "sort": [
+                                    "The sort contains an invalid sort field. Valid fields are: id, name, brewery_type, type, city, state_province, postal_code, country."
+                                  ]
+                                },
+                                "message": "The sort contains an invalid sort field. Valid fields are: id, name, brewery_type, type, city, state_province, postal_code, country. (and 9 more errors)"
+                              }
+                            ],
+                            "properties": {
+                              "errors": {
+                                "properties": {
+                                  "by_city": {
+                                    "examples": [
+                                      [
+                                        "The by city field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_country": {
+                                    "examples": [
+                                      [
+                                        "The by country field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_dist": {
+                                    "examples": [
+                                      [
+                                        "The by dist must be a valid coordinate pair (latitude,longitude)."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_ids": {
+                                    "examples": [
+                                      [
+                                        "The by ids field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_name": {
+                                    "examples": [
+                                      [
+                                        "The by name field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_postal": {
+                                    "examples": [
+                                      [
+                                        "The by postal field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_state": {
+                                    "examples": [
+                                      [
+                                        "The by state field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_type": {
+                                    "examples": [
+                                      [
+                                        "The by_type contains invalid brewery type: architecto"
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "exclude_types": {
+                                    "examples": [
+                                      [
+                                        "The exclude_types contains invalid brewery type: architecto"
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "sort": {
+                                    "examples": [
+                                      [
+                                        "The sort contains an invalid sort field. Valid fields are: id, name, brewery_type, type, city, state_province, postal_code, country."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "message": {
+                                "examples": [
+                                  "The sort contains an invalid sort field. Valid fields are: id, name, brewery_type, type, city, state_province, postal_code, country. (and 9 more errors)"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": ""
+                    }
+                  },
+                  "security": [],
+                  "summary": "List breweries.",
+                  "tags": [
+                    "Endpoints"
+                  ]
+                }
+              },
+              "/v1/breweries/meta": {
+                "get": {
+                  "description": "Takes the same filters as List Breweries.",
+                  "operationId": "getMetadataAboutTheBrewery",
+                  "parameters": [],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "by_city": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "n"
+                              ],
+                              "type": "string"
+                            },
+                            "by_country": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "g"
+                              ],
+                              "type": "string"
+                            },
+                            "by_dist": {
+                              "description": "",
+                              "examples": [
+                                "architecto"
+                              ],
+                              "type": "string"
+                            },
+                            "by_dist_radius": {
+                              "description": "Must be at least 0.1. Must not be greater than 10000.",
+                              "examples": [
+                                22
+                              ],
+                              "type": "number"
+                            },
+                            "by_dist_unit": {
+                              "description": "",
+                              "enum": [
+                                "km",
+                                "mi"
+                              ],
+                              "examples": [
+                                "mi"
+                              ],
+                              "type": "string"
+                            },
+                            "by_ids": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "g"
+                              ],
+                              "type": "string"
+                            },
+                            "by_name": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "z"
+                              ],
+                              "type": "string"
+                            },
+                            "by_postal": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "m"
+                              ],
+                              "type": "string"
+                            },
+                            "by_state": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "i"
+                              ],
+                              "type": "string"
+                            },
+                            "by_type": {
+                              "description": "",
+                              "examples": [
+                                "architecto"
+                              ],
+                              "type": "string"
+                            },
+                            "exclude_types": {
+                              "description": "",
+                              "examples": [
+                                "architecto"
+                              ],
+                              "type": "string"
+                            },
+                            "page": {
+                              "description": "Must be at least 1.",
+                              "examples": [
+                                22
+                              ],
+                              "type": "integer"
+                            },
+                            "per_page": {
+                              "description": "Must be at least 1. Must not be greater than 200.",
+                              "examples": [
+                                1
+                              ],
+                              "type": "integer"
+                            },
+                            "sort": {
+                              "description": "",
+                              "examples": [
+                                "architecto"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  "responses": {
+                    "422": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "examples": [
+                              {
+                                "errors": {
+                                  "by_city": [
+                                    "The by city field must be at least 3 characters."
+                                  ],
+                                  "by_country": [
+                                    "The by country field must be at least 3 characters."
+                                  ],
+                                  "by_dist": [
+                                    "The by dist must be a valid coordinate pair (latitude,longitude)."
+                                  ],
+                                  "by_ids": [
+                                    "The by ids field must be at least 3 characters."
+                                  ],
+                                  "by_name": [
+                                    "The by name field must be at least 3 characters."
+                                  ],
+                                  "by_postal": [
+                                    "The by postal field must be at least 3 characters."
+                                  ],
+                                  "by_state": [
+                                    "The by state field must be at least 3 characters."
+                                  ],
+                                  "by_type": [
+                                    "The by_type contains invalid brewery type: architecto"
+                                  ],
+                                  "exclude_types": [
+                                    "The exclude_types contains invalid brewery type: architecto"
+                                  ],
+                                  "sort": [
+                                    "The sort contains an invalid sort field. Valid fields are: id, name, brewery_type, type, city, state_province, postal_code, country."
+                                  ]
+                                },
+                                "message": "The sort contains an invalid sort field. Valid fields are: id, name, brewery_type, type, city, state_province, postal_code, country. (and 9 more errors)"
+                              }
+                            ],
+                            "properties": {
+                              "errors": {
+                                "properties": {
+                                  "by_city": {
+                                    "examples": [
+                                      [
+                                        "The by city field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_country": {
+                                    "examples": [
+                                      [
+                                        "The by country field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_dist": {
+                                    "examples": [
+                                      [
+                                        "The by dist must be a valid coordinate pair (latitude,longitude)."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_ids": {
+                                    "examples": [
+                                      [
+                                        "The by ids field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_name": {
+                                    "examples": [
+                                      [
+                                        "The by name field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_postal": {
+                                    "examples": [
+                                      [
+                                        "The by postal field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_state": {
+                                    "examples": [
+                                      [
+                                        "The by state field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "by_type": {
+                                    "examples": [
+                                      [
+                                        "The by_type contains invalid brewery type: architecto"
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "exclude_types": {
+                                    "examples": [
+                                      [
+                                        "The exclude_types contains invalid brewery type: architecto"
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "sort": {
+                                    "examples": [
+                                      [
+                                        "The sort contains an invalid sort field. Valid fields are: id, name, brewery_type, type, city, state_province, postal_code, country."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "message": {
+                                "examples": [
+                                  "The sort contains an invalid sort field. Valid fields are: id, name, brewery_type, type, city, state_province, postal_code, country. (and 9 more errors)"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": ""
+                    }
+                  },
+                  "security": [],
+                  "summary": "Get metadata about the brewery",
+                  "tags": [
+                    "Endpoints"
+                  ]
+                }
+              },
+              "/v1/breweries/random": {
+                "get": {
+                  "description": "",
+                  "operationId": "getARandomBrewery",
+                  "parameters": [],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "size": {
+                              "description": "Must be at least 1. Must not be greater than 50.",
+                              "examples": [
+                                1
+                              ],
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "examples": [
+                              [
+                                {
+                                  "address_1": "12401 Folsom Blvd Ste 110",
+                                  "address_2": null,
+                                  "address_3": null,
+                                  "brewery_type": "micro",
+                                  "city": "Rancho Cordova",
+                                  "country": "United States",
+                                  "id": "661d7d37-9c19-4209-ab5b-454ed12bf081",
+                                  "latitude": 38.62586534,
+                                  "longitude": -121.2248778,
+                                  "name": "Fort Rock Brewing",
+                                  "phone": "9169364616",
+                                  "postal_code": "95742-6422",
+                                  "state": "California",
+                                  "state_province": "California",
+                                  "street": "12401 Folsom Blvd Ste 110",
+                                  "website_url": "http://www.fortrockbrewing.com"
+                                }
+                              ]
+                            ],
+                            "items": {
+                              "properties": {
+                                "address_1": {
+                                  "examples": [
+                                    "12401 Folsom Blvd Ste 110"
+                                  ],
+                                  "type": "string"
+                                },
+                                "address_2": {
+                                  "examples": [
+                                    null
+                                  ],
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "address_3": {
+                                  "examples": [
+                                    null
+                                  ],
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "brewery_type": {
+                                  "examples": [
+                                    "micro"
+                                  ],
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "examples": [
+                                    "Rancho Cordova"
+                                  ],
+                                  "type": "string"
+                                },
+                                "country": {
+                                  "examples": [
+                                    "United States"
+                                  ],
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "examples": [
+                                    "661d7d37-9c19-4209-ab5b-454ed12bf081"
+                                  ],
+                                  "type": "string"
+                                },
+                                "latitude": {
+                                  "examples": [
+                                    38.62586534
+                                  ],
+                                  "type": "number"
+                                },
+                                "longitude": {
+                                  "examples": [
+                                    -121.2248778
+                                  ],
+                                  "type": "number"
+                                },
+                                "name": {
+                                  "examples": [
+                                    "Fort Rock Brewing"
+                                  ],
+                                  "type": "string"
+                                },
+                                "phone": {
+                                  "examples": [
+                                    "9169364616"
+                                  ],
+                                  "type": "string"
+                                },
+                                "postal_code": {
+                                  "examples": [
+                                    "95742-6422"
+                                  ],
+                                  "type": "string"
+                                },
+                                "state": {
+                                  "examples": [
+                                    "California"
+                                  ],
+                                  "type": "string"
+                                },
+                                "state_province": {
+                                  "examples": [
+                                    "California"
+                                  ],
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "examples": [
+                                    "12401 Folsom Blvd Ste 110"
+                                  ],
+                                  "type": "string"
+                                },
+                                "website_url": {
+                                  "examples": [
+                                    "http://www.fortrockbrewing.com"
+                                  ],
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": ""
+                    }
+                  },
+                  "security": [],
+                  "summary": "Get a random brewery.",
+                  "tags": [
+                    "Endpoints"
+                  ]
+                }
+              },
+              "/v1/breweries/search": {
+                "get": {
+                  "description": "The search performs partial, case-insensitive matching against brewery names.",
+                  "operationId": "searchForBreweries",
+                  "parameters": [],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "per_page": {
+                              "description": "Must be at least 1. Must not be greater than 200.",
+                              "examples": [
+                                1
+                              ],
+                              "type": "integer"
+                            },
+                            "query": {
+                              "description": "Must be at least 3 characters. Must not be greater than 255 characters.",
+                              "examples": [
+                                "n"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "query"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "422": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "examples": [
+                              {
+                                "errors": {
+                                  "query": [
+                                    "The query field must be at least 3 characters."
+                                  ]
+                                },
+                                "message": "The query field must be at least 3 characters."
+                              }
+                            ],
+                            "properties": {
+                              "errors": {
+                                "properties": {
+                                  "query": {
+                                    "examples": [
+                                      [
+                                        "The query field must be at least 3 characters."
+                                      ]
+                                    ],
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "message": {
+                                "examples": [
+                                  "The query field must be at least 3 characters."
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": ""
+                    }
+                  },
+                  "security": [],
+                  "summary": "Search for breweries.",
+                  "tags": [
+                    "Endpoints"
+                  ]
+                }
+              },
+              "/v1/breweries/{id}": {
+                "get": {
+                  "description": "",
+                  "operationId": "getASingleBrewery",
+                  "parameters": [],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "examples": [
+                              {
+                                "address_1": "Friesener Straße 1",
+                                "address_2": null,
+                                "address_3": null,
+                                "brewery_type": "brewpub",
+                                "city": "Kronach",
+                                "country": "Germany",
+                                "id": "ae7b3174-8be8-4d53-a3a5-9b8240970eea",
+                                "latitude": 50.241246,
+                                "longitude": 11.327765,
+                                "name": "'s",
+                                "phone": "+49 9261 628000",
+                                "postal_code": "96317",
+                                "state": "Bayern",
+                                "state_province": "Bayern",
+                                "street": "Friesener Straße 1",
+                                "website_url": "http://www.antla.de"
+                              }
+                            ],
+                            "properties": {
+                              "address_1": {
+                                "examples": [
+                                  "Friesener Straße 1"
+                                ],
+                                "type": "string"
+                              },
+                              "address_2": {
+                                "examples": [
+                                  null
+                                ],
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "address_3": {
+                                "examples": [
+                                  null
+                                ],
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "brewery_type": {
+                                "examples": [
+                                  "brewpub"
+                                ],
+                                "type": "string"
+                              },
+                              "city": {
+                                "examples": [
+                                  "Kronach"
+                                ],
+                                "type": "string"
+                              },
+                              "country": {
+                                "examples": [
+                                  "Germany"
+                                ],
+                                "type": "string"
+                              },
+                              "id": {
+                                "examples": [
+                                  "ae7b3174-8be8-4d53-a3a5-9b8240970eea"
+                                ],
+                                "type": "string"
+                              },
+                              "latitude": {
+                                "examples": [
+                                  50.241246
+                                ],
+                                "type": "number"
+                              },
+                              "longitude": {
+                                "examples": [
+                                  11.327765
+                                ],
+                                "type": "number"
+                              },
+                              "name": {
+                                "examples": [
+                                  "'s"
+                                ],
+                                "type": "string"
+                              },
+                              "phone": {
+                                "examples": [
+                                  "+49 9261 628000"
+                                ],
+                                "type": "string"
+                              },
+                              "postal_code": {
+                                "examples": [
+                                  "96317"
+                                ],
+                                "type": "string"
+                              },
+                              "state": {
+                                "examples": [
+                                  "Bayern"
+                                ],
+                                "type": "string"
+                              },
+                              "state_province": {
+                                "examples": [
+                                  "Bayern"
+                                ],
+                                "type": "string"
+                              },
+                              "street": {
+                                "examples": [
+                                  "Friesener Straße 1"
+                                ],
+                                "type": "string"
+                              },
+                              "website_url": {
+                                "examples": [
+                                  "http://www.antla.de"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": ""
+                    }
+                  },
+                  "security": [],
+                  "summary": "Get a single brewery.",
+                  "tags": [
+                    "Endpoints"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "description": "The ID of the brewery.",
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                      "examples": [
+                        "ae7b3174-8be8-4d53-a3a5-9b8240970eea"
+                      ],
+                      "type": "string"
+                    }
+                  }
+                ]
+              }
+            },
+            "servers": [
+              {
+                "url": "https://api.openbrewerydb.org"
+              }
+            ],
+            "tags": [
+              {
+                "description": "",
+                "name": "Endpoints"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Open Brewery DB API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:41.894279+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.openbrewerydb.org/docs/openapi.yaml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "00bb97477c0c118a62a550ee0faa8161bde0b7c7a91a07690664d5357f2c8f36",
+    "source_id": "open-brewery-db-api",
+    "source_updated": null,
+    "url": "https://api.openbrewerydb.org/docs/openapi.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

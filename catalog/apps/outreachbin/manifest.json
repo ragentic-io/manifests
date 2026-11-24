@@ -1,0 +1,2017 @@
+{
+  "a2ui": {},
+  "app": "outreachbin",
+  "graph": {
+    "edges": [
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/add-emails"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/create-campaign"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:get:/email-open"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:get:/email-providers"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:get:/find-campaign"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/imap-connect"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/login"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/logout"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/message-webhook-incoming"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:get:/message-webhook-outgoing"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/pause-campaign"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:get:/pull-reports"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:get:/pull-reports-all"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:get:/replies"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/restart-campaign"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/send-message"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/smtp-connect"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:post:/start-campaign"
+      },
+      {
+        "from": "outreachbin",
+        "kind": "EXPOSES",
+        "to": "operation:get:/unsubscribers"
+      },
+      {
+        "from": "operation:post:/add-emails",
+        "kind": "ACCEPTS",
+        "to": "schema:AddEmailsRequest"
+      },
+      {
+        "from": "operation:post:/create-campaign",
+        "kind": "ACCEPTS",
+        "to": "schema:CampaignCreateRequest"
+      },
+      {
+        "from": "operation:post:/start-campaign",
+        "kind": "ACCEPTS",
+        "to": "schema:CampaignStartRequest"
+      },
+      {
+        "from": "schema:CampaignCreateRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Message"
+      },
+      {
+        "from": "schema:CampaignCreateRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Timezone"
+      },
+      {
+        "from": "schema:CampaignStartRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Timezone"
+      },
+      {
+        "from": "schema:Message",
+        "kind": "REFERENCES",
+        "to": "schema:WebhookFieldsMap"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "outreachbin",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/add-emails",
+        "kind": "operation",
+        "method": "post",
+        "name": "AddEmails",
+        "path": "/add-emails",
+        "pointer": "#/paths/~1add-emails/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "AddEmailsRequest"
+        },
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Add Emails",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/create-campaign",
+        "kind": "operation",
+        "method": "post",
+        "name": "CampaignCreate",
+        "path": "/create-campaign",
+        "pointer": "#/paths/~1create-campaign/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CampaignCreateRequest"
+        },
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Campaign Create",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/email-open",
+        "kind": "operation",
+        "method": "get",
+        "name": "EmailOpenlist",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "campaignId",
+            "required": true,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/email-open",
+        "pointer": "#/paths/~1email-open/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Email Open list",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/email-providers",
+        "kind": "operation",
+        "method": "get",
+        "name": "EmailProviders",
+        "path": "/email-providers",
+        "pointer": "#/paths/~1email-providers/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Email Providers",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/find-campaign",
+        "kind": "operation",
+        "method": "get",
+        "name": "FindCampaign",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "campaignId",
+            "required": true,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/find-campaign",
+        "pointer": "#/paths/~1find-campaign/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Find Campaign",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/imap-connect",
+        "kind": "operation",
+        "method": "post",
+        "name": "IMAP-Connect",
+        "parameters": [
+          {
+            "description": "e.g imap.googlemail.com",
+            "in": "formData",
+            "name": "host",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "port",
+            "required": true,
+            "type": "integer:int32"
+          },
+          {
+            "description": "e.g ssl",
+            "in": "formData",
+            "name": "encryption",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Integer",
+            "in": "formData",
+            "name": "email_provider_id",
+            "required": true,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/imap-connect",
+        "pointer": "#/paths/~1imap-connect/post",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "IMAP-Connect",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/login",
+        "kind": "operation",
+        "method": "post",
+        "name": "Login",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/login",
+        "pointer": "#/paths/~1login/post",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Login",
+        "tags": [
+          "Auth"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/logout",
+        "kind": "operation",
+        "method": "post",
+        "name": "Logout",
+        "path": "/logout",
+        "pointer": "#/paths/~1logout/post",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Logout",
+        "tags": [
+          "Auth"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/message-webhook-incoming",
+        "kind": "operation",
+        "method": "post",
+        "name": "messageWebhookIncoming",
+        "parameters": [
+          {
+            "description": "46467e37-28fc-43fa-a0f5-8bede31df081",
+            "in": "formData",
+            "name": "tracking_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "sent",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "replied",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "opted_out",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "opened",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "clicked",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "in": "formData",
+            "name": "bounced",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "path": "/message-webhook-incoming",
+        "pointer": "#/paths/~1message-webhook-incoming/post",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Incoming Webhook",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/message-webhook-outgoing",
+        "kind": "operation",
+        "method": "get",
+        "name": "messageWebhookOutgoing",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "subscriber_id",
+            "required": true,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/message-webhook-outgoing",
+        "pointer": "#/paths/~1message-webhook-outgoing/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "message-webhook-outgoing",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/pause-campaign",
+        "kind": "operation",
+        "method": "post",
+        "name": "CampaignPause",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "campaignId",
+            "required": true,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/pause-campaign",
+        "pointer": "#/paths/~1pause-campaign/post",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Campaign Pause",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/pull-reports",
+        "kind": "operation",
+        "method": "get",
+        "name": "Campaignpullreports",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "campaignId",
+            "required": true,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/pull-reports",
+        "pointer": "#/paths/~1pull-reports/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Campaign pull reports",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/pull-reports-all",
+        "kind": "operation",
+        "method": "get",
+        "name": "Campaignpullreportsall",
+        "parameters": [
+          {
+            "description": "Default 20",
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/pull-reports-all",
+        "pointer": "#/paths/~1pull-reports-all/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Campaign pull reports all",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/replies",
+        "kind": "operation",
+        "method": "get",
+        "name": "RepliesList",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "campaignId",
+            "required": true,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/replies",
+        "pointer": "#/paths/~1replies/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Replies List",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/restart-campaign",
+        "kind": "operation",
+        "method": "post",
+        "name": "CampaignRestart",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "campaignId",
+            "required": true,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/restart-campaign",
+        "pointer": "#/paths/~1restart-campaign/post",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Campaign Restart",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/send-message",
+        "kind": "operation",
+        "method": "post",
+        "name": "sendMessage",
+        "parameters": [
+          {
+            "description": "973076",
+            "in": "formData",
+            "name": "subscriber_id",
+            "required": true,
+            "type": "integer:int32"
+          },
+          {
+            "in": "formData",
+            "name": "next_sequence_number",
+            "required": true,
+            "type": "integer:int32"
+          },
+          {
+            "in": "formData",
+            "name": "sendInstant",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "path": "/send-message",
+        "pointer": "#/paths/~1send-message/post",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "send-message",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/smtp-connect",
+        "kind": "operation",
+        "method": "post",
+        "name": "SMTP-Connect",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "smtp.gmail.com | smtp.office365.com | smtp.mail.yahoo.com | smtp.mail.me.com | smtppro.zoho.com | smtp.aol.com | smtp.yandex.ru | smtp.sendgrid.net | smtp-repl…",
+            "in": "formData",
+            "name": "host",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "username",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/smtp-connect",
+        "pointer": "#/paths/~1smtp-connect/post",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "SMTP-Connect",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/start-campaign",
+        "kind": "operation",
+        "method": "post",
+        "name": "CampaignStart",
+        "path": "/start-campaign",
+        "pointer": "#/paths/~1start-campaign/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CampaignStartRequest"
+        },
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Campaign Start",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/unsubscribers",
+        "kind": "operation",
+        "method": "get",
+        "name": "UnsubscriberList",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "campaignId",
+            "required": true,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/unsubscribers",
+        "pointer": "#/paths/~1unsubscribers/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Unsubscriber List",
+        "tags": [
+          "Campaign"
+        ]
+      },
+      {
+        "id": "schema:AddEmailsRequest",
+        "kind": "schema",
+        "name": "AddEmailsRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:CampaignCreateRequest",
+        "kind": "schema",
+        "name": "CampaignCreateRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:CampaignStartRequest",
+        "kind": "schema",
+        "name": "CampaignStartRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:Message",
+        "kind": "schema",
+        "name": "Message",
+        "type": "object"
+      },
+      {
+        "id": "schema:Timezone",
+        "kind": "schema",
+        "name": "Timezone",
+        "type": "object"
+      },
+      {
+        "id": "schema:WebhookFieldsMap",
+        "kind": "schema",
+        "name": "WebhookFieldsMap",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "outreachbin"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://app.outreachbin.com/api/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "basePath": "/api/v1",
+            "consumes": [
+              "application/json"
+            ],
+            "definitions": {
+              "AddEmailsRequest": {
+                "example": {
+                  "campaignId": 1627,
+                  "emails": [
+                    "shariful.info55@gmail.com",
+                    "shariful.info56@gmail.com",
+                    "shariful.info57@gmail.com",
+                    "shariful.info58@gmail.com",
+                    "shariful.info55@gmail.com"
+                  ]
+                },
+                "properties": {
+                  "campaignId": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "emails": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "campaignId",
+                  "emails"
+                ],
+                "title": "AddEmailsRequest",
+                "type": "object"
+              },
+              "CampaignCreateRequest": {
+                "example": {
+                  "days": [
+                    "monday",
+                    "tuesday",
+                    "wednesday",
+                    "thursday",
+                    "friday"
+                  ],
+                  "duplicate_removal_type": "csv",
+                  "email_provider": "leslie@emailable.org",
+                  "emails": [
+                    "asdf@df.com",
+                    "sharif@df.com"
+                  ],
+                  "enabled_custom_domain": "1",
+                  "enabled_opened_tracking": "1",
+                  "enabled_replied_tracking": "1",
+                  "end_time": "06:00 PM",
+                  "importType": "manually",
+                  "is_draft": "1",
+                  "max_number_of_reach": "100",
+                  "messages": [
+                    {
+                      "body": "<p>Your body goes to here... <br /><br /><br /><a href='/{{ $unsubscribe }}'>Unsubscribe</a></p>",
+                      "days_wait": "0",
+                      "incoming_webhook": "65deec48-91d5-4dab-93e4-fbc7d3fe0359",
+                      "outgoing_webhook": "",
+                      "subject": "Subject",
+                      "type": "email",
+                      "webhook_fields_map": [
+                        {
+                          "bounced": "bounced",
+                          "clicked": "clicked",
+                          "opened": "opened",
+                          "opted_out": "opted_out",
+                          "replied": "replied",
+                          "tracking_id": "tracking_id"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "Campaign Test",
+                  "start_date": "2021-10-09",
+                  "start_time": "09:00 AM",
+                  "tags": [],
+                  "timezone": {
+                    "label": "(GMT+6:00) Astana, Dhaka",
+                    "value": "Asia/Dhaka"
+                  },
+                  "type": "ongoing"
+                },
+                "properties": {
+                  "days": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "duplicate_removal_type": {
+                    "type": "string"
+                  },
+                  "email_provider": {
+                    "type": "string"
+                  },
+                  "emails": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "enabled_custom_domain": {
+                    "type": "string"
+                  },
+                  "enabled_opened_tracking": {
+                    "type": "string"
+                  },
+                  "enabled_replied_tracking": {
+                    "type": "string"
+                  },
+                  "end_time": {
+                    "type": "string"
+                  },
+                  "importType": {
+                    "type": "string"
+                  },
+                  "is_draft": {
+                    "type": "string"
+                  },
+                  "max_number_of_reach": {
+                    "type": "string"
+                  },
+                  "messages": {
+                    "items": {
+                      "$ref": "#/definitions/Message"
+                    },
+                    "type": "array"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "start_date": {
+                    "type": "string"
+                  },
+                  "start_time": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "timezone": {
+                    "$ref": "#/definitions/Timezone"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "days",
+                  "duplicate_removal_type",
+                  "email_provider",
+                  "emails",
+                  "enabled_custom_domain",
+                  "enabled_opened_tracking",
+                  "enabled_replied_tracking",
+                  "end_time",
+                  "importType",
+                  "is_draft",
+                  "max_number_of_reach",
+                  "messages",
+                  "name",
+                  "start_date",
+                  "start_time",
+                  "tags",
+                  "timezone",
+                  "type"
+                ],
+                "title": "CampaignCreateRequest",
+                "type": "object"
+              },
+              "CampaignStartRequest": {
+                "example": {
+                  "campaignId": 1740,
+                  "days": [
+                    "monday",
+                    "tuesday",
+                    "wednesday",
+                    "thursday",
+                    "friday"
+                  ],
+                  "end_time": "06:00 PM",
+                  "max_number_of_reach": 100,
+                  "start_date": "2021-10-09",
+                  "start_time": "09:00 AM",
+                  "timezone": {
+                    "label": "(GMT+6:00) Astana, Dhaka",
+                    "value": "Asia/Dhaka"
+                  },
+                  "type": "ongoing"
+                },
+                "properties": {
+                  "campaignId": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "days": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "end_time": {
+                    "type": "string"
+                  },
+                  "max_number_of_reach": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "start_date": {
+                    "type": "string"
+                  },
+                  "start_time": {
+                    "type": "string"
+                  },
+                  "timezone": {
+                    "$ref": "#/definitions/Timezone"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "campaignId",
+                  "days",
+                  "end_time",
+                  "max_number_of_reach",
+                  "start_date",
+                  "start_time",
+                  "timezone",
+                  "type"
+                ],
+                "title": "CampaignStartRequest",
+                "type": "object"
+              },
+              "Message": {
+                "example": {
+                  "body": "<p>Your body goes to here... <br /><br /><br /><a href='/{{ $unsubscribe }}'>Unsubscribe</a></p>",
+                  "days_wait": "0",
+                  "incoming_webhook": "65deec48-91d5-4dab-93e4-fbc7d3fe0359",
+                  "outgoing_webhook": "",
+                  "subject": "Subject",
+                  "type": "email",
+                  "webhook_fields_map": [
+                    {
+                      "bounced": "bounced",
+                      "clicked": "clicked",
+                      "opened": "opened",
+                      "opted_out": "opted_out",
+                      "replied": "replied",
+                      "tracking_id": "tracking_id"
+                    }
+                  ]
+                },
+                "properties": {
+                  "body": {
+                    "type": "string"
+                  },
+                  "days_wait": {
+                    "type": "string"
+                  },
+                  "incoming_webhook": {
+                    "type": "string"
+                  },
+                  "outgoing_webhook": {
+                    "type": "string"
+                  },
+                  "subject": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "webhook_fields_map": {
+                    "items": {
+                      "$ref": "#/definitions/WebhookFieldsMap"
+                    },
+                    "type": "array"
+                  }
+                },
+                "required": [
+                  "body",
+                  "days_wait",
+                  "incoming_webhook",
+                  "outgoing_webhook",
+                  "subject",
+                  "type",
+                  "webhook_fields_map"
+                ],
+                "title": "Message",
+                "type": "object"
+              },
+              "Timezone": {
+                "example": {
+                  "label": "(GMT+6:00) Astana, Dhaka",
+                  "value": "Asia/Dhaka"
+                },
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "label",
+                  "value"
+                ],
+                "title": "Timezone",
+                "type": "object"
+              },
+              "WebhookFieldsMap": {
+                "example": {
+                  "bounced": "bounced",
+                  "clicked": "clicked",
+                  "opened": "opened",
+                  "opted_out": "opted_out",
+                  "replied": "replied",
+                  "tracking_id": "tracking_id"
+                },
+                "properties": {
+                  "bounced": {
+                    "type": "string"
+                  },
+                  "clicked": {
+                    "type": "string"
+                  },
+                  "opened": {
+                    "type": "string"
+                  },
+                  "opted_out": {
+                    "type": "string"
+                  },
+                  "replied": {
+                    "type": "string"
+                  },
+                  "tracking_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "bounced",
+                  "clicked",
+                  "opened",
+                  "opted_out",
+                  "replied",
+                  "tracking_id"
+                ],
+                "title": "WebhookFieldsMap",
+                "type": "object"
+              }
+            },
+            "host": "app.outreachbin.com",
+            "info": {
+              "contact": {},
+              "title": "OutReachBin",
+              "version": "1.1"
+            },
+            "paths": {
+              "/add-emails": {
+                "post": {
+                  "deprecated": false,
+                  "operationId": "AddEmails",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "in": "body",
+                      "name": "Body",
+                      "required": true,
+                      "schema": {
+                        "$ref": "#/definitions/AddEmailsRequest"
+                      }
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Add Emails",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/create-campaign": {
+                "post": {
+                  "deprecated": false,
+                  "operationId": "CampaignCreate",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "in": "body",
+                      "name": "Body",
+                      "required": true,
+                      "schema": {
+                        "$ref": "#/definitions/CampaignCreateRequest"
+                      }
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Campaign Create",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/email-open": {
+                "get": {
+                  "deprecated": false,
+                  "operationId": "EmailOpenlist",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "int32",
+                      "in": "query",
+                      "name": "campaignId",
+                      "required": true,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Email Open list",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/email-providers": {
+                "get": {
+                  "deprecated": false,
+                  "operationId": "EmailProviders",
+                  "parameters": [],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Email Providers",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/find-campaign": {
+                "get": {
+                  "deprecated": false,
+                  "operationId": "FindCampaign",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "int32",
+                      "in": "query",
+                      "name": "campaignId",
+                      "required": true,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Find Campaign",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/imap-connect": {
+                "post": {
+                  "consumes": [
+                    "application/x-www-form-urlencoded"
+                  ],
+                  "deprecated": false,
+                  "operationId": "IMAP-Connect",
+                  "parameters": [
+                    {
+                      "description": "e.g imap.googlemail.com",
+                      "in": "formData",
+                      "name": "host",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "format": "int32",
+                      "in": "formData",
+                      "name": "port",
+                      "required": true,
+                      "type": "integer"
+                    },
+                    {
+                      "description": "e.g ssl",
+                      "in": "formData",
+                      "name": "encryption",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "username",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "password",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "Integer",
+                      "format": "int32",
+                      "in": "formData",
+                      "name": "email_provider_id",
+                      "required": true,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "IMAP-Connect",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/login": {
+                "post": {
+                  "consumes": [
+                    "application/x-www-form-urlencoded"
+                  ],
+                  "deprecated": false,
+                  "operationId": "Login",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "email",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "password",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Login",
+                  "tags": [
+                    "Auth"
+                  ]
+                }
+              },
+              "/logout": {
+                "post": {
+                  "deprecated": false,
+                  "operationId": "Logout",
+                  "parameters": [],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Logout",
+                  "tags": [
+                    "Auth"
+                  ]
+                }
+              },
+              "/message-webhook-incoming": {
+                "post": {
+                  "consumes": [
+                    "application/x-www-form-urlencoded"
+                  ],
+                  "deprecated": false,
+                  "operationId": "messageWebhookIncoming",
+                  "parameters": [
+                    {
+                      "description": "46467e37-28fc-43fa-a0f5-8bede31df081",
+                      "in": "formData",
+                      "name": "tracking_id",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "sent",
+                      "required": true,
+                      "type": "boolean"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "replied",
+                      "required": true,
+                      "type": "boolean"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "opted_out",
+                      "required": true,
+                      "type": "boolean"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "opened",
+                      "required": true,
+                      "type": "boolean"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "clicked",
+                      "required": true,
+                      "type": "boolean"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "bounced",
+                      "required": true,
+                      "type": "boolean"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Incoming Webhook",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/message-webhook-outgoing": {
+                "get": {
+                  "consumes": [
+                    "application/x-www-form-urlencoded"
+                  ],
+                  "deprecated": false,
+                  "operationId": "messageWebhookOutgoing",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "int32",
+                      "in": "header",
+                      "name": "subscriber_id",
+                      "required": true,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "message-webhook-outgoing",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/pause-campaign": {
+                "post": {
+                  "consumes": [
+                    "application/x-www-form-urlencoded"
+                  ],
+                  "deprecated": false,
+                  "operationId": "CampaignPause",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "int32",
+                      "in": "formData",
+                      "name": "campaignId",
+                      "required": true,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Campaign Pause",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/pull-reports": {
+                "get": {
+                  "deprecated": false,
+                  "operationId": "Campaignpullreports",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "int32",
+                      "in": "query",
+                      "name": "campaignId",
+                      "required": true,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Campaign pull reports",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/pull-reports-all": {
+                "get": {
+                  "deprecated": false,
+                  "operationId": "Campaignpullreportsall",
+                  "parameters": [
+                    {
+                      "description": "Default 20",
+                      "format": "int32",
+                      "in": "query",
+                      "name": "limit",
+                      "required": true,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Campaign pull reports all",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/replies": {
+                "get": {
+                  "deprecated": false,
+                  "operationId": "RepliesList",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "int32",
+                      "in": "query",
+                      "name": "campaignId",
+                      "required": true,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Replies List",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/restart-campaign": {
+                "post": {
+                  "consumes": [
+                    "application/x-www-form-urlencoded"
+                  ],
+                  "deprecated": false,
+                  "operationId": "CampaignRestart",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "int32",
+                      "in": "formData",
+                      "name": "campaignId",
+                      "required": true,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Campaign Restart",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/send-message": {
+                "post": {
+                  "consumes": [
+                    "application/x-www-form-urlencoded"
+                  ],
+                  "deprecated": false,
+                  "operationId": "sendMessage",
+                  "parameters": [
+                    {
+                      "description": "973076",
+                      "format": "int32",
+                      "in": "formData",
+                      "name": "subscriber_id",
+                      "required": true,
+                      "type": "integer"
+                    },
+                    {
+                      "description": "",
+                      "format": "int32",
+                      "in": "formData",
+                      "name": "next_sequence_number",
+                      "required": true,
+                      "type": "integer"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "sendInstant",
+                      "required": true,
+                      "type": "boolean"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "send-message",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/smtp-connect": {
+                "post": {
+                  "consumes": [
+                    "application/x-www-form-urlencoded"
+                  ],
+                  "deprecated": false,
+                  "operationId": "SMTP-Connect",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "name",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "email",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "smtp.gmail.com | smtp.office365.com | smtp.mail.yahoo.com | smtp.mail.me.com | smtppro.zoho.com | smtp.aol.com | smtp.yandex.ru | smtp.sendgrid.net | smtp-reply.sendinblue.com | smtp.mailgun.org | email-smtp.us-east-1.amazonaws.com",
+                      "in": "formData",
+                      "name": "host",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "username",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "in": "formData",
+                      "name": "password",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "SMTP-Connect",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/start-campaign": {
+                "post": {
+                  "deprecated": false,
+                  "operationId": "CampaignStart",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "in": "body",
+                      "name": "Body",
+                      "required": true,
+                      "schema": {
+                        "$ref": "#/definitions/CampaignStartRequest"
+                      }
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Campaign Start",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              },
+              "/unsubscribers": {
+                "get": {
+                  "deprecated": false,
+                  "operationId": "UnsubscriberList",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "int32",
+                      "in": "query",
+                      "name": "campaignId",
+                      "required": true,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "",
+                      "headers": {}
+                    }
+                  },
+                  "summary": "Unsubscriber List",
+                  "tags": [
+                    "Campaign"
+                  ]
+                }
+              }
+            },
+            "produces": [
+              "application/json"
+            ],
+            "schemes": [
+              "https"
+            ],
+            "security": [
+              {
+                "APIKeyHeader": []
+              }
+            ],
+            "securityDefinitions": {
+              "APIKeyHeader": {
+                "description": "Value must be \"Bearer access_token\"",
+                "in": "header",
+                "name": "Authorization",
+                "type": "apiKey"
+              }
+            },
+            "swagger": "2.0",
+            "tags": [
+              {
+                "description": "",
+                "name": "Auth"
+              },
+              {
+                "description": "",
+                "name": "Campaign"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OutReachBin"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:29.196659+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.swaggerhub.com/apis/polyuno3/OutReachBin/1.1?resolved=true",
+        "version": "2.0"
+      }
+    ],
+    "sha256": "f60f7b2ac60874455279a0458a5872020b0fc3164d4b2cb63684da46891f6a7d",
+    "source_id": "outreachbin",
+    "source_updated": null,
+    "url": "https://api.swaggerhub.com/apis/polyuno3/OutReachBin/1.1?resolved=true"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.1"
+}

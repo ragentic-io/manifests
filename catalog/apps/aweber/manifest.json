@@ -1,0 +1,193 @@
+{
+  "a2ui": {},
+  "app": "aweber",
+  "graph": {
+    "edges": [],
+    "nodes": [
+      {
+        "id": "aweber",
+        "kind": "application"
+      },
+      {
+        "id": "schema:$ref",
+        "kind": "schema",
+        "name": "$ref"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "aweber"
+    },
+    "spec": {
+      "base": {
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "$ref": "_parameters.yaml"
+              },
+              "responses": {
+                "$ref": "_responses.yaml"
+              },
+              "schemas": {
+                "$ref": "_definitions.yaml"
+              },
+              "securitySchemes": {
+                "OAuth 2.0": {
+                  "description": "The following endpoints and scopes are used to authenticate.\n",
+                  "flows": {
+                    "authorizationCode": {
+                      "authorizationUrl": "https://auth.aweber.com/oauth2/authorize",
+                      "refreshUrl": "https://auth.aweber.com/oauth2/token",
+                      "scopes": {
+                        "account.read": "<br>\nAccess account information and associated integrations. <br>\n<b>Required for the following endpoints:</b> get accounts, get account, get integrations, get integration\n",
+                        "email.read": "<br>\nRetrieve email activity related to broadcasts and follow-ups <br>\n<b>Required for the following endpoints:</b> get messages, get message, get broadcasts, get broadcast, get message opens, get message open, get message tracked events, get message tracked event, get total broadcasts, get campaigns, get campaign, find campaigns, get broadcast statistics, get broadcast statistic\n",
+                        "email.write": "<br>\nCreate and send email broadcasts <br>\n<b>Required for the following endpoints:</b> create broadcast, update broadcast, delete broadcast, cancel broadcast, schedule broadcast\n",
+                        "landing-page.read": "<br>\nRetrieve landing pages <br>\n<b>Required for the following endpoints:</b> get landing pages, get landing page\n",
+                        "list.read": "<br>\nRetrieve lists, custom fields, tags, and sign up forms <br>\n<b>Required for the following endpoints:</b> get list, get lists, find lists, get tags for list, get custom fields, get custom field, get webforms for list, get split tests for list, get split test components, get split test component, get webforms for account, get split tests for account\n",
+                        "list.write": "<br>\nCreate, edit, and delete custom fields <br>\n<b>Required for the following endpoints:</b> add custom field, update custom field, delete custom field\n",
+                        "subscriber.read": "<br>\nRetrieve subscribers and their activity <br>\n<b>Required for the following endpoints:</b> get subscribers, get subscriber, get subscriber activity, get subscribers for message, find subscribers for account, find subscribers for list\n",
+                        "subscriber.read-extended": "<br>\nPreviously required to retrieve subscriber PII such as name, email, IP address, etc.  This functionality was moved to the \"subscriber.read\" scope\n",
+                        "subscriber.write": "<br>\nCreate, edit, delete, retrieve, search for, and move subscribers <br>\n<b>Required for the following endpoints:</b> add subscriber, move subscriber, update subscriber, delete subscriber\n"
+                      },
+                      "tokenUrl": "https://auth.aweber.com/oauth2/token"
+                    }
+                  },
+                  "type": "oauth2"
+                }
+              }
+            },
+            "info": {
+              "description": "We are constantly working to improve this documentation. If you have\nfeedback and questions, please contact the AWeber API team at\napi@aweber.com.\n\nThe AWeber API is a REST API that uses the OAuth 2.0 authentication model. We also offer webhooks.\n\nPlease see the below resources for further information:\n- <a href=\"https://labs.aweber.com/docs/tos\" target=\"_blank\">Terms of Service</a>\n- <a href=\"https://help.aweber.com/hc/en-us/articles/204031776\" target=\"_blank\">Showcasing an Integration</a>\n- <a href=\"https://help.aweber.com/hc/en-us/sections/360000617213-API\" target=\"_blank\">Knowledge Base</a>\n- <a href=\"https://status.aweber.com\" target=\"_blank\">API Status Page</a>\n",
+              "title": "AWeber API",
+              "version": "1.0"
+            },
+            "openapi": "3.0.2",
+            "paths": {
+              "$ref": "_paths.yaml"
+            },
+            "servers": [
+              {
+                "description": "v1 API endpoints",
+                "url": "/1.0"
+              }
+            ],
+            "tags": {
+              "$ref": "_tags.yaml"
+            },
+            "x-tagGroups": [
+              {
+                "name": "Getting Started",
+                "tags": [
+                  "Getting Started"
+                ]
+              },
+              {
+                "name": "Authentication",
+                "tags": [
+                  "Authentication Overview",
+                  "OAuth 2.0 Examples",
+                  "OAuth 2.0 Traces",
+                  "OAuth 2.0 Reference",
+                  "OAuth 1.0a Reference"
+                ]
+              },
+              {
+                "name": "API Reference",
+                "tags": [
+                  "Accounts",
+                  "Broadcasts",
+                  "Campaigns",
+                  "Custom Fields",
+                  "Integrations",
+                  "Landing Pages",
+                  "Lists",
+                  "Segments",
+                  "Subscribers",
+                  "Webforms"
+                ]
+              },
+              {
+                "name": "Beta API Reference",
+                "tags": [
+                  "Beta Endpoints"
+                ]
+              },
+              {
+                "name": "Webhooks",
+                "tags": [
+                  "Webhooks"
+                ]
+              },
+              {
+                "name": "Code Samples",
+                "tags": [
+                  "Introduction",
+                  "Find a List and Get Tags",
+                  "Manage a Subscriber",
+                  "Create a Purchase",
+                  "Manage Custom Fields",
+                  "Find Subscribers Across Lists",
+                  "Move Subscriber to Another List",
+                  "Create and Schedule a Broadcast",
+                  "Get Sent Broadcast Details",
+                  "Get Broadcast Statistics",
+                  "Get Subscribers Who Opened or Clicked a Broadcast",
+                  "Get Webforms Detail",
+                  "Get Integrations List",
+                  "Get Segments",
+                  "Get Landing Pages"
+                ]
+              },
+              {
+                "name": "Miscellaneous",
+                "tags": [
+                  "Developer Changelog",
+                  "FAQ",
+                  "Troubleshooting"
+                ]
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "AWeber"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:29:46.121193+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.aweber.com/swagger.yaml",
+        "version": "3.0.2"
+      }
+    ],
+    "sha256": "9b2191372123049a22f7d25a078d55b0597f472211ec24566e4ea7e7197ea1ec",
+    "source_id": "aweber",
+    "source_updated": null,
+    "url": "https://api.aweber.com/swagger.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0"
+}

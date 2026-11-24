@@ -1,0 +1,1624 @@
+{
+  "a2ui": {},
+  "app": "cfpb-consumer-complaint-database",
+  "graph": {
+    "edges": [
+      {
+        "from": "cfpb-consumer-complaint-database",
+        "kind": "EXPOSES",
+        "to": "operation:get:/"
+      },
+      {
+        "from": "cfpb-consumer-complaint-database",
+        "kind": "EXPOSES",
+        "to": "operation:get:/_suggest_company"
+      },
+      {
+        "from": "cfpb-consumer-complaint-database",
+        "kind": "EXPOSES",
+        "to": "operation:get:/_suggest_zip"
+      },
+      {
+        "from": "cfpb-consumer-complaint-database",
+        "kind": "EXPOSES",
+        "to": "operation:get:/{complaintId}"
+      },
+      {
+        "from": "operation:get:/",
+        "kind": "RETURNS",
+        "to": "schema:SearchResult"
+      },
+      {
+        "from": "operation:get:/_suggest_company",
+        "kind": "RETURNS",
+        "to": "schema:SuggestResult"
+      },
+      {
+        "from": "operation:get:/_suggest_zip",
+        "kind": "RETURNS",
+        "to": "schema:SuggestResult"
+      },
+      {
+        "from": "operation:get:/{complaintId}",
+        "kind": "RETURNS",
+        "to": "schema:Complaint"
+      },
+      {
+        "from": "schema:Aggregation",
+        "kind": "REFERENCES",
+        "to": "schema:Bucket"
+      },
+      {
+        "from": "schema:Hit",
+        "kind": "REFERENCES",
+        "to": "schema:Complaint"
+      },
+      {
+        "from": "schema:Hits",
+        "kind": "REFERENCES",
+        "to": "schema:Hit"
+      },
+      {
+        "from": "schema:MultiLevelAggregation",
+        "kind": "REFERENCES",
+        "to": "schema:MultiLevelBucket"
+      },
+      {
+        "from": "schema:MultiLevelBucket",
+        "kind": "REFERENCES",
+        "to": "schema:Aggregation"
+      },
+      {
+        "from": "schema:SearchResult",
+        "kind": "REFERENCES",
+        "to": "schema:Aggregation"
+      },
+      {
+        "from": "schema:SearchResult",
+        "kind": "REFERENCES",
+        "to": "schema:Hits"
+      },
+      {
+        "from": "schema:SearchResult",
+        "kind": "REFERENCES",
+        "to": "schema:Meta"
+      },
+      {
+        "from": "schema:SearchResult",
+        "kind": "REFERENCES",
+        "to": "schema:MultiLevelAggregation"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "cfpb-consumer-complaint-database",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Search the contents of the consumer complaint database",
+        "id": "operation:get:/",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /",
+        "parameters": [
+          {
+            "description": "Return results containing specific term",
+            "in": "query",
+            "name": "search_term",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "all",
+            "description": "If the parameter \"search_term\" has a value, use \"field\" to specify which field is searched.",
+            "enum": [
+              "company",
+              "all"
+            ],
+            "in": "query",
+            "name": "field",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Return results starting from a specific index, only if format parameter is not specified, ignore otherwise",
+            "in": "query",
+            "name": "frm",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "default": 10,
+            "description": "Limit the size of the results",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "default": "relevance_desc",
+            "description": "Return results sort in a particular order",
+            "enum": [
+              "relevance_desc",
+              "relevance_asc",
+              "created_date_desc",
+              "created_date_asc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "csv",
+            "description": "Format to be returned, if this parameter is not specified, frm/size parameters can be used properly, but if a format is specified for exporting, frm/size will…",
+            "enum": [
+              "csv"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Include aggregations in result or not, True means no aggregations will be included, False means aggregations will be included.",
+            "in": "query",
+            "name": "no_aggs",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Include highlight of search term in result or not, True means no highlighting will be included, False means highlighting will be included.",
+            "in": "query",
+            "name": "no_highlight",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Filter the results to only return these companies",
+            "in": "query",
+            "name": "company",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these types of public response by the company",
+            "in": "query",
+            "name": "company_public_response",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Return results with date < company_received_max (i.e.",
+            "in": "query",
+            "name": "company_received_max",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Return results with date >= company_received_min (i.e.",
+            "in": "query",
+            "name": "company_received_min",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter the results to only return these types of response by the company",
+            "in": "query",
+            "name": "company_response",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Return results with date < date_received_max (i.e.",
+            "in": "query",
+            "name": "date_received_max",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Return results with date >= date_received_min (i.e.",
+            "in": "query",
+            "name": "date_received_min",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter the results to only return these types of issue and subissue, i.e.",
+            "in": "query",
+            "name": "issue",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these types of product and subproduct, i.e.",
+            "in": "query",
+            "name": "product",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Used in conjunction with frm parameter to paginate results.",
+            "in": "query",
+            "name": "search_after",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter the results to only return these states (use abbreviation, i.e.",
+            "in": "query",
+            "name": "state",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these types of way consumers submitted their complaints",
+            "in": "query",
+            "name": "submitted_via",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these types of tag",
+            "in": "query",
+            "name": "tags",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to show whether a response was timely",
+            "in": "query",
+            "name": "timely",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these zip codes",
+            "in": "query",
+            "name": "zip_code",
+            "required": false,
+            "type": "string[]"
+          }
+        ],
+        "path": "/",
+        "pointer": "#/paths/~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SearchResult"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search consumer complaints",
+        "tags": [
+          "Complaints"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide a list of companies that match the input text",
+        "id": "operation:get:/_suggest_company",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /_suggest_company",
+        "parameters": [
+          {
+            "description": "text to use for suggestions",
+            "in": "query",
+            "name": "text",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Limit the size of the results",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Filter the results to only return these types of public response by the company",
+            "in": "query",
+            "name": "company_public_response",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Return results with date < company_received_max (i.e.",
+            "in": "query",
+            "name": "company_received_max",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Return results with date >= company_received_min (i.e.",
+            "in": "query",
+            "name": "company_received_min",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter the results to only return these types of response by the company",
+            "in": "query",
+            "name": "company_response",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Return results with date < date_received_max (i.e.",
+            "in": "query",
+            "name": "date_received_max",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Return results with date >= date_received_min (i.e.",
+            "in": "query",
+            "name": "date_received_min",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter the results to only return these types of issue and subissue, i.e.",
+            "in": "query",
+            "name": "issue",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these types of product and subproduct, i.e.",
+            "in": "query",
+            "name": "product",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these states (use abbreviation, i.e.",
+            "in": "query",
+            "name": "state",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these types of way consumers submitted their complaints",
+            "in": "query",
+            "name": "submitted_via",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these types of tag",
+            "in": "query",
+            "name": "tags",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to show whether a response was timely",
+            "in": "query",
+            "name": "timely",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these zip codes",
+            "in": "query",
+            "name": "zip_code",
+            "required": false,
+            "type": "string[]"
+          }
+        ],
+        "path": "/_suggest_company",
+        "pointer": "#/paths/~1_suggest_company/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SuggestResult"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Suggest possible companies",
+        "tags": [
+          "Typeahead"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide a list of zip codes that match the input text",
+        "id": "operation:get:/_suggest_zip",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /_suggest_zip",
+        "parameters": [
+          {
+            "description": "text to use for suggestions",
+            "in": "query",
+            "name": "text",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Limit the size of the results",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Filter the results to only return these types of public response by the company",
+            "in": "query",
+            "name": "company_public_response",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Return results with date < company_received_max (i.e.",
+            "in": "query",
+            "name": "company_received_max",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Return results with date >= company_received_min (i.e.",
+            "in": "query",
+            "name": "company_received_min",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter the results to only return these types of response by the company",
+            "in": "query",
+            "name": "company_response",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Return results with date < date_received_max (i.e.",
+            "in": "query",
+            "name": "date_received_max",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Return results with date >= date_received_min (i.e.",
+            "in": "query",
+            "name": "date_received_min",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter the results to only return these types of issue and subissue, i.e.",
+            "in": "query",
+            "name": "issue",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these types of product and subproduct, i.e.",
+            "in": "query",
+            "name": "product",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these states (use abbreviation, i.e.",
+            "in": "query",
+            "name": "state",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these types of way consumers submitted their complaints",
+            "in": "query",
+            "name": "submitted_via",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these types of tag",
+            "in": "query",
+            "name": "tags",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to show whether a response was timely",
+            "in": "query",
+            "name": "timely",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter the results to only return these zip codes",
+            "in": "query",
+            "name": "zip_code",
+            "required": false,
+            "type": "string[]"
+          }
+        ],
+        "path": "/_suggest_zip",
+        "pointer": "#/paths/~1_suggest_zip/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SuggestResult"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Suggest possible zip codes",
+        "tags": [
+          "Typeahead"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get complaint details for a specific ID",
+        "id": "operation:get:/{complaintId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /{complaintId}",
+        "parameters": [
+          {
+            "description": "ID of the complaint",
+            "in": "path",
+            "name": "complaintId",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/{complaintId}",
+        "pointer": "#/paths/~1{complaintId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Complaint"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Find consumer complaint by ID",
+        "tags": [
+          "Complaints"
+        ]
+      },
+      {
+        "description": "An OpenSearch aggregation",
+        "id": "schema:Aggregation",
+        "kind": "schema",
+        "name": "Aggregation",
+        "type": "object"
+      },
+      {
+        "id": "schema:AggregationDate",
+        "kind": "schema",
+        "name": "AggregationDate",
+        "type": "object"
+      },
+      {
+        "id": "schema:Bucket",
+        "kind": "schema",
+        "name": "Bucket",
+        "type": "object"
+      },
+      {
+        "id": "schema:Complaint",
+        "kind": "schema",
+        "name": "Complaint",
+        "type": "object"
+      },
+      {
+        "description": "A single OpenSearch result",
+        "id": "schema:Hit",
+        "kind": "schema",
+        "name": "Hit",
+        "type": "object"
+      },
+      {
+        "description": "A set of complaints that matched the query",
+        "id": "schema:Hits",
+        "kind": "schema",
+        "name": "Hits",
+        "type": "object"
+      },
+      {
+        "id": "schema:Meta",
+        "kind": "schema",
+        "name": "Meta",
+        "type": "object"
+      },
+      {
+        "id": "schema:MultiLevelAggregation",
+        "kind": "schema",
+        "name": "MultiLevelAggregation",
+        "type": "object"
+      },
+      {
+        "id": "schema:MultiLevelBucket",
+        "kind": "schema",
+        "name": "MultiLevelBucket",
+        "type": "object"
+      },
+      {
+        "id": "schema:SearchResult",
+        "kind": "schema",
+        "name": "SearchResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:SuggestResult",
+        "kind": "schema",
+        "name": "SuggestResult",
+        "type": "string[]"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "cfpb-consumer-complaint-database"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "callbacks": {},
+              "links": {},
+              "parameters": {
+                "company": {
+                  "description": "Filter the results to only return these companies",
+                  "explode": true,
+                  "in": "query",
+                  "name": "company",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "company_public_response": {
+                  "description": "Filter the results to only return these types of public response by the company",
+                  "explode": true,
+                  "in": "query",
+                  "name": "company_public_response",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "company_received_max": {
+                  "description": "Return results with date < company_received_max (i.e. 2017-03-04)",
+                  "in": "query",
+                  "name": "company_received_max",
+                  "schema": {
+                    "format": "date",
+                    "type": "string"
+                  }
+                },
+                "company_received_min": {
+                  "description": "Return results with date >= company_received_min (i.e. 2017-03-04)",
+                  "in": "query",
+                  "name": "company_received_min",
+                  "schema": {
+                    "format": "date",
+                    "type": "string"
+                  }
+                },
+                "company_response": {
+                  "description": "Filter the results to only return these types of response by the company",
+                  "explode": true,
+                  "in": "query",
+                  "name": "company_response",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "date_received_max": {
+                  "description": "Return results with date < date_received_max (i.e. 2017-03-04)",
+                  "in": "query",
+                  "name": "date_received_max",
+                  "schema": {
+                    "format": "date",
+                    "type": "string"
+                  }
+                },
+                "date_received_min": {
+                  "description": "Return results with date >= date_received_min (i.e. 2017-03-04)",
+                  "in": "query",
+                  "name": "date_received_min",
+                  "schema": {
+                    "format": "date",
+                    "type": "string"
+                  }
+                },
+                "field": {
+                  "description": "If the parameter \"search_term\" has a value, use \"field\" to specify which field is searched. If not specified, \"all\" will be searched.",
+                  "in": "query",
+                  "name": "field",
+                  "schema": {
+                    "default": "all",
+                    "enum": [
+                      "company",
+                      "all"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "format": {
+                  "description": "Format to be returned, if this parameter is not specified, frm/size parameters can be used properly, but if a format is specified for exporting, frm/size will be ignored",
+                  "in": "query",
+                  "name": "format",
+                  "schema": {
+                    "default": "csv",
+                    "enum": [
+                      "csv"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "from": {
+                  "description": "Return results starting from a specific index, only if format parameter is not specified, ignore otherwise",
+                  "in": "query",
+                  "name": "frm",
+                  "schema": {
+                    "default": 0,
+                    "format": "int64",
+                    "maximum": 100000,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "issue": {
+                  "description": "Filter the results to only return these types of issue and subissue, i.e. product-only: Getting a Loan, subproduct needs to include product, separated by '•', Getting a Loan•Can't qualify for a loan",
+                  "explode": true,
+                  "in": "query",
+                  "name": "issue",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "no_aggs": {
+                  "description": "Include aggregations in result or not, True means no aggregations will be included, False means aggregations will be included.",
+                  "in": "query",
+                  "name": "no_aggs",
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "no_highlight": {
+                  "description": "Include highlight of search term in result or not, True means no highlighting will be included, False means highlighting will be included.",
+                  "in": "query",
+                  "name": "no_highlight",
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "product": {
+                  "description": "Filter the results to only return these types of product and subproduct, i.e. product-only: Mortgage, subproduct needs to include product, separated by '•', Mortgage•FHA mortgage",
+                  "explode": true,
+                  "in": "query",
+                  "name": "product",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "search_after": {
+                  "description": "Used in conjunction with frm parameter to paginate results. This value is calculated by combining the values from the break_points object in the _meta key from the api response. For instance to paginate to the nth page, use the value from the break_points n:[k, id] to pass to the API the value page=n&frm=25&search_after=k_id Please see https://github.com/cfpb/cfpb.github.io/issues/292 for more detailed examples",
+                  "in": "query",
+                  "name": "search_after",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "search_term": {
+                  "description": "Return results containing specific term",
+                  "in": "query",
+                  "name": "search_term",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "size": {
+                  "description": "Limit the size of the results",
+                  "in": "query",
+                  "name": "size",
+                  "schema": {
+                    "default": 10,
+                    "format": "int64",
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "sort": {
+                  "description": "Return results sort in a particular order",
+                  "in": "query",
+                  "name": "sort",
+                  "schema": {
+                    "default": "relevance_desc",
+                    "enum": [
+                      "relevance_desc",
+                      "relevance_asc",
+                      "created_date_desc",
+                      "created_date_asc"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "state": {
+                  "description": "Filter the results to only return these states (use abbreviation, i.e. CA, VA)",
+                  "explode": true,
+                  "in": "query",
+                  "name": "state",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "submitted_via": {
+                  "description": "Filter the results to only return these types of way consumers submitted their complaints",
+                  "explode": true,
+                  "in": "query",
+                  "name": "submitted_via",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "suggest_text": {
+                  "description": "text to use for suggestions",
+                  "in": "query",
+                  "name": "text",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "tags": {
+                  "description": "Filter the results to only return these types of tag",
+                  "explode": true,
+                  "in": "query",
+                  "name": "tags",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "timely": {
+                  "description": "Filter the results to show whether a response was timely",
+                  "explode": true,
+                  "in": "query",
+                  "name": "timely",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                },
+                "zip_code": {
+                  "description": "Filter the results to only return these zip codes",
+                  "explode": true,
+                  "in": "query",
+                  "name": "zip_code",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  }
+                }
+              },
+              "schemas": {
+                "Aggregation": {
+                  "description": "An OpenSearch aggregation",
+                  "properties": {
+                    "doc_count": {
+                      "description": "The total number of complaints covered in this aggregation",
+                      "type": "integer"
+                    },
+                    "field": {
+                      "description": "The name of the ` being aggregated",
+                      "properties": {
+                        "buckets": {
+                          "items": {
+                            "$ref": "#/components/schemas/Bucket"
+                          },
+                          "type": "array"
+                        },
+                        "doc_count_error_upper_bound": {
+                          "description": "The number of possible errors that occurred when searching the shards",
+                          "type": "integer"
+                        },
+                        "sum_other_doc_count": {
+                          "description": "The number of complaints that were not included in this aggregation.",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "AggregationDate": {
+                  "properties": {
+                    "value": {
+                      "description": "Seconds since 1970 (Unix Epoch)",
+                      "type": "number"
+                    },
+                    "value_as_string": {
+                      "description": "ISO-8601 formatted date (yyyy-mm-ddTHH:MM:SSZZ)",
+                      "format": "date-time",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Bucket": {
+                  "properties": {
+                    "doc_count": {
+                      "description": "The number of complaints that match this key",
+                      "type": "integer"
+                    },
+                    "key": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Complaint": {
+                  "externalDocs": {
+                    "description": "Official documentation",
+                    "url": "https://cfpb.github.io/api/ccdb/fields.html"
+                  },
+                  "properties": {
+                    "company": {
+                      "description": "The complaint is about this company",
+                      "type": "string"
+                    },
+                    "company_public_response": {
+                      "description": "The company's optional, public-facing response to a consumer's complaint",
+                      "type": "string"
+                    },
+                    "company_response": {
+                      "description": "The response from the company about this complaint",
+                      "type": "string"
+                    },
+                    "complaint_id": {
+                      "description": "The unique identification number for a complaint",
+                      "type": "integer"
+                    },
+                    "date_received": {
+                      "description": "The date the CFPB received the complaint",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "date_sent_to_company": {
+                      "description": "The date the CFPB sent the complaint to the company",
+                      "type": "string"
+                    },
+                    "issue": {
+                      "description": "The issue the consumer identified in the complaint",
+                      "type": "string"
+                    },
+                    "product": {
+                      "description": "The type of product the consumer identified in the complaint",
+                      "type": "string"
+                    },
+                    "state": {
+                      "description": "The state of the mailing address provided by the consumer",
+                      "type": "string"
+                    },
+                    "sub_issue": {
+                      "description": "The sub-issue the consumer identified in the complaint",
+                      "type": "string"
+                    },
+                    "sub_product": {
+                      "description": "The type of sub-product the consumer identified in the complaint",
+                      "type": "string"
+                    },
+                    "submitted_via": {
+                      "description": "How the complaint was submitted to the CFPB",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Data that supports easier searching and sorting of complaints",
+                      "type": "string"
+                    },
+                    "timely": {
+                      "description": "Indicates whether the company gave a timely response or not",
+                      "type": "string"
+                    },
+                    "zip_code": {
+                      "description": "The mailing ZIP code provided by the consumer",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Hit": {
+                  "description": "A single OpenSearch result",
+                  "properties": {
+                    "_source": {
+                      "$ref": "#/components/schemas/Complaint"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Hits": {
+                  "description": "A set of complaints that matched the query",
+                  "properties": {
+                    "hits": {
+                      "items": {
+                        "$ref": "#/components/schemas/Hit"
+                      },
+                      "type": "array"
+                    },
+                    "max_score": {
+                      "description": "The highest score in the results",
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "total": {
+                      "properties": {
+                        "relation": {
+                          "description": "Indicates the accuracy of the default ES response, whether the value is accurate (eq) or a lower bound (gte)",
+                          "type": "string"
+                        },
+                        "value": {
+                          "description": "The count of matching hits, accurate in our code even above 10,000 hits",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Meta": {
+                  "properties": {
+                    "break_points": {
+                      "description": "Contains key value pairs of page and arrays. Used to paginate OpenSearch results in list view",
+                      "type": "object"
+                    },
+                    "has_data_issue": {
+                      "description": "Indicates there has been an issue with the most recent data load",
+                      "type": "boolean"
+                    },
+                    "is_data_stale": {
+                      "description": "Indicates the most recent data is over 5 business days old",
+                      "type": "boolean"
+                    },
+                    "last_indexed": {
+                      "description": "The timestamp of the most recently indexed complaint",
+                      "format": "dateTime",
+                      "type": "string"
+                    },
+                    "last_updated": {
+                      "description": "The timestamp of the most recent complaint",
+                      "format": "dateTime",
+                      "type": "string"
+                    },
+                    "license": {
+                      "description": "The open source license under which the API operates",
+                      "type": "string"
+                    },
+                    "total_record_count": {
+                      "description": "The total number of complaints currently indexed",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "MultiLevelAggregation": {
+                  "properties": {
+                    "doc_count": {
+                      "description": "The total number of complaints covered in this aggregation",
+                      "type": "integer"
+                    },
+                    "field": {
+                      "description": "The name of the field being aggregated",
+                      "properties": {
+                        "buckets": {
+                          "items": {
+                            "$ref": "#/components/schemas/MultiLevelBucket"
+                          },
+                          "type": "array"
+                        },
+                        "doc_count_error_upper_bound": {
+                          "description": "The number of possible errors that occurred when searching the shards",
+                          "type": "integer"
+                        },
+                        "sum_other_doc_count": {
+                          "description": "The number of complaints that were not included in this aggregation.",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  }
+                },
+                "MultiLevelBucket": {
+                  "properties": {
+                    "doc_count": {
+                      "description": "The number of complaints that match this key",
+                      "type": "integer"
+                    },
+                    "field.raw": {
+                      "description": "The next level of aggregations",
+                      "properties": {
+                        "buckets": {
+                          "items": {
+                            "$ref": "#/components/schemas/Aggregation"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "key": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SearchResult": {
+                  "properties": {
+                    "_meta": {
+                      "$ref": "#/components/schemas/Meta"
+                    },
+                    "aggregations": {
+                      "properties": {
+                        "company_public_response": {
+                          "$ref": "#/components/schemas/Aggregation"
+                        },
+                        "company_response": {
+                          "$ref": "#/components/schemas/Aggregation"
+                        },
+                        "issue": {
+                          "$ref": "#/components/schemas/MultiLevelAggregation"
+                        },
+                        "product": {
+                          "$ref": "#/components/schemas/MultiLevelAggregation"
+                        },
+                        "state": {
+                          "$ref": "#/components/schemas/Aggregation"
+                        },
+                        "submitted_via": {
+                          "$ref": "#/components/schemas/Aggregation"
+                        },
+                        "tags": {
+                          "$ref": "#/components/schemas/Aggregation"
+                        },
+                        "timely": {
+                          "$ref": "#/components/schemas/Aggregation"
+                        },
+                        "zip_code": {
+                          "$ref": "#/components/schemas/Aggregation"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "hits": {
+                      "$ref": "#/components/schemas/Hits"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SuggestResult": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Additional API Information",
+              "url": "https://cfpb.github.io/api/ccdb/"
+            },
+            "info": {
+              "contact": {
+                "name": "Report API Issues",
+                "url": "https://github.com/cfpb/ccdb5-api/issues"
+              },
+              "description": "The API for searching the Consumer Complaint Database",
+              "license": {
+                "name": "Creative Commons License CC0",
+                "url": "https://github.com/cfpb/ccdb5-api/blob/main/LICENSE"
+              },
+              "termsOfService": "https://cfpb.github.io/source-code-policy/",
+              "title": "Consumer Complaint Database API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/": {
+                "get": {
+                  "description": "Search the contents of the consumer complaint database",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/search_term"
+                    },
+                    {
+                      "$ref": "#/components/parameters/field"
+                    },
+                    {
+                      "$ref": "#/components/parameters/from"
+                    },
+                    {
+                      "$ref": "#/components/parameters/size"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sort"
+                    },
+                    {
+                      "$ref": "#/components/parameters/format"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_aggs"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_highlight"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_public_response"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_received_max"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_received_min"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_response"
+                    },
+                    {
+                      "$ref": "#/components/parameters/date_received_max"
+                    },
+                    {
+                      "$ref": "#/components/parameters/date_received_min"
+                    },
+                    {
+                      "$ref": "#/components/parameters/issue"
+                    },
+                    {
+                      "$ref": "#/components/parameters/product"
+                    },
+                    {
+                      "$ref": "#/components/parameters/search_after"
+                    },
+                    {
+                      "$ref": "#/components/parameters/state"
+                    },
+                    {
+                      "$ref": "#/components/parameters/submitted_via"
+                    },
+                    {
+                      "$ref": "#/components/parameters/tags"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timely"
+                    },
+                    {
+                      "$ref": "#/components/parameters/zip_code"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SearchResult"
+                          }
+                        },
+                        "text/csv": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SearchResult"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    },
+                    "400": {
+                      "description": "Invalid status value"
+                    }
+                  },
+                  "summary": "Search consumer complaints",
+                  "tags": [
+                    "Complaints"
+                  ]
+                }
+              },
+              "/_suggest_company": {
+                "get": {
+                  "description": "Provide a list of companies that match the input text",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/suggest_text"
+                    },
+                    {
+                      "$ref": "#/components/parameters/size"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_public_response"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_received_max"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_received_min"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_response"
+                    },
+                    {
+                      "$ref": "#/components/parameters/date_received_max"
+                    },
+                    {
+                      "$ref": "#/components/parameters/date_received_min"
+                    },
+                    {
+                      "$ref": "#/components/parameters/issue"
+                    },
+                    {
+                      "$ref": "#/components/parameters/product"
+                    },
+                    {
+                      "$ref": "#/components/parameters/state"
+                    },
+                    {
+                      "$ref": "#/components/parameters/submitted_via"
+                    },
+                    {
+                      "$ref": "#/components/parameters/tags"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timely"
+                    },
+                    {
+                      "$ref": "#/components/parameters/zip_code"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SuggestResult"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    },
+                    "400": {
+                      "description": "Invalid input"
+                    }
+                  },
+                  "summary": "Suggest possible companies",
+                  "tags": [
+                    "Typeahead"
+                  ]
+                }
+              },
+              "/_suggest_zip": {
+                "get": {
+                  "description": "Provide a list of zip codes that match the input text",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/suggest_text"
+                    },
+                    {
+                      "$ref": "#/components/parameters/size"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_public_response"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_received_max"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_received_min"
+                    },
+                    {
+                      "$ref": "#/components/parameters/company_response"
+                    },
+                    {
+                      "$ref": "#/components/parameters/date_received_max"
+                    },
+                    {
+                      "$ref": "#/components/parameters/date_received_min"
+                    },
+                    {
+                      "$ref": "#/components/parameters/issue"
+                    },
+                    {
+                      "$ref": "#/components/parameters/product"
+                    },
+                    {
+                      "$ref": "#/components/parameters/state"
+                    },
+                    {
+                      "$ref": "#/components/parameters/submitted_via"
+                    },
+                    {
+                      "$ref": "#/components/parameters/tags"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timely"
+                    },
+                    {
+                      "$ref": "#/components/parameters/zip_code"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SuggestResult"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    },
+                    "400": {
+                      "description": "Invalid input"
+                    }
+                  },
+                  "summary": "Suggest possible zip codes",
+                  "tags": [
+                    "Typeahead"
+                  ]
+                }
+              },
+              "/{complaintId}": {
+                "get": {
+                  "description": "Get complaint details for a specific ID",
+                  "parameters": [
+                    {
+                      "description": "ID of the complaint",
+                      "in": "path",
+                      "name": "complaintId",
+                      "required": true,
+                      "schema": {
+                        "format": "int64",
+                        "maximum": 9999999999,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Complaint"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    },
+                    "400": {
+                      "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                      "description": "Complaint not found"
+                    }
+                  },
+                  "summary": "Find consumer complaint by ID",
+                  "tags": [
+                    "Complaints"
+                  ]
+                }
+              }
+            },
+            "security": [],
+            "servers": [
+              {
+                "url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/"
+              }
+            ],
+            "tags": [
+              {
+                "description": "These endpoints provide access to consumer complaints",
+                "name": "Complaints"
+              },
+              {
+                "description": "These endpoints support the typeahead boxes in the UI",
+                "name": "Typeahead"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "CFPB Consumer Complaint Database"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.337639+00:00",
+    "license": {
+      "name": "Creative Commons License CC0",
+      "url": "https://github.com/cfpb/ccdb5-api/blob/main/LICENSE"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/cfpb/ccdb5-api/main/swagger-config.yaml",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "a384563b5bf721a448085b2bb4c9e374469b982dedb68da3094cffe677a5bb99",
+    "source_id": "cfpb-consumer-complaint-database",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/cfpb/ccdb5-api/main/swagger-config.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

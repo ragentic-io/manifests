@@ -1,0 +1,1905 @@
+{
+  "a2ui": {},
+  "app": "zoho-campaigns",
+  "graph": {
+    "edges": [
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:post:/createCampaign"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:get:/deletemailinglist"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:get:/getlistsubscribers"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:get:/getmailinglists"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:post:/json/clonecampaign"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:post:/json/listsubscribe"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:post:/json/listunsubscribe"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:post:/sendcampaign"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:get:/tag/add"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:get:/tag/associate"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:get:/tag/deassociate"
+      },
+      {
+        "from": "zoho-campaigns",
+        "kind": "EXPOSES",
+        "to": "operation:get:/tag/getalltags"
+      },
+      {
+        "from": "operation:post:/createCampaign",
+        "kind": "RETURNS",
+        "to": "schema:CampaignCreateResult"
+      },
+      {
+        "from": "operation:get:/deletemailinglist",
+        "kind": "RETURNS",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "operation:get:/getlistsubscribers",
+        "kind": "RETURNS",
+        "to": "schema:ContactsResponse"
+      },
+      {
+        "from": "operation:get:/getmailinglists",
+        "kind": "RETURNS",
+        "to": "schema:MailingListsResponse"
+      },
+      {
+        "from": "operation:post:/json/clonecampaign",
+        "kind": "RETURNS",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "operation:post:/json/listsubscribe",
+        "kind": "RETURNS",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "operation:post:/json/listunsubscribe",
+        "kind": "RETURNS",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "operation:post:/sendcampaign",
+        "kind": "RETURNS",
+        "to": "schema:CampaignSendResult"
+      },
+      {
+        "from": "operation:get:/tag/add",
+        "kind": "RETURNS",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "operation:get:/tag/associate",
+        "kind": "RETURNS",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "operation:get:/tag/deassociate",
+        "kind": "RETURNS",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "operation:get:/tag/getalltags",
+        "kind": "RETURNS",
+        "to": "schema:TagsResponse"
+      },
+      {
+        "from": "schema:CampaignCreateResult",
+        "kind": "REFERENCES",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "schema:ContactsResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "schema:ContactsResponse",
+        "kind": "REFERENCES",
+        "to": "schema:Contact"
+      },
+      {
+        "from": "schema:MailingListsResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "schema:MailingListsResponse",
+        "kind": "REFERENCES",
+        "to": "schema:MailingList"
+      },
+      {
+        "from": "schema:TagRecord",
+        "kind": "REFERENCES",
+        "to": "schema:TagInfo"
+      },
+      {
+        "from": "schema:TagsResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ApiResult"
+      },
+      {
+        "from": "schema:TagsResponse",
+        "kind": "REFERENCES",
+        "to": "schema:TagRecord"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "zoho-campaigns",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a draft campaign.",
+        "id": "operation:post:/createCampaign",
+        "kind": "operation",
+        "method": "post",
+        "name": "createCampaign",
+        "parameters": [
+          {
+            "default": "JSON",
+            "description": "JSON output is modeled by this specification.",
+            "enum": [
+              "JSON"
+            ],
+            "in": "query",
+            "name": "resfmt",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "campaignname",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "from_email",
+            "required": true,
+            "type": "string:email"
+          },
+          {
+            "in": "query",
+            "name": "from_name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "subject",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Public URL containing the campaign HTML content.",
+            "in": "query",
+            "name": "content_url",
+            "required": false,
+            "type": "string:uri"
+          },
+          {
+            "description": "URL-encoded JSON mapping mailing-list keys to segment identifiers.",
+            "in": "query",
+            "name": "list_details",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Segment identifiers, in the format documented by the provider.",
+            "in": "query",
+            "name": "segments",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Required by accounts using updated topic management.",
+            "in": "query",
+            "name": "topicId",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/createCampaign",
+        "pointer": "#/paths/~1createCampaign/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CampaignCreateResult"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Create a campaign draft",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "This documented API method uses GET.",
+        "id": "operation:get:/deletemailinglist",
+        "kind": "operation",
+        "method": "get",
+        "name": "deleteMailingList",
+        "parameters": [
+          {
+            "default": "JSON",
+            "description": "JSON output is modeled by this specification.",
+            "enum": [
+              "JSON"
+            ],
+            "in": "query",
+            "name": "resfmt",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Mailing-list key used by list-management endpoints.",
+            "in": "query",
+            "name": "listkey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              true,
+              false
+            ],
+            "in": "query",
+            "name": "deletecontacts",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/deletemailinglist",
+        "pointer": "#/paths/~1deletemailinglist/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResult"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Delete a mailing list",
+        "tags": [
+          "Mailing Lists"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Requires the contact READ scope and the list key for the mailing list.",
+        "id": "operation:get:/getlistsubscribers",
+        "kind": "operation",
+        "method": "get",
+        "name": "getListContacts",
+        "parameters": [
+          {
+            "default": "JSON",
+            "description": "JSON output is modeled by this specification.",
+            "enum": [
+              "JSON"
+            ],
+            "in": "query",
+            "name": "resfmt",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Mailing-list key used by list-management endpoints.",
+            "in": "query",
+            "name": "listkey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "fromindex",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "range",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "enum": [
+              "active",
+              "recent",
+              "mostrecent",
+              "unsub",
+              "bounce"
+            ],
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/getlistsubscribers",
+        "pointer": "#/paths/~1getlistsubscribers/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContactsResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Get contacts in a mailing list",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Requires the contact READ scope.",
+        "id": "operation:get:/getmailinglists",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMailingLists",
+        "parameters": [
+          {
+            "default": "JSON",
+            "description": "JSON output is modeled by this specification.",
+            "enum": [
+              "JSON"
+            ],
+            "in": "query",
+            "name": "resfmt",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "fromindex",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "range",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/getmailinglists",
+        "pointer": "#/paths/~1getmailinglists/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "MailingListsResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Get mailing lists",
+        "tags": [
+          "Mailing Lists"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The provider documents GET and POST for this action; this spec describes the POST JSON form.",
+        "id": "operation:post:/json/clonecampaign",
+        "kind": "operation",
+        "method": "post",
+        "name": "cloneCampaign",
+        "parameters": [
+          {
+            "default": "JSON",
+            "description": "JSON output is modeled by this specification.",
+            "enum": [
+              "JSON"
+            ],
+            "in": "query",
+            "name": "resfmt",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "URL-encoded JSON object with the new campaign details and source campaign key.",
+            "in": "query",
+            "name": "campaigninfo",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/json/clonecampaign",
+        "pointer": "#/paths/~1json~1clonecampaign/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResult"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Clone a campaign",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Adds a contact or updates fields for an existing contact.",
+        "id": "operation:post:/json/listsubscribe",
+        "kind": "operation",
+        "method": "post",
+        "name": "subscribeContact",
+        "parameters": [
+          {
+            "default": "JSON",
+            "description": "JSON output is modeled by this specification.",
+            "enum": [
+              "JSON"
+            ],
+            "in": "query",
+            "name": "resfmt",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Mailing-list key used by list-management endpoints.",
+            "in": "query",
+            "name": "listkey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "URL-encoded JSON contact fields, including the contact email.",
+            "in": "query",
+            "name": "contactinfo",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "source",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "topic_id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/json/listsubscribe",
+        "pointer": "#/paths/~1json~1listsubscribe/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResult"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Add or update a contact in a mailing list",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/json/listunsubscribe",
+        "kind": "operation",
+        "method": "post",
+        "name": "unsubscribeContact",
+        "parameters": [
+          {
+            "default": "JSON",
+            "description": "JSON output is modeled by this specification.",
+            "enum": [
+              "JSON"
+            ],
+            "in": "query",
+            "name": "resfmt",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Mailing-list key used by list-management endpoints.",
+            "in": "query",
+            "name": "listkey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "URL-encoded JSON contact fields, including the contact email.",
+            "in": "query",
+            "name": "contactinfo",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "topic_id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/json/listunsubscribe",
+        "pointer": "#/paths/~1json~1listunsubscribe/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResult"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Unsubscribe a contact from a mailing list",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Sends the campaign identified by its campaign key.",
+        "id": "operation:post:/sendcampaign",
+        "kind": "operation",
+        "method": "post",
+        "name": "sendCampaign",
+        "parameters": [
+          {
+            "default": "JSON",
+            "description": "JSON output is modeled by this specification.",
+            "enum": [
+              "JSON"
+            ],
+            "in": "query",
+            "name": "resfmt",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "campaignkey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/sendcampaign",
+        "pointer": "#/paths/~1sendcampaign/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CampaignSendResult"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Send a campaign",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a tag that can be associated with contacts.",
+        "id": "operation:get:/tag/add",
+        "kind": "operation",
+        "method": "get",
+        "name": "createTag",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tagName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tagDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Hex color code for the tag; Zoho documents",
+            "in": "query",
+            "name": "color",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/tag/add",
+        "pointer": "#/paths/~1tag~1add/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResult"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Create a tag",
+        "tags": [
+          "Tags"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/tag/associate",
+        "kind": "operation",
+        "method": "get",
+        "name": "associateTag",
+        "parameters": [
+          {
+            "default": "JSON",
+            "description": "JSON output is modeled by this specification.",
+            "enum": [
+              "JSON"
+            ],
+            "in": "query",
+            "name": "resfmt",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tagName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "lead_email",
+            "required": true,
+            "type": "string:email"
+          }
+        ],
+        "path": "/tag/associate",
+        "pointer": "#/paths/~1tag~1associate/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResult"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Associate a tag with a contact",
+        "tags": [
+          "Tags"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/tag/deassociate",
+        "kind": "operation",
+        "method": "get",
+        "name": "deassociateTag",
+        "parameters": [
+          {
+            "default": "JSON",
+            "description": "JSON output is modeled by this specification.",
+            "enum": [
+              "JSON"
+            ],
+            "in": "query",
+            "name": "resfmt",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tagName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "lead_email",
+            "required": true,
+            "type": "string:email"
+          }
+        ],
+        "path": "/tag/deassociate",
+        "pointer": "#/paths/~1tag~1deassociate/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResult"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Remove a tag from a contact",
+        "tags": [
+          "Tags"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/tag/getalltags",
+        "kind": "operation",
+        "method": "get",
+        "name": "getAllTags",
+        "path": "/tag/getalltags",
+        "pointer": "#/paths/~1tag~1getalltags/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "TagsResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ZohoAccessToken": []
+          }
+        ],
+        "summary": "Get tags",
+        "tags": [
+          "Tags"
+        ]
+      },
+      {
+        "id": "schema:ApiResult",
+        "kind": "schema",
+        "name": "ApiResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:CampaignCreateResult",
+        "kind": "schema",
+        "name": "CampaignCreateResult",
+        "type": "ApiResult|object"
+      },
+      {
+        "id": "schema:CampaignSendResult",
+        "kind": "schema",
+        "name": "CampaignSendResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:Contact",
+        "kind": "schema",
+        "name": "Contact",
+        "type": "object"
+      },
+      {
+        "id": "schema:ContactsResponse",
+        "kind": "schema",
+        "name": "ContactsResponse",
+        "type": "ApiResult|object"
+      },
+      {
+        "id": "schema:MailingList",
+        "kind": "schema",
+        "name": "MailingList",
+        "type": "object"
+      },
+      {
+        "id": "schema:MailingListsResponse",
+        "kind": "schema",
+        "name": "MailingListsResponse",
+        "type": "ApiResult|object"
+      },
+      {
+        "id": "schema:TagInfo",
+        "kind": "schema",
+        "name": "TagInfo",
+        "type": "object"
+      },
+      {
+        "description": "Zoho returns each tag as an object keyed by its tag ID.",
+        "id": "schema:TagRecord",
+        "kind": "schema",
+        "name": "TagRecord",
+        "type": "object"
+      },
+      {
+        "id": "schema:TagsResponse",
+        "kind": "schema",
+        "name": "TagsResponse",
+        "type": "ApiResult|object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "zoho-campaigns"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://campaigns.zoho.com/api/v1.1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "ListKey": {
+                  "description": "Mailing-list key used by list-management endpoints.",
+                  "in": "query",
+                  "name": "listkey",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "ResponseFormat": {
+                  "description": "JSON output is modeled by this specification.",
+                  "in": "query",
+                  "name": "resfmt",
+                  "schema": {
+                    "default": "JSON",
+                    "enum": [
+                      "JSON"
+                    ],
+                    "type": "string"
+                  }
+                }
+              },
+              "schemas": {
+                "ApiResult": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "uri": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CampaignCreateResult": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiResult"
+                    },
+                    {
+                      "properties": {
+                        "campaignKey": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "CampaignSendResult": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "response": {
+                      "additionalProperties": true,
+                      "properties": {
+                        "campaign_status": {
+                          "type": "string"
+                        },
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "uri": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Contact": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "companyname": {
+                      "type": "string"
+                    },
+                    "contact_email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "firstname": {
+                      "type": "string"
+                    },
+                    "lastname": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "zuid": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ContactsResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiResult"
+                    },
+                    {
+                      "properties": {
+                        "list_of_details": {
+                          "items": {
+                            "$ref": "#/components/schemas/Contact"
+                          },
+                          "type": "array"
+                        },
+                        "requestdetails": {
+                          "properties": {
+                            "fromindex": {
+                              "type": "integer"
+                            },
+                            "range": {
+                              "type": "integer"
+                            },
+                            "sort": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "MailingList": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "created_date": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "is_public": {
+                      "type": "string"
+                    },
+                    "listkey": {
+                      "type": "string"
+                    },
+                    "listname": {
+                      "type": "string"
+                    },
+                    "listunino": {
+                      "type": "string"
+                    },
+                    "lockstatus": {
+                      "type": "string"
+                    },
+                    "noofbouncecnt": {
+                      "type": "string"
+                    },
+                    "noofcontacts": {
+                      "type": "string"
+                    },
+                    "noofunsubcnt": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "MailingListsResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiResult"
+                    },
+                    {
+                      "properties": {
+                        "list_of_details": {
+                          "items": {
+                            "$ref": "#/components/schemas/MailingList"
+                          },
+                          "type": "array"
+                        },
+                        "requestdetails": {
+                          "properties": {
+                            "fromindex": {
+                              "type": "integer"
+                            },
+                            "range": {
+                              "type": "integer"
+                            },
+                            "sort": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "TagInfo": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "is_crm_tag": {
+                      "type": "string"
+                    },
+                    "tag_color": {
+                      "type": "string"
+                    },
+                    "tag_created_time": {
+                      "type": "string"
+                    },
+                    "tag_desc": {
+                      "type": "string"
+                    },
+                    "tag_name": {
+                      "type": "string"
+                    },
+                    "tagged_contact_count": {
+                      "type": "string"
+                    },
+                    "tagowner": {
+                      "type": "string"
+                    },
+                    "zuid": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "TagRecord": {
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/TagInfo"
+                  },
+                  "description": "Zoho returns each tag as an object keyed by its tag ID.",
+                  "type": "object"
+                },
+                "TagsResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ApiResult"
+                    },
+                    {
+                      "properties": {
+                        "requestdetails": {
+                          "description": "Zoho returns this as a JSON-encoded string.",
+                          "type": "string"
+                        },
+                        "tags": {
+                          "items": {
+                            "$ref": "#/components/schemas/TagRecord"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                }
+              },
+              "securitySchemes": {
+                "ZohoAccessToken": {
+                  "description": "Provide `Zoho-oauthtoken <access_token>` as documented by Zoho Campaigns.",
+                  "in": "header",
+                  "name": "Authorization",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Official Zoho Campaigns API v1.1 reference",
+              "url": "https://www.zoho.com/campaigns/help/developers/"
+            },
+            "info": {
+              "contact": {
+                "url": "https://www.zoho.com/campaigns/contact.html"
+              },
+              "description": "Community-maintained JSON subset of the Zoho Campaigns API v1.1.",
+              "license": {
+                "name": "CC0-1.0",
+                "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+              },
+              "title": "Zoho Campaigns API",
+              "version": "1.1"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/createCampaign": {
+                "post": {
+                  "description": "Creates a draft campaign. Topic ID is required for accounts using the updated topic management version; either list details or segments may be used as the recipients source.",
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/create-campaign.html"
+                  },
+                  "operationId": "createCampaign",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ResponseFormat"
+                    },
+                    {
+                      "in": "query",
+                      "name": "campaignname",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "from_email",
+                      "required": true,
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "from_name",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "subject",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Public URL containing the campaign HTML content.",
+                      "in": "query",
+                      "name": "content_url",
+                      "schema": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "URL-encoded JSON mapping mailing-list keys to segment identifiers.",
+                      "in": "query",
+                      "name": "list_details",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Segment identifiers, in the format documented by the provider.",
+                      "in": "query",
+                      "name": "segments",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Required by accounts using updated topic management.",
+                      "in": "query",
+                      "name": "topicId",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CampaignCreateResult"
+                          }
+                        }
+                      },
+                      "description": "Campaign creation result."
+                    }
+                  },
+                  "summary": "Create a campaign draft",
+                  "tags": [
+                    "Campaigns"
+                  ]
+                }
+              },
+              "/deletemailinglist": {
+                "get": {
+                  "description": "This documented API method uses GET. The deletecontacts option controls whether contacts are also deleted from the organization.",
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/delete-list.html"
+                  },
+                  "operationId": "deleteMailingList",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ResponseFormat"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ListKey"
+                    },
+                    {
+                      "in": "query",
+                      "name": "deletecontacts",
+                      "schema": {
+                        "enum": [
+                          true,
+                          false
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiResult"
+                          }
+                        }
+                      },
+                      "description": "Mailing list deletion result."
+                    }
+                  },
+                  "summary": "Delete a mailing list",
+                  "tags": [
+                    "Mailing Lists"
+                  ]
+                }
+              },
+              "/getlistsubscribers": {
+                "get": {
+                  "description": "Requires the contact READ scope and the list key for the mailing list.",
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/get-list-subscribers.html"
+                  },
+                  "operationId": "getListContacts",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ResponseFormat"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ListKey"
+                    },
+                    {
+                      "in": "query",
+                      "name": "sort",
+                      "schema": {
+                        "enum": [
+                          "asc",
+                          "desc"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "fromindex",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "range",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "status",
+                      "schema": {
+                        "enum": [
+                          "active",
+                          "recent",
+                          "mostrecent",
+                          "unsub",
+                          "bounce"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContactsResponse"
+                          }
+                        }
+                      },
+                      "description": "Contacts matching the requested list status."
+                    }
+                  },
+                  "summary": "Get contacts in a mailing list",
+                  "tags": [
+                    "Contacts"
+                  ]
+                }
+              },
+              "/getmailinglists": {
+                "get": {
+                  "description": "Requires the contact READ scope. List-management calls use a list key only when a specific list is being accessed.",
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/get-mailing-lists.html"
+                  },
+                  "operationId": "getMailingLists",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ResponseFormat"
+                    },
+                    {
+                      "in": "query",
+                      "name": "sort",
+                      "schema": {
+                        "enum": [
+                          "asc",
+                          "desc"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "fromindex",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "range",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/MailingListsResponse"
+                          }
+                        }
+                      },
+                      "description": "Mailing lists and list metadata."
+                    }
+                  },
+                  "summary": "Get mailing lists",
+                  "tags": [
+                    "Mailing Lists"
+                  ]
+                }
+              },
+              "/json/clonecampaign": {
+                "post": {
+                  "description": "The provider documents GET and POST for this action; this spec describes the POST JSON form. The campaign information object must be URL encoded.",
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/clone-campaign.html"
+                  },
+                  "operationId": "cloneCampaign",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ResponseFormat"
+                    },
+                    {
+                      "description": "URL-encoded JSON object with the new campaign details and source campaign key.",
+                      "in": "query",
+                      "name": "campaigninfo",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiResult"
+                          }
+                        }
+                      },
+                      "description": "Campaign cloning result."
+                    }
+                  },
+                  "summary": "Clone a campaign",
+                  "tags": [
+                    "Campaigns"
+                  ]
+                }
+              },
+              "/json/listsubscribe": {
+                "post": {
+                  "description": "Adds a contact or updates fields for an existing contact. A confirmation email is sent when the mailing list has its signup form enabled.",
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/contact-subscribe.html"
+                  },
+                  "operationId": "subscribeContact",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ResponseFormat"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ListKey"
+                    },
+                    {
+                      "description": "URL-encoded JSON contact fields, including the contact email.",
+                      "in": "query",
+                      "name": "contactinfo",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "source",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "topic_id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiResult"
+                          }
+                        }
+                      },
+                      "description": "Contact subscription result."
+                    }
+                  },
+                  "summary": "Add or update a contact in a mailing list",
+                  "tags": [
+                    "Contacts"
+                  ]
+                }
+              },
+              "/json/listunsubscribe": {
+                "post": {
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/contact-unsubscribe.html"
+                  },
+                  "operationId": "unsubscribeContact",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ResponseFormat"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ListKey"
+                    },
+                    {
+                      "description": "URL-encoded JSON contact fields, including the contact email.",
+                      "in": "query",
+                      "name": "contactinfo",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "topic_id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiResult"
+                          }
+                        }
+                      },
+                      "description": "Unsubscribe result."
+                    }
+                  },
+                  "summary": "Unsubscribe a contact from a mailing list",
+                  "tags": [
+                    "Contacts"
+                  ]
+                }
+              },
+              "/sendcampaign": {
+                "post": {
+                  "description": "Sends the campaign identified by its campaign key. Requires the campaign UPDATE scope.",
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/send-campaign.html"
+                  },
+                  "operationId": "sendCampaign",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ResponseFormat"
+                    },
+                    {
+                      "in": "query",
+                      "name": "campaignkey",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CampaignSendResult"
+                          }
+                        }
+                      },
+                      "description": "Campaign sending status."
+                    }
+                  },
+                  "summary": "Send a campaign",
+                  "tags": [
+                    "Campaigns"
+                  ]
+                }
+              },
+              "/tag/add": {
+                "get": {
+                  "description": "Creates a tag that can be associated with contacts.",
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/tag-management/create-tag.html"
+                  },
+                  "operationId": "createTag",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "tagName",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "tagDesc",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Hex color code for the tag; Zoho documents",
+                      "in": "query",
+                      "name": "color",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiResult"
+                          }
+                        }
+                      },
+                      "description": "Tag creation result."
+                    }
+                  },
+                  "summary": "Create a tag",
+                  "tags": [
+                    "Tags"
+                  ]
+                }
+              },
+              "/tag/associate": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/tag-management/associate-tag.html"
+                  },
+                  "operationId": "associateTag",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ResponseFormat"
+                    },
+                    {
+                      "in": "query",
+                      "name": "tagName",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "lead_email",
+                      "required": true,
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiResult"
+                          }
+                        }
+                      },
+                      "description": "Tag association result."
+                    }
+                  },
+                  "summary": "Associate a tag with a contact",
+                  "tags": [
+                    "Tags"
+                  ]
+                }
+              },
+              "/tag/deassociate": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/tag-management/deassociate-tag.html"
+                  },
+                  "operationId": "deassociateTag",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ResponseFormat"
+                    },
+                    {
+                      "in": "query",
+                      "name": "tagName",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "lead_email",
+                      "required": true,
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiResult"
+                          }
+                        }
+                      },
+                      "description": "Tag removal result."
+                    }
+                  },
+                  "summary": "Remove a tag from a contact",
+                  "tags": [
+                    "Tags"
+                  ]
+                }
+              },
+              "/tag/getalltags": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://www.zoho.com/campaigns/help/developers/tag-management/get-all-tags.html"
+                  },
+                  "operationId": "getAllTags",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TagsResponse"
+                          }
+                        }
+                      },
+                      "description": "Tags and their contact associations."
+                    }
+                  },
+                  "summary": "Get tags",
+                  "tags": [
+                    "Tags"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "ZohoAccessToken": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Zoho Campaigns API v1.1 (US data center)",
+                "url": "https://campaigns.zoho.com/api/v1.1"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Mailing Lists"
+              },
+              {
+                "name": "Contacts"
+              },
+              {
+                "name": "Tags"
+              },
+              {
+                "name": "Campaigns"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Zoho Campaigns"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:34.654886+00:00",
+    "license": {
+      "name": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/zoho-campaigns/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "ac6bdd9780a6e2619a4f0246ad87060d1e5bff5260a5ea8613af5caa9277bbde",
+    "source_id": "zoho-campaigns",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/zoho-campaigns/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.1"
+}

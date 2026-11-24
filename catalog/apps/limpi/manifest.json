@@ -1,0 +1,2592 @@
+{
+  "a2ui": {},
+  "app": "limpi",
+  "graph": {
+    "edges": [
+      {
+        "from": "limpi",
+        "kind": "EXPOSES",
+        "to": "operation:get:/audits"
+      },
+      {
+        "from": "limpi",
+        "kind": "EXPOSES",
+        "to": "operation:post:/audits"
+      },
+      {
+        "from": "limpi",
+        "kind": "EXPOSES",
+        "to": "operation:get:/audits/{job_id}"
+      },
+      {
+        "from": "limpi",
+        "kind": "EXPOSES",
+        "to": "operation:post:/audits/{job_id}/cancel"
+      },
+      {
+        "from": "limpi",
+        "kind": "EXPOSES",
+        "to": "operation:get:/audits/{job_id}/report"
+      },
+      {
+        "from": "limpi",
+        "kind": "EXPOSES",
+        "to": "operation:get:/me"
+      },
+      {
+        "from": "limpi",
+        "kind": "EXPOSES",
+        "to": "operation:get:/openapi.json"
+      },
+      {
+        "from": "limpi",
+        "kind": "EXPOSES",
+        "to": "operation:get:/usage"
+      },
+      {
+        "from": "operation:get:/audits",
+        "kind": "RETURNS",
+        "to": "schema:AuditList"
+      },
+      {
+        "from": "operation:post:/audits",
+        "kind": "ACCEPTS",
+        "to": "schema:AuditCreateRequest"
+      },
+      {
+        "from": "operation:post:/audits",
+        "kind": "RETURNS",
+        "to": "schema:AuditEnvelope"
+      },
+      {
+        "from": "operation:get:/audits/{job_id}",
+        "kind": "RETURNS",
+        "to": "schema:AuditEnvelope"
+      },
+      {
+        "from": "operation:post:/audits/{job_id}/cancel",
+        "kind": "RETURNS",
+        "to": "schema:AuditEnvelope"
+      },
+      {
+        "from": "operation:get:/audits/{job_id}/report",
+        "kind": "RETURNS",
+        "to": "schema:AuditReportEnvelope"
+      },
+      {
+        "from": "operation:get:/me",
+        "kind": "RETURNS",
+        "to": "schema:ApiIdentityEnvelope"
+      },
+      {
+        "from": "operation:get:/usage",
+        "kind": "RETURNS",
+        "to": "schema:UsageEnvelope"
+      },
+      {
+        "from": "schema:AuditEnvelope",
+        "kind": "REFERENCES",
+        "to": "schema:Audit"
+      },
+      {
+        "from": "schema:AuditList",
+        "kind": "REFERENCES",
+        "to": "schema:Audit"
+      },
+      {
+        "from": "schema:AuditReportEnvelope",
+        "kind": "REFERENCES",
+        "to": "schema:PublicReport"
+      },
+      {
+        "from": "schema:PublicCheck",
+        "kind": "REFERENCES",
+        "to": "schema:PublicBreakdownItem"
+      },
+      {
+        "from": "schema:PublicCheck",
+        "kind": "REFERENCES",
+        "to": "schema:PublicExplanationRich"
+      },
+      {
+        "from": "schema:PublicCheck",
+        "kind": "REFERENCES",
+        "to": "schema:PublicSeoLengthChart"
+      },
+      {
+        "from": "schema:PublicCheck",
+        "kind": "REFERENCES",
+        "to": "schema:PublicUrlItem"
+      },
+      {
+        "from": "schema:PublicGuide",
+        "kind": "REFERENCES",
+        "to": "schema:PublicGuideLink"
+      },
+      {
+        "from": "schema:PublicPage",
+        "kind": "REFERENCES",
+        "to": "schema:PublicRedirectDetail"
+      },
+      {
+        "from": "schema:PublicProfessionalOpinion",
+        "kind": "REFERENCES",
+        "to": "schema:PublicProfessionalOpinionPriority"
+      },
+      {
+        "from": "schema:PublicRecommendation",
+        "kind": "REFERENCES",
+        "to": "schema:PublicGuide"
+      },
+      {
+        "from": "schema:PublicReport",
+        "kind": "REFERENCES",
+        "to": "schema:PublicCheck"
+      },
+      {
+        "from": "schema:PublicReport",
+        "kind": "REFERENCES",
+        "to": "schema:PublicCounts"
+      },
+      {
+        "from": "schema:PublicReport",
+        "kind": "REFERENCES",
+        "to": "schema:PublicCrawl"
+      },
+      {
+        "from": "schema:PublicReport",
+        "kind": "REFERENCES",
+        "to": "schema:PublicPage"
+      },
+      {
+        "from": "schema:PublicReport",
+        "kind": "REFERENCES",
+        "to": "schema:PublicProfessionalOpinion"
+      },
+      {
+        "from": "schema:PublicReport",
+        "kind": "REFERENCES",
+        "to": "schema:PublicRecommendation"
+      },
+      {
+        "from": "schema:PublicReport",
+        "kind": "REFERENCES",
+        "to": "schema:PublicSectionScores"
+      },
+      {
+        "from": "schema:PublicReport",
+        "kind": "REFERENCES",
+        "to": "schema:PublicStats"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "limpi",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/audits",
+        "kind": "operation",
+        "method": "get",
+        "name": "listAudits",
+        "parameters": [
+          {
+            "default": 25,
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Curseur opaque signé.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "queued",
+              "running",
+              "completed",
+              "failed",
+              "cancelled"
+            ],
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/audits",
+        "pointer": "#/paths/~1audits/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "AuditList"
+          },
+          {
+            "status": "400",
+            "type": "Problem"
+          },
+          {
+            "status": "401",
+            "type": "Problem"
+          },
+          {
+            "status": "403",
+            "type": "Problem"
+          },
+          {
+            "status": "429",
+            "type": "Problem"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Lister les audits"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/audits",
+        "kind": "operation",
+        "method": "post",
+        "name": "createAudit",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/audits",
+        "pointer": "#/paths/~1audits/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "AuditCreateRequest"
+        },
+        "responses": [
+          {
+            "status": "202",
+            "type": "AuditEnvelope"
+          },
+          {
+            "status": "400",
+            "type": "Problem"
+          },
+          {
+            "status": "401",
+            "type": "Problem"
+          },
+          {
+            "status": "403",
+            "type": "Problem"
+          },
+          {
+            "status": "409",
+            "type": "Problem"
+          },
+          {
+            "status": "413",
+            "type": "Problem"
+          },
+          {
+            "status": "415",
+            "type": "Problem"
+          },
+          {
+            "status": "428",
+            "type": "Problem"
+          },
+          {
+            "status": "429",
+            "type": "Problem"
+          },
+          {
+            "status": "500",
+            "type": "Problem"
+          },
+          {
+            "status": "503",
+            "type": "Problem"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Créer un audit asynchrone"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/audits/{job_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getAudit",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/audits/{job_id}",
+        "pointer": "#/paths/~1audits~1{job_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "AuditEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Problem"
+          },
+          {
+            "status": "403",
+            "type": "Problem"
+          },
+          {
+            "status": "404",
+            "type": "Problem"
+          },
+          {
+            "status": "429",
+            "type": "Problem"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Lire un audit"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/audits/{job_id}/cancel",
+        "kind": "operation",
+        "method": "post",
+        "name": "cancelAudit",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/audits/{job_id}/cancel",
+        "pointer": "#/paths/~1audits~1{job_id}~1cancel/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "AuditEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Problem"
+          },
+          {
+            "status": "403",
+            "type": "Problem"
+          },
+          {
+            "status": "404",
+            "type": "Problem"
+          },
+          {
+            "status": "409",
+            "type": "Problem"
+          },
+          {
+            "status": "429",
+            "type": "Problem"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Annuler un audit"
+      },
+      {
+        "deprecated": false,
+        "description": "Projection publique fail-closed.",
+        "id": "operation:get:/audits/{job_id}/report",
+        "kind": "operation",
+        "method": "get",
+        "name": "getAuditReport",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "job_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/audits/{job_id}/report",
+        "pointer": "#/paths/~1audits~1{job_id}~1report/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "AuditReportEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Problem"
+          },
+          {
+            "status": "403",
+            "type": "Problem"
+          },
+          {
+            "status": "404",
+            "type": "Problem"
+          },
+          {
+            "status": "409",
+            "type": "Problem"
+          },
+          {
+            "status": "410",
+            "type": "Problem"
+          },
+          {
+            "status": "429",
+            "type": "Problem"
+          },
+          {
+            "status": "500",
+            "type": "Problem"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Lire le rapport public d'un audit terminé"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/me",
+        "kind": "operation",
+        "method": "get",
+        "name": "getApiIdentity",
+        "path": "/me",
+        "pointer": "#/paths/~1me/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiIdentityEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Problem"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Lire l'identité API courante"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/openapi.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getOpenApiSpecification",
+        "path": "/openapi.json",
+        "pointer": "#/paths/~1openapi.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Lire le contrat OpenAPI 3.1"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/usage",
+        "kind": "operation",
+        "method": "get",
+        "name": "getUsage",
+        "path": "/usage",
+        "pointer": "#/paths/~1usage/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "UsageEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Problem"
+          },
+          {
+            "status": "403",
+            "type": "Problem"
+          },
+          {
+            "status": "404",
+            "type": "Problem"
+          },
+          {
+            "status": "429",
+            "type": "Problem"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Lire quota et consommation"
+      },
+      {
+        "id": "schema:ApiIdentityEnvelope",
+        "kind": "schema",
+        "name": "ApiIdentityEnvelope",
+        "type": "object"
+      },
+      {
+        "id": "schema:Audit",
+        "kind": "schema",
+        "name": "Audit",
+        "type": "object"
+      },
+      {
+        "id": "schema:AuditCreateRequest",
+        "kind": "schema",
+        "name": "AuditCreateRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:AuditEnvelope",
+        "kind": "schema",
+        "name": "AuditEnvelope",
+        "type": "object"
+      },
+      {
+        "id": "schema:AuditList",
+        "kind": "schema",
+        "name": "AuditList",
+        "type": "object"
+      },
+      {
+        "id": "schema:AuditReportEnvelope",
+        "kind": "schema",
+        "name": "AuditReportEnvelope",
+        "type": "object"
+      },
+      {
+        "id": "schema:Problem",
+        "kind": "schema",
+        "name": "Problem",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicBreakdownItem",
+        "kind": "schema",
+        "name": "PublicBreakdownItem",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicCheck",
+        "kind": "schema",
+        "name": "PublicCheck",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicCounts",
+        "kind": "schema",
+        "name": "PublicCounts",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicCrawl",
+        "kind": "schema",
+        "name": "PublicCrawl",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicExplanationRich",
+        "kind": "schema",
+        "name": "PublicExplanationRich",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicGuide",
+        "kind": "schema",
+        "name": "PublicGuide",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicGuideLink",
+        "kind": "schema",
+        "name": "PublicGuideLink",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicPage",
+        "kind": "schema",
+        "name": "PublicPage",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicProfessionalOpinion",
+        "kind": "schema",
+        "name": "PublicProfessionalOpinion",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicProfessionalOpinionPriority",
+        "kind": "schema",
+        "name": "PublicProfessionalOpinionPriority",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicRecommendation",
+        "kind": "schema",
+        "name": "PublicRecommendation",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicRedirectDetail",
+        "kind": "schema",
+        "name": "PublicRedirectDetail",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicReport",
+        "kind": "schema",
+        "name": "PublicReport",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicScalarMap",
+        "kind": "schema",
+        "name": "PublicScalarMap",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicSectionScores",
+        "kind": "schema",
+        "name": "PublicSectionScores",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicSeoLengthChart",
+        "kind": "schema",
+        "name": "PublicSeoLengthChart",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicStats",
+        "kind": "schema",
+        "name": "PublicStats",
+        "type": "object"
+      },
+      {
+        "id": "schema:PublicUrlItem",
+        "kind": "schema",
+        "name": "PublicUrlItem",
+        "type": "object"
+      },
+      {
+        "id": "schema:UsageEnvelope",
+        "kind": "schema",
+        "name": "UsageEnvelope",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "limpi"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://limpiaudit.com/api/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "BadRequest": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Requête invalide."
+                },
+                "Conflict": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Conflit d'état ou d'idempotence."
+                },
+                "Forbidden": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Scope insuffisant, domaine bloqué ou quota épuisé.",
+                  "headers": {
+                    "WWW-Authenticate": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "Gone": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Rapport expiré ou supprimé."
+                },
+                "InternalProblem": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Erreur interne contrôlée."
+                },
+                "NotFound": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Ressource introuvable ou non accessible à cette identité."
+                },
+                "PayloadTooLarge": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Payload trop volumineux."
+                },
+                "PreconditionRequired": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Acceptation légale requise."
+                },
+                "RateLimited": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Limite de débit atteinte.",
+                  "headers": {
+                    "Retry-After": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    "X-RateLimit-Limit": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    "X-RateLimit-Remaining": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    "X-RateLimit-Reset": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "Unauthorized": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Authentification requise ou clé API invalide.",
+                  "headers": {
+                    "WWW-Authenticate": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "Unavailable": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Service temporairement indisponible."
+                },
+                "UnsupportedMediaType": {
+                  "content": {
+                    "application/problem+json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Problem"
+                      }
+                    }
+                  },
+                  "description": "Content-Type application/json requis."
+                }
+              },
+              "schemas": {
+                "ApiIdentityEnvelope": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "api_key": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "created_at": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "expires_at": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "id": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "scopes": {
+                              "items": {
+                                "enum": [
+                                  "audits:read",
+                                  "audits:write",
+                                  "reports:read",
+                                  "usage:read"
+                                ],
+                                "type": "string"
+                              },
+                              "type": "array",
+                              "uniqueItems": true
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "name",
+                            "scopes",
+                            "created_at",
+                            "expires_at"
+                          ],
+                          "type": "object"
+                        },
+                        "type": {
+                          "const": "api_identity"
+                        },
+                        "user_id": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "user_id",
+                        "api_key"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "Audit": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "cancel_requested_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "created_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "finished_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "object": {
+                      "const": "audit"
+                    },
+                    "pages_analyzed": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "pages_billed": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "progress": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "current": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "excluded": {
+                          "minimum": 0,
+                          "type": "integer"
+                        },
+                        "label": {
+                          "type": "string"
+                        },
+                        "step": {
+                          "type": "string"
+                        },
+                        "total": {
+                          "minimum": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "current",
+                        "total",
+                        "step",
+                        "label",
+                        "excluded"
+                      ],
+                      "type": "object"
+                    },
+                    "report_available": {
+                      "type": "boolean"
+                    },
+                    "requested_pages": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "score": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "started_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "queued",
+                        "running",
+                        "completed",
+                        "failed",
+                        "cancelled"
+                      ],
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "object",
+                    "url",
+                    "domain",
+                    "status",
+                    "requested_pages",
+                    "pages_analyzed",
+                    "pages_billed",
+                    "score",
+                    "progress",
+                    "created_at",
+                    "started_at",
+                    "finished_at",
+                    "cancel_requested_at",
+                    "report_available"
+                  ],
+                  "type": "object"
+                },
+                "AuditCreateRequest": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "analyst_name": {
+                      "default": "",
+                      "maxLength": 120,
+                      "type": "string"
+                    },
+                    "client_name": {
+                      "default": "",
+                      "maxLength": 120,
+                      "type": "string"
+                    },
+                    "crawl_delay": {
+                      "default": 200,
+                      "description": "Délai en millisecondes.",
+                      "maximum": 5000,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "exclude_patterns": {
+                      "default": [],
+                      "oneOf": [
+                        {
+                          "items": {
+                            "maxLength": 200,
+                            "type": "string"
+                          },
+                          "maxItems": 30,
+                          "type": "array"
+                        },
+                        {
+                          "description": "Compatibilité historique : une entrée par ligne.",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "max_depth": {
+                      "default": 2,
+                      "maximum": 15,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "max_pages": {
+                      "default": 10,
+                      "maximum": 1500,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "url": {
+                      "description": "URL publique HTTP(S). Les hôtes privés, loopback, link-local et résolutions DNS non publiques sont refusés.",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "url"
+                  ],
+                  "type": "object"
+                },
+                "AuditEnvelope": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Audit"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "AuditList": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Audit"
+                      },
+                      "type": "array"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    },
+                    "next_cursor": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "object": {
+                      "const": "list"
+                    }
+                  },
+                  "required": [
+                    "object",
+                    "data",
+                    "has_more",
+                    "next_cursor"
+                  ],
+                  "type": "object"
+                },
+                "AuditReportEnvelope": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "audit_id": {
+                          "type": "string"
+                        },
+                        "object": {
+                          "const": "audit_report"
+                        },
+                        "report": {
+                          "$ref": "#/components/schemas/PublicReport"
+                        },
+                        "schema_version": {
+                          "const": "1.1"
+                        }
+                      },
+                      "required": [
+                        "object",
+                        "audit_id",
+                        "schema_version",
+                        "report"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "Problem": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "detail": {
+                      "type": "string"
+                    },
+                    "instance": {
+                      "type": "string"
+                    },
+                    "request_id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "maximum": 599,
+                      "minimum": 400,
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "title",
+                    "status",
+                    "code",
+                    "instance",
+                    "request_id"
+                  ],
+                  "type": "object"
+                },
+                "PublicBreakdownItem": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "count": {
+                      "type": "number"
+                    },
+                    "label": {
+                      "maxLength": 1024,
+                      "type": "string"
+                    },
+                    "status": {
+                      "maxLength": 128,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicCheck": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "actor": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "actor_label": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "detail": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "estimated_time": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "exclude_from_correction_exports": {
+                      "type": "boolean"
+                    },
+                    "explanation": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "explanation_rich": {
+                      "$ref": "#/components/schemas/PublicExplanationRich"
+                    },
+                    "feasibility": {
+                      "type": "integer"
+                    },
+                    "ideal": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "informational_badge": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "label": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "priority_score": {
+                      "type": "integer"
+                    },
+                    "progress_score": {
+                      "type": "integer"
+                    },
+                    "score": {
+                      "type": "integer"
+                    },
+                    "score_excluded": {
+                      "type": "boolean"
+                    },
+                    "section": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "seo_length_chart": {
+                      "$ref": "#/components/schemas/PublicSeoLengthChart"
+                    },
+                    "severity": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "urls": {
+                      "items": {
+                        "$ref": "#/components/schemas/PublicUrlItem"
+                      },
+                      "maxItems": 1500,
+                      "type": "array"
+                    },
+                    "urls_secondary": {
+                      "items": {
+                        "$ref": "#/components/schemas/PublicUrlItem"
+                      },
+                      "maxItems": 1500,
+                      "type": "array"
+                    },
+                    "urls_secondary_label": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "value": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "value_breakdown": {
+                      "items": {
+                        "$ref": "#/components/schemas/PublicBreakdownItem"
+                      },
+                      "maxItems": 50,
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicCounts": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "err_count": {
+                      "type": "integer"
+                    },
+                    "information_count": {
+                      "type": "integer"
+                    },
+                    "ok_count": {
+                      "type": "integer"
+                    },
+                    "total_checks": {
+                      "type": "integer"
+                    },
+                    "total_crawled": {
+                      "type": "integer"
+                    },
+                    "urls_excluded": {
+                      "type": "integer"
+                    },
+                    "warn_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicCrawl": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "stopped": {
+                      "type": "boolean"
+                    },
+                    "stopped_message": {
+                      "maxLength": 4096,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicExplanationRich": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "analogie": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "benchmarks": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "impact": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "problème": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "quoi": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "solution": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicGuide": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "example": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "bad": {
+                          "maxLength": 8192,
+                          "type": "string"
+                        },
+                        "good": {
+                          "maxLength": 8192,
+                          "type": "string"
+                        },
+                        "note": {
+                          "maxLength": 8192,
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "how": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "framer": {
+                          "maxLength": 8192,
+                          "type": "string"
+                        },
+                        "html": {
+                          "maxLength": 8192,
+                          "type": "string"
+                        },
+                        "squarespace": {
+                          "maxLength": 8192,
+                          "type": "string"
+                        },
+                        "wix": {
+                          "maxLength": 8192,
+                          "type": "string"
+                        },
+                        "wordpress": {
+                          "maxLength": 8192,
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "links": {
+                      "items": {
+                        "$ref": "#/components/schemas/PublicGuideLink"
+                      },
+                      "maxItems": 20,
+                      "type": "array"
+                    },
+                    "what": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "why": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicGuideLink": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "label": {
+                      "maxLength": 1024,
+                      "type": "string"
+                    },
+                    "url": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicPage": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "canonical": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "canonical_matching": {
+                      "type": "boolean"
+                    },
+                    "depth": {
+                      "type": "integer"
+                    },
+                    "desc_len": {
+                      "type": "integer"
+                    },
+                    "description": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "final_url": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "h1": {
+                      "items": {
+                        "maxLength": 4096,
+                        "type": "string"
+                      },
+                      "maxItems": 100,
+                      "type": "array"
+                    },
+                    "h1_count": {
+                      "type": "integer"
+                    },
+                    "h2": {
+                      "items": {
+                        "maxLength": 4096,
+                        "type": "string"
+                      },
+                      "maxItems": 100,
+                      "type": "array"
+                    },
+                    "h2_count": {
+                      "type": "integer"
+                    },
+                    "h3": {
+                      "items": {
+                        "maxLength": 4096,
+                        "type": "string"
+                      },
+                      "maxItems": 100,
+                      "type": "array"
+                    },
+                    "h3_count": {
+                      "type": "integer"
+                    },
+                    "h4": {
+                      "items": {
+                        "maxLength": 4096,
+                        "type": "string"
+                      },
+                      "maxItems": 100,
+                      "type": "array"
+                    },
+                    "h5": {
+                      "items": {
+                        "maxLength": 4096,
+                        "type": "string"
+                      },
+                      "maxItems": 100,
+                      "type": "array"
+                    },
+                    "h6": {
+                      "items": {
+                        "maxLength": 4096,
+                        "type": "string"
+                      },
+                      "maxItems": 100,
+                      "type": "array"
+                    },
+                    "hn_count": {
+                      "type": "integer"
+                    },
+                    "hreflang_count": {
+                      "type": "integer"
+                    },
+                    "http_status_attempts": {
+                      "items": {
+                        "type": "integer"
+                      },
+                      "maxItems": 20,
+                      "type": "array"
+                    },
+                    "images_no_alt": {
+                      "type": "integer"
+                    },
+                    "inrank": {
+                      "type": "number"
+                    },
+                    "is_redirect": {
+                      "type": "boolean"
+                    },
+                    "load_time": {
+                      "type": "number"
+                    },
+                    "page_score": {
+                      "type": "integer"
+                    },
+                    "redirect_chain": {
+                      "items": {
+                        "maxLength": 8192,
+                        "type": "string"
+                      },
+                      "maxItems": 20,
+                      "type": "array"
+                    },
+                    "redirect_chain_detail": {
+                      "items": {
+                        "$ref": "#/components/schemas/PublicRedirectDetail"
+                      },
+                      "maxItems": 20,
+                      "type": "array"
+                    },
+                    "redirect_hops": {
+                      "type": "integer"
+                    },
+                    "redirect_limit_reached": {
+                      "type": "boolean"
+                    },
+                    "redirect_loop": {
+                      "type": "boolean"
+                    },
+                    "redirect_status": {
+                      "type": "integer"
+                    },
+                    "redirect_target": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "schema": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "server_error_confirmed": {
+                      "type": "boolean"
+                    },
+                    "server_error_intermittent": {
+                      "type": "boolean"
+                    },
+                    "size_kb": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "integer"
+                    },
+                    "technical_candidate": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "title_full": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "title_len": {
+                      "type": "integer"
+                    },
+                    "url": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "word_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicProfessionalOpinion": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excluded_note": {
+                      "oneOf": [
+                        {
+                          "maxLength": 1024,
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "headline": {
+                      "maxLength": 512,
+                      "type": "string"
+                    },
+                    "priority": {
+                      "$ref": "#/components/schemas/PublicProfessionalOpinionPriority"
+                    },
+                    "strengths": {
+                      "items": {
+                        "maxLength": 4096,
+                        "type": "string"
+                      },
+                      "maxItems": 20,
+                      "type": "array"
+                    },
+                    "version": {
+                      "type": "integer"
+                    },
+                    "weaknesses": {
+                      "items": {
+                        "maxLength": 4096,
+                        "type": "string"
+                      },
+                      "maxItems": 20,
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicProfessionalOpinionPriority": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "action": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "impact": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicRecommendation": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "description": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "emoji": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "feasibility": {
+                      "type": "integer"
+                    },
+                    "guide": {
+                      "$ref": "#/components/schemas/PublicGuide"
+                    },
+                    "impact": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "priority": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "score": {
+                      "type": "integer"
+                    },
+                    "severity": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "maxLength": 16384,
+                      "type": "string"
+                    },
+                    "urls": {
+                      "items": {
+                        "maxLength": 8192,
+                        "type": "string"
+                      },
+                      "maxItems": 1500,
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicRedirectDetail": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "status": {
+                      "type": "integer"
+                    },
+                    "to": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "url": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicReport": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "base_url": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "checks": {
+                      "items": {
+                        "$ref": "#/components/schemas/PublicCheck"
+                      },
+                      "maxItems": 500,
+                      "type": "array"
+                    },
+                    "cms": {
+                      "oneOf": [
+                        {
+                          "maxLength": 128,
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "counts": {
+                      "$ref": "#/components/schemas/PublicCounts"
+                    },
+                    "crawl": {
+                      "$ref": "#/components/schemas/PublicCrawl"
+                    },
+                    "pages": {
+                      "items": {
+                        "$ref": "#/components/schemas/PublicPage"
+                      },
+                      "maxItems": 1500,
+                      "type": "array"
+                    },
+                    "professional_opinion": {
+                      "$ref": "#/components/schemas/PublicProfessionalOpinion"
+                    },
+                    "professional_opinion_text": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "recommendations": {
+                      "items": {
+                        "$ref": "#/components/schemas/PublicRecommendation"
+                      },
+                      "maxItems": 200,
+                      "type": "array"
+                    },
+                    "schema_version": {
+                      "const": "1.1"
+                    },
+                    "score": {
+                      "type": "number"
+                    },
+                    "scoring_method": {
+                      "maxLength": 256,
+                      "type": "string"
+                    },
+                    "section_scores": {
+                      "$ref": "#/components/schemas/PublicSectionScores"
+                    },
+                    "stats": {
+                      "$ref": "#/components/schemas/PublicStats"
+                    }
+                  },
+                  "required": [
+                    "schema_version",
+                    "counts",
+                    "crawl",
+                    "section_scores",
+                    "stats",
+                    "checks",
+                    "recommendations",
+                    "pages"
+                  ],
+                  "type": "object"
+                },
+                "PublicScalarMap": {
+                  "additionalProperties": {
+                    "oneOf": [
+                      {
+                        "maxLength": 16384,
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "maxProperties": 100,
+                  "propertyNames": {
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "type": "object"
+                },
+                "PublicSectionScores": {
+                  "additionalProperties": {
+                    "oneOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "maxProperties": 100,
+                  "propertyNames": {
+                    "maxLength": 256,
+                    "type": "string"
+                  },
+                  "type": "object"
+                },
+                "PublicSeoLengthChart": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "absent": {
+                      "type": "integer"
+                    },
+                    "good": {
+                      "type": "integer"
+                    },
+                    "perfect": {
+                      "type": "integer"
+                    },
+                    "too_long": {
+                      "type": "integer"
+                    },
+                    "too_short": {
+                      "type": "integer"
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicStats": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "avg_inrank": {
+                      "type": "number"
+                    },
+                    "avg_load_time": {
+                      "type": "number"
+                    },
+                    "avg_word_count": {
+                      "type": "integer"
+                    },
+                    "global_score": {
+                      "type": "integer"
+                    },
+                    "html_pages_count": {
+                      "type": "integer"
+                    },
+                    "indexability_total": {
+                      "type": "integer"
+                    },
+                    "languages": {
+                      "items": {
+                        "maxLength": 64,
+                        "type": "string"
+                      },
+                      "maxItems": 100,
+                      "type": "array"
+                    },
+                    "pages_200": {
+                      "type": "integer"
+                    },
+                    "pages_3xx": {
+                      "type": "integer"
+                    },
+                    "pages_4xx": {
+                      "type": "integer"
+                    },
+                    "pages_5xx": {
+                      "type": "integer"
+                    },
+                    "pages_crawled": {
+                      "type": "integer"
+                    },
+                    "pages_with_schema": {
+                      "type": "integer"
+                    },
+                    "redirect_chains": {
+                      "type": "integer"
+                    },
+                    "redirect_entry_urls": {
+                      "type": "integer"
+                    },
+                    "redirect_intermediate_urls": {
+                      "type": "integer"
+                    },
+                    "redirect_loops": {
+                      "type": "integer"
+                    },
+                    "urls_excluded": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PublicUrlItem": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "context": {
+                      "maxLength": 4096,
+                      "type": "string"
+                    },
+                    "redirect_to": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    },
+                    "url": {
+                      "maxLength": 8192,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "UsageEnvelope": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "data": {
+                      "additionalProperties": false,
+                      "properties": {
+                        "available_for_next_audit": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "monthly_page_quota": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "monthly_pages_remaining": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "monthly_pages_used": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        },
+                        "object": {
+                          "const": "usage"
+                        },
+                        "plan": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "plan_label": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "quota_reset_at": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "object",
+                        "plan",
+                        "plan_label",
+                        "monthly_page_quota",
+                        "monthly_pages_used",
+                        "monthly_pages_remaining",
+                        "available_for_next_audit",
+                        "quota_reset_at"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "bearerFormat": "Limpi API key",
+                  "description": "Transmettre la clé exclusivement via Authorization: Bearer.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "API asynchrone pour lancer, suivre et exploiter des audits SEO/GEO. Les erreurs utilisent RFC 9457 application/problem+json.",
+              "summary": "API publique Limpi v1",
+              "termsOfService": "https://limpiaudit.com/conditions-generales-utilisation",
+              "title": "Limpi API",
+              "version": "1.1.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/audits": {
+                "get": {
+                  "operationId": "listAudits",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "page_size",
+                      "schema": {
+                        "default": 25,
+                        "maximum": 100,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Curseur opaque signé. Ne pas interpréter.",
+                      "in": "query",
+                      "name": "cursor",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "status",
+                      "schema": {
+                        "enum": [
+                          "queued",
+                          "running",
+                          "completed",
+                          "failed",
+                          "cancelled"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AuditList"
+                          }
+                        }
+                      },
+                      "description": "Page d'audits."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Lister les audits",
+                  "x-required-scope": "audits:read"
+                },
+                "post": {
+                  "operationId": "createAudit",
+                  "parameters": [
+                    {
+                      "in": "header",
+                      "name": "Idempotency-Key",
+                      "required": true,
+                      "schema": {
+                        "maxLength": 128,
+                        "minLength": 8,
+                        "pattern": "^[A-Za-z0-9._:-]{8,128}$",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/AuditCreateRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "202": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AuditEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Audit accepté.",
+                      "headers": {
+                        "Idempotency-Replayed": {
+                          "schema": {
+                            "enum": [
+                              "true"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "Location": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/Conflict"
+                    },
+                    "413": {
+                      "$ref": "#/components/responses/PayloadTooLarge"
+                    },
+                    "415": {
+                      "$ref": "#/components/responses/UnsupportedMediaType"
+                    },
+                    "428": {
+                      "$ref": "#/components/responses/PreconditionRequired"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalProblem"
+                    },
+                    "503": {
+                      "$ref": "#/components/responses/Unavailable"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Créer un audit asynchrone",
+                  "x-required-scope": "audits:write"
+                }
+              },
+              "/audits/{job_id}": {
+                "get": {
+                  "operationId": "getAudit",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AuditEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Audit."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Lire un audit",
+                  "x-required-scope": "audits:read"
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "job_id",
+                    "required": true,
+                    "schema": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/audits/{job_id}/cancel": {
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "job_id",
+                    "required": true,
+                    "schema": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  }
+                ],
+                "post": {
+                  "operationId": "cancelAudit",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AuditEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Annulation acceptée ou audit déjà annulé."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/Conflict"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Annuler un audit",
+                  "x-required-scope": "audits:write"
+                }
+              },
+              "/audits/{job_id}/report": {
+                "get": {
+                  "description": "Projection publique fail-closed. Les nouveaux champs internes ne sont jamais exposés automatiquement. Taille maximale : 4 MiB.",
+                  "operationId": "getAuditReport",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AuditReportEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Rapport public schema_version 1.0."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/Conflict"
+                    },
+                    "410": {
+                      "$ref": "#/components/responses/Gone"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalProblem"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Lire le rapport public d'un audit terminé",
+                  "x-required-scope": "reports:read"
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "job_id",
+                    "required": true,
+                    "schema": {
+                      "maxLength": 128,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/me": {
+                "get": {
+                  "operationId": "getApiIdentity",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiIdentityEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Identité API."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Lire l'identité API courante"
+                }
+              },
+              "/openapi.json": {
+                "get": {
+                  "operationId": "getOpenApiSpecification",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Spécification OpenAPI courante."
+                    }
+                  },
+                  "security": [],
+                  "summary": "Lire le contrat OpenAPI 3.1"
+                }
+              },
+              "/usage": {
+                "get": {
+                  "operationId": "getUsage",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/UsageEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Usage courant."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Lire quota et consommation",
+                  "x-required-scope": "usage:read"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://limpiaudit.com/api/v1"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Limpi"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:27.961545+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://limpiaudit.com/api/v1/openapi.json",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "6ad25837eb207634d625735a1975140ec11178dd6bacdb729d547d733c81cd64",
+    "source_id": "limpi",
+    "source_updated": null,
+    "url": "https://limpiaudit.com/api/v1/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.1.0"
+}

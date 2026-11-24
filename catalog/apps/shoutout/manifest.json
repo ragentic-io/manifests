@@ -1,0 +1,2586 @@
+{
+  "a2ui": {},
+  "app": "shoutout",
+  "graph": {
+    "edges": [
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:get:/organisation"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/organisation"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:post:/projects"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/{project_id}"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/projects/{project_id}"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/projects/{project_id}"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/{project_id}/playlists"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:post:/projects/{project_id}/playlists"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/{project_id}/playlists/{playlist_id}"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/projects/{project_id}/playlists/{playlist_id}"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/projects/{project_id}/playlists/{playlist_id}"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/{project_id}/videos"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:post:/projects/{project_id}/videos"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/{project_id}/videos/{video_id}"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/projects/{project_id}/videos/{video_id}"
+      },
+      {
+        "from": "shoutout",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/projects/{project_id}/videos/{video_id}"
+      },
+      {
+        "from": "schema:Videos",
+        "kind": "REFERENCES",
+        "to": "schema:Video"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "shoutout",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns some basic information about the organisation",
+        "id": "operation:get:/organisation",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /organisation",
+        "path": "/organisation",
+        "pointer": "#/paths/~1organisation/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Fetch Organisation",
+        "tags": [
+          "organisation"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Allows the name of the organisation to be edited",
+        "id": "operation:patch:/organisation",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch /organisation",
+        "path": "/organisation",
+        "pointer": "#/paths/~1organisation/patch",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Update organisation",
+        "tags": [
+          "organisation"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns some basic information about the organisation's projects",
+        "id": "operation:get:/projects",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /projects",
+        "path": "/projects",
+        "pointer": "#/paths/~1projects/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Fetch Projects",
+        "tags": [
+          "projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a new Project",
+        "id": "operation:post:/projects",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /projects",
+        "path": "/projects",
+        "pointer": "#/paths/~1projects/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Create project",
+        "tags": [
+          "projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Return the properties of a particular project",
+        "id": "operation:get:/projects/{project_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /projects/{project_id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}",
+        "pointer": "#/paths/~1projects~1{project_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Fetch Project by ID",
+        "tags": [
+          "projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Deletes a projects and **all the videos associated with it**",
+        "id": "operation:delete:/projects/{project_id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete /projects/{project_id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}",
+        "pointer": "#/paths/~1projects~1{project_id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Delete project",
+        "tags": [
+          "projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Allows the project to be edited, using the fields found in the POST /projects/ endpoint",
+        "id": "operation:patch:/projects/{project_id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch /projects/{project_id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}",
+        "pointer": "#/paths/~1projects~1{project_id}/patch",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Update project",
+        "tags": [
+          "projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Return a list of playlists that belong to a particular project",
+        "id": "operation:get:/projects/{project_id}/playlists",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /projects/{project_id}/playlists",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}/playlists",
+        "pointer": "#/paths/~1projects~1{project_id}~1playlists/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Fetch Playlists",
+        "tags": [
+          "playlists"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a Playlist",
+        "id": "operation:post:/projects/{project_id}/playlists",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /projects/{project_id}/playlists",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}/playlists",
+        "pointer": "#/paths/~1projects~1{project_id}~1playlists/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Create Playlist",
+        "tags": [
+          "playlists"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the properties of a particular playlist, including the videos contained in the playlist",
+        "id": "operation:get:/projects/{project_id}/playlists/{playlist_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /projects/{project_id}/playlists/{playlist_id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "playlist_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}/playlists/{playlist_id}",
+        "pointer": "#/paths/~1projects~1{project_id}~1playlists~1{playlist_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Fetch Playlist by ID",
+        "tags": [
+          "playlists"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Deletes the playlist, the videos contained within it are not deleted",
+        "id": "operation:delete:/projects/{project_id}/playlists/{playlist_id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete /projects/{project_id}/playlists/{playlist_id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "playlist_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}/playlists/{playlist_id}",
+        "pointer": "#/paths/~1projects~1{project_id}~1playlists~1{playlist_id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Delete Playlist",
+        "tags": [
+          "playlists"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Allows various properties of the playlist to be edited, including the videos contained in it",
+        "id": "operation:patch:/projects/{project_id}/playlists/{playlist_id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch /projects/{project_id}/playlists/{playlist_id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "playlist_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}/playlists/{playlist_id}",
+        "pointer": "#/paths/~1projects~1{project_id}~1playlists~1{playlist_id}/patch",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Update Playlist",
+        "tags": [
+          "playlists"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Return a list of videos that belong to a particular project",
+        "id": "operation:get:/projects/{project_id}/videos",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /projects/{project_id}/videos",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}/videos",
+        "pointer": "#/paths/~1projects~1{project_id}~1videos/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Fetch Videos",
+        "tags": [
+          "videos"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Create a new Video from a particular Project",
+        "id": "operation:post:/projects/{project_id}/videos",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /projects/{project_id}/videos",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}/videos",
+        "pointer": "#/paths/~1projects~1{project_id}~1videos/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Create Video",
+        "tags": [
+          "videos"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the properties of a particular video",
+        "id": "operation:get:/projects/{project_id}/videos/{video_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /projects/{project_id}/videos/{video_id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "video_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}/videos/{video_id}",
+        "pointer": "#/paths/~1projects~1{project_id}~1videos~1{video_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Fetch Video by ID",
+        "tags": [
+          "videos"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Deletes the video",
+        "id": "operation:delete:/projects/{project_id}/videos/{video_id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete /projects/{project_id}/videos/{video_id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "video_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}/videos/{video_id}",
+        "pointer": "#/paths/~1projects~1{project_id}~1videos~1{video_id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Delete video",
+        "tags": [
+          "videos"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Allows various properties of the video to be edited, and re-processed if any visible properties are changed",
+        "id": "operation:patch:/projects/{project_id}/videos/{video_id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch /projects/{project_id}/videos/{video_id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "video_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{project_id}/videos/{video_id}",
+        "pointer": "#/paths/~1projects~1{project_id}~1videos~1{video_id}/patch",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Update Video",
+        "tags": [
+          "videos"
+        ]
+      },
+      {
+        "id": "schema:Organisation",
+        "kind": "schema",
+        "name": "Organisation",
+        "type": "object"
+      },
+      {
+        "id": "schema:Playlist",
+        "kind": "schema",
+        "name": "Playlist",
+        "type": "object"
+      },
+      {
+        "id": "schema:Project",
+        "kind": "schema",
+        "name": "Project",
+        "type": "object"
+      },
+      {
+        "id": "schema:Video",
+        "kind": "schema",
+        "name": "Video",
+        "type": "object"
+      },
+      {
+        "id": "schema:Videos",
+        "kind": "schema",
+        "name": "Videos",
+        "type": "Video[]"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "shoutout"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://connect.shoutout.social",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "requestBodies": {
+                "OrgPatchRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "ProjectsPatchRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "approval": {
+                            "type": "boolean"
+                          },
+                          "approval_preview_hidden": {
+                            "type": "boolean"
+                          },
+                          "audio_recording_colors": {
+                            "type": "object"
+                          },
+                          "clip_upload_limit": {
+                            "type": "number"
+                          },
+                          "data_collection": {
+                            "properties": {
+                              "clip_name": {
+                                "type": "number"
+                              },
+                              "clip_name_list": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "custom": {
+                                "items": {
+                                  "properties": {
+                                    "fallback": {
+                                      "type": "string"
+                                    },
+                                    "label": {
+                                      "type": "string"
+                                    },
+                                    "notes": {
+                                      "type": "string"
+                                    },
+                                    "options": {
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "required": {
+                                      "type": "boolean"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "email": {
+                                "type": "boolean"
+                              },
+                              "hashtags": {
+                                "type": "boolean"
+                              },
+                              "images": {
+                                "items": {
+                                  "properties": {
+                                    "label": {
+                                      "type": "string"
+                                    },
+                                    "notes": {
+                                      "type": "string"
+                                    },
+                                    "required": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "instagram_text": {
+                                "type": "boolean"
+                              },
+                              "nps": {
+                                "type": "string"
+                              },
+                              "rating": {
+                                "type": "boolean"
+                              },
+                              "tiktok_text": {
+                                "type": "boolean"
+                              },
+                              "twitter_text": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "disable_user_sharing": {
+                            "type": "boolean"
+                          },
+                          "email_body": {
+                            "type": "string"
+                          },
+                          "email_subject": {
+                            "type": "string"
+                          },
+                          "emails": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "explanation": {
+                            "type": "string"
+                          },
+                          "i18n": {
+                            "type": "string"
+                          },
+                          "image_to_video_length": {
+                            "type": "number"
+                          },
+                          "max_duration": {
+                            "type": "number"
+                          },
+                          "mode": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "native_facebook_text": {
+                            "type": "string"
+                          },
+                          "native_linkedin_text": {
+                            "type": "string"
+                          },
+                          "native_twitter_text": {
+                            "type": "string"
+                          },
+                          "native_youtube_text": {
+                            "type": "string"
+                          },
+                          "question_form_index": {
+                            "type": "number"
+                          },
+                          "questions": {
+                            "items": {
+                              "properties": {
+                                "invisible": {
+                                  "type": "boolean"
+                                },
+                                "notes": {
+                                  "type": "string"
+                                },
+                                "question": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "record_custom_colors": {
+                            "type": "object"
+                          },
+                          "record_remove_branding": {
+                            "type": "boolean"
+                          },
+                          "record_remove_shoutout_terms": {
+                            "type": "boolean"
+                          },
+                          "record_theme": {
+                            "type": "string"
+                          },
+                          "recording_formats": {
+                            "type": "object"
+                          },
+                          "social_accounts": {
+                            "type": "object"
+                          },
+                          "social_description": {
+                            "type": "string"
+                          },
+                          "social_hashtags": {
+                            "type": "string"
+                          },
+                          "social_title": {
+                            "type": "string"
+                          },
+                          "subtitles_visible_default": {
+                            "type": "boolean"
+                          },
+                          "tags": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "terms": {
+                            "type": "string"
+                          },
+                          "webhook_url": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "ProjectsPlaylistsPostRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "videos": {
+                            "description": "an array of ids of videos made with the relevant project",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "ProjectsPostRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "approval": {
+                            "type": "boolean"
+                          },
+                          "approval_preview_hidden": {
+                            "type": "boolean"
+                          },
+                          "audio_recording_colors": {
+                            "type": "object"
+                          },
+                          "clip_upload_limit": {
+                            "type": "number"
+                          },
+                          "data_collection": {
+                            "properties": {
+                              "clip_name": {
+                                "type": "number"
+                              },
+                              "clip_name_list": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "custom": {
+                                "items": {
+                                  "properties": {
+                                    "fallback": {
+                                      "type": "string"
+                                    },
+                                    "label": {
+                                      "type": "string"
+                                    },
+                                    "notes": {
+                                      "type": "string"
+                                    },
+                                    "options": {
+                                      "items": {
+                                        "type": "string"
+                                      },
+                                      "type": "array"
+                                    },
+                                    "required": {
+                                      "type": "boolean"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "email": {
+                                "type": "boolean"
+                              },
+                              "hashtags": {
+                                "type": "boolean"
+                              },
+                              "images": {
+                                "items": {
+                                  "properties": {
+                                    "label": {
+                                      "type": "string"
+                                    },
+                                    "notes": {
+                                      "type": "string"
+                                    },
+                                    "required": {
+                                      "type": "boolean"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "instagram_text": {
+                                "type": "boolean"
+                              },
+                              "nps": {
+                                "type": "string"
+                              },
+                              "rating": {
+                                "type": "boolean"
+                              },
+                              "tiktok_text": {
+                                "type": "boolean"
+                              },
+                              "twitter_text": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "disable_user_sharing": {
+                            "type": "boolean"
+                          },
+                          "email_body": {
+                            "type": "string"
+                          },
+                          "email_subject": {
+                            "type": "string"
+                          },
+                          "emails": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "explanation": {
+                            "type": "string"
+                          },
+                          "i18n": {
+                            "type": "string"
+                          },
+                          "image_to_video_length": {
+                            "type": "number"
+                          },
+                          "max_duration": {
+                            "type": "number"
+                          },
+                          "mode": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "native_facebook_text": {
+                            "type": "string"
+                          },
+                          "native_linkedin_text": {
+                            "type": "string"
+                          },
+                          "native_twitter_text": {
+                            "type": "string"
+                          },
+                          "native_youtube_text": {
+                            "type": "string"
+                          },
+                          "orientation": {
+                            "type": "string"
+                          },
+                          "question_form_index": {
+                            "type": "number"
+                          },
+                          "questions": {
+                            "items": {
+                              "properties": {
+                                "invisible": {
+                                  "type": "boolean"
+                                },
+                                "notes": {
+                                  "type": "string"
+                                },
+                                "question": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "record_custom_colors": {
+                            "type": "object"
+                          },
+                          "record_remove_branding": {
+                            "type": "boolean"
+                          },
+                          "record_remove_shoutout_terms": {
+                            "type": "boolean"
+                          },
+                          "record_theme": {
+                            "type": "string"
+                          },
+                          "recording_formats": {
+                            "type": "object"
+                          },
+                          "recording_orientation": {
+                            "type": "string"
+                          },
+                          "social_accounts": {
+                            "type": "object"
+                          },
+                          "social_description": {
+                            "type": "string"
+                          },
+                          "social_hashtags": {
+                            "type": "string"
+                          },
+                          "social_title": {
+                            "type": "string"
+                          },
+                          "subtitles_visible_default": {
+                            "type": "boolean"
+                          },
+                          "tags": {
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "template": {
+                            "type": "string"
+                          },
+                          "terms": {
+                            "type": "string"
+                          },
+                          "webhook_url": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "VideosPatchRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "data_collection": {
+                            "description": "An object with the captions the user would have to provide e.g. name captions, custom overlay text",
+                            "properties": {
+                              "clip_name": {
+                                "type": "string"
+                              },
+                              "data_collection_id": {
+                                "description": "The propery name must match the id of a data collection item in the project. The value must be a string.",
+                                "type": "string"
+                              },
+                              "email": {
+                                "type": "string"
+                              },
+                              "hashtags": {
+                                "type": "string"
+                              },
+                              "instagram_text": {
+                                "type": "string"
+                              },
+                              "nps": {
+                                "type": "number"
+                              },
+                              "rating": {
+                                "type": "number"
+                              },
+                              "tiktok_text": {
+                                "type": "string"
+                              },
+                              "twitter_text": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "overrides": {
+                            "description": "Here you can override certain properties for videos",
+                            "properties": {
+                              "contributor_index": {
+                                "description": "The property name must be in the format contributor_<index> where the index is of the video contribution. In a ShoutOut video this will always be 0, in a Multi-clip video it will be 0, 1, 2 etc...",
+                                "properties": {
+                                  "duration": {
+                                    "type": "number"
+                                  },
+                                  "seek": {
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "VideosPostRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "data_collection": {
+                            "description": "An object with the captions the user would have to provide e.g. name captions, custom overlay text",
+                            "properties": {
+                              "<data_collection_id>": {
+                                "description": "The propery name must match the id of a data collection item in the project. The value must be a string.",
+                                "type": "string"
+                              },
+                              "clip_name": {
+                                "type": "string"
+                              },
+                              "email": {
+                                "type": "string"
+                              },
+                              "hashtags": {
+                                "type": "string"
+                              },
+                              "instagram_text": {
+                                "type": "string"
+                              },
+                              "nps": {
+                                "type": "number"
+                              },
+                              "phone": {
+                                "type": "string"
+                              },
+                              "rating": {
+                                "type": "number"
+                              },
+                              "tiktok_text": {
+                                "type": "string"
+                              },
+                              "twitter_text": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "video_url": {
+                            "description": "The url of the video file from which the ShoutOut video will be created",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              },
+              "schemas": {
+                "Organisation": {
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "logo_url": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "social_accounts": {
+                      "properties": {
+                        "facebook": {
+                          "type": "string"
+                        },
+                        "linkedin": {
+                          "type": "string"
+                        },
+                        "tiktok": {
+                          "type": "string"
+                        },
+                        "twitter": {
+                          "type": "string"
+                        },
+                        "youtube": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Playlist": {
+                  "properties": {
+                    "datetime_created": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "videos": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "view_link": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Project": {
+                  "properties": {
+                    "approval": {
+                      "type": "boolean"
+                    },
+                    "approval_preview_hidden": {
+                      "type": "boolean"
+                    },
+                    "assets": {
+                      "description": "The custom assets that have been uploaded for this project",
+                      "properties": {
+                        "captions_background": {
+                          "type": "object"
+                        },
+                        "fonts": {
+                          "items": {
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "intro": {
+                          "type": "object"
+                        },
+                        "music": {
+                          "type": "object"
+                        },
+                        "outro": {
+                          "type": "object"
+                        },
+                        "overlay": {
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "audio_recording_colors": {
+                      "type": "object"
+                    },
+                    "average_rating": {
+                      "type": "number"
+                    },
+                    "clip_upload_limit": {
+                      "type": "number"
+                    },
+                    "data_collection": {
+                      "properties": {
+                        "clip_name": {
+                          "type": "number"
+                        },
+                        "clip_name_list": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "custom": {
+                          "items": {
+                            "properties": {
+                              "fallback": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              },
+                              "notes": {
+                                "type": "string"
+                              },
+                              "options": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "required": {
+                                "type": "boolean"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "email": {
+                          "type": "boolean"
+                        },
+                        "hashtags": {
+                          "type": "boolean"
+                        },
+                        "images": {
+                          "items": {
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "notes": {
+                                "type": "string"
+                              },
+                              "required": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "instagram_text": {
+                          "type": "boolean"
+                        },
+                        "nps": {
+                          "type": "string"
+                        },
+                        "rating": {
+                          "type": "boolean"
+                        },
+                        "tiktok_text": {
+                          "type": "boolean"
+                        },
+                        "twitter_text": {
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "disable_user_sharing": {
+                      "type": "boolean"
+                    },
+                    "email_body": {
+                      "type": "string"
+                    },
+                    "email_subject": {
+                      "type": "string"
+                    },
+                    "emails": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "explanation": {
+                      "type": "string"
+                    },
+                    "i18n": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "image_to_video_length": {
+                      "type": "number"
+                    },
+                    "max_duration": {
+                      "type": "number"
+                    },
+                    "mode": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "native_facebook_text": {
+                      "type": "string"
+                    },
+                    "native_linkedin_text": {
+                      "type": "string"
+                    },
+                    "native_twitter_text": {
+                      "type": "string"
+                    },
+                    "native_youtube_text": {
+                      "type": "string"
+                    },
+                    "orientation": {
+                      "type": "string"
+                    },
+                    "previews": {
+                      "properties": {
+                        "datetime_generated": {
+                          "type": "number"
+                        },
+                        "preview": {
+                          "type": "string"
+                        },
+                        "preview_thumbnail": {
+                          "type": "string"
+                        },
+                        "test_video": {
+                          "type": "string"
+                        },
+                        "test_video_thumbnail": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "qr_code": {
+                      "description": "A link to the record link for the project",
+                      "type": "string"
+                    },
+                    "question_form_index": {
+                      "type": "number"
+                    },
+                    "questions": {
+                      "items": {
+                        "properties": {
+                          "invisible": {
+                            "type": "boolean"
+                          },
+                          "notes": {
+                            "type": "string"
+                          },
+                          "question": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "record_custom_colors": {
+                      "type": "object"
+                    },
+                    "record_link": {
+                      "type": "string"
+                    },
+                    "record_remove_branding": {
+                      "type": "boolean"
+                    },
+                    "record_remove_shoutout_terms": {
+                      "type": "boolean"
+                    },
+                    "record_theme": {
+                      "type": "string"
+                    },
+                    "recording_formats": {
+                      "type": "object"
+                    },
+                    "recording_orientation": {
+                      "type": "string"
+                    },
+                    "social_accounts": {
+                      "type": "object"
+                    },
+                    "social_description": {
+                      "type": "string"
+                    },
+                    "social_hashtags": {
+                      "type": "string"
+                    },
+                    "social_title": {
+                      "type": "string"
+                    },
+                    "subtitles_visible_default": {
+                      "type": "boolean"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "template": {
+                      "type": "string"
+                    },
+                    "terms": {
+                      "type": "string"
+                    },
+                    "video_count": {
+                      "properties": {
+                        "clip": {
+                          "type": "number"
+                        },
+                        "compilation": {
+                          "type": "number"
+                        },
+                        "hits": {
+                          "type": "number"
+                        },
+                        "photos": {
+                          "type": "number"
+                        },
+                        "started": {
+                          "type": "number"
+                        },
+                        "total": {
+                          "type": "number"
+                        },
+                        "uploaded": {
+                          "type": "number"
+                        },
+                        "video": {
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "view_public_link": {
+                      "type": "string"
+                    },
+                    "webhook_url": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Video": {
+                  "properties": {
+                    "approved": {
+                      "type": "boolean"
+                    },
+                    "clip": {
+                      "type": "boolean"
+                    },
+                    "clip_name": {
+                      "type": "string"
+                    },
+                    "compilation": {
+                      "type": "boolean"
+                    },
+                    "data_collection": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "placeholder": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "datetime_processed": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "properties": {
+                        "your_custom_key": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "nps": {
+                      "type": "number"
+                    },
+                    "processed": {
+                      "type": "boolean"
+                    },
+                    "social_data": {
+                      "properties": {
+                        "hashtags": {
+                          "type": "string"
+                        },
+                        "instagram_text": {
+                          "type": "string"
+                        },
+                        "tiktok_text": {
+                          "type": "string"
+                        },
+                        "twitter_text": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "thumbnail_file": {
+                      "type": "string"
+                    },
+                    "user_email": {
+                      "type": "string"
+                    },
+                    "user_phone": {
+                      "type": "string"
+                    },
+                    "video_file": {
+                      "type": "string"
+                    },
+                    "view_link": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Videos": {
+                  "items": {
+                    "$ref": "#/components/schemas/Video"
+                  },
+                  "type": "array"
+                }
+              },
+              "securitySchemes": {
+                "BearerAuth": {
+                  "bearerFormat": "JWT",
+                  "scheme": "bearer",
+                  "type": "http"
+                },
+                "OAuth2": {
+                  "description": "Authentication follows an oauth2 process, outlined in the documentation located here: https://www.oauth.com/oauth2-servers/authorization/the-authorization-request/",
+                  "flows": {
+                    "authorizationCode": {
+                      "authorizationUrl": "/auth/authorize",
+                      "refreshUrl": "/auth/token",
+                      "scopes": {
+                        "read_organisation": "Read organisation data",
+                        "read_playlists": "Read playlist data",
+                        "read_projects": "Read project data",
+                        "read_videos": "Read video data",
+                        "write_organisation": "Update organisation data",
+                        "write_playlists": "Update playlist data",
+                        "write_projects": "Update project data",
+                        "write_videos": "Update video data"
+                      },
+                      "tokenUrl": "/auth/token"
+                    }
+                  },
+                  "type": "oauth2"
+                }
+              }
+            },
+            "info": {
+              "description": "ShoutOut's public API enables you to interact with your organisation, projects, videos and playlists.",
+              "title": "ShoutOut Public API documentation",
+              "version": "1.0"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/organisation": {
+                "get": {
+                  "description": "Returns some basic information about the organisation",
+                  "parameters": [],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "organisation": {
+                                "$ref": "#/components/schemas/Organisation"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Fetch Organisation",
+                  "tags": [
+                    "organisation"
+                  ]
+                },
+                "patch": {
+                  "description": "Allows the name of the organisation to be edited",
+                  "parameters": [],
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/OrgPatchRequest",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "organisation": {
+                                "$ref": "#/components/schemas/Organisation"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Update organisation",
+                  "tags": [
+                    "organisation"
+                  ]
+                }
+              },
+              "/projects": {
+                "get": {
+                  "description": "Returns some basic information about the organisation's projects",
+                  "parameters": [],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "projects": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Project"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Fetch Projects",
+                  "tags": [
+                    "projects"
+                  ]
+                },
+                "post": {
+                  "description": "Creates a new Project",
+                  "parameters": [],
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/ProjectsPostRequest",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "project": {
+                                "$ref": "#/components/schemas/Project"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Create project",
+                  "tags": [
+                    "projects"
+                  ]
+                }
+              },
+              "/projects/{project_id}": {
+                "delete": {
+                  "description": "Deletes a projects and **all the videos associated with it**",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Delete project",
+                  "tags": [
+                    "projects"
+                  ]
+                },
+                "get": {
+                  "description": "Return the properties of a particular project",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "project": {
+                                "$ref": "#/components/schemas/Project"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Fetch Project by ID",
+                  "tags": [
+                    "projects"
+                  ]
+                },
+                "patch": {
+                  "description": "Allows the project to be edited, using the fields found in the POST /projects/ endpoint",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/ProjectsPatchRequest",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "project": {
+                                "$ref": "#/components/schemas/Project"
+                              },
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Update project",
+                  "tags": [
+                    "projects"
+                  ]
+                }
+              },
+              "/projects/{project_id}/playlists": {
+                "get": {
+                  "description": "Return a list of playlists that belong to a particular project",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "playlists": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Playlist"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Fetch Playlists",
+                  "tags": [
+                    "playlists"
+                  ]
+                },
+                "post": {
+                  "description": "Creates a Playlist",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/ProjectsPlaylistsPostRequest",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "playlist": {
+                                "$ref": "#/components/schemas/Playlist"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Create Playlist",
+                  "tags": [
+                    "playlists"
+                  ]
+                }
+              },
+              "/projects/{project_id}/playlists/{playlist_id}": {
+                "delete": {
+                  "description": "Deletes the playlist, the videos contained within it are not deleted",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "path",
+                      "name": "playlist_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Delete Playlist",
+                  "tags": [
+                    "playlists"
+                  ]
+                },
+                "get": {
+                  "description": "Returns the properties of a particular playlist, including the videos contained in the playlist",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "path",
+                      "name": "playlist_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "playlist": {
+                                "$ref": "#/components/schemas/Playlist"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Fetch Playlist by ID",
+                  "tags": [
+                    "playlists"
+                  ]
+                },
+                "patch": {
+                  "description": "Allows various properties of the playlist to be edited, including the videos contained in it",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "path",
+                      "name": "playlist_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/ProjectsPlaylistsPostRequest",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "playlist": {
+                                "$ref": "#/components/schemas/Playlist"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Update Playlist",
+                  "tags": [
+                    "playlists"
+                  ]
+                }
+              },
+              "/projects/{project_id}/videos": {
+                "get": {
+                  "description": "Return a list of videos that belong to a particular project",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "videos": {
+                                "$ref": "#/components/schemas/Videos"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Fetch Videos",
+                  "tags": [
+                    "videos"
+                  ]
+                },
+                "post": {
+                  "description": "Create a new Video from a particular Project",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/VideosPostRequest",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "video": {
+                                "$ref": "#/components/schemas/Video"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Create Video",
+                  "tags": [
+                    "videos"
+                  ]
+                }
+              },
+              "/projects/{project_id}/videos/{video_id}": {
+                "delete": {
+                  "description": "Deletes the video",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "path",
+                      "name": "video_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "success": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Delete video",
+                  "tags": [
+                    "videos"
+                  ]
+                },
+                "get": {
+                  "description": "Returns the properties of a particular video",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "path",
+                      "name": "video_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "video": {
+                                "$ref": "#/components/schemas/Video"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Fetch Video by ID",
+                  "tags": [
+                    "videos"
+                  ]
+                },
+                "patch": {
+                  "description": "Allows various properties of the video to be edited, and re-processed if any visible properties are changed",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "project_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "path",
+                      "name": "video_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/VideosPatchRequest",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "success": {
+                                "type": "boolean"
+                              },
+                              "video": {
+                                "$ref": "#/components/schemas/Video"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    }
+                  },
+                  "summary": "Update Video",
+                  "tags": [
+                    "videos"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://connect.shoutout.social"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "ShoutOut"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:54.778623+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://apidocs.shoutout.social/spec.json",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "6c57c7293c087653d26d6d843f821a242e1bbfe9c3308f8fc3aa78f32da784d2",
+    "source_id": "shoutout",
+    "source_updated": null,
+    "url": "https://apidocs.shoutout.social/spec.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0"
+}

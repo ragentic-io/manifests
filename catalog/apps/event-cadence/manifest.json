@@ -1,0 +1,390 @@
+{
+  "a2ui": {},
+  "app": "event-cadence",
+  "graph": {
+    "edges": [
+      {
+        "from": "event-cadence",
+        "kind": "EXPOSES",
+        "to": "operation:post:/{eventCode}/registerattendee"
+      },
+      {
+        "from": "operation:post:/{eventCode}/registerattendee",
+        "kind": "ACCEPTS",
+        "to": "schema:registerattendee"
+      },
+      {
+        "from": "operation:post:/{eventCode}/registerattendee",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse"
+      },
+      {
+        "from": "schema:profile",
+        "kind": "REFERENCES",
+        "to": "schema:customFields"
+      },
+      {
+        "from": "schema:registerattendee",
+        "kind": "REFERENCES",
+        "to": "schema:profile"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "event-cadence",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Use this to register attendees to your event.",
+        "id": "operation:post:/{eventCode}/registerattendee",
+        "kind": "operation",
+        "method": "post",
+        "name": "registerattendee",
+        "parameters": [
+          {
+            "description": "The webhook eventCode provided to you by your contact at Cadence.",
+            "in": "path",
+            "name": "eventCode",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/{eventCode}/registerattendee",
+        "pointer": "#/paths/~1{eventCode}~1registerattendee/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "registerattendee"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Register an Attendee",
+        "tags": [
+          "registerattendee"
+        ]
+      },
+      {
+        "id": "schema:ApiResponse",
+        "kind": "schema",
+        "name": "ApiResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:customFields",
+        "kind": "schema",
+        "name": "customFields",
+        "type": "object"
+      },
+      {
+        "id": "schema:profile",
+        "kind": "schema",
+        "name": "profile",
+        "type": "object"
+      },
+      {
+        "id": "schema:registerattendee",
+        "kind": "schema",
+        "name": "registerattendee",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "event-cadence"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://webhookconnect.eventcadence.com/connect",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "ApiResponse": {
+                  "properties": {
+                    "code": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "customFields": {
+                  "properties": {
+                    "fieldName": {
+                      "type": "string"
+                    },
+                    "fieldValue": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "profile": {
+                  "properties": {
+                    "assistantEmail": {
+                      "type": "string"
+                    },
+                    "assistantName": {
+                      "type": "string"
+                    },
+                    "assistantPhone": {
+                      "type": "string"
+                    },
+                    "biography": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "company": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "customFields": {
+                      "example": [
+                        {
+                          "fieldName": "Favorite color",
+                          "fieldValue": "Blue"
+                        },
+                        {
+                          "fieldName": "Alumni year",
+                          "fieldValue": "1998"
+                        }
+                      ],
+                      "items": {
+                        "$ref": "#/components/schemas/customFields"
+                      },
+                      "type": "array"
+                    },
+                    "department": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "facebook": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "instagram": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "linkedin": {
+                      "type": "string"
+                    },
+                    "motto": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "prefix": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "type": "string"
+                    },
+                    "thirdPartyId": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "twitter": {
+                      "type": "string"
+                    },
+                    "website": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "firstName",
+                    "lastName",
+                    "email"
+                  ],
+                  "type": "object"
+                },
+                "registerattendee": {
+                  "properties": {
+                    "eventInfo": {
+                      "properties": {
+                        "groups": {
+                          "properties": {
+                            "groupNames": {
+                              "example": [
+                                "Group A",
+                                "Group B",
+                                "Group C"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "key": {
+                      "type": "string"
+                    },
+                    "profile": {
+                      "$ref": "#/components/schemas/profile"
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "profile"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "",
+              "title": "Event Cadence Webhook API",
+              "version": "1.0.5"
+            },
+            "openapi": "3.0.1",
+            "paths": {
+              "/{eventCode}/registerattendee": {
+                "post": {
+                  "description": "Use this to register attendees to your event. You'll need both an `eventCode` and a `key` which you can get from your Cadence contact for your event.",
+                  "operationId": "registerattendee",
+                  "parameters": [
+                    {
+                      "description": "The webhook eventCode provided to you by your contact at Cadence.",
+                      "in": "path",
+                      "name": "eventCode",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/registerattendee"
+                        }
+                      }
+                    },
+                    "description": "JSON body of fields used to register the attendee.",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiResponse"
+                          }
+                        }
+                      },
+                      "description": "successful operation"
+                    },
+                    "400": {
+                      "content": {},
+                      "description": "required field missing"
+                    },
+                    "404": {
+                      "content": {},
+                      "description": "eventCode not found"
+                    }
+                  },
+                  "summary": "Register an Attendee",
+                  "tags": [
+                    "registerattendee"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://webhookconnect.eventcadence.com/connect"
+              },
+              {
+                "description": "Production (Cheetah)",
+                "url": "https://cheetahconnect.eventcadence.com/connect"
+              }
+            ],
+            "tags": [
+              {
+                "name": "registerattendee"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Event Cadence"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:25.755674+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://event-cadence.github.io/cadence-webhook-api/swagger.yaml",
+        "version": "3.0.1"
+      }
+    ],
+    "sha256": "dbe4e9d7d5048021c1d87f8c0460184431f93cc9b8f6cccf932860641b007800",
+    "source_id": "event-cadence",
+    "source_updated": null,
+    "url": "https://event-cadence.github.io/cadence-webhook-api/swagger.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.5"
+}

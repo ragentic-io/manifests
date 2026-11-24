@@ -1,0 +1,379 @@
+{
+  "a2ui": {},
+  "app": "clinicaltrials-gov",
+  "graph": {
+    "edges": [
+      {
+        "from": "clinicaltrials-gov",
+        "kind": "EXPOSES",
+        "to": "operation:get:/studies"
+      },
+      {
+        "from": "clinicaltrials-gov",
+        "kind": "EXPOSES",
+        "to": "operation:get:/studies/metadata"
+      },
+      {
+        "from": "clinicaltrials-gov",
+        "kind": "EXPOSES",
+        "to": "operation:get:/studies/{nctId}"
+      },
+      {
+        "from": "operation:get:/studies",
+        "kind": "RETURNS",
+        "to": "schema:StudiesPage"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "clinicaltrials-gov",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns studies matching the supplied condition or status filters.",
+        "id": "operation:get:/studies",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchStudies",
+        "parameters": [
+          {
+            "description": "Condition or disease search term.",
+            "in": "query",
+            "name": "query.cond",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by a study's overall status.",
+            "in": "query",
+            "name": "filter.overallStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of studies to return in this page.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Continuation token returned with the preceding page.",
+            "in": "query",
+            "name": "pageToken",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/studies",
+        "pointer": "#/paths/~1studies/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "StudiesPage"
+          },
+          {
+            "status": "default",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search clinical studies"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns metadata describing the API's study fields.",
+        "id": "operation:get:/studies/metadata",
+        "kind": "operation",
+        "method": "get",
+        "name": "getStudyMetadata",
+        "path": "/studies/metadata",
+        "pointer": "#/paths/~1studies~1metadata/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "default",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get study data model metadata"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/studies/{nctId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getStudy",
+        "parameters": [
+          {
+            "description": "ClinicalTrials.gov study identifier, for example NCT04852770.",
+            "in": "path",
+            "name": "nctId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/studies/{nctId}",
+        "pointer": "#/paths/~1studies~1{nctId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "default",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a study by NCT ID"
+      },
+      {
+        "id": "schema:StudiesPage",
+        "kind": "schema",
+        "name": "StudiesPage",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "clinicaltrials-gov"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://clinicaltrials.gov/api/v2",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "APIError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "API error response."
+                },
+                "StudiesPage": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/StudiesPage"
+                      }
+                    }
+                  },
+                  "description": "A page of matching studies."
+                },
+                "StudyRecord": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "A clinical study record."
+                }
+              },
+              "schemas": {
+                "StudiesPage": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "nextPageToken": {
+                      "description": "Token for the next page when more results are available.",
+                      "type": "string"
+                    },
+                    "studies": {
+                      "items": {
+                        "additionalProperties": true,
+                        "description": "Study fields vary; see the provider's data model documentation.",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "studies"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused community-maintained specification for public study search, individual study retrieval, and study-field metadata. Read requests do not require authentication. ClinicalTrials.gov cautions that the U.S. government does not review or approve the safety and science of every listed study; sponsors or investigators are responsible for submitted record accuracy.",
+              "externalDocs": {
+                "description": "ClinicalTrials.gov API v2 documentation",
+                "url": "https://clinicaltrials.gov/data-api/about-api"
+              },
+              "title": "ClinicalTrials.gov API v2",
+              "version": "2.0.5"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/studies": {
+                "get": {
+                  "description": "Returns studies matching the supplied condition or status filters. Use `pageSize` and the returned `nextPageToken` to paginate results.",
+                  "externalDocs": {
+                    "description": "API v2 guide",
+                    "url": "https://clinicaltrials.gov/data-api/about-api"
+                  },
+                  "operationId": "searchStudies",
+                  "parameters": [
+                    {
+                      "description": "Condition or disease search term.",
+                      "in": "query",
+                      "name": "query.cond",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by a study's overall status.",
+                      "in": "query",
+                      "name": "filter.overallStatus",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of studies to return in this page.",
+                      "in": "query",
+                      "name": "pageSize",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Continuation token returned with the preceding page.",
+                      "in": "query",
+                      "name": "pageToken",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/StudiesPage"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/APIError"
+                    }
+                  },
+                  "summary": "Search clinical studies"
+                }
+              },
+              "/studies/metadata": {
+                "get": {
+                  "description": "Returns metadata describing the API's study fields.",
+                  "operationId": "getStudyMetadata",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "additionalProperties": true,
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Study field metadata."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/APIError"
+                    }
+                  },
+                  "summary": "Get study data model metadata"
+                }
+              },
+              "/studies/{nctId}": {
+                "get": {
+                  "operationId": "getStudy",
+                  "parameters": [
+                    {
+                      "description": "ClinicalTrials.gov study identifier, for example NCT04852770.",
+                      "in": "path",
+                      "name": "nctId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/StudyRecord"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/APIError"
+                    }
+                  },
+                  "summary": "Get a study by NCT ID"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "ClinicalTrials.gov API v2",
+                "url": "https://clinicaltrials.gov/api/v2"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "ClinicalTrials.gov"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.078950+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/clinicaltrials-gov/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "9e0108a13255f9c0103cdcbb19b5aec133f8324d5cc691ebfaad21a0c01be9fb",
+    "source_id": "clinicaltrials-gov",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/clinicaltrials-gov/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "2.0.5"
+}

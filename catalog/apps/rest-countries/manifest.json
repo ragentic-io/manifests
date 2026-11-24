@@ -1,0 +1,670 @@
+{
+  "a2ui": {},
+  "app": "rest-countries",
+  "graph": {
+    "edges": [
+      {
+        "from": "rest-countries",
+        "kind": "EXPOSES",
+        "to": "operation:get:/countries/v5"
+      },
+      {
+        "from": "rest-countries",
+        "kind": "EXPOSES",
+        "to": "operation:get:/countries/v5/codes.alpha_2/{code}"
+      },
+      {
+        "from": "rest-countries",
+        "kind": "EXPOSES",
+        "to": "operation:get:/countries/v5/codes.alpha_3/{code}"
+      },
+      {
+        "from": "rest-countries",
+        "kind": "EXPOSES",
+        "to": "operation:get:/countries/v5/currencies/{currency_code}"
+      },
+      {
+        "from": "rest-countries",
+        "kind": "EXPOSES",
+        "to": "operation:get:/countries/v5/region/{region}"
+      },
+      {
+        "from": "operation:get:/countries/v5",
+        "kind": "RETURNS",
+        "to": "schema:CountriesResponse"
+      },
+      {
+        "from": "operation:get:/countries/v5/codes.alpha_2/{code}",
+        "kind": "RETURNS",
+        "to": "schema:CountriesResponse"
+      },
+      {
+        "from": "operation:get:/countries/v5/codes.alpha_3/{code}",
+        "kind": "RETURNS",
+        "to": "schema:CountriesResponse"
+      },
+      {
+        "from": "operation:get:/countries/v5/currencies/{currency_code}",
+        "kind": "RETURNS",
+        "to": "schema:CountriesResponse"
+      },
+      {
+        "from": "operation:get:/countries/v5/region/{region}",
+        "kind": "RETURNS",
+        "to": "schema:CountriesResponse"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "rest-countries",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a paginated country collection.",
+        "id": "operation:get:/countries/v5",
+        "kind": "operation",
+        "method": "get",
+        "name": "listCountries",
+        "parameters": [
+          {
+            "default": 25,
+            "description": "Page size.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Number of matching records to skip; defaults to 0.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Case-insensitive substring search across searchable properties.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by a documented country region, such as Europe.",
+            "in": "query",
+            "name": "region",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented boolean property filter; the examples use 1 for true.",
+            "in": "query",
+            "name": "memberships.eu",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated dot paths to include in each country object.",
+            "in": "query",
+            "name": "response_fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated dot paths to omit from each country object.",
+            "in": "query",
+            "name": "response_fields_omit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Enable pretty-printed JSON output.",
+            "in": "query",
+            "name": "pretty",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/countries/v5",
+        "pointer": "#/paths/~1countries~1v5/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CountriesResponse"
+          },
+          {
+            "status": "default",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List or search countries"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/countries/v5/codes.alpha_2/{code}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCountryByAlpha2Code",
+        "parameters": [
+          {
+            "description": "ISO alpha-2 country code, for example CA.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/countries/v5/codes.alpha_2/{code}",
+        "pointer": "#/paths/~1countries~1v5~1codes.alpha_2~1{code}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CountriesResponse"
+          },
+          {
+            "status": "default",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get countries by ISO alpha-2 code"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/countries/v5/codes.alpha_3/{code}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCountryByAlpha3Code",
+        "parameters": [
+          {
+            "description": "ISO alpha-3 country code, for example CAN.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/countries/v5/codes.alpha_3/{code}",
+        "pointer": "#/paths/~1countries~1v5~1codes.alpha_3~1{code}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CountriesResponse"
+          },
+          {
+            "status": "default",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get countries by ISO alpha-3 code"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/countries/v5/currencies/{currency_code}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCountriesByCurrency",
+        "parameters": [
+          {
+            "description": "Currency code, for example CAD.",
+            "in": "path",
+            "name": "currency_code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/countries/v5/currencies/{currency_code}",
+        "pointer": "#/paths/~1countries~1v5~1currencies~1{currency_code}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CountriesResponse"
+          },
+          {
+            "status": "default",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get countries by currency code"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/countries/v5/region/{region}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCountriesByRegion",
+        "parameters": [
+          {
+            "description": "Country region, for example Europe.",
+            "in": "path",
+            "name": "region",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/countries/v5/region/{region}",
+        "pointer": "#/paths/~1countries~1v5~1region~1{region}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CountriesResponse"
+          },
+          {
+            "status": "default",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get countries by region"
+      },
+      {
+        "id": "schema:CountriesResponse",
+        "kind": "schema",
+        "name": "CountriesResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:ErrorResponse",
+        "kind": "schema",
+        "name": "ErrorResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "rest-countries"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.restcountries.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "APIError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "API error. Documented status codes include 400, 401, 403, 404, 410, 429, and 500."
+                },
+                "Countries": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/CountriesResponse"
+                      }
+                    }
+                  },
+                  "description": "Countries matching the lookup or search."
+                }
+              },
+              "schemas": {
+                "CountriesResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "data": {
+                      "additionalProperties": true,
+                      "properties": {
+                        "meta": {
+                          "additionalProperties": true,
+                          "properties": {
+                            "count": {
+                              "type": "integer"
+                            },
+                            "limit": {
+                              "type": "integer"
+                            },
+                            "more": {
+                              "type": "boolean"
+                            },
+                            "offset": {
+                              "type": "integer"
+                            },
+                            "request_id": {
+                              "type": "string"
+                            },
+                            "total": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "objects": {
+                          "items": {
+                            "additionalProperties": true,
+                            "description": "Country fields vary by record and plan. See the provider's field reference.",
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "objects"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "ErrorResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "errors": {
+                      "items": {
+                        "additionalProperties": true,
+                        "properties": {
+                          "message": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused community-maintained specification for five documented read operations in REST Countries API v5. The provider requires a bearer API key. Its free plan is for prototyping, evaluation, and non-commercial use; commercial and public-sector use requires a paid plan. The provider also limits caching to three days and prohibits bulk redistribution. Review the [provider's terms](https://restcountries.com/legal/terms-of-service) before use.",
+              "externalDocs": {
+                "description": "Countries API documentation and field reference",
+                "url": "https://restcountries.com/docs/countries"
+              },
+              "title": "REST Countries API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/countries/v5": {
+                "get": {
+                  "description": "Returns a paginated country collection. Search and property filters can be combined; the response can be projected or trimmed by field path.",
+                  "operationId": "listCountries",
+                  "parameters": [
+                    {
+                      "description": "Page size. Defaults to 25. The free plan supports up to 100 records per page; paid plans support up to 500.",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": 25,
+                        "maximum": 500,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Number of matching records to skip; defaults to 0.",
+                      "in": "query",
+                      "name": "offset",
+                      "required": false,
+                      "schema": {
+                        "default": 0,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Case-insensitive substring search across searchable properties.",
+                      "in": "query",
+                      "name": "q",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by a documented country region, such as Europe.",
+                      "in": "query",
+                      "name": "region",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Documented boolean property filter; the examples use 1 for true.",
+                      "in": "query",
+                      "name": "memberships.eu",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Comma-separated dot paths to include in each country object.",
+                      "in": "query",
+                      "name": "response_fields",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Comma-separated dot paths to omit from each country object.",
+                      "in": "query",
+                      "name": "response_fields_omit",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Enable pretty-printed JSON output.",
+                      "in": "query",
+                      "name": "pretty",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Countries"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/APIError"
+                    }
+                  },
+                  "summary": "List or search countries"
+                }
+              },
+              "/countries/v5/codes.alpha_2/{code}": {
+                "get": {
+                  "operationId": "getCountryByAlpha2Code",
+                  "parameters": [
+                    {
+                      "description": "ISO alpha-2 country code, for example CA.",
+                      "in": "path",
+                      "name": "code",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Countries"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/APIError"
+                    }
+                  },
+                  "summary": "Get countries by ISO alpha-2 code"
+                }
+              },
+              "/countries/v5/codes.alpha_3/{code}": {
+                "get": {
+                  "operationId": "getCountryByAlpha3Code",
+                  "parameters": [
+                    {
+                      "description": "ISO alpha-3 country code, for example CAN.",
+                      "in": "path",
+                      "name": "code",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Countries"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/APIError"
+                    }
+                  },
+                  "summary": "Get countries by ISO alpha-3 code"
+                }
+              },
+              "/countries/v5/currencies/{currency_code}": {
+                "get": {
+                  "operationId": "getCountriesByCurrency",
+                  "parameters": [
+                    {
+                      "description": "Currency code, for example CAD.",
+                      "in": "path",
+                      "name": "currency_code",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Countries"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/APIError"
+                    }
+                  },
+                  "summary": "Get countries by currency code"
+                }
+              },
+              "/countries/v5/region/{region}": {
+                "get": {
+                  "operationId": "getCountriesByRegion",
+                  "parameters": [
+                    {
+                      "description": "Country region, for example Europe.",
+                      "in": "path",
+                      "name": "region",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Countries"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/APIError"
+                    }
+                  },
+                  "summary": "Get countries by region"
+                }
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "REST Countries production API",
+                "url": "https://api.restcountries.com"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "REST Countries"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.701304+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/rest-countries/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "85a7dc75aa35569095bc1bc395d471ff6931e3712a0266816278d9483b7c56de",
+    "source_id": "rest-countries",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/rest-countries/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

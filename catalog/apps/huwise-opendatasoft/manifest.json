@@ -1,0 +1,4239 @@
+{
+  "a2ui": {},
+  "app": "huwise-opendatasoft",
+  "graph": {
+    "edges": [
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets/{dataset_id}"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets/{dataset_id}/attachments"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets/{dataset_id}/exports"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets/{dataset_id}/exports/csv"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets/{dataset_id}/exports/gpx"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets/{dataset_id}/exports/parquet"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets/{dataset_id}/exports/{format}"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets/{dataset_id}/facets"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets/{dataset_id}/records"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/datasets/{dataset_id}/records/{record_id}"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/exports"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/exports/csv"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/exports/dcat{dcat_ap_format}"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/exports/{format}"
+      },
+      {
+        "from": "huwise-opendatasoft",
+        "kind": "EXPOSES",
+        "to": "operation:get:/catalog/facets"
+      },
+      {
+        "from": "operation:get:/catalog/datasets",
+        "kind": "RETURNS",
+        "to": "schema:datasets"
+      },
+      {
+        "from": "operation:get:/catalog/datasets/{dataset_id}",
+        "kind": "RETURNS",
+        "to": "schema:dataset"
+      },
+      {
+        "from": "operation:get:/catalog/datasets/{dataset_id}/records",
+        "kind": "RETURNS",
+        "to": "schema:records"
+      },
+      {
+        "from": "operation:get:/catalog/datasets/{dataset_id}/records/{record_id}",
+        "kind": "RETURNS",
+        "to": "schema:record"
+      },
+      {
+        "from": "schema:dataset",
+        "kind": "REFERENCES",
+        "to": "schema:links"
+      },
+      {
+        "from": "schema:datasets",
+        "kind": "REFERENCES",
+        "to": "schema:dataset"
+      },
+      {
+        "from": "schema:datasets",
+        "kind": "REFERENCES",
+        "to": "schema:links"
+      },
+      {
+        "from": "schema:facet_enumeration",
+        "kind": "REFERENCES",
+        "to": "schema:facet_value_enumeration"
+      },
+      {
+        "from": "schema:record",
+        "kind": "REFERENCES",
+        "to": "schema:links"
+      },
+      {
+        "from": "schema:records",
+        "kind": "REFERENCES",
+        "to": "schema:links"
+      },
+      {
+        "from": "schema:records",
+        "kind": "REFERENCES",
+        "to": "schema:record"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "huwise-opendatasoft",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieve available datasets.",
+        "id": "operation:get:/catalog/datasets",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDatasets",
+        "parameters": [
+          {
+            "description": "Examples: - `select=size` - Example of select, which only return the \"size\" field.",
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A `where` filter is a text expression performing a simple full-text search that can also include logical operations (NOT, AND, OR...) and lots of other functio…",
+            "in": "query",
+            "name": "where",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example: `order_by=sum(age) desc, name asc` A comma-separated list of field names or aggregations to sort on, followed by an order (`asc` or `desc`).",
+            "in": "query",
+            "name": "order_by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Number of items to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Index of the first item to return (starting at 0).",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Example: `refine=modified:2020` - Return only the value `2020` from the `modified` facet.",
+            "in": "query",
+            "name": "refine",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Examples: - `exclude=city:Paris` - Exclude the value `Paris` from the `city` facet.",
+            "in": "query",
+            "name": "exclude",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A language value.",
+            "enum": [
+              "en",
+              "fr",
+              "nl",
+              "pt",
+              "it",
+              "ar",
+              "de",
+              "es",
+              "ca",
+              "eu",
+              "sv"
+            ],
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "UTC",
+            "description": "Set the timezone for datetime fields.",
+            "in": "query",
+            "name": "timezone",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example: `group_by=city_field as city` A group by expression defines a grouping function for an aggregation.",
+            "in": "query",
+            "name": "group_by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "If set to `true`, this parameter will add HATEOAS links in the response.",
+            "in": "query",
+            "name": "include_links",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "If set to `true`, this parameter will add application metadata to the response.",
+            "in": "query",
+            "name": "include_app_metas",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/catalog/datasets",
+        "pointer": "#/paths/~1catalog~1datasets/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "datasets"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Query catalog datasets",
+        "tags": [
+          "Catalog"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a list of available endpoints for the specified dataset, with metadata and endpoints.",
+        "id": "operation:get:/catalog/datasets/{dataset_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDataset",
+        "parameters": [
+          {
+            "description": "The identifier of the dataset to be queried.",
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Examples: - `select=size` - Example of select, which only return the \"size\" field.",
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A language value.",
+            "enum": [
+              "en",
+              "fr",
+              "nl",
+              "pt",
+              "it",
+              "ar",
+              "de",
+              "es",
+              "ca",
+              "eu",
+              "sv"
+            ],
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "UTC",
+            "description": "Set the timezone for datetime fields.",
+            "in": "query",
+            "name": "timezone",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "If set to `true`, this parameter will add HATEOAS links in the response.",
+            "in": "query",
+            "name": "include_links",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "If set to `true`, this parameter will add application metadata to the response.",
+            "in": "query",
+            "name": "include_app_metas",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/catalog/datasets/{dataset_id}",
+        "pointer": "#/paths/~1catalog~1datasets~1{dataset_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "dataset"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Show dataset information",
+        "tags": [
+          "Catalog"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a list of all available attachments for a dataset.",
+        "id": "operation:get:/catalog/datasets/{dataset_id}/attachments",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDatasetAttachments",
+        "parameters": [
+          {
+            "description": "The identifier of the dataset to be queried.",
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/catalog/datasets/{dataset_id}/attachments",
+        "pointer": "#/paths/~1catalog~1datasets~1{dataset_id}~1attachments/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "List dataset attachments",
+        "tags": [
+          "Dataset"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List available export formats",
+        "id": "operation:get:/catalog/datasets/{dataset_id}/exports",
+        "kind": "operation",
+        "method": "get",
+        "name": "listDatasetExportFormats",
+        "parameters": [
+          {
+            "description": "The identifier of the dataset to be queried.",
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/catalog/datasets/{dataset_id}/exports",
+        "pointer": "#/paths/~1catalog~1datasets~1{dataset_id}~1exports/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "List export formats",
+        "tags": [
+          "Dataset"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Export a dataset in CSV (Comma Separated Values).",
+        "id": "operation:get:/catalog/datasets/{dataset_id}/exports/csv",
+        "kind": "operation",
+        "method": "get",
+        "name": "exportRecordsCSV",
+        "parameters": [
+          {
+            "description": "The identifier of the dataset to be queried.",
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": ";",
+            "description": "Sets the field delimiter of the CSV export",
+            "enum": [
+              ";",
+              ",",
+              "\t",
+              "|"
+            ],
+            "in": "query",
+            "name": "delimiter",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": ",",
+            "description": "Sets the separator character used for multivalued strings",
+            "in": "query",
+            "name": "list_separator",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Set it to true to force quoting all strings, i.e.",
+            "in": "query",
+            "name": "quote_all",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": true,
+            "description": "Set it to true to force the first characters of the CSV file to be a Unicode Byte Order Mask (0xFEFF).",
+            "in": "query",
+            "name": "with_bom",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/catalog/datasets/{dataset_id}/exports/csv",
+        "pointer": "#/paths/~1catalog~1datasets~1{dataset_id}~1exports~1csv/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Export a dataset in CSV",
+        "tags": [
+          "Dataset"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Export a dataset in GPX.",
+        "id": "operation:get:/catalog/datasets/{dataset_id}/exports/gpx",
+        "kind": "operation",
+        "method": "get",
+        "name": "exportRecordsGPX",
+        "parameters": [
+          {
+            "description": "The identifier of the dataset to be queried.",
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Sets the field that is used as the 'name' attribute in the GPX output",
+            "in": "query",
+            "name": "name_field",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Sets the fields to use in the 'description' attribute of the GPX output",
+            "in": "query",
+            "name": "description_field_list",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": true,
+            "description": "Set it to true to use the `<extension>` tag for attributes (as GDAL does).",
+            "in": "query",
+            "name": "use_extension",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/catalog/datasets/{dataset_id}/exports/gpx",
+        "pointer": "#/paths/~1catalog~1datasets~1{dataset_id}~1exports~1gpx/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Export a dataset in GPX",
+        "tags": [
+          "Dataset"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Export a dataset in Parquet.",
+        "id": "operation:get:/catalog/datasets/{dataset_id}/exports/parquet",
+        "kind": "operation",
+        "method": "get",
+        "name": "exportRecordsParquet",
+        "parameters": [
+          {
+            "description": "The identifier of the dataset to be queried.",
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "snappy",
+            "description": "Sets the compression parameter for the Parquet export file",
+            "enum": [
+              "snappy",
+              "zstd"
+            ],
+            "in": "query",
+            "name": "parquet_compression",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/catalog/datasets/{dataset_id}/exports/parquet",
+        "pointer": "#/paths/~1catalog~1datasets~1{dataset_id}~1exports~1parquet/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Export a dataset in Parquet",
+        "tags": [
+          "Dataset"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Export a dataset in the desired format.",
+        "id": "operation:get:/catalog/datasets/{dataset_id}/exports/{format}",
+        "kind": "operation",
+        "method": "get",
+        "name": "exportRecords",
+        "parameters": [
+          {
+            "description": "The identifier of the dataset to be queried.",
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "format",
+            "required": true,
+            "type": "enum-format-datasets"
+          },
+          {
+            "description": "Examples: - `select=size` - Example of select, which only return the \"size\" field.",
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A `where` filter is a text expression performing a simple full-text search that can also include logical operations (NOT, AND, OR...) and lots of other functio…",
+            "in": "query",
+            "name": "where",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example: `order_by=sum(age) desc, name asc` A comma-separated list of field names or aggregations to sort on, followed by an order (`asc` or `desc`).",
+            "in": "query",
+            "name": "order_by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example: `group_by=city_field as city` A group by expression defines a grouping function for an aggregation.",
+            "in": "query",
+            "name": "group_by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": -1,
+            "description": "Number of items to return in export.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Example: `refine=modified:2020` - Return only the value `2020` from the `modified` facet.",
+            "in": "query",
+            "name": "refine",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Examples: - `exclude=city:Paris` - Exclude the value `Paris` from the `city` facet.",
+            "in": "query",
+            "name": "exclude",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A language value.",
+            "enum": [
+              "en",
+              "fr",
+              "nl",
+              "pt",
+              "it",
+              "ar",
+              "de",
+              "es",
+              "ca",
+              "eu",
+              "sv"
+            ],
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "UTC",
+            "description": "Set the timezone for datetime fields.",
+            "in": "query",
+            "name": "timezone",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "If set to `true`, this parameter will make exports output the label of each field rather than its name.",
+            "in": "query",
+            "name": "use_labels",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "If set to `true`, this parameter can compress the output file of a specific export format with GZIP, e.g.",
+            "in": "query",
+            "name": "compressed",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": 4326,
+            "description": "This parameter sets the EPSG code to project shapes into for formats that support geometric features.",
+            "in": "query",
+            "name": "epsg",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/catalog/datasets/{dataset_id}/exports/{format}",
+        "pointer": "#/paths/~1catalog~1datasets~1{dataset_id}~1exports~1{format}/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Export a dataset",
+        "tags": [
+          "Dataset"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Enumerates facet values for records and returns a list of values for each facet.",
+        "id": "operation:get:/catalog/datasets/{dataset_id}/facets",
+        "kind": "operation",
+        "method": "get",
+        "name": "getRecordsFacets",
+        "parameters": [
+          {
+            "description": "The identifier of the dataset to be queried.",
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "A `where` filter is a text expression performing a simple full-text search that can also include logical operations (NOT, AND, OR...) and lots of other functio…",
+            "in": "query",
+            "name": "where",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example: `refine=modified:2020` - Return only the value `2020` from the `modified` facet.",
+            "in": "query",
+            "name": "refine",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Examples: - `exclude=city:Paris` - Exclude the value `Paris` from the `city` facet.",
+            "in": "query",
+            "name": "exclude",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A facet is a field used for simple filtering (through the `refine` and `exclude` parameters) or exploration (with the `/facets` endpoint).",
+            "in": "query",
+            "name": "facet",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A language value.",
+            "enum": [
+              "en",
+              "fr",
+              "nl",
+              "pt",
+              "it",
+              "ar",
+              "de",
+              "es",
+              "ca",
+              "eu",
+              "sv"
+            ],
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "UTC",
+            "description": "Set the timezone for datetime fields.",
+            "in": "query",
+            "name": "timezone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/catalog/datasets/{dataset_id}/facets",
+        "pointer": "#/paths/~1catalog~1datasets~1{dataset_id}~1facets/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "List dataset facets",
+        "tags": [
+          "Dataset"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Perform a query on dataset records.",
+        "id": "operation:get:/catalog/datasets/{dataset_id}/records",
+        "kind": "operation",
+        "method": "get",
+        "name": "getRecords",
+        "parameters": [
+          {
+            "description": "The identifier of the dataset to be queried.",
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Examples: - `select=size` - Example of select, which only return the \"size\" field.",
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A `where` filter is a text expression performing a simple full-text search that can also include logical operations (NOT, AND, OR...) and lots of other functio…",
+            "in": "query",
+            "name": "where",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example: `group_by=city_field as city` A group by expression defines a grouping function for an aggregation.",
+            "in": "query",
+            "name": "group_by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example: `order_by=sum(age) desc, name asc` A comma-separated list of field names or aggregations to sort on, followed by an order (`asc` or `desc`).",
+            "in": "query",
+            "name": "order_by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Number of items to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Index of the first item to return (starting at 0).",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Example: `refine=modified:2020` - Return only the value `2020` from the `modified` facet.",
+            "in": "query",
+            "name": "refine",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Examples: - `exclude=city:Paris` - Exclude the value `Paris` from the `city` facet.",
+            "in": "query",
+            "name": "exclude",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A language value.",
+            "enum": [
+              "en",
+              "fr",
+              "nl",
+              "pt",
+              "it",
+              "ar",
+              "de",
+              "es",
+              "ca",
+              "eu",
+              "sv"
+            ],
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "UTC",
+            "description": "Set the timezone for datetime fields.",
+            "in": "query",
+            "name": "timezone",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "If set to `true`, this parameter will add HATEOAS links in the response.",
+            "in": "query",
+            "name": "include_links",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "If set to `true`, this parameter will add application metadata to the response.",
+            "in": "query",
+            "name": "include_app_metas",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/catalog/datasets/{dataset_id}/records",
+        "pointer": "#/paths/~1catalog~1datasets~1{dataset_id}~1records/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "records"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Query dataset records",
+        "tags": [
+          "Dataset"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Reads a single dataset record based on its identifier.",
+        "id": "operation:get:/catalog/datasets/{dataset_id}/records/{record_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getRecord",
+        "parameters": [
+          {
+            "description": "The identifier of the dataset to be queried.",
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Record identifier",
+            "in": "path",
+            "name": "record_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Examples: - `select=size` - Example of select, which only return the \"size\" field.",
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A language value.",
+            "enum": [
+              "en",
+              "fr",
+              "nl",
+              "pt",
+              "it",
+              "ar",
+              "de",
+              "es",
+              "ca",
+              "eu",
+              "sv"
+            ],
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "UTC",
+            "description": "Set the timezone for datetime fields.",
+            "in": "query",
+            "name": "timezone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/catalog/datasets/{dataset_id}/records/{record_id}",
+        "pointer": "#/paths/~1catalog~1datasets~1{dataset_id}~1records~1{record_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "record"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Read a dataset record",
+        "tags": [
+          "Dataset"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List available export formats",
+        "id": "operation:get:/catalog/exports",
+        "kind": "operation",
+        "method": "get",
+        "name": "listExportFormats",
+        "path": "/catalog/exports",
+        "pointer": "#/paths/~1catalog~1exports/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "List export formats",
+        "tags": [
+          "Catalog"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Export a catalog in CSV (Comma Separated Values).",
+        "id": "operation:get:/catalog/exports/csv",
+        "kind": "operation",
+        "method": "get",
+        "name": "exportCatalogCSV",
+        "parameters": [
+          {
+            "default": ";",
+            "description": "Sets the field delimiter of the CSV export",
+            "enum": [
+              ";",
+              ",",
+              "\t",
+              "|"
+            ],
+            "in": "query",
+            "name": "delimiter",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": ",",
+            "description": "Sets the separator character used for multivalued strings",
+            "in": "query",
+            "name": "list_separator",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Set it to true to force quoting all strings, i.e.",
+            "in": "query",
+            "name": "quote_all",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": true,
+            "description": "Set it to true to force the first characters of the CSV file to be a Unicode Byte Order Mask (0xFEFF).",
+            "in": "query",
+            "name": "with_bom",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/catalog/exports/csv",
+        "pointer": "#/paths/~1catalog~1exports~1csv/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Export a catalog in CSV",
+        "tags": [
+          "Catalog"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Export a catalog in RDF/XML described with DCAT (Data Catalog Vocabulary).",
+        "id": "operation:get:/catalog/exports/dcat{dcat_ap_format}",
+        "kind": "operation",
+        "method": "get",
+        "name": "exportCatalogDCAT",
+        "parameters": [
+          {
+            "enum": [
+              "_ap_ch",
+              "_ap_de",
+              "_ap_se",
+              "_ap_sp",
+              "_ap_it",
+              "_ap_vl",
+              "_ap_benap"
+            ],
+            "in": "path",
+            "name": "dcat_ap_format",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Sets the datasets exports exposed in the DCAT export.",
+            "in": "query",
+            "name": "include_exports",
+            "required": false,
+            "type": "enum-format-datasets"
+          },
+          {
+            "default": true,
+            "description": "If set to `true`, this parameter will make distributions output the label of each field rather than its name.",
+            "in": "query",
+            "name": "use_labels_in_exports",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/catalog/exports/dcat{dcat_ap_format}",
+        "pointer": "#/paths/~1catalog~1exports~1dcat{dcat_ap_format}/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Export a catalog in RDF/XML (DCAT)",
+        "tags": [
+          "Catalog"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Export a catalog in the desired format.",
+        "id": "operation:get:/catalog/exports/{format}",
+        "kind": "operation",
+        "method": "get",
+        "name": "exportDatasets",
+        "parameters": [
+          {
+            "enum": [
+              "csv",
+              "data.json",
+              "dcat",
+              "dcat_ap_ch",
+              "dcat_ap_de",
+              "dcat_ap_se",
+              "dcat_ap_sp",
+              "dcat_ap_it",
+              "dcat_ap_vl",
+              "dcat_ap_benap",
+              "dublin_core",
+              "json",
+              "rdf",
+              "rss",
+              "ttl",
+              "xlsx"
+            ],
+            "in": "path",
+            "name": "format",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Examples: - `select=size` - Example of select, which only return the \"size\" field.",
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A `where` filter is a text expression performing a simple full-text search that can also include logical operations (NOT, AND, OR...) and lots of other functio…",
+            "in": "query",
+            "name": "where",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example: `order_by=sum(age) desc, name asc` A comma-separated list of field names or aggregations to sort on, followed by an order (`asc` or `desc`).",
+            "in": "query",
+            "name": "order_by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example: `group_by=city_field as city` A group by expression defines a grouping function for an aggregation.",
+            "in": "query",
+            "name": "group_by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": -1,
+            "description": "Number of items to return in export.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Index of the first item to return (starting at 0).",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Example: `refine=modified:2020` - Return only the value `2020` from the `modified` facet.",
+            "in": "query",
+            "name": "refine",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Examples: - `exclude=city:Paris` - Exclude the value `Paris` from the `city` facet.",
+            "in": "query",
+            "name": "exclude",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A language value.",
+            "enum": [
+              "en",
+              "fr",
+              "nl",
+              "pt",
+              "it",
+              "ar",
+              "de",
+              "es",
+              "ca",
+              "eu",
+              "sv"
+            ],
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "UTC",
+            "description": "Set the timezone for datetime fields.",
+            "in": "query",
+            "name": "timezone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/catalog/exports/{format}",
+        "pointer": "#/paths/~1catalog~1exports~1{format}/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "Export a catalog",
+        "tags": [
+          "Catalog"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Enumerate facet values for datasets and returns a list of values for each facet.",
+        "id": "operation:get:/catalog/facets",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDatasetsFacets",
+        "parameters": [
+          {
+            "description": "A facet is a field used for simple filtering (through the `refine` and `exclude` parameters) or exploration (with the `/facets` endpoint).",
+            "in": "query",
+            "name": "facet",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example: `refine=modified:2020` - Return only the value `2020` from the `modified` facet.",
+            "in": "query",
+            "name": "refine",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Examples: - `exclude=city:Paris` - Exclude the value `Paris` from the `city` facet.",
+            "in": "query",
+            "name": "exclude",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A `where` filter is a text expression performing a simple full-text search that can also include logical operations (NOT, AND, OR...) and lots of other functio…",
+            "in": "query",
+            "name": "where",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "UTC",
+            "description": "Set the timezone for datetime fields.",
+            "in": "query",
+            "name": "timezone",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/catalog/facets",
+        "pointer": "#/paths/~1catalog~1facets/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apikey": []
+          }
+        ],
+        "summary": "List facet values",
+        "tags": [
+          "Catalog"
+        ]
+      },
+      {
+        "id": "schema:attachment",
+        "kind": "schema",
+        "name": "attachment",
+        "type": "object"
+      },
+      {
+        "id": "schema:dataset",
+        "kind": "schema",
+        "name": "dataset",
+        "type": "object"
+      },
+      {
+        "id": "schema:datasets",
+        "kind": "schema",
+        "name": "datasets",
+        "type": "object"
+      },
+      {
+        "id": "schema:enum-format-datasets",
+        "kind": "schema",
+        "name": "enum-format-datasets",
+        "type": "string"
+      },
+      {
+        "id": "schema:facet_enumeration",
+        "kind": "schema",
+        "name": "facet_enumeration",
+        "type": "object"
+      },
+      {
+        "id": "schema:facet_value_enumeration",
+        "kind": "schema",
+        "name": "facet_value_enumeration",
+        "type": "object"
+      },
+      {
+        "id": "schema:links",
+        "kind": "schema",
+        "name": "links",
+        "type": "object"
+      },
+      {
+        "id": "schema:record",
+        "kind": "schema",
+        "name": "record",
+        "type": "object"
+      },
+      {
+        "id": "schema:records",
+        "kind": "schema",
+        "name": "records",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "huwise-opendatasoft"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://documentation-resources.huwise.com/api/explore/v2.1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "examples": {
+                "attachments": {
+                  "value": {
+                    "attachments": [
+                      {
+                        "href": "https://documentation-resources.opendatasoft.com/api/v2/catalog/datasets/geonames-all-cities-with-a-population-1000/attachments/cities1000_zip",
+                        "metas": {
+                          "mime-type": "application/zip",
+                          "title": "cities1000.zip"
+                        }
+                      }
+                    ],
+                    "links": []
+                  }
+                },
+                "catalog_facets": {
+                  "value": {
+                    "facets": [
+                      {
+                        "facets": [
+                          {
+                            "count": 2,
+                            "name": "Opendatasoft",
+                            "state": "displayed",
+                            "value": "Opendatasoft"
+                          },
+                          {
+                            "count": 2,
+                            "name": "Opendatasoft - Data Team",
+                            "state": "displayed",
+                            "value": "Opendatasoft - Data Team"
+                          }
+                        ],
+                        "name": "publisher"
+                      },
+                      {
+                        "facets": [
+                          {
+                            "count": 19,
+                            "name": "analyze",
+                            "state": "displayed",
+                            "value": "analyze"
+                          },
+                          {
+                            "count": 13,
+                            "name": "timeserie",
+                            "state": "displayed",
+                            "value": "timeserie"
+                          }
+                        ],
+                        "name": "features"
+                      },
+                      {
+                        "facets": [
+                          {
+                            "count": 17,
+                            "name": "en",
+                            "state": "displayed",
+                            "value": "en"
+                          },
+                          {
+                            "count": 4,
+                            "name": "fr",
+                            "state": "displayed",
+                            "value": "fr"
+                          }
+                        ],
+                        "name": "language"
+                      }
+                    ],
+                    "links": []
+                  }
+                },
+                "dataset-v2.1": {
+                  "value": {
+                    "attachments": [],
+                    "data_visible": true,
+                    "dataset_id": "geonames-all-cities-with-a-population-1000",
+                    "dataset_uid": "da_s2n5ed",
+                    "features": [
+                      "geo",
+                      "analyze",
+                      "timeserie"
+                    ],
+                    "fields": [
+                      {
+                        "annotations": {
+                          "facetsort": [
+                            "-count"
+                          ],
+                          "id": []
+                        },
+                        "description": null,
+                        "label": "Geoname ID",
+                        "name": "geoname_id",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {
+                          "sortable": []
+                        },
+                        "description": null,
+                        "label": "Name",
+                        "name": "name",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "ASCII Name",
+                        "name": "ascii_name",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {
+                          "multivalued": [
+                            ","
+                          ]
+                        },
+                        "description": null,
+                        "label": "Alternate Names",
+                        "name": "alternate_names",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": "see http://www.geonames.org/export/codes.html",
+                        "label": "Feature Class",
+                        "name": "feature_class",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": "see http://www.geonames.org/export/codes.html",
+                        "label": "Feature Code",
+                        "name": "feature_code",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "Country Code",
+                        "name": "country_code",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {
+                          "disjunctive": [],
+                          "facet": [],
+                          "facetsort": [
+                            "alphanum"
+                          ]
+                        },
+                        "description": null,
+                        "label": "Country name EN",
+                        "name": "cou_name_en",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "Country Code 2",
+                        "name": "country_code_2",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "Admin1 Code",
+                        "name": "admin1_code",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {
+                          "facetsort": [
+                            "-count"
+                          ]
+                        },
+                        "description": null,
+                        "label": "Admin2 Code",
+                        "name": "admin2_code",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "Admin3 Code",
+                        "name": "admin3_code",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "Admin4 Code",
+                        "name": "admin4_code",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "Population",
+                        "name": "population",
+                        "type": "int"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "Elevation",
+                        "name": "elevation",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "DIgital Elevation Model",
+                        "name": "dem",
+                        "type": "int"
+                      },
+                      {
+                        "annotations": {
+                          "facet": [],
+                          "hierarchical": [
+                            "/"
+                          ]
+                        },
+                        "description": null,
+                        "label": "Timezone",
+                        "name": "timezone",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "Modification date",
+                        "name": "modification_date",
+                        "type": "date"
+                      },
+                      {
+                        "annotations": {},
+                        "description": null,
+                        "label": "LABEL EN",
+                        "name": "label_en",
+                        "type": "text"
+                      },
+                      {
+                        "annotations": {
+                          "facetsort": [
+                            "-count"
+                          ]
+                        },
+                        "description": null,
+                        "label": "Coordinates",
+                        "name": "coordinates",
+                        "type": "geo_point_2d"
+                      }
+                    ],
+                    "has_records": true,
+                    "metas": {
+                      "default": {
+                        "attributions": [
+                          "https://www.geonames.org/about.html"
+                        ],
+                        "data_processed": "2021-06-22T08:47:08+00:00",
+                        "description": "<p>All cities with a population &gt; 1000 or seats of adm div (ca 80.000)</p><h4>Sources and Contributions</h4><ul><li><strong>Sources</strong> : GeoNames is aggregating over hundred different <a href=\"http://www.geonames.org/data-sources.html\">data sources</a>. \t</li><li><strong>Ambassadors</strong> : <a href=\"http://www.geonames.org/team.html#ambassadors\">GeoNames Ambassadors</a> help in many countries. \t</li><li><strong>Wiki</strong> : A <a href=\"http://www.geonames.org/manual.html\">wiki</a> allows to view the data and quickly fix error and add missing places. \t</li><li><strong>Donations and Sponsoring</strong> : Costs for running GeoNames are covered by <a href=\"http://www.geonames.org/donations.html\">donations and sponsoring</a>.</li></ul><p><b>Enrichment:</b></p><ul><li>add country name</li></ul>",
+                        "federated": true,
+                        "geographic_area": null,
+                        "geographic_area_mode": null,
+                        "geographic_reference": [
+                          "world"
+                        ],
+                        "geographic_reference_auto": true,
+                        "keyword": [
+                          "Geonames",
+                          "city",
+                          "world"
+                        ],
+                        "language": "en",
+                        "license": "CC BY 4.0",
+                        "license_url": "https://creativecommons.org/licenses/by/4.0/",
+                        "metadata_languages": [
+                          "en"
+                        ],
+                        "metadata_processed": "2021-06-23T07:50:26.162000+00:00",
+                        "modified": "2021-06-23T07:50:20+00:00",
+                        "modified_updates_on_data_change": true,
+                        "modified_updates_on_metadata_change": false,
+                        "oauth_scope": null,
+                        "parent_domain": null,
+                        "publisher": "GeoNames",
+                        "records_count": 137611,
+                        "references": "https://download.geonames.org/export/dump/",
+                        "shared_catalog": null,
+                        "source_dataset": null,
+                        "source_domain": null,
+                        "source_domain_address": null,
+                        "source_domain_title": null,
+                        "territory": [
+                          "World"
+                        ],
+                        "theme": [
+                          "Administration, Government, Public finances, Citizenship"
+                        ],
+                        "timezone": null,
+                        "title": "Geonames - All Cities with a population > 1000"
+                      }
+                    }
+                  }
+                },
+                "datasets-v2.1": {
+                  "value": {
+                    "results": [
+                      {
+                        "attachments": [],
+                        "data_visible": true,
+                        "dataset_id": "world-administrative-boundaries-countries-and-territories",
+                        "dataset_uid": "da_6kvv9v",
+                        "features": [
+                          "analyze",
+                          "geo"
+                        ],
+                        "fields": [
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "Geo Point",
+                            "name": "geo_point_2d",
+                            "type": "geo_point_2d"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "Geo Shape",
+                            "name": "geo_shape",
+                            "type": "geo_shape"
+                          },
+                          {
+                            "annotations": {
+                              "facet": []
+                            },
+                            "description": null,
+                            "label": "Status",
+                            "name": "status",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {
+                              "facet": []
+                            },
+                            "description": "ISO 3 code of the country to which the territory belongs",
+                            "label": "ISO 3 country code",
+                            "name": "color_code",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {
+                              "facet": []
+                            },
+                            "description": null,
+                            "label": "Region of the territory",
+                            "name": "region",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {
+                              "sortable": []
+                            },
+                            "description": null,
+                            "label": "ISO 3 territory code",
+                            "name": "iso3",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {
+                              "facet": []
+                            },
+                            "description": null,
+                            "label": "Continent of the territory",
+                            "name": "continent",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {
+                              "sortable": []
+                            },
+                            "description": "Name of the territory",
+                            "label": "English Name",
+                            "name": "name",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "ISO 3166-1 Alpha 2-Codes",
+                            "name": "iso_3166_1_alpha_2_codes",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": "French term, when it is available in https://data.opendatasoft.com/explore/dataset/countries-territories-taxonomy-mvp-ct-taxonomy-with-hxl-tags1@public/table/, English name otherwise",
+                            "label": "French Name",
+                            "name": "french_short",
+                            "type": "text"
+                          }
+                        ],
+                        "has_records": true,
+                        "metas": {
+                          "default": {
+                            "attributions": null,
+                            "data_processed": "2019-05-15T07:49:01+00:00",
+                            "description": "<p>This dataset displays level 0 world administrative boundaries. It contains countries as well as non-sovereign territories (like, for instance, French overseas). </p>",
+                            "federated": true,
+                            "geographic_area": null,
+                            "geographic_area_mode": null,
+                            "geographic_reference": [
+                              "world"
+                            ],
+                            "geographic_reference_auto": true,
+                            "keyword": [
+                              "United Nation",
+                              "ISO-3 code",
+                              "Countries",
+                              "Territories",
+                              "Shape",
+                              "Boundaries"
+                            ],
+                            "language": "en",
+                            "license": "Open Government Licence v3.0",
+                            "license_url": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+                            "metadata_languages": [
+                              "en"
+                            ],
+                            "metadata_processed": "2021-06-23T15:00:02.656000+00:00",
+                            "modified": "2021-06-23T14:59:57+00:00",
+                            "modified_updates_on_data_change": false,
+                            "modified_updates_on_metadata_change": false,
+                            "oauth_scope": null,
+                            "parent_domain": null,
+                            "publisher": "World Food Programme (UN agency)",
+                            "records_count": 256,
+                            "references": "https://geonode.wfp.org/layers/geonode:wld_bnd_adm0_wfp",
+                            "shared_catalog": null,
+                            "source_dataset": null,
+                            "source_domain": null,
+                            "source_domain_address": null,
+                            "source_domain_title": null,
+                            "territory": [
+                              "World"
+                            ],
+                            "theme": [
+                              "Administration, Government, Public finances, Citizenship"
+                            ],
+                            "timezone": null,
+                            "title": "World Administrative Boundaries - Countries and Territories"
+                          }
+                        }
+                      },
+                      {
+                        "attachments": [
+                          {
+                            "id": "cities1000_zip",
+                            "mimetype": "application/zip",
+                            "title": "cities1000.zip",
+                            "url": "odsfile://cities1000.zip"
+                          }
+                        ],
+                        "data_visible": true,
+                        "dataset_id": "geonames-all-cities-with-a-population-1000",
+                        "dataset_uid": "da_5m8ykr",
+                        "features": [
+                          "geo",
+                          "analyze",
+                          "timeserie"
+                        ],
+                        "fields": [
+                          {
+                            "annotations": {
+                              "facetsort": [
+                                "-count"
+                              ],
+                              "id": []
+                            },
+                            "description": null,
+                            "label": "Geoname ID",
+                            "name": "geoname_id",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {
+                              "sortable": []
+                            },
+                            "description": null,
+                            "label": "Name",
+                            "name": "name",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "ASCII Name",
+                            "name": "ascii_name",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {
+                              "multivalued": [
+                                ","
+                              ]
+                            },
+                            "description": null,
+                            "label": "Alternate Names",
+                            "name": "alternate_names",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": "see http://www.geonames.org/export/codes.html",
+                            "label": "Feature Class",
+                            "name": "feature_class",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": "see http://www.geonames.org/export/codes.html",
+                            "label": "Feature Code",
+                            "name": "feature_code",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "Country Code",
+                            "name": "country_code",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {
+                              "disjunctive": [],
+                              "facet": [],
+                              "facetsort": [
+                                "alphanum"
+                              ]
+                            },
+                            "description": null,
+                            "label": "Country name EN",
+                            "name": "cou_name_en",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "Country Code 2",
+                            "name": "country_code_2",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "Admin1 Code",
+                            "name": "admin1_code",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {
+                              "facetsort": [
+                                "-count"
+                              ]
+                            },
+                            "description": null,
+                            "label": "Admin2 Code",
+                            "name": "admin2_code",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "Admin3 Code",
+                            "name": "admin3_code",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "Admin4 Code",
+                            "name": "admin4_code",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "Population",
+                            "name": "population",
+                            "type": "int"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "Elevation",
+                            "name": "elevation",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "DIgital Elevation Model",
+                            "name": "dem",
+                            "type": "int"
+                          },
+                          {
+                            "annotations": {
+                              "facet": [],
+                              "hierarchical": [
+                                "/"
+                              ]
+                            },
+                            "description": null,
+                            "label": "Timezone",
+                            "name": "timezone",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "Modification date",
+                            "name": "modification_date",
+                            "type": "date"
+                          },
+                          {
+                            "annotations": {},
+                            "description": null,
+                            "label": "LABEL EN",
+                            "name": "label_en",
+                            "type": "text"
+                          },
+                          {
+                            "annotations": {
+                              "facetsort": [
+                                "-count"
+                              ]
+                            },
+                            "description": null,
+                            "label": "Coordinates",
+                            "name": "coordinates",
+                            "type": "geo_point_2d"
+                          }
+                        ],
+                        "has_records": true,
+                        "metas": {
+                          "default": {
+                            "attributions": null,
+                            "data_processed": "2021-06-23T14:49:23+00:00",
+                            "description": null,
+                            "federated": false,
+                            "geographic_area": null,
+                            "geographic_area_mode": null,
+                            "geographic_reference": [
+                              "world"
+                            ],
+                            "geographic_reference_auto": true,
+                            "keyword": null,
+                            "language": "en",
+                            "license": null,
+                            "license_url": null,
+                            "metadata_languages": [
+                              "en"
+                            ],
+                            "metadata_processed": "2021-06-23T14:49:23.198000+00:00",
+                            "modified": "2021-06-23T14:37:45+00:00",
+                            "modified_updates_on_data_change": false,
+                            "modified_updates_on_metadata_change": false,
+                            "oauth_scope": null,
+                            "parent_domain": null,
+                            "publisher": null,
+                            "records_count": 137609,
+                            "references": null,
+                            "shared_catalog": null,
+                            "source_dataset": null,
+                            "source_domain": null,
+                            "source_domain_address": null,
+                            "source_domain_title": null,
+                            "territory": [
+                              "World"
+                            ],
+                            "theme": null,
+                            "timezone": null,
+                            "title": "Geonames - All Cities with a population > 1000"
+                          }
+                        }
+                      }
+                    ],
+                    "total_count": 19
+                  }
+                },
+                "facets": {
+                  "value": {
+                    "facets": [
+                      {
+                        "facets": [
+                          {
+                            "count": 68888,
+                            "name": "Europe",
+                            "state": "displayed",
+                            "value": "Europe"
+                          },
+                          {
+                            "count": 36276,
+                            "name": "America",
+                            "state": "displayed",
+                            "value": "America"
+                          }
+                        ],
+                        "name": "timezone"
+                      },
+                      {
+                        "facets": [
+                          {
+                            "count": 313,
+                            "name": "Afghanistan",
+                            "state": "displayed",
+                            "value": "Afghanistan"
+                          },
+                          {
+                            "count": 356,
+                            "name": "Albania",
+                            "state": "displayed",
+                            "value": "Albania"
+                          }
+                        ],
+                        "name": "cou_name_en"
+                      }
+                    ],
+                    "links": []
+                  }
+                },
+                "group_by_country-v2.1": {
+                  "value": {
+                    "results": [
+                      {
+                        "cou_name_en": "United States",
+                        "count": 16729
+                      },
+                      {
+                        "cou_name_en": "Italy",
+                        "count": 9945
+                      },
+                      {
+                        "cou_name_en": "Mexico",
+                        "count": 8981
+                      }
+                    ]
+                  }
+                },
+                "record-v2.1": {
+                  "value": {
+                    "admin1_code": "WAL",
+                    "admin2_code": "WNA",
+                    "admin3_code": "93",
+                    "admin4_code": "93088",
+                    "alternate_names": [
+                      "Fraire"
+                    ],
+                    "ascii_name": "Fraire",
+                    "coordinates": {
+                      "lat": 50.26127,
+                      "lon": 4.5076
+                    },
+                    "cou_name_en": "Belgium",
+                    "country_code": "BE",
+                    "country_code_2": null,
+                    "dem": 238,
+                    "elevation": null,
+                    "feature_class": "P",
+                    "feature_code": "PPL",
+                    "geoname_id": "2798031",
+                    "label_en": "Belgium",
+                    "modification_date": "2020-04-05",
+                    "name": "Fraire",
+                    "population": 1492,
+                    "timezone": "Europe/Brussels"
+                  }
+                },
+                "records-v2.1": {
+                  "value": {
+                    "results": [
+                      {
+                        "admin1_code": "27",
+                        "admin2_code": "71",
+                        "admin3_code": "711",
+                        "admin4_code": "71436",
+                        "alternate_names": [
+                          "Saint-Leu"
+                        ],
+                        "ascii_name": "Saint-Leu",
+                        "coordinates": {
+                          "lat": 46.7306,
+                          "lon": 4.50083
+                        },
+                        "cou_name_en": "France",
+                        "country_code": "FR",
+                        "country_code_2": null,
+                        "dem": 366,
+                        "elevation": null,
+                        "feature_class": "P",
+                        "feature_code": "PPL",
+                        "geoname_id": "2978771",
+                        "label_en": "France",
+                        "modification_date": "2019-03-26",
+                        "name": "Saint-Leu",
+                        "population": 29278,
+                        "timezone": "Europe/Paris"
+                      },
+                      {
+                        "admin1_code": "32",
+                        "admin2_code": "80",
+                        "admin3_code": "802",
+                        "admin4_code": "80706",
+                        "alternate_names": [
+                          "Saint-Leger",
+                          "Saint-Leger-les-Domart",
+                          "Saint-Léger",
+                          "Saint-Léger-lès-Domart"
+                        ],
+                        "ascii_name": "Saint-Leger-les-Domart",
+                        "coordinates": {
+                          "lat": 50.05208,
+                          "lon": 2.14067
+                        },
+                        "cou_name_en": "France",
+                        "country_code": "FR",
+                        "country_code_2": null,
+                        "dem": 31,
+                        "elevation": null,
+                        "feature_class": "P",
+                        "feature_code": "PPL",
+                        "geoname_id": "2978817",
+                        "label_en": "France",
+                        "modification_date": "2016-02-18",
+                        "name": "Saint-Léger-lès-Domart",
+                        "population": 1781,
+                        "timezone": "Europe/Paris"
+                      }
+                    ],
+                    "total_count": 137611
+                  }
+                }
+              },
+              "parameters": {
+                "compressed": {
+                  "description": "If set to `true`, this parameter can compress the output file of a specific export format with GZIP, e.g. `.csv.gzip`.\n",
+                  "in": "query",
+                  "name": "compressed",
+                  "required": false,
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "dataset_id": {
+                  "description": "The identifier of the dataset to be queried.\n\nYou can find it in the \"Information\" tab of the dataset page or in the dataset URL, right after `/datasets/`.",
+                  "in": "path",
+                  "name": "dataset_id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "dcat_format": {
+                  "in": "path",
+                  "name": "dcat_ap_format",
+                  "required": true,
+                  "schema": {
+                    "description": "DCAT format specifier for the catalog export.\n`dcat_ap_*` formats are only available upon activation.",
+                    "enum": [
+                      "_ap_ch",
+                      "_ap_de",
+                      "_ap_se",
+                      "_ap_sp",
+                      "_ap_it",
+                      "_ap_vl",
+                      "_ap_benap"
+                    ],
+                    "type": "string"
+                  },
+                  "style": "simple"
+                },
+                "epsg": {
+                  "description": "This parameter sets the EPSG code to project shapes into for formats that support geometric features.\n",
+                  "in": "query",
+                  "name": "epsg",
+                  "schema": {
+                    "default": 4326,
+                    "type": "integer"
+                  }
+                },
+                "exclude": {
+                  "description": "Examples:\n- `exclude=city:Paris` - Exclude the value `Paris` from the `city` facet. Facets enumeration will display `Paris` as `excluded` without any count information.\n- `exclude=modified:2019/12` - Exclude the value `2019/12` from the `modified` facet. Facets enumeration will display `2020` as `excluded` without any count information.\n\nA facet filter used to exclude a facet value from the result set.\nUsing this parameter, you can filter your query to exclude the selected facet value in the response.\n\n`exclude` uses the following syntax: `exclude=<FACETNAME>:<FACETVALUE>`\n\n**`exclude` must not be confused with a `where` filter. Excluding a facet value is equivalent to removing an entry in the left navigation panel.**",
+                  "explode": true,
+                  "in": "query",
+                  "name": "exclude",
+                  "schema": {
+                    "type": "string"
+                  },
+                  "style": "form"
+                },
+                "facet": {
+                  "description": "A facet is a field used for simple filtering (through the `refine` and `exclude` parameters) or exploration (with the `/facets` endpoint).\n\nIt can also be a function such as `facet=facet(name=\"field_name\")` which is identical to `facet=field_name`. But this `facet()` function\ncan also take some optional arguments such as `disjunctive`, `hierarchical`, `separator`, `sort` and `limit`.\n\n* `disjunctive`: a boolean `true/false`, whether multiple values can be selected for the facet\n* `hierarchical`: a boolean `true/false` if the field is hierarchical. The separator must be given as the argument.\n   For instance, you can do `facet=facet(name=\"filepath\", hierarchical=true, separator=\"/\")` to retrieve facets related to this field which might look like `\"/home/user/file.txt\"`\n* `separator`: a string, e.g. `/`, `-`, `;`\n* `sort`: a string which describes how to sort the facets. Possible arguments are `count` and `-count` for all field types, `alphanum` and `-alphanum` for `date`, `datetime` and `text`, `num` and `-num` for `decimal` and `int`\n* `limit`: an integer to limit the number of results\n",
+                  "explode": true,
+                  "in": "query",
+                  "name": "facet",
+                  "schema": {
+                    "type": "string"
+                  },
+                  "style": "form"
+                },
+                "format-catalog": {
+                  "in": "path",
+                  "name": "format",
+                  "required": true,
+                  "schema": {
+                    "description": "Format specifier for the catalog export.\n`dcat_ap_*` formats are only available upon activation.\nSee [here](#tag/Catalog/operation/listExportFormats) to get the list of available export formats",
+                    "enum": [
+                      "csv",
+                      "data.json",
+                      "dcat",
+                      "dcat_ap_ch",
+                      "dcat_ap_de",
+                      "dcat_ap_se",
+                      "dcat_ap_sp",
+                      "dcat_ap_it",
+                      "dcat_ap_vl",
+                      "dcat_ap_benap",
+                      "dublin_core",
+                      "json",
+                      "rdf",
+                      "rss",
+                      "ttl",
+                      "xlsx"
+                    ],
+                    "type": "string"
+                  },
+                  "style": "simple"
+                },
+                "format-datasets": {
+                  "in": "path",
+                  "name": "format",
+                  "required": true,
+                  "schema": {
+                    "$ref": "#/components/schemas/enum-format-datasets"
+                  },
+                  "style": "simple"
+                },
+                "group_by": {
+                  "description": "Example: `group_by=city_field as city`\n\nA group by expression defines a grouping function for an aggregation.\nIt can be:\n - a field name: group result by each value of this field\n - a range function: group result by range\n - a date function: group result by date\n\nIt is possible to specify a custom name with the 'as name' notation.",
+                  "explode": false,
+                  "in": "query",
+                  "name": "group_by",
+                  "schema": {
+                    "type": "string"
+                  },
+                  "style": "form"
+                },
+                "include_app_metas": {
+                  "description": "If set to `true`, this parameter will add application metadata to the response.\n",
+                  "in": "query",
+                  "name": "include_app_metas",
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "include_links": {
+                  "description": "If set to `true`, this parameter will add HATEOAS links in the response.\n",
+                  "in": "query",
+                  "name": "include_links",
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "lang": {
+                  "description": "A language value.\n\nIf specified, the `lang` value override the default language, which is \"fr\".\nThe language is used to format string, for example in the `date_format` function.",
+                  "in": "query",
+                  "name": "lang",
+                  "schema": {
+                    "enum": [
+                      "en",
+                      "fr",
+                      "nl",
+                      "pt",
+                      "it",
+                      "ar",
+                      "de",
+                      "es",
+                      "ca",
+                      "eu",
+                      "sv"
+                    ],
+                    "type": "string"
+                  },
+                  "style": "form"
+                },
+                "limit": {
+                  "description": "Number of items to return.\n\nTo use with the `offset` parameter to implement pagination.\n\nThe maximum possible value depends on whether the query contains a `group_by` clause or not.\n\nFor a query **without** a `group_by`:\n  - the maximum value for `limit` is 100,\n  - `offset+limit` should be less than 10000\n\nFor a query **with** a `group_by`:\n  - the maximum value for `limit` is 20000,\n  - `offset+limit` should be less than 20000\n\n**Note:** If you need more results, please use the /exports endpoint.\n",
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                    "default": 10,
+                    "maximum": 100,
+                    "minimum": -1,
+                    "type": "integer"
+                  }
+                },
+                "limit_export": {
+                  "description": "Number of items to return in export.\n\nUse -1 (default) to retrieve all records\n",
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                    "default": -1,
+                    "minimum": -1,
+                    "type": "integer"
+                  }
+                },
+                "offset": {
+                  "description": "Index of the first item to return (starting at 0).\n\nTo use with the `limit` parameter to implement pagination.\n\n**Note:** the maximum value depends on the type of query, see the note on `limit` for the details\n",
+                  "in": "query",
+                  "name": "offset",
+                  "schema": {
+                    "default": 0,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "order_by": {
+                  "description": "Example: `order_by=sum(age) desc, name asc`\n\nA comma-separated list of field names or aggregations to sort on, followed by an order (`asc` or `desc`).\n\nResults are sorted in ascending order by default. To sort results in descending order, use the `desc` keyword.",
+                  "explode": false,
+                  "in": "query",
+                  "name": "order_by",
+                  "schema": {
+                    "type": "string"
+                  },
+                  "style": "form"
+                },
+                "record_id": {
+                  "description": "Record identifier",
+                  "in": "path",
+                  "name": "record_id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "refine": {
+                  "description": "Example: `refine=modified:2020` - Return only the value `2020` from the `modified` facet.\n\nA facet filter used to limit the result set.\nUsing this parameter, you can refine your query to display only the selected facet value in the response.\n\nRefinement uses the following syntax: `refine=<FACETNAME>:<FACETVALUE>`\n\nFor date, and other hierarchical facets, when refining on one value, all second-level values related to that entry will appear in facets enumeration. For example, after refining on the year 2019, the related second-level month will appear. And when refining on August 2019, the third-level day will appear.\n\n**`refine` must not be confused with a `where` filter. Refining with a facet is equivalent to selecting an entry in the left navigation panel.**",
+                  "explode": true,
+                  "in": "query",
+                  "name": "refine",
+                  "schema": {
+                    "type": "string"
+                  },
+                  "style": "form"
+                },
+                "select": {
+                  "description": "Examples:\n- `select=size` - Example of select, which only return the \"size\" field.\n- `select=size * 2 as bigger_size` - Example of a complex expression with a label, which returns a new field named \"bigger_size\" and containing the double of size field value.\n- `select=dataset_id, fields` - Example of a select in catalog ODSQL query to only retrieve dataset_id and schema of datasets.\n\nA select expression can be used to add, remove or change the fields to return.\nAn expression can be:\n  - a wildcard ('*'): all fields are returned.\n  - A field name: only the specified field is returned.\n  - An include/exclude function: All fields matching the include or exclude expression are included or excluded. This expression can contain wildcard.\n  - A complex expression. The result of the expression is returned. A label can be set for this expression, and in that case, the field will be named after this label.",
+                  "in": "query",
+                  "name": "select",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "timezone": {
+                  "description": "Set the timezone for datetime fields.\n\nTimezone IDs are defined by the [Unicode CLDR project](https://github.com/unicode-org/cldr). The list of timezone IDs is available in [timezone.xml](https://github.com/unicode-org/cldr/blob/master/common/bcp47/timezone.xml).",
+                  "examples": {
+                    "Europe/Berlin": {
+                      "summary": "Berlin timezone",
+                      "value": "Europe/Berlin"
+                    },
+                    "Europe/London": {
+                      "summary": "London timezone",
+                      "value": "Europe/London"
+                    },
+                    "Europe/Paris": {
+                      "summary": "Paris timezone",
+                      "value": "Europe/Paris"
+                    },
+                    "US/Eastern": {
+                      "summary": "Eastern timezone",
+                      "value": "US/Eastern"
+                    },
+                    "UTC": {
+                      "summary": "UTC timezone",
+                      "value": "UTC"
+                    }
+                  },
+                  "in": "query",
+                  "name": "timezone",
+                  "schema": {
+                    "default": "UTC",
+                    "type": "string"
+                  }
+                },
+                "use_labels": {
+                  "description": "If set to `true`, this parameter will make exports output the label of each field rather than its name.\n\nThis parameter only makes sense for formats that contain a list of the fields in their output.\n",
+                  "in": "query",
+                  "name": "use_labels",
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "where": {
+                  "description": "A `where` filter is a text expression performing a simple full-text search that can also include logical operations\n(NOT, AND, OR...) and lots of other functions to perform complex and precise search operations.\n\nFor more information, see [Opendatasoft Query Language (ODSQL)](<https://help.huwise.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)/Where-clause>) reference documentation.",
+                  "in": "query",
+                  "name": "where",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "bad_request": {
+                  "content": {
+                    "application/json; charset=utf-8": {
+                      "examples": {
+                        "invalid_odsql": {
+                          "value": {
+                            "error_code": "ODSQLError",
+                            "message": "ODSQL query is malformed: invalid_function() Clause(s) containing the error(s): select."
+                          }
+                        }
+                      },
+                      "schema": {
+                        "properties": {
+                          "error_code": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "message": {
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "message",
+                          "error_code"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "Bad Request"
+                },
+                "quota": {
+                  "content": {
+                    "application/json; charset=utf-8": {
+                      "examples": {
+                        "quota_exceeded": {
+                          "value": {
+                            "call_limit": 10000,
+                            "error": "Too many requests on the domain. Please contact the domain administrator.",
+                            "errorcode": 10002,
+                            "limit_time_unit": "day",
+                            "reset_time": "2021-01-26T00:00:00Z"
+                          }
+                        }
+                      },
+                      "schema": {
+                        "properties": {
+                          "call_limit": {
+                            "type": "number"
+                          },
+                          "error": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "errorcode": {
+                            "type": "number"
+                          },
+                          "limit_time_unit": {
+                            "minLength": 1,
+                            "type": "string"
+                          },
+                          "reset_time": {
+                            "minLength": 1,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "errorcode",
+                          "reset_time",
+                          "limit_time_unit",
+                          "call_limit",
+                          "error"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "Too many requests"
+                }
+              },
+              "schemas": {
+                "attachment": {
+                  "properties": {
+                    "href": {
+                      "type": "string"
+                    },
+                    "metas": {
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "mime-type": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "dataset": {
+                  "additionalProperties": {},
+                  "properties": {
+                    "_links": {
+                      "items": {
+                        "$ref": "#/components/schemas/links"
+                      },
+                      "type": "array"
+                    },
+                    "attachments": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "mimetype": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "data_visible": {
+                      "type": "boolean"
+                    },
+                    "dataset_id": {
+                      "type": "string"
+                    },
+                    "dataset_uid": {
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "features": {
+                      "description": "A map of available features for a dataset, with the fields they apply to.\n",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "fields": {
+                      "items": {
+                        "properties": {
+                          "annotations": {
+                            "type": "object"
+                          },
+                          "description": {
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "label": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "has_records": {
+                      "type": "boolean"
+                    },
+                    "metas": {
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "datasets": {
+                  "properties": {
+                    "_links": {
+                      "items": {
+                        "$ref": "#/components/schemas/links"
+                      },
+                      "type": "array"
+                    },
+                    "results": {
+                      "items": {
+                        "$ref": "#/components/schemas/dataset"
+                      },
+                      "type": "array"
+                    },
+                    "total_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "enum-format-datasets": {
+                  "enum": [
+                    "csv",
+                    "fgb",
+                    "geojson",
+                    "gpx",
+                    "json",
+                    "jsonl",
+                    "jsonld",
+                    "kml",
+                    "n3",
+                    "ov2",
+                    "parquet",
+                    "rdfxml",
+                    "shp",
+                    "turtle",
+                    "xlsx"
+                  ],
+                  "type": "string"
+                },
+                "facet_enumeration": {
+                  "properties": {
+                    "facets": {
+                      "items": {
+                        "$ref": "#/components/schemas/facet_value_enumeration"
+                      },
+                      "type": "array"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "facet_value_enumeration": {
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "links": {
+                  "properties": {
+                    "href": {
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "rel": {
+                      "enum": [
+                        "self",
+                        "first",
+                        "last",
+                        "next",
+                        "dataset",
+                        "catalog"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "record": {
+                  "additionalProperties": {
+                    "type": "any"
+                  },
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "_links": {
+                      "items": {
+                        "$ref": "#/components/schemas/links"
+                      },
+                      "type": "array"
+                    },
+                    "_size": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "_timestamp": {
+                      "format": "dateTime",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "records": {
+                  "properties": {
+                    "_links": {
+                      "items": {
+                        "$ref": "#/components/schemas/links"
+                      },
+                      "type": "array"
+                    },
+                    "results": {
+                      "items": {
+                        "$ref": "#/components/schemas/record"
+                      },
+                      "type": "array"
+                    },
+                    "total_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "apikey": {
+                  "description": "API key to make authenticated requests.",
+                  "in": "query",
+                  "name": "apikey",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "support@opendatasoft.com"
+              },
+              "description": "The Opendatasoft Explore API v2 is organized around REST. It provides access to all the data available through the platform in a coherent, hierarchical way.\n\n- Only the HTTP `GET` method is supported.\n- All API endpoints return JSON.\n- Endpoints are organized in a hierarchical way describing the relative relationship between objects.\n- All responses contain a list of links allowing easy and relevant navigation through the API endpoints.\n- All endpoints use the [Opendatasoft Query Language (ODSQL)](https://help.huwise.com/apis/ods-explore-v2/#section/Opendatasoft-Query-Language-(ODSQL)). This means that, most of the time, parameters work the same way for all endpoints.\n- While the `records` endpoint is subject to a [limited number of returned records](https://help.huwise.com/apis/ods-explore-v2/#tag/Dataset/operation/getRecords), the `exports` endpoint has no limitations.",
+              "license": {
+                "name": "Copyright Opendatasoft",
+                "url": "https://legal.huwise.com/en/terms-of-use.html"
+              },
+              "title": "Explore API",
+              "version": "v2.1"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/catalog/datasets": {
+                "get": {
+                  "description": "Retrieve available datasets.",
+                  "operationId": "getDatasets",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/select"
+                    },
+                    {
+                      "$ref": "#/components/parameters/where"
+                    },
+                    {
+                      "$ref": "#/components/parameters/order_by"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/refine"
+                    },
+                    {
+                      "$ref": "#/components/parameters/exclude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lang"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timezone"
+                    },
+                    {
+                      "$ref": "#/components/parameters/group_by"
+                    },
+                    {
+                      "$ref": "#/components/parameters/include_links"
+                    },
+                    {
+                      "$ref": "#/components/parameters/include_app_metas"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json; charset=utf-8": {
+                          "examples": {
+                            "datasets": {
+                              "$ref": "#/components/examples/datasets-v2.1"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/datasets"
+                          }
+                        }
+                      },
+                      "description": "A list of available datasets"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Query catalog datasets",
+                  "tags": [
+                    "Catalog"
+                  ]
+                }
+              },
+              "/catalog/datasets/{dataset_id}": {
+                "get": {
+                  "description": "Returns a list of available endpoints for the specified dataset, with metadata and endpoints.\n\nThe response includes the following links:\n* the attachments endpoint\n* the files endpoint\n* the records endpoint\n* the catalog endpoint.",
+                  "operationId": "getDataset",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataset_id"
+                    },
+                    {
+                      "$ref": "#/components/parameters/select"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lang"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timezone"
+                    },
+                    {
+                      "$ref": "#/components/parameters/include_links"
+                    },
+                    {
+                      "$ref": "#/components/parameters/include_app_metas"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json; charset=utf-8json": {
+                          "examples": {
+                            "dataset": {
+                              "$ref": "#/components/examples/dataset-v2.1"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/dataset"
+                          }
+                        }
+                      },
+                      "description": "The dataset"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Show dataset information",
+                  "tags": [
+                    "Catalog"
+                  ]
+                }
+              },
+              "/catalog/datasets/{dataset_id}/attachments": {
+                "get": {
+                  "description": "Returns a list of all available attachments for a dataset.\n",
+                  "operationId": "getDatasetAttachments",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataset_id"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json; charset=utf-8": {
+                          "examples": {
+                            "attachments": {
+                              "$ref": "#/components/examples/attachments"
+                            }
+                          },
+                          "schema": {
+                            "properties": {
+                              "attachments": {
+                                "items": {
+                                  "$ref": "#/components/schemas/attachment"
+                                },
+                                "type": "array"
+                              },
+                              "links": {
+                                "items": {
+                                  "$ref": "#/components/schemas/links"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "List of all available attachments"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "List dataset attachments",
+                  "tags": [
+                    "Dataset"
+                  ]
+                }
+              },
+              "/catalog/datasets/{dataset_id}/exports": {
+                "get": {
+                  "description": "List available export formats",
+                  "operationId": "listDatasetExportFormats",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataset_id"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json; charset=utf-8": {
+                          "schema": {
+                            "properties": {
+                              "links": {
+                                "items": {
+                                  "$ref": "#/components/schemas/links"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "A list of available export formats"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "List export formats",
+                  "tags": [
+                    "Dataset"
+                  ]
+                }
+              },
+              "/catalog/datasets/{dataset_id}/exports/csv": {
+                "get": {
+                  "description": "Export a dataset in CSV (Comma Separated Values). Specific parameters are described here",
+                  "operationId": "exportRecordsCSV",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataset_id"
+                    },
+                    {
+                      "description": "Sets the field delimiter of the CSV export",
+                      "in": "query",
+                      "name": "delimiter",
+                      "required": false,
+                      "schema": {
+                        "default": ";",
+                        "enum": [
+                          ";",
+                          ",",
+                          "\t",
+                          "|"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Sets the separator character used for multivalued strings",
+                      "in": "query",
+                      "name": "list_separator",
+                      "required": false,
+                      "schema": {
+                        "default": ",",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Set it to true to force quoting all strings, i.e. surrounding all strings with quote characters",
+                      "in": "query",
+                      "name": "quote_all",
+                      "required": false,
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Set it to true to force the first characters of the CSV file to be a Unicode Byte Order Mask (0xFEFF). It usually makes Excel correctly open the output CSV file without warning.\n**Warning:** the default value of this parameter is `false` in v2.0 and `true` starting with v2.1",
+                      "in": "query",
+                      "name": "with_bom",
+                      "required": false,
+                      "schema": {
+                        "default": true,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Return a file"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Export a dataset in CSV",
+                  "tags": [
+                    "Dataset"
+                  ]
+                }
+              },
+              "/catalog/datasets/{dataset_id}/exports/gpx": {
+                "get": {
+                  "description": "Export a dataset in GPX. Specific parameters are described here",
+                  "operationId": "exportRecordsGPX",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataset_id"
+                    },
+                    {
+                      "description": "Sets the field that is used as the 'name' attribute in the GPX output",
+                      "in": "query",
+                      "name": "name_field",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Sets the fields to use in the 'description' attribute of the GPX output",
+                      "in": "query",
+                      "name": "description_field_list",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Set it to true to use the `<extension>` tag for attributes (as GDAL does). Set it to false to use the `<desc>` tag for attributes.\n**Warning:** the default value of this parameter is `false` in v2.0 and `true` starting with v2.1",
+                      "in": "query",
+                      "name": "use_extension",
+                      "required": false,
+                      "schema": {
+                        "default": true,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Return a file"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Export a dataset in GPX",
+                  "tags": [
+                    "Dataset"
+                  ]
+                }
+              },
+              "/catalog/datasets/{dataset_id}/exports/parquet": {
+                "get": {
+                  "description": "Export a dataset in Parquet. Specific parameters are described here",
+                  "operationId": "exportRecordsParquet",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataset_id"
+                    },
+                    {
+                      "description": "Sets the compression parameter for the Parquet export file",
+                      "in": "query",
+                      "name": "parquet_compression",
+                      "required": false,
+                      "schema": {
+                        "default": "snappy",
+                        "enum": [
+                          "snappy",
+                          "zstd"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Return a file"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Export a dataset in Parquet",
+                  "tags": [
+                    "Dataset"
+                  ]
+                }
+              },
+              "/catalog/datasets/{dataset_id}/exports/{format}": {
+                "get": {
+                  "description": "Export a dataset in the desired format.\n**Note:** The `group_by` parameter is only available on exports starting with the v2.1",
+                  "operationId": "exportRecords",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataset_id"
+                    },
+                    {
+                      "$ref": "#/components/parameters/format-datasets"
+                    },
+                    {
+                      "$ref": "#/components/parameters/select"
+                    },
+                    {
+                      "$ref": "#/components/parameters/where"
+                    },
+                    {
+                      "$ref": "#/components/parameters/order_by"
+                    },
+                    {
+                      "$ref": "#/components/parameters/group_by"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit_export"
+                    },
+                    {
+                      "$ref": "#/components/parameters/refine"
+                    },
+                    {
+                      "$ref": "#/components/parameters/exclude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lang"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timezone"
+                    },
+                    {
+                      "$ref": "#/components/parameters/use_labels"
+                    },
+                    {
+                      "$ref": "#/components/parameters/compressed"
+                    },
+                    {
+                      "$ref": "#/components/parameters/epsg"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Return a file"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Export a dataset",
+                  "tags": [
+                    "Dataset"
+                  ]
+                }
+              },
+              "/catalog/datasets/{dataset_id}/facets": {
+                "get": {
+                  "description": "Enumerates facet values for records and returns a list of values for each facet.\nCan be used to implement guided navigation in large result sets.\n",
+                  "operationId": "getRecordsFacets",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataset_id"
+                    },
+                    {
+                      "$ref": "#/components/parameters/where"
+                    },
+                    {
+                      "$ref": "#/components/parameters/refine"
+                    },
+                    {
+                      "$ref": "#/components/parameters/exclude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/facet"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lang"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timezone"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json; charset=utf-8": {
+                          "examples": {
+                            "facets": {
+                              "$ref": "#/components/examples/facets"
+                            }
+                          },
+                          "schema": {
+                            "properties": {
+                              "facets": {
+                                "items": {
+                                  "$ref": "#/components/schemas/facet_enumeration"
+                                },
+                                "type": "array"
+                              },
+                              "links": {
+                                "items": {
+                                  "$ref": "#/components/schemas/links"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Facets enumeration"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "List dataset facets",
+                  "tags": [
+                    "Dataset"
+                  ]
+                }
+              },
+              "/catalog/datasets/{dataset_id}/records": {
+                "get": {
+                  "description": "Perform a query on dataset records.",
+                  "operationId": "getRecords",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataset_id"
+                    },
+                    {
+                      "$ref": "#/components/parameters/select"
+                    },
+                    {
+                      "$ref": "#/components/parameters/where"
+                    },
+                    {
+                      "$ref": "#/components/parameters/group_by"
+                    },
+                    {
+                      "$ref": "#/components/parameters/order_by"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/refine"
+                    },
+                    {
+                      "$ref": "#/components/parameters/exclude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lang"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timezone"
+                    },
+                    {
+                      "$ref": "#/components/parameters/include_links"
+                    },
+                    {
+                      "$ref": "#/components/parameters/include_app_metas"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json; charset=utf-8": {
+                          "examples": {
+                            "group_by_country": {
+                              "$ref": "#/components/examples/group_by_country-v2.1"
+                            },
+                            "records": {
+                              "$ref": "#/components/examples/records-v2.1"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/records"
+                          }
+                        }
+                      },
+                      "description": "Records"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Query dataset records",
+                  "tags": [
+                    "Dataset"
+                  ]
+                }
+              },
+              "/catalog/datasets/{dataset_id}/records/{record_id}": {
+                "get": {
+                  "description": "Reads a single dataset record based on its identifier.\n",
+                  "operationId": "getRecord",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataset_id"
+                    },
+                    {
+                      "$ref": "#/components/parameters/record_id"
+                    },
+                    {
+                      "$ref": "#/components/parameters/select"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lang"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timezone"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json; charset=utf-8": {
+                          "examples": {
+                            "record": {
+                              "$ref": "#/components/examples/record-v2.1"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/record"
+                          }
+                        }
+                      },
+                      "description": "A single record"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Read a dataset record",
+                  "tags": [
+                    "Dataset"
+                  ]
+                }
+              },
+              "/catalog/exports": {
+                "get": {
+                  "description": "List available export formats",
+                  "operationId": "listExportFormats",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json; charset=utf-8": {
+                          "schema": {
+                            "properties": {
+                              "links": {
+                                "items": {
+                                  "$ref": "#/components/schemas/links"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "A list of available export formats"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "List export formats",
+                  "tags": [
+                    "Catalog"
+                  ]
+                }
+              },
+              "/catalog/exports/csv": {
+                "get": {
+                  "description": "Export a catalog in CSV (Comma Separated Values). Specific parameters are described here",
+                  "operationId": "exportCatalogCSV",
+                  "parameters": [
+                    {
+                      "description": "Sets the field delimiter of the CSV export",
+                      "in": "query",
+                      "name": "delimiter",
+                      "required": false,
+                      "schema": {
+                        "default": ";",
+                        "enum": [
+                          ";",
+                          ",",
+                          "\t",
+                          "|"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Sets the separator character used for multivalued strings",
+                      "in": "query",
+                      "name": "list_separator",
+                      "required": false,
+                      "schema": {
+                        "default": ",",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Set it to true to force quoting all strings, i.e. surrounding all strings with quote characters",
+                      "in": "query",
+                      "name": "quote_all",
+                      "required": false,
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Set it to true to force the first characters of the CSV file to be a Unicode Byte Order Mask (0xFEFF). It usually makes Excel correctly open the output CSV file without warning.\n**Warning:** the default value of this parameter is `false` in v2.0 and `true` starting with v2.1",
+                      "in": "query",
+                      "name": "with_bom",
+                      "required": false,
+                      "schema": {
+                        "default": true,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Return a file"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Export a catalog in CSV",
+                  "tags": [
+                    "Catalog"
+                  ]
+                }
+              },
+              "/catalog/exports/dcat{dcat_ap_format}": {
+                "get": {
+                  "description": "Export a catalog in RDF/XML described with DCAT (Data Catalog Vocabulary). Specific parameters are described here",
+                  "operationId": "exportCatalogDCAT",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dcat_format"
+                    },
+                    {
+                      "description": "Sets the datasets exports exposed in the DCAT export. By default, all exports are exposed.",
+                      "examples": {
+                        "legacy": {
+                          "summary": "Only expose csv, json and geojson datasets exports",
+                          "value": "csv,json,geojson"
+                        }
+                      },
+                      "in": "query",
+                      "name": "include_exports",
+                      "required": false,
+                      "schema": {
+                        "$ref": "#/components/schemas/enum-format-datasets"
+                      }
+                    },
+                    {
+                      "description": "If set to `true`, this parameter will make distributions output the label of each field rather than its name. This parameter only applies on distributions that contain a list of the fields in their output (e.g., CSV, XLSX).",
+                      "in": "query",
+                      "name": "use_labels_in_exports",
+                      "required": false,
+                      "schema": {
+                        "default": true,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Return a file"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Export a catalog in RDF/XML (DCAT)",
+                  "tags": [
+                    "Catalog"
+                  ]
+                }
+              },
+              "/catalog/exports/{format}": {
+                "get": {
+                  "description": "Export a catalog in the desired format.",
+                  "operationId": "exportDatasets",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/format-catalog"
+                    },
+                    {
+                      "$ref": "#/components/parameters/select"
+                    },
+                    {
+                      "$ref": "#/components/parameters/where"
+                    },
+                    {
+                      "$ref": "#/components/parameters/order_by"
+                    },
+                    {
+                      "$ref": "#/components/parameters/group_by"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit_export"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/refine"
+                    },
+                    {
+                      "$ref": "#/components/parameters/exclude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lang"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timezone"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Return a file"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "Export a catalog",
+                  "tags": [
+                    "Catalog"
+                  ]
+                }
+              },
+              "/catalog/facets": {
+                "get": {
+                  "description": "Enumerate facet values for datasets and returns a list of values for each facet.\nCan be used to implement guided navigation in large result sets.",
+                  "operationId": "getDatasetsFacets",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/facet"
+                    },
+                    {
+                      "$ref": "#/components/parameters/refine"
+                    },
+                    {
+                      "$ref": "#/components/parameters/exclude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/where"
+                    },
+                    {
+                      "$ref": "#/components/parameters/timezone"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json; charset=utf-8": {
+                          "examples": {
+                            "catalog_facets": {
+                              "$ref": "#/components/examples/catalog_facets"
+                            }
+                          },
+                          "schema": {
+                            "properties": {
+                              "facets": {
+                                "items": {
+                                  "$ref": "#/components/schemas/facet_enumeration"
+                                },
+                                "type": "array"
+                              },
+                              "links": {
+                                "items": {
+                                  "$ref": "#/components/schemas/links"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "An enumeration of facets"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/bad_request"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/quota"
+                    },
+                    "500": {
+                      "description": "Internal Server Error"
+                    }
+                  },
+                  "summary": "List facet values",
+                  "tags": [
+                    "Catalog"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "apikey": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://documentation-resources.huwise.com/api/explore/v2.1"
+              }
+            ],
+            "tags": [
+              {
+                "description": "API to enumerate datasets",
+                "name": "Catalog"
+              },
+              {
+                "description": "API to work on records",
+                "name": "Dataset"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Huwise (OpenDataSoft)"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:37.798210+00:00",
+    "license": {
+      "name": "Copyright Opendatasoft",
+      "url": "https://legal.huwise.com/en/terms-of-use.html"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://documentation-resources.huwise.com/api/explore/v2.1/swagger.json",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "2311b843b98544bc897a2f373389886d371ddd08d263e27c5e011c3e38d98ab1",
+    "source_id": "huwise-opendatasoft",
+    "source_updated": null,
+    "url": "https://documentation-resources.huwise.com/api/explore/v2.1/swagger.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "v2.1"
+}

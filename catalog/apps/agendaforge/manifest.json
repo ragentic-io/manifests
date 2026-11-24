@@ -1,0 +1,4136 @@
+{
+  "a2ui": {},
+  "app": "agendaforge",
+  "graph": {
+    "edges": [
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/contacts"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/contacts"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/contacts/batch"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/hooks"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/api/v1/hooks/{id}"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/imports/contacts"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/imports/tickets"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/jobs/{id}"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/me"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/sessions"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/sessions"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/sponsors"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/sponsors"
+      },
+      {
+        "from": "agendaforge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/triggers/{event}/sample"
+      },
+      {
+        "from": "operation:post:/api/v1/contacts",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateContactRequest"
+      },
+      {
+        "from": "operation:post:/api/v1/contacts",
+        "kind": "RETURNS",
+        "to": "schema:Contact"
+      },
+      {
+        "from": "operation:post:/api/v1/contacts/batch",
+        "kind": "ACCEPTS",
+        "to": "schema:BatchContactsRequest"
+      },
+      {
+        "from": "operation:post:/api/v1/contacts/batch",
+        "kind": "RETURNS",
+        "to": "schema:BatchContactsResponse"
+      },
+      {
+        "from": "operation:post:/api/v1/imports/contacts",
+        "kind": "ACCEPTS",
+        "to": "schema:ImportContactsRequest"
+      },
+      {
+        "from": "operation:post:/api/v1/imports/contacts",
+        "kind": "RETURNS",
+        "to": "schema:ImportJobAccepted"
+      },
+      {
+        "from": "operation:post:/api/v1/imports/tickets",
+        "kind": "ACCEPTS",
+        "to": "schema:ImportTicketsRequest"
+      },
+      {
+        "from": "operation:post:/api/v1/imports/tickets",
+        "kind": "RETURNS",
+        "to": "schema:TicketsImportJob"
+      },
+      {
+        "from": "operation:get:/api/v1/jobs/{id}",
+        "kind": "RETURNS",
+        "to": "schema:Job"
+      },
+      {
+        "from": "operation:get:/api/v1/jobs/{id}",
+        "kind": "RETURNS",
+        "to": "schema:TicketsImportJob"
+      },
+      {
+        "from": "operation:post:/api/v1/sessions",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateSessionRequest"
+      },
+      {
+        "from": "operation:post:/api/v1/sessions",
+        "kind": "RETURNS",
+        "to": "schema:Session"
+      },
+      {
+        "from": "operation:post:/api/v1/sponsors",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateSponsorRequest"
+      },
+      {
+        "from": "operation:post:/api/v1/sponsors",
+        "kind": "RETURNS",
+        "to": "schema:Sponsor"
+      },
+      {
+        "from": "operation:get:/api/v1/triggers/{event}/sample",
+        "kind": "RETURNS",
+        "to": "schema:Contact"
+      },
+      {
+        "from": "operation:get:/api/v1/triggers/{event}/sample",
+        "kind": "RETURNS",
+        "to": "schema:Session"
+      },
+      {
+        "from": "operation:get:/api/v1/triggers/{event}/sample",
+        "kind": "RETURNS",
+        "to": "schema:Sponsor"
+      },
+      {
+        "from": "schema:BatchContactsRequest",
+        "kind": "REFERENCES",
+        "to": "schema:CreateContactRequest"
+      },
+      {
+        "from": "schema:BatchContactsResponse",
+        "kind": "REFERENCES",
+        "to": "schema:Contact"
+      },
+      {
+        "from": "schema:Contact",
+        "kind": "REFERENCES",
+        "to": "schema:ContactEventRef"
+      },
+      {
+        "from": "schema:ImportContactsRequest",
+        "kind": "REFERENCES",
+        "to": "schema:CreateContactRequest"
+      },
+      {
+        "from": "schema:ImportTicketsRequest",
+        "kind": "REFERENCES",
+        "to": "schema:TicketImportRow"
+      },
+      {
+        "from": "schema:Session",
+        "kind": "REFERENCES",
+        "to": "schema:SessionSpeakerRef"
+      },
+      {
+        "from": "schema:Sponsor",
+        "kind": "REFERENCES",
+        "to": "schema:ContactSummary"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "agendaforge",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Lists the organization's contacts, newest first.",
+        "id": "operation:get:/api/v1/contacts",
+        "kind": "operation",
+        "method": "get",
+        "name": "listContacts",
+        "parameters": [
+          {
+            "default": 25,
+            "description": "Page size, 1-100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Opaque continuation token from the previous response's nextCursor.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/contacts",
+        "pointer": "#/paths/~1api~1v1~1contacts/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "List contacts (cursor-paginated)",
+        "tags": [
+          "Records"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a contact in the key's organization and fires the contact.added trigger.",
+        "id": "operation:post:/api/v1/contacts",
+        "kind": "operation",
+        "method": "post",
+        "name": "createContact",
+        "parameters": [
+          {
+            "description": "Optional key for safe retries, retained for 24 hours.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/contacts",
+        "pointer": "#/paths/~1api~1v1~1contacts/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateContactRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "Contact"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "409",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "Create a contact",
+        "tags": [
+          "Records"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Synchronous batch create.",
+        "id": "operation:post:/api/v1/contacts/batch",
+        "kind": "operation",
+        "method": "post",
+        "name": "createContactsBatch",
+        "parameters": [
+          {
+            "description": "Optional key for safe retries, retained for 24 hours.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/contacts/batch",
+        "pointer": "#/paths/~1api~1v1~1contacts~1batch/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "BatchContactsRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "BatchContactsResponse"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "409",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "Create up to 100 contacts in one request",
+        "tags": [
+          "Records"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Re-subscribing the same URL and event is a no-op that returns the existing subscription id.",
+        "id": "operation:post:/api/v1/hooks",
+        "kind": "operation",
+        "method": "post",
+        "name": "subscribeHook",
+        "parameters": [
+          {
+            "description": "Tags the platform the subscription belongs to.",
+            "enum": [
+              "zapier",
+              "make",
+              "n8n"
+            ],
+            "in": "query",
+            "name": "source",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/hooks",
+        "pointer": "#/paths/~1api~1v1~1hooks/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "Subscribe a target URL to a trigger event (REST Hook)",
+        "tags": [
+          "Webhooks"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Idempotent: deleting an unknown or already-deleted id returns success.",
+        "id": "operation:delete:/api/v1/hooks/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "unsubscribeHook",
+        "parameters": [
+          {
+            "description": "The subscription id returned by POST /api/v1/hooks.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/hooks/{id}",
+        "pointer": "#/paths/~1api~1v1~1hooks~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "Remove a webhook subscription",
+        "tags": [
+          "Webhooks"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Async job pattern: accepts the items, returns 202 Accepted immediately with a job id and statusUrl (also sent as the Location header), and processes the import…",
+        "id": "operation:post:/api/v1/imports/contacts",
+        "kind": "operation",
+        "method": "post",
+        "name": "importContacts",
+        "parameters": [
+          {
+            "description": "Optional key for safe retries, retained for 24 hours.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/imports/contacts",
+        "pointer": "#/paths/~1api~1v1~1imports~1contacts/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "ImportContactsRequest"
+        },
+        "responses": [
+          {
+            "status": "202",
+            "type": "ImportJobAccepted"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "409",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "Import up to 1,000 contacts asynchronously",
+        "tags": [
+          "Jobs"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Sends ticket rows from your own ticketing system to one event, with the same rules as a file import in the app.",
+        "id": "operation:post:/api/v1/imports/tickets",
+        "kind": "operation",
+        "method": "post",
+        "name": "importTickets",
+        "parameters": [
+          {
+            "description": "Optional key for safe retries, retained for 24 hours.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/imports/tickets",
+        "pointer": "#/paths/~1api~1v1~1imports~1tickets/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "ImportTicketsRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "TicketsImportJob"
+          },
+          {
+            "status": "202",
+            "type": "TicketsImportJob"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "402",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "409",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerApiKey": [
+              "tickets:import"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "tickets:import"
+            ]
+          }
+        ],
+        "summary": "Add, update, or cancel up to 1,000 imported tickets",
+        "tags": [
+          "Jobs"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the current status and result counters of a job created by POST /api/v1/imports/contacts or POST /api/v1/imports/tickets.",
+        "id": "operation:get:/api/v1/jobs/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getJob",
+        "parameters": [
+          {
+            "description": "The jobId returned by the 202 response.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/jobs/{id}",
+        "pointer": "#/paths/~1api~1v1~1jobs~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Job|TicketsImportJob"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "bearerApiKey": [
+              "tickets:import"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "tickets:import"
+            ]
+          }
+        ],
+        "summary": "Poll an async job",
+        "tags": [
+          "Jobs"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Auth test / connection label.",
+        "id": "operation:get:/api/v1/me",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMe",
+        "path": "/api/v1/me",
+        "pointer": "#/paths/~1api~1v1~1me/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "Validate the API key and return its organization",
+        "tags": [
+          "Connection"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Lists sessions on one event owned by the key's organization, newest first.",
+        "id": "operation:get:/api/v1/sessions",
+        "kind": "operation",
+        "method": "get",
+        "name": "listSessions",
+        "parameters": [
+          {
+            "description": "The event to list within; must be owned by the key's organization (anything else answers 403 FORBIDDEN).",
+            "in": "query",
+            "name": "eventId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "Page size, 1-100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Opaque continuation token from the previous response's nextCursor.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/sessions",
+        "pointer": "#/paths/~1api~1v1~1sessions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "List an event's sessions (cursor-paginated)",
+        "tags": [
+          "Records"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a session on an event owned by the key's organization and fires the session.added trigger.",
+        "id": "operation:post:/api/v1/sessions",
+        "kind": "operation",
+        "method": "post",
+        "name": "createSession",
+        "parameters": [
+          {
+            "description": "Optional key for safe retries, retained for 24 hours.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/sessions",
+        "pointer": "#/paths/~1api~1v1~1sessions/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateSessionRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "Session"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "409",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "Create a session",
+        "tags": [
+          "Records"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Lists sponsors on one event owned by the key's organization, newest first.",
+        "id": "operation:get:/api/v1/sponsors",
+        "kind": "operation",
+        "method": "get",
+        "name": "listSponsors",
+        "parameters": [
+          {
+            "description": "The event to list within; must be owned by the key's organization (anything else answers 403 FORBIDDEN).",
+            "in": "query",
+            "name": "eventId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "Page size, 1-100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Opaque continuation token from the previous response's nextCursor.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/sponsors",
+        "pointer": "#/paths/~1api~1v1~1sponsors/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "List an event's sponsors (cursor-paginated)",
+        "tags": [
+          "Records"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a sponsor on an event owned by the key's organization and fires the sponsor.added trigger.",
+        "id": "operation:post:/api/v1/sponsors",
+        "kind": "operation",
+        "method": "post",
+        "name": "createSponsor",
+        "parameters": [
+          {
+            "description": "Optional key for safe retries, retained for 24 hours.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/sponsors",
+        "pointer": "#/paths/~1api~1v1~1sponsors/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateSponsorRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "Sponsor"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "409",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "Create a sponsor",
+        "tags": [
+          "Records"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns recent records for field mapping in integration builders.",
+        "id": "operation:get:/api/v1/triggers/{event}/sample",
+        "kind": "operation",
+        "method": "get",
+        "name": "getTriggerSample",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "event",
+            "required": true,
+            "type": "WebhookEvent"
+          }
+        ],
+        "path": "/api/v1/triggers/{event}/sample",
+        "pointer": "#/paths/~1api~1v1~1triggers~1{event}~1sample/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Contact|Session|Sponsor|object[]"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerApiKey": [
+              "public_api"
+            ]
+          },
+          {
+            "headerApiKey": [
+              "public_api"
+            ]
+          }
+        ],
+        "summary": "Pull sample records for a trigger event",
+        "tags": [
+          "Webhooks"
+        ]
+      },
+      {
+        "id": "schema:BatchContactsRequest",
+        "kind": "schema",
+        "name": "BatchContactsRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:BatchContactsResponse",
+        "kind": "schema",
+        "name": "BatchContactsResponse",
+        "type": "object"
+      },
+      {
+        "description": "Emitted identically by webhook deliveries, trigger samples, and the create response.",
+        "id": "schema:Contact",
+        "kind": "schema",
+        "name": "Contact",
+        "type": "object"
+      },
+      {
+        "description": "An event a contact is a member of.",
+        "id": "schema:ContactEventRef",
+        "kind": "schema",
+        "name": "ContactEventRef",
+        "type": "object"
+      },
+      {
+        "id": "schema:ContactSummary",
+        "kind": "schema",
+        "name": "ContactSummary",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateContactRequest",
+        "kind": "schema",
+        "name": "CreateContactRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateSessionRequest",
+        "kind": "schema",
+        "name": "CreateSessionRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateSponsorRequest",
+        "kind": "schema",
+        "name": "CreateSponsorRequest",
+        "type": "object"
+      },
+      {
+        "description": "Every non-2xx response carries this JSON shape.",
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:ImportContactsRequest",
+        "kind": "schema",
+        "name": "ImportContactsRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:ImportJobAccepted",
+        "kind": "schema",
+        "name": "ImportJobAccepted",
+        "type": "object"
+      },
+      {
+        "id": "schema:ImportTicketsRequest",
+        "kind": "schema",
+        "name": "ImportTicketsRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:Job",
+        "kind": "schema",
+        "name": "Job",
+        "type": "object"
+      },
+      {
+        "description": "Emitted identically by webhook deliveries, trigger samples, and the create response.",
+        "id": "schema:Session",
+        "kind": "schema",
+        "name": "Session",
+        "type": "object"
+      },
+      {
+        "id": "schema:SessionSpeakerRef",
+        "kind": "schema",
+        "name": "SessionSpeakerRef",
+        "type": "object"
+      },
+      {
+        "description": "Emitted identically by webhook deliveries, trigger samples, and the create response.",
+        "id": "schema:Sponsor",
+        "kind": "schema",
+        "name": "Sponsor",
+        "type": "object"
+      },
+      {
+        "description": "One ticket.",
+        "id": "schema:TicketImportRow",
+        "kind": "schema",
+        "name": "TicketImportRow",
+        "type": "object"
+      },
+      {
+        "description": "Returned by POST /api/v1/imports/tickets and by GET /api/v1/jobs/{id} for a tickets_import job.",
+        "id": "schema:TicketsImportJob",
+        "kind": "schema",
+        "name": "TicketsImportJob",
+        "type": "object"
+      },
+      {
+        "description": "Trigger event names accepted by POST /api/v1/hooks and GET /api/v1/triggers/{event}/sample.",
+        "id": "schema:WebhookEvent",
+        "kind": "schema",
+        "name": "WebhookEvent",
+        "type": "string"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "agendaforge"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.agendaforge.app",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Cursor": {
+                  "description": "Opaque continuation token from the previous response's nextCursor. Omit for the first page. A malformed cursor answers 400 VALIDATION_ERROR.",
+                  "in": "query",
+                  "name": "cursor",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "EventId": {
+                  "description": "The event to list within; must be owned by the key's organization (anything else answers 403 FORBIDDEN).",
+                  "in": "query",
+                  "name": "eventId",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "IdempotencyKey": {
+                  "description": "Optional key for safe retries, retained for 24 hours. Repeating the same request on the same endpoint returns the original response and sets Idempotent-Replay: true. Reusing the key on a different endpoint returns 409.",
+                  "in": "header",
+                  "name": "Idempotency-Key",
+                  "required": false,
+                  "schema": {
+                    "maxLength": 255,
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "Limit": {
+                  "description": "Page size, 1-100. Defaults to 25; values above 100 are clamped to 100.",
+                  "in": "query",
+                  "name": "limit",
+                  "required": false,
+                  "schema": {
+                    "default": 25,
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                }
+              },
+              "responses": {
+                "Forbidden": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "FORBIDDEN",
+                          "message": "This API key does not include the \"public_api\" scope. Create a key with the public_api scope in Settings > API Tokens."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "The API key is valid but does not include the public_api scope. Create a key with the public_api scope in Settings > API Tokens."
+                },
+                "IdempotencyConflict": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "CONFLICT",
+                          "message": "This Idempotency-Key was already used on a different endpoint. Use a new key."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "The Idempotency-Key was already used on a different endpoint within the 24 hour retention window."
+                },
+                "InternalError": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "INTERNAL",
+                          "message": "Unexpected server error. Retry with exponential backoff; if it persists, contact hello@agendaforge.app."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "An unexpected server failure. The body still follows the JSON error contract; retry with exponential backoff."
+                },
+                "NotFound": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "NOT_FOUND",
+                          "message": "No such endpoint. See https://agendaforge.app/openapi.json for the API surface."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "No such endpoint under /api/v1. The message lists the valid endpoints."
+                },
+                "PaymentRequired": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "PAYMENT_REQUIRED",
+                          "message": "This event isn't activated yet. Contact us to activate it for publishing, registrations, and AI."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "The event is not activated yet. Ticket imports need an activated event."
+                },
+                "RateLimited": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "RATE_LIMITED",
+                          "message": "Rate limit exceeded. Retry after the number of seconds in the Retry-After header."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "The fixed window for this API key (120 requests per minute) or IP (30 per minute, unauthenticated) is exhausted. Wait Retry-After seconds and retry.",
+                  "headers": {
+                    "RateLimit-Limit": {
+                      "description": "Requests allowed per window. Sent on every /api/v1 response, not only 429s.",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    "RateLimit-Policy": {
+                      "description": "The policy as \"<limit>;w=<window seconds>\", e.g. \"120;w=60\".",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    "RateLimit-Remaining": {
+                      "description": "Requests left in the current window.",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    "RateLimit-Reset": {
+                      "description": "Seconds until the current window resets.",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    "Retry-After": {
+                      "description": "Seconds to wait before retrying (RFC 6585).",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "TicketImportConflict": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "CONFLICT",
+                          "message": "An import is already running for this event. Wait for it to finish."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Another import is already running for this event, the event is not set up for imported tickets, or the Idempotency-Key was already used for a different endpoint or a different request body."
+                },
+                "TicketImportForbidden": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "FORBIDDEN",
+                          "message": "This API key cannot import tickets. Create a key with the ticket import permission."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "The key lacks the tickets:import scope, or the event does not belong to the key's organization."
+                },
+                "TicketImportValidationError": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "VALIDATION_ERROR",
+                          "message": "Send between 1 and 1,000 tickets in one request."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "The body is not a JSON object of at most 2 MB, eventId is missing, tickets is not an array of 1 to 1,000 objects, a field has the wrong type, or the rows break a whole-request rule (duplicate or too-short scanKey values, more than 50 ticket types, more than 12 answers or an over-long value in a row). Nothing was imported."
+                },
+                "Unauthenticated": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "UNAUTHENTICATED",
+                          "message": "Missing API key. Send 'Authorization: Bearer <key>'."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "The API key is missing, malformed, invalid, expired, or revoked."
+                },
+                "UnexpectedError": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "INTERNAL",
+                          "message": "Unexpected server error. Retry with exponential backoff; if it persists, contact hello@agendaforge.app."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Any other failure, including 404 NOT_FOUND for an unknown path and transient 5xx errors. Always the same JSON error contract."
+                },
+                "ValidationError": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": {
+                          "code": "VALIDATION_ERROR",
+                          "message": "firstName, lastName and email are required."
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "A required field is missing or invalid, an unknown event was supplied, or a referenced record is not owned by the key's organization."
+                }
+              },
+              "schemas": {
+                "BatchContactsRequest": {
+                  "properties": {
+                    "contacts": {
+                      "items": {
+                        "$ref": "#/components/schemas/CreateContactRequest"
+                      },
+                      "maxItems": 100,
+                      "minItems": 1,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "contacts"
+                  ],
+                  "type": "object"
+                },
+                "BatchContactsResponse": {
+                  "properties": {
+                    "results": {
+                      "description": "One entry per input item, in input order.",
+                      "items": {
+                        "properties": {
+                          "contact": {
+                            "$ref": "#/components/schemas/Contact"
+                          },
+                          "error": {
+                            "description": "Present when status is \"error\"; same code vocabulary as top-level errors.",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "message": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "code",
+                              "message"
+                            ],
+                            "type": "object"
+                          },
+                          "index": {
+                            "description": "Position in the request array.",
+                            "type": "integer"
+                          },
+                          "status": {
+                            "enum": [
+                              "created",
+                              "error"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "index",
+                          "status"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "summary": {
+                      "properties": {
+                        "created": {
+                          "type": "integer"
+                        },
+                        "failed": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "total",
+                        "created",
+                        "failed"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "results",
+                    "summary"
+                  ],
+                  "type": "object"
+                },
+                "Contact": {
+                  "description": "Emitted identically by webhook deliveries, trigger samples, and the create response.",
+                  "properties": {
+                    "avatarUrl": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "bio": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "company": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "createdAt": {
+                      "description": "ISO-8601 UTC timestamp.",
+                      "type": "string"
+                    },
+                    "customFields": {
+                      "description": "Organization-defined custom fields.",
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "events": {
+                      "items": {
+                        "$ref": "#/components/schemas/ContactEventRef"
+                      },
+                      "type": "array"
+                    },
+                    "expertiseAreas": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "jobTitle": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "phone": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "rating": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "socialLinks": {
+                      "description": "Map of platform to URL.",
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "source": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "speaker | sponsor | attendee | vendor | partner | exhibitor | other.",
+                      "type": "string"
+                    },
+                    "website": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "ContactEventRef": {
+                  "description": "An event a contact is a member of.",
+                  "properties": {
+                    "eventId": {
+                      "type": "string"
+                    },
+                    "eventName": {
+                      "type": "string"
+                    },
+                    "eventNumber": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ContactSummary": {
+                  "properties": {
+                    "company": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "jobTitle": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "CreateContactRequest": {
+                  "properties": {
+                    "company": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "jobTitle": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "speaker | sponsor | attendee | vendor | partner | exhibitor | other. Defaults to \"attendee\".",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "firstName",
+                    "lastName",
+                    "email"
+                  ],
+                  "type": "object"
+                },
+                "CreateSessionRequest": {
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "duration": {
+                      "description": "Minutes; falls back to the type's default duration when omitted.",
+                      "type": "number"
+                    },
+                    "endTime": {
+                      "description": "ISO-8601 UTC timestamp.",
+                      "type": "string"
+                    },
+                    "eventId": {
+                      "description": "The event the session belongs to; must be owned by the key's organization.",
+                      "type": "string"
+                    },
+                    "isPublic": {
+                      "type": "boolean"
+                    },
+                    "maxAttendees": {
+                      "type": "number"
+                    },
+                    "startTime": {
+                      "description": "ISO-8601 UTC timestamp.",
+                      "type": "string"
+                    },
+                    "statusId": {
+                      "description": "A session status id from this event. A session must be accepted before it can be scheduled.",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "keynote | talk | panel | workshop | lightning | break | networking | social | placeholder | other. Defaults to \"talk\".",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "eventId",
+                    "title"
+                  ],
+                  "type": "object"
+                },
+                "CreateSponsorRequest": {
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "eventId": {
+                      "description": "The event the sponsor belongs to; must be owned by the key's organization.",
+                      "type": "string"
+                    },
+                    "hasBooth": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "tierId": {
+                      "description": "A sponsor tier id scoped to the same event; validated server-side.",
+                      "type": "string"
+                    },
+                    "website": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "eventId",
+                    "name"
+                  ],
+                  "type": "object"
+                },
+                "Error": {
+                  "description": "Every non-2xx response carries this JSON shape. The code is machine-readable; the message is a human-readable resolution hint.",
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "enum": [
+                            "UNAUTHENTICATED",
+                            "FORBIDDEN",
+                            "VALIDATION_ERROR",
+                            "PAYMENT_REQUIRED",
+                            "NOT_FOUND",
+                            "RATE_LIMITED",
+                            "CONFLICT",
+                            "INTERNAL"
+                          ],
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                },
+                "ImportContactsRequest": {
+                  "properties": {
+                    "contacts": {
+                      "items": {
+                        "$ref": "#/components/schemas/CreateContactRequest"
+                      },
+                      "maxItems": 1000,
+                      "minItems": 1,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "contacts"
+                  ],
+                  "type": "object"
+                },
+                "ImportJobAccepted": {
+                  "properties": {
+                    "jobId": {
+                      "description": "Opaque job id.",
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "pending"
+                      ],
+                      "type": "string"
+                    },
+                    "statusUrl": {
+                      "description": "Poll this URL (GET, same authentication) for progress.",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "total": {
+                      "description": "Items accepted for processing.",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "enum": [
+                        "contacts_import"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "jobId",
+                    "type",
+                    "status",
+                    "total",
+                    "statusUrl"
+                  ],
+                  "type": "object"
+                },
+                "ImportTicketsRequest": {
+                  "properties": {
+                    "confirmCheckedInCancels": {
+                      "default": false,
+                      "description": "A ticket that has already been checked in is cancelled or refunded only when this is true. Otherwise that row fails with the checked_in code.",
+                      "type": "boolean"
+                    },
+                    "eventId": {
+                      "description": "The event to import into; must be owned by the key's organization, activated, and set up for imported tickets.",
+                      "type": "string"
+                    },
+                    "tickets": {
+                      "items": {
+                        "$ref": "#/components/schemas/TicketImportRow"
+                      },
+                      "maxItems": 1000,
+                      "minItems": 1,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "eventId",
+                    "tickets"
+                  ],
+                  "type": "object"
+                },
+                "Job": {
+                  "properties": {
+                    "completedAt": {
+                      "description": "ISO-8601 UTC timestamp; null until the job reaches a terminal state.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "createdAt": {
+                      "description": "ISO-8601 UTC timestamp.",
+                      "type": "string"
+                    },
+                    "jobId": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "properties": {
+                        "created": {
+                          "type": "integer"
+                        },
+                        "errors": {
+                          "description": "Per-item failures (first 50), each with the failing input index.",
+                          "items": {
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "index": {
+                                "type": "integer"
+                              },
+                              "message": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "index",
+                              "code",
+                              "message"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "failed": {
+                          "type": "integer"
+                        },
+                        "processed": {
+                          "description": "Items handled so far; equals total when done.",
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "total",
+                        "processed",
+                        "created",
+                        "failed",
+                        "errors"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "description": "Terminal states are completed and failed; keep polling until one is reached.",
+                      "enum": [
+                        "pending",
+                        "processing",
+                        "completed",
+                        "failed"
+                      ],
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "contacts_import"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "jobId",
+                    "type",
+                    "status",
+                    "createdAt",
+                    "completedAt",
+                    "result"
+                  ],
+                  "type": "object"
+                },
+                "Session": {
+                  "description": "Emitted identically by webhook deliveries, trigger samples, and the create response.",
+                  "properties": {
+                    "createdAt": {
+                      "description": "ISO-8601 UTC timestamp.",
+                      "type": "string"
+                    },
+                    "customFields": {
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "duration": {
+                      "description": "Minutes.",
+                      "type": "number"
+                    },
+                    "endTime": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "eventId": {
+                      "type": "string"
+                    },
+                    "eventName": {
+                      "type": "string"
+                    },
+                    "eventNumber": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "isPublic": {
+                      "type": "boolean"
+                    },
+                    "isTentative": {
+                      "type": "boolean"
+                    },
+                    "maxAttendees": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "orgId": {
+                      "type": "string"
+                    },
+                    "parentSessionId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "roomId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "roomName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "source": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "speakers": {
+                      "items": {
+                        "$ref": "#/components/schemas/SessionSpeakerRef"
+                      },
+                      "type": "array"
+                    },
+                    "startTime": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "trackId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "trackName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SessionSpeakerRef": {
+                  "properties": {
+                    "contactId": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "isConfirmed": {
+                      "type": "boolean"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Sponsor": {
+                  "description": "Emitted identically by webhook deliveries, trigger samples, and the create response.",
+                  "properties": {
+                    "assignedPortal": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "createdAt": {
+                      "description": "ISO-8601 UTC timestamp.",
+                      "type": "string"
+                    },
+                    "customFields": {
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "eventId": {
+                      "type": "string"
+                    },
+                    "hasBooth": {
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "logoLightUrl": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "logoUrl": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "orgId": {
+                      "type": "string"
+                    },
+                    "primaryContact": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/ContactSummary"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "primaryContactId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "submissionId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "tierId": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "tierName": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "website": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "TicketImportRow": {
+                  "description": "One ticket. Unknown fields are ignored. A new reference needs a name (name, or firstName and lastName) and a ticketType; a reference that already exists may carry only what changed. Row problems fail only that row.",
+                  "properties": {
+                    "answers": {
+                      "description": "Registration answers to keep with the ticket.",
+                      "items": {
+                        "properties": {
+                          "label": {
+                            "description": "Question label; up to 120 characters are kept.",
+                            "type": "string"
+                          },
+                          "value": {
+                            "description": "Answer; up to 300 characters are kept.",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "label",
+                          "value"
+                        ],
+                        "type": "object"
+                      },
+                      "maxItems": 12,
+                      "type": "array"
+                    },
+                    "company": {
+                      "maxLength": 160,
+                      "type": "string"
+                    },
+                    "email": {
+                      "format": "email",
+                      "maxLength": 254,
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Full name; split into first and last name. Ignored when firstName or lastName is sent. 120 characters at most.",
+                      "type": "string"
+                    },
+                    "purchasedAt": {
+                      "description": "Purchase date as a date string (e.g. 2026-11-04) or a millisecond timestamp.",
+                      "type": [
+                        "string",
+                        "number"
+                      ]
+                    },
+                    "reference": {
+                      "description": "Your system's ticket or order line id. It is how a later request updates or cancels the same ticket, so keep it stable.",
+                      "maxLength": 128,
+                      "type": "string"
+                    },
+                    "scanKey": {
+                      "description": "Optional. The value inside the attendee's existing QR code, so it scans at the door. Must be unique within the event. Stored only as a hash.",
+                      "maxLength": 128,
+                      "minLength": 8,
+                      "type": "string"
+                    },
+                    "seat": {
+                      "maxLength": 20,
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Case-insensitive. Valid: valid, active, paid, complete, completed, confirmed, attending, issued. Cancelled: cancelled, canceled, void, voided. Refunded: refunded, refund. Any other word fails the row with unknown_status.",
+                      "type": "string"
+                    },
+                    "table": {
+                      "maxLength": 40,
+                      "type": "string"
+                    },
+                    "ticketType": {
+                      "description": "Ticket type name. An unknown name creates the type. At most 50 different values per request.",
+                      "maxLength": 80,
+                      "type": "string"
+                    },
+                    "title": {
+                      "description": "Job title.",
+                      "maxLength": 160,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "reference"
+                  ],
+                  "type": "object"
+                },
+                "TicketsImportJob": {
+                  "description": "Returned by POST /api/v1/imports/tickets and by GET /api/v1/jobs/{id} for a tickets_import job.",
+                  "properties": {
+                    "jobId": {
+                      "description": "Opaque job id.",
+                      "type": "string"
+                    },
+                    "result": {
+                      "properties": {
+                        "cancelled": {
+                          "description": "Tickets cancelled or refunded.",
+                          "type": "integer"
+                        },
+                        "created": {
+                          "description": "New tickets.",
+                          "type": "integer"
+                        },
+                        "errors": {
+                          "description": "Row failures (first 50). code is one of missing_reference, reference_too_long, reference_mangled, reference_reserved, duplicate_reference, missing_name, invalid_email, missing_ticket_type, unknown_status, scan_key_reserved, scan_key_length, scan_key_taken, invalid_date, field_too_long, missing_fields, checked_in, event_full, type_catalogue_full. A job that stops early reports one CONFLICT entry and status failed.",
+                          "items": {
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "index": {
+                                "description": "Zero-based position in the tickets array.",
+                                "type": "integer"
+                              },
+                              "message": {
+                                "type": "string"
+                              },
+                              "reference": {
+                                "description": "The row's reference, or null when it is withheld.",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "index",
+                              "reference",
+                              "code",
+                              "message"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "failed": {
+                          "description": "Rows not applied.",
+                          "type": "integer"
+                        },
+                        "processed": {
+                          "description": "Rows handled so far, failed rows included; equals total when done.",
+                          "type": "integer"
+                        },
+                        "restored": {
+                          "description": "Cancelled or refunded tickets made valid again.",
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        },
+                        "unchanged": {
+                          "description": "Existing tickets with nothing to change.",
+                          "type": "integer"
+                        },
+                        "updated": {
+                          "description": "Existing tickets that changed.",
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "total",
+                        "processed",
+                        "created",
+                        "updated",
+                        "unchanged",
+                        "cancelled",
+                        "restored",
+                        "failed",
+                        "errors"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "description": "completed in a 200 response; pending in a 202 response. Terminal states are completed and failed; keep polling until one is reached.",
+                      "enum": [
+                        "pending",
+                        "processing",
+                        "completed",
+                        "failed"
+                      ],
+                      "type": "string"
+                    },
+                    "statusUrl": {
+                      "description": "Poll this URL (GET, a key with tickets:import) for progress.",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "total": {
+                      "description": "Tickets in the request.",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "enum": [
+                        "tickets_import"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "jobId",
+                    "type",
+                    "status",
+                    "total",
+                    "statusUrl",
+                    "result"
+                  ],
+                  "type": "object"
+                },
+                "WebhookEvent": {
+                  "description": "Trigger event names accepted by POST /api/v1/hooks and GET /api/v1/triggers/{event}/sample.",
+                  "enum": [
+                    "contact.added",
+                    "contact.added_to_event",
+                    "contact.updated",
+                    "contact.removed",
+                    "sponsor.added",
+                    "sponsor.updated",
+                    "sponsor.removed",
+                    "session.added",
+                    "session.updated",
+                    "session.removed",
+                    "speaker.confirmed",
+                    "speaker.declined",
+                    "submission.created",
+                    "submission.status_changed",
+                    "review.completed",
+                    "event.published"
+                  ],
+                  "type": "string"
+                }
+              },
+              "securitySchemes": {
+                "bearerApiKey": {
+                  "bearerFormat": "afk_live_ organization API key",
+                  "description": "Organization API key sent as \"Authorization: Bearer afk_live_...\". Keys are created in Settings > API Tokens with named scopes (see x-api-key-scopes): public_api grants this REST API; mcp:read and mcp:write grant the AgendaForge MCP server; tickets:import grants ticket imports. Every endpoint here requires the public_api scope except POST /api/v1/imports/tickets, which requires tickets:import.",
+                  "scheme": "bearer",
+                  "type": "http",
+                  "x-scopes": [
+                    "public_api",
+                    "mcp:read",
+                    "mcp:write",
+                    "tickets:import"
+                  ]
+                },
+                "headerApiKey": {
+                  "description": "The same afk_live_ organization API key sent as an X-API-Key header instead of a Bearer token. Identical scope semantics to bearerApiKey.",
+                  "in": "header",
+                  "name": "X-API-Key",
+                  "type": "apiKey",
+                  "x-scopes": [
+                    "public_api",
+                    "mcp:read",
+                    "mcp:write",
+                    "tickets:import"
+                  ]
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "AgendaForge API reference (human-readable)",
+              "url": "https://agendaforge.app/docs/api"
+            },
+            "info": {
+              "contact": {
+                "email": "hello@agendaforge.app",
+                "name": "AgendaForge support",
+                "url": "https://agendaforge.app/docs/api"
+              },
+              "description": "The HTTP API that powers the AgendaForge Zapier, Make.com, and n8n integrations, and any custom server-to-server integration.\n\nEvery request is authenticated with an organization API key (created in Settings > API Tokens; keys begin with afk_live_ and are shown once). Keys carry named scopes chosen at creation: public_api (this API, on by default), mcp:read and mcp:write (the AgendaForge MCP server for AI clients), and tickets:import (ticket imports, never on by default). Every endpoint here requires the public_api scope, except POST /api/v1/imports/tickets, which requires tickets:import; requests with a key that lacks the required scope receive 403 FORBIDDEN.\n\nAll requests and responses are JSON. Every error, 4xx and 5xx alike, is JSON of the shape { \"error\": { \"code\": \"...\", \"message\": \"...\" } } with a machine-readable code and a human-readable resolution hint. Unknown paths under /api/v1 return 404 NOT_FOUND with the list of valid endpoints.\n\nPagination: list endpoints (GET /contacts, GET /sessions, GET /sponsors) are cursor-based. Request a page with ?limit= (1-100, default 25), then follow nextCursor via ?cursor= until hasMore is false. Cursors are opaque continuation tokens; never construct one.\n\nLong-running work: POST /api/v1/imports/contacts answers 202 Accepted with a job id and a statusUrl (also in the Location header); poll GET /api/v1/jobs/{id} until status reaches completed or failed. For up to 100 items in one synchronous call, use POST /api/v1/contacts/batch instead. POST /api/v1/imports/tickets finishes up to 100 tickets inside the request (200, job already completed) and queues 101 to 1,000 tickets (202, poll the same way).\n\nRate limits: 120 requests per minute per API key (fixed window), and 30 requests per minute per IP for unauthenticated requests. Every response carries RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset (seconds until the window resets), and RateLimit-Policy headers so clients can self-throttle; exceeding the window returns 429 RATE_LIMITED with a Retry-After header.\n\nVersioning and deprecation: the API is versioned in the URL path (/api/v1). Additive changes (new endpoints, new optional fields, new webhook events) happen within a version and are never breaking; breaking changes ship only as a new version path. If an endpoint or version is ever deprecated it will be announced in the changelog at least 180 days before removal and signaled with Deprecation and Sunset headers on affected responses. Nothing is deprecated today.\n\nHuman-readable reference: https://agendaforge.app/docs/api. Developer portal: https://agendaforge.app/developers. Site content for agents: https://agendaforge.app/llms.txt.",
+              "summary": "Server-to-server REST API for the AgendaForge event-management platform: webhooks (REST Hooks), sample records, cursor-paginated list endpoints, create actions and batch create for contacts, sessions, and sponsors, and async contact and ticket imports with pollable jobs.",
+              "termsOfService": "https://agendaforge.app/terms",
+              "title": "AgendaForge Public REST API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/api/v1/contacts": {
+                "get": {
+                  "description": "Lists the organization's contacts, newest first. Page with ?limit= (1-100, default 25) and ?cursor= (the previous response's nextCursor). The cursor is opaque; never construct one. Objects match the Contact shape emitted by webhooks and POST /api/v1/contacts.",
+                  "operationId": "listContacts",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Cursor"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Contact"
+                                },
+                                "type": "array"
+                              },
+                              "hasMore": {
+                                "description": "True when another page exists after this one.",
+                                "type": "boolean"
+                              },
+                              "nextCursor": {
+                                "description": "Opaque cursor for the next page; pass it back as ?cursor=. Null on the last page.",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "hasMore",
+                              "nextCursor"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "One page of contacts, newest first."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "List contacts (cursor-paginated)",
+                  "tags": [
+                    "Records"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                },
+                "post": {
+                  "description": "Creates a contact in the key's organization and fires the contact.added trigger. Duplicate emails are rejected with 400 VALIDATION_ERROR.",
+                  "operationId": "createContact",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/IdempotencyKey"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateContactRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Contact"
+                          }
+                        }
+                      },
+                      "description": "The created contact."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/IdempotencyConflict"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "Create a contact",
+                  "tags": [
+                    "Records"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                }
+              },
+              "/api/v1/contacts/batch": {
+                "post": {
+                  "description": "Synchronous batch create. Each item behaves exactly like a single POST /api/v1/contacts request (same validation, same contact.added trigger). Items succeed or fail independently: the response pairs every input index with either the created contact or a typed error, so one duplicate email never fails the whole batch. For larger sets use POST /api/v1/imports/contacts.",
+                  "operationId": "createContactsBatch",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/IdempotencyKey"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/BatchContactsRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/BatchContactsResponse"
+                          }
+                        }
+                      },
+                      "description": "Per-item results in input order plus a summary. HTTP 200 even when some items fail; inspect results[].status."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/IdempotencyConflict"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "Create up to 100 contacts in one request",
+                  "tags": [
+                    "Records"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                }
+              },
+              "/api/v1/hooks": {
+                "post": {
+                  "description": "Re-subscribing the same URL and event is a no-op that returns the existing subscription id. Each delivery POSTs an envelope of the form { event, timestamp, payload }, where payload is the resource object; map payload.* rather than the top level. Deliveries are retried up to 3 times and carry an X-Webhook-Signature header (HMAC-SHA256 of the raw request body, keyed with the endpoint signing secret). This endpoint does not return that secret, so a subscription made here cannot be verified; use a long, unguessable target URL over HTTPS. Webhooks added in the AgendaForge app show their secret once, at creation.",
+                  "operationId": "subscribeHook",
+                  "parameters": [
+                    {
+                      "description": "Tags the platform the subscription belongs to. Anything other than \"make\" or \"n8n\" (including omitting the parameter) records \"zapier\".",
+                      "in": "query",
+                      "name": "source",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "zapier",
+                          "make",
+                          "n8n"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "event": {
+                              "$ref": "#/components/schemas/WebhookEvent"
+                            },
+                            "targetUrl": {
+                              "description": "The http(s) URL deliveries are POSTed to.",
+                              "format": "uri",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "event",
+                            "targetUrl"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "id": {
+                                "description": "Webhook subscription id.",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "The subscription id (existing id when re-subscribing)."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "Subscribe a target URL to a trigger event (REST Hook)",
+                  "tags": [
+                    "Webhooks"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                }
+              },
+              "/api/v1/hooks/{id}": {
+                "delete": {
+                  "description": "Idempotent: deleting an unknown or already-deleted id returns success.",
+                  "operationId": "unsubscribeHook",
+                  "parameters": [
+                    {
+                      "description": "The subscription id returned by POST /api/v1/hooks.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "success": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "success"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "The subscription is gone."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "Remove a webhook subscription",
+                  "tags": [
+                    "Webhooks"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                }
+              },
+              "/api/v1/imports/contacts": {
+                "post": {
+                  "description": "Async job pattern: accepts the items, returns 202 Accepted immediately with a job id and statusUrl (also sent as the Location header), and processes the import in the background. Poll GET /api/v1/jobs/{id} until status is completed or failed; the job result carries created/failed counts and up to 50 per-item errors. Items behave exactly like single POST /api/v1/contacts requests.",
+                  "operationId": "importContacts",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/IdempotencyKey"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/ImportContactsRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "202": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ImportJobAccepted"
+                          }
+                        }
+                      },
+                      "description": "The job was accepted. Poll statusUrl (also in the Location header) for progress.",
+                      "headers": {
+                        "Location": {
+                          "description": "The poll URL, identical to statusUrl in the body.",
+                          "schema": {
+                            "format": "uri",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/IdempotencyConflict"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "Import up to 1,000 contacts asynchronously",
+                  "tags": [
+                    "Jobs"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                }
+              },
+              "/api/v1/imports/tickets": {
+                "post": {
+                  "description": "Sends ticket rows from your own ticketing system to one event, with the same rules as a file import in the app. Requires the tickets:import scope (public_api alone is not enough). Each row is matched by reference: a new reference creates a ticket and needs a name (name, or firstName and lastName) and a ticketType; a reference that already exists may carry only what changed. Rows not in the request are left alone. The event must be activated and set up for imported tickets, and only one import runs per event at a time. Up to 100 tickets are applied inside the request and answer 200 with the job already completed; 101 to 1,000 tickets answer 202 Accepted with a statusUrl (also sent as the Location header) to poll at GET /api/v1/jobs/{id}. Rows fail independently: a row problem counts toward result.failed and is listed in result.errors (first 50) without stopping the other rows. Whole-request problems (an unreadable body, a bad field type, duplicate or too-short scanKey values, more than 50 ticket types) answer 400 and nothing is imported. Besides the per-key limit, each event accepts 12 ticket import requests per minute. With an Idempotency-Key, a repeat of the same request returns the original response (status, body, and Location) with Idempotent-Replay: true, not current progress; poll statusUrl for that.",
+                  "operationId": "importTickets",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/IdempotencyKey"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "add": {
+                            "summary": "Add a ticket",
+                            "value": {
+                              "eventId": "k17e8m2q5n9p3r6s1t4v",
+                              "tickets": [
+                                {
+                                  "company": "Forge Labs",
+                                  "email": "ana@forgelabs.example",
+                                  "name": "Ana Okafor",
+                                  "reference": "b7c1e0aa-0000-4000-8000-00000000a001",
+                                  "scanKey": "5d2f9c10-0000-4000-8000-00000000b001",
+                                  "status": "valid",
+                                  "ticketType": "General",
+                                  "title": "Head of Platform"
+                                }
+                              ]
+                            }
+                          },
+                          "cancel": {
+                            "summary": "Cancel a ticket (send only the reference and what changed)",
+                            "value": {
+                              "eventId": "k17e8m2q5n9p3r6s1t4v",
+                              "tickets": [
+                                {
+                                  "reference": "b7c1e0aa-0000-4000-8000-00000000a001",
+                                  "status": "cancelled"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/ImportTicketsRequest"
+                        }
+                      }
+                    },
+                    "description": "A JSON object of at most 2 MB.",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "jobId": "jb7q2m5k8n1r4s7t0v3x",
+                            "result": {
+                              "cancelled": 0,
+                              "created": 1,
+                              "errors": [],
+                              "failed": 0,
+                              "processed": 1,
+                              "restored": 0,
+                              "total": 1,
+                              "unchanged": 0,
+                              "updated": 0
+                            },
+                            "status": "completed",
+                            "statusUrl": "https://api.agendaforge.app/api/v1/jobs/jb7q2m5k8n1r4s7t0v3x",
+                            "total": 1,
+                            "type": "tickets_import"
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/TicketsImportJob"
+                          }
+                        }
+                      },
+                      "description": "Up to 100 tickets: the import finished inside the request. The job is completed and result carries the final counts."
+                    },
+                    "202": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TicketsImportJob"
+                          }
+                        }
+                      },
+                      "description": "101 to 1,000 tickets: the import was accepted and runs in the background. Poll statusUrl (also in the Location header) until status is completed or failed.",
+                      "headers": {
+                        "Location": {
+                          "description": "The poll URL, identical to statusUrl in the body.",
+                          "schema": {
+                            "format": "uri",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/TicketImportValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "402": {
+                      "$ref": "#/components/responses/PaymentRequired"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/TicketImportForbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/TicketImportConflict"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "tickets:import"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "tickets:import"
+                      ]
+                    }
+                  ],
+                  "summary": "Add, update, or cancel up to 1,000 imported tickets",
+                  "tags": [
+                    "Jobs"
+                  ],
+                  "x-required-scopes": [
+                    "tickets:import"
+                  ]
+                }
+              },
+              "/api/v1/jobs/{id}": {
+                "get": {
+                  "description": "Returns the current status and result counters of a job created by POST /api/v1/imports/contacts or POST /api/v1/imports/tickets. A contacts_import job needs a key with public_api; a tickets_import job needs a key with tickets:import. Jobs are retained for 7 days; unknown, expired, and cross-organization ids all answer 404. Poll with backoff (a 1,000-item import typically completes within a minute).",
+                  "operationId": "getJob",
+                  "parameters": [
+                    {
+                      "description": "The jobId returned by the 202 response.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "oneOf": [
+                              {
+                                "$ref": "#/components/schemas/Job"
+                              },
+                              {
+                                "$ref": "#/components/schemas/TicketsImportJob"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "The job with live progress counters. The shape depends on the job type."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "bearerApiKey": [
+                        "tickets:import"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "tickets:import"
+                      ]
+                    }
+                  ],
+                  "summary": "Poll an async job",
+                  "tags": [
+                    "Jobs"
+                  ],
+                  "x-required-scopes": [
+                    "public_api",
+                    "tickets:import"
+                  ]
+                }
+              },
+              "/api/v1/me": {
+                "get": {
+                  "description": "Auth test / connection label. Returns the organization the key is scoped to. Use this to verify a key before configuring an integration.",
+                  "operationId": "getMe",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "orgId": {
+                                "description": "Opaque organization id.",
+                                "type": "string"
+                              },
+                              "orgName": {
+                                "description": "Display name of the organization.",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "orgId",
+                              "orgName"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "The organization the key is scoped to."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "Validate the API key and return its organization",
+                  "tags": [
+                    "Connection"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                }
+              },
+              "/api/v1/sessions": {
+                "get": {
+                  "description": "Lists sessions on one event owned by the key's organization, newest first. eventId is required; page with ?limit= (1-100, default 25) and ?cursor=. Objects match the Session shape emitted by webhooks and POST /api/v1/sessions.",
+                  "operationId": "listSessions",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/EventId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Cursor"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Session"
+                                },
+                                "type": "array"
+                              },
+                              "hasMore": {
+                                "description": "True when another page exists after this one.",
+                                "type": "boolean"
+                              },
+                              "nextCursor": {
+                                "description": "Opaque cursor for the next page; pass it back as ?cursor=. Null on the last page.",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "hasMore",
+                              "nextCursor"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "One page of sessions, newest first."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "List an event's sessions (cursor-paginated)",
+                  "tags": [
+                    "Records"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                },
+                "post": {
+                  "description": "Creates a session on an event owned by the key's organization and fires the session.added trigger. A session must be accepted before it can be scheduled. Supply an accepted-category statusId from this event when assigning a time.",
+                  "operationId": "createSession",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/IdempotencyKey"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateSessionRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Session"
+                          }
+                        }
+                      },
+                      "description": "The created session."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/IdempotencyConflict"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "Create a session",
+                  "tags": [
+                    "Records"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                }
+              },
+              "/api/v1/sponsors": {
+                "get": {
+                  "description": "Lists sponsors on one event owned by the key's organization, newest first. eventId is required; page with ?limit= (1-100, default 25) and ?cursor=. Objects match the Sponsor shape emitted by webhooks and POST /api/v1/sponsors.",
+                  "operationId": "listSponsors",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/EventId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Cursor"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Sponsor"
+                                },
+                                "type": "array"
+                              },
+                              "hasMore": {
+                                "description": "True when another page exists after this one.",
+                                "type": "boolean"
+                              },
+                              "nextCursor": {
+                                "description": "Opaque cursor for the next page; pass it back as ?cursor=. Null on the last page.",
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "hasMore",
+                              "nextCursor"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "One page of sponsors, newest first."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "List an event's sponsors (cursor-paginated)",
+                  "tags": [
+                    "Records"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                },
+                "post": {
+                  "description": "Creates a sponsor on an event owned by the key's organization and fires the sponsor.added trigger.",
+                  "operationId": "createSponsor",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/IdempotencyKey"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateSponsorRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Sponsor"
+                          }
+                        }
+                      },
+                      "description": "The created sponsor."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/IdempotencyConflict"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "Create a sponsor",
+                  "tags": [
+                    "Records"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                }
+              },
+              "/api/v1/triggers/{event}/sample": {
+                "get": {
+                  "description": "Returns recent records for field mapping in integration builders. Each object matches the payload field of a live webhook delivery exactly; the delivery additionally wraps it in an { event, timestamp, payload } envelope. May be an empty array for a new organization.",
+                  "operationId": "getTriggerSample",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "event",
+                      "required": true,
+                      "schema": {
+                        "$ref": "#/components/schemas/WebhookEvent"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "$ref": "#/components/schemas/Contact"
+                                },
+                                {
+                                  "$ref": "#/components/schemas/Session"
+                                },
+                                {
+                                  "$ref": "#/components/schemas/Sponsor"
+                                },
+                                {
+                                  "description": "Speaker, submission, review, or event payload.",
+                                  "type": "object"
+                                }
+                              ]
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Recent records shaped like the corresponding delivery payload (Contact, Session, or Sponsor for their events; submission, review, speaker, and event payloads for the rest)."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/UnexpectedError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerApiKey": [
+                        "public_api"
+                      ]
+                    },
+                    {
+                      "headerApiKey": [
+                        "public_api"
+                      ]
+                    }
+                  ],
+                  "summary": "Pull sample records for a trigger event",
+                  "tags": [
+                    "Webhooks"
+                  ],
+                  "x-required-scopes": [
+                    "public_api"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "bearerApiKey": [
+                  "public_api"
+                ]
+              },
+              {
+                "headerApiKey": [
+                  "public_api"
+                ]
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://api.agendaforge.app"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Validate a key and identify the organization it is scoped to.",
+                "name": "Connection"
+              },
+              {
+                "description": "REST Hook subscriptions for trigger events, plus sample records for field mapping.",
+                "name": "Webhooks"
+              },
+              {
+                "description": "Cursor-paginated lists, create actions, and batch create for contacts, sessions, and sponsors.",
+                "name": "Records"
+              },
+              {
+                "description": "Async work: 202 Accepted imports and the pollable job resource.",
+                "name": "Jobs"
+              }
+            ],
+            "x-api-key-scopes": [
+              {
+                "description": "Grants the public REST API v1 (this specification). On by default when a key is created. Required by every endpoint here except POST /api/v1/imports/tickets; a key without it receives 403 FORBIDDEN.",
+                "name": "public_api"
+              },
+              {
+                "description": "Grants read tools on the AgendaForge MCP server for AI clients (events, sessions, contacts, forms). MCP keys act as the admin who created them and are re-checked against live membership on every call.",
+                "name": "mcp:read"
+              },
+              {
+                "description": "Grants write tools on the AgendaForge MCP server. Every write is approval-gated: the AI proposes, a person approves.",
+                "name": "mcp:write"
+              },
+              {
+                "description": "Grants POST /api/v1/imports/tickets and polling its jobs at GET /api/v1/jobs/{id}. Labeled \"Import tickets\" in Settings > API Tokens. Never on by default and never implied by another scope; it does not grant the other endpoints here.",
+                "name": "tickets:import"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "AgendaForge"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:25.809031+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://agendaforge.app/openapi.json",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "b8956ce1e5f36aef10a27c5825882bb71fc6915478f71ed06d2d10ecdd42576a",
+    "source_id": "agendaforge",
+    "source_updated": null,
+    "url": "https://agendaforge.app/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

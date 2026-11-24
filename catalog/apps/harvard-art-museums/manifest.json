@@ -1,0 +1,1445 @@
+{
+  "a2ui": {},
+  "app": "harvard-art-museums",
+  "graph": {
+    "edges": [
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/exhibition"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/exhibition/{id}"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/gallery"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/gallery/{id}"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/object"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/object/{id}"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/object/{id}/colors"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/object/{id}/exhibitions"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/object/{id}/images"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/object/{id}/people"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/object/{id}/publications"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/object/{id}/videos"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/person"
+      },
+      {
+        "from": "harvard-art-museums",
+        "kind": "EXPOSES",
+        "to": "operation:get:/person/{id}"
+      },
+      {
+        "from": "operation:get:/exhibition",
+        "kind": "RETURNS",
+        "to": "schema:CollectionResponse"
+      },
+      {
+        "from": "operation:get:/exhibition/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ResourceRecord"
+      },
+      {
+        "from": "operation:get:/gallery",
+        "kind": "RETURNS",
+        "to": "schema:CollectionResponse"
+      },
+      {
+        "from": "operation:get:/gallery/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ResourceRecord"
+      },
+      {
+        "from": "operation:get:/object",
+        "kind": "RETURNS",
+        "to": "schema:CollectionResponse"
+      },
+      {
+        "from": "operation:get:/object/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ResourceRecord"
+      },
+      {
+        "from": "operation:get:/object/{id}/colors",
+        "kind": "RETURNS",
+        "to": "schema:SubsectionResponse"
+      },
+      {
+        "from": "operation:get:/object/{id}/exhibitions",
+        "kind": "RETURNS",
+        "to": "schema:SubsectionResponse"
+      },
+      {
+        "from": "operation:get:/object/{id}/images",
+        "kind": "RETURNS",
+        "to": "schema:SubsectionResponse"
+      },
+      {
+        "from": "operation:get:/object/{id}/people",
+        "kind": "RETURNS",
+        "to": "schema:SubsectionResponse"
+      },
+      {
+        "from": "operation:get:/object/{id}/publications",
+        "kind": "RETURNS",
+        "to": "schema:SubsectionResponse"
+      },
+      {
+        "from": "operation:get:/object/{id}/videos",
+        "kind": "RETURNS",
+        "to": "schema:SubsectionResponse"
+      },
+      {
+        "from": "operation:get:/person",
+        "kind": "RETURNS",
+        "to": "schema:CollectionResponse"
+      },
+      {
+        "from": "operation:get:/person/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ResourceRecord"
+      },
+      {
+        "from": "schema:CollectionResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ResourceRecord"
+      },
+      {
+        "from": "schema:SubsectionResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ResourceRecord"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "harvard-art-museums",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/exhibition",
+        "kind": "operation",
+        "method": "get",
+        "name": "listExhibitions",
+        "parameters": [
+          {
+            "default": 10,
+            "description": "Number of records per page; defaults to 10 and accepts up to 100.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1,
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Filter exhibitions by venue.",
+            "in": "query",
+            "name": "venue",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/exhibition",
+        "pointer": "#/paths/~1exhibition/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CollectionResponse"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Search exhibitions",
+        "tags": [
+          "Exhibitions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/exhibition/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getExhibition",
+        "parameters": [
+          {
+            "description": "Resource identifier used in the documented path.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/exhibition/{id}",
+        "pointer": "#/paths/~1exhibition~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ResourceRecord"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Get an exhibition",
+        "tags": [
+          "Exhibitions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/gallery",
+        "kind": "operation",
+        "method": "get",
+        "name": "listGalleries",
+        "parameters": [
+          {
+            "default": 10,
+            "description": "Number of records per page; defaults to 10 and accepts up to 100.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1,
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Filter galleries by floor.",
+            "in": "query",
+            "name": "floor",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/gallery",
+        "pointer": "#/paths/~1gallery/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CollectionResponse"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Search galleries",
+        "tags": [
+          "Galleries"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/gallery/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getGallery",
+        "parameters": [
+          {
+            "description": "Resource identifier used in the documented path.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/gallery/{id}",
+        "pointer": "#/paths/~1gallery~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ResourceRecord"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Get a gallery",
+        "tags": [
+          "Galleries"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/object",
+        "kind": "operation",
+        "method": "get",
+        "name": "listObjects",
+        "parameters": [
+          {
+            "default": 10,
+            "description": "Number of records per page; defaults to 10 and accepts up to 100.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1,
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Search query documented for object records.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter objects by person identifier.",
+            "in": "query",
+            "name": "person",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter objects by classification.",
+            "in": "query",
+            "name": "classification",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter objects by year or year range.",
+            "in": "query",
+            "name": "yearmade",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/object",
+        "pointer": "#/paths/~1object/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CollectionResponse"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Search objects",
+        "tags": [
+          "Objects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/object/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getObject",
+        "parameters": [
+          {
+            "description": "Resource identifier used in the documented path.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/object/{id}",
+        "pointer": "#/paths/~1object~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ResourceRecord"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Get an object",
+        "tags": [
+          "Objects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/object/{id}/colors",
+        "kind": "operation",
+        "method": "get",
+        "name": "getObjectColors",
+        "parameters": [
+          {
+            "description": "Resource identifier used in the documented path.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/object/{id}/colors",
+        "pointer": "#/paths/~1object~1{id}~1colors/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubsectionResponse"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Get colors extracted from an object's primary image",
+        "tags": [
+          "Objects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/object/{id}/exhibitions",
+        "kind": "operation",
+        "method": "get",
+        "name": "getObjectExhibitions",
+        "parameters": [
+          {
+            "description": "Resource identifier used in the documented path.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/object/{id}/exhibitions",
+        "pointer": "#/paths/~1object~1{id}~1exhibitions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubsectionResponse"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Get exhibitions featuring an object",
+        "tags": [
+          "Objects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/object/{id}/images",
+        "kind": "operation",
+        "method": "get",
+        "name": "getObjectImages",
+        "parameters": [
+          {
+            "description": "Resource identifier used in the documented path.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/object/{id}/images",
+        "pointer": "#/paths/~1object~1{id}~1images/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubsectionResponse"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Get images associated with an object",
+        "tags": [
+          "Objects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/object/{id}/people",
+        "kind": "operation",
+        "method": "get",
+        "name": "getObjectPeople",
+        "parameters": [
+          {
+            "description": "Resource identifier used in the documented path.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/object/{id}/people",
+        "pointer": "#/paths/~1object~1{id}~1people/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubsectionResponse"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Get people associated with an object",
+        "tags": [
+          "Objects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/object/{id}/publications",
+        "kind": "operation",
+        "method": "get",
+        "name": "getObjectPublications",
+        "parameters": [
+          {
+            "description": "Resource identifier used in the documented path.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/object/{id}/publications",
+        "pointer": "#/paths/~1object~1{id}~1publications/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubsectionResponse"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Get publications featuring an object",
+        "tags": [
+          "Objects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/object/{id}/videos",
+        "kind": "operation",
+        "method": "get",
+        "name": "getObjectVideos",
+        "parameters": [
+          {
+            "description": "Resource identifier used in the documented path.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/object/{id}/videos",
+        "pointer": "#/paths/~1object~1{id}~1videos/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubsectionResponse"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Get videos about or featuring an object",
+        "tags": [
+          "Objects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/person",
+        "kind": "operation",
+        "method": "get",
+        "name": "listPeople",
+        "parameters": [
+          {
+            "default": 10,
+            "description": "Number of records per page; defaults to 10 and accepts up to 100.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1,
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Search query documented for people records.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/person",
+        "pointer": "#/paths/~1person/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CollectionResponse"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Search people",
+        "tags": [
+          "People"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/person/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getPerson",
+        "parameters": [
+          {
+            "description": "Resource identifier used in the documented path.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/person/{id}",
+        "pointer": "#/paths/~1person~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ResourceRecord"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKey": []
+          }
+        ],
+        "summary": "Get a person",
+        "tags": [
+          "People"
+        ]
+      },
+      {
+        "id": "schema:CollectionResponse",
+        "kind": "schema",
+        "name": "CollectionResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:ResourceRecord",
+        "kind": "schema",
+        "name": "ResourceRecord",
+        "type": "object"
+      },
+      {
+        "id": "schema:SubsectionResponse",
+        "kind": "schema",
+        "name": "SubsectionResponse",
+        "type": "ResourceRecord[]"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "harvard-art-museums"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.harvardartmuseums.org",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Page": {
+                  "description": "Page number, starting at 1.",
+                  "in": "query",
+                  "name": "page",
+                  "schema": {
+                    "default": 1,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "ResourceId": {
+                  "description": "Resource identifier used in the documented path.",
+                  "in": "path",
+                  "name": "id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Size": {
+                  "description": "Number of records per page; defaults to 10 and accepts up to 100.",
+                  "in": "query",
+                  "name": "size",
+                  "schema": {
+                    "default": 10,
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                }
+              },
+              "responses": {
+                "Unauthorized": {
+                  "description": "The API key is missing, invalid, or malformed."
+                }
+              },
+              "schemas": {
+                "CollectionResponse": {
+                  "properties": {
+                    "aggregations": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "info": {
+                      "properties": {
+                        "next": {
+                          "type": "string"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "pages": {
+                          "type": "integer"
+                        },
+                        "prev": {
+                          "type": "string"
+                        },
+                        "responsetime": {
+                          "type": "string"
+                        },
+                        "totalrecords": {
+                          "type": "integer"
+                        },
+                        "totalrecordsperquery": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "records": {
+                      "items": {
+                        "$ref": "#/components/schemas/ResourceRecord"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ResourceRecord": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "SubsectionResponse": {
+                  "items": {
+                    "$ref": "#/components/schemas/ResourceRecord"
+                  },
+                  "type": "array"
+                }
+              },
+              "securitySchemes": {
+                "ApiKey": {
+                  "description": "API key requested through the official API documentation.",
+                  "in": "query",
+                  "name": "apikey",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Official Harvard Art Museums API documentation",
+              "url": "https://github.com/harvardartmuseums/api-docs"
+            },
+            "info": {
+              "description": "Focused community-maintained definition for object, person, exhibition, and gallery resources, including documented object subresources. Requests require an API key. The provider limits use to noncommercial applications and 2,500 requests per day.",
+              "title": "Harvard Art Museums API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/exhibition": {
+                "get": {
+                  "operationId": "listExhibitions",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Size"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "description": "Filter exhibitions by venue.",
+                      "in": "query",
+                      "name": "venue",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CollectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Paginated exhibition records and available aggregations."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Search exhibitions",
+                  "tags": [
+                    "Exhibitions"
+                  ]
+                }
+              },
+              "/exhibition/{id}": {
+                "get": {
+                  "operationId": "getExhibition",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ResourceRecord"
+                          }
+                        }
+                      },
+                      "description": "An exhibition record."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Get an exhibition",
+                  "tags": [
+                    "Exhibitions"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/gallery": {
+                "get": {
+                  "operationId": "listGalleries",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Size"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "description": "Filter galleries by floor.",
+                      "in": "query",
+                      "name": "floor",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CollectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Paginated gallery records and available aggregations."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Search galleries",
+                  "tags": [
+                    "Galleries"
+                  ]
+                }
+              },
+              "/gallery/{id}": {
+                "get": {
+                  "operationId": "getGallery",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ResourceRecord"
+                          }
+                        }
+                      },
+                      "description": "A gallery record."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Get a gallery",
+                  "tags": [
+                    "Galleries"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/object": {
+                "get": {
+                  "operationId": "listObjects",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Size"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "description": "Search query documented for object records.",
+                      "in": "query",
+                      "name": "q",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter objects by person identifier.",
+                      "in": "query",
+                      "name": "person",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter objects by classification.",
+                      "in": "query",
+                      "name": "classification",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter objects by year or year range.",
+                      "in": "query",
+                      "name": "yearmade",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CollectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Paginated object records and available aggregations."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Search objects",
+                  "tags": [
+                    "Objects"
+                  ]
+                }
+              },
+              "/object/{id}": {
+                "get": {
+                  "operationId": "getObject",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ResourceRecord"
+                          }
+                        }
+                      },
+                      "description": "An object record."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Get an object",
+                  "tags": [
+                    "Objects"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/object/{id}/colors": {
+                "get": {
+                  "operationId": "getObjectColors",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubsectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Color records associated with the object."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Get colors extracted from an object's primary image",
+                  "tags": [
+                    "Objects"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/object/{id}/exhibitions": {
+                "get": {
+                  "operationId": "getObjectExhibitions",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubsectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Exhibition records associated with the object."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Get exhibitions featuring an object",
+                  "tags": [
+                    "Objects"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/object/{id}/images": {
+                "get": {
+                  "operationId": "getObjectImages",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubsectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Image records associated with the object."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Get images associated with an object",
+                  "tags": [
+                    "Objects"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/object/{id}/people": {
+                "get": {
+                  "operationId": "getObjectPeople",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubsectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Person records associated with the object."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Get people associated with an object",
+                  "tags": [
+                    "Objects"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/object/{id}/publications": {
+                "get": {
+                  "operationId": "getObjectPublications",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubsectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Publication records associated with the object."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Get publications featuring an object",
+                  "tags": [
+                    "Objects"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/object/{id}/videos": {
+                "get": {
+                  "operationId": "getObjectVideos",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubsectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Video records associated with the object."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Get videos about or featuring an object",
+                  "tags": [
+                    "Objects"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/person": {
+                "get": {
+                  "operationId": "listPeople",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Size"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "description": "Search query documented for people records.",
+                      "in": "query",
+                      "name": "q",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CollectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Paginated people records and available aggregations."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Search people",
+                  "tags": [
+                    "People"
+                  ]
+                }
+              },
+              "/person/{id}": {
+                "get": {
+                  "operationId": "getPerson",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ResourceRecord"
+                          }
+                        }
+                      },
+                      "description": "A person record."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "Get a person",
+                  "tags": [
+                    "People"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              }
+            },
+            "security": [
+              {
+                "ApiKey": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://api.harvardartmuseums.org"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Objects"
+              },
+              {
+                "name": "People"
+              },
+              {
+                "name": "Exhibitions"
+              },
+              {
+                "name": "Galleries"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Harvard Art Museums"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:37.791809+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/harvard-art-museums/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "0634e91f949792f3ff487e1fbe6509c11509f90a01237d0b1d3c4f8b2cfdff6d",
+    "source_id": "harvard-art-museums",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/harvard-art-museums/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

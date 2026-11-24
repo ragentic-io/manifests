@@ -1,0 +1,491 @@
+{
+  "a2ui": {},
+  "app": "airtable",
+  "graph": {
+    "edges": [
+      {
+        "from": "airtable",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v0/{baseId}/{tableIdOrName}"
+      },
+      {
+        "from": "airtable",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v0/{baseId}/{tableIdOrName}"
+      },
+      {
+        "from": "operation:get:/v0/{baseId}/{tableIdOrName}",
+        "kind": "RETURNS",
+        "to": "schema:RecordPage"
+      },
+      {
+        "from": "operation:post:/v0/{baseId}/{tableIdOrName}",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateRecordsRequest"
+      },
+      {
+        "from": "operation:post:/v0/{baseId}/{tableIdOrName}",
+        "kind": "RETURNS",
+        "to": "schema:CreateRecordsResponse"
+      },
+      {
+        "from": "schema:CreateRecordsResponse",
+        "kind": "REFERENCES",
+        "to": "schema:Record"
+      },
+      {
+        "from": "schema:RecordPage",
+        "kind": "REFERENCES",
+        "to": "schema:Record"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "airtable",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns one page of records; pass the returned offset to fetch the next page.",
+        "id": "operation:get:/v0/{baseId}/{tableIdOrName}",
+        "kind": "operation",
+        "method": "get",
+        "name": "listRecords",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "baseId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "A table ID or table name.",
+            "in": "path",
+            "name": "tableIdOrName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 100,
+            "description": "Number of records per page; defaults to 100 and cannot exceed 100.",
+            "in": "query",
+            "name": "pageSize",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Maximum total number of records to return across pages.",
+            "in": "query",
+            "name": "maxRecords",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Offset returned by the previous page.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Name or ID of the view whose records should be returned.",
+            "in": "query",
+            "name": "view",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Airtable formula used to filter records.",
+            "in": "query",
+            "name": "filterByFormula",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/v0/{baseId}/{tableIdOrName}",
+        "pointer": "#/paths/~1v0~1{baseId}~1{tableIdOrName}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "RecordPage"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "AirtableToken": []
+          }
+        ],
+        "summary": "List records"
+      },
+      {
+        "deprecated": false,
+        "description": "Create a single record or submit an array of records.",
+        "id": "operation:post:/v0/{baseId}/{tableIdOrName}",
+        "kind": "operation",
+        "method": "post",
+        "name": "createRecords",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "baseId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "A table ID or table name.",
+            "in": "path",
+            "name": "tableIdOrName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v0/{baseId}/{tableIdOrName}",
+        "pointer": "#/paths/~1v0~1{baseId}~1{tableIdOrName}/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateRecordsRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "CreateRecordsResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "AirtableToken": []
+          }
+        ],
+        "summary": "Create one or more records"
+      },
+      {
+        "id": "schema:CreateRecordsRequest",
+        "kind": "schema",
+        "name": "CreateRecordsRequest"
+      },
+      {
+        "id": "schema:CreateRecordsResponse",
+        "kind": "schema",
+        "name": "CreateRecordsResponse",
+        "type": "object|Record"
+      },
+      {
+        "id": "schema:Record",
+        "kind": "schema",
+        "name": "Record",
+        "type": "object"
+      },
+      {
+        "id": "schema:RecordPage",
+        "kind": "schema",
+        "name": "RecordPage",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "airtable"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.airtable.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "CreateRecordsRequest": {
+                  "oneOf": [
+                    {
+                      "required": [
+                        "fields"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "records"
+                      ]
+                    }
+                  ],
+                  "properties": {
+                    "fields": {
+                      "additionalProperties": true,
+                      "description": "Cell values for a single record, keyed by field name or ID.",
+                      "type": "object"
+                    },
+                    "records": {
+                      "items": {
+                        "properties": {
+                          "fields": {
+                            "additionalProperties": true,
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "fields"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "returnFieldsByFieldId": {
+                      "type": "boolean"
+                    },
+                    "typecast": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CreateRecordsResponse": {
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "records": {
+                          "items": {
+                            "$ref": "#/components/schemas/Record"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "records"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Record"
+                    }
+                  ]
+                },
+                "Record": {
+                  "properties": {
+                    "createdTime": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "fields": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "createdTime",
+                    "fields"
+                  ],
+                  "type": "object"
+                },
+                "RecordPage": {
+                  "properties": {
+                    "offset": {
+                      "type": "string"
+                    },
+                    "records": {
+                      "items": {
+                        "$ref": "#/components/schemas/Record"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "records"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "AirtableToken": {
+                  "description": "Airtable personal access token or OAuth access token.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained definition of record listing and creation. Field values are left open because each Airtable base defines its own fields and cell types.",
+              "externalDocs": {
+                "description": "Airtable Web API documentation",
+                "url": "https://airtable.com/developers/web/api/introduction"
+              },
+              "title": "Airtable Web API (focused)",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/v0/{baseId}/{tableIdOrName}": {
+                "get": {
+                  "description": "Returns one page of records; pass the returned offset to fetch the next page.",
+                  "externalDocs": {
+                    "url": "https://airtable.com/developers/web/api/list-records"
+                  },
+                  "operationId": "listRecords",
+                  "parameters": [
+                    {
+                      "description": "Number of records per page; defaults to 100 and cannot exceed 100.",
+                      "in": "query",
+                      "name": "pageSize",
+                      "schema": {
+                        "default": 100,
+                        "maximum": 100,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Maximum total number of records to return across pages.",
+                      "in": "query",
+                      "name": "maxRecords",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Offset returned by the previous page.",
+                      "in": "query",
+                      "name": "offset",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Name or ID of the view whose records should be returned.",
+                      "in": "query",
+                      "name": "view",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Airtable formula used to filter records.",
+                      "in": "query",
+                      "name": "filterByFormula",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RecordPage"
+                          }
+                        }
+                      },
+                      "description": "A page of records, with an offset when another page is available."
+                    }
+                  },
+                  "summary": "List records"
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "baseId",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "description": "A table ID or table name.",
+                    "in": "path",
+                    "name": "tableIdOrName",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "post": {
+                  "description": "Create a single record or submit an array of records.",
+                  "externalDocs": {
+                    "url": "https://airtable.com/developers/web/api/create-records"
+                  },
+                  "operationId": "createRecords",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateRecordsRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CreateRecordsResponse"
+                          }
+                        }
+                      },
+                      "description": "The created record or records."
+                    }
+                  },
+                  "summary": "Create one or more records"
+                }
+              }
+            },
+            "security": [
+              {
+                "AirtableToken": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://api.airtable.com"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Airtable"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:41.942165+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/airtable/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "e1b497454d9c178425930b1165b12ff926e72a7ae3d6863e1efd83f005c84655",
+    "source_id": "airtable",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/airtable/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

@@ -1,0 +1,608 @@
+{
+  "a2ui": {},
+  "app": "tiktok-display-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "tiktok-display-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/user/info/"
+      },
+      {
+        "from": "tiktok-display-api",
+        "kind": "EXPOSES",
+        "to": "operation:post:/video/list/"
+      },
+      {
+        "from": "tiktok-display-api",
+        "kind": "EXPOSES",
+        "to": "operation:post:/video/query/"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "tiktok-display-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Requires user.info.basic.",
+        "id": "operation:get:/user/info/",
+        "kind": "operation",
+        "method": "get",
+        "name": "getUserInfo",
+        "parameters": [
+          {
+            "description": "Comma-separated fields to return for the user or video objects.",
+            "in": "query",
+            "name": "fields",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/user/info/",
+        "pointer": "#/paths/~1user~1info~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "summary": "Get user info"
+      },
+      {
+        "deprecated": false,
+        "description": "Requires the video.list scope.",
+        "id": "operation:post:/video/list/",
+        "kind": "operation",
+        "method": "post",
+        "name": "listVideos",
+        "parameters": [
+          {
+            "description": "Comma-separated fields to return for the user or video objects.",
+            "in": "query",
+            "name": "fields",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/video/list/",
+        "pointer": "#/paths/~1video~1list~1/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "summary": "List a user's videos"
+      },
+      {
+        "deprecated": false,
+        "description": "Requires the video.list scope.",
+        "id": "operation:post:/video/query/",
+        "kind": "operation",
+        "method": "post",
+        "name": "queryVideos",
+        "parameters": [
+          {
+            "description": "Comma-separated fields to return for the user or video objects.",
+            "in": "query",
+            "name": "fields",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/video/query/",
+        "pointer": "#/paths/~1video~1query~1/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "default",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "summary": "Query a user's videos by ID"
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:User",
+        "kind": "schema",
+        "name": "User",
+        "type": "object"
+      },
+      {
+        "id": "schema:Video",
+        "kind": "schema",
+        "name": "Video",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "tiktok-display-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://open.tiktokapis.com/v2",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Fields": {
+                  "description": "Comma-separated fields to return for the user or video objects.",
+                  "in": "query",
+                  "name": "fields",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "Error": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Error response returned with a 4xx or 5xx HTTP status."
+                }
+              },
+              "schemas": {
+                "Error": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "log_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "User": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "avatar_large_url": {
+                      "type": "string"
+                    },
+                    "avatar_url": {
+                      "type": "string"
+                    },
+                    "avatar_url_100": {
+                      "type": "string"
+                    },
+                    "bio_description": {
+                      "type": "string"
+                    },
+                    "display_name": {
+                      "type": "string"
+                    },
+                    "follower_count": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "following_count": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "is_verified": {
+                      "type": "boolean"
+                    },
+                    "likes_count": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "open_id": {
+                      "type": "string"
+                    },
+                    "profile_deep_link": {
+                      "type": "string"
+                    },
+                    "union_id": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "video_count": {
+                      "format": "int64",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Video": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "comment_count": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "cover_image_url": {
+                      "type": "string"
+                    },
+                    "create_time": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "duration": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "embed_html": {
+                      "type": "string"
+                    },
+                    "embed_link": {
+                      "type": "string"
+                    },
+                    "height": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "is_aigc": {
+                      "type": "boolean"
+                    },
+                    "like_count": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "share_count": {
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "share_url": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "video_description": {
+                      "type": "string"
+                    },
+                    "view_count": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "width": {
+                      "format": "int32",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "AccessToken": {
+                  "bearerFormat": "access_token",
+                  "description": "TikTok OAuth access token with the scopes required by the operation.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained definition for the three documented Display API v2 operations. Access requires an approved TikTok developer app and user authorization for the requested scopes.",
+              "externalDocs": {
+                "description": "TikTok Display API overview",
+                "url": "https://developers.tiktok.com/docs/en/display-api-overview"
+              },
+              "title": "TikTok Display API (focused)",
+              "version": "2.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/user/info/": {
+                "get": {
+                  "description": "Requires user.info.basic. Requested profile and statistics fields can require user.info.profile or user.info.stats.",
+                  "externalDocs": {
+                    "url": "https://developers.tiktok.com/docs/en/tiktok-api-v2-get-user-info"
+                  },
+                  "operationId": "getUserInfo",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "additionalProperties": true,
+                            "properties": {
+                              "data": {
+                                "additionalProperties": true,
+                                "properties": {
+                                  "user": {
+                                    "$ref": "#/components/schemas/User"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "error": {
+                                "$ref": "#/components/schemas/Error"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "User information and the API error object."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Get user info"
+                }
+              },
+              "/video/list/": {
+                "post": {
+                  "description": "Requires the video.list scope.",
+                  "externalDocs": {
+                    "url": "https://developers.tiktok.com/docs/en/tiktok-api-v2-video-list"
+                  },
+                  "operationId": "listVideos",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "cursor": {
+                              "description": "Pagination cursor in UTC Unix milliseconds.",
+                              "format": "int64",
+                              "type": "integer"
+                            },
+                            "max_count": {
+                              "default": 10,
+                              "description": "Maximum number of videos returned in a page.",
+                              "format": "int32",
+                              "maximum": 20,
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "additionalProperties": true,
+                            "properties": {
+                              "data": {
+                                "additionalProperties": true,
+                                "properties": {
+                                  "cursor": {
+                                    "format": "int64",
+                                    "type": "integer"
+                                  },
+                                  "has_more": {
+                                    "type": "boolean"
+                                  },
+                                  "videos": {
+                                    "items": {
+                                      "$ref": "#/components/schemas/Video"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "error": {
+                                "$ref": "#/components/schemas/Error"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Videos and pagination metadata."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "List a user's videos"
+                }
+              },
+              "/video/query/": {
+                "post": {
+                  "description": "Requires the video.list scope. Up to 20 video IDs can be queried per request.",
+                  "externalDocs": {
+                    "url": "https://developers.tiktok.com/docs/en/tiktok-api-v2-video-query"
+                  },
+                  "operationId": "queryVideos",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "additionalProperties": true,
+                          "properties": {
+                            "filters": {
+                              "additionalProperties": true,
+                              "properties": {
+                                "video_ids": {
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "maxItems": 20,
+                                  "type": "array"
+                                }
+                              },
+                              "required": [
+                                "video_ids"
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "filters"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "additionalProperties": true,
+                            "properties": {
+                              "data": {
+                                "additionalProperties": true,
+                                "properties": {
+                                  "videos": {
+                                    "items": {
+                                      "$ref": "#/components/schemas/Video"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "error": {
+                                "$ref": "#/components/schemas/Error"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Matching videos and the API error object."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/Error"
+                    }
+                  },
+                  "summary": "Query a user's videos by ID"
+                }
+              }
+            },
+            "security": [
+              {
+                "AccessToken": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://open.tiktokapis.com/v2"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "TikTok Display API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.773895+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/tiktok-display/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "14427f9eb4f9a2efad30c1d97e4b96251edca7203013f59c8f6d7d40778c3954",
+    "source_id": "tiktok-display-api",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/tiktok-display/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "2.0.0"
+}

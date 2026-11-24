@@ -1,0 +1,671 @@
+{
+  "a2ui": {},
+  "app": "stage-captions",
+  "graph": {
+    "edges": [
+      {
+        "from": "stage-captions",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/auth/api-key/test"
+      },
+      {
+        "from": "stage-captions",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/subtitles/convert"
+      },
+      {
+        "from": "operation:get:/api/auth/api-key/test",
+        "kind": "RETURNS",
+        "to": "schema:ApiKeyTestResponse"
+      },
+      {
+        "from": "operation:post:/api/subtitles/convert",
+        "kind": "ACCEPTS",
+        "to": "schema:ConvertSubtitleRequest"
+      },
+      {
+        "from": "operation:post:/api/subtitles/convert",
+        "kind": "RETURNS",
+        "to": "schema:ConvertSubtitleResponse"
+      },
+      {
+        "from": "schema:ApiKeyTestResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ApiKeyProvider"
+      },
+      {
+        "from": "schema:ConvertSubtitleRequest",
+        "kind": "REFERENCES",
+        "to": "schema:SubtitleFormat"
+      },
+      {
+        "from": "schema:ConvertSubtitleResponse",
+        "kind": "REFERENCES",
+        "to": "schema:SubtitleFormat"
+      },
+      {
+        "from": "schema:ConvertSubtitleResponse",
+        "kind": "REFERENCES",
+        "to": "schema:SubtitleWarning"
+      },
+      {
+        "from": "schema:ValidationErrorResponse",
+        "kind": "REFERENCES",
+        "to": "schema:SubtitleWarning"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "stage-captions",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Verifies that the provided Stage Captions API key is valid.",
+        "id": "operation:get:/api/auth/api-key/test",
+        "kind": "operation",
+        "method": "get",
+        "name": "testApiKey",
+        "path": "/api/auth/api-key/test",
+        "pointer": "#/paths/~1api~1auth~1api-key~1test/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiKeyTestResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "500",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Test API key",
+        "tags": [
+          "Authentication"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Converts subtitle content between supported text-based formats.",
+        "id": "operation:post:/api/subtitles/convert",
+        "kind": "operation",
+        "method": "post",
+        "name": "convertSubtitle",
+        "path": "/api/subtitles/convert",
+        "pointer": "#/paths/~1api~1subtitles~1convert/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "ConvertSubtitleRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "ConvertSubtitleResponse"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "413",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "422",
+            "type": "ValidationErrorResponse"
+          },
+          {
+            "status": "500",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Convert subtitle content",
+        "tags": [
+          "Subtitles"
+        ]
+      },
+      {
+        "id": "schema:ApiKeyProvider",
+        "kind": "schema",
+        "name": "ApiKeyProvider",
+        "type": "string"
+      },
+      {
+        "id": "schema:ApiKeyTestResponse",
+        "kind": "schema",
+        "name": "ApiKeyTestResponse",
+        "type": "object"
+      },
+      {
+        "description": "Supported conversions are srt to vtt, vtt to srt, srt to txt, and txt to srt.",
+        "id": "schema:ConvertSubtitleRequest",
+        "kind": "schema",
+        "name": "ConvertSubtitleRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:ConvertSubtitleResponse",
+        "kind": "schema",
+        "name": "ConvertSubtitleResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:ErrorResponse",
+        "kind": "schema",
+        "name": "ErrorResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:SubtitleFormat",
+        "kind": "schema",
+        "name": "SubtitleFormat",
+        "type": "string"
+      },
+      {
+        "id": "schema:SubtitleWarning",
+        "kind": "schema",
+        "name": "SubtitleWarning",
+        "type": "object"
+      },
+      {
+        "id": "schema:ValidationErrorResponse",
+        "kind": "schema",
+        "name": "ValidationErrorResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "stage-captions"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.stagecaptions.io",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "ApiKeyRequired": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": "API key required"
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "API key was not provided."
+                },
+                "BadRequest": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": "input is required."
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "Request body is missing required fields or contains invalid values."
+                },
+                "InputValidationFailed": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": "Input validation failed",
+                        "warnings": [
+                          {
+                            "code": "invalid-timestamp",
+                            "line": 2,
+                            "message": "Invalid timestamp line. Expected HH:MM:SS,mmm --> HH:MM:SS,mmm."
+                          }
+                        ]
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ValidationErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "Subtitle content could not be parsed as the source format."
+                },
+                "InternalServerError": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": "Subtitle conversion failed"
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "Unexpected server error."
+                },
+                "InvalidApiKey": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": "Invalid API key"
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "API key is invalid, revoked, or expired."
+                },
+                "PayloadTooLarge": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": "Converted output is too large. Output must be 1000000 characters or fewer."
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "Input or converted output is too large."
+                }
+              },
+              "schemas": {
+                "ApiKeyProvider": {
+                  "enum": [
+                    "zapier",
+                    "make",
+                    "public_api"
+                  ],
+                  "type": "string"
+                },
+                "ApiKeyTestResponse": {
+                  "properties": {
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "keyLast4": {
+                      "type": "string"
+                    },
+                    "keyPrefix": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "provider": {
+                      "$ref": "#/components/schemas/ApiKeyProvider"
+                    }
+                  },
+                  "required": [
+                    "email",
+                    "provider",
+                    "name",
+                    "keyPrefix",
+                    "keyLast4"
+                  ],
+                  "type": "object"
+                },
+                "ConvertSubtitleRequest": {
+                  "additionalProperties": false,
+                  "description": "Supported conversions are srt to vtt, vtt to srt, srt to txt, and txt to srt.",
+                  "properties": {
+                    "from": {
+                      "$ref": "#/components/schemas/SubtitleFormat"
+                    },
+                    "input": {
+                      "description": "Subtitle or plain text content to convert.",
+                      "maxLength": 250000,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "options": {
+                      "additionalProperties": false,
+                      "description": "Optional settings used for TXT to SRT conversion.",
+                      "properties": {
+                        "cueDuration": {
+                          "description": "Duration of each generated SRT cue in seconds.",
+                          "maximum": 60,
+                          "minimum": 0.1,
+                          "type": "number"
+                        },
+                        "maxCharsPerCue": {
+                          "description": "Maximum text length for each generated SRT cue.",
+                          "maximum": 1000,
+                          "minimum": 10,
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "to": {
+                      "$ref": "#/components/schemas/SubtitleFormat"
+                    }
+                  },
+                  "required": [
+                    "input",
+                    "from",
+                    "to"
+                  ],
+                  "type": "object"
+                },
+                "ConvertSubtitleResponse": {
+                  "properties": {
+                    "extension": {
+                      "enum": [
+                        "srt",
+                        "vtt",
+                        "txt"
+                      ],
+                      "type": "string"
+                    },
+                    "from": {
+                      "$ref": "#/components/schemas/SubtitleFormat"
+                    },
+                    "mimeType": {
+                      "enum": [
+                        "application/x-subrip",
+                        "text/vtt",
+                        "text/plain"
+                      ],
+                      "type": "string"
+                    },
+                    "output": {
+                      "description": "Converted subtitle or text content.",
+                      "type": "string"
+                    },
+                    "to": {
+                      "$ref": "#/components/schemas/SubtitleFormat"
+                    },
+                    "warnings": {
+                      "items": {
+                        "$ref": "#/components/schemas/SubtitleWarning"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "output",
+                    "from",
+                    "to",
+                    "extension",
+                    "mimeType",
+                    "warnings"
+                  ],
+                  "type": "object"
+                },
+                "ErrorResponse": {
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                },
+                "SubtitleFormat": {
+                  "enum": [
+                    "srt",
+                    "vtt",
+                    "txt"
+                  ],
+                  "type": "string"
+                },
+                "SubtitleWarning": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "line": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                },
+                "ValidationErrorResponse": {
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "items": {
+                        "$ref": "#/components/schemas/SubtitleWarning"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "warnings"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "ApiKeyAuth": {
+                  "description": "Stage Captions API key.",
+                  "in": "header",
+                  "name": "X-API-KEY",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "API endpoints used by the Stage Captions Zapier integration.",
+              "title": "Stage Captions API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/api/auth/api-key/test": {
+                "get": {
+                  "description": "Verifies that the provided Stage Captions API key is valid.",
+                  "operationId": "testApiKey",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "email": "user@example.com",
+                            "keyLast4": "abcd",
+                            "keyPrefix": "sc_zapier",
+                            "name": "Zapier",
+                            "provider": "zapier"
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiKeyTestResponse"
+                          }
+                        }
+                      },
+                      "description": "API key is valid."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/ApiKeyRequired"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/InvalidApiKey"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalServerError"
+                    }
+                  },
+                  "summary": "Test API key",
+                  "tags": [
+                    "Authentication"
+                  ]
+                }
+              },
+              "/api/subtitles/convert": {
+                "post": {
+                  "description": "Converts subtitle content between supported text-based formats.",
+                  "operationId": "convertSubtitle",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "srtToVtt": {
+                            "summary": "Convert SRT to VTT",
+                            "value": {
+                              "from": "srt",
+                              "input": "1\n00:00:01,000 --> 00:00:03,000\nHello world.",
+                              "to": "vtt"
+                            }
+                          },
+                          "txtToSrt": {
+                            "summary": "Convert TXT to SRT",
+                            "value": {
+                              "from": "txt",
+                              "input": "Hello world.",
+                              "options": {
+                                "cueDuration": 3,
+                                "maxCharsPerCue": 80
+                              },
+                              "to": "srt"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/ConvertSubtitleRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "extension": "vtt",
+                            "from": "srt",
+                            "mimeType": "text/vtt",
+                            "output": "WEBVTT\n\n00:00:01.000 --> 00:00:03.000\nHello world.\n",
+                            "to": "vtt",
+                            "warnings": []
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ConvertSubtitleResponse"
+                          }
+                        }
+                      },
+                      "description": "Subtitle content was converted successfully."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/ApiKeyRequired"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/InvalidApiKey"
+                    },
+                    "413": {
+                      "$ref": "#/components/responses/PayloadTooLarge"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/InputValidationFailed"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalServerError"
+                    }
+                  },
+                  "summary": "Convert subtitle content",
+                  "tags": [
+                    "Subtitles"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "ApiKeyAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://api.stagecaptions.io"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Stage Captions"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:28.638733+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.stagecaptions.io/api-reference/specs/zapier.yaml",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "c9ff3575c82925f98457d1ebab3bbd1b0a0903b58f24e7e51defa16c1cf4a322",
+    "source_id": "stage-captions",
+    "source_updated": null,
+    "url": "https://api.stagecaptions.io/api-reference/specs/zapier.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

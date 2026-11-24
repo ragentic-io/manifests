@@ -1,0 +1,1321 @@
+{
+  "a2ui": {},
+  "app": "openrouteservice",
+  "graph": {
+    "edges": [
+      {
+        "from": "openrouteservice",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v2/directions/{profile}"
+      },
+      {
+        "from": "openrouteservice",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v2/directions/{profile}/geojson"
+      },
+      {
+        "from": "openrouteservice",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v2/directions/{profile}/gpx"
+      },
+      {
+        "from": "openrouteservice",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v2/directions/{profile}/json"
+      },
+      {
+        "from": "openrouteservice",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v2/isochrones/{profile}"
+      },
+      {
+        "from": "openrouteservice",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v2/matrix/{profile}"
+      },
+      {
+        "from": "openrouteservice",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v2/snap/{profile}"
+      },
+      {
+        "from": "openrouteservice",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v2/snap/{profile}/geojson"
+      },
+      {
+        "from": "openrouteservice",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v2/snap/{profile}/json"
+      },
+      {
+        "from": "operation:post:/v2/directions/{profile}",
+        "kind": "ACCEPTS",
+        "to": "schema:DirectionsRequest"
+      },
+      {
+        "from": "operation:post:/v2/directions/{profile}",
+        "kind": "RETURNS",
+        "to": "schema:DirectionsResponse"
+      },
+      {
+        "from": "operation:post:/v2/directions/{profile}/geojson",
+        "kind": "ACCEPTS",
+        "to": "schema:DirectionsRequest"
+      },
+      {
+        "from": "operation:post:/v2/directions/{profile}/geojson",
+        "kind": "RETURNS",
+        "to": "schema:FeatureCollection"
+      },
+      {
+        "from": "operation:post:/v2/directions/{profile}/gpx",
+        "kind": "ACCEPTS",
+        "to": "schema:DirectionsRequest"
+      },
+      {
+        "from": "operation:post:/v2/directions/{profile}/json",
+        "kind": "ACCEPTS",
+        "to": "schema:DirectionsRequest"
+      },
+      {
+        "from": "operation:post:/v2/directions/{profile}/json",
+        "kind": "RETURNS",
+        "to": "schema:DirectionsResponse"
+      },
+      {
+        "from": "operation:post:/v2/isochrones/{profile}",
+        "kind": "ACCEPTS",
+        "to": "schema:IsochronesRequest"
+      },
+      {
+        "from": "operation:post:/v2/isochrones/{profile}",
+        "kind": "RETURNS",
+        "to": "schema:FeatureCollection"
+      },
+      {
+        "from": "operation:post:/v2/matrix/{profile}",
+        "kind": "ACCEPTS",
+        "to": "schema:MatrixRequest"
+      },
+      {
+        "from": "operation:post:/v2/matrix/{profile}",
+        "kind": "RETURNS",
+        "to": "schema:MatrixResponse"
+      },
+      {
+        "from": "operation:post:/v2/snap/{profile}",
+        "kind": "ACCEPTS",
+        "to": "schema:SnapRequest"
+      },
+      {
+        "from": "operation:post:/v2/snap/{profile}",
+        "kind": "RETURNS",
+        "to": "schema:SnapResponse"
+      },
+      {
+        "from": "operation:post:/v2/snap/{profile}/geojson",
+        "kind": "ACCEPTS",
+        "to": "schema:SnapRequest"
+      },
+      {
+        "from": "operation:post:/v2/snap/{profile}/geojson",
+        "kind": "RETURNS",
+        "to": "schema:FeatureCollection"
+      },
+      {
+        "from": "operation:post:/v2/snap/{profile}/json",
+        "kind": "ACCEPTS",
+        "to": "schema:SnapRequest"
+      },
+      {
+        "from": "operation:post:/v2/snap/{profile}/json",
+        "kind": "RETURNS",
+        "to": "schema:SnapResponse"
+      },
+      {
+        "from": "schema:Coordinates",
+        "kind": "REFERENCES",
+        "to": "schema:Coordinate"
+      },
+      {
+        "from": "schema:DirectionsRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Coordinates"
+      },
+      {
+        "from": "schema:IsochronesRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Coordinates"
+      },
+      {
+        "from": "schema:MatrixRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Coordinates"
+      },
+      {
+        "from": "schema:MatrixResponse",
+        "kind": "REFERENCES",
+        "to": "schema:NumberMatrix"
+      },
+      {
+        "from": "schema:SnapRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Coordinates"
+      },
+      {
+        "from": "schema:SnapResponse",
+        "kind": "REFERENCES",
+        "to": "schema:SnappedLocation"
+      },
+      {
+        "from": "schema:SnappedLocation",
+        "kind": "REFERENCES",
+        "to": "schema:Coordinate"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "openrouteservice",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "The default POST response is JSON.",
+        "id": "operation:post:/v2/directions/{profile}",
+        "kind": "operation",
+        "method": "post",
+        "name": "calculateDirectionsJson",
+        "parameters": [
+          {
+            "description": "Routing profile, such as driving-car or foot-walking.",
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v2/directions/{profile}",
+        "pointer": "#/paths/~1v2~1directions~1{profile}/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "DirectionsRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "DirectionsResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Calculate directions as JSON",
+        "tags": [
+          "Directions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/v2/directions/{profile}/geojson",
+        "kind": "operation",
+        "method": "post",
+        "name": "calculateDirectionsGeoJson",
+        "parameters": [
+          {
+            "description": "Routing profile, such as driving-car or foot-walking.",
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v2/directions/{profile}/geojson",
+        "pointer": "#/paths/~1v2~1directions~1{profile}~1geojson/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "DirectionsRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "FeatureCollection"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Calculate directions as GeoJSON",
+        "tags": [
+          "Directions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/v2/directions/{profile}/gpx",
+        "kind": "operation",
+        "method": "post",
+        "name": "calculateDirectionsGpx",
+        "parameters": [
+          {
+            "description": "Routing profile, such as driving-car or foot-walking.",
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v2/directions/{profile}/gpx",
+        "pointer": "#/paths/~1v2~1directions~1{profile}~1gpx/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "DirectionsRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Calculate directions as GPX",
+        "tags": [
+          "Directions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/v2/directions/{profile}/json",
+        "kind": "operation",
+        "method": "post",
+        "name": "calculateDirectionsJsonFormat",
+        "parameters": [
+          {
+            "description": "Routing profile, such as driving-car or foot-walking.",
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v2/directions/{profile}/json",
+        "pointer": "#/paths/~1v2~1directions~1{profile}~1json/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "DirectionsRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "DirectionsResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Calculate directions as JSON",
+        "tags": [
+          "Directions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/v2/isochrones/{profile}",
+        "kind": "operation",
+        "method": "post",
+        "name": "calculateIsochrones",
+        "parameters": [
+          {
+            "description": "Routing profile, such as driving-car or foot-walking.",
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v2/isochrones/{profile}",
+        "pointer": "#/paths/~1v2~1isochrones~1{profile}/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "IsochronesRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "FeatureCollection"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Calculate reachable areas",
+        "tags": [
+          "Isochrones"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/v2/matrix/{profile}",
+        "kind": "operation",
+        "method": "post",
+        "name": "calculateMatrix",
+        "parameters": [
+          {
+            "description": "Routing profile, such as driving-car or foot-walking.",
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v2/matrix/{profile}",
+        "pointer": "#/paths/~1v2~1matrix~1{profile}/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "MatrixRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "MatrixResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Calculate travel time or distance matrices",
+        "tags": [
+          "Matrix"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/v2/snap/{profile}",
+        "kind": "operation",
+        "method": "post",
+        "name": "snapLocations",
+        "parameters": [
+          {
+            "description": "Routing profile, such as driving-car or foot-walking.",
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v2/snap/{profile}",
+        "pointer": "#/paths/~1v2~1snap~1{profile}/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SnapRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "SnapResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Snap locations to the street network",
+        "tags": [
+          "Snapping"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/v2/snap/{profile}/geojson",
+        "kind": "operation",
+        "method": "post",
+        "name": "snapLocationsGeoJson",
+        "parameters": [
+          {
+            "description": "Routing profile, such as driving-car or foot-walking.",
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v2/snap/{profile}/geojson",
+        "pointer": "#/paths/~1v2~1snap~1{profile}~1geojson/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SnapRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "FeatureCollection"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Snap locations to the street network as GeoJSON",
+        "tags": [
+          "Snapping"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/v2/snap/{profile}/json",
+        "kind": "operation",
+        "method": "post",
+        "name": "snapLocationsJson",
+        "parameters": [
+          {
+            "description": "Routing profile, such as driving-car or foot-walking.",
+            "in": "path",
+            "name": "profile",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v2/snap/{profile}/json",
+        "pointer": "#/paths/~1v2~1snap~1{profile}~1json/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SnapRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "SnapResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Snap locations to the street network as JSON",
+        "tags": [
+          "Snapping"
+        ]
+      },
+      {
+        "description": "Longitude and latitude, in that order.",
+        "id": "schema:Coordinate",
+        "kind": "schema",
+        "name": "Coordinate",
+        "type": "array"
+      },
+      {
+        "id": "schema:Coordinates",
+        "kind": "schema",
+        "name": "Coordinates",
+        "type": "Coordinate[]"
+      },
+      {
+        "id": "schema:DirectionsRequest",
+        "kind": "schema",
+        "name": "DirectionsRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:DirectionsResponse",
+        "kind": "schema",
+        "name": "DirectionsResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:FeatureCollection",
+        "kind": "schema",
+        "name": "FeatureCollection",
+        "type": "object"
+      },
+      {
+        "id": "schema:IsochronesRequest",
+        "kind": "schema",
+        "name": "IsochronesRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:MatrixRequest",
+        "kind": "schema",
+        "name": "MatrixRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:MatrixResponse",
+        "kind": "schema",
+        "name": "MatrixResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:NumberMatrix",
+        "kind": "schema",
+        "name": "NumberMatrix",
+        "type": "number[][]"
+      },
+      {
+        "id": "schema:SnapRequest",
+        "kind": "schema",
+        "name": "SnapRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:SnapResponse",
+        "kind": "schema",
+        "name": "SnapResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:SnappedLocation",
+        "kind": "schema",
+        "name": "SnappedLocation",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "openrouteservice"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.heigit.org/openrouteservice",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "profile": {
+                  "description": "Routing profile, such as driving-car or foot-walking.",
+                  "in": "path",
+                  "name": "profile",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "schemas": {
+                "Coordinate": {
+                  "description": "Longitude and latitude, in that order.",
+                  "items": false,
+                  "maxItems": 2,
+                  "minItems": 2,
+                  "prefixItems": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "number"
+                    }
+                  ],
+                  "type": "array"
+                },
+                "Coordinates": {
+                  "items": {
+                    "$ref": "#/components/schemas/Coordinate"
+                  },
+                  "type": "array"
+                },
+                "DirectionsRequest": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "coordinates": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Coordinates"
+                        }
+                      ],
+                      "description": "Ordered coordinate pairs for the route.",
+                      "minItems": 2
+                    }
+                  },
+                  "required": [
+                    "coordinates"
+                  ],
+                  "type": "object"
+                },
+                "DirectionsResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "bbox": {
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "routes": {
+                      "items": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "FeatureCollection": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "bbox": {
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
+                    "features": {
+                      "items": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "const": "FeatureCollection"
+                    }
+                  },
+                  "type": "object"
+                },
+                "IsochronesRequest": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "interval": {
+                      "description": "Interval used to segment an isochrone range.",
+                      "type": "integer"
+                    },
+                    "locations": {
+                      "$ref": "#/components/schemas/Coordinates"
+                    },
+                    "range": {
+                      "description": "Exact distance or time ranges for the requested isochrones.",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
+                    "range_type": {
+                      "enum": [
+                        "time",
+                        "distance"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "locations",
+                    "range"
+                  ],
+                  "type": "object"
+                },
+                "MatrixRequest": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "destinations": {
+                      "description": "Location indexes to use as destinations; omitted means all locations.",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "pattern": "^\\d+$",
+                            "type": "string"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "locations": {
+                      "$ref": "#/components/schemas/Coordinates"
+                    },
+                    "metrics": {
+                      "items": {
+                        "enum": [
+                          "duration",
+                          "distance"
+                        ],
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "sources": {
+                      "description": "Location indexes to use as sources; omitted means all locations.",
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "pattern": "^\\d+$",
+                            "type": "string"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "units": {
+                      "description": "Unit for returned distances; durations are in seconds.",
+                      "enum": [
+                        "m",
+                        "km",
+                        "mi"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "locations"
+                  ],
+                  "type": "object"
+                },
+                "MatrixResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "distances": {
+                      "$ref": "#/components/schemas/NumberMatrix"
+                    },
+                    "durations": {
+                      "$ref": "#/components/schemas/NumberMatrix"
+                    }
+                  },
+                  "type": "object"
+                },
+                "NumberMatrix": {
+                  "items": {
+                    "items": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "type": "array"
+                },
+                "SnapRequest": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "id": {
+                      "description": "Optional request identifier echoed in response metadata.",
+                      "type": "string"
+                    },
+                    "locations": {
+                      "$ref": "#/components/schemas/Coordinates"
+                    },
+                    "radius": {
+                      "description": "Maximum search radius in meters.",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "locations",
+                    "radius"
+                  ],
+                  "type": "object"
+                },
+                "SnapResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "locations": {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "$ref": "#/components/schemas/SnappedLocation"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SnappedLocation": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "location": {
+                      "$ref": "#/components/schemas/Coordinate"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "snapped_distance": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "apiKey": {
+                  "description": "Send the API key directly; do not prefix it with Bearer.",
+                  "in": "header",
+                  "name": "Authorization",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Official OpenRouteService API reference",
+              "url": "https://giscience.github.io/openrouteservice/api-reference/"
+            },
+            "info": {
+              "description": "Community-maintained subset of the public OpenRouteService API, derived from the provider's API reference and interactive API documentation. Requests require an API key; send the key directly in the Authorization header.",
+              "title": "OpenRouteService Core API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/v2/directions/{profile}": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/profile"
+                  }
+                ],
+                "post": {
+                  "description": "The default POST response is JSON.",
+                  "operationId": "calculateDirectionsJson",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/DirectionsRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DirectionsResponse"
+                          }
+                        }
+                      },
+                      "description": "Route response with route geometry and metadata."
+                    }
+                  },
+                  "summary": "Calculate directions as JSON",
+                  "tags": [
+                    "Directions"
+                  ]
+                }
+              },
+              "/v2/directions/{profile}/geojson": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/profile"
+                  }
+                ],
+                "post": {
+                  "operationId": "calculateDirectionsGeoJson",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/DirectionsRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/geo+json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/FeatureCollection"
+                          }
+                        }
+                      },
+                      "description": "Route geometry as a GeoJSON feature collection."
+                    }
+                  },
+                  "summary": "Calculate directions as GeoJSON",
+                  "tags": [
+                    "Directions"
+                  ]
+                }
+              },
+              "/v2/directions/{profile}/gpx": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/profile"
+                  }
+                ],
+                "post": {
+                  "operationId": "calculateDirectionsGpx",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/DirectionsRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/gpx+xml": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "Route and instructions in the provider's GPX format."
+                    }
+                  },
+                  "summary": "Calculate directions as GPX",
+                  "tags": [
+                    "Directions"
+                  ]
+                }
+              },
+              "/v2/directions/{profile}/json": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/profile"
+                  }
+                ],
+                "post": {
+                  "operationId": "calculateDirectionsJsonFormat",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/DirectionsRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DirectionsResponse"
+                          }
+                        }
+                      },
+                      "description": "Route response with route geometry and metadata."
+                    }
+                  },
+                  "summary": "Calculate directions as JSON",
+                  "tags": [
+                    "Directions"
+                  ]
+                }
+              },
+              "/v2/isochrones/{profile}": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/profile"
+                  }
+                ],
+                "post": {
+                  "operationId": "calculateIsochrones",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/IsochronesRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/geo+json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/FeatureCollection"
+                          }
+                        }
+                      },
+                      "description": "Reachability polygons as a GeoJSON feature collection."
+                    }
+                  },
+                  "summary": "Calculate reachable areas",
+                  "tags": [
+                    "Isochrones"
+                  ]
+                }
+              },
+              "/v2/matrix/{profile}": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/profile"
+                  }
+                ],
+                "post": {
+                  "operationId": "calculateMatrix",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/MatrixRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/MatrixResponse"
+                          }
+                        }
+                      },
+                      "description": "Requested durations and/or distances for each location pair."
+                    }
+                  },
+                  "summary": "Calculate travel time or distance matrices",
+                  "tags": [
+                    "Matrix"
+                  ]
+                }
+              },
+              "/v2/snap/{profile}": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/profile"
+                  }
+                ],
+                "post": {
+                  "operationId": "snapLocations",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SnapRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SnapResponse"
+                          }
+                        }
+                      },
+                      "description": "Snapped locations in JSON format."
+                    }
+                  },
+                  "summary": "Snap locations to the street network",
+                  "tags": [
+                    "Snapping"
+                  ]
+                }
+              },
+              "/v2/snap/{profile}/geojson": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/profile"
+                  }
+                ],
+                "post": {
+                  "operationId": "snapLocationsGeoJson",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SnapRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/geo+json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/FeatureCollection"
+                          }
+                        }
+                      },
+                      "description": "Snapped locations as GeoJSON features."
+                    }
+                  },
+                  "summary": "Snap locations to the street network as GeoJSON",
+                  "tags": [
+                    "Snapping"
+                  ]
+                }
+              },
+              "/v2/snap/{profile}/json": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/profile"
+                  }
+                ],
+                "post": {
+                  "operationId": "snapLocationsJson",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SnapRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SnapResponse"
+                          }
+                        }
+                      },
+                      "description": "Snapped locations in JSON format."
+                    }
+                  },
+                  "summary": "Snap locations to the street network as JSON",
+                  "tags": [
+                    "Snapping"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "apiKey": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Current public OpenRouteService API host",
+                "url": "https://api.heigit.org/openrouteservice"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Directions"
+              },
+              {
+                "name": "Isochrones"
+              },
+              {
+                "name": "Matrix"
+              },
+              {
+                "name": "Snapping"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OpenRouteService"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.433240+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openrouteservice/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "f075d0f9b921f1650e407eaaad2fcba396786bc17246781546f377f58b31e973",
+    "source_id": "openrouteservice",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openrouteservice/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

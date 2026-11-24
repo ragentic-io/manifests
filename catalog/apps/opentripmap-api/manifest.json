@@ -1,0 +1,1888 @@
+{
+  "a2ui": {},
+  "app": "opentripmap-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "opentripmap-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/{lang}/places/autosuggest"
+      },
+      {
+        "from": "opentripmap-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/{lang}/places/bbox"
+      },
+      {
+        "from": "opentripmap-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/{lang}/places/geoname"
+      },
+      {
+        "from": "opentripmap-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/{lang}/places/radius"
+      },
+      {
+        "from": "opentripmap-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/{lang}/places/xid/{xid}"
+      },
+      {
+        "from": "operation:get:/{lang}/places/autosuggest",
+        "kind": "RETURNS",
+        "to": "schema:SimpleSuggestFeature"
+      },
+      {
+        "from": "operation:get:/{lang}/places/bbox",
+        "kind": "RETURNS",
+        "to": "schema:SimpleFeature"
+      },
+      {
+        "from": "operation:get:/{lang}/places/geoname",
+        "kind": "RETURNS",
+        "to": "schema:Geoname"
+      },
+      {
+        "from": "operation:get:/{lang}/places/radius",
+        "kind": "RETURNS",
+        "to": "schema:SimpleFeature"
+      },
+      {
+        "from": "operation:get:/{lang}/places/xid/{xid}",
+        "kind": "RETURNS",
+        "to": "schema:Places"
+      },
+      {
+        "from": "schema:Feature",
+        "kind": "REFERENCES",
+        "to": "schema:Geometry"
+      },
+      {
+        "from": "schema:FeatureCollection",
+        "kind": "REFERENCES",
+        "to": "schema:Feature"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "opentripmap-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Method returns suggestions for search term closest to the selected point optionally filtered by parameters.",
+        "id": "operation:get:/{lang}/places/autosuggest",
+        "kind": "operation",
+        "method": "get",
+        "name": "getListOfPlacesBySuggestions",
+        "parameters": [
+          {
+            "description": "Language code (2 characters, ISO639-1).",
+            "in": "path",
+            "name": "lang",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The query term on which to search.",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum distance from selected point in meters",
+            "in": "query",
+            "name": "radius",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "Longitude of selected point",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "Latitude of selected point",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "The source of the object geometry.",
+            "enum": [
+              "osm",
+              "wikidata",
+              "snow",
+              "cultura.ru",
+              "rosnedra"
+            ],
+            "in": "query",
+            "name": "src_geom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The source of the object attributes.",
+            "enum": [
+              "osm",
+              "wikidata",
+              "snow",
+              "cultura.ru",
+              "rosnedra",
+              "user"
+            ],
+            "in": "query",
+            "name": "src_attr",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Object category.",
+            "in": "query",
+            "name": "kinds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Minimum rating of the object popularity, 1 - minimum, 3- maximum, h - object is referred to the cultural heritage.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "1h",
+              "2h",
+              "3h"
+            ],
+            "in": "query",
+            "name": "rate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The output format (GeoJSON is set by default).",
+            "enum": [
+              "json",
+              "geojson",
+              "count"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Specify “base” to search only in the objects titles (set by default), specify “address” to search in the objects addresses too",
+            "enum": [
+              "base",
+              "address"
+            ],
+            "in": "query",
+            "name": "props",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of returned objects.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/{lang}/places/autosuggest",
+        "pointer": "#/paths/~1{lang}~1places~1autosuggest/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SimpleSuggestFeature[]"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": null,
+        "tags": [
+          "Objects list"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Method returns all objects (or number of objects) in the given bounding box optionally filtered by parameters.",
+        "id": "operation:get:/{lang}/places/bbox",
+        "kind": "operation",
+        "method": "get",
+        "name": "getListOfPlacesByLocation",
+        "parameters": [
+          {
+            "description": "Language code (2 characters, ISO639-1).",
+            "in": "path",
+            "name": "lang",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Minimum longitude",
+            "in": "query",
+            "name": "lon_min",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "Maximum longitude",
+            "in": "query",
+            "name": "lon_max",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "Minimum latitude",
+            "in": "query",
+            "name": "lat_min",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "Maximum latitude",
+            "in": "query",
+            "name": "lat_max",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "The source of the object geometry.",
+            "enum": [
+              "osm",
+              "wikidata",
+              "snow",
+              "cultura.ru",
+              "rosnedra"
+            ],
+            "in": "query",
+            "name": "src_geom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The source of the object attributes.",
+            "enum": [
+              "osm",
+              "wikidata",
+              "snow",
+              "cultura.ru",
+              "rosnedra",
+              "user"
+            ],
+            "in": "query",
+            "name": "src_attr",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Object category.",
+            "in": "query",
+            "name": "kinds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The text string on which to search at the begining of the object name (mimimum 3 characters).",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Minimum rating of the object popularity, 1 - minimum, 3- maximum, h - object is referred to the cultural heritage.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "1h",
+              "2h",
+              "3h"
+            ],
+            "in": "query",
+            "name": "rate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The output format (GeoJSON is set by default).",
+            "enum": [
+              "json",
+              "geojson",
+              "count"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "MMaximum number of returned objects.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/{lang}/places/bbox",
+        "pointer": "#/paths/~1{lang}~1places~1bbox/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SimpleFeature[]"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": null,
+        "tags": [
+          "Objects list"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns geographic coordinates for the given placename (region, city, village, etc.).",
+        "id": "operation:get:/{lang}/places/geoname",
+        "kind": "operation",
+        "method": "get",
+        "name": "getGeoname",
+        "parameters": [
+          {
+            "description": "Two-letter language code (ISO639-1).",
+            "in": "path",
+            "name": "lang",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Placename",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter country code, ISO-3166 (optional).",
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/{lang}/places/geoname",
+        "pointer": "#/paths/~1{lang}~1places~1geoname/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Geoname"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": null,
+        "tags": [
+          "Geographic coordinates of populated place"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Method returns objects closest to the selected point optionally filtered by parameters.",
+        "id": "operation:get:/{lang}/places/radius",
+        "kind": "operation",
+        "method": "get",
+        "name": "getListOfPlacesByRadius",
+        "parameters": [
+          {
+            "description": "Language code (2 characters, ISO639-1).",
+            "in": "path",
+            "name": "lang",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum distance from selected point in meters",
+            "in": "query",
+            "name": "radius",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "Longitude of selected point",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "Latitude of selected point",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "The source of the object geometry.",
+            "enum": [
+              "osm",
+              "wikidata",
+              "snow",
+              "cultura.ru",
+              "rosnedra"
+            ],
+            "in": "query",
+            "name": "src_geom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The source of the object attributes.",
+            "enum": [
+              "osm",
+              "wikidata",
+              "snow",
+              "cultura.ru",
+              "rosnedra",
+              "user"
+            ],
+            "in": "query",
+            "name": "src_attr",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Object category.",
+            "in": "query",
+            "name": "kinds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The text string on which to search at the begining of the object name (mimimum 3 characters).",
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Minimum rating of the object popularity, 1 - minimum, 3- maximum, h - object is referred to the cultural heritage.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "1h",
+              "2h",
+              "3h"
+            ],
+            "in": "query",
+            "name": "rate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The output format (GeoJSON is set by default).",
+            "enum": [
+              "json",
+              "geojson",
+              "count"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of returned objects.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/{lang}/places/radius",
+        "pointer": "#/paths/~1{lang}~1places~1radius/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SimpleFeature[]"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": null,
+        "tags": [
+          "Objects list"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns detailed information about the object.",
+        "id": "operation:get:/{lang}/places/xid/{xid}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getPlaceByXid",
+        "parameters": [
+          {
+            "description": "Two-letter language code (ISO639-1).",
+            "in": "path",
+            "name": "lang",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique identifier of the object in OpenTripMap",
+            "in": "path",
+            "name": "xid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/{lang}/places/xid/{xid}",
+        "pointer": "#/paths/~1{lang}~1places~1xid~1{xid}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Places"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": null,
+        "tags": [
+          "Object properties"
+        ]
+      },
+      {
+        "description": "Feature",
+        "id": "schema:Feature",
+        "kind": "schema",
+        "name": "Feature",
+        "type": "object"
+      },
+      {
+        "description": "Feature Collection",
+        "id": "schema:FeatureCollection",
+        "kind": "schema",
+        "name": "FeatureCollection",
+        "type": "object"
+      },
+      {
+        "description": "GeoJSON geometry",
+        "id": "schema:Geometry",
+        "kind": "schema",
+        "name": "Geometry",
+        "type": "object"
+      },
+      {
+        "id": "schema:Geoname",
+        "kind": "schema",
+        "name": "Geoname",
+        "type": "object"
+      },
+      {
+        "id": "schema:Places",
+        "kind": "schema",
+        "name": "Places",
+        "type": "object"
+      },
+      {
+        "id": "schema:SimpleFeature",
+        "kind": "schema",
+        "name": "SimpleFeature",
+        "type": "object"
+      },
+      {
+        "id": "schema:SimpleSuggestFeature",
+        "kind": "schema",
+        "name": "SimpleSuggestFeature",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "opentripmap-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.opentripmap.com/0.1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "Feature": {
+                  "description": "Feature",
+                  "externalDocs": {
+                    "description": "The GeoJSON Format specification",
+                    "url": "http://geojson.org/geojson-spec.html#feature-objects"
+                  },
+                  "properties": {
+                    "geometry": {
+                      "$ref": "#/components/schemas/Geometry"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "properties": {
+                      "properties": {
+                        "properties": {
+                          "properties": {
+                            "kinds": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "osm": {
+                              "type": "string"
+                            },
+                            "wikidata": {
+                              "type": "string"
+                            },
+                            "xid": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": {
+                      "description": "Feature",
+                      "enum": [
+                        "Feature"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "FeatureCollection": {
+                  "description": "Feature Collection",
+                  "externalDocs": {
+                    "description": "The GeoJSON Format specification",
+                    "url": "http://geojson.org/geojson-spec.html#feature-collection-objects"
+                  },
+                  "properties": {
+                    "features": {
+                      "items": {
+                        "$ref": "#/components/schemas/Feature"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "FeatureCollection",
+                      "enum": [
+                        "Feature"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Geometry": {
+                  "description": "GeoJSON geometry",
+                  "externalDocs": {
+                    "description": "The GeoJSON Format specification",
+                    "url": "http://geojson.org/geojson-spec.html#geometry-objects"
+                  },
+                  "properties": {
+                    "coordinates": {
+                      "items": {
+                        "items": {
+                          "type": "number"
+                        },
+                        "type": "array"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "Point",
+                      "enum": [
+                        "Point"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Geoname": {
+                  "example": {
+                    "country": "RU",
+                    "lat": 55.75222,
+                    "lon": 37.61556,
+                    "name": "Moscow",
+                    "population": 10381222,
+                    "timezone": "Europe/Moscow"
+                  },
+                  "properties": {
+                    "country": {
+                      "description": "ISO-3166 2-letter country code",
+                      "type": "string"
+                    },
+                    "lat": {
+                      "description": "Latitude",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "lon": {
+                      "description": "Longitude",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "name": {
+                      "description": "The name of the place",
+                      "type": "string"
+                    },
+                    "partial_match": {
+                      "description": "A sign that the method did not return an exact match for the requested name",
+                      "type": "boolean"
+                    },
+                    "population": {
+                      "description": "Population count",
+                      "type": "integer"
+                    },
+                    "timezone": {
+                      "description": "The iana timezone id",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "country",
+                    "lon",
+                    "lat"
+                  ],
+                  "type": "object"
+                },
+                "Places": {
+                  "example": {
+                    "bbox": {
+                      "lat_max": 59.857355,
+                      "lat_min": 59.857242,
+                      "lon_max": 38.366282,
+                      "lon_min": 38.366043
+                    },
+                    "image": "https://data.opentripmap.com/images/user/Kirillo-Belozersky Belltower.jpg/original.jpg",
+                    "info": {
+                      "descr": "Колокольня построена во второй половине XVIII века. Это одно из самых высоких сооружений монастыря. Колокольня состоит из 4 глухих этажей, над которыми возвышается один открытый. В XVIII веке на колокольне было 26 колоколов, самый большойиз них весил около 20 тонн, получивший имя «Мотора». Его звон был слышен в радиусе 20 километров.К сожалению,  в настоящее время на колокольне нет колоколов: их начали снимать при Петре I, когда во время Северной войны четвёртая часть монастырских колоколов (общим весом около 6,5 тонн) пошла на пополнение снаряжения армии. А в годы  советской власти почти всё собрание монастырских звонов было уничтожено.  В 1930 – 1931 годах из монастыря было вывезено свыше 31 тонны колокольной бронзы.\nВ 2006-2007 годахпроведены реставрационные работы. В настоящее время на 3–4 ярусах находится выставка «Колокольный мир», здесь экспонируютсямузейное собрание колоколов и механизм боевых часовна четвертом ярусе колокольни, а ярус звона в летний период открыт для посещения. На колокольне работает Web-камера, через которую можно полюбоваться видом на Соборную площадь в любое время дня и ночи.",
+                      "image": "1 (1) (Large)",
+                      "img_height": 1080,
+                      "img_width": 1620,
+                      "src": "belozersk",
+                      "src_id": 13
+                    },
+                    "kinds": "architecture,towers,interesting_places,bell_towers",
+                    "name": "Bellfry",
+                    "osm": "way/286786280",
+                    "otm": "https://opentripmap.com/ru/card/W286786280",
+                    "point": {
+                      "lat": 59.857269,
+                      "lon": 38.366169
+                    },
+                    "rate": "3h",
+                    "sources": {
+                      "attributes": [
+                        "osm",
+                        "user",
+                        "wikidata"
+                      ],
+                      "geometry": "osm"
+                    },
+                    "wikidata": "Q4228276",
+                    "wikipedia": "https://ru.wikipedia.org/wiki/Колокольня_(Кирилло-Белозерский_монастырь)",
+                    "xid": "W286786280"
+                  },
+                  "properties": {
+                    "bbox": {
+                      "description": "Minimum bounding box for the object geometry",
+                      "properties": {
+                        "lat_max": {
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "lat_min": {
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "lon_max": {
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "lon_min": {
+                          "format": "double",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "image": {
+                      "description": "Image URL",
+                      "type": "string"
+                    },
+                    "info": {
+                      "description": "Extended object information (for some object categories)",
+                      "properties": {
+                        "descr": {
+                          "description": "Object description",
+                          "type": "string"
+                        },
+                        "src": {
+                          "description": "Source ID",
+                          "format": "int64",
+                          "type": "string"
+                        },
+                        "src_id": {
+                          "description": "Object identifier in the source",
+                          "format": "int64",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "kinds": {
+                      "description": "Comma-separated list of categories. [see List of categories](https://dev.opentripmap.com/en/catalog.tree.json)",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the object",
+                      "type": "string"
+                    },
+                    "osm": {
+                      "description": "OpenStreetMap identifier of the object",
+                      "type": "string"
+                    },
+                    "otm": {
+                      "description": "Link to object at opentripmap.com",
+                      "type": "string"
+                    },
+                    "point": {
+                      "description": "Point geographic coordinates of the object",
+                      "properties": {
+                        "lat": {
+                          "description": "Latitude",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "lon": {
+                          "description": "Longitude",
+                          "format": "double",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "preview": {
+                      "description": "Image thumbnail",
+                      "properties": {
+                        "height": {
+                          "description": "Thumbnail height in pixels",
+                          "type": "integer"
+                        },
+                        "source": {
+                          "description": "Image thumbnail URL",
+                          "type": "string"
+                        },
+                        "width": {
+                          "description": "Thumbnail width in pixels",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "rate": {
+                      "description": "Rating of the object popularity",
+                      "enum": [
+                        "0",
+                        "1",
+                        "2",
+                        "3",
+                        "1h",
+                        "2h",
+                        "3h"
+                      ],
+                      "type": "string"
+                    },
+                    "sources": {
+                      "description": "Sources of information on object",
+                      "properties": {
+                        "attributes": {
+                          "description": "Sources of object attributes",
+                          "items": {
+                            "enum": [
+                              "osm",
+                              "wikidata",
+                              "snow",
+                              "cultura.ru",
+                              "rosnedra",
+                              "user"
+                            ],
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "geometry": {
+                          "description": "Source of object geometry",
+                          "enum": [
+                            "osm",
+                            "wikidata",
+                            "snow",
+                            "cultura.ru",
+                            "rosnedra"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "url": {
+                      "description": "Link to website",
+                      "type": "string"
+                    },
+                    "voyage": {
+                      "description": "Link to WikiVoyage",
+                      "type": "string"
+                    },
+                    "wikidata": {
+                      "description": "Wikidata identifier of the object",
+                      "type": "string"
+                    },
+                    "wikipedia": {
+                      "description": "Link to Wikipedia",
+                      "type": "string"
+                    },
+                    "wikipedia_extracts": {
+                      "description": "Extracts of the wikipedia page",
+                      "properties": {
+                        "html": {
+                          "description": "Limited HTML extract",
+                          "type": "string"
+                        },
+                        "text": {
+                          "description": "Plain-text extract",
+                          "type": "string"
+                        },
+                        "title": {
+                          "description": "Page title in wikipedia",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "xid": {
+                      "description": "Unique identifier of the object in OpenTripMap",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "xid",
+                    "name",
+                    "kind",
+                    "sources",
+                    "otm",
+                    "rate",
+                    "point"
+                  ],
+                  "type": "object"
+                },
+                "SimpleFeature": {
+                  "example": {
+                    "kind": "architecture,other_buildings_and_structures,historic_architecture,interesting_places",
+                    "name": "Oakland City Hall",
+                    "osm": "relation/4682064",
+                    "point": {
+                      "lat": 37.80513,
+                      "lon": -122.272705
+                    },
+                    "wikidata": "Q932794",
+                    "xid": "R4682064"
+                  },
+                  "properties": {
+                    "dist": {
+                      "description": "Distance in meters from selected point (for radius query)",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "kinds": {
+                      "description": "Comma-separated list of categories. [see List of categories](https://dev.opentripmap.com/en/catalog.tree.json)",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the object",
+                      "type": "string"
+                    },
+                    "osm": {
+                      "description": "OpenStreetMap identifier of the object",
+                      "type": "string"
+                    },
+                    "point": {
+                      "description": "Point location of the object",
+                      "properties": {
+                        "lat": {
+                          "description": "Latitude",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "lon": {
+                          "description": "Longitude",
+                          "format": "double",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "wikidata": {
+                      "description": "Wikidata  identifier of the object",
+                      "type": "string"
+                    },
+                    "xid": {
+                      "description": "Unique identifier of the object in OpenTripMap",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "xid",
+                    "name",
+                    "kinds",
+                    "point"
+                  ],
+                  "type": "object"
+                },
+                "SimpleSuggestFeature": {
+                  "example": {
+                    "dist": 456.55705702,
+                    "highlighted_name": "<b>Don</b> Este",
+                    "kinds": "foods,fast_food,tourist_facilities",
+                    "name": "Don Este",
+                    "osm": "node/890538405",
+                    "point": {
+                      "lat": -33.438782,
+                      "lon": -70.645576
+                    },
+                    "rate": 1,
+                    "xid": "N890538405"
+                  },
+                  "properties": {
+                    "dist": {
+                      "description": "Distance in meters from selected point (for radius query)",
+                      "format": "double",
+                      "type": "number"
+                    },
+                    "highlighted_name": {
+                      "description": "The name of the object with highlighted search term",
+                      "type": "string"
+                    },
+                    "kinds": {
+                      "description": "Comma-separated list of categories. [see List of categories](https://dev.opentripmap.com/en/catalog.tree.json)",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the object",
+                      "type": "string"
+                    },
+                    "osm": {
+                      "description": "OpenStreetMap identifier of the object",
+                      "type": "string"
+                    },
+                    "point": {
+                      "description": "Point location of the object",
+                      "properties": {
+                        "lat": {
+                          "description": "Latitude",
+                          "format": "double",
+                          "type": "number"
+                        },
+                        "lon": {
+                          "description": "Longitude",
+                          "format": "double",
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "wikidata": {
+                      "description": "Wikidata  identifier of the object",
+                      "type": "string"
+                    },
+                    "xid": {
+                      "description": "Unique identifier of the object in OpenTripMap",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "xid",
+                    "name",
+                    "highlighted_name",
+                    "kinds",
+                    "point"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "ApiKeyAuth": {
+                  "in": "query",
+                  "name": "apikey",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Object types are [hierarchically structured](https://dev.opentripmap.org/catalog). \n\nThe return data depend on the requested language. If the object does not contain information in the required language, the data is returned in English or in another available language.\n \n  ## API Requests\n\n * Request for detailed information about a specific object.\n \n   Example: http://api.opentripmap.com/0.1/ru/places/xid/Q372040?apikey=xxxxx - request by the object with ID Q372040.\n   \n \n * Request for a list of objects within the selected area.\n\n   Example: http://api.opentripmap.com/0.1/ru/places/bbox?lon_min=38.364285&lat_min=59.855685&lon_max=38.372809&lat_max=59.859052&kinds=churches&format=geojson&apikey=xxxxx -  request for the list of churches within the selected area.\n      \n \n All parameters are described below. Parameters are passed in the query string and separated by ampersands (&).\n\n \n",
+              "title": "OpenTripMap API",
+              "version": "0.0.1"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/{lang}/places/autosuggest": {
+                "get": {
+                  "description": "Method returns suggestions for search term closest to the selected point optionally filtered by parameters. Only basic information is include in response: xid, name, kinds, osm, wikidata of each object. Depending on the chosen format, the response is either a simple array of objects (with a smaller volume) or an object in GeoJSON format.",
+                  "externalDocs": {
+                    "description": "Object category hierarchy",
+                    "url": "https://dev.opentripmap.org/catalog"
+                  },
+                  "operationId": "getListOfPlacesBySuggestions",
+                  "parameters": [
+                    {
+                      "description": "Language code (2 characters, ISO639-1). The following values are available: en (english), ru (russian)",
+                      "in": "path",
+                      "name": "lang",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The query term on which to search. The minimum number of characters for name is 3",
+                      "in": "query",
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum distance from selected point in meters",
+                      "in": "query",
+                      "name": "radius",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Longitude of selected point",
+                      "in": "query",
+                      "name": "lon",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Latitude of selected point",
+                      "in": "query",
+                      "name": "lat",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "The source of the object geometry.\nObjects from all sources are returned by default.",
+                      "in": "query",
+                      "name": "src_geom",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "osm",
+                          "wikidata",
+                          "snow",
+                          "cultura.ru",
+                          "rosnedra"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The source of the object attributes.\nIt is allowed to point multiple sources separated by commas.\nObjects from all sources are returned by default.",
+                      "in": "query",
+                      "name": "src_attr",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "osm",
+                          "wikidata",
+                          "snow",
+                          "cultura.ru",
+                          "rosnedra",
+                          "user"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Object category. Several comma-separated categories may be stated with OR logic. [see List of categories](https://dev.opentripmap.com/ru/catalog.tree.json). \nObjects from all categories are returned by default.",
+                      "in": "query",
+                      "name": "kinds",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Minimum rating of the object popularity, 1 - minimum, 3- maximum, h - object is referred to the cultural heritage.\nObjects from all categories are returned by default.",
+                      "in": "query",
+                      "name": "rate",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "1",
+                          "2",
+                          "3",
+                          "1h",
+                          "2h",
+                          "3h"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The output format (GeoJSON  is set by default). Specify “count” to get the number of obtained objects",
+                      "in": "query",
+                      "name": "format",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "json",
+                          "geojson",
+                          "count"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Specify “base” to search only in the objects titles (set by default), specify “address” to search in the objects addresses too",
+                      "in": "query",
+                      "name": "props",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "base",
+                          "address"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of returned objects. 10 is set by default.\n",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/geojson": {
+                          "schema": {
+                            "$ref": "#/components/schemas/FeatureCollection"
+                          }
+                        },
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/SimpleSuggestFeature"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Returns a list of objects"
+                    },
+                    "400": {
+                      "description": "Error in query parameters"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "tags": [
+                    "Objects list"
+                  ]
+                }
+              },
+              "/{lang}/places/bbox": {
+                "get": {
+                  "description": "Method returns all objects (or number of objects) in the given bounding box optionally filtered by parameters. Only basic information is include in response: xid, name, kinds, osm, wikidata and geometry of each object.\nDepending on the chosen format, the response is either a simple array of objects (with a smaller volume) or an object in GeoJSON format.",
+                  "externalDocs": {
+                    "description": "Object category hierarchy",
+                    "url": "https://dev.opentripmap.org/catalog"
+                  },
+                  "operationId": "getListOfPlacesByLocation",
+                  "parameters": [
+                    {
+                      "description": "Language code (2 characters, ISO639-1). The following values are available: en (english), ru (russian)",
+                      "in": "path",
+                      "name": "lang",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Minimum longitude",
+                      "in": "query",
+                      "name": "lon_min",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Maximum longitude",
+                      "in": "query",
+                      "name": "lon_max",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Minimum latitude",
+                      "in": "query",
+                      "name": "lat_min",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Maximum latitude",
+                      "in": "query",
+                      "name": "lat_max",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "The source of the object geometry.\nObjects from all sources are returned by default.",
+                      "in": "query",
+                      "name": "src_geom",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "osm",
+                          "wikidata",
+                          "snow",
+                          "cultura.ru",
+                          "rosnedra"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The source of the object attributes.\nIt is allowed to point multiple sources separated by commas.\nObjects from all sources are returned by default.",
+                      "in": "query",
+                      "name": "src_attr",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "osm",
+                          "wikidata",
+                          "snow",
+                          "cultura.ru",
+                          "rosnedra",
+                          "user"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Object category. Several comma-separated categories may be stated with OR logic. [see List of categories](https://dev.opentripmap.org/catalog). \nObjects from interesting_places category are returned by default",
+                      "in": "query",
+                      "name": "kinds",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The text string on which to search at the begining of the object name (mimimum 3 characters). All objects are returned by default.",
+                      "in": "query",
+                      "name": "name",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Minimum rating of the object popularity, 1 - minimum, 3- maximum, h - object is referred to the cultural heritage.\nObjects from all ratings are returned by default.",
+                      "in": "query",
+                      "name": "rate",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "1",
+                          "2",
+                          "3",
+                          "1h",
+                          "2h",
+                          "3h"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The output format (GeoJSON  is set by default). Specify “count” to get the number of obtained objects",
+                      "in": "query",
+                      "name": "format",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "json",
+                          "geojson",
+                          "count"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "MMaximum number of returned objects. 500 is set by default.\n",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/geojson": {
+                          "schema": {
+                            "$ref": "#/components/schemas/FeatureCollection"
+                          }
+                        },
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/SimpleFeature"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Returns a list of objects"
+                    },
+                    "400": {
+                      "description": "Error in query parameters"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "tags": [
+                    "Objects list"
+                  ]
+                }
+              },
+              "/{lang}/places/geoname": {
+                "get": {
+                  "description": "Returns geographic coordinates for the given placename (region, city, village, etc.). The method returns the place whose name is most similar to the search string. Service based on GeoNames database.",
+                  "operationId": "getGeoname",
+                  "parameters": [
+                    {
+                      "description": "Two-letter language code (ISO639-1). The following values are available: en (english), ru (russian)",
+                      "in": "path",
+                      "name": "lang",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Placename",
+                      "in": "query",
+                      "name": "name",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Two-letter country code, ISO-3166 (optional). Default is all countries.",
+                      "in": "query",
+                      "name": "country",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Geoname"
+                          }
+                        }
+                      },
+                      "description": "Returns geographic coordinates"
+                    },
+                    "404": {
+                      "description": "Placename is not found"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "tags": [
+                    "Geographic coordinates of populated place"
+                  ]
+                }
+              },
+              "/{lang}/places/radius": {
+                "get": {
+                  "description": "Method returns objects closest to the selected point optionally filtered by parameters. Only basic information is include in response: xid, name, kinds, osm, wikidata and geometry of each object.\nDepending on the chosen format, the response is either a simple array of objects (with a smaller volume) or an object in GeoJSON format.",
+                  "externalDocs": {
+                    "description": "Object category hierarchy",
+                    "url": "https://dev.opentripmap.org/catalog"
+                  },
+                  "operationId": "getListOfPlacesByRadius",
+                  "parameters": [
+                    {
+                      "description": "Language code (2 characters, ISO639-1). The following values are available: en (english), ru (russian)",
+                      "in": "path",
+                      "name": "lang",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum distance from selected point in meters",
+                      "in": "query",
+                      "name": "radius",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Longitude of selected point",
+                      "in": "query",
+                      "name": "lon",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Latitude of selected point",
+                      "in": "query",
+                      "name": "lat",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "The source of the object geometry.\nObjects from all sources are returned by default.",
+                      "in": "query",
+                      "name": "src_geom",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "osm",
+                          "wikidata",
+                          "snow",
+                          "cultura.ru",
+                          "rosnedra"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The source of the object attributes.\nIt is allowed to point multiple sources separated by commas.\nObjects from all sources are returned by default.",
+                      "in": "query",
+                      "name": "src_attr",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "osm",
+                          "wikidata",
+                          "snow",
+                          "cultura.ru",
+                          "rosnedra",
+                          "user"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Object category. Several comma-separated categories may be stated with OR logic. [see List of categories](https://dev.opentripmap.org/catalog). \nObjects from interesting_places category are returned by default.",
+                      "in": "query",
+                      "name": "kinds",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The text string on which to search at the begining of the object name (mimimum 3 characters). All objects are returned by default.",
+                      "in": "query",
+                      "name": "name",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Minimum rating of the object popularity, 1 - minimum, 3- maximum, h - object is referred to the cultural heritage.\nObjects from all ratings are returned by default.",
+                      "in": "query",
+                      "name": "rate",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "1",
+                          "2",
+                          "3",
+                          "1h",
+                          "2h",
+                          "3h"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The output format (GeoJSON  is set by default). Specify “count” to get the number of obtained objects",
+                      "in": "query",
+                      "name": "format",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "json",
+                          "geojson",
+                          "count"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of returned objects. 500 is set by default.\n",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/geojson": {
+                          "schema": {
+                            "$ref": "#/components/schemas/FeatureCollection"
+                          }
+                        },
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/SimpleFeature"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Returns a list of objects"
+                    },
+                    "400": {
+                      "description": "Error in query parameters"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "tags": [
+                    "Objects list"
+                  ]
+                }
+              },
+              "/{lang}/places/xid/{xid}": {
+                "get": {
+                  "description": "Returns detailed information about the object. Objects can contain different amount of information.",
+                  "operationId": "getPlaceByXid",
+                  "parameters": [
+                    {
+                      "description": "Two-letter language code (ISO639-1). The following values are available: en (english), ru (russian)",
+                      "in": "path",
+                      "name": "lang",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Unique identifier of the object in OpenTripMap",
+                      "in": "path",
+                      "name": "xid",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Places"
+                          }
+                        }
+                      },
+                      "description": "Returns object properties"
+                    },
+                    "404": {
+                      "description": "Object is not found in OpenTripMap"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "tags": [
+                    "Object properties"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "url": "https://api.opentripmap.com/0.1"
+              },
+              {
+                "url": "http://api.opentripmap.com/0.1"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Geographic coordinates of populated place"
+              },
+              {
+                "name": "Objects list"
+              },
+              {
+                "name": "Object properties"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OpenTripMap API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.049082+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://dev.opentripmap.org/openapi.en.json",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "27aa081235f9f24d1e144c8fba6e50612f607fc4cd861875da60fc140c1bdc2c",
+    "source_id": "opentripmap-api",
+    "source_updated": null,
+    "url": "https://dev.opentripmap.org/openapi.en.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "0.0.1"
+}

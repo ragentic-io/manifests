@@ -1,0 +1,3077 @@
+{
+  "a2ui": {},
+  "app": "happily-ai",
+  "graph": {
+    "edges": [
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:get:/1/members"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:get:/1/performance_feedback"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:get:/1/questions"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:get:/1/recognition"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:get:/1/recognition/medal/{medal_id}"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:post:/1/recognition/{member_email}"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:get:/1/responses"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/members"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/performance-boosts"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/performance-preset"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/users/{email}/profile"
+      },
+      {
+        "from": "happily-ai",
+        "kind": "EXPOSES",
+        "to": "operation:post:/townhall/content"
+      },
+      {
+        "from": "operation:post:/1/recognition/{member_email}",
+        "kind": "ACCEPTS",
+        "to": "schema:RecognitionRequest"
+      },
+      {
+        "from": "operation:post:/1/recognition/{member_email}",
+        "kind": "RETURNS",
+        "to": "schema:Recognition"
+      },
+      {
+        "from": "operation:post:/api/v1/members",
+        "kind": "ACCEPTS",
+        "to": "schema:ImportMembersRequest"
+      },
+      {
+        "from": "operation:post:/api/v1/members",
+        "kind": "RETURNS",
+        "to": "schema:ImportMembersResult"
+      },
+      {
+        "from": "operation:post:/api/v1/performance-boosts",
+        "kind": "ACCEPTS",
+        "to": "schema:PerformanceBoostRequest"
+      },
+      {
+        "from": "operation:post:/api/v1/performance-preset",
+        "kind": "ACCEPTS",
+        "to": "schema:PerformancePresetRequest"
+      },
+      {
+        "from": "operation:get:/api/v1/users/{email}/profile",
+        "kind": "RETURNS",
+        "to": "schema:UserProfile"
+      },
+      {
+        "from": "schema:ImportMembersRequest",
+        "kind": "REFERENCES",
+        "to": "schema:ImportMember"
+      },
+      {
+        "from": "schema:Recognition",
+        "kind": "REFERENCES",
+        "to": "schema:RecognitionRecipient"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "happily-ai",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Query members in your company.",
+        "id": "operation:get:/1/members",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMembers",
+        "parameters": [
+          {
+            "description": "Return a single member by email.",
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string:email"
+          },
+          {
+            "description": "Filter by internal team ID.",
+            "in": "query",
+            "name": "team_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by talent type.",
+            "in": "query",
+            "name": "talent_type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by company ID.",
+            "in": "query",
+            "name": "company_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "1-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Items per page.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/1/members",
+        "pointer": "#/paths/~11~1members/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List members",
+        "tags": [
+          "Members"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Return performance feedback between a reviewer and an employee.",
+        "id": "operation:get:/1/performance_feedback",
+        "kind": "operation",
+        "method": "get",
+        "name": "getPerformanceFeedbacks",
+        "parameters": [
+          {
+            "description": "Employee (receiver) email.",
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string:email"
+          },
+          {
+            "description": "Reviewer (sender) email.",
+            "in": "query",
+            "name": "reviewer_email",
+            "required": false,
+            "type": "string:email"
+          },
+          {
+            "description": "Inclusive start date, `YYYY-MM-DD`.",
+            "in": "query",
+            "name": "date_from",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Inclusive end date, `YYYY-MM-DD`.",
+            "in": "query",
+            "name": "date_to",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "default": 1,
+            "description": "1-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Items per page.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/1/performance_feedback",
+        "pointer": "#/paths/~11~1performance_feedback/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List performance feedback",
+        "tags": [
+          "Performance"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Return the survey questions available to your company (your custom questions plus shared \"main\" questions).",
+        "id": "operation:get:/1/questions",
+        "kind": "operation",
+        "method": "get",
+        "name": "getQuestions",
+        "parameters": [
+          {
+            "description": "Filter by question type (e.g.",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by PowerUp skill.",
+            "enum": [
+              "Critical Thinking",
+              "Empathy",
+              "Initiative Making",
+              "Leadership",
+              "Self Awareness",
+              "Optimism"
+            ],
+            "in": "query",
+            "name": "skill",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by question dimension/category.",
+            "in": "query",
+            "name": "dimension",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "1-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Items per page.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/1/questions",
+        "pointer": "#/paths/~11~1questions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List survey questions",
+        "tags": [
+          "Surveys"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Return recognition received by a member (by `email`) **or** by a team (by `team_name`).",
+        "id": "operation:get:/1/recognition",
+        "kind": "operation",
+        "method": "get",
+        "name": "getRecognitions",
+        "parameters": [
+          {
+            "description": "Email of the member whose received recognition you want.",
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string:email"
+          },
+          {
+            "description": "Team name whose received recognition you want.",
+            "in": "query",
+            "name": "team_name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "1-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Items per page.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/1/recognition",
+        "pointer": "#/paths/~11~1recognition/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List received recognition",
+        "tags": [
+          "Recognition"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Resolve a medal/reward identifier to its configured value for your company.",
+        "id": "operation:get:/1/recognition/medal/{medal_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMedalById",
+        "parameters": [
+          {
+            "description": "The medal identifier (e.g.",
+            "in": "path",
+            "name": "medal_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/1/recognition/medal/{medal_id}",
+        "pointer": "#/paths/~11~1recognition~1medal~1{medal_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a medal",
+        "tags": [
+          "Recognition"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Give recognition (coins) on behalf of `member_email`.",
+        "id": "operation:post:/1/recognition/{member_email}",
+        "kind": "operation",
+        "method": "post",
+        "name": "createRecognition",
+        "parameters": [
+          {
+            "description": "Email of the member sending the recognition.",
+            "in": "path",
+            "name": "member_email",
+            "required": true,
+            "type": "string:email"
+          }
+        ],
+        "path": "/1/recognition/{member_email}",
+        "pointer": "#/paths/~11~1recognition~1{member_email}/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "RecognitionRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "Recognition"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "503",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Send recognition",
+        "tags": [
+          "Recognition"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Return survey responses filtered by `email`, `question_id`, or both.",
+        "id": "operation:get:/1/responses",
+        "kind": "operation",
+        "method": "get",
+        "name": "getResponses",
+        "parameters": [
+          {
+            "description": "Respondent email.",
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string:email"
+          },
+          {
+            "description": "Question ID.",
+            "in": "query",
+            "name": "question_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Inclusive start date, `YYYY-MM-DD`.",
+            "in": "query",
+            "name": "date_from",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Inclusive end date, `YYYY-MM-DD`.",
+            "in": "query",
+            "name": "date_to",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "default": 1,
+            "description": "1-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Items per page.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/1/responses",
+        "pointer": "#/paths/~11~1responses/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List survey responses",
+        "tags": [
+          "Surveys"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Bulk-create or update members, typically synced from an HRIS.",
+        "id": "operation:post:/api/v1/members",
+        "kind": "operation",
+        "method": "post",
+        "name": "importMembers",
+        "path": "/api/v1/members",
+        "pointer": "#/paths/~1api~1v1~1members/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "ImportMembersRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "ImportMembersResult"
+          },
+          {
+            "status": "400",
+            "type": "ValidationError"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Import or sync members",
+        "tags": [
+          "Members"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Submit one or more performance review \"boosts\".",
+        "id": "operation:post:/api/v1/performance-boosts",
+        "kind": "operation",
+        "method": "post",
+        "name": "createPerformanceBoosts",
+        "path": "/api/v1/performance-boosts",
+        "pointer": "#/paths/~1api~1v1~1performance-boosts/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "PerformanceBoostRequest|PerformanceBoostRequest[]"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Submit performance boosts",
+        "tags": [
+          "Performance"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Create a reusable performance review template (preset) and assign it to teams or members.",
+        "id": "operation:post:/api/v1/performance-preset",
+        "kind": "operation",
+        "method": "post",
+        "name": "savePerformancePreset",
+        "path": "/api/v1/performance-preset",
+        "pointer": "#/paths/~1api~1v1~1performance-preset/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "PerformancePresetRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Save a performance review preset",
+        "tags": [
+          "Performance"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Return a detailed profile for a member, including impact rating, engagement health score and status, and (optionally) personal context such as recent challenge…",
+        "id": "operation:get:/api/v1/users/{email}/profile",
+        "kind": "operation",
+        "method": "get",
+        "name": "getUserProfile",
+        "parameters": [
+          {
+            "description": "The member's email address.",
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "type": "string:email"
+          },
+          {
+            "default": true,
+            "description": "Include the `personal_context` block.",
+            "in": "query",
+            "name": "include_personal_context",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": 10,
+            "description": "Max items per personal-context list.",
+            "in": "query",
+            "name": "context_limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/api/v1/users/{email}/profile",
+        "pointer": "#/paths/~1api~1v1~1users~1{email}~1profile/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "UserProfile"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a member's engagement profile",
+        "tags": [
+          "Members"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Trigger generation of Town Hall feed content for your company.",
+        "id": "operation:post:/townhall/content",
+        "kind": "operation",
+        "method": "post",
+        "name": "generateTownHallContent",
+        "path": "/townhall/content",
+        "pointer": "#/paths/~1townhall~1content/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "403",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Generate Town Hall content",
+        "tags": [
+          "Town Hall"
+        ]
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:ImportMember",
+        "kind": "schema",
+        "name": "ImportMember",
+        "type": "object"
+      },
+      {
+        "id": "schema:ImportMembersRequest",
+        "kind": "schema",
+        "name": "ImportMembersRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:ImportMembersResult",
+        "kind": "schema",
+        "name": "ImportMembersResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:Member",
+        "kind": "schema",
+        "name": "Member",
+        "type": "object"
+      },
+      {
+        "description": "Paging metadata returned alongside every list response.",
+        "id": "schema:Pagination",
+        "kind": "schema",
+        "name": "Pagination",
+        "type": "object"
+      },
+      {
+        "id": "schema:PerformanceBoostRequest",
+        "kind": "schema",
+        "name": "PerformanceBoostRequest",
+        "type": "object"
+      },
+      {
+        "description": "One per submitted boost — either a success or an error.",
+        "id": "schema:PerformanceBoostResult",
+        "kind": "schema",
+        "name": "PerformanceBoostResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:PerformanceFeedback",
+        "kind": "schema",
+        "name": "PerformanceFeedback",
+        "type": "object"
+      },
+      {
+        "id": "schema:PerformancePreset",
+        "kind": "schema",
+        "name": "PerformancePreset",
+        "type": "object"
+      },
+      {
+        "id": "schema:PerformancePresetRequest",
+        "kind": "schema",
+        "name": "PerformancePresetRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:Question",
+        "kind": "schema",
+        "name": "Question",
+        "type": "object"
+      },
+      {
+        "description": "The created recognition, as echoed back by the API.",
+        "id": "schema:Recognition",
+        "kind": "schema",
+        "name": "Recognition",
+        "type": "object"
+      },
+      {
+        "id": "schema:RecognitionRecipient",
+        "kind": "schema",
+        "name": "RecognitionRecipient",
+        "type": "object"
+      },
+      {
+        "description": "A recognition record returned by the list endpoint.",
+        "id": "schema:RecognitionRecord",
+        "kind": "schema",
+        "name": "RecognitionRecord",
+        "type": "object"
+      },
+      {
+        "id": "schema:RecognitionRequest",
+        "kind": "schema",
+        "name": "RecognitionRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:SurveyResponse",
+        "kind": "schema",
+        "name": "SurveyResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:UserProfile",
+        "kind": "schema",
+        "name": "UserProfile",
+        "type": "object"
+      },
+      {
+        "id": "schema:ValidationError",
+        "kind": "schema",
+        "name": "ValidationError",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "happily-ai"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.happily.ai/prod",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "DateFrom": {
+                  "description": "Inclusive start date, `YYYY-MM-DD`.",
+                  "example": "2026-01-01",
+                  "in": "query",
+                  "name": "date_from",
+                  "schema": {
+                    "format": "date",
+                    "type": "string"
+                  }
+                },
+                "DateTo": {
+                  "description": "Inclusive end date, `YYYY-MM-DD`.",
+                  "example": "2026-06-30",
+                  "in": "query",
+                  "name": "date_to",
+                  "schema": {
+                    "format": "date",
+                    "type": "string"
+                  }
+                },
+                "Limit": {
+                  "description": "Items per page. Max 250.",
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                    "default": 50,
+                    "maximum": 250,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "MemberEmailPath": {
+                  "description": "Email of the member sending the recognition.",
+                  "example": "sam@acme.com",
+                  "in": "path",
+                  "name": "member_email",
+                  "required": true,
+                  "schema": {
+                    "format": "email",
+                    "type": "string"
+                  }
+                },
+                "Page": {
+                  "description": "1-based page number.",
+                  "in": "query",
+                  "name": "page",
+                  "schema": {
+                    "default": 1,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                }
+              },
+              "responses": {
+                "AccessDenied": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error_code": "ACCESS_DENIED",
+                        "message": "Insufficient permissions to access this user's profile",
+                        "statusCode": 403
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Authenticated, but not permitted to access this resource."
+                },
+                "BadRequest": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": true,
+                        "errorMsg": "Input is required",
+                        "statusCode": 400
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Missing or invalid request parameters."
+                },
+                "Forbidden": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": true,
+                        "errorMsg": "Invalid API Key.",
+                        "statusCode": 403
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Missing or invalid API key."
+                },
+                "NotFound": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error_code": "USER_NOT_FOUND",
+                        "message": "NotFoundError: Item not found",
+                        "statusCode": 404
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "The requested resource was not found."
+                },
+                "RateLimited": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": true,
+                        "errorMsg": "Rate limit exceeded",
+                        "error_code": "RATE_LIMIT_EXCEEDED",
+                        "statusCode": 429
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Rate limit exceeded for this API key."
+                },
+                "RecipientNotFound": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": true,
+                        "errorMsg": "Email `jordan@acme.com` was not found.",
+                        "statusCode": 503
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "A sender or recipient email was not found in your company."
+                },
+                "ServerError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "body": {
+                            "properties": {
+                              "message": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "statusCode": {
+                            "example": 500,
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "Unexpected server error."
+                }
+              },
+              "schemas": {
+                "Error": {
+                  "properties": {
+                    "error": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "errorMsg": {
+                      "description": "Human-readable message (some endpoints use `message`).",
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "description": "Machine-readable code. See the Errors guide.",
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "statusCode": {
+                      "example": 400,
+                      "type": "integer"
+                    },
+                    "suggestion": {
+                      "description": "Optional hint for resolving the error.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ImportMember": {
+                  "properties": {
+                    "country": {
+                      "default": "TH",
+                      "description": "Two-letter uppercase, e.g. `US`, `TH`.",
+                      "pattern": "^[A-Z]{2}$",
+                      "type": "string"
+                    },
+                    "email": {
+                      "format": "email",
+                      "maxLength": 255,
+                      "type": "string"
+                    },
+                    "first_name": {
+                      "description": "Non-empty; no leading/trailing spaces.",
+                      "maxLength": 100,
+                      "type": "string"
+                    },
+                    "language": {
+                      "default": "en",
+                      "description": "Lowercase code, e.g. `en`, `th`.",
+                      "pattern": "^[a-z]{2,5}$",
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "maxLength": 100,
+                      "type": "string"
+                    },
+                    "manager_email": {
+                      "format": "email",
+                      "maxLength": 255,
+                      "type": "string"
+                    },
+                    "team_name": {
+                      "description": "Team is auto-created if it doesn't exist.",
+                      "maxLength": 100,
+                      "type": "string"
+                    },
+                    "timezone": {
+                      "default": 7,
+                      "maximum": 14,
+                      "minimum": -12,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "email",
+                    "first_name",
+                    "last_name"
+                  ],
+                  "type": "object"
+                },
+                "ImportMembersRequest": {
+                  "properties": {
+                    "members": {
+                      "items": {
+                        "$ref": "#/components/schemas/ImportMember"
+                      },
+                      "maxItems": 1000,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "options": {
+                      "properties": {
+                        "skip_duplicates": {
+                          "default": false,
+                          "description": "Silently skip members whose email already exists.",
+                          "type": "boolean"
+                        },
+                        "update_if_exists": {
+                          "default": false,
+                          "description": "Update existing members instead of failing on duplicates.",
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "members"
+                  ],
+                  "type": "object"
+                },
+                "ImportMembersResult": {
+                  "properties": {
+                    "details": {
+                      "properties": {
+                        "failed": {
+                          "items": {
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "imported": {
+                          "items": {
+                            "properties": {
+                              "email": {
+                                "type": "string"
+                              },
+                              "team_name": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "skipped": {
+                          "items": {
+                            "properties": {
+                              "email": {
+                                "type": "string"
+                              },
+                              "reason": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "import_id": {
+                      "example": "imp_1717512730123",
+                      "type": "string"
+                    },
+                    "rate_limit": {
+                      "properties": {
+                        "remaining": {
+                          "type": "integer"
+                        },
+                        "reset_at": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": "success",
+                      "type": "string"
+                    },
+                    "summary": {
+                      "properties": {
+                        "failed": {
+                          "type": "integer"
+                        },
+                        "skipped": {
+                          "type": "integer"
+                        },
+                        "successfully_imported": {
+                          "type": "integer"
+                        },
+                        "total_submitted": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Member": {
+                  "properties": {
+                    "company_id": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "firstname": {
+                      "type": "string"
+                    },
+                    "impact_rating": {
+                      "type": "number"
+                    },
+                    "lastname": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "Active",
+                        "Inactive"
+                      ],
+                      "type": "string"
+                    },
+                    "talent_type": {
+                      "type": "string"
+                    },
+                    "team_id": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Pagination": {
+                  "description": "Paging metadata returned alongside every list response.",
+                  "properties": {
+                    "currentPage": {
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "pageSize": {
+                      "example": 50,
+                      "type": "integer"
+                    },
+                    "totalItems": {
+                      "example": 183,
+                      "type": "integer"
+                    },
+                    "totalPages": {
+                      "example": 4,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PerformanceBoostRequest": {
+                  "properties": {
+                    "assessment_data": {
+                      "properties": {
+                        "culture_contribution": {
+                          "properties": {
+                            "rating": {
+                              "enum": [
+                                "significantly",
+                                "consistently",
+                                "somewhat",
+                                "rarely"
+                              ],
+                              "type": "string"
+                            },
+                            "supporting_examples": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "rating",
+                            "supporting_examples"
+                          ],
+                          "type": "object"
+                        },
+                        "future_development": {
+                          "properties": {
+                            "goals_targets_outcomes": {
+                              "type": "string"
+                            },
+                            "skill_recommendations": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goal_performance": {
+                          "properties": {
+                            "rating": {
+                              "enum": [
+                                "exceeded_goals",
+                                "met_goals",
+                                "partially_met_goals",
+                                "did_not_meet_goals"
+                              ],
+                              "type": "string"
+                            },
+                            "supporting_examples": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "rating",
+                            "supporting_examples"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "goal_performance",
+                        "culture_contribution"
+                      ],
+                      "type": "object"
+                    },
+                    "employee_email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "review_date": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "reviewer_email": {
+                      "description": "Must be the employee's direct manager.",
+                      "format": "email",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "employee_email",
+                    "reviewer_email",
+                    "review_date",
+                    "assessment_data"
+                  ],
+                  "type": "object"
+                },
+                "PerformanceBoostResult": {
+                  "description": "One per submitted boost — either a success or an error.",
+                  "properties": {
+                    "employee_email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "error": {
+                      "description": "Present on failure.",
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "description": "Present on failure.",
+                      "type": "string"
+                    },
+                    "review_date": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "reviewer_email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "suggestion": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PerformanceFeedback": {
+                  "properties": {
+                    "comment": {
+                      "type": "string"
+                    },
+                    "createdate": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "receiver_email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "score": {
+                      "description": "Goal performance score.",
+                      "type": "integer"
+                    },
+                    "sender_email": {
+                      "format": "email",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PerformancePreset": {
+                  "properties": {
+                    "_id": {
+                      "type": "string"
+                    },
+                    "company": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "culture": {
+                      "type": "string"
+                    },
+                    "goals": {
+                      "type": "string"
+                    },
+                    "modified_by": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "next_review": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "teams": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "users": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PerformancePresetRequest": {
+                  "properties": {
+                    "culture_contribution": {
+                      "type": "string"
+                    },
+                    "goals_feedback": {
+                      "type": "string"
+                    },
+                    "members": {
+                      "description": "Member emails. Provide this or `teams`.",
+                      "items": {
+                        "format": "email",
+                        "type": "string"
+                      },
+                      "maxItems": 50,
+                      "type": "array"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "next_review": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "teams": {
+                      "description": "Internal team IDs. Provide this or `members`.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "maxItems": 50,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "goals_feedback",
+                    "culture_contribution",
+                    "next_review"
+                  ],
+                  "type": "object"
+                },
+                "Question": {
+                  "properties": {
+                    "dimension": {
+                      "type": "string"
+                    },
+                    "options": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "question_id": {
+                      "type": "string"
+                    },
+                    "question_text": {
+                      "type": "string"
+                    },
+                    "skill": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Recognition": {
+                  "description": "The created recognition, as echoed back by the API.",
+                  "properties": {
+                    "amount": {
+                      "example": 5,
+                      "type": "number"
+                    },
+                    "company": {
+                      "type": "string"
+                    },
+                    "createdate": {
+                      "description": "`YYYY-MM-DD HH:mm:ss` (Asia/Bangkok).",
+                      "type": "string"
+                    },
+                    "for": {
+                      "type": "string"
+                    },
+                    "share": {
+                      "description": "Mirrors `display_feed` from the request.",
+                      "type": "boolean"
+                    },
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "statusCode": {
+                      "example": 200,
+                      "type": "integer"
+                    },
+                    "to": {
+                      "items": {
+                        "$ref": "#/components/schemas/RecognitionRecipient"
+                      },
+                      "type": "array"
+                    },
+                    "total": {
+                      "type": "number"
+                    },
+                    "type": {
+                      "example": "coin",
+                      "type": "string"
+                    },
+                    "when": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "RecognitionRecipient": {
+                  "properties": {
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Present for team recipients.",
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "user",
+                        "team",
+                        "all"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "RecognitionRecord": {
+                  "description": "A recognition record returned by the list endpoint.",
+                  "properties": {
+                    "date": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "hashtag": {
+                      "type": "string"
+                    },
+                    "points": {
+                      "type": "number"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "receiver_email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "sender_email": {
+                      "format": "email",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "RecognitionRequest": {
+                  "properties": {
+                    "amount": {
+                      "description": "Number of coins to give.",
+                      "example": 5,
+                      "type": "number"
+                    },
+                    "display_feed": {
+                      "default": false,
+                      "description": "Whether to show this recognition in the public feed.",
+                      "type": "boolean"
+                    },
+                    "for": {
+                      "description": "The reason / message for the recognition.",
+                      "example": "Shipping the Q3 launch ahead of schedule 🚀",
+                      "type": "string"
+                    },
+                    "recipients": {
+                      "description": "One or more recipients. See the table in the endpoint description.",
+                      "example": [
+                        "jordan@acme.com",
+                        "sam@acme.com"
+                      ],
+                      "oneOf": [
+                        {
+                          "description": "A single email, comma-separated emails, `ALL_MEMBERS`, or a team/cohort ID.",
+                          "type": "string"
+                        },
+                        {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      ]
+                    },
+                    "type": {
+                      "description": "The recognition type.",
+                      "enum": [
+                        "coin"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "recipients",
+                    "amount",
+                    "for",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                "SurveyResponse": {
+                  "properties": {
+                    "answer": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "question_id": {
+                      "type": "string"
+                    },
+                    "question_text": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "UserProfile": {
+                  "properties": {
+                    "engagement_health_score": {
+                      "description": "0–100.",
+                      "type": "number"
+                    },
+                    "engagement_health_status": {
+                      "enum": [
+                        "Novice",
+                        "Intermediate",
+                        "Advanced",
+                        "Elite"
+                      ],
+                      "type": "string"
+                    },
+                    "impact_rating": {
+                      "type": "number"
+                    },
+                    "metadata": {
+                      "properties": {
+                        "last_updated": {
+                          "type": "string"
+                        },
+                        "personal_context_count": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "personal_context": {
+                      "description": "Present only when `include_personal_context` is true.",
+                      "properties": {
+                        "recent_challenges": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "skills": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "values": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "user": {
+                      "properties": {
+                        "email": {
+                          "format": "email",
+                          "type": "string"
+                        },
+                        "employee_id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ValidationError": {
+                  "properties": {
+                    "error": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "errorMsg": {
+                      "example": "Request validation failed",
+                      "type": "string"
+                    },
+                    "error_code": {
+                      "example": "VALIDATION_ERROR",
+                      "type": "string"
+                    },
+                    "errors": {
+                      "items": {
+                        "properties": {
+                          "field": {
+                            "example": "members[0].email",
+                            "type": "string"
+                          },
+                          "message": {
+                            "example": "Email format is invalid",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "statusCode": {
+                      "example": 400,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "ApiKeyAuth": {
+                  "description": "Your secret API key, issued per company and stage. Generate one at\n[my.happily.ai/integrations](https://my.happily.ai/integrations).\n",
+                  "in": "header",
+                  "name": "x-api-key",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "support@happily.ai",
+                "name": "Happily.ai Support",
+                "url": "https://help.happily.ai"
+              },
+              "description": "Welcome to the **Happily.ai API**, the fastest way to plug recognition,\nengagement surveys, performance feedback, and people analytics into your\nown products and workflows.\n\nUse it to sync your employee directory from an HRIS, send recognition from a\nSlack bot, run performance review cycles programmatically, or pull survey\nresponses into your data warehouse.\n\n> [!NOTE]\n> **New to the API?** Start with the [Quickstart](/guides/quickstart.html) —\n> you'll make your first authenticated call in under five minutes.\n\n## Base URL\n\nAll requests are made over HTTPS to a stage-scoped base URL on the\n`api.happily.ai` custom domain:\n\n```\nhttps://api.happily.ai/{stage}\n```\n\n| `{stage}` | Use for                 |\n| --------- | ----------------------- |\n| `prod`    | Live company data.      |\n| `staging` | Pre-production testing. |\n| `dev`     | Development / sandbox.  |\n\nYour API key is bound to a single stage. Each endpoint path carries its own\nversion prefix: most endpoints live under `/1/...`, and newer ones (member\nimport, performance boosts and presets, user profiles) live under\n`/api/v1/...`. A full request URL therefore looks like\n`https://api.happily.ai/prod/1/recognition` or\n`https://api.happily.ai/prod/api/v1/users/{email}/profile`.\n\n> [!NOTE]\n> Paths below are confirmed against the deployed API Gateway (`ln1buvf68h`,\n> region `us-east-2`). A few newer endpoints are marked \"⚠\" where the exact\n> path is still being finalized. See the\n> [Migration guide](/guides/migration.html) for what changed from the old docs.\n\n## Authentication\n\nEvery request must include your secret API key in the **`x-api-key`** header.\nKeys are issued per company and per stage. Generate or rotate keys at\n[my.happily.ai/integrations](https://my.happily.ai/integrations).\n\n```bash\ncurl https://api.happily.ai/prod/1/members?email=jordan@acme.com \\\n  -H \"x-api-key: $HAPPILY_API_KEY\"\n```\n\nTreat your key like a password — it grants full access to your company's\ndata. Never commit it or expose it in client-side code. See the\n[Authentication guide](/guides/authentication.html).\n\n## Rate limits\n\nWrite-heavy endpoints (currently **member import**) are limited to\n**10 requests per minute, per API key**. When you exceed the limit the API\nresponds with a `RATE_LIMIT_EXCEEDED` error and a `reset_at` timestamp telling\nyou when the window clears. Successful import responses also echo a\n`rate_limit` object with your remaining quota. See\n[Rate limits](/guides/rate-limits.html).\n\n## Pagination\n\nList endpoints accept `page` (1-based) and `limit` (default `50`, max `250`)\nquery parameters and return a `pagination` object:\n\n```json\n{\n  \"pagination\": {\n    \"currentPage\": 1,\n    \"totalPages\": 4,\n    \"totalItems\": 183,\n    \"pageSize\": 50\n  }\n}\n```\n\nSee [Pagination](/guides/pagination.html).\n\n## Responses & errors\n\nResponses are JSON. Successful responses carry the resource fields plus a\n`statusCode` and, for collections, a named array (e.g. `members`,\n`recognitions`) and a `pagination` object. Errors carry a `statusCode`, an\n`error: true` flag, a human-readable message, and (for most endpoints) a\nmachine-readable `error_code`:\n\n```json\n{\n  \"statusCode\": 400,\n  \"error\": true,\n  \"errorMsg\": \"email and question_id are required\",\n  \"error_code\": \"VALIDATION_ERROR\"\n}\n```\n\nThe full list of error codes lives in the [Errors guide](/guides/errors.html).\n",
+              "license": {
+                "name": "Proprietary (© Happily.ai)",
+                "url": "https://happily.ai"
+              },
+              "summary": "Bring employee engagement and people analytics into your own workflows.",
+              "title": "Happily.ai API",
+              "version": "1.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/1/members": {
+                "get": {
+                  "description": "Query members in your company. At least one filter\n(`email`, `team_id`, `talent_type`, or `company_id`) is required. When\n`email` is supplied, a single `member` object is returned; otherwise a\npaginated `members` array.\n\n> Path confirmed against API Gateway (`dev` · `prod` · `staging`).\n",
+                  "operationId": "getMembers",
+                  "parameters": [
+                    {
+                      "description": "Return a single member by email.",
+                      "in": "query",
+                      "name": "email",
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by internal team ID.",
+                      "in": "query",
+                      "name": "team_id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by talent type.",
+                      "in": "query",
+                      "name": "talent_type",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by company ID.",
+                      "in": "query",
+                      "name": "company_id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "list": {
+                              "summary": "List by team",
+                              "value": {
+                                "members": [
+                                  {
+                                    "company_id": "company_abc123",
+                                    "email": "jordan@acme.com",
+                                    "firstname": "Jordan",
+                                    "impact_rating": 82,
+                                    "lastname": "Diaz",
+                                    "status": "Active",
+                                    "talent_type": "Builder",
+                                    "team_id": "t123456789"
+                                  }
+                                ],
+                                "message": "success",
+                                "pagination": {
+                                  "currentPage": 1,
+                                  "pageSize": 50,
+                                  "totalItems": 1,
+                                  "totalPages": 1
+                                },
+                                "statusCode": 200
+                              }
+                            }
+                          },
+                          "schema": {
+                            "description": "When `email` is supplied a single `member` is returned;\notherwise a `members` array plus a `pagination` object.\n",
+                            "properties": {
+                              "member": {
+                                "$ref": "#/components/schemas/Member"
+                              },
+                              "members": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Member"
+                                },
+                                "type": "array"
+                              },
+                              "message": {
+                                "example": "success",
+                                "type": "string"
+                              },
+                              "pagination": {
+                                "$ref": "#/components/schemas/Pagination"
+                              },
+                              "statusCode": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "A single member or a page of members."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    }
+                  },
+                  "summary": "List members",
+                  "tags": [
+                    "Members"
+                  ]
+                }
+              },
+              "/1/performance_feedback": {
+                "get": {
+                  "description": "Return performance feedback between a reviewer and an employee. Provide\n`email` (the employee/receiver), `reviewer_email` (the sender), or both.\nAt least one is required.\n\n> Path confirmed against API Gateway (`dev` · `prod` · `staging`).\n",
+                  "operationId": "getPerformanceFeedbacks",
+                  "parameters": [
+                    {
+                      "description": "Employee (receiver) email. Required unless `reviewer_email` is given.",
+                      "in": "query",
+                      "name": "email",
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Reviewer (sender) email. Required unless `email` is given.",
+                      "in": "query",
+                      "name": "reviewer_email",
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/DateFrom"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DateTo"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "feedback": [
+                              {
+                                "comment": "Consistently exceeded goals this cycle.",
+                                "createdate": "2026-05-30",
+                                "receiver_email": "jordan@acme.com",
+                                "score": 3,
+                                "sender_email": "lee@acme.com"
+                              }
+                            ],
+                            "message": "success",
+                            "pagination": {
+                              "currentPage": 1,
+                              "pageSize": 50,
+                              "totalItems": 1,
+                              "totalPages": 1
+                            },
+                            "statusCode": 200
+                          },
+                          "schema": {
+                            "properties": {
+                              "feedback": {
+                                "items": {
+                                  "$ref": "#/components/schemas/PerformanceFeedback"
+                                },
+                                "type": "array"
+                              },
+                              "message": {
+                                "example": "success",
+                                "type": "string"
+                              },
+                              "pagination": {
+                                "$ref": "#/components/schemas/Pagination"
+                              },
+                              "statusCode": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "A page of feedback records."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    }
+                  },
+                  "summary": "List performance feedback",
+                  "tags": [
+                    "Performance"
+                  ]
+                }
+              },
+              "/1/questions": {
+                "get": {
+                  "description": "Return the survey questions available to your company (your custom\nquestions plus shared \"main\" questions). Filter by `type`, `skill`, or\n`dimension`.\n\n> Path confirmed against API Gateway (`dev` · `prod` · `staging`).\n",
+                  "operationId": "getQuestions",
+                  "parameters": [
+                    {
+                      "description": "Filter by question type (e.g. `Multiple Choice`).",
+                      "in": "query",
+                      "name": "type",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by PowerUp skill.",
+                      "in": "query",
+                      "name": "skill",
+                      "schema": {
+                        "enum": [
+                          "Critical Thinking",
+                          "Empathy",
+                          "Initiative Making",
+                          "Leadership",
+                          "Self Awareness",
+                          "Optimism"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by question dimension/category.",
+                      "in": "query",
+                      "name": "dimension",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "message": "success",
+                            "pagination": {
+                              "currentPage": 1,
+                              "pageSize": 50,
+                              "totalItems": 1,
+                              "totalPages": 1
+                            },
+                            "questions": [
+                              {
+                                "dimension": "Belonging",
+                                "options": [
+                                  "Not at all",
+                                  "A little",
+                                  "Mostly",
+                                  "Completely"
+                                ],
+                                "question_id": "q_abc123",
+                                "question_text": "How supported did you feel this week?",
+                                "skill": "Empathy",
+                                "type": "Multiple Choice"
+                              }
+                            ],
+                            "statusCode": 200
+                          },
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "success",
+                                "type": "string"
+                              },
+                              "pagination": {
+                                "$ref": "#/components/schemas/Pagination"
+                              },
+                              "questions": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Question"
+                                },
+                                "type": "array"
+                              },
+                              "statusCode": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "A page of questions."
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "summary": "List survey questions",
+                  "tags": [
+                    "Surveys"
+                  ]
+                }
+              },
+              "/1/recognition": {
+                "get": {
+                  "description": "Return recognition received by a member (by `email`) **or** by a team\n(by `team_name`). Exactly one of the two query parameters is required.\nResults are paginated and ordered by date, most recent first.\n\n> Path confirmed against API Gateway (`dev` · `prod` · `staging`). The legacy\n> `GET /1/recognition/recipient/{member_email}` endpoint still exists; see\n> the [Migration guide](/guides/migration.html).\n",
+                  "operationId": "getRecognitions",
+                  "parameters": [
+                    {
+                      "description": "Email of the member whose received recognition you want. Required unless `team_name` is given.",
+                      "example": "jordan@acme.com",
+                      "in": "query",
+                      "name": "email",
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Team name whose received recognition you want. Required unless `email` is given.",
+                      "example": "Design",
+                      "in": "query",
+                      "name": "team_name",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "message": "success",
+                            "pagination": {
+                              "currentPage": 1,
+                              "pageSize": 50,
+                              "totalItems": 1,
+                              "totalPages": 1
+                            },
+                            "recognitions": [
+                              {
+                                "date": "2026-06-04",
+                                "hashtag": "#teamwork",
+                                "points": 5,
+                                "reason": "Shipping the Q3 launch ahead of schedule 🚀",
+                                "receiver_email": "jordan@acme.com",
+                                "sender_email": "sam@acme.com"
+                              }
+                            ],
+                            "statusCode": 200
+                          },
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "success",
+                                "type": "string"
+                              },
+                              "pagination": {
+                                "$ref": "#/components/schemas/Pagination"
+                              },
+                              "recognitions": {
+                                "items": {
+                                  "$ref": "#/components/schemas/RecognitionRecord"
+                                },
+                                "type": "array"
+                              },
+                              "statusCode": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "A page of recognition records."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    }
+                  },
+                  "summary": "List received recognition",
+                  "tags": [
+                    "Recognition"
+                  ]
+                }
+              },
+              "/1/recognition/medal/{medal_id}": {
+                "get": {
+                  "description": "Resolve a medal/reward identifier to its configured value for your\ncompany. If the medal is not configured, the `value` echoes the\nrequested `medal_id`.\n\n> ⚠ Path confirmed from a request fixture (`/1/recognition/medal/{medal_id}`).\n",
+                  "operationId": "getMedalById",
+                  "parameters": [
+                    {
+                      "description": "The medal identifier (e.g. `Kindness`).",
+                      "example": "Kindness",
+                      "in": "path",
+                      "name": "medal_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "statusCode": 200,
+                            "value": "Kindness"
+                          },
+                          "schema": {
+                            "properties": {
+                              "statusCode": {
+                                "example": 200,
+                                "type": "integer"
+                              },
+                              "value": {
+                                "example": "Kindness",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "The medal value."
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "summary": "Get a medal",
+                  "tags": [
+                    "Recognition"
+                  ]
+                }
+              },
+              "/1/recognition/{member_email}": {
+                "post": {
+                  "description": "Give recognition (coins) on behalf of `member_email`. Recipients can be\none or more individuals, an entire team or cohort, or **all members**.\n\n**`recipients`** accepts several shapes:\n\n| Form                 | Example                                  |\n| -------------------- | ---------------------------------------- |\n| Single email         | `\"jordan@acme.com\"`                       |\n| Comma-separated list | `\"jordan@acme.com,sam@acme.com\"`          |\n| Array of emails      | `[\"jordan@acme.com\", \"sam@acme.com\"]`     |\n| Everyone             | `\"ALL_MEMBERS\"`                           |\n| Team / cohort IDs    | `\"t123456789\"` (team) · `\"c123456789\"` (cohort) |\n\nUnknown individual recipients cause a `503` error; unknown teams/cohorts\nare skipped. The sender (`member_email`) must belong to your company.\n\n> Path confirmed against API Gateway (`dev` · `prod` · `staging`).\n",
+                  "operationId": "createRecognition",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MemberEmailPath"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "everyone": {
+                            "summary": "Recognize all members",
+                            "value": {
+                              "amount": 1,
+                              "display_feed": true,
+                              "for": "Thank you all for a great quarter!",
+                              "recipients": "ALL_MEMBERS",
+                              "type": "coin"
+                            }
+                          },
+                          "individuals": {
+                            "summary": "Recognize two people",
+                            "value": {
+                              "amount": 5,
+                              "display_feed": true,
+                              "for": "Shipping the Q3 launch ahead of schedule 🚀",
+                              "recipients": [
+                                "jordan@acme.com",
+                                "sam@acme.com"
+                              ],
+                              "type": "coin"
+                            }
+                          },
+                          "team": {
+                            "summary": "Recognize a team by ID",
+                            "value": {
+                              "amount": 3,
+                              "display_feed": false,
+                              "for": "Design team crushed the rebrand",
+                              "recipients": "t123456789",
+                              "type": "coin"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/RecognitionRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "amount": 5,
+                            "company": "company_abc123",
+                            "createdate": "2026-06-04 14:32:10",
+                            "for": "Shipping the Q3 launch ahead of schedule 🚀",
+                            "share": true,
+                            "status": false,
+                            "statusCode": 200,
+                            "to": [
+                              {
+                                "email": "jordan@acme.com",
+                                "name": "Jordan D",
+                                "type": "user"
+                              },
+                              {
+                                "email": "sam@acme.com",
+                                "name": "Sam R",
+                                "type": "user"
+                              }
+                            ],
+                            "total": 5,
+                            "type": "coin",
+                            "when": "2026-06-04 14:32:10"
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/Recognition"
+                          }
+                        }
+                      },
+                      "description": "Recognition created."
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "503": {
+                      "$ref": "#/components/responses/RecipientNotFound"
+                    }
+                  },
+                  "summary": "Send recognition",
+                  "tags": [
+                    "Recognition"
+                  ]
+                }
+              },
+              "/1/responses": {
+                "get": {
+                  "description": "Return survey responses filtered by `email`, `question_id`, or both. At\nleast one is required. Optionally bound by `date_from`/`date_to`.\n\n> Path confirmed against API Gateway (`dev` · `prod` · `staging`).\n",
+                  "operationId": "getResponses",
+                  "parameters": [
+                    {
+                      "description": "Respondent email. Required unless `question_id` is given.",
+                      "in": "query",
+                      "name": "email",
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Question ID. Required unless `email` is given.",
+                      "in": "query",
+                      "name": "question_id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/DateFrom"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DateTo"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "message": "success",
+                            "pagination": {
+                              "currentPage": 1,
+                              "pageSize": 50,
+                              "totalItems": 1,
+                              "totalPages": 1
+                            },
+                            "responses": [
+                              {
+                                "answer": "Mostly",
+                                "date": "2026-06-03",
+                                "email": "jordan@acme.com",
+                                "question_id": "q_abc123",
+                                "question_text": "How supported did you feel this week?"
+                              }
+                            ],
+                            "statusCode": 200
+                          },
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "success",
+                                "type": "string"
+                              },
+                              "pagination": {
+                                "$ref": "#/components/schemas/Pagination"
+                              },
+                              "responses": {
+                                "items": {
+                                  "$ref": "#/components/schemas/SurveyResponse"
+                                },
+                                "type": "array"
+                              },
+                              "statusCode": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "A page of responses."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    }
+                  },
+                  "summary": "List survey responses",
+                  "tags": [
+                    "Surveys"
+                  ]
+                }
+              },
+              "/api/v1/members": {
+                "post": {
+                  "description": "Bulk-create or update members, typically synced from an HRIS. Submit up\nto **1,000 members** per request. Each member is validated; the import\nsucceeds only if **every** member is valid (unless duplicates are handled\nvia `options`).\n\n**Duplicate handling** (`options`):\n- `skip_duplicates: true` — silently skip members whose email already exists.\n- `update_if_exists: true` — update existing members instead of failing.\n- Neither set — a duplicate email fails validation.\n\nThis endpoint is **rate limited to 10 requests/minute per API key**. The\nresponse echoes your remaining quota in `rate_limit`. Imports are queued\nfor asynchronous processing and tracked by the returned `import_id`.\n\n> ⚠ Inferred path. The gateway exposes `/api/v1/members`; the import is\n> the `POST` on that resource. Confirm the method before publishing.\n",
+                  "operationId": "importMembers",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "sync": {
+                            "summary": "Sync two members, updating any that already exist",
+                            "value": {
+                              "members": [
+                                {
+                                  "country": "US",
+                                  "email": "jordan@acme.com",
+                                  "first_name": "Jordan",
+                                  "language": "en",
+                                  "last_name": "Diaz",
+                                  "manager_email": "lee@acme.com",
+                                  "team_name": "Design",
+                                  "timezone": -7
+                                },
+                                {
+                                  "email": "sam@acme.com",
+                                  "first_name": "Sam",
+                                  "last_name": "Rivera",
+                                  "manager_email": "lee@acme.com",
+                                  "team_name": "Design"
+                                }
+                              ],
+                              "options": {
+                                "skip_duplicates": true,
+                                "update_if_exists": true
+                              }
+                            }
+                          }
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/ImportMembersRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "details": {
+                              "failed": [],
+                              "imported": [
+                                {
+                                  "email": "jordan@acme.com",
+                                  "team_name": "Design"
+                                },
+                                {
+                                  "email": "sam@acme.com",
+                                  "team_name": "Design"
+                                }
+                              ],
+                              "skipped": []
+                            },
+                            "import_id": "imp_1717512730123",
+                            "rate_limit": {
+                              "remaining": 9,
+                              "reset_at": "2026-06-04T14:33:00+07:00"
+                            },
+                            "status": "success",
+                            "summary": {
+                              "failed": 0,
+                              "skipped": 0,
+                              "successfully_imported": 2,
+                              "total_submitted": 2
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ImportMembersResult"
+                          }
+                        }
+                      },
+                      "description": "Import accepted and queued."
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "error": true,
+                            "errorMsg": "Request validation failed",
+                            "error_code": "VALIDATION_ERROR",
+                            "errors": [
+                              {
+                                "field": "members[0].email",
+                                "message": "Email format is invalid"
+                              },
+                              {
+                                "field": "members[1].timezone",
+                                "message": "Timezone must be between -12 and 14"
+                              }
+                            ],
+                            "statusCode": 400
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ValidationError"
+                          }
+                        }
+                      },
+                      "description": "Validation failed — one or more members are invalid."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Import or sync members",
+                  "tags": [
+                    "Members"
+                  ]
+                }
+              },
+              "/api/v1/performance-boosts": {
+                "post": {
+                  "description": "Submit one or more performance review \"boosts\". Send a single object or\nan array (max **200** per request). Each boost is validated and processed\nindependently — the response is an array of per-item results, each either\na success or an error.\n\n**Rules per boost:**\n- The `reviewer_email` must be the **direct manager** of `employee_email`.\n- Both people must belong to your company.\n- `supporting_examples` is required for both goal and culture sections.\n- A member can't be reviewed again until their review cycle resets.\n\n> ⚠ Inferred path. The gateway exposes both `/1/performance-boosts` and\n> `/api/v1/performance-boosts`; this documents the `/api/v1` form.\n> Confirm which is canonical before publishing.\n",
+                  "operationId": "createPerformanceBoosts",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "single": {
+                            "summary": "A single performance boost",
+                            "value": {
+                              "assessment_data": {
+                                "culture_contribution": {
+                                  "rating": "consistently",
+                                  "supporting_examples": "Mentored two teammates and ran the design crit."
+                                },
+                                "future_development": {
+                                  "goals_targets_outcomes": "Lead the mobile redesign next quarter.",
+                                  "skill_recommendations": "Stakeholder management"
+                                },
+                                "goal_performance": {
+                                  "rating": "met_goals",
+                                  "supporting_examples": "Hit all three OKRs and unblocked the launch."
+                                }
+                              },
+                              "employee_email": "jordan@acme.com",
+                              "review_date": "2026-06-01",
+                              "reviewer_email": "lee@acme.com"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "oneOf": [
+                            {
+                              "$ref": "#/components/schemas/PerformanceBoostRequest"
+                            },
+                            {
+                              "items": {
+                                "$ref": "#/components/schemas/PerformanceBoostRequest"
+                              },
+                              "type": "array"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "body": [
+                              {
+                                "employee_email": "jordan@acme.com",
+                                "review_date": "2026-06-01",
+                                "reviewer_email": "lee@acme.com",
+                                "success": true
+                              }
+                            ],
+                            "statusCode": 200
+                          },
+                          "schema": {
+                            "properties": {
+                              "body": {
+                                "items": {
+                                  "$ref": "#/components/schemas/PerformanceBoostResult"
+                                },
+                                "type": "array"
+                              },
+                              "statusCode": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Per-item results (some items may have failed)."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Submit performance boosts",
+                  "tags": [
+                    "Performance"
+                  ]
+                }
+              },
+              "/api/v1/performance-preset": {
+                "post": {
+                  "description": "Create a reusable performance review template (preset) and assign it to\nteams or members. Provide either `teams` (internal team IDs, max 50) or\n`members` (emails, max 50). Overlapping teams/members are removed from\nexisting presets so each is assigned to only one preset.\n\n> Path confirmed against API Gateway (`dev` · `prod` · `staging`).\n",
+                  "operationId": "savePerformancePreset",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "byTeam": {
+                            "summary": "Preset assigned to a team",
+                            "value": {
+                              "culture_contribution": "How did you live our values?",
+                              "goals_feedback": "Reflect on your top goal this quarter.",
+                              "name": "Q3 Engineering Review",
+                              "next_review": "2026-09-01",
+                              "teams": [
+                                "t123456789"
+                              ]
+                            }
+                          }
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/PerformancePresetRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "data": {
+                              "_id": "tmpl_abc123",
+                              "company": "company_abc123",
+                              "created_at": "2026-06-04 14:32:10",
+                              "culture": "How did you live our values?",
+                              "goals": "Reflect on your top goal this quarter.",
+                              "modified_by": "noreply@happily.ai",
+                              "name": "Q3 Engineering Review",
+                              "next_review": "2026-09-01",
+                              "status": true,
+                              "teams": [
+                                "t123456789"
+                              ]
+                            },
+                            "message": "success",
+                            "statusCode": 200
+                          },
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/PerformancePreset"
+                              },
+                              "message": {
+                                "example": "success",
+                                "type": "string"
+                              },
+                              "statusCode": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Preset created."
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/AccessDenied"
+                    }
+                  },
+                  "summary": "Save a performance review preset",
+                  "tags": [
+                    "Performance"
+                  ]
+                }
+              },
+              "/api/v1/users/{email}/profile": {
+                "get": {
+                  "description": "Return a detailed profile for a member, including impact rating,\nengagement health score and status, and (optionally) personal context\nsuch as recent challenges, skills, and values.\n\n> Path confirmed against API Gateway (`dev` · `prod` · `staging`).\n",
+                  "operationId": "getUserProfile",
+                  "parameters": [
+                    {
+                      "description": "The member's email address.",
+                      "example": "jordan@acme.com",
+                      "in": "path",
+                      "name": "email",
+                      "required": true,
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Include the `personal_context` block. Defaults to `true`.",
+                      "in": "query",
+                      "name": "include_personal_context",
+                      "schema": {
+                        "default": true,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Max items per personal-context list. 1–50, default 10.",
+                      "in": "query",
+                      "name": "context_limit",
+                      "schema": {
+                        "default": 10,
+                        "maximum": 50,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "engagement_health_score": 74,
+                            "engagement_health_status": "Advanced",
+                            "impact_rating": 82,
+                            "metadata": {
+                              "last_updated": "2026-06-01T09:12:00+07:00",
+                              "personal_context_count": 3
+                            },
+                            "personal_context": {
+                              "recent_challenges": [
+                                "Onboarding two new hires"
+                              ],
+                              "skills": [
+                                "Facilitation",
+                                "Roadmapping"
+                              ],
+                              "values": [
+                                "Craft",
+                                "Candor"
+                              ]
+                            },
+                            "user": {
+                              "email": "jordan@acme.com",
+                              "employee_id": "",
+                              "name": "Jordan Diaz"
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/UserProfile"
+                          }
+                        }
+                      },
+                      "description": "The member's profile."
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/AccessDenied"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "summary": "Get a member's engagement profile",
+                  "tags": [
+                    "Members"
+                  ]
+                }
+              },
+              "/townhall/content": {
+                "post": {
+                  "description": "Trigger generation of Town Hall feed content for your company. Requires\nno request body — the company is resolved from your API key. Your company\nmust be active and have the Town Hall feature enabled. Processing is\nasynchronous.\n\n> ⚠ Path not yet confirmed. This resource was not visible in the API\n> Gateway stages; confirm its path (or whether it is internal-only).\n",
+                  "operationId": "generateTownHallContent",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "message": "success",
+                            "statusCode": 200
+                          },
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "success",
+                                "type": "string"
+                              },
+                              "statusCode": {
+                                "example": 200,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Generation triggered."
+                    },
+                    "403": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "message": {
+                                "example": "Townhall is not enabled",
+                                "type": "string"
+                              },
+                              "statusCode": {
+                                "example": 403,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Company inactive or Town Hall not enabled."
+                    }
+                  },
+                  "summary": "Generate Town Hall content",
+                  "tags": [
+                    "Town Hall"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "ApiKeyAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://api.happily.ai/prod"
+              },
+              {
+                "description": "Staging",
+                "url": "https://api.happily.ai/staging"
+              },
+              {
+                "description": "Development / sandbox",
+                "url": "https://api.happily.ai/dev"
+              },
+              {
+                "description": "Direct API Gateway invoke URL (prod, us-east-2)",
+                "url": "https://ln1buvf68h.execute-api.us-east-2.amazonaws.com/prod"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Send recognition (coins) to people, teams, and cohorts, and read the\nrecognition a member has received. Recognition is the most popular\nHappily.ai resource and a great first integration.\n",
+                "name": "Recognition"
+              },
+              {
+                "description": "Sync your employee directory from an HRIS, list members, and read a\nmember's engagement profile.\n",
+                "name": "Members"
+              },
+              {
+                "description": "Read the survey questions configured for your company and the responses\nmembers have submitted.\n",
+                "name": "Surveys"
+              },
+              {
+                "description": "Submit performance review \"boosts\", read performance feedback between\ncolleagues, and manage reusable review templates (presets).\n",
+                "name": "Performance"
+              },
+              {
+                "description": "Generate Town Hall feed content for your company.",
+                "name": "Town Hall"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Happily.ai"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:35.487280+00:00",
+    "license": {
+      "name": "Proprietary (© Happily.ai)",
+      "url": "https://happily.ai"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://developer.happily.ai/openapi.yaml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "3b789492e56175c1c0d5d407a692b92a6ff257b1e47efb0d016a61ca324b2808",
+    "source_id": "happily-ai",
+    "source_updated": null,
+    "url": "https://developer.happily.ai/openapi.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0"
+}

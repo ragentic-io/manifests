@@ -1,0 +1,3622 @@
+{
+  "a2ui": {},
+  "app": "socialrails",
+  "graph": {
+    "edges": [
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:get:/accounts"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:get:/accounts/{id}/settings"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:post:/accounts/{id}/tools"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:post:/ai/generate"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:get:/analytics"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:get:/health"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:post:/media/upload"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:post:/media/upload-url"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/media/{id}"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:get:/posts"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:post:/posts"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:post:/posts/batch"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:get:/posts/{id}"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/posts/{id}"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/posts/{id}"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:get:/share-links"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:post:/share-links"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/share-links/{id}"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:get:/webhooks"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:post:/webhooks"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/webhooks/{id}"
+      },
+      {
+        "from": "socialrails",
+        "kind": "EXPOSES",
+        "to": "operation:get:/workspace"
+      },
+      {
+        "from": "operation:post:/posts",
+        "kind": "ACCEPTS",
+        "to": "schema:CreatePostRequest"
+      },
+      {
+        "from": "operation:post:/posts/batch",
+        "kind": "ACCEPTS",
+        "to": "schema:BatchPostRequest"
+      },
+      {
+        "from": "operation:patch:/posts/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:UpdatePostRequest"
+      },
+      {
+        "from": "operation:post:/share-links",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateShareLinkRequest"
+      },
+      {
+        "from": "schema:BatchPostRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Platform"
+      },
+      {
+        "from": "schema:CreatePostRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Platform"
+      },
+      {
+        "from": "schema:CreatePostRequest",
+        "kind": "REFERENCES",
+        "to": "schema:PlatformSettings"
+      },
+      {
+        "from": "schema:CreateShareLinkRequest",
+        "kind": "REFERENCES",
+        "to": "schema:AccountPlatform"
+      },
+      {
+        "from": "schema:UpdatePostRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Platform"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "socialrails",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "List connected social media accounts.",
+        "id": "operation:get:/accounts",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /accounts",
+        "path": "/accounts",
+        "pointer": "#/paths/~1accounts/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "List accounts",
+        "tags": [
+          "Accounts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get platform capabilities, default settings, and available tools for a connected account.",
+        "id": "operation:get:/accounts/{id}/settings",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /accounts/{id}/settings",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/accounts/{id}/settings",
+        "pointer": "#/paths/~1accounts~1{id}~1settings/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Get account settings",
+        "tags": [
+          "Accounts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Trigger a platform discovery tool (e.g.",
+        "id": "operation:post:/accounts/{id}/tools",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /accounts/{id}/tools",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/accounts/{id}/tools",
+        "pointer": "#/paths/~1accounts~1{id}~1tools/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Trigger account tool",
+        "tags": [
+          "Accounts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Generate AI-powered social media content.",
+        "id": "operation:post:/ai/generate",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /ai/generate",
+        "path": "/ai/generate",
+        "pointer": "#/paths/~1ai~1generate/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Generate AI content",
+        "tags": [
+          "AI"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get posting analytics for your workspace.",
+        "id": "operation:get:/analytics",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /analytics",
+        "parameters": [
+          {
+            "description": "Filter by platform",
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "Platform"
+          },
+          {
+            "default": "7d",
+            "description": "Time period",
+            "enum": [
+              "7d",
+              "30d",
+              "90d",
+              "365d"
+            ],
+            "in": "query",
+            "name": "period",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Get analytics for a specific post",
+            "in": "query",
+            "name": "post_id",
+            "required": false,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/analytics",
+        "pointer": "#/paths/~1analytics/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Get analytics",
+        "tags": [
+          "Analytics"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Public endpoint — no authentication required.",
+        "id": "operation:get:/health",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /health",
+        "path": "/health",
+        "pointer": "#/paths/~1health/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Health check",
+        "tags": [
+          "Health"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Upload a file via multipart form data.",
+        "id": "operation:post:/media/upload",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /media/upload",
+        "path": "/media/upload",
+        "pointer": "#/paths/~1media~1upload/post",
+        "request": {
+          "content_types": [
+            "multipart/form-data"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "413",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Upload a file",
+        "tags": [
+          "Media"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide a publicly accessible URL and SocialRails will fetch and store the media.",
+        "id": "operation:post:/media/upload-url",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /media/upload-url",
+        "path": "/media/upload-url",
+        "pointer": "#/paths/~1media~1upload-url/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "413",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Upload from URL",
+        "tags": [
+          "Media"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Delete a previously uploaded media file from storage by its `media_id`.",
+        "id": "operation:delete:/media/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete /media/{id}",
+        "parameters": [
+          {
+            "description": "The `media_id` returned by the upload endpoint",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/media/{id}",
+        "pointer": "#/paths/~1media~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Delete uploaded media",
+        "tags": [
+          "Media"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List posts in your workspace.",
+        "id": "operation:get:/posts",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /posts",
+        "parameters": [
+          {
+            "description": "Filter by status (use 'posted' or 'published' for completed posts)",
+            "enum": [
+              "scheduled",
+              "posted",
+              "published",
+              "draft",
+              "failed"
+            ],
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by platform",
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "Platform"
+          },
+          {
+            "default": "created_at",
+            "description": "Sort field",
+            "enum": [
+              "created_at",
+              "scheduled_for"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Posts on or after this date.",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "string:date-time"
+          },
+          {
+            "description": "Posts on or before this date.",
+            "in": "query",
+            "name": "to",
+            "required": false,
+            "type": "string:date-time"
+          },
+          {
+            "default": 50,
+            "description": "Results per page",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Pagination offset",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Only posts going to these Facebook pages.",
+            "in": "query",
+            "name": "facebook_pages",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Only posts going to these LinkedIn pages.",
+            "in": "query",
+            "name": "linkedin_pages",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Only posts going to these Pinterest boards.",
+            "in": "query",
+            "name": "pinterest_boards",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Only posts going to these single-account platforms.",
+            "in": "query",
+            "name": "accounts",
+            "required": false,
+            "type": "AccountPlatform[]"
+          }
+        ],
+        "path": "/posts",
+        "pointer": "#/paths/~1posts/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "List posts",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Create a new post.",
+        "id": "operation:post:/posts",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /posts",
+        "path": "/posts",
+        "pointer": "#/paths/~1posts/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreatePostRequest"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Create a post",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Create the same post for multiple platforms.",
+        "id": "operation:post:/posts/batch",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /posts/batch",
+        "path": "/posts/batch",
+        "pointer": "#/paths/~1posts~1batch/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "BatchPostRequest"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Batch create posts",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get a single post by ID.",
+        "id": "operation:get:/posts/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /posts/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/posts/{id}",
+        "pointer": "#/paths/~1posts~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Get a post",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Delete a draft or scheduled post.",
+        "id": "operation:delete:/posts/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete /posts/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/posts/{id}",
+        "pointer": "#/paths/~1posts~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Delete a post",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Update a draft or scheduled post.",
+        "id": "operation:patch:/posts/{id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch /posts/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/posts/{id}",
+        "pointer": "#/paths/~1posts~1{id}/patch",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "UpdatePostRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Update a post",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List the workspace's client share links.",
+        "id": "operation:get:/share-links",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /share-links",
+        "path": "/share-links",
+        "pointer": "#/paths/~1share-links/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "List client share links",
+        "tags": [
+          "Share links"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Create a read-only link that shows a client their upcoming posts without logging in.",
+        "id": "operation:post:/share-links",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /share-links",
+        "path": "/share-links",
+        "pointer": "#/paths/~1share-links/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateShareLinkRequest"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Create a client share link",
+        "tags": [
+          "Share links"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The link stops working immediately.",
+        "id": "operation:delete:/share-links/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete /share-links/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/share-links/{id}",
+        "pointer": "#/paths/~1share-links~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Turn off a client share link",
+        "tags": [
+          "Share links"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List registered webhooks.",
+        "id": "operation:get:/webhooks",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /webhooks",
+        "path": "/webhooks",
+        "pointer": "#/paths/~1webhooks/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "List webhooks",
+        "tags": [
+          "Webhooks"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Register a new webhook endpoint.",
+        "id": "operation:post:/webhooks",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /webhooks",
+        "path": "/webhooks",
+        "pointer": "#/paths/~1webhooks/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Register a webhook",
+        "tags": [
+          "Webhooks"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Remove a webhook registration.",
+        "id": "operation:delete:/webhooks/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete /webhooks/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/webhooks/{id}",
+        "pointer": "#/paths/~1webhooks~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Delete a webhook",
+        "tags": [
+          "Webhooks"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get workspace info, plan limits, and current usage.",
+        "id": "operation:get:/workspace",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /workspace",
+        "path": "/workspace",
+        "pointer": "#/paths/~1workspace/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Get workspace info",
+        "tags": [
+          "Workspace"
+        ]
+      },
+      {
+        "id": "schema:Account",
+        "kind": "schema",
+        "name": "Account",
+        "type": "object"
+      },
+      {
+        "description": "A platform that posts to its one connected account.",
+        "id": "schema:AccountPlatform",
+        "kind": "schema",
+        "name": "AccountPlatform",
+        "type": "string"
+      },
+      {
+        "id": "schema:BatchPostRequest",
+        "kind": "schema",
+        "name": "BatchPostRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreatePostRequest",
+        "kind": "schema",
+        "name": "CreatePostRequest",
+        "type": "object"
+      },
+      {
+        "description": "Name at least one page or account, or set all_accounts to true.",
+        "id": "schema:CreateShareLinkRequest",
+        "kind": "schema",
+        "name": "CreateShareLinkRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:MediaUpload",
+        "kind": "schema",
+        "name": "MediaUpload",
+        "type": "object"
+      },
+      {
+        "id": "schema:Pagination",
+        "kind": "schema",
+        "name": "Pagination",
+        "type": "object"
+      },
+      {
+        "id": "schema:Platform",
+        "kind": "schema",
+        "name": "Platform",
+        "type": "string"
+      },
+      {
+        "id": "schema:PlatformCapabilities",
+        "kind": "schema",
+        "name": "PlatformCapabilities",
+        "type": "object"
+      },
+      {
+        "description": "Platform-specific settings.",
+        "id": "schema:PlatformSettings",
+        "kind": "schema",
+        "name": "PlatformSettings",
+        "type": "object"
+      },
+      {
+        "id": "schema:Post",
+        "kind": "schema",
+        "name": "Post",
+        "type": "object"
+      },
+      {
+        "id": "schema:ShareLink",
+        "kind": "schema",
+        "name": "ShareLink",
+        "type": "object"
+      },
+      {
+        "id": "schema:UpdatePostRequest",
+        "kind": "schema",
+        "name": "UpdatePostRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:Webhook",
+        "kind": "schema",
+        "name": "Webhook",
+        "type": "object"
+      },
+      {
+        "id": "schema:WebhookCreated",
+        "kind": "schema",
+        "name": "WebhookCreated",
+        "type": "object"
+      },
+      {
+        "id": "schema:Workspace",
+        "kind": "schema",
+        "name": "Workspace",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "socialrails"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://socialrails.com/api/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "headers": {
+                "X-RateLimit-Limit": {
+                  "description": "Maximum requests allowed per hour",
+                  "schema": {
+                    "example": 300,
+                    "type": "integer"
+                  }
+                },
+                "X-RateLimit-Remaining": {
+                  "description": "Requests remaining in the current window",
+                  "schema": {
+                    "example": 247,
+                    "type": "integer"
+                  }
+                },
+                "X-RateLimit-Reset": {
+                  "description": "Unix timestamp when the window resets",
+                  "schema": {
+                    "example": 1709402400,
+                    "type": "integer"
+                  }
+                }
+              },
+              "responses": {
+                "BadRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Bad request — missing or invalid fields"
+                },
+                "Forbidden": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "API key lacks the required scope, or plan does not include API access"
+                },
+                "NotFound": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Resource not found"
+                },
+                "PayloadTooLarge": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Request body exceeds size limit"
+                },
+                "RateLimited": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Rate limit exceeded",
+                  "headers": {
+                    "X-RateLimit-Limit": {
+                      "$ref": "#/components/headers/X-RateLimit-Limit"
+                    },
+                    "X-RateLimit-Remaining": {
+                      "$ref": "#/components/headers/X-RateLimit-Remaining"
+                    },
+                    "X-RateLimit-Reset": {
+                      "$ref": "#/components/headers/X-RateLimit-Reset"
+                    }
+                  }
+                },
+                "Unauthorized": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Missing, invalid, or expired API key"
+                }
+              },
+              "schemas": {
+                "Account": {
+                  "properties": {
+                    "connected_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "provider": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "connected",
+                        "expired",
+                        "needs_reauth"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "AccountPlatform": {
+                  "description": "A platform that posts to its one connected account. `x` is an alias for `twitter`.",
+                  "enum": [
+                    "instagram",
+                    "twitter",
+                    "x",
+                    "tiktok",
+                    "threads",
+                    "bluesky",
+                    "youtube"
+                  ],
+                  "type": "string"
+                },
+                "BatchPostRequest": {
+                  "properties": {
+                    "content": {
+                      "description": "Default post text",
+                      "maxLength": 5000,
+                      "type": "string"
+                    },
+                    "media": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "platform_content": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Per-platform content overrides",
+                      "type": "object"
+                    },
+                    "platform_settings": {
+                      "description": "Per-platform settings overrides",
+                      "type": "object"
+                    },
+                    "platforms": {
+                      "items": {
+                        "$ref": "#/components/schemas/Platform"
+                      },
+                      "maxItems": 9,
+                      "type": "array"
+                    },
+                    "scheduled_for": {
+                      "format": "date-time",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "content",
+                    "platforms"
+                  ],
+                  "type": "object"
+                },
+                "CreatePostRequest": {
+                  "properties": {
+                    "content": {
+                      "description": "Post text",
+                      "maxLength": 5000,
+                      "type": "string"
+                    },
+                    "media": {
+                      "description": "R2 keys returned by the media upload endpoint. The post type is determined automatically based on what you pass:\n\n**Video posts:** Pass one video key + one thumbnail key (e.g. `[\"workspace/api-uploads/videos/x.mp4\", \"workspace/api-uploads/thumbnails/x.jpg\"]`). The thumbnail key must be under the `/thumbnails/` path (upload with `type: thumbnail`).\n\n**Instagram carousel:** Pass 2–10 image keys → automatically posted as a carousel.\n\n**Facebook multi-photo:** Pass 2–10 image keys → automatically posted as a multi-photo post.\n\n**TikTok photo post:** Pass 1–35 image keys with no video → posted as a TikTok photo/slideshow. Only JPEG and WebP are supported (not PNG or GIF).\n\n**Stories (Instagram/Facebook):** Pass a single image or video key and set `postType: story` (Instagram) or `videoType: story` (Facebook) in `platform_settings`.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "platform": {
+                      "$ref": "#/components/schemas/Platform"
+                    },
+                    "platform_settings": {
+                      "$ref": "#/components/schemas/PlatformSettings",
+                      "description": "Override platform-specific settings. Defaults are loaded from your workspace dashboard settings."
+                    },
+                    "scheduled_for": {
+                      "description": "ISO 8601 date in the future. Omit to save as draft.",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "thread": {
+                      "description": "Thread content. First item = main post, rest = replies. Only supported on twitter and threads.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "maxItems": 25,
+                      "minItems": 2,
+                      "type": "array"
+                    },
+                    "thread_delay": {
+                      "default": 0,
+                      "description": "Delay between thread items in minutes (0-60)",
+                      "maximum": 60,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    "thread_media": {
+                      "additionalProperties": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "description": "Media keys per thread item, keyed by index (e.g. {\"0\": [\"key1\"], \"2\": [\"key2\"]})",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "content",
+                    "platform"
+                  ],
+                  "type": "object"
+                },
+                "CreateShareLinkRequest": {
+                  "description": "Name at least one page or account, or set all_accounts to true.",
+                  "properties": {
+                    "accounts": {
+                      "items": {
+                        "$ref": "#/components/schemas/AccountPlatform"
+                      },
+                      "type": "array"
+                    },
+                    "all_accounts": {
+                      "type": "boolean"
+                    },
+                    "facebook_pages": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "linkedin_pages": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "name": {
+                      "maxLength": 120,
+                      "type": "string"
+                    },
+                    "pinterest_boards": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Error": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "documentation_url": {
+                          "description": "Link to relevant documentation for this error",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "MediaUpload": {
+                  "properties": {
+                    "content_type": {
+                      "example": "image/jpeg",
+                      "type": "string"
+                    },
+                    "key": {
+                      "description": "R2 storage key — use this in the `media` array when creating posts",
+                      "example": "workspace-id/api-uploads/images/uuid.jpg",
+                      "type": "string"
+                    },
+                    "media_id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "size": {
+                      "description": "File size in bytes",
+                      "type": "integer"
+                    },
+                    "type": {
+                      "enum": [
+                        "image",
+                        "video",
+                        "thumbnail"
+                      ],
+                      "type": "string"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Pagination": {
+                  "properties": {
+                    "has_more": {
+                      "description": "Whether there are more items beyond the current page",
+                      "type": "boolean"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Platform": {
+                  "enum": [
+                    "twitter",
+                    "linkedin",
+                    "facebook",
+                    "instagram",
+                    "tiktok",
+                    "bluesky",
+                    "pinterest",
+                    "threads",
+                    "youtube"
+                  ],
+                  "type": "string"
+                },
+                "PlatformCapabilities": {
+                  "properties": {
+                    "available_settings": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Platform-specific setting fields and their descriptions",
+                      "type": "object"
+                    },
+                    "character_limit": {
+                      "description": "Maximum characters per post",
+                      "type": "integer"
+                    },
+                    "max_media_images": {
+                      "type": "integer"
+                    },
+                    "max_media_videos": {
+                      "type": "integer"
+                    },
+                    "supports_media": {
+                      "type": "boolean"
+                    },
+                    "supports_thread": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PlatformSettings": {
+                  "description": "Platform-specific settings. Pass inside platform_settings keyed by platform name.",
+                  "properties": {
+                    "facebook": {
+                      "properties": {
+                        "selectedPage": {
+                          "description": "Facebook page ID to post as. **Required** — posts will fail without this. Configure a default in Dashboard > Settings or pass it here.",
+                          "type": "string"
+                        },
+                        "selectedPages": {
+                          "description": "Multiple Facebook page IDs (posts to all of them)",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "videoType": {
+                          "default": "reel",
+                          "description": "`reel` — Facebook Reel (default). `video` — standard video post. `story` — Facebook Story (single image or video, disappears after 24h).",
+                          "enum": [
+                            "reel",
+                            "video",
+                            "story"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "instagram": {
+                      "properties": {
+                        "postType": {
+                          "default": "reel",
+                          "description": "`reel` — Instagram Reel (default, video). `image` — single image post; pass 2–10 image keys in `media` for a carousel. `story` — Instagram Story (single image or video, disappears after 24h).",
+                          "enum": [
+                            "reel",
+                            "image",
+                            "story"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "linkedin": {
+                      "properties": {
+                        "selectedLocation": {
+                          "description": "Company page ID to post as",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "pinterest": {
+                      "properties": {
+                        "destinationLink": {
+                          "description": "URL the pin links to",
+                          "type": "string"
+                        },
+                        "selectedBoard": {
+                          "description": "Board ID (required for Pinterest)",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "threads": {
+                      "properties": {
+                        "reply_control": {
+                          "default": "everyone",
+                          "enum": [
+                            "everyone",
+                            "accounts_you_follow",
+                            "mentioned_only"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tiktok": {
+                      "properties": {
+                        "commercial_content": {
+                          "properties": {
+                            "branded_content": {
+                              "default": true,
+                              "type": "boolean"
+                            },
+                            "enabled": {
+                              "default": true,
+                              "type": "boolean"
+                            },
+                            "your_brand": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "interactions": {
+                          "properties": {
+                            "allow_comment": {
+                              "default": true,
+                              "type": "boolean"
+                            },
+                            "allow_duet": {
+                              "default": true,
+                              "type": "boolean"
+                            },
+                            "allow_stitch": {
+                              "default": true,
+                              "type": "boolean"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "photo_cover_index": {
+                          "default": 0,
+                          "description": "For photo/slideshow posts: index of the cover image (0-based). Ignored for video posts.",
+                          "type": "integer"
+                        },
+                        "post_mode": {
+                          "default": "DIRECT_POST",
+                          "description": "`DIRECT_POST` publishes immediately. `UPLOAD_TO_INBOX` saves to drafts for manual review.",
+                          "enum": [
+                            "DIRECT_POST",
+                            "UPLOAD_TO_INBOX"
+                          ],
+                          "type": "string"
+                        },
+                        "privacy_status": {
+                          "default": "PUBLIC_TO_EVERYONE",
+                          "enum": [
+                            "PUBLIC_TO_EVERYONE",
+                            "MUTUAL_FOLLOW_FRIENDS",
+                            "FOLLOWER_OF_CREATOR",
+                            "SELF_ONLY"
+                          ],
+                          "type": "string"
+                        },
+                        "title": {
+                          "description": "Video title (TikTok video posts)",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "twitter": {
+                      "properties": {
+                        "selectedCommunities": {
+                          "description": "Community IDs to cross-post to",
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Post": {
+                  "properties": {
+                    "content": {
+                      "description": "Post content as JSON object or string",
+                      "example": {
+                        "all": "Check out our latest update!"
+                      }
+                    },
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "destinations": {
+                      "description": "The pages, boards or accounts this post goes to",
+                      "items": {
+                        "properties": {
+                          "name": {
+                            "example": "Rosie's Bakery",
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "platform": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "error_message": {
+                      "description": "Reason for failure when status is `failed`",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "media": {
+                      "description": "R2 keys of attached media files",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "platform": {
+                      "type": "string"
+                    },
+                    "posted_at": {
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "scheduled_for": {
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "`draft` — not yet scheduled. `scheduled` — queued for publishing. `posted` — successfully published. `failed` — publishing failed, see `error_message`.",
+                      "enum": [
+                        "draft",
+                        "scheduled",
+                        "posted",
+                        "failed"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ShareLink": {
+                  "properties": {
+                    "accounts": {
+                      "description": "\"all\", or the pages and accounts the link shows",
+                      "oneOf": [
+                        {
+                          "enum": [
+                            "all"
+                          ],
+                          "type": "string"
+                        },
+                        {
+                          "example": [
+                            "Facebook: Rosie's Bakery",
+                            "Instagram"
+                          ],
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        }
+                      ]
+                    },
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "Rosie's Bakery",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "The page to send to the client",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "UpdatePostRequest": {
+                  "properties": {
+                    "content": {
+                      "maxLength": 5000,
+                      "type": "string"
+                    },
+                    "media": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "platform": {
+                      "$ref": "#/components/schemas/Platform"
+                    },
+                    "platform_settings": {
+                      "type": "object"
+                    },
+                    "scheduled_for": {
+                      "description": "Set to null to revert to draft",
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Webhook": {
+                  "properties": {
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "events": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "WebhookCreated": {
+                  "properties": {
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "events": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "secret": {
+                      "description": "Signing secret — save this, it is only shown once",
+                      "type": "string"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Workspace": {
+                  "properties": {
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "limits": {
+                      "properties": {
+                        "api_keys_max": {
+                          "type": "integer"
+                        },
+                        "api_requests_per_hour": {
+                          "type": "integer"
+                        },
+                        "max_ai_credits_per_month": {
+                          "type": "integer"
+                        },
+                        "max_posts_per_month": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "plan": {
+                      "type": "string"
+                    },
+                    "usage": {
+                      "properties": {
+                        "posts_this_month": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "BearerAuth": {
+                  "description": "API key from Dashboard > Settings > API. Keys start with `sr_live_`.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "contact@socialrails.com",
+                "name": "SocialRails",
+                "url": "https://socialrails.com"
+              },
+              "description": "Schedule social media posts, view analytics, generate AI content, and manage integrations with the SocialRails API.",
+              "license": {
+                "name": "Proprietary"
+              },
+              "title": "SocialRails Public API",
+              "version": "1.6.0",
+              "x-logo": {
+                "url": "https://socialrails.com/images/logo.png"
+              }
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/accounts": {
+                "get": {
+                  "description": "List connected social media accounts. Never exposes access tokens. Requires `read` scope.",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Account"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "List of connected accounts"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "summary": "List accounts",
+                  "tags": [
+                    "Accounts"
+                  ]
+                }
+              },
+              "/accounts/{id}/settings": {
+                "get": {
+                  "description": "Get platform capabilities, default settings, and available tools for a connected account. Requires `read` scope.",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "account_id": {
+                                    "format": "uuid",
+                                    "type": "string"
+                                  },
+                                  "available_tools": {
+                                    "description": "Tools that can be triggered via POST /accounts/{id}/tools",
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "capabilities": {
+                                    "$ref": "#/components/schemas/PlatformCapabilities"
+                                  },
+                                  "defaults": {
+                                    "description": "Workspace default settings for this platform",
+                                    "type": "object"
+                                  },
+                                  "platform": {
+                                    "$ref": "#/components/schemas/Platform"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Account settings and capabilities"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "summary": "Get account settings",
+                  "tags": [
+                    "Accounts"
+                  ]
+                }
+              },
+              "/accounts/{id}/tools": {
+                "post": {
+                  "description": "Trigger a platform discovery tool (e.g. list Facebook pages, Pinterest boards). Requires `read` scope.",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "tool": {
+                              "description": "Tool name: pages (facebook), boards (pinterest), companies (linkedin), communities (twitter)",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "tool"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "platform": {
+                                    "type": "string"
+                                  },
+                                  "results": {
+                                    "items": {},
+                                    "type": "array"
+                                  },
+                                  "tool": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Tool results"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "summary": "Trigger account tool",
+                  "tags": [
+                    "Accounts"
+                  ]
+                }
+              },
+              "/ai/generate": {
+                "post": {
+                  "description": "Generate AI-powered social media content. Each request deducts 2 AI credits. Requires `ai` scope.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "platform": {
+                              "$ref": "#/components/schemas/Platform"
+                            },
+                            "prompt": {
+                              "description": "What to generate",
+                              "maxLength": 2000,
+                              "type": "string"
+                            },
+                            "tone": {
+                              "default": "professional",
+                              "description": "Tone of voice (e.g. professional, casual, excited, humorous)",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "prompt"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "content": {
+                                    "type": "string"
+                                  },
+                                  "platform": {
+                                    "type": "string"
+                                  },
+                                  "tone": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Generated content"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "summary": "Generate AI content",
+                  "tags": [
+                    "AI"
+                  ]
+                }
+              },
+              "/analytics": {
+                "get": {
+                  "description": "Get posting analytics for your workspace. Requires `read` scope.",
+                  "parameters": [
+                    {
+                      "description": "Filter by platform",
+                      "in": "query",
+                      "name": "platform",
+                      "schema": {
+                        "$ref": "#/components/schemas/Platform"
+                      }
+                    },
+                    {
+                      "description": "Time period",
+                      "in": "query",
+                      "name": "period",
+                      "schema": {
+                        "default": "7d",
+                        "enum": [
+                          "7d",
+                          "30d",
+                          "90d",
+                          "365d"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Get analytics for a specific post",
+                      "in": "query",
+                      "name": "post_id",
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "by_platform": {
+                                    "items": {
+                                      "properties": {
+                                        "engagement": {
+                                          "description": "Total engagement (likes, comments, shares)",
+                                          "type": "integer"
+                                        },
+                                        "followers": {
+                                          "description": "Current follower count",
+                                          "type": "integer"
+                                        },
+                                        "impressions": {
+                                          "description": "Total impressions",
+                                          "type": "integer"
+                                        },
+                                        "platform": {
+                                          "type": "string"
+                                        },
+                                        "posts_published": {
+                                          "type": "integer"
+                                        },
+                                        "reach": {
+                                          "description": "Total reach",
+                                          "type": "integer"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "last_updated": {
+                                    "description": "When engagement data was last refreshed",
+                                    "format": "date-time",
+                                    "type": "string"
+                                  },
+                                  "overview": {
+                                    "description": "Aggregate engagement metrics across all platforms. Present when engagement data is available.",
+                                    "properties": {
+                                      "engagement_growth": {
+                                        "description": "Percentage growth vs previous period",
+                                        "type": "number"
+                                      },
+                                      "follower_growth": {
+                                        "type": "number"
+                                      },
+                                      "reach_growth": {
+                                        "type": "number"
+                                      },
+                                      "total_engagement": {
+                                        "type": "integer"
+                                      },
+                                      "total_followers": {
+                                        "type": "integer"
+                                      },
+                                      "total_reach": {
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "period": {
+                                    "type": "string"
+                                  },
+                                  "since": {
+                                    "format": "date-time",
+                                    "type": "string"
+                                  },
+                                  "total_platform_posts": {
+                                    "description": "Total posts counted per platform",
+                                    "type": "integer"
+                                  },
+                                  "total_posts": {
+                                    "description": "Total unique posts",
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Analytics data"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "summary": "Get analytics",
+                  "tags": [
+                    "Analytics"
+                  ]
+                }
+              },
+              "/health": {
+                "get": {
+                  "description": "Public endpoint — no authentication required. Verify connectivity.",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "status": {
+                                    "example": "ok",
+                                    "type": "string"
+                                  },
+                                  "timestamp": {
+                                    "format": "date-time",
+                                    "type": "string"
+                                  },
+                                  "version": {
+                                    "example": "1.0",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "API is healthy"
+                    }
+                  },
+                  "security": [],
+                  "summary": "Health check",
+                  "tags": [
+                    "Health"
+                  ]
+                }
+              },
+              "/media/upload": {
+                "post": {
+                  "description": "Upload a file via multipart form data. Images (JPEG, PNG, GIF, WebP): max 10MB. Videos (MP4): max 100MB. Requires `write` scope.\n\nFor video posts, upload the video with `type: video` and a separate thumbnail with `type: thumbnail`, then pass both keys in the `media` array when creating the post.",
+                  "requestBody": {
+                    "content": {
+                      "multipart/form-data": {
+                        "schema": {
+                          "properties": {
+                            "file": {
+                              "description": "The file to upload",
+                              "format": "binary",
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "Media type override. Use 'thumbnail' for video cover images.",
+                              "enum": [
+                                "image",
+                                "video",
+                                "thumbnail"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "file"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/MediaUpload"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "File uploaded"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "413": {
+                      "$ref": "#/components/responses/PayloadTooLarge"
+                    }
+                  },
+                  "summary": "Upload a file",
+                  "tags": [
+                    "Media"
+                  ]
+                }
+              },
+              "/media/upload-url": {
+                "post": {
+                  "description": "Provide a publicly accessible URL and SocialRails will fetch and store the media. Images: max 10MB. Videos (MP4): max 100MB. The URL must serve the file with a correct `Content-Type` header (e.g. `video/mp4`). Requires `write` scope.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "type": {
+                              "description": "Media type override",
+                              "enum": [
+                                "image",
+                                "video",
+                                "thumbnail"
+                              ],
+                              "type": "string"
+                            },
+                            "url": {
+                              "description": "Public URL of the media to fetch",
+                              "format": "uri",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "url"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/MediaUpload"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "File uploaded from URL"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "413": {
+                      "$ref": "#/components/responses/PayloadTooLarge"
+                    }
+                  },
+                  "summary": "Upload from URL",
+                  "tags": [
+                    "Media"
+                  ]
+                }
+              },
+              "/media/{id}": {
+                "delete": {
+                  "description": "Delete a previously uploaded media file from storage by its `media_id`. Requires `write` scope.",
+                  "parameters": [
+                    {
+                      "description": "The `media_id` returned by the upload endpoint",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "deleted": {
+                                    "example": true,
+                                    "type": "boolean"
+                                  },
+                                  "media_id": {
+                                    "format": "uuid",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Media deleted"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "summary": "Delete uploaded media",
+                  "tags": [
+                    "Media"
+                  ]
+                }
+              },
+              "/posts": {
+                "get": {
+                  "description": "List posts in your workspace. Requires `read` scope.",
+                  "parameters": [
+                    {
+                      "description": "Filter by status (use 'posted' or 'published' for completed posts)",
+                      "in": "query",
+                      "name": "status",
+                      "schema": {
+                        "enum": [
+                          "scheduled",
+                          "posted",
+                          "published",
+                          "draft",
+                          "failed"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by platform",
+                      "in": "query",
+                      "name": "platform",
+                      "schema": {
+                        "$ref": "#/components/schemas/Platform"
+                      }
+                    },
+                    {
+                      "description": "Sort field",
+                      "in": "query",
+                      "name": "sort",
+                      "schema": {
+                        "default": "created_at",
+                        "enum": [
+                          "created_at",
+                          "scheduled_for"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Posts on or after this date. Compared against the sort field: created_at by default, scheduled_for when sort=scheduled_for.",
+                      "in": "query",
+                      "name": "from",
+                      "schema": {
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Posts on or before this date. Compared against the sort field: created_at by default, scheduled_for when sort=scheduled_for.",
+                      "in": "query",
+                      "name": "to",
+                      "schema": {
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Results per page",
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": 50,
+                        "maximum": 100,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "in": "query",
+                      "name": "offset",
+                      "schema": {
+                        "default": 0,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Only posts going to these Facebook pages. Repeat the parameter for several. Matched by id, exact name, then a unique partial name.",
+                      "explode": true,
+                      "in": "query",
+                      "name": "facebook_pages",
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "style": "form"
+                    },
+                    {
+                      "description": "Only posts going to these LinkedIn pages. Repeat the parameter for several. Matched by id, exact name, then a unique partial name.",
+                      "explode": true,
+                      "in": "query",
+                      "name": "linkedin_pages",
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "style": "form"
+                    },
+                    {
+                      "description": "Only posts going to these Pinterest boards. Repeat the parameter for several. Matched by id, exact name, then a unique partial name.",
+                      "explode": true,
+                      "in": "query",
+                      "name": "pinterest_boards",
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "style": "form"
+                    },
+                    {
+                      "description": "Only posts going to these single-account platforms. Page, board and account filters combine with OR.",
+                      "explode": true,
+                      "in": "query",
+                      "name": "accounts",
+                      "schema": {
+                        "items": {
+                          "$ref": "#/components/schemas/AccountPlatform"
+                        },
+                        "type": "array"
+                      },
+                      "style": "form"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Post"
+                                },
+                                "type": "array"
+                              },
+                              "pagination": {
+                                "$ref": "#/components/schemas/Pagination"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "List of posts",
+                      "headers": {
+                        "X-RateLimit-Limit": {
+                          "$ref": "#/components/headers/X-RateLimit-Limit"
+                        },
+                        "X-RateLimit-Remaining": {
+                          "$ref": "#/components/headers/X-RateLimit-Remaining"
+                        },
+                        "X-RateLimit-Reset": {
+                          "$ref": "#/components/headers/X-RateLimit-Reset"
+                        }
+                      }
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "List posts",
+                  "tags": [
+                    "Posts"
+                  ]
+                },
+                "post": {
+                  "description": "Create a new post. Requires `write` scope. Platform settings are automatically loaded from your workspace defaults.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreatePostRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Post"
+                              },
+                              "warnings": {
+                                "description": "Non-fatal advisory messages — e.g. missing optional settings that may affect publishing. The post was still created.",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Post created"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Create a post",
+                  "tags": [
+                    "Posts"
+                  ]
+                }
+              },
+              "/posts/batch": {
+                "post": {
+                  "description": "Create the same post for multiple platforms. Each platform counts as one post against your monthly limit. Requires `write` scope.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/BatchPostRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "batch_id": {
+                                    "format": "uuid",
+                                    "type": "string"
+                                  },
+                                  "posts": {
+                                    "items": {
+                                      "$ref": "#/components/schemas/Post"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "warnings": {
+                                "description": "Per-platform advisory messages, prefixed with the platform name (e.g. `linkedin: no company page selected`).",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Batch posts created"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Batch create posts",
+                  "tags": [
+                    "Posts"
+                  ]
+                }
+              },
+              "/posts/{id}": {
+                "delete": {
+                  "description": "Delete a draft or scheduled post. Published or failed posts cannot be deleted. Requires `write` scope.",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "deleted": {
+                                    "example": true,
+                                    "type": "boolean"
+                                  },
+                                  "id": {
+                                    "format": "uuid",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Post deleted"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "summary": "Delete a post",
+                  "tags": [
+                    "Posts"
+                  ]
+                },
+                "get": {
+                  "description": "Get a single post by ID. Requires `read` scope.",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Post"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Post details"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "summary": "Get a post",
+                  "tags": [
+                    "Posts"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a draft or scheduled post. Requires `write` scope. Only `draft` and `scheduled` posts can be updated.",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/UpdatePostRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Post"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Post updated"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "summary": "Update a post",
+                  "tags": [
+                    "Posts"
+                  ]
+                }
+              },
+              "/share-links": {
+                "get": {
+                  "description": "List the workspace's client share links. Requires `read` scope.",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/ShareLink"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Share links"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "summary": "List client share links",
+                  "tags": [
+                    "Share links"
+                  ]
+                },
+                "post": {
+                  "description": "Create a read-only link that shows a client their upcoming posts without logging in. Requires `write` scope. Up to 100 links per workspace.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateShareLinkRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/ShareLink"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Share link created"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Create a client share link",
+                  "tags": [
+                    "Share links"
+                  ]
+                }
+              },
+              "/share-links/{id}": {
+                "delete": {
+                  "description": "The link stops working immediately. Requires `write` scope.",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "deleted": {
+                                    "example": true,
+                                    "type": "boolean"
+                                  },
+                                  "id": {
+                                    "format": "uuid",
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "nullable": true,
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Share link turned off"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "summary": "Turn off a client share link",
+                  "tags": [
+                    "Share links"
+                  ]
+                }
+              },
+              "/webhooks": {
+                "get": {
+                  "description": "List registered webhooks. Requires `read` scope.",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Webhook"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "List of webhooks"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "List webhooks",
+                  "tags": [
+                    "Webhooks"
+                  ]
+                },
+                "post": {
+                  "description": "Register a new webhook endpoint. Max 10 per workspace. Requires `webhooks` scope.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "events": {
+                              "description": "Event types to subscribe to",
+                              "items": {
+                                "enum": [
+                                  "post.published",
+                                  "post.failed",
+                                  "post.scheduled"
+                                ],
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "url": {
+                              "description": "HTTPS URL to receive events",
+                              "format": "uri",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "url",
+                            "events"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/WebhookCreated"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Webhook registered"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "summary": "Register a webhook",
+                  "tags": [
+                    "Webhooks"
+                  ]
+                }
+              },
+              "/webhooks/{id}": {
+                "delete": {
+                  "description": "Remove a webhook registration. Requires `webhooks` scope.",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "deleted": {
+                                    "example": true,
+                                    "type": "boolean"
+                                  },
+                                  "id": {
+                                    "format": "uuid",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Webhook deleted"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "summary": "Delete a webhook",
+                  "tags": [
+                    "Webhooks"
+                  ]
+                }
+              },
+              "/workspace": {
+                "get": {
+                  "description": "Get workspace info, plan limits, and current usage. Requires `read` scope.",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Workspace"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Workspace details"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "summary": "Get workspace info",
+                  "tags": [
+                    "Workspace"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://socialrails.com/api/v1"
+              }
+            ],
+            "tags": [
+              {
+                "description": "API health check",
+                "name": "Health"
+              },
+              {
+                "description": "Create, read, update, and delete social media posts",
+                "name": "Posts"
+              },
+              {
+                "description": "View posting analytics",
+                "name": "Analytics"
+              },
+              {
+                "description": "List connected social media accounts",
+                "name": "Accounts"
+              },
+              {
+                "description": "Generate AI-powered social media content",
+                "name": "AI"
+              },
+              {
+                "description": "Workspace info and plan limits",
+                "name": "Workspace"
+              },
+              {
+                "description": "Upload images and videos for posts",
+                "name": "Media"
+              },
+              {
+                "description": "Register and manage webhook subscriptions",
+                "name": "Webhooks"
+              },
+              {
+                "description": "Read-only links that show a client their upcoming posts",
+                "name": "Share links"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "SocialRails"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:55.292215+00:00",
+    "license": {
+      "name": "Proprietary"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://socialrails.com/openapi.json",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "96ba6fb4f25093029d7347c35d0d200c3d9db40f47800e45ccd32ecf7bdd5260",
+    "source_id": "socialrails",
+    "source_updated": null,
+    "url": "https://socialrails.com/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.6.0"
+}

@@ -1,0 +1,510 @@
+{
+  "a2ui": {},
+  "app": "ncei-access-data-service",
+  "graph": {
+    "edges": [
+      {
+        "from": "ncei-access-data-service",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1"
+      },
+      {
+        "from": "operation:get:/v1",
+        "kind": "RETURNS",
+        "to": "schema:DataRecord"
+      },
+      {
+        "from": "schema:BadRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Error"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "ncei-access-data-service",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Some request parameters and output fields vary by dataset.",
+        "id": "operation:get:/v1",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDatasetData",
+        "parameters": [
+          {
+            "description": "Selects the dataset to query.",
+            "in": "query",
+            "name": "dataset",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated station identifiers used to subset results.",
+            "in": "query",
+            "name": "stations",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Optional ISO 8601 date or date-time lower bound.",
+            "in": "query",
+            "name": "startDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Optional ISO 8601 date or date-time upper bound.",
+            "in": "query",
+            "name": "endDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated, case-sensitive data type names; available names depend on the dataset.",
+            "in": "query",
+            "name": "dataTypes",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Geographic bounds in north,west,south,east order.",
+            "in": "query",
+            "name": "bbox",
+            "required": false,
+            "type": "number[]"
+          },
+          {
+            "default": "csv",
+            "description": "Requested response format.",
+            "enum": [
+              "csv",
+              "ssv",
+              "json",
+              "pdf",
+              "netcdf"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated option:value pairs; the documented station and attribute options can also be sent as individual parameters.",
+            "in": "query",
+            "name": "options",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Include data type attributes when available; defaults to false or 0.",
+            "in": "query",
+            "name": "includeAttributes",
+            "required": false,
+            "type": "boolean|integer"
+          },
+          {
+            "default": false,
+            "description": "Include station names when available; defaults to false or 0.",
+            "in": "query",
+            "name": "includeStationName",
+            "required": false,
+            "type": "boolean|integer"
+          },
+          {
+            "default": false,
+            "description": "Include station locations when available; defaults to false or 0.",
+            "in": "query",
+            "name": "includeStationLocation",
+            "required": false,
+            "type": "boolean|integer"
+          },
+          {
+            "description": "Convert supported values to metric or standard units.",
+            "enum": [
+              "metric",
+              "standard"
+            ],
+            "in": "query",
+            "name": "units",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/v1",
+        "pointer": "#/paths/~1v1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DataRecord[]"
+          },
+          {
+            "status": "400",
+            "type": "BadRequest"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve data from a dataset"
+      },
+      {
+        "id": "schema:BadRequest",
+        "kind": "schema",
+        "name": "BadRequest",
+        "type": "Error|object"
+      },
+      {
+        "description": "Fields vary by dataset.",
+        "id": "schema:DataRecord",
+        "kind": "schema",
+        "name": "DataRecord",
+        "type": "object"
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "ncei-access-data-service"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://www.ncei.noaa.gov/access/services/data",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "BadRequest": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Error"
+                    },
+                    {
+                      "properties": {
+                        "errors": {
+                          "items": {
+                            "additionalProperties": true,
+                            "properties": {
+                              "field": {
+                                "type": "string"
+                              },
+                              "message": {
+                                "type": "string"
+                              },
+                              "value": {}
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "DataRecord": {
+                  "additionalProperties": true,
+                  "description": "Fields vary by dataset. DATE and STATION appear in the provider's JSON example; selected data types and optional attributes add dataset-specific fields.",
+                  "properties": {
+                    "DATE": {
+                      "type": "string"
+                    },
+                    "STATION": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Error": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "errorCode": {
+                      "type": "integer"
+                    },
+                    "errorMessage": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained specification for the documented NCEI Access Data Service. Available datasets and some accepted parameters vary by dataset; response records therefore allow dataset-specific fields.",
+              "externalDocs": {
+                "description": "Official NCEI Access Data Service API documentation",
+                "url": "https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation"
+              },
+              "title": "NCEI Access Data Service API",
+              "version": "1"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/v1": {
+                "get": {
+                  "description": "Some request parameters and output fields vary by dataset. Supported output formats are CSV, SSV, JSON, PDF, and NetCDF.",
+                  "operationId": "getDatasetData",
+                  "parameters": [
+                    {
+                      "description": "Selects the dataset to query. Not all NCEI datasets are available through this service.",
+                      "in": "query",
+                      "name": "dataset",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Comma-separated station identifiers used to subset results.",
+                      "explode": false,
+                      "in": "query",
+                      "name": "stations",
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "style": "form"
+                    },
+                    {
+                      "description": "Optional ISO 8601 date or date-time lower bound. Must precede endDate when both are supplied. Encode a plus sign in a time-zone offset as %2B.",
+                      "in": "query",
+                      "name": "startDate",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Optional ISO 8601 date or date-time upper bound. Encode a plus sign in a time-zone offset as %2B.",
+                      "in": "query",
+                      "name": "endDate",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Comma-separated, case-sensitive data type names; available names depend on the dataset.",
+                      "explode": false,
+                      "in": "query",
+                      "name": "dataTypes",
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "style": "form"
+                    },
+                    {
+                      "description": "Geographic bounds in north,west,south,east order. Latitude values range from -90 to 90 and longitude values from -180 to 180.",
+                      "explode": false,
+                      "in": "query",
+                      "name": "bbox",
+                      "schema": {
+                        "items": {
+                          "type": "number"
+                        },
+                        "maxItems": 4,
+                        "minItems": 4,
+                        "type": "array"
+                      },
+                      "style": "form"
+                    },
+                    {
+                      "description": "Requested response format. Some formats may ignore selected data types.",
+                      "in": "query",
+                      "name": "format",
+                      "schema": {
+                        "default": "csv",
+                        "enum": [
+                          "csv",
+                          "ssv",
+                          "json",
+                          "pdf",
+                          "netcdf"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Comma-separated option:value pairs; the documented station and attribute options can also be sent as individual parameters.",
+                      "in": "query",
+                      "name": "options",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Include data type attributes when available; defaults to false or 0.",
+                      "in": "query",
+                      "name": "includeAttributes",
+                      "schema": {
+                        "default": false,
+                        "oneOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "enum": [
+                              0,
+                              1
+                            ],
+                            "type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "description": "Include station names when available; defaults to false or 0.",
+                      "in": "query",
+                      "name": "includeStationName",
+                      "schema": {
+                        "default": false,
+                        "oneOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "enum": [
+                              0,
+                              1
+                            ],
+                            "type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "description": "Include station locations when available; defaults to false or 0.",
+                      "in": "query",
+                      "name": "includeStationLocation",
+                      "schema": {
+                        "default": false,
+                        "oneOf": [
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "enum": [
+                              0,
+                              1
+                            ],
+                            "type": "integer"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "description": "Convert supported values to metric or standard units.",
+                      "in": "query",
+                      "name": "units",
+                      "schema": {
+                        "enum": [
+                          "metric",
+                          "standard"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "*/*": {
+                          "schema": {}
+                        },
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/DataRecord"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Dataset data. The format and record fields depend on the selected dataset and format parameter."
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/BadRequest"
+                          }
+                        }
+                      },
+                      "description": "Malformed request; the response includes a JSON error and may include field-level details."
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Internal service error."
+                    }
+                  },
+                  "summary": "Retrieve data from a dataset"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "NCEI Access Data Service",
+                "url": "https://www.ncei.noaa.gov/access/services/data"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "NCEI Access Data Service"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.625488+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/ncei-access-data-service/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "7d3210eff2923b82f5be04d1fb5e9425f97b23f59cf6581a24787d983cb95ae6",
+    "source_id": "ncei-access-data-service",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/ncei-access-data-service/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1"
+}

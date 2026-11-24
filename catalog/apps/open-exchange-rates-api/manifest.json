@@ -1,0 +1,716 @@
+{
+  "a2ui": {},
+  "app": "open-exchange-rates-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "open-exchange-rates-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/currencies.json"
+      },
+      {
+        "from": "open-exchange-rates-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/historical/{date}.json"
+      },
+      {
+        "from": "open-exchange-rates-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/latest.json"
+      },
+      {
+        "from": "open-exchange-rates-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/usage.json"
+      },
+      {
+        "from": "operation:get:/currencies.json",
+        "kind": "RETURNS",
+        "to": "schema:CurrenciesResponse"
+      },
+      {
+        "from": "operation:get:/historical/{date}.json",
+        "kind": "RETURNS",
+        "to": "schema:RatesResponse"
+      },
+      {
+        "from": "operation:get:/latest.json",
+        "kind": "RETURNS",
+        "to": "schema:RatesResponse"
+      },
+      {
+        "from": "operation:get:/usage.json",
+        "kind": "RETURNS",
+        "to": "schema:UsageResponse"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "open-exchange-rates-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns currency codes mapped to their display names.",
+        "id": "operation:get:/currencies.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /currencies.json",
+        "parameters": [
+          {
+            "description": "Optional App ID.",
+            "in": "query",
+            "name": "app_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Return a human-readable response.",
+            "in": "query",
+            "name": "prettyprint",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Include alternative currencies.",
+            "in": "query",
+            "name": "show_alternative",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Include historical or inactive currencies.",
+            "in": "query",
+            "name": "show_inactive",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/currencies.json",
+        "pointer": "#/paths/~1currencies.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CurrenciesResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List available currencies"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the last rates published for the requested UTC date.",
+        "id": "operation:get:/historical/{date}.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /historical/{date}.json",
+        "parameters": [
+          {
+            "description": "Requested date in YYYY-MM-DD format.",
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "type": "string:date"
+          },
+          {
+            "default": false,
+            "description": "Include alternative, black-market, and digital currency rates.",
+            "in": "query",
+            "name": "show_alternative",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Return a human-readable response; false minimizes the response.",
+            "in": "query",
+            "name": "prettyprint",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/historical/{date}.json",
+        "pointer": "#/paths/~1historical~1{date}.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "RatesResponse"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "appId": []
+          }
+        ],
+        "summary": "Get historical exchange rates"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the latest rates available on the App ID's plan.",
+        "id": "operation:get:/latest.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /latest.json",
+        "parameters": [
+          {
+            "description": "Comma-separated list of currency codes to return.",
+            "in": "query",
+            "name": "symbols",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Return a human-readable response; false minimizes the response.",
+            "in": "query",
+            "name": "prettyprint",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Include alternative, black-market, and digital currency rates.",
+            "in": "query",
+            "name": "show_alternative",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/latest.json",
+        "pointer": "#/paths/~1latest.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "RatesResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "appId": []
+          }
+        ],
+        "summary": "Get the latest exchange rates"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns plan and request usage information for the supplied App ID.",
+        "id": "operation:get:/usage.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /usage.json",
+        "parameters": [
+          {
+            "default": true,
+            "description": "Set to false to minimize the response.",
+            "in": "query",
+            "name": "prettyprint",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/usage.json",
+        "pointer": "#/paths/~1usage.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "UsageResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "appId": []
+          }
+        ],
+        "summary": "Get App ID plan and usage information"
+      },
+      {
+        "description": "Currency codes mapped to their singular, capitalized display names.",
+        "id": "schema:CurrenciesResponse",
+        "kind": "schema",
+        "name": "CurrenciesResponse",
+        "type": "object"
+      },
+      {
+        "description": "Common JSON error shape documented at https://docs.openexchangerates.org/reference/errors.",
+        "id": "schema:ErrorResponse",
+        "kind": "schema",
+        "name": "ErrorResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:RatesResponse",
+        "kind": "schema",
+        "name": "RatesResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:UsageResponse",
+        "kind": "schema",
+        "name": "UsageResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "open-exchange-rates-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://openexchangerates.org/api",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "CurrenciesResponse": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "Currency codes mapped to their singular, capitalized display names.",
+                  "type": "object"
+                },
+                "ErrorResponse": {
+                  "description": "Common JSON error shape documented at https://docs.openexchangerates.org/reference/errors.",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "RatesResponse": {
+                  "properties": {
+                    "base": {
+                      "description": "Three-letter code for the base currency.",
+                      "type": "string"
+                    },
+                    "disclaimer": {
+                      "type": "string"
+                    },
+                    "license": {
+                      "type": "string"
+                    },
+                    "rates": {
+                      "additionalProperties": {
+                        "type": "number"
+                      },
+                      "description": "Currency codes mapped to exchange rates relative to the base.",
+                      "type": "object"
+                    },
+                    "timestamp": {
+                      "description": "UNIX timestamp in UTC seconds.",
+                      "format": "int64",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "UsageResponse": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "app_id": {
+                          "type": "string"
+                        },
+                        "plan": {
+                          "properties": {
+                            "features": {
+                              "description": "Supported plan features; the provider docs do not specify this property's JSON shape."
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "quota": {
+                              "description": "Monthly request allowance formatted for display.",
+                              "type": "string"
+                            },
+                            "update_frequency": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "status": {
+                          "enum": [
+                            "active",
+                            "access_restricted"
+                          ],
+                          "type": "string"
+                        },
+                        "usage": {
+                          "properties": {
+                            "daily_average": {
+                              "type": "number"
+                            },
+                            "days_elapsed": {
+                              "type": "integer"
+                            },
+                            "days_remaining": {
+                              "type": "integer"
+                            },
+                            "requests": {
+                              "type": "integer"
+                            },
+                            "requests_quota": {
+                              "description": "Unlimited plans use -1.",
+                              "type": "integer"
+                            },
+                            "requests_remaining": {
+                              "description": "Unlimited plans use -1.",
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "status": {
+                      "description": "HTTP response status code.",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "appId": {
+                  "description": "Open Exchange Rates App ID.",
+                  "in": "query",
+                  "name": "app_id",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Open Exchange Rates API reference",
+              "url": "https://docs.openexchangerates.org/reference/api-introduction"
+            },
+            "info": {
+              "description": "Community-maintained specification for documented free-plan endpoints. Time-series, conversion, and OHLC routes are excluded because the provider documents them as paid-plan features.",
+              "title": "Open Exchange Rates API",
+              "version": "0.7.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/currencies.json": {
+                "get": {
+                  "description": "Returns currency codes mapped to their display names. App ID authentication is optional.",
+                  "externalDocs": {
+                    "description": "Currencies endpoint documentation",
+                    "url": "https://docs.openexchangerates.org/reference/currencies-json"
+                  },
+                  "parameters": [
+                    {
+                      "description": "Optional App ID.",
+                      "in": "query",
+                      "name": "app_id",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Return a human-readable response.",
+                      "in": "query",
+                      "name": "prettyprint",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Include alternative currencies.",
+                      "in": "query",
+                      "name": "show_alternative",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Include historical or inactive currencies.",
+                      "in": "query",
+                      "name": "show_inactive",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CurrenciesResponse"
+                          }
+                        }
+                      },
+                      "description": "Currency codes mapped to their display names."
+                    }
+                  },
+                  "security": [],
+                  "summary": "List available currencies"
+                }
+              },
+              "/historical/{date}.json": {
+                "get": {
+                  "description": "Returns the last rates published for the requested UTC date. Changing the base currency and selecting symbols are paid-plan features and are omitted from this free-plan scope.",
+                  "externalDocs": {
+                    "description": "Historical rates endpoint documentation",
+                    "url": "https://docs.openexchangerates.org/reference/historical-json"
+                  },
+                  "parameters": [
+                    {
+                      "description": "Requested date in YYYY-MM-DD format.",
+                      "in": "path",
+                      "name": "date",
+                      "required": true,
+                      "schema": {
+                        "format": "date",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Include alternative, black-market, and digital currency rates.",
+                      "in": "query",
+                      "name": "show_alternative",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Return a human-readable response; false minimizes the response.",
+                      "in": "query",
+                      "name": "prettyprint",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RatesResponse"
+                          }
+                        }
+                      },
+                      "description": "Historical exchange rates."
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ErrorResponse"
+                          }
+                        }
+                      },
+                      "description": "Invalid date or date without available rates."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ErrorResponse"
+                          }
+                        }
+                      },
+                      "description": "Missing or invalid App ID."
+                    }
+                  },
+                  "summary": "Get historical exchange rates"
+                }
+              },
+              "/latest.json": {
+                "get": {
+                  "description": "Returns the latest rates available on the App ID's plan. Changing the base currency is a paid-plan feature and is omitted from this free-plan scope.",
+                  "externalDocs": {
+                    "description": "Latest rates endpoint documentation",
+                    "url": "https://docs.openexchangerates.org/reference/latest-json"
+                  },
+                  "parameters": [
+                    {
+                      "description": "Comma-separated list of currency codes to return.",
+                      "in": "query",
+                      "name": "symbols",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Return a human-readable response; false minimizes the response.",
+                      "in": "query",
+                      "name": "prettyprint",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Include alternative, black-market, and digital currency rates.",
+                      "in": "query",
+                      "name": "show_alternative",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RatesResponse"
+                          }
+                        }
+                      },
+                      "description": "Latest exchange rates."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ErrorResponse"
+                          }
+                        }
+                      },
+                      "description": "Missing or invalid App ID."
+                    }
+                  },
+                  "summary": "Get the latest exchange rates"
+                }
+              },
+              "/usage.json": {
+                "get": {
+                  "description": "Returns plan and request usage information for the supplied App ID.",
+                  "externalDocs": {
+                    "description": "Usage endpoint documentation",
+                    "url": "https://docs.openexchangerates.org/reference/usage-json"
+                  },
+                  "parameters": [
+                    {
+                      "description": "Set to false to minimize the response.",
+                      "in": "query",
+                      "name": "prettyprint",
+                      "schema": {
+                        "default": true,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/UsageResponse"
+                          }
+                        }
+                      },
+                      "description": "App ID status, plan, and usage information."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ErrorResponse"
+                          }
+                        }
+                      },
+                      "description": "Missing or invalid App ID."
+                    }
+                  },
+                  "summary": "Get App ID plan and usage information"
+                }
+              }
+            },
+            "security": [
+              {
+                "appId": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://openexchangerates.org/api"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Open Exchange Rates API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:37.287388+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openexchangerates/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "2887ab53449bd95e4f688aacba402d6b22645a2355bb7183b1a3838923c8b025",
+    "source_id": "open-exchange-rates-api",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openexchangerates/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "0.7.0"
+}

@@ -1,0 +1,1272 @@
+{
+  "a2ui": {},
+  "app": "transport-for-nsw-trip-planner-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "transport-for-nsw-trip-planner-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/add_info"
+      },
+      {
+        "from": "transport-for-nsw-trip-planner-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/coord"
+      },
+      {
+        "from": "transport-for-nsw-trip-planner-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/departure_mon"
+      },
+      {
+        "from": "transport-for-nsw-trip-planner-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/stop_finder"
+      },
+      {
+        "from": "transport-for-nsw-trip-planner-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/trip"
+      },
+      {
+        "from": "operation:get:/add_info",
+        "kind": "RETURNS",
+        "to": "schema:ServiceAlertsResponse"
+      },
+      {
+        "from": "operation:get:/coord",
+        "kind": "RETURNS",
+        "to": "schema:LocationsResponse"
+      },
+      {
+        "from": "operation:get:/departure_mon",
+        "kind": "RETURNS",
+        "to": "schema:DepartureResponse"
+      },
+      {
+        "from": "operation:get:/stop_finder",
+        "kind": "RETURNS",
+        "to": "schema:LocationsResponse"
+      },
+      {
+        "from": "operation:get:/trip",
+        "kind": "RETURNS",
+        "to": "schema:TripResponse"
+      },
+      {
+        "from": "schema:LocationsResponse",
+        "kind": "REFERENCES",
+        "to": "schema:Location"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "transport-for-nsw-trip-planner-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns service alerts and information for the transport network.",
+        "id": "operation:get:/add_info",
+        "kind": "operation",
+        "method": "get",
+        "name": "getServiceAlerts",
+        "parameters": [
+          {
+            "description": "The provider's JSON response format.",
+            "enum": [
+              "rapidJSON"
+            ],
+            "in": "query",
+            "name": "outputFormat",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Coordinate output format documented for Trip Planner API calls.",
+            "enum": [
+              "EPSG:4326"
+            ],
+            "in": "query",
+            "name": "coordOutputFormat",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Filter date in DD-MM-YYYY format.",
+            "in": "query",
+            "name": "filterDateValid",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by publication status; the manual uses `current` for active alerts.",
+            "in": "query",
+            "name": "filterPublicationStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Restrict alerts to the supplied stop identifier.",
+            "in": "query",
+            "name": "itdLPxx_selStop",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/add_info",
+        "pointer": "#/paths/~1add_info/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ServiceAlertsResponse"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get public transport service alerts",
+        "tags": [
+          "Trip planning"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Finds transport stops, places of interest, or Opal resellers near a coordinate.",
+        "id": "operation:get:/coord",
+        "kind": "operation",
+        "method": "get",
+        "name": "findNearbyLocations",
+        "parameters": [
+          {
+            "description": "The provider's JSON response format.",
+            "enum": [
+              "rapidJSON"
+            ],
+            "in": "query",
+            "name": "outputFormat",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Coordinate output format documented for Trip Planner API calls.",
+            "enum": [
+              "EPSG:4326"
+            ],
+            "in": "query",
+            "name": "coordOutputFormat",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Coordinate string in EPSG:4326; the manual's example orders longitude before latitude.",
+            "in": "query",
+            "name": "coord",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Location type; the manual uses `GIS_POINT` in its example.",
+            "in": "query",
+            "name": "type_1",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Search radius in metres.",
+            "in": "query",
+            "name": "radius_1",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Optional location filter flag used in the provider's example.",
+            "enum": [
+              1
+            ],
+            "in": "query",
+            "name": "inclFilter",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Optional draw class filter; the manual uses 74 to return Opal resellers.",
+            "in": "query",
+            "name": "inclDrawClasses_1",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/coord",
+        "pointer": "#/paths/~1coord/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "LocationsResponse"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Find locations near a coordinate",
+        "tags": [
+          "Trip planning"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns upcoming departures for a stop or platform.",
+        "id": "operation:get:/departure_mon",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDepartures",
+        "parameters": [
+          {
+            "description": "The provider's JSON response format.",
+            "enum": [
+              "rapidJSON"
+            ],
+            "in": "query",
+            "name": "outputFormat",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Coordinate output format documented for Trip Planner API calls.",
+            "enum": [
+              "EPSG:4326"
+            ],
+            "in": "query",
+            "name": "coordOutputFormat",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Mode value used by the provider's departure example.",
+            "in": "query",
+            "name": "mode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Departure location type, such as `stop`.",
+            "in": "query",
+            "name": "type_dm",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Stop or platform identifier.",
+            "in": "query",
+            "name": "name_dm",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Departure or arrival mode.",
+            "enum": [
+              "dep",
+              "arr"
+            ],
+            "in": "query",
+            "name": "depArrMacro",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Date formatted as YYYYMMDD.",
+            "in": "query",
+            "name": "itdDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Time formatted as HHMM using a 24-hour clock.",
+            "in": "query",
+            "name": "itdTime",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Parameter set to `true` in the provider's example.",
+            "enum": [
+              "true"
+            ],
+            "in": "query",
+            "name": "TfNSWDM",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/departure_mon",
+        "pointer": "#/paths/~1departure_mon/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DepartureResponse"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get upcoming departures",
+        "tags": [
+          "Trip planning"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Searches for public transport stops, places of interest, and other locations.",
+        "id": "operation:get:/stop_finder",
+        "kind": "operation",
+        "method": "get",
+        "name": "findStopsAndLocations",
+        "parameters": [
+          {
+            "description": "The provider's JSON response format.",
+            "enum": [
+              "rapidJSON"
+            ],
+            "in": "query",
+            "name": "outputFormat",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Coordinate output format documented for Trip Planner API calls.",
+            "enum": [
+              "EPSG:4326"
+            ],
+            "in": "query",
+            "name": "coordOutputFormat",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Location name or search text.",
+            "in": "query",
+            "name": "name_sf",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Search type; the manual uses `any` in its example.",
+            "in": "query",
+            "name": "type_sf",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of results in the hit list.",
+            "in": "query",
+            "name": "anyMaxSizeHitList",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Enables the documented location suggestion mode when set to 1.",
+            "enum": [
+              1
+            ],
+            "in": "query",
+            "name": "odvSugMacro",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Parameter set to `true` in the provider's example.",
+            "enum": [
+              "true"
+            ],
+            "in": "query",
+            "name": "TfNSWSF",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/stop_finder",
+        "pointer": "#/paths/~1stop_finder/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "LocationsResponse"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Search for stops and places",
+        "tags": [
+          "Trip planning"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Plans journeys between two locations for a specified date and time.",
+        "id": "operation:get:/trip",
+        "kind": "operation",
+        "method": "get",
+        "name": "planTrip",
+        "parameters": [
+          {
+            "description": "The provider's JSON response format.",
+            "enum": [
+              "rapidJSON"
+            ],
+            "in": "query",
+            "name": "outputFormat",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Coordinate output format documented for Trip Planner API calls.",
+            "enum": [
+              "EPSG:4326"
+            ],
+            "in": "query",
+            "name": "coordOutputFormat",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Whether the requested time is a departure time or arrival time.",
+            "enum": [
+              "dep",
+              "arr"
+            ],
+            "in": "query",
+            "name": "depArrMacro",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Date formatted as YYYYMMDD.",
+            "in": "query",
+            "name": "itdDate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Time formatted as HHMM using a 24-hour clock.",
+            "in": "query",
+            "name": "itdTime",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Type of the origin location.",
+            "in": "query",
+            "name": "type_origin",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Origin location name or identifier.",
+            "in": "query",
+            "name": "name_origin",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Type of the destination location.",
+            "in": "query",
+            "name": "type_destination",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Destination location name or identifier.",
+            "in": "query",
+            "name": "name_destination",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Parameter set to `true` in the provider's example.",
+            "enum": [
+              "true"
+            ],
+            "in": "query",
+            "name": "TfNSWTR",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/trip",
+        "pointer": "#/paths/~1trip/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "TripResponse"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Find public transport journeys",
+        "tags": [
+          "Trip planning"
+        ]
+      },
+      {
+        "id": "schema:DepartureResponse",
+        "kind": "schema",
+        "name": "DepartureResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:Location",
+        "kind": "schema",
+        "name": "Location",
+        "type": "object"
+      },
+      {
+        "id": "schema:LocationsResponse",
+        "kind": "schema",
+        "name": "LocationsResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:ServiceAlertsResponse",
+        "kind": "schema",
+        "name": "ServiceAlertsResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:TripResponse",
+        "kind": "schema",
+        "name": "TripResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "transport-for-nsw-trip-planner-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.transport.nsw.gov.au/v1/tp",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "coordOutputFormat": {
+                  "description": "Coordinate output format documented for Trip Planner API calls.",
+                  "in": "query",
+                  "name": "coordOutputFormat",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "EPSG:4326"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "outputFormat": {
+                  "description": "The provider's JSON response format.",
+                  "in": "query",
+                  "name": "outputFormat",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "rapidJSON"
+                    ],
+                    "type": "string"
+                  }
+                }
+              },
+              "schemas": {
+                "DepartureResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "stopEvents": {
+                      "items": {
+                        "additionalProperties": true,
+                        "description": "A departure event for a stop.",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Location": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "coord": {
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ]
+                    },
+                    "isBest": {
+                      "type": "boolean"
+                    },
+                    "matchQuality": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "LocationsResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "locations": {
+                      "items": {
+                        "$ref": "#/components/schemas/Location"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ServiceAlertsResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "infos": {
+                      "additionalProperties": true,
+                      "properties": {
+                        "current": {
+                          "items": {
+                            "additionalProperties": true,
+                            "properties": {
+                              "affected": {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              "subtitle": {
+                                "type": "string"
+                              },
+                              "timestamps": {
+                                "additionalProperties": true,
+                                "type": "object"
+                              },
+                              "url": {
+                                "format": "uri",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "TripResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "journeys": {
+                      "items": {
+                        "additionalProperties": true,
+                        "description": "A journey with itinerary legs.",
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "apiKey": {
+                  "description": "Send the header as `Authorization: apikey <key>`.",
+                  "in": "header",
+                  "name": "Authorization",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused community-maintained specification for the five documented Trip Planner operations: stop search, trip planning, departures, service alerts, and nearby locations. A registered API key is required in the `Authorization` header using the `apikey <key>` value format. The provider documents a default Bronze account plan; account limits can change. Other Transport for NSW APIs and GTFS feeds are not covered here.",
+              "externalDocs": {
+                "description": "Trip Planner API technical manual, version 3.3",
+                "url": "https://opendata.transport.nsw.gov.au/sites/default/files/2026-04/trip-planner-api-manual-opendataproduction-v3.3.pdf"
+              },
+              "title": "Transport for NSW Trip Planner API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/add_info": {
+                "get": {
+                  "description": "Returns service alerts and information for the transport network.",
+                  "operationId": "getServiceAlerts",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/outputFormat"
+                    },
+                    {
+                      "$ref": "#/components/parameters/coordOutputFormat"
+                    },
+                    {
+                      "description": "Filter date in DD-MM-YYYY format.",
+                      "in": "query",
+                      "name": "filterDateValid",
+                      "required": false,
+                      "schema": {
+                        "pattern": "^\\\\d{2}-\\\\d{2}-\\\\d{4}$",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by publication status; the manual uses `current` for active alerts.",
+                      "in": "query",
+                      "name": "filterPublicationStatus",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Restrict alerts to the supplied stop identifier.",
+                      "in": "query",
+                      "name": "itdLPxx_selStop",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ServiceAlertsResponse"
+                          }
+                        }
+                      },
+                      "description": "Service alert information."
+                    },
+                    "401": {
+                      "description": "The API key is missing or invalid, or the account quota has been exceeded."
+                    },
+                    "403": {
+                      "description": "The request was refused, including when the rate limit is exceeded."
+                    }
+                  },
+                  "summary": "Get public transport service alerts",
+                  "tags": [
+                    "Trip planning"
+                  ]
+                }
+              },
+              "/coord": {
+                "get": {
+                  "description": "Finds transport stops, places of interest, or Opal resellers near a coordinate.",
+                  "operationId": "findNearbyLocations",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/outputFormat"
+                    },
+                    {
+                      "$ref": "#/components/parameters/coordOutputFormat"
+                    },
+                    {
+                      "description": "Coordinate string in EPSG:4326; the manual's example orders longitude before latitude.",
+                      "in": "query",
+                      "name": "coord",
+                      "required": true,
+                      "schema": {
+                        "example": "151.206290:-33.884080:EPSG:4326",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Location type; the manual uses `GIS_POINT` in its example.",
+                      "in": "query",
+                      "name": "type_1",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Search radius in metres.",
+                      "in": "query",
+                      "name": "radius_1",
+                      "required": true,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Optional location filter flag used in the provider's example.",
+                      "in": "query",
+                      "name": "inclFilter",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Optional draw class filter; the manual uses 74 to return Opal resellers.",
+                      "in": "query",
+                      "name": "inclDrawClasses_1",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/LocationsResponse"
+                          }
+                        }
+                      },
+                      "description": "Locations near the supplied coordinate."
+                    },
+                    "401": {
+                      "description": "The API key is missing or invalid, or the account quota has been exceeded."
+                    },
+                    "403": {
+                      "description": "The request was refused, including when the rate limit is exceeded."
+                    }
+                  },
+                  "summary": "Find locations near a coordinate",
+                  "tags": [
+                    "Trip planning"
+                  ]
+                }
+              },
+              "/departure_mon": {
+                "get": {
+                  "description": "Returns upcoming departures for a stop or platform.",
+                  "operationId": "getDepartures",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/outputFormat"
+                    },
+                    {
+                      "$ref": "#/components/parameters/coordOutputFormat"
+                    },
+                    {
+                      "description": "Mode value used by the provider's departure example.",
+                      "in": "query",
+                      "name": "mode",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Departure location type, such as `stop`.",
+                      "in": "query",
+                      "name": "type_dm",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Stop or platform identifier.",
+                      "in": "query",
+                      "name": "name_dm",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Departure or arrival mode.",
+                      "in": "query",
+                      "name": "depArrMacro",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "dep",
+                          "arr"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Date formatted as YYYYMMDD.",
+                      "in": "query",
+                      "name": "itdDate",
+                      "required": true,
+                      "schema": {
+                        "pattern": "^\\\\d{8}$",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Time formatted as HHMM using a 24-hour clock.",
+                      "in": "query",
+                      "name": "itdTime",
+                      "required": true,
+                      "schema": {
+                        "pattern": "^\\\\d{4}$",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Parameter set to `true` in the provider's example.",
+                      "in": "query",
+                      "name": "TfNSWDM",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "true"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DepartureResponse"
+                          }
+                        }
+                      },
+                      "description": "Upcoming stop events."
+                    },
+                    "401": {
+                      "description": "The API key is missing or invalid, or the account quota has been exceeded."
+                    },
+                    "403": {
+                      "description": "The request was refused, including when the rate limit is exceeded."
+                    }
+                  },
+                  "summary": "Get upcoming departures",
+                  "tags": [
+                    "Trip planning"
+                  ]
+                }
+              },
+              "/stop_finder": {
+                "get": {
+                  "description": "Searches for public transport stops, places of interest, and other locations.",
+                  "operationId": "findStopsAndLocations",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/outputFormat"
+                    },
+                    {
+                      "$ref": "#/components/parameters/coordOutputFormat"
+                    },
+                    {
+                      "description": "Location name or search text.",
+                      "in": "query",
+                      "name": "name_sf",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Search type; the manual uses `any` in its example.",
+                      "in": "query",
+                      "name": "type_sf",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of results in the hit list.",
+                      "in": "query",
+                      "name": "anyMaxSizeHitList",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Enables the documented location suggestion mode when set to 1.",
+                      "in": "query",
+                      "name": "odvSugMacro",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Parameter set to `true` in the provider's example.",
+                      "in": "query",
+                      "name": "TfNSWSF",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "true"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/LocationsResponse"
+                          }
+                        }
+                      },
+                      "description": "Matching locations."
+                    },
+                    "401": {
+                      "description": "The API key is missing or invalid, or the account quota has been exceeded."
+                    },
+                    "403": {
+                      "description": "The request was refused, including when the rate limit is exceeded."
+                    }
+                  },
+                  "summary": "Search for stops and places",
+                  "tags": [
+                    "Trip planning"
+                  ]
+                }
+              },
+              "/trip": {
+                "get": {
+                  "description": "Plans journeys between two locations for a specified date and time.",
+                  "operationId": "planTrip",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/outputFormat"
+                    },
+                    {
+                      "$ref": "#/components/parameters/coordOutputFormat"
+                    },
+                    {
+                      "description": "Whether the requested time is a departure time or arrival time.",
+                      "in": "query",
+                      "name": "depArrMacro",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "dep",
+                          "arr"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Date formatted as YYYYMMDD.",
+                      "in": "query",
+                      "name": "itdDate",
+                      "required": true,
+                      "schema": {
+                        "pattern": "^\\\\d{8}$",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Time formatted as HHMM using a 24-hour clock.",
+                      "in": "query",
+                      "name": "itdTime",
+                      "required": true,
+                      "schema": {
+                        "pattern": "^\\\\d{4}$",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Type of the origin location.",
+                      "in": "query",
+                      "name": "type_origin",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Origin location name or identifier.",
+                      "in": "query",
+                      "name": "name_origin",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Type of the destination location.",
+                      "in": "query",
+                      "name": "type_destination",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Destination location name or identifier.",
+                      "in": "query",
+                      "name": "name_destination",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Parameter set to `true` in the provider's example.",
+                      "in": "query",
+                      "name": "TfNSWTR",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "true"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TripResponse"
+                          }
+                        }
+                      },
+                      "description": "Available journey options."
+                    },
+                    "401": {
+                      "description": "The API key is missing or invalid, or the account quota has been exceeded."
+                    },
+                    "403": {
+                      "description": "The request was refused, including when the rate limit is exceeded."
+                    }
+                  },
+                  "summary": "Find public transport journeys",
+                  "tags": [
+                    "Trip planning"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "apiKey": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Transport for NSW Trip Planner API",
+                "url": "https://api.transport.nsw.gov.au/v1/tp"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Search locations, plan journeys, and retrieve transit information.",
+                "name": "Trip planning"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Transport for NSW Trip Planner API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:52.975859+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/transport-for-nsw/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "28021e0446c1b84e209b4febd4203d08f6f06a2b6fcb41fc95243c9e998f8875",
+    "source_id": "transport-for-nsw-trip-planner-api",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/transport-for-nsw/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

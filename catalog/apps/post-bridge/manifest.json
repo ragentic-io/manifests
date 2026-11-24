@@ -1,0 +1,4331 @@
+{
+  "a2ui": {},
+  "app": "post-bridge",
+  "graph": {
+    "edges": [
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/analytics"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v1/analytics/sync"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/analytics/{id}"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/analytics/{id}/daily"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/media"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v1/media/create-upload-url"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v1/media/upload-link"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/media/{id}"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/v1/media/{id}"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/post-results"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/post-results/{id}"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/posts"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v1/posts"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/posts/{id}"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/v1/posts/{id}"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/v1/posts/{id}"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/social-accounts"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v1/social-accounts/connect-link"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/social-accounts/{id}"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/v1/social-accounts/{id}"
+      },
+      {
+        "from": "post-bridge",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/social-accounts/{id}/instagram-audio"
+      },
+      {
+        "from": "operation:get:/v1/analytics/{id}",
+        "kind": "RETURNS",
+        "to": "schema:AnalyticsDto"
+      },
+      {
+        "from": "operation:get:/v1/analytics/{id}/daily",
+        "kind": "RETURNS",
+        "to": "schema:AnalyticsDailyDto"
+      },
+      {
+        "from": "operation:post:/v1/media/create-upload-url",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateUploadUrlDto"
+      },
+      {
+        "from": "operation:post:/v1/media/upload-link",
+        "kind": "RETURNS",
+        "to": "schema:CreateUploadUrlResponseDto"
+      },
+      {
+        "from": "operation:get:/v1/media/{id}",
+        "kind": "RETURNS",
+        "to": "schema:MediaDto"
+      },
+      {
+        "from": "operation:delete:/v1/media/{id}",
+        "kind": "RETURNS",
+        "to": "schema:DeleteEntityResponseDto"
+      },
+      {
+        "from": "operation:get:/v1/post-results/{id}",
+        "kind": "RETURNS",
+        "to": "schema:PostResultDto"
+      },
+      {
+        "from": "operation:post:/v1/posts",
+        "kind": "ACCEPTS",
+        "to": "schema:CreatePostDto"
+      },
+      {
+        "from": "operation:post:/v1/posts",
+        "kind": "RETURNS",
+        "to": "schema:PostDto"
+      },
+      {
+        "from": "operation:get:/v1/posts/{id}",
+        "kind": "RETURNS",
+        "to": "schema:PostDto"
+      },
+      {
+        "from": "operation:delete:/v1/posts/{id}",
+        "kind": "RETURNS",
+        "to": "schema:DeleteEntityResponseDto"
+      },
+      {
+        "from": "operation:patch:/v1/posts/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:UpdatePostDto"
+      },
+      {
+        "from": "operation:patch:/v1/posts/{id}",
+        "kind": "RETURNS",
+        "to": "schema:PostDto"
+      },
+      {
+        "from": "operation:post:/v1/social-accounts/connect-link",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateConnectLinkDto"
+      },
+      {
+        "from": "operation:post:/v1/social-accounts/connect-link",
+        "kind": "RETURNS",
+        "to": "schema:ConnectLinkResponseDto"
+      },
+      {
+        "from": "operation:get:/v1/social-accounts/{id}",
+        "kind": "RETURNS",
+        "to": "schema:SocialAccountDto"
+      },
+      {
+        "from": "operation:delete:/v1/social-accounts/{id}",
+        "kind": "RETURNS",
+        "to": "schema:DeleteEntityResponseDto"
+      },
+      {
+        "from": "schema:AccountConfigurationParentDto",
+        "kind": "REFERENCES",
+        "to": "schema:AccountConfigurationDto"
+      },
+      {
+        "from": "schema:AnalyticsDailyDto",
+        "kind": "REFERENCES",
+        "to": "schema:AnalyticsDailyDeltaDto"
+      },
+      {
+        "from": "schema:AnalyticsDailyDto",
+        "kind": "REFERENCES",
+        "to": "schema:AnalyticsDailySnapshotDto"
+      },
+      {
+        "from": "schema:CreatePostDto",
+        "kind": "REFERENCES",
+        "to": "schema:AccountConfigurationParentDto"
+      },
+      {
+        "from": "schema:CreatePostDto",
+        "kind": "REFERENCES",
+        "to": "schema:PlatformConfigurationsDto"
+      },
+      {
+        "from": "schema:MediaDto",
+        "kind": "REFERENCES",
+        "to": "schema:MediaObjectDto"
+      },
+      {
+        "from": "schema:PlatformConfigurationsDto",
+        "kind": "REFERENCES",
+        "to": "schema:BlueskyConfiguration"
+      },
+      {
+        "from": "schema:PlatformConfigurationsDto",
+        "kind": "REFERENCES",
+        "to": "schema:FacebookConfiguration"
+      },
+      {
+        "from": "schema:PlatformConfigurationsDto",
+        "kind": "REFERENCES",
+        "to": "schema:GoogleBusinessConfiguration"
+      },
+      {
+        "from": "schema:PlatformConfigurationsDto",
+        "kind": "REFERENCES",
+        "to": "schema:InstagramConfiguration"
+      },
+      {
+        "from": "schema:PlatformConfigurationsDto",
+        "kind": "REFERENCES",
+        "to": "schema:LinkedinConfiguration"
+      },
+      {
+        "from": "schema:PlatformConfigurationsDto",
+        "kind": "REFERENCES",
+        "to": "schema:PinterestConfiguration"
+      },
+      {
+        "from": "schema:PlatformConfigurationsDto",
+        "kind": "REFERENCES",
+        "to": "schema:ThreadsConfiguration"
+      },
+      {
+        "from": "schema:PlatformConfigurationsDto",
+        "kind": "REFERENCES",
+        "to": "schema:TiktokConfiguration"
+      },
+      {
+        "from": "schema:PlatformConfigurationsDto",
+        "kind": "REFERENCES",
+        "to": "schema:TwitterConfiguration"
+      },
+      {
+        "from": "schema:PlatformConfigurationsDto",
+        "kind": "REFERENCES",
+        "to": "schema:YoutubeConfiguration"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "post-bridge",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Get a paginated result for analytics based on the applied filters",
+        "id": "operation:get:/v1/analytics",
+        "kind": "operation",
+        "method": "get",
+        "name": "AnalyticsController_getAllAnalytics_v1",
+        "parameters": [
+          {
+            "default": 0,
+            "description": "Number of items to skip",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "default": 10,
+            "description": "Number of items to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "description": "Filter by platform (e.g.",
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by post result IDs.",
+            "in": "query",
+            "name": "post_result_id",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "default": "all",
+            "description": "Filter by timeframe: 7d, 30d, 90d, or all",
+            "in": "query",
+            "name": "timeframe",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by media type: video or slideshow.",
+            "enum": [
+              "video",
+              "slideshow"
+            ],
+            "in": "query",
+            "name": "media_type",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/analytics",
+        "pointer": "#/paths/~1v1~1analytics/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get analytics",
+        "tags": [
+          "Analytics"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Pulls fresh view, like and comment counts from each platform for posts published through post bridge.",
+        "id": "operation:post:/v1/analytics/sync",
+        "kind": "operation",
+        "method": "post",
+        "name": "AnalyticsController_syncAnalytics_v1",
+        "parameters": [
+          {
+            "description": "Sync a specific platform only.",
+            "enum": [
+              "tiktok",
+              "youtube",
+              "instagram"
+            ],
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/analytics/sync",
+        "pointer": "#/paths/~1v1~1analytics~1sync/post",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Sync analytics for your connected accounts (TikTok, YouTube, Instagram)",
+        "tags": [
+          "Analytics"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the lifetime analytics record for one post result: views, likes, comments and shares as last synced, with the timestamp of that sync.",
+        "id": "operation:get:/v1/analytics/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "AnalyticsController_getAnalyticsById_v1",
+        "parameters": [
+          {
+            "description": "Analytics record ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/analytics/{id}",
+        "pointer": "#/paths/~1v1~1analytics~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "AnalyticsDto"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get analytics by ID",
+        "tags": [
+          "Analytics"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns one row per day for a post, with both the cumulative total on that day and the change from the previous day.",
+        "id": "operation:get:/v1/analytics/{id}/daily",
+        "kind": "operation",
+        "method": "get",
+        "name": "AnalyticsController_getAnalyticsDaily_v1",
+        "parameters": [
+          {
+            "description": "Analytics record ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/analytics/{id}/daily",
+        "pointer": "#/paths/~1v1~1analytics~1{id}~1daily/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "AnalyticsDailyDto"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get daily snapshots and per-day deltas for a post",
+        "tags": [
+          "Analytics"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get a paginated result for media based on the applied filters",
+        "id": "operation:get:/v1/media",
+        "kind": "operation",
+        "method": "get",
+        "name": "MediaController_getMedia_v1",
+        "parameters": [
+          {
+            "default": 0,
+            "description": "Number of items to skip",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "default": 10,
+            "description": "Number of items to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "description": "Filter by post IDs.",
+            "in": "query",
+            "name": "post_id",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by media types.",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string[]"
+          }
+        ],
+        "path": "/v1/media",
+        "pointer": "#/paths/~1v1~1media/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get media",
+        "tags": [
+          "Media"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/v1/media/create-upload-url",
+        "kind": "operation",
+        "method": "post",
+        "name": "MediaController_createUploadUrl_v1",
+        "path": "/v1/media/create-upload-url",
+        "pointer": "#/paths/~1v1~1media~1create-upload-url/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateUploadUrlDto"
+        },
+        "responses": [
+          {
+            "status": "201"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": null,
+        "tags": [
+          "Media"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "To upload media to attach to your post, make a `POST` request to the `/media/create-upload-url` endpoint.",
+        "id": "operation:post:/v1/media/upload-link",
+        "kind": "operation",
+        "method": "post",
+        "name": "MediaController_createUploadLink_v1",
+        "path": "/v1/media/upload-link",
+        "pointer": "#/paths/~1v1~1media~1upload-link/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CreateUploadUrlResponseDto"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Upload media",
+        "tags": [
+          "Media"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns one uploaded media item: its type, size and the URL used when posting.",
+        "id": "operation:get:/v1/media/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "MediaController_getMediaById_v1",
+        "parameters": [
+          {
+            "description": "Media ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/media/{id}",
+        "pointer": "#/paths/~1v1~1media~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "MediaDto"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get media by ID",
+        "tags": [
+          "Media"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Permanently deletes an uploaded media item.",
+        "id": "operation:delete:/v1/media/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "MediaController_deleteMedia_v1",
+        "parameters": [
+          {
+            "description": "Media ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/media/{id}",
+        "pointer": "#/paths/~1v1~1media~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DeleteEntityResponseDto"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Delete media by ID",
+        "tags": [
+          "Media"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get a paginated result for post results based on the applied filters",
+        "id": "operation:get:/v1/post-results",
+        "kind": "operation",
+        "method": "get",
+        "name": "PostResultsController_getAllPostResults_v1",
+        "parameters": [
+          {
+            "default": 0,
+            "description": "Number of items to skip",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "default": 10,
+            "description": "Number of items to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "description": "Filter by post IDs.",
+            "in": "query",
+            "name": "post_id",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by platform(s).",
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string[]"
+          }
+        ],
+        "path": "/v1/post-results",
+        "pointer": "#/paths/~1v1~1post-results/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get post results",
+        "tags": [
+          "Post Results"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the outcome of publishing one post to one social account: whether it succeeded, the URL of the live post, and the platform error if it failed.",
+        "id": "operation:get:/v1/post-results/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "PostResultsController_getPostResult_v1",
+        "parameters": [
+          {
+            "description": "Post Result ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/post-results/{id}",
+        "pointer": "#/paths/~1v1~1post-results~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "PostResultDto"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get post result by ID",
+        "tags": [
+          "Post Results"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get a paginated result for posts based on the applied filters",
+        "id": "operation:get:/v1/posts",
+        "kind": "operation",
+        "method": "get",
+        "name": "PostsController_getAllPosts_v1",
+        "parameters": [
+          {
+            "default": 0,
+            "description": "Number of items to skip",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "default": 10,
+            "description": "Number of items to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "description": "Filter by platforms.",
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by post status.",
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string[]"
+          }
+        ],
+        "path": "/v1/posts",
+        "pointer": "#/paths/~1v1~1posts/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get posts",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a post for the given social accounts.",
+        "id": "operation:post:/v1/posts",
+        "kind": "operation",
+        "method": "post",
+        "name": "PostsController_createPosts_v1",
+        "path": "/v1/posts",
+        "pointer": "#/paths/~1v1~1posts/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreatePostDto"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "PostDto"
+          },
+          {
+            "status": "400",
+            "type": "InvalidPostDto"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Create Post",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns one post with its caption, media, scheduled time, draft flag and the social accounts it targets.",
+        "id": "operation:get:/v1/posts/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "PostsController_getPost_v1",
+        "parameters": [
+          {
+            "description": "Post ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/posts/{id}",
+        "pointer": "#/paths/~1v1~1posts~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "PostDto"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get Post by ID",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Delete a scheduled or draft post.",
+        "id": "operation:delete:/v1/posts/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "PostsController_deletePost_v1",
+        "parameters": [
+          {
+            "description": "Post ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/posts/{id}",
+        "pointer": "#/paths/~1v1~1posts~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DeleteEntityResponseDto"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Delete Post",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Update an existing post with the passed in data.",
+        "id": "operation:patch:/v1/posts/{id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "PostsController_updatePost_v1",
+        "parameters": [
+          {
+            "description": "Post ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/posts/{id}",
+        "pointer": "#/paths/~1v1~1posts~1{id}/patch",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "UpdatePostDto"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "PostDto"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Update Post",
+        "tags": [
+          "Posts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get a paginated result for social accounts based on the applied filters",
+        "id": "operation:get:/v1/social-accounts",
+        "kind": "operation",
+        "method": "get",
+        "name": "SocialAccountsController_getAllSocialAccounts_v1",
+        "parameters": [
+          {
+            "default": 0,
+            "description": "Number of items to skip",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "default": 10,
+            "description": "Number of items to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "description": "Filter by platform(s).",
+            "in": "query",
+            "name": "platform",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by username(s).",
+            "in": "query",
+            "name": "username",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by the external_ref given when the account was connected through a connect link (POST /social-accounts/connect-link).",
+            "in": "query",
+            "name": "external_ref",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by dashboard workspace: a workspace_id from this list, or \"main\" for the default Main workspace.",
+            "in": "query",
+            "name": "workspace_id",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/social-accounts",
+        "pointer": "#/paths/~1v1~1social-accounts/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get social accounts",
+        "tags": [
+          "Social Accounts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a link that connects one social account under your Post Bridge account without the account owner logging in to Post Bridge.",
+        "id": "operation:post:/v1/social-accounts/connect-link",
+        "kind": "operation",
+        "method": "post",
+        "name": "SocialAccountsController_createConnectLink_v1",
+        "path": "/v1/social-accounts/connect-link",
+        "pointer": "#/paths/~1v1~1social-accounts~1connect-link/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateConnectLinkDto"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "ConnectLinkResponseDto"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "402"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Create a connect link",
+        "tags": [
+          "Social Accounts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns one connected social account: platform, username and whether its authorisation is still valid.",
+        "id": "operation:get:/v1/social-accounts/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "SocialAccountsController_getSocialAccount_v1",
+        "parameters": [
+          {
+            "description": "Social Account ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "path": "/v1/social-accounts/{id}",
+        "pointer": "#/paths/~1v1~1social-accounts~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SocialAccountDto"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "500"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get social account by ID",
+        "tags": [
+          "Social Accounts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Disconnects one social account, the same as the disconnect button in the dashboard.",
+        "id": "operation:delete:/v1/social-accounts/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "SocialAccountsController_deleteSocialAccount_v1",
+        "parameters": [
+          {
+            "description": "Social Account ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "path": "/v1/social-accounts/{id}",
+        "pointer": "#/paths/~1v1~1social-accounts~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DeleteEntityResponseDto"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Disconnect social account",
+        "tags": [
+          "Social Accounts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Searches the tracks (or original sounds) Meta lets apps attach to a reel on this Instagram account.",
+        "id": "operation:get:/v1/social-accounts/{id}/instagram-audio",
+        "kind": "operation",
+        "method": "get",
+        "name": "SocialAccountsController_searchInstagramAudio_v1",
+        "parameters": [
+          {
+            "description": "Search words, e.g.",
+            "in": "query",
+            "name": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "music (default) or original_sound (audio from other reels).",
+            "enum": [
+              "music",
+              "original_sound"
+            ],
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Social Account ID of an Instagram account",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "path": "/v1/social-accounts/{id}/instagram-audio",
+        "pointer": "#/paths/~1v1~1social-accounts~1{id}~1instagram-audio/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "502"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Search Instagram music for reels",
+        "tags": [
+          "Social Accounts"
+        ]
+      },
+      {
+        "id": "schema:AccountConfigurationDto",
+        "kind": "schema",
+        "name": "AccountConfigurationDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:AccountConfigurationParentDto",
+        "kind": "schema",
+        "name": "AccountConfigurationParentDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:AnalyticsDailyDeltaDto",
+        "kind": "schema",
+        "name": "AnalyticsDailyDeltaDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:AnalyticsDailyDto",
+        "kind": "schema",
+        "name": "AnalyticsDailyDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:AnalyticsDailySnapshotDto",
+        "kind": "schema",
+        "name": "AnalyticsDailySnapshotDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:AnalyticsDto",
+        "kind": "schema",
+        "name": "AnalyticsDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:BlueskyConfiguration",
+        "kind": "schema",
+        "name": "BlueskyConfiguration",
+        "type": "object"
+      },
+      {
+        "id": "schema:ConnectLinkResponseDto",
+        "kind": "schema",
+        "name": "ConnectLinkResponseDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateConnectLinkDto",
+        "kind": "schema",
+        "name": "CreateConnectLinkDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreatePostDto",
+        "kind": "schema",
+        "name": "CreatePostDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateUploadUrlDto",
+        "kind": "schema",
+        "name": "CreateUploadUrlDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateUploadUrlResponseDto",
+        "kind": "schema",
+        "name": "CreateUploadUrlResponseDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:DeleteEntityResponseDto",
+        "kind": "schema",
+        "name": "DeleteEntityResponseDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:FacebookConfiguration",
+        "kind": "schema",
+        "name": "FacebookConfiguration",
+        "type": "object"
+      },
+      {
+        "id": "schema:GoogleBusinessConfiguration",
+        "kind": "schema",
+        "name": "GoogleBusinessConfiguration",
+        "type": "object"
+      },
+      {
+        "id": "schema:InstagramConfiguration",
+        "kind": "schema",
+        "name": "InstagramConfiguration",
+        "type": "object"
+      },
+      {
+        "id": "schema:InvalidPostDto",
+        "kind": "schema",
+        "name": "InvalidPostDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:LinkedinConfiguration",
+        "kind": "schema",
+        "name": "LinkedinConfiguration",
+        "type": "object"
+      },
+      {
+        "id": "schema:MediaDto",
+        "kind": "schema",
+        "name": "MediaDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:MediaObjectDto",
+        "kind": "schema",
+        "name": "MediaObjectDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:PinterestConfiguration",
+        "kind": "schema",
+        "name": "PinterestConfiguration",
+        "type": "object"
+      },
+      {
+        "id": "schema:PlatformConfigurationsDto",
+        "kind": "schema",
+        "name": "PlatformConfigurationsDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:PostDto",
+        "kind": "schema",
+        "name": "PostDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:PostResultDto",
+        "kind": "schema",
+        "name": "PostResultDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:SocialAccountDto",
+        "kind": "schema",
+        "name": "SocialAccountDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:ThreadsConfiguration",
+        "kind": "schema",
+        "name": "ThreadsConfiguration",
+        "type": "object"
+      },
+      {
+        "id": "schema:TiktokConfiguration",
+        "kind": "schema",
+        "name": "TiktokConfiguration",
+        "type": "object"
+      },
+      {
+        "id": "schema:TwitterConfiguration",
+        "kind": "schema",
+        "name": "TwitterConfiguration",
+        "type": "object"
+      },
+      {
+        "id": "schema:UpdatePostDto",
+        "kind": "schema",
+        "name": "UpdatePostDto",
+        "type": "object"
+      },
+      {
+        "id": "schema:YoutubeConfiguration",
+        "kind": "schema",
+        "name": "YoutubeConfiguration",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "post-bridge"
+    },
+    "spec": {
+      "base": {
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "AccountConfigurationDto": {
+                  "properties": {
+                    "account_id": {
+                      "description": "Id of the social account you want to override",
+                      "type": "number"
+                    },
+                    "caption": {
+                      "description": "Caption to user for the specified account",
+                      "type": "string"
+                    },
+                    "media": {
+                      "description": "Array of Media Ids to use for the specifed account",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "account_id"
+                  ],
+                  "type": "object"
+                },
+                "AccountConfigurationParentDto": {
+                  "properties": {
+                    "account_configurations": {
+                      "description": "List of account configurations to override data for specific accounts",
+                      "items": {
+                        "$ref": "#/components/schemas/AccountConfigurationDto"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "AnalyticsDailyDeltaDto": {
+                  "properties": {
+                    "comments": {
+                      "description": "New comments gained on this day",
+                      "type": "number"
+                    },
+                    "date": {
+                      "description": "Snapshot date (YYYY-MM-DD)",
+                      "type": "string"
+                    },
+                    "likes": {
+                      "description": "New likes gained on this day",
+                      "type": "number"
+                    },
+                    "shares": {
+                      "description": "New shares gained on this day",
+                      "type": "number"
+                    },
+                    "views": {
+                      "description": "New views gained on this day",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "date",
+                    "views",
+                    "likes",
+                    "comments",
+                    "shares"
+                  ],
+                  "type": "object"
+                },
+                "AnalyticsDailyDto": {
+                  "properties": {
+                    "deltas": {
+                      "description": "Per-day deltas (new engagement gained each day). Excludes the first snapshot since it has no previous day to diff against.",
+                      "items": {
+                        "$ref": "#/components/schemas/AnalyticsDailyDeltaDto"
+                      },
+                      "type": "array"
+                    },
+                    "snapshots": {
+                      "description": "Raw daily snapshots (cumulative totals). First snapshot is the earliest available date.",
+                      "items": {
+                        "$ref": "#/components/schemas/AnalyticsDailySnapshotDto"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "snapshots",
+                    "deltas"
+                  ],
+                  "type": "object"
+                },
+                "AnalyticsDailySnapshotDto": {
+                  "properties": {
+                    "comment_count": {
+                      "description": "Cumulative comment count as of this date",
+                      "type": "number"
+                    },
+                    "date": {
+                      "description": "Snapshot date (YYYY-MM-DD)",
+                      "type": "string"
+                    },
+                    "like_count": {
+                      "description": "Cumulative like count as of this date",
+                      "type": "number"
+                    },
+                    "share_count": {
+                      "description": "Cumulative share count as of this date",
+                      "type": "number"
+                    },
+                    "view_count": {
+                      "description": "Cumulative view count as of this date",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "date",
+                    "view_count",
+                    "like_count",
+                    "comment_count",
+                    "share_count"
+                  ],
+                  "type": "object"
+                },
+                "AnalyticsDto": {
+                  "properties": {
+                    "comment_count": {
+                      "description": "Total comment count",
+                      "type": "number"
+                    },
+                    "cover_image_url": {
+                      "description": "Cover image URL from the platform",
+                      "type": "object"
+                    },
+                    "duration": {
+                      "description": "Video duration in seconds",
+                      "type": "object"
+                    },
+                    "id": {
+                      "description": "The unique identifier of the analytics record",
+                      "type": "string"
+                    },
+                    "last_synced_at": {
+                      "description": "When analytics were last synced",
+                      "type": "string"
+                    },
+                    "like_count": {
+                      "description": "Total like count",
+                      "type": "number"
+                    },
+                    "match_confidence": {
+                      "description": "Confidence of the match (exact or high)",
+                      "type": "object"
+                    },
+                    "platform": {
+                      "description": "Platform name (e.g. tiktok)",
+                      "type": "string"
+                    },
+                    "platform_created_at": {
+                      "description": "When the content was created on the platform",
+                      "type": "object"
+                    },
+                    "platform_post_id": {
+                      "description": "Platform-specific post ID",
+                      "type": "object"
+                    },
+                    "post_result_id": {
+                      "description": "The ID of the associated post result",
+                      "type": "string"
+                    },
+                    "share_count": {
+                      "description": "Total share count",
+                      "type": "number"
+                    },
+                    "share_url": {
+                      "description": "Share URL on the platform",
+                      "type": "object"
+                    },
+                    "video_description": {
+                      "description": "Video description on the platform",
+                      "type": "object"
+                    },
+                    "view_count": {
+                      "description": "Total view count",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "post_result_id",
+                    "platform",
+                    "platform_post_id",
+                    "view_count",
+                    "like_count",
+                    "comment_count",
+                    "share_count",
+                    "cover_image_url",
+                    "share_url",
+                    "video_description",
+                    "duration",
+                    "platform_created_at",
+                    "last_synced_at",
+                    "match_confidence"
+                  ],
+                  "type": "object"
+                },
+                "BlueskyConfiguration": {
+                  "properties": {
+                    "caption": {
+                      "description": "Overrides the `caption` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "media": {
+                      "description": "Overrides the `media` from the post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ConnectLinkResponseDto": {
+                  "properties": {
+                    "connected": {
+                      "description": "Accounts connected under this API key right now",
+                      "type": "number"
+                    },
+                    "expires_at": {
+                      "description": "ISO timestamp when the link stops working",
+                      "type": "string"
+                    },
+                    "included": {
+                      "description": "Accounts included in the plan. When connected reaches this, minting answers 402 until the cap is raised on the billing page.",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "platform": {
+                      "description": "Platform this link connects",
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "Link to give to the person who owns the social account. They open it, approve on the platform, and are sent to your return_url.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "expires_at",
+                    "platform",
+                    "connected",
+                    "included"
+                  ],
+                  "type": "object"
+                },
+                "CreateConnectLinkDto": {
+                  "properties": {
+                    "expires_in": {
+                      "description": "How long the link stays valid, in seconds. Default 86400 (24 hours), minimum 60, maximum 604800 (7 days). Mint a fresh link whenever you need one; minting is free.",
+                      "example": 86400,
+                      "type": "number"
+                    },
+                    "external_ref": {
+                      "description": "Your own reference for the person or client this link is for (a customer id, for example). Stored on every account the link connects and returned as external_ref on GET /social-accounts, so you can filter accounts by it.",
+                      "example": "salon_42",
+                      "type": "string"
+                    },
+                    "platform": {
+                      "description": "Platform the link connects. One link connects one platform.",
+                      "enum": [
+                        "instagram",
+                        "facebook",
+                        "tiktok",
+                        "youtube",
+                        "twitter",
+                        "linkedin",
+                        "threads",
+                        "pinterest",
+                        "bluesky"
+                      ],
+                      "example": "instagram",
+                      "type": "string"
+                    },
+                    "return_url": {
+                      "description": "Where the person is sent after the platform consent screen. https only (http allowed for localhost). Query parameters are appended: status=connected with platform, account_ids (comma separated) and external_ref, or status=error with reason.",
+                      "example": "https://app.example.com/social/callback?salon=42",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "platform",
+                    "return_url"
+                  ],
+                  "type": "object"
+                },
+                "CreatePostDto": {
+                  "properties": {
+                    "account_configurations": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/AccountConfigurationParentDto"
+                        }
+                      ],
+                      "description": "Account-specific configurations for the post",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "caption": {
+                      "description": "Caption text for the post. Required unless `is_draft` is true, so a draft can be saved before the caption is written. LinkedIn company tags: write `@[Company Name](linkedin.com/company/vanity-name)` in the caption, using the company page URL (full https URL also works) or `urn:li:organization:<id>`. Example: `hiring at @[Stripe](linkedin.com/company/stripe)`. LinkedIn shows a real company tag using the company's exact LinkedIn name; every other platform in the same post gets just the name. A plain `@name` is NOT a tag and posts as literal text. A company that can't be found posts as plain text and never fails the post. Companies only, not people.",
+                      "type": "string"
+                    },
+                    "is_draft": {
+                      "description": "If true will create the post but not process it until it is updated with a scheduled date or processed instantly",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "media": {
+                      "description": "Array of media IDs associated with the post. Some platforms require media to publish (youtube, tiktok, instagram, pinterest) — see the create-post endpoint description for the per-platform media requirements and accepted types.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "media_urls": {
+                      "description": "Array of publicly accesible media URLs associated with the post, will be ignored if media is provided",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "platform_configurations": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PlatformConfigurationsDto"
+                        }
+                      ],
+                      "description": "Platform-specific configurations for the post",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "processing_enabled": {
+                      "default": true,
+                      "description": "If true will process video files to ensure they post, If false we will skip all video processing",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "scheduled_at": {
+                      "description": "Scheduled date and time for the post. Setting to null or undefined will post instantly.",
+                      "example": "2023-12-31T23:59:59Z",
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "social_accounts": {
+                      "description": "Array of social account IDs for posting",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    },
+                    "use_queue": {
+                      "description": "Automatically schedule the post to the next available queue slot. Cannot be used together with scheduled_at. Pass true to use your saved timezone, or { timezone: \"America/New_York\" } to override.",
+                      "example": true,
+                      "nullable": true,
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "caption",
+                    "social_accounts"
+                  ],
+                  "type": "object"
+                },
+                "CreateUploadUrlDto": {
+                  "properties": {
+                    "mime_type": {
+                      "description": "The MIME type of the media file",
+                      "enum": [
+                        "image/png",
+                        "image/jpeg",
+                        "video/mp4",
+                        "video/quicktime",
+                        "application/pdf"
+                      ],
+                      "example": "image/png",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The original name of the file (for extension)",
+                      "example": "myphoto.png",
+                      "type": "string"
+                    },
+                    "size_bytes": {
+                      "description": "The size of the media file in bytes",
+                      "example": 1234567,
+                      "minimum": 1,
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "mime_type",
+                    "size_bytes",
+                    "name"
+                  ],
+                  "type": "object"
+                },
+                "CreateUploadUrlResponseDto": {
+                  "properties": {
+                    "media_id": {
+                      "description": "The unique media record ID",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The provided name of the media file",
+                      "type": "string"
+                    },
+                    "upload_url": {
+                      "description": "The signed upload URL for the client to upload the file",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "media_id",
+                    "upload_url",
+                    "name"
+                  ],
+                  "type": "object"
+                },
+                "DeleteEntityResponseDto": {
+                  "properties": {
+                    "success": {
+                      "description": "Whether or not the entity was deleted",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ],
+                  "type": "object"
+                },
+                "FacebookConfiguration": {
+                  "properties": {
+                    "caption": {
+                      "description": "Overrides the `caption` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "first_comment": {
+                      "description": "Optional comment posted on the Facebook post immediately after it publishes (a \"first comment\"). A good place for a link/CTA without cluttering the main post. Ignored for stories (placement: \"story\"). A failed comment will not fail the post — the post still publishes.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "media": {
+                      "description": "Overrides the `media` from the post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "placement": {
+                      "description": "Set to \"story\" to publish as a Facebook Page Story (uses /{page-id}/photo_stories or /{page-id}/video_stories). Stories require exactly one image or video and do not support captions or carousels. Omit for a normal feed post.",
+                      "enum": [
+                        "story"
+                      ],
+                      "example": "story",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "thumbnail": {
+                      "description": "Media ID of an uploaded image to use as the video thumbnail. Upload the image first via the media endpoints, then pass its ID here. Applies to single-video feed posts only (ignored for stories, photos and text posts). JPEG or PNG. A thumbnail that fails to apply will not fail the post: the video publishes with the frame Facebook picks.",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "GoogleBusinessConfiguration": {
+                  "properties": {
+                    "caption": {
+                      "description": "Overrides the `caption` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "cta_action_type": {
+                      "description": "Call-to-action button shown on the Google Business post. One of BOOK, ORDER, SHOP, LEARN_MORE, SIGN_UP, CALL. Pair with `cta_url` (except CALL which uses the location's phone number).",
+                      "enum": [
+                        "BOOK",
+                        "ORDER",
+                        "SHOP",
+                        "LEARN_MORE",
+                        "SIGN_UP",
+                        "CALL"
+                      ],
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "cta_url": {
+                      "description": "Destination URL for the CTA button. Required when `cta_action_type` is set (except for CALL).",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "language_code": {
+                      "description": "BCP-47 language code for the post (e.g. \"en-US\", \"es\", \"fr-CA\"). Defaults to \"en-US\".",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "media": {
+                      "description": "Overrides the `media` from the post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "InstagramConfiguration": {
+                  "properties": {
+                    "audio_id": {
+                      "description": "Reels only. Attach a track from Instagram's music library (or an original sound) to the reel. Pass an audio_id from GET /v1/social-accounts/{id}/instagram-audio. Only works for Instagram accounts connected through Facebook login (supports_instagram_music: true on the social account); accounts connected with Instagram login are rejected with a 400, because Meta only offers music on the Facebook-login API. Only tracks Meta has cleared for third-party apps are available, which can differ from the in-app library. Reels only (exactly one video): photos and carousels/slideshows are rejected with a 400, because Meta does not allow music on them through the API. For a slideshow with music, export the slides as one video and post it as a reel. Ignored for stories.",
+                      "example": "587784541076604",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "audio_volume": {
+                      "description": "Volume of the audio_id track, 0 (muted) to 100 (full). Default 100. Only used with audio_id.",
+                      "maximum": 100,
+                      "minimum": 0,
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "caption": {
+                      "description": "Overrides the `caption` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "collaborators": {
+                      "description": "Instagram accounts to invite as collaborators (co-authors). The post appears on their profile too and shares its likes and comments, unlike user_tags which only tags them. Pass an array of usernames, e.g. [\"partner\"]. A leading \"@\" is optional. Max 3, and they must be public accounts — private or misspelled handles make the post fail. Applies to feed photos, carousels and reels; ignored for stories. Each collaborator gets an invite: the post publishes immediately and appears on their profile once they accept.",
+                      "example": [
+                        "partner_account"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "cover_image": {
+                      "description": "Custom cover image for video posts. Pass a media_id obtained from the /v1/media/create-upload-url endpoint. The uploaded image will be used as the cover image for the Instagram video/reel.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "first_comment": {
+                      "description": "Optional comment posted on the media immediately after it publishes (a \"first comment\"). A good place for a link, hashtags, or extra context without cluttering the caption. Ignored for stories. A failed comment will not fail the post — the post still publishes.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "is_ai_generated": {
+                      "description": "Set to true to add Instagram's \"AI info\" label, disclosing that the photo, carousel or reel was made or edited with AI. Set at publish time and cannot be changed afterwards. Ignored for stories.",
+                      "example": true,
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "is_trial_reel": {
+                      "description": "Enable trial reel mode. Shows reel to non-followers first. Requires: Professional/Creator account, 1,000+ followers, public profile. Max 5 trial reels per day.",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "media": {
+                      "description": "Overrides the `media` from the post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "placement": {
+                      "description": "Set to \"story\" to publish as an Instagram Story (media_type=STORIES). Stories require exactly one image or video, do not support captions, carousels, custom cover images, or trial reels. Omit for a normal Reel/feed post.",
+                      "enum": [
+                        "story"
+                      ],
+                      "example": "story",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "share_to_feed": {
+                      "description": "Reels only. Set to false to keep the reel off your profile grid: it still publishes and shows in the Reels tab, just not in the main feed grid. Omit (or true) for Instagram's default, which shows the reel in both. Ignored for photos, carousels and stories.",
+                      "example": false,
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "trial_graduation": {
+                      "description": "Trial graduation strategy. \"MANUAL\" (default) = you decide whether to share with all followers. \"SS_PERFORMANCE\" = auto-graduate based on performance within 72 hours.",
+                      "enum": [
+                        "MANUAL",
+                        "SS_PERFORMANCE"
+                      ],
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "user_tags": {
+                      "description": "Instagram accounts to tag on the post (people tagging — the tagged accounts appear in their \"Tagged\" photos and get notified, unlike an @mention in the caption). Pass an array of usernames, e.g. [\"partner\", \"brand\"]. A leading \"@\" is optional. Applies to feed photos, carousels and reels; ignored for stories. Tag positions on photos are placed automatically. Tagged accounts must be public and allow tagging, or Instagram silently drops them. Max 20 per post.",
+                      "example": [
+                        "partner_account",
+                        "brand"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "video_cover_timestamp_ms": {
+                      "description": "Video cover timestamp in milliseconds",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "video_volume": {
+                      "description": "Volume of the video's own sound under the audio_id track, 0 (muted) to 100 (full). Default 100. Set 0 to hear only the music. Only used with audio_id.",
+                      "maximum": 100,
+                      "minimum": 0,
+                      "nullable": true,
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "InvalidPostDto": {
+                  "properties": {
+                    "error": {
+                      "description": "Errors for the invalid post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                },
+                "LinkedinConfiguration": {
+                  "properties": {
+                    "caption": {
+                      "description": "Overrides the `caption` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "document_title": {
+                      "description": "Title for a LinkedIn document post (PDF carousel). Only applies when the media is a PDF (a document-kind media_id from /v1/media/create-upload-url). Defaults to the uploaded file name.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "first_comment": {
+                      "description": "Optional comment posted on the LinkedIn post immediately after it publishes (a \"first comment\"), as the same person or page. A good place for a link. Max 1,250 characters. A failed comment will not fail the post.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "media": {
+                      "description": "Overrides the `media` from the post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "MediaDto": {
+                  "properties": {
+                    "id": {
+                      "description": "The unique identifier of the media object",
+                      "type": "string"
+                    },
+                    "mime_type": {
+                      "description": "The MIME type of the media object",
+                      "examples": [
+                        "image/jpeg",
+                        "video/mp4",
+                        null
+                      ],
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "object": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/MediaObjectDto"
+                        }
+                      ],
+                      "description": "The media object represents the actual media asset"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "mime_type",
+                    "object"
+                  ],
+                  "type": "object"
+                },
+                "MediaObjectDto": {
+                  "properties": {
+                    "isDeleted": {
+                      "description": "The current state of the physical media asset",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "The provided name of the media object",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "size_bytes": {
+                      "description": "The size of the media object in bytes",
+                      "example": 1024,
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "url": {
+                      "description": "The URL of the media object",
+                      "examples": [
+                        "https://example.com/media.jpg",
+                        null
+                      ],
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "isDeleted",
+                    "url",
+                    "size_bytes",
+                    "name"
+                  ],
+                  "type": "object"
+                },
+                "PinterestConfiguration": {
+                  "properties": {
+                    "board_ids": {
+                      "description": "Pinterest board IDs",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "caption": {
+                      "description": "Overrides the `caption` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "link": {
+                      "description": "Pinterest post link",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "media": {
+                      "description": "Overrides the `media` from the post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "title": {
+                      "description": "Pinterest post title",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "video_cover_timestamp_ms": {
+                      "description": "Video cover timestamp in milliseconds",
+                      "nullable": true,
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PlatformConfigurationsDto": {
+                  "properties": {
+                    "bluesky": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/BlueskyConfiguration"
+                        }
+                      ],
+                      "description": "Bluesky configuration",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "facebook": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/FacebookConfiguration"
+                        }
+                      ],
+                      "description": "Facebook configuration",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "google_business": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GoogleBusinessConfiguration"
+                        }
+                      ],
+                      "description": "Google Business Profile configuration. v1 supports text or a single image to one location per account. Multi-image posts only send the first image to GMB (other platforms still receive all images). Video posts to GMB are rejected.",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "instagram": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/InstagramConfiguration"
+                        }
+                      ],
+                      "description": "Instagram configuration",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "linkedin": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/LinkedinConfiguration"
+                        }
+                      ],
+                      "description": "LinkedIn configuration",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "pinterest": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PinterestConfiguration"
+                        }
+                      ],
+                      "description": "Pinterest configuration",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "threads": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ThreadsConfiguration"
+                        }
+                      ],
+                      "description": "Threads configuration",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "tiktok": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TiktokConfiguration"
+                        }
+                      ],
+                      "description": "TikTok configuration",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "twitter": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TwitterConfiguration"
+                        }
+                      ],
+                      "description": "Twitter configuration",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "youtube": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/YoutubeConfiguration"
+                        }
+                      ],
+                      "description": "YouTube configuration",
+                      "nullable": true,
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PostDto": {
+                  "properties": {
+                    "account_configurations": {
+                      "description": "Account-specific configurations for the post",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "caption": {
+                      "description": "Caption text for the post",
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "description": "Timestamp when the post was created",
+                      "type": "string"
+                    },
+                    "dashboard_url": {
+                      "description": "Link to this post in the Post Bridge dashboard (view, edit, or see per-platform results). Give it to the user when they ask where the post is.",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier of the post",
+                      "type": "string"
+                    },
+                    "is_draft": {
+                      "description": "If true the post will not be processed until updated",
+                      "type": "boolean"
+                    },
+                    "media": {
+                      "description": "Array of media URLs associated with the post",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "platform_configurations": {
+                      "description": "Platform-specific configurations for the post",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "scheduled_at": {
+                      "description": "Scheduled date and time for the post",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "social_accounts": {
+                      "description": "Array of social account IDs associated with the post",
+                      "items": {
+                        "type": "number"
+                      },
+                      "nullable": false,
+                      "type": "array"
+                    },
+                    "status": {
+                      "description": "Current status of the post: scheduled, processing, or posted",
+                      "enum": [
+                        "posted",
+                        "scheduled",
+                        "processing",
+                        "failed"
+                      ],
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "Timestamp when the post was last updated",
+                      "type": "string"
+                    },
+                    "warnings": {
+                      "description": "Warnings about draft behavior — e.g. platforms that will publish immediately when the draft is sent",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "caption",
+                    "status",
+                    "scheduled_at",
+                    "platform_configurations",
+                    "social_accounts",
+                    "account_configurations",
+                    "media",
+                    "created_at",
+                    "updated_at",
+                    "is_draft",
+                    "dashboard_url"
+                  ],
+                  "type": "object"
+                },
+                "PostResultDto": {
+                  "properties": {
+                    "error": {
+                      "description": "Error message if the operation failed",
+                      "type": "object"
+                    },
+                    "id": {
+                      "description": "The unique identifier of the post result",
+                      "type": "string"
+                    },
+                    "platform_data": {
+                      "description": "Platform-specific data",
+                      "properties": {
+                        "id": {
+                          "description": "Platform-specific ID",
+                          "type": "string"
+                        },
+                        "platform_video_id": {
+                          "description": "TikTok only: the final public video id, usable against TikTok's own APIs. `id` is TikTok's publish/processing id. Populated once TikTok moderation exposes the post (re-poll until non-null); always null for drafts and for other platforms, where `id` is already the native post id.",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "URL of the posted content",
+                          "type": "string"
+                        },
+                        "username": {
+                          "description": "Username on the platform",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "post_id": {
+                      "description": "The ID of the associated post",
+                      "type": "string"
+                    },
+                    "social_account_id": {
+                      "description": "The ID of the associated Social Account",
+                      "type": "number"
+                    },
+                    "success": {
+                      "description": "Indicates if the operation was successful",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "post_id",
+                    "success",
+                    "social_account_id",
+                    "error",
+                    "platform_data"
+                  ],
+                  "type": "object"
+                },
+                "SocialAccountDto": {
+                  "properties": {
+                    "connected_via_link_at": {
+                      "description": "When this account was last connected or reconnected through a connect link (ISO 8601), or null if it never was.",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "external_ref": {
+                      "description": "Your reference from the connect link that connected this account (POST /social-accounts/connect-link), or null for accounts connected in the dashboard.",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "has_x_premium": {
+                      "description": "X (Twitter) accounts only: true when the account is on X Premium, which allows posts up to 25,000 characters instead of 280. Refreshed when the user reconnects or clicks Refresh on X. null for every other platform.",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "id": {
+                      "description": "The unique identifier of the social account",
+                      "type": "number"
+                    },
+                    "needs_reconnect": {
+                      "description": "True when repeated dead-token failures have paused posting to this account (Meta platforms). Posts to it are skipped until the account is reconnected in the dashboard; any reconnect clears it automatically. Pause your automation for accounts in this state instead of retrying.",
+                      "type": "boolean"
+                    },
+                    "platform": {
+                      "description": "The platform of the social account",
+                      "type": "string"
+                    },
+                    "profile_picture_url": {
+                      "description": "The account's profile picture URL, or null when the platform didn't provide one. Updated when the account is reconnected or refreshed.",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "supports_instagram_music": {
+                      "description": "Instagram accounts only: true when the account is connected through Facebook login, which is the only connection Meta lets attach Instagram music (platform_configurations.instagram.audio_id, tracks from GET /v1/social-accounts/{id}/instagram-audio). false for accounts connected with Instagram login. null for every other platform.",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "username": {
+                      "description": "The platform's username of the social account",
+                      "type": "string"
+                    },
+                    "workspace_id": {
+                      "description": "The dashboard workspace this account sits in, or null for the default Main workspace. Pass it as ?workspace_id= to list only that workspace's accounts.",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "workspace_name": {
+                      "description": "Name of that workspace (\"Main\" for the default one).",
+                      "nullable": true,
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "platform",
+                    "username",
+                    "profile_picture_url",
+                    "needs_reconnect",
+                    "external_ref",
+                    "connected_via_link_at",
+                    "workspace_id",
+                    "workspace_name",
+                    "has_x_premium",
+                    "supports_instagram_music"
+                  ],
+                  "type": "object"
+                },
+                "ThreadsConfiguration": {
+                  "properties": {
+                    "caption": {
+                      "description": "Overrides the `caption` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "first_comment": {
+                      "description": "Optional reply posted to the thread immediately after it publishes (a \"first comment\"). A good place for a link or extra context without cluttering the main thread. Max 500 characters. A failed reply will not fail the post — the thread still publishes.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "location": {
+                      "description": "Threads post location",
+                      "enum": [
+                        "reels",
+                        "timeline"
+                      ],
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "media": {
+                      "description": "Overrides the `media` from the post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "quote_post_id": {
+                      "description": "Makes the post a native quote of an existing Threads post (the quoted post shows as a card under the text and media). Works for text, image, carousel and video posts. A numeric post id (platform_id from an earlier post result) or a threads.com post URL; a URL is only found among this account's own recent posts, so use the id for anyone else's post. If the quoted post is deleted, private or cannot be quoted, the post fails instead of publishing without the quote.",
+                      "example": "18150206014560966",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "reply_to_id": {
+                      "description": "Publishes the post as a reply under an existing Threads post, for example to add to a launch thread after it is live. A numeric post id or a threads.com post URL (URLs are matched against this account's own recent posts and replies). Threads lets an app reply to the account's own threads; replying elsewhere may be refused. A failed lookup or refusal fails the post.",
+                      "example": "18150206014560966",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "thread": {
+                      "description": "Turns the post into a multi-post thread. Each entry is published as a reply to the one before it, in order, under the main post. An entry is a string, or an object `{ text, media }` where `media` is an array of media ids (up to 20 images or videos; 2 or more post as a carousel) attached to that post. Up to 25 entries, each trimmed to 500 characters. A link is allowed in any entry. If one entry fails the chain stops there, but the main post still counts as published; the result details list the reply ids that went out.",
+                      "example": [
+                        "Post 2 of 3",
+                        {
+                          "media": [
+                            "<media id>"
+                          ],
+                          "text": "Post 3 of 3"
+                        }
+                      ],
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "properties": {
+                              "media": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "text": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "TiktokConfiguration": {
+                  "properties": {
+                    "allow_comment": {
+                      "description": "Allow viewers to comment. Defaults to true.",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "allow_duet": {
+                      "description": "Allow viewers to Duet the video. Defaults to true. Video posts only.",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "allow_stitch": {
+                      "description": "Allow viewers to Stitch the video. Defaults to true. Video posts only.",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "auto_add_music": {
+                      "description": "PHOTO POSTS ONLY — has no effect on video posts. When true (the default) TikTok picks a soundtrack for the photo carousel. Set false to publish silent.",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "caption": {
+                      "description": "Overrides the `caption` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "disclose_branded_content": {
+                      "description": "Discloses the post as paid partnership / branded content (TikTok brand_content_toggle). Defaults to false.",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "disclose_your_brand": {
+                      "description": "Discloses the post as promoting your own brand (TikTok brand_organic_toggle). Defaults to false.",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "draft": {
+                      "description": "If true the post will be saved as a draft, instead of immediately publishing",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "is_aigc": {
+                      "description": "If true the video will be labeled with \"Creator labeled as AI-generated\" tag in the description.",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "media": {
+                      "description": "Overrides the `media` from the post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "privacy_status": {
+                      "description": "Set to \"private\" to publish visible only to you (TikTok SELF_ONLY). Anything else publishes publicly. Defaults to public.",
+                      "enum": [
+                        "public",
+                        "private"
+                      ],
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "description": "Overrides the `title` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "video_cover_timestamp_ms": {
+                      "description": "Video cover timestamp in milliseconds",
+                      "nullable": true,
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "TwitterConfiguration": {
+                  "properties": {
+                    "caption": {
+                      "description": "Overrides the `caption` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "first_comment": {
+                      "description": "Optional reply posted to the tweet immediately after it publishes (a \"first comment\"). Unlike the main tweet — where links are stripped to avoid X's URL surcharge — links ARE allowed here, so this is the place to put a URL/CTA. Trimmed to the character limit (280, or 2200 for premium accounts). A failed reply will not fail the post — the tweet still publishes.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "media": {
+                      "description": "Overrides the `media` from the post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "thread": {
+                      "description": "Turns the post into a multi-post thread. Each entry is published as a reply to the one before it, in order, under the main post. An entry is a string, or an object `{ text, media }` where `media` is an array of media ids (up to 4 images, or 1 video) attached to that tweet. Up to 25 entries, each trimmed to the character limit (280, or 25,000 for X Premium accounts). A link is allowed in any entry. If one entry fails the chain stops there, but the main post still counts as published; the result details list the reply ids that went out.",
+                      "example": [
+                        "Tweet 2 of 3",
+                        {
+                          "media": [
+                            "<media id>"
+                          ],
+                          "text": "Tweet 3 of 3"
+                        }
+                      ],
+                      "items": {
+                        "oneOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "properties": {
+                              "media": {
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "text": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        ]
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "UpdatePostDto": {
+                  "properties": {
+                    "account_configurations": {
+                      "description": "Account-specific configurations for the post",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "caption": {
+                      "description": "Caption text for the post",
+                      "type": "string"
+                    },
+                    "is_draft": {
+                      "description": "If true will create the post but not process it until it is updated with a scheduled date or processed instantly",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "media": {
+                      "description": "Array of media IDs associated with the post",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "media_urls": {
+                      "description": "Array of publicly accesible media URLs associated with the post, will be ignored if media is provided",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "platform_configurations": {
+                      "description": "Platform-specific configurations for the post",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "processing_enabled": {
+                      "default": true,
+                      "description": "If true will process video files to ensure they post, If false we will skip all video processing",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "scheduled_at": {
+                      "description": "Scheduled date and time for the post, setting to null will post instantly",
+                      "nullable": true,
+                      "type": "object"
+                    },
+                    "social_accounts": {
+                      "description": "Array of social account IDs for posting",
+                      "items": {
+                        "type": "number"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "YoutubeConfiguration": {
+                  "properties": {
+                    "caption": {
+                      "description": "Overrides the `caption` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "contains_synthetic_media": {
+                      "description": "If true, discloses that the video contains realistic altered or synthetic (AI-generated) content. YouTube may display an \"Altered or synthetic content\" label to viewers. Maps to the YouTube Data API `status.containsSyntheticMedia` field.",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "has_paid_product_placement": {
+                      "description": "If true, discloses that the video includes paid product placement, a sponsorship or an endorsement. YouTube shows viewers an \"Includes paid promotion\" label. Maps to the YouTube Data API `paidProductPlacementDetails.hasPaidProductPlacement` field. Defaults to false.",
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "media": {
+                      "description": "Overrides the `media` from the post",
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "publish_at": {
+                      "description": "ISO 8601 datetime when the video goes public on YouTube. The video uploads at the post time (immediately, or at `scheduled_at`) as private, YouTube processes it, and YouTube itself makes it public at `publish_at` (Data API `status.publishAt`). Use it to upload early and let YouTube schedule natively, e.g. so it is processed and ready before launch. Must be after the upload time. Members-first / early access is not available in the YouTube API; set that in YouTube Studio after the upload.",
+                      "example": "2026-11-01T15:00:00Z",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Video tags for YouTube search and discovery, set per video. Maps to the YouTube Data API `snippet.tags` field. YouTube caps the whole set at 500 characters; tags beyond the cap are dropped rather than failing the post.",
+                      "example": [
+                        "cooking",
+                        "easy recipes"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "thumbnail": {
+                      "description": "Media ID of an uploaded image to use as the video thumbnail. Upload the image first via the media endpoints, then pass its ID here. Works on Shorts and regular (long-form) videos. The connected YouTube channel must be verified to set custom thumbnails, and the image should be JPEG/PNG, 1280x720, under 2MB. A thumbnail that fails to apply will not fail the post — the video still publishes.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "description": "Overrides the `title` from the post",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearer": {
+                  "bearerFormat": "JWT",
+                  "scheme": "bearer",
+                  "type": "http"
+                },
+                "mcp-oauth": {
+                  "description": "Used by MCP clients (Claude, ChatGPT, Cursor). REST API callers use the Bearer API key above instead.",
+                  "flows": {
+                    "authorizationCode": {
+                      "authorizationUrl": "https://www.post-bridge.com/authorize",
+                      "refreshUrl": "https://www.post-bridge.com/api/oauth/token",
+                      "scopes": {
+                        "accounts:read": "List connected social accounts",
+                        "analytics:read": "Read post analytics",
+                        "media:read": "List uploaded media",
+                        "media:write": "Upload and delete media",
+                        "posts:read": "Read posts, drafts and scheduled posts",
+                        "posts:write": "Create, update, schedule and delete posts"
+                      },
+                      "tokenUrl": "https://www.post-bridge.com/api/oauth/token"
+                    }
+                  },
+                  "type": "oauth2"
+                }
+              }
+            },
+            "info": {
+              "contact": {},
+              "description": "The official API for [post bridge](https://www.post-bridge.com/)\n      ",
+              "termsOfService": "https://www.post-bridge.com/tos",
+              "title": "post bridge API",
+              "version": "1.0"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/v1/analytics": {
+                "get": {
+                  "description": "Get a paginated result for analytics based on the applied filters",
+                  "operationId": "AnalyticsController_getAllAnalytics_v1",
+                  "parameters": [
+                    {
+                      "description": "Number of items to skip",
+                      "in": "query",
+                      "name": "offset",
+                      "required": false,
+                      "schema": {
+                        "default": 0,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Number of items to return",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": 10,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Filter by platform (e.g. tiktok)",
+                      "in": "query",
+                      "name": "platform",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by post result IDs. Multiple values imply OR logic.",
+                      "in": "query",
+                      "name": "post_result_id",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Filter by timeframe: 7d, 30d, 90d, or all",
+                      "in": "query",
+                      "name": "timeframe",
+                      "required": false,
+                      "schema": {
+                        "default": "all",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by media type: video or slideshow. Told apart by duration: slideshow = TikTok photo posts, video = TikTok and YouTube videos. Instagram and Facebook do not report duration, so their posts are excluded when this is set.",
+                      "in": "query",
+                      "name": "media_type",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "video",
+                          "slideshow"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/AnalyticsDto"
+                                },
+                                "type": "array"
+                              },
+                              "meta": {
+                                "properties": {
+                                  "limit": {
+                                    "description": "Maximum number of items returned.",
+                                    "type": "number"
+                                  },
+                                  "next": {
+                                    "description": "URL to the next page of results, or null if none.",
+                                    "example": "https://api.post-bridge.com/v1/items?offset=10&limit=10",
+                                    "nullable": true,
+                                    "type": "string"
+                                  },
+                                  "offset": {
+                                    "description": "Number of items skipped.",
+                                    "type": "number"
+                                  },
+                                  "total": {
+                                    "description": "Total number of items available.",
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "total",
+                                  "offset",
+                                  "limit",
+                                  "next"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "meta"
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Paginated data set for analytics."
+                    },
+                    "500": {
+                      "description": "Internal server error when fetching analytics."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get analytics",
+                  "tags": [
+                    "Analytics"
+                  ]
+                }
+              },
+              "/v1/analytics/sync": {
+                "post": {
+                  "description": "Pulls fresh view, like and comment counts from each platform for posts published through post bridge. Rate limited: a sync can only be triggered once every 30 minutes per account. Analytics are only available for TikTok, YouTube, Instagram and Facebook.",
+                  "operationId": "AnalyticsController_syncAnalytics_v1",
+                  "parameters": [
+                    {
+                      "description": "Sync a specific platform only. Omit to sync all.",
+                      "in": "query",
+                      "name": "platform",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "tiktok",
+                          "youtube",
+                          "instagram"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Analytics sync completed."
+                    },
+                    "429": {
+                      "description": "Rate limited - please wait between syncs."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Sync analytics for your connected accounts (TikTok, YouTube, Instagram)",
+                  "tags": [
+                    "Analytics"
+                  ]
+                }
+              },
+              "/v1/analytics/{id}": {
+                "get": {
+                  "description": "Returns the lifetime analytics record for one post result: views, likes, comments and shares as last synced, with the timestamp of that sync.",
+                  "operationId": "AnalyticsController_getAnalyticsById_v1",
+                  "parameters": [
+                    {
+                      "description": "Analytics record ID",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AnalyticsDto"
+                          }
+                        }
+                      },
+                      "description": "Analytics record retrieved successfully."
+                    },
+                    "404": {
+                      "description": "Analytics record not found."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get analytics by ID",
+                  "tags": [
+                    "Analytics"
+                  ]
+                }
+              },
+              "/v1/analytics/{id}/daily": {
+                "get": {
+                  "description": "Returns one row per day for a post, with both the cumulative total on that day and the change from the previous day. Use this for charts; use the lifetime endpoint for a single current number.",
+                  "operationId": "AnalyticsController_getAnalyticsDaily_v1",
+                  "parameters": [
+                    {
+                      "description": "Analytics record ID",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AnalyticsDailyDto"
+                          }
+                        }
+                      },
+                      "description": "Daily analytics snapshots and deltas for a post."
+                    },
+                    "404": {
+                      "description": "Analytics record not found."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get daily snapshots and per-day deltas for a post",
+                  "tags": [
+                    "Analytics"
+                  ]
+                }
+              },
+              "/v1/media": {
+                "get": {
+                  "description": "Get a paginated result for media based on the applied filters",
+                  "operationId": "MediaController_getMedia_v1",
+                  "parameters": [
+                    {
+                      "description": "Number of items to skip",
+                      "in": "query",
+                      "name": "offset",
+                      "required": false,
+                      "schema": {
+                        "default": 0,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Number of items to return",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": 10,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Filter by post IDs. Multiple values imply OR logic (e.g., ?post_id=123&post_id=456).",
+                      "in": "query",
+                      "name": "post_id",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Filter by media types. Multiple values imply OR logic (e.g., ?type=image&type=video).",
+                      "in": "query",
+                      "name": "type",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "enum": [
+                            "image",
+                            "video"
+                          ],
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/MediaDto"
+                                },
+                                "type": "array"
+                              },
+                              "meta": {
+                                "properties": {
+                                  "limit": {
+                                    "description": "Maximum number of items returned.",
+                                    "type": "number"
+                                  },
+                                  "next": {
+                                    "description": "URL to the next page of results, or null if none.",
+                                    "example": "https://api.post-bridge.com/v1/items?offset=10&limit=10",
+                                    "nullable": true,
+                                    "type": "string"
+                                  },
+                                  "offset": {
+                                    "description": "Number of items skipped.",
+                                    "type": "number"
+                                  },
+                                  "total": {
+                                    "description": "Total number of items available.",
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "total",
+                                  "offset",
+                                  "limit",
+                                  "next"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "meta"
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Paginated data set for media."
+                    },
+                    "500": {
+                      "description": "Internal server error when fetching media."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get media",
+                  "tags": [
+                    "Media"
+                  ]
+                }
+              },
+              "/v1/media/create-upload-url": {
+                "post": {
+                  "operationId": "MediaController_createUploadUrl_v1",
+                  "parameters": [],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateUploadUrlDto"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "description": ""
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "tags": [
+                    "Media"
+                  ]
+                }
+              },
+              "/v1/media/upload-link": {
+                "post": {
+                  "description": "\nTo upload media to attach to your post, make a `POST` request to the `/media/create-upload-url` endpoint. \n\nYou'll receive the ID of your media item (which can be used anywhere that `media_id` is referenced) and will include an `upload_url` which is a signed URL of the storage location for uploading your file to. \n\nThis URL is unique and publicly signed for a short time, so make sure to upload your files in a timely manner.\n\n**Example flow using JavaScript and the Fetch API:**\n\n**Request an upload URL**\n\n   ```js\n   // Step 1: Request an upload URL from your API\n   const response = await fetch('https://api.post-bridge.com/v1/media/create-upload-url', {\n     method: 'POST',\n     headers: {\n       'Content-Type': 'application/json'\n     },\n     body: JSON.stringify({\n       name: 'photo.jpg',\n       mime_type: 'image/jpeg',\n       size_bytes: 123456\n     })\n   });\n\n   const { media_id, upload_url } = await response.json();\n   ```\n\n**Upload your file to the signed URL**\n\n   ```js\n   // Step 2: Upload your file to the signed URL\n   const file = /* your File or Blob object, e.g., from an <input type=\"file\"> */;\n   await fetch(upload_url, {\n     method: 'PUT',\n     headers: {\n       'Content-Type': 'image/jpeg'\n     },\n     body: file\n   });\n   ```\n\n**Use the `media_id` in your post or wherever a media reference is required.**\n\n**Rate limit note**\n\n- API keys currently have a general limit of **10 requests per second per key**.\n- There is no bulk endpoint for requesting multiple upload URLs at once.\n- If you are uploading many files, keep your aggregate request rate under the limit and retry `429` responses with backoff.\n",
+                  "operationId": "MediaController_createUploadLink_v1",
+                  "parameters": [],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CreateUploadUrlResponseDto"
+                          }
+                        }
+                      },
+                      "description": "Upload page URL and expiry.\n\nSigned upload URL and media record created successfully."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Upload media",
+                  "tags": [
+                    "Media"
+                  ]
+                }
+              },
+              "/v1/media/{id}": {
+                "delete": {
+                  "description": "Permanently deletes an uploaded media item. Any scheduled or draft post still referencing it will fail to publish, so delete only media you know is unused.",
+                  "operationId": "MediaController_deleteMedia_v1",
+                  "parameters": [
+                    {
+                      "description": "Media ID",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DeleteEntityResponseDto"
+                          }
+                        }
+                      },
+                      "description": "Media item deleted successfully."
+                    },
+                    "404": {
+                      "description": "Media not found based on the given ID."
+                    },
+                    "500": {
+                      "description": "Internal server error when deleting the media."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Delete media by ID",
+                  "tags": [
+                    "Media"
+                  ]
+                },
+                "get": {
+                  "description": "Returns one uploaded media item: its type, size and the URL used when posting. Media is deleted automatically once every post using it has published, after which the ID stops resolving.",
+                  "operationId": "MediaController_getMediaById_v1",
+                  "parameters": [
+                    {
+                      "description": "Media ID",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/MediaDto"
+                          }
+                        }
+                      },
+                      "description": "Media item retrieved successfully."
+                    },
+                    "404": {
+                      "description": "Media not found based on the given ID."
+                    },
+                    "500": {
+                      "description": "Internal server error when fetching the media."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get media by ID",
+                  "tags": [
+                    "Media"
+                  ]
+                }
+              },
+              "/v1/post-results": {
+                "get": {
+                  "description": "Get a paginated result for post results based on the applied filters",
+                  "operationId": "PostResultsController_getAllPostResults_v1",
+                  "parameters": [
+                    {
+                      "description": "Number of items to skip",
+                      "in": "query",
+                      "name": "offset",
+                      "required": false,
+                      "schema": {
+                        "default": 0,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Number of items to return",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": 10,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Filter by post IDs. Multiple values imply OR logic (e.g., ?post_id=123&post_id=456).",
+                      "in": "query",
+                      "name": "post_id",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Filter by platform(s). Multiple values imply OR logic (e.g., ?platform=twitter&platform=facebook).",
+                      "in": "query",
+                      "name": "platform",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/PostResultDto"
+                                },
+                                "type": "array"
+                              },
+                              "meta": {
+                                "properties": {
+                                  "limit": {
+                                    "description": "Maximum number of items returned.",
+                                    "type": "number"
+                                  },
+                                  "next": {
+                                    "description": "URL to the next page of results, or null if none.",
+                                    "example": "https://api.post-bridge.com/v1/items?offset=10&limit=10",
+                                    "nullable": true,
+                                    "type": "string"
+                                  },
+                                  "offset": {
+                                    "description": "Number of items skipped.",
+                                    "type": "number"
+                                  },
+                                  "total": {
+                                    "description": "Total number of items available.",
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "total",
+                                  "offset",
+                                  "limit",
+                                  "next"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "meta"
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Paginated data set for post results."
+                    },
+                    "500": {
+                      "description": "Internal server error when fetching post results."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get post results",
+                  "tags": [
+                    "Post Results"
+                  ]
+                }
+              },
+              "/v1/post-results/{id}": {
+                "get": {
+                  "description": "Returns the outcome of publishing one post to one social account: whether it succeeded, the URL of the live post, and the platform error if it failed. A post targeting five accounts produces five results.",
+                  "operationId": "PostResultsController_getPostResult_v1",
+                  "parameters": [
+                    {
+                      "description": "Post Result ID",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PostResultDto"
+                          }
+                        }
+                      },
+                      "description": "Post result retrieved successfully."
+                    },
+                    "404": {
+                      "description": "Post result not found based on the given ID."
+                    },
+                    "500": {
+                      "description": "Internal server error when fetching the post result."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get post result by ID",
+                  "tags": [
+                    "Post Results"
+                  ]
+                }
+              },
+              "/v1/posts": {
+                "get": {
+                  "description": "Get a paginated result for posts based on the applied filters",
+                  "operationId": "PostsController_getAllPosts_v1",
+                  "parameters": [
+                    {
+                      "description": "Number of items to skip",
+                      "in": "query",
+                      "name": "offset",
+                      "required": false,
+                      "schema": {
+                        "default": 0,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Number of items to return",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": 10,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Filter by platforms. Multiple values imply OR logic.",
+                      "in": "query",
+                      "name": "platform",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "enum": [
+                            "bluesky",
+                            "facebook",
+                            "google_business",
+                            "instagram",
+                            "linkedin",
+                            "pinterest",
+                            "threads",
+                            "tiktok",
+                            "twitter",
+                            "youtube"
+                          ],
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Filter by post status. Multiple values imply OR logic.",
+                      "in": "query",
+                      "name": "status",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "enum": [
+                            "posted",
+                            "scheduled",
+                            "processing",
+                            "failed"
+                          ],
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/PostDto"
+                                },
+                                "type": "array"
+                              },
+                              "meta": {
+                                "properties": {
+                                  "limit": {
+                                    "description": "Maximum number of items returned.",
+                                    "type": "number"
+                                  },
+                                  "next": {
+                                    "description": "URL to the next page of results, or null if none.",
+                                    "example": "https://api.post-bridge.com/v1/items?offset=10&limit=10",
+                                    "nullable": true,
+                                    "type": "string"
+                                  },
+                                  "offset": {
+                                    "description": "Number of items skipped.",
+                                    "type": "number"
+                                  },
+                                  "total": {
+                                    "description": "Total number of items available.",
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "total",
+                                  "offset",
+                                  "limit",
+                                  "next"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "meta"
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Paginated data set for posts."
+                    },
+                    "500": {
+                      "description": "Internal server error when fetching posts."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get posts",
+                  "tags": [
+                    "Posts"
+                  ]
+                },
+                "post": {
+                  "description": "Creates a post for the given social accounts. Note: links are automatically stripped from the caption before publishing to X/Twitter, because X charges far more for posts that contain a link. This covers full URLs (http://, https://, www.) and bare domains like foo.com or foo.io/path. All other platforms keep their links. To share a link on X, post it in a reply or in the account bio.",
+                  "operationId": "PostsController_createPosts_v1",
+                  "parameters": [],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreatePostDto"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PostDto"
+                          }
+                        }
+                      },
+                      "description": "Post created successfully."
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/InvalidPostDto"
+                          }
+                        }
+                      },
+                      "description": "Invalid request."
+                    },
+                    "500": {
+                      "description": "Internal server error when fetching the Post."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Create Post",
+                  "tags": [
+                    "Posts"
+                  ]
+                }
+              },
+              "/v1/posts/{id}": {
+                "delete": {
+                  "description": "Delete a scheduled or draft post. Published posts cannot be deleted.",
+                  "operationId": "PostsController_deletePost_v1",
+                  "parameters": [
+                    {
+                      "description": "Post ID",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DeleteEntityResponseDto"
+                          }
+                        }
+                      },
+                      "description": "Post deleted successfully."
+                    },
+                    "400": {
+                      "description": "Can only delete scheduled or draft posts."
+                    },
+                    "404": {
+                      "description": "Post not found."
+                    },
+                    "500": {
+                      "description": "Internal server error when deleting the Post."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Delete Post",
+                  "tags": [
+                    "Posts"
+                  ]
+                },
+                "get": {
+                  "description": "Returns one post with its caption, media, scheduled time, draft flag and the social accounts it targets. Use list_post_results or the post-results endpoints to see what actually happened on each platform.",
+                  "operationId": "PostsController_getPost_v1",
+                  "parameters": [
+                    {
+                      "description": "Post ID",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PostDto"
+                          }
+                        }
+                      },
+                      "description": "Post retrieved successfully."
+                    },
+                    "404": {
+                      "description": "Post not found based on the given ID."
+                    },
+                    "500": {
+                      "description": "Internal server error when fetching the Post."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get Post by ID",
+                  "tags": [
+                    "Posts"
+                  ]
+                },
+                "patch": {
+                  "description": "Update an existing post with the passed in data. If updating a 'scheduled' post make sure to always pass 'scheduled_at' otherwise the post will process immediately",
+                  "operationId": "PostsController_updatePost_v1",
+                  "parameters": [
+                    {
+                      "description": "Post ID",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/UpdatePostDto"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PostDto"
+                          }
+                        }
+                      },
+                      "description": "Post updated successfully."
+                    },
+                    "400": {
+                      "description": "Invalid request."
+                    },
+                    "404": {
+                      "description": "Post not found."
+                    },
+                    "500": {
+                      "description": "Internal server error when updating the Post."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Update Post",
+                  "tags": [
+                    "Posts"
+                  ]
+                }
+              },
+              "/v1/social-accounts": {
+                "get": {
+                  "description": "Get a paginated result for social accounts based on the applied filters",
+                  "operationId": "SocialAccountsController_getAllSocialAccounts_v1",
+                  "parameters": [
+                    {
+                      "description": "Number of items to skip",
+                      "in": "query",
+                      "name": "offset",
+                      "required": false,
+                      "schema": {
+                        "default": 0,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Number of items to return",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": 10,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Filter by platform(s). Multiple values imply OR logic (e.g., ?platform=twitter&platform=instagram).",
+                      "in": "query",
+                      "name": "platform",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Filter by username(s). Multiple values imply OR logic (e.g., ?username=test&username=test2).",
+                      "in": "query",
+                      "name": "username",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Filter by the external_ref given when the account was connected through a connect link (POST /social-accounts/connect-link).",
+                      "in": "query",
+                      "name": "external_ref",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by dashboard workspace: a workspace_id from this list, or \"main\" for the default Main workspace.",
+                      "in": "query",
+                      "name": "workspace_id",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/SocialAccountDto"
+                                },
+                                "type": "array"
+                              },
+                              "meta": {
+                                "properties": {
+                                  "limit": {
+                                    "description": "Maximum number of items returned.",
+                                    "type": "number"
+                                  },
+                                  "next": {
+                                    "description": "URL to the next page of results, or null if none.",
+                                    "example": "https://api.post-bridge.com/v1/items?offset=10&limit=10",
+                                    "nullable": true,
+                                    "type": "string"
+                                  },
+                                  "offset": {
+                                    "description": "Number of items skipped.",
+                                    "type": "number"
+                                  },
+                                  "total": {
+                                    "description": "Total number of items available.",
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "total",
+                                  "offset",
+                                  "limit",
+                                  "next"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "data",
+                              "meta"
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Paginated data set for social accounts."
+                    },
+                    "500": {
+                      "description": "Internal server error when fetching social accounts."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get social accounts",
+                  "tags": [
+                    "Social Accounts"
+                  ]
+                }
+              },
+              "/v1/social-accounts/connect-link": {
+                "post": {
+                  "description": "Returns a link that connects one social account under your Post Bridge account without the account owner logging in to Post Bridge. Give the link to the person (or open it inside your own app): they approve on the platform's own consent screen and are sent to your return_url with the new account ids. Use external_ref to tag the accounts with your own customer id, then filter GET /social-accounts by it. Every connected account counts against your plan's account cap; when the cap is reached this answers 402 with a link to raise it. Platforms: instagram, facebook, tiktok, youtube, twitter, linkedin, threads, pinterest, bluesky (google_business is dashboard-only). Instagram uses Instagram's own login (one professional account, no Facebook Page needed); Facebook connects every Page the login manages; LinkedIn connects the profile plus every company page it administers, so one link can return several account ids; Bluesky shows a short form for the handle and an app password.",
+                  "operationId": "SocialAccountsController_createConnectLink_v1",
+                  "parameters": [],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateConnectLinkDto"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ConnectLinkResponseDto"
+                          }
+                        }
+                      },
+                      "description": "Link created."
+                    },
+                    "400": {
+                      "description": "Unsupported platform or return_url."
+                    },
+                    "402": {
+                      "description": "Account cap reached, or no active plan. The body carries connected, included and raise_url (the billing page where the cap is raised)."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Create a connect link",
+                  "tags": [
+                    "Social Accounts"
+                  ]
+                }
+              },
+              "/v1/social-accounts/{id}": {
+                "delete": {
+                  "description": "Disconnects one social account, the same as the disconnect button in the dashboard. It frees a slot on your account cap. Scheduled posts that target it lose it as a destination (a post whose only destination was this account then fails instead of publishing), and published posts keep their results. Reconnecting later creates a new account id. Handy for pruning accounts a platform has restricted or banned.",
+                  "operationId": "SocialAccountsController_deleteSocialAccount_v1",
+                  "parameters": [
+                    {
+                      "description": "Social Account ID",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DeleteEntityResponseDto"
+                          }
+                        }
+                      },
+                      "description": "Social account disconnected."
+                    },
+                    "404": {
+                      "description": "Social account not found based on the given ID."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Disconnect social account",
+                  "tags": [
+                    "Social Accounts"
+                  ]
+                },
+                "get": {
+                  "description": "Returns one connected social account: platform, username and whether its authorisation is still valid. An account whose token has expired must be reconnected in the dashboard before it can publish.",
+                  "operationId": "SocialAccountsController_getSocialAccount_v1",
+                  "parameters": [
+                    {
+                      "description": "Social Account ID",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SocialAccountDto"
+                          }
+                        }
+                      },
+                      "description": "Social account retrieved successfully."
+                    },
+                    "404": {
+                      "description": "Social account not found based on the given ID."
+                    },
+                    "500": {
+                      "description": "Internal server error when fetching the post result."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Get social account by ID",
+                  "tags": [
+                    "Social Accounts"
+                  ]
+                }
+              },
+              "/v1/social-accounts/{id}/instagram-audio": {
+                "get": {
+                  "description": "Searches the tracks (or original sounds) Meta lets apps attach to a reel on this Instagram account. Pass a returned audio_id as platform_configurations.instagram.audio_id when creating the post, with optional audio_volume and video_volume (0-100). Leave out query to get what is trending. Only works for Instagram accounts connected through Facebook login (supports_instagram_music: true); accounts connected with Instagram login get a 400, because Meta only offers music on the Facebook-login API. The catalogue is the subset Meta clears for third-party apps, so it can differ from the in-app library. download_url previews expire after about 1.5 days.",
+                  "operationId": "SocialAccountsController_searchInstagramAudio_v1",
+                  "parameters": [
+                    {
+                      "description": "Search words, e.g. a song or artist. Omit for trending audio.",
+                      "in": "query",
+                      "name": "query",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "music (default) or original_sound (audio from other reels).",
+                      "in": "query",
+                      "name": "type",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "music",
+                          "original_sound"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Social Account ID of an Instagram account",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "{ data: [{ audio_id, title, display_artist, duration_in_ms, audio_type, cover_artwork_thumbnail_uri, download_url, ig_username, is_ads_eligible, on_platform_audio_preview_link }] }"
+                    },
+                    "400": {
+                      "description": "Not an Instagram account, or an Instagram account connected with Instagram login (music needs Facebook login)."
+                    },
+                    "404": {
+                      "description": "Social account not found."
+                    },
+                    "502": {
+                      "description": "Meta returned an error."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearer": []
+                    }
+                  ],
+                  "summary": "Search Instagram music for reels",
+                  "tags": [
+                    "Social Accounts"
+                  ]
+                }
+              }
+            },
+            "servers": [],
+            "tags": [
+              {
+                "description": "Authentication is required for all endpoints. Provide a valid API key as a Bearer token in the Authorization header. \n      Log in to your [post bridge](https://www.post-bridge.com/) account to retrieve your API key.",
+                "name": "Auth"
+              },
+              {
+                "description": "\nTo create a post you first need to get the social accounts you want to post to, upload any media for the post (if applicable), and then create the post. \n\nYou only need to get the social accounts once as the ids will not change, however you will need to upload media each time you create a post.\n\nThe below example shows how to create a media post from start to finish.\n\n**Example flow using JavaScript and the Fetch API:**\n\n**Get Social Accounts**\n\n   ```js\n   // Step 1: Fetch the social accounts you want to post to. In this case we are getting all facebook and instagram accounts.\n   const socialAccountResponse = await fetch('https://api.post-bridge.com/v1/social-accounts?platform=facebook&platform=instagram', {\n     method: 'GET',\n     headers: {\n       'Content-Type': 'application/json',\n       'Authorization': 'Bearer YOUR_API_KEY'\n     }\n   });\n\n   const { data } = await socialAccountResponse.json();\n\n   //Grab the ids from the social account response\n   const accountIds =  data.map((account) => account.id);\n   ```\n\n**Create a signed upload url for the media we are posting**\n\n   ```js\n   // Step 2: Request an upload URL \n   const file = fs.readFileSync('path-to-your-file');\n   const mediaResponse = await fetch('https://api.post-bridge.com/v1/media/create-upload-url', {\n     method: 'POST',\n     headers: {\n       'Content-Type': 'application/json',\n       'Authorization': 'Bearer YOUR_API_KEY'\n     },\n     body: JSON.stringify({\n       name: 'photo.jpg',\n       mime_type: 'image/jpeg',\n       size_bytes: file.length\n     })\n   });\n\n   //Save the media_id for the post, and the upload_url for uploading the file\n   const { media_id, upload_url } = await mediaResponse.json();\n   ```\n\n**Upload the file to the upload url**\n\n ```js\n   // Step 3: Upload the file to the upload url \n   const fileUploadResponse = await fetch(upload_url, {\n    method: 'PUT',\n    headers: {\n      'Content-Type': 'image/jpeg',\n    },\n    body: file,\n  });\n   ```\n\n**Create the post**\n\n ```js\n   // Step 4: Create the post using the social account ids and the media_id\n\n   // We are scheduling the post one hour from now\n   const scheduledAt = new Date();\n   scheduledAt.setHours(scheduledAt.getHours() + 1);\n\n   const postResponse = await fetch('https://api.post-bridge.com/v1/posts', {\n       method: 'POST',\n       headers: {\n         'Content-Type': 'application/json',\n         'Authorization': 'Bearer YOUR_API_KEY'\n       },\n       body: JSON.stringify({\n         caption: 'Hello, world!',\n         scheduled_at: scheduledAt,\n         media: [media_id],\n         social_accounts: accountIds,\n       }),\n     });\n   \n     const postData = await postResponse.json();\n   ```\n\n**Thats It! You have successfully scheduled a post to go out in one hour.**\n\n---\n\n**Current API limits**\n\n- API keys currently have a general limit of **10 requests per second per key**.\n- There is no bulk or batch endpoint for creating multiple posts or requesting multiple upload URLs in one API call.\n- If you need higher throughput, throttle your client so the aggregate request rate for that key stays under the limit and retry `429` responses with backoff.\n\n---\n\n**Using a custom cover image for Instagram Reels**\n\nYou can set a custom cover image for Instagram video posts by uploading an image via the media endpoint and passing its `media_id` as `cover_image` in the Instagram platform configuration.\n\n ```js\n   // Upload a cover image using the same media upload flow (Steps 2 & 3 above)\n   const coverResponse = await fetch('https://api.post-bridge.com/v1/media/create-upload-url', {\n     method: 'POST',\n     headers: {\n       'Content-Type': 'application/json',\n       'Authorization': 'Bearer YOUR_API_KEY'\n     },\n     body: JSON.stringify({\n       name: 'cover.jpg',\n       mime_type: 'image/jpeg',\n       size_bytes: coverFile.length\n     })\n   });\n\n   const { media_id: cover_media_id, upload_url: cover_upload_url } = await coverResponse.json();\n\n   // Upload the cover image file\n   await fetch(cover_upload_url, {\n     method: 'PUT',\n     headers: { 'Content-Type': 'image/jpeg' },\n     body: coverFile,\n   });\n\n   // Create the post with the cover image\n   const postResponse = await fetch('https://api.post-bridge.com/v1/posts', {\n     method: 'POST',\n     headers: {\n       'Content-Type': 'application/json',\n       'Authorization': 'Bearer YOUR_API_KEY'\n     },\n     body: JSON.stringify({\n       caption: 'Check out this reel!',\n       media: [video_media_id],\n       social_accounts: accountIds,\n       platform_configurations: {\n         instagram: {\n           cover_image: cover_media_id\n         }\n       }\n     }),\n   });\n   ```\n\n---\n\n**Posting as a Story (Instagram or Facebook)**\n\nTo publish as a Story instead of a normal feed post, set `placement: \"story\"` in the platform configuration. Stories require **exactly one** image or video. Instagram Stories don't support captions; Facebook Stories don't support captions or carousels.\n\n ```js\n   // Upload one image or video first (Steps 2 & 3 from the example above)\n\n   const postResponse = await fetch('https://api.post-bridge.com/v1/posts', {\n     method: 'POST',\n     headers: {\n       'Content-Type': 'application/json',\n       'Authorization': 'Bearer YOUR_API_KEY'\n     },\n     body: JSON.stringify({\n       scheduled_at: scheduledAt,\n       media: [media_id], // Exactly one\n       social_accounts: accountIds,\n       platform_configurations: {\n         instagram: { placement: 'story' },\n         facebook: { placement: 'story' }\n       }\n     }),\n   });\n   ```\n\n---\n\n**YouTube tags**\n\nPass `tags` (an array of strings) in the YouTube platform configuration to set the video's tags per post, e.g. `youtube: { tags: ['cooking', 'easy recipes'] }`. YouTube caps the whole set at 500 characters.\n\n**Disclosing AI-generated content (YouTube)**\n\nIf your video contains realistic altered or synthetic (AI-generated) content, set `contains_synthetic_media: true` in the YouTube platform configuration. YouTube may display an \"Altered or synthetic content\" label to viewers. This maps to the YouTube Data API `status.containsSyntheticMedia` field.\n\n**Upload early, go public later (YouTube)**\n\nSet `publish_at` (ISO 8601) in the YouTube platform configuration to upload the video at the post time as private and let YouTube make it public at `publish_at`, e.g. `youtube: { publish_at: '2026-11-01T15:00:00Z' }`. The video is processed and ready before it goes live. It must be after the upload time. Without it, the video goes public at the post time as usual. This maps to the YouTube Data API `status.publishAt` field.\n\n**Disclosing paid promotion (YouTube)**\n\nIf your video includes paid product placement, a sponsorship or an endorsement, set `has_paid_product_placement: true` in the YouTube platform configuration. YouTube shows viewers an \"Includes paid promotion\" label. This maps to the YouTube Data API `paidProductPlacementDetails.hasPaidProductPlacement` field.\n\n ```js\n   const postResponse = await fetch('https://api.post-bridge.com/v1/posts', {\n     method: 'POST',\n     headers: {\n       'Content-Type': 'application/json',\n       'Authorization': 'Bearer YOUR_API_KEY'\n     },\n     body: JSON.stringify({\n       caption: 'Check out this AI-generated video!',\n       media: [video_media_id],\n       social_accounts: accountIds,\n       platform_configurations: {\n         youtube: { contains_synthetic_media: true }\n       }\n     }),\n   });\n   ```\n\n---\n\n**Setting a custom thumbnail (YouTube)**\n\nFor Shorts and regular (long-form) videos, you can set a custom thumbnail by uploading an image via the media endpoint and passing its `media_id` as `thumbnail` in the YouTube platform configuration. The connected YouTube channel must be verified to use custom thumbnails, and the image should be JPEG/PNG, 1280x720, under 2MB. If the thumbnail can't be applied, the video is still published.\n\n ```js\n   // Upload a thumbnail image using the same media upload flow (Steps 2 & 3 above)\n   const thumbResponse = await fetch('https://api.post-bridge.com/v1/media/create-upload-url', {\n     method: 'POST',\n     headers: {\n       'Content-Type': 'application/json',\n       'Authorization': 'Bearer YOUR_API_KEY'\n     },\n     body: JSON.stringify({\n       name: 'thumbnail.jpg',\n       mime_type: 'image/jpeg',\n       size_bytes: thumbnailFile.length\n     })\n   });\n\n   const { media_id: thumbnail_media_id, upload_url: thumbnail_upload_url } = await thumbResponse.json();\n\n   // Upload the thumbnail image file\n   await fetch(thumbnail_upload_url, {\n     method: 'PUT',\n     headers: { 'Content-Type': 'image/jpeg' },\n     body: thumbnailFile,\n   });\n\n   // Create the post with the custom thumbnail\n   const postResponse = await fetch('https://api.post-bridge.com/v1/posts', {\n     method: 'POST',\n     headers: {\n       'Content-Type': 'application/json',\n       'Authorization': 'Bearer YOUR_API_KEY'\n     },\n     body: JSON.stringify({\n       caption: 'My latest long-form video',\n       media: [video_media_id],\n       social_accounts: accountIds,\n       platform_configurations: {\n         youtube: {\n           thumbnail: thumbnail_media_id\n         }\n       }\n     }),\n   });\n   ```\n\n",
+                "name": "Getting Started"
+              },
+              {
+                "description": "\nMedia are media records (images, videos, etc.) that can be attached to posts. A Media record must be created before uploading the actual asset.\nMedia assets are stored temporarily and are automatically deleted in the following scenarios:\n- When the associated post is published\n- After 24 hours if not attached to any post\n- When the scheduled post is deleted\n\nThese endpoints support common media operations like upload, retrieval, and deletion while ensuring efficient storage management.\n",
+                "name": "Media"
+              },
+              {
+                "description": "\nPosts represent content that can be published across multiple social media platforms. Each post can have platform-specific content variations, allowing customization for different platforms and accounts. Content can be defined at three levels:\n\n1. Default content for all platforms\n2. Platform-specific content overrides\n3. Account-specific content overrides\n\nThe system will use the most specific content override available when publishing to each platform and account.\n\nSupported platforms: `twitter`, `instagram`, `facebook`, `linkedin`, `tiktok`, `youtube`, `pinterest`, `bluesky`, `threads`, `google_business`. Google Business posts in v1 support text or a single image and target a single connected location.\n\n## Media requirements by platform\n\nMedia kinds are `image`, `video`, and `document` (document = PDF, LinkedIn only). Attach media via the post's `media` (uploaded media ids) or `media_urls` (public URLs). A post can be created with no media and have media added later with an update — but it will not publish to a platform that requires media until that media exists.\n\n**Media REQUIRED** — these platforms cannot publish a text-only post and will fail with a media error if none is attached:\n\n- `youtube` — exactly 1 `video`. Images and text-only are rejected. The caption becomes the video title (first 100 chars).\n- `tiktok` — 1 `video`, or one or more `image`s (photo post). Text-only is rejected.\n- `instagram` — 1–10 `image`/`video` (carousel). A Story (`placement: \"story\"`) requires exactly 1. `document`/PDF is not supported and is dropped.\n- `pinterest` — 1 `image` or `video` per pin. A pin with no media fails with \"No files to post\".\n\n**Media OPTIONAL** — these accept a text-only post; media is added if present:\n\n- `twitter` / X — up to 4 `image`s, or a single `video`.\n- `facebook` — a single `video`, or one or more `image`s.\n- `linkedin` — up to 20 `image`s, or a single `video`, or a single `document` (PDF carousel).\n- `threads` — up to 20 `image`/`video` (carousel).\n- `bluesky` — up to 4 `image`s, or a single `video`.\n- `google_business` — text, or a single `image`. `video` is not supported.\n\nWhen a post targets multiple platforms, each platform takes what it supports from the post's media (e.g. a YouTube + Twitter post needs a video for YouTube; Twitter will use it too). Anything a platform can't use is skipped for that platform.\n",
+                "name": "Posts"
+              },
+              {
+                "description": "\nSocial accounts represent platform-specific accounts (e.g. Twitter, LinkedIn, Facebook, Google Business) that are used for publishing posts.\nEach social account has a unique `id` that can be referenced when creating or scheduling posts to specify which platforms the content should be published to.\n",
+                "name": "Social Accounts"
+              },
+              {
+                "description": "\nPost results represent the outcome of publishing content to various social media platforms. They provide comprehensive information including:\n- Publication status (success/failure)\n- Any errors or issues encountered during posting\n- Platform url to view the published post\n",
+                "name": "Post Results"
+              },
+              {
+                "description": "View analytics data for your posts. Currently supports TikTok.",
+                "name": "Analytics"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Post Bridge"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.753849+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.post-bridge.com/openapi.json",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "647c038480a3de80937dd0a301284054e85512d35c4438ecd488963699143fc3",
+    "source_id": "post-bridge",
+    "source_updated": null,
+    "url": "https://api.post-bridge.com/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0"
+}

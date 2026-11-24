@@ -1,0 +1,548 @@
+{
+  "a2ui": {},
+  "app": "tktplz-by-dreamcast-event-management-v2",
+  "graph": {
+    "edges": [
+      {
+        "from": "tktplz-by-dreamcast-event-management-v2",
+        "kind": "EXPOSES",
+        "to": "operation:put:/events/{eventId}/guests/{guestId}"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "tktplz-by-dreamcast-event-management-v2",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "V2 Changes:- country_code format changed from 'IN#91' to '+91'",
+        "id": "operation:put:/events/{eventId}/guests/{guestId}",
+        "kind": "operation",
+        "method": "put",
+        "name": "e665c671f6deaaea46266fb4fd1a9a0d",
+        "parameters": [
+          {
+            "description": "ID of the event",
+            "in": "path",
+            "name": "eventId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "ID of the guest",
+            "in": "path",
+            "name": "guestId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/events/{eventId}/guests/{guestId}",
+        "pointer": "#/paths/~1events~1{eventId}~1guests~1{guestId}/put",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "client_credentials_authorization": []
+          }
+        ],
+        "summary": "Version 2 - Update guest for an event",
+        "tags": [
+          "Event Guest V2"
+        ]
+      },
+      {
+        "id": "schema:EventCategory",
+        "kind": "schema",
+        "name": "EventCategory",
+        "type": "object"
+      },
+      {
+        "id": "schema:EventGuest",
+        "kind": "schema",
+        "name": "EventGuest",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "tktplz-by-dreamcast-event-management-v2"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://staging-diy-reg.godreamcast.com/api/rest/v2",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "EventCategory": {
+                  "properties": {
+                    "categoryType": {
+                      "description": "Indicates if the category is free or paid. 'Free' allows guest registration without payment, while 'Paid' requires a ticket purchase",
+                      "enum": [
+                        "Free",
+                        "Paid"
+                      ],
+                      "example": "Free",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "example": "2025-07-26T11:10:45.000000Z",
+                      "format": "date-time",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "currencyType": {
+                      "description": "Currency type for paid events",
+                      "example": "INR",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the event category",
+                      "example": "VIP access with premium benefits",
+                      "type": "string"
+                    },
+                    "displayOrder": {
+                      "description": "The display order of the category. Lower numbers appear first.",
+                      "example": 0,
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "enableGlobalCapacity": {
+                      "description": "Auto-Close Registration When The Capacity Is Reached. Only Approved Guests Count Toward The Cap",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "enforceBackend": {
+                      "description": "Enforce capacity on backend registration",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "eventId": {
+                      "example": "1",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "globalCapacity": {
+                      "description": "Set global capacity limit. Use -1 for unlimited capacity, or any value > -1 to set a specific limit",
+                      "example": -1,
+                      "type": "integer"
+                    },
+                    "id": {
+                      "example": "1",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "requireApproval": {
+                      "description": "Requires host approval before confirming a guest's registration. If enabled, guests must be reviewed and approved before finalizing their registration.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "status": {
+                      "description": "Indicates if the event category is active or not",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "description": "Title of the event category",
+                      "example": "VIP Access",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "example": "2025-07-26T11:10:45.000000Z",
+                      "format": "date-time",
+                      "readOnly": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "categoryType",
+                    "startDate",
+                    "endDate",
+                    "currencyType"
+                  ],
+                  "type": "object"
+                },
+                "EventGuest": {
+                  "properties": {
+                    "address": {
+                      "example": "123 Market St",
+                      "type": "string"
+                    },
+                    "categories": {
+                      "example": [
+                        {
+                          "id": "10",
+                          "name": "VIP"
+                        }
+                      ],
+                      "items": {
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "city": {
+                      "example": "San Francisco",
+                      "type": "string"
+                    },
+                    "company": {
+                      "example": "Acme Corp",
+                      "type": "string"
+                    },
+                    "country": {
+                      "example": "United States",
+                      "type": "string"
+                    },
+                    "countryCode": {
+                      "example": "+1",
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "example": "2024-01-15T10:30:00Z",
+                      "format": "date-time",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "designation": {
+                      "example": "Software Engineer",
+                      "type": "string"
+                    },
+                    "email": {
+                      "example": "john.doe@example.com",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "example": "John",
+                      "type": "string"
+                    },
+                    "gender": {
+                      "enum": [
+                        "male",
+                        "female",
+                        "other"
+                      ],
+                      "example": "male",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": "1",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "example": "Doe",
+                      "type": "string"
+                    },
+                    "mBadge": {
+                      "example": "MB-001",
+                      "type": "string"
+                    },
+                    "phone": {
+                      "example": "+1234567890",
+                      "type": "string"
+                    },
+                    "profilePicture": {
+                      "example": "https://example.com/avatar.jpg",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "qty": {
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "state": {
+                      "example": "California",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "Numeric status index mapped from guestStatuses",
+                      "example": "1",
+                      "type": "number"
+                    },
+                    "title": {
+                      "example": "Mr.",
+                      "type": "string"
+                    },
+                    "uniqueCode": {
+                      "example": "ABC123",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "example": "2024-01-15T10:30:00Z",
+                      "format": "date-time",
+                      "readOnly": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "firstName",
+                    "lastName",
+                    "email",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "client_credentials_authorization": {
+                  "bearerFormat": "JWT",
+                  "description": "Response Details: \n\n\nThe Bearer JWT access_token valid for 15 day's (see expires_in).\n\n\nUse this token in the Authorization header of other APIs as Bearer <access_token>.",
+                  "flows": {
+                    "clientCredentials": {
+                      "refreshUrl": "/token/refresh",
+                      "scopes": [],
+                      "tokenUrl": "/oauth/token"
+                    }
+                  },
+                  "in": "header",
+                  "name": "Authorization",
+                  "scheme": "bearer",
+                  "type": "oauth2"
+                }
+              }
+            },
+            "info": {
+              "description": "TktPlz REST APIs - Event Management System",
+              "title": "Event Management API",
+              "version": "2.0.0"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/events/{eventId}/guests/{guestId}": {
+                "put": {
+                  "description": "V2 Changes:- country_code format changed from 'IN#91' to '+91'",
+                  "operationId": "e665c671f6deaaea46266fb4fd1a9a0d",
+                  "parameters": [
+                    {
+                      "description": "ID of the event",
+                      "in": "path",
+                      "name": "eventId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "ID of the guest",
+                      "in": "path",
+                      "name": "guestId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "guest": {
+                              "description": "Guest object to update",
+                              "properties": {
+                                "business_e_1769152426426": {
+                                  "example": "any string value for custom field",
+                                  "type": "string"
+                                },
+                                "email": {
+                                  "example": "john.doe@example.com",
+                                  "type": "string"
+                                },
+                                "first_name": {
+                                  "example": "John",
+                                  "type": "string"
+                                },
+                                "last_name": {
+                                  "example": "Doe",
+                                  "type": "string"
+                                },
+                                "phone": {
+                                  "properties": {
+                                    "country_code": {
+                                      "example": "+91",
+                                      "type": "string"
+                                    },
+                                    "value": {
+                                      "example": "45678765798",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/EventGuest"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Guest updated successfully"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Invalid input",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Invalid input"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Event not found",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Event or guest not found"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "error": {
+                                "example": "Failed to update event guest.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "summary": "Version 2 - Update guest for an event",
+                  "tags": [
+                    "Event Guest V2"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "client_credentials_authorization": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Local Development Server",
+                "url": "http://localhost:8000/api/rest/v2"
+              },
+              {
+                "description": "Staging Server",
+                "url": "https://staging-diy-reg.godreamcast.com/api/rest/v2"
+              },
+              {
+                "description": "Production Server",
+                "url": "https://apis-events.diy.godreamcast.com/api/rest/v2"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Event Guest V2",
+                "name": "Event Guest V2"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "TktPlz by Dreamcast Event Management  v2"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.074693+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://apis-events.diy.godreamcast.com/storage/api-docs/default/V2?api-docs-v2.json",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "8706189166cdf8420f136c338b81beff5858feca163d42201cc799bd075a2315",
+    "source_id": "tktplz-by-dreamcast-event-management-v2",
+    "source_updated": null,
+    "url": "https://apis-events.diy.godreamcast.com/storage/api-docs/default/V2?api-docs-v2.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "2.0.0"
+}

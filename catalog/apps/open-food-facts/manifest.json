@@ -1,0 +1,1867 @@
+{
+  "a2ui": {},
+  "app": "open-food-facts",
+  "graph": {
+    "edges": [
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v3.4/attribute_groups"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v3/external_sources"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v3/preferences"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v3/product/{code}"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/api/v3/product/{code}"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v3/product/{code}/images"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/api/v3/product/{code}/images/uploaded/{imgid}"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v3/product_revert"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v3/tag/{tagtype}/{tag_or_tagid}"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v3/taxonomy_canonicalize_tags"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v3/taxonomy_display_tags"
+      },
+      {
+        "from": "open-food-facts",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v3/taxonomy_suggestions"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "open-food-facts",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "for an overview see [Explanation on Product Attributes](https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/explain-product-attributes/)\"",
+        "id": "operation:get:/api/v3.4/attribute_groups",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-api-v3-4-attribute-groups",
+        "path": "/api/v3.4/attribute_groups",
+        "pointer": "#/paths/~1api~1v3.4~1attribute_groups/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Get List of Attribute Groups and Attributes",
+        "tags": [
+          "Product Attributes"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the ordered list of external knowledge panel sources configured on the server.",
+        "id": "operation:get:/api/v3/external_sources",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-api-v3-external-sources",
+        "path": "/api/v3/external_sources",
+        "pointer": "#/paths/~1api~1v3~1external_sources/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "List external knowledge panel sources (JSON)",
+        "tags": [
+          "Knowledge Panels"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "These parameters are used to compute the product preferences score.",
+        "id": "operation:get:/api/v3/preferences",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-api-v3-preferences",
+        "path": "/api/v3/preferences",
+        "pointer": "#/paths/~1api~1v3~1preferences/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Get List of Preference Importance Values",
+        "tags": [
+          "Product Attributes"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieve information for a product with a specific barcode.",
+        "id": "operation:get:/api/v3/product/{code}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-api-v3-product-code",
+        "parameters": [
+          {
+            "description": "The barcode of the product to be fetched",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "required": false
+          },
+          {
+            "description": "Comma separated list of fields requested in the response.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v3/product/{code}",
+        "pointer": "#/paths/~1api~1v3~1product~1{code}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "302"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Get Product Data",
+        "tags": [
+          "Products"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "This API allows to create or update a product (if the product already exists, its data is updated, otherwise it is created), or to analyze a test product (in w…",
+        "id": "operation:patch:/api/v3/product/{code}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch-api-v3-product-code",
+        "parameters": [
+          {
+            "description": "The barcode of the product to create or update, or \"test\" to analyze the product data sent without creating or updating a product.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v3/product/{code}",
+        "pointer": "#/paths/~1api~1v3~1product~1{code}/patch",
+        "request": {
+          "content_types": [
+            "application/json",
+            "application/xml"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "cookieAuth": [],
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Create or Update Product",
+        "tags": [
+          "Products"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "This endpoint allows to upload an image for a product.",
+        "id": "operation:post:/api/v3/product/{code}/images",
+        "kind": "operation",
+        "method": "post",
+        "name": "post-api-v3-product-code-images",
+        "parameters": [
+          {
+            "description": "The barcode of the product corresponding to the image.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v3/product/{code}/images",
+        "pointer": "#/paths/~1api~1v3~1product~1{code}~1images/post",
+        "request": {
+          "content_types": [
+            "application/json",
+            "application/xml"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "cookieAuth": [],
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Upload Product Image",
+        "tags": [
+          "Images"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "This endpoint allows to delete an uploaded image for a product.",
+        "id": "operation:delete:/api/v3/product/{code}/images/uploaded/{imgid}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete-api-v3-product-code-images-uploaded-imgid",
+        "parameters": [
+          {
+            "description": "The barcode of the product corresponding to the image.",
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The id of the image to be deleted.",
+            "in": "path",
+            "name": "imgid",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "path": "/api/v3/product/{code}/images/uploaded/{imgid}",
+        "pointer": "#/paths/~1api~1v3~1product~1{code}~1images~1uploaded~1{imgid}/delete",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "403"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "cookieAuth": [],
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Delete Product Image",
+        "tags": [
+          "Images"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "For moderators only, revert a product to a previous revision.",
+        "id": "operation:post:/api/v3/product_revert",
+        "kind": "operation",
+        "method": "post",
+        "name": "post-api-v3-product_revert",
+        "path": "/api/v3/product_revert",
+        "pointer": "#/paths/~1api~1v3~1product_revert/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "cookieAuth": [],
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Revert Product to Previous Revision",
+        "tags": [
+          "Products"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Return knowledge panels for a tag.",
+        "id": "operation:get:/api/v3/tag/{tagtype}/{tag_or_tagid}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-api-v3-tag-tagtype-tag_or_tagid",
+        "parameters": [
+          {
+            "required": false
+          },
+          {
+            "description": "Type of the tag",
+            "in": "path",
+            "name": "tagtype",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Tag name (e.g.",
+            "in": "path",
+            "name": "tag_or_tagid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v3/tag/{tagtype}/{tag_or_tagid}",
+        "pointer": "#/paths/~1api~1v3~1tag~1{tagtype}~1{tag_or_tagid}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Get Tag Knowledge Panels",
+        "tags": [
+          "Knowledge Panels"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Open Food Facts uses multilingual [taxonomies](https://wiki.openfoodfacts.org/Global_taxonomies) to normalize entries for categories, labels, ingredients, pack…",
+        "id": "operation:get:/api/v3/taxonomy_canonicalize_tags",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-api-v3-taxonomy-canonicalize-tags",
+        "parameters": [
+          {
+            "description": "The type of taxonomy to canonicalize tags for (e.g., ingredients, categories).",
+            "in": "query",
+            "name": "tagtype",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "A comma-separated list of local tags to canonicalize.",
+            "in": "query",
+            "name": "local_tags_list",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "2-letter code of the language of the user.",
+            "in": "query",
+            "name": "lc",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v3/taxonomy_canonicalize_tags",
+        "pointer": "#/paths/~1api~1v3~1taxonomy_canonicalize_tags/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Get canonical tags for a list of local tags",
+        "tags": [
+          "Taxonomy"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Open Food Facts uses multilingual [taxonomies](https://wiki.openfoodfacts.org/Global_taxonomies) to normalize entries for categories, labels, ingredients, pack…",
+        "id": "operation:get:/api/v3/taxonomy_display_tags",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-api-v3-taxonomy-display-tags",
+        "parameters": [
+          {
+            "description": "The type of taxonomy to retrieve display tags for (e.g., ingredients, categories).",
+            "in": "query",
+            "name": "tagtype",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "A comma-separated list of canonical taxonomy tags to retrieve display tags for.",
+            "in": "query",
+            "name": "canonical_tags_list",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "2-letter code of the language to return display tags in.",
+            "in": "query",
+            "name": "lc",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v3/taxonomy_display_tags",
+        "pointer": "#/paths/~1api~1v3~1taxonomy_display_tags/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Get display tags in a specific language for a list of taxonomy tags",
+        "tags": [
+          "Taxonomy"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Open Food Facts uses multilingual [taxonomies](https://wiki.openfoodfacts.org/Global_taxonomies) to normalize entries for categories, labels, ingredients, pack…",
+        "id": "operation:get:/api/v3/taxonomy_suggestions",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-api-v3-taxonomy_suggestions-taxonomy",
+        "parameters": [
+          {
+            "required": false
+          },
+          {
+            "description": "Optional string used to filter suggestions (useful for autocomplete).",
+            "in": "query",
+            "name": "string",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma separated list of categories tags (e.g.",
+            "in": "query",
+            "name": "categories",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Shape of packaging component (tag identified in the packaging_shapes taxonomy, or plain text tag name in the language indicated by the \"lc\" field)",
+            "in": "query",
+            "name": "shape",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of suggestions.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Whether or not to include \"matched_synonyms\" in the response.",
+            "in": "query",
+            "name": "get_synonyms",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Alias for the \"string\" parameter provided for backward compatibility.",
+            "in": "query",
+            "name": "term",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v3/taxonomy_suggestions",
+        "pointer": "#/paths/~1api~1v3~1taxonomy_suggestions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "userAgentAuth": []
+          }
+        ],
+        "summary": "Get Taxonomy Suggestions",
+        "tags": [
+          "Taxonomy"
+        ]
+      },
+      {
+        "description": "Ordered list of external knowledge panel sources.",
+        "id": "schema:ExternalKnowledgePanelList",
+        "kind": "schema",
+        "name": "ExternalKnowledgePanelList",
+        "type": "array"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "open-food-facts"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://world.openfoodfacts.org",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "ExternalKnowledgePanelList": {
+                  "description": "Ordered list of external knowledge panel sources.",
+                  "items": {
+                    "$ref": "./schemas/external_knowledge_panel.yaml"
+                  },
+                  "type": "array"
+                }
+              },
+              "securitySchemes": {
+                "cookieAuth": {
+                  "description": "Session cookie containing user ID, username, and session token.\nThe value is structured as: user_id&username&user_session&session_token\ne.g. \"user_id&exampleuser&user_session&abcdefghijklmnopqrstuvwxyz123456789ABCDEFGHIJKLM\".\nThe session token is obtained after successful login via the `/cgi/session.pl` endpoint.\n",
+                  "in": "cookie",
+                  "name": "session",
+                  "type": "apiKey"
+                },
+                "userAgentAuth": {
+                  "description": "Identification using the User-Agent header. This is recommended in all requests so that we can contact you if there are issues. If we cannot identify the source of problematic API queries, we may have to block them. User-Agent header in the format 'app_name/app_version (URL or contact info)'",
+                  "in": "header",
+                  "name": "User-Agent",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "reuse@openfoodfacts.org",
+                "name": "Open Food Facts",
+                "url": "https://slack.openfoodfacts.org/"
+              },
+              "description": "As a developer, the Open Food Facts API allows you to get information\nand contribute to the products database. You can create great apps to\nhelp people make better food choices and also provide data to enhance the database.\n\n**IMPORTANT**: Please read the [API introduction](https://openfoodfacts.github.io/openfoodfacts-server/api/) before using this API.\n\n**WARNING** v3 is under development and you should expect changes\n\nThe current version of API v3 is v3.4\nSee the [change log for the API and product schema](../ref-api-and-product-schema-change-log.md)\n",
+              "license": {
+                "name": "License (MIT, Apache 2.0, etc)",
+                "url": "https://opendatacommons.org/licenses/odbl/summary/index.html"
+              },
+              "termsOfService": "https://world.openfoodfacts.org/terms-of-use",
+              "title": "Open Food Facts Open API V3 - under development",
+              "version": "3"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/api/v3.4/attribute_groups": {
+                "get": {
+                  "description": "for an overview see [Explanation on Product Attributes](https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/explain-product-attributes/)\"\n",
+                  "operationId": "get-api-v3-4-attribute-groups",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              },
+                              {
+                                "properties": {
+                                  "attribute_groups": {
+                                    "description": "A list of attribute groups.",
+                                    "items": {
+                                      "properties": {
+                                        "attributes": {
+                                          "description": "A list of attributes in the group.",
+                                          "items": {
+                                            "properties": {
+                                              "default": {
+                                                "description": "The default value for the attribute (optional).",
+                                                "example": "very_important",
+                                                "type": "string"
+                                              },
+                                              "description": {
+                                                "description": "A detailed description of the attribute (optional).",
+                                                "example": "Organic farming aims to protect the environment and to conserve biodiversity by prohibiting or limiting the use of synthetic fertilizers, pesticides and food additives.",
+                                                "type": "string"
+                                              },
+                                              "description_short": {
+                                                "description": "A short description of the attribute (optional).",
+                                                "example": "Organic products promote ecological sustainability and biodiversity.",
+                                                "type": "string"
+                                              },
+                                              "icon_url": {
+                                                "description": "The URL of the icon representing the attribute.",
+                                                "example": "http://static.openfoodfacts.org/images/attributes/dist/nutriscore-a.svg",
+                                                "type": "string"
+                                              },
+                                              "id": {
+                                                "description": "The ID of the attribute.",
+                                                "example": "nutriscore",
+                                                "type": "string"
+                                              },
+                                              "name": {
+                                                "description": "The name of the attribute.",
+                                                "example": "Nutri-Score",
+                                                "type": "string"
+                                              },
+                                              "panel_id": {
+                                                "description": "The panel ID associated with the attribute (optional).",
+                                                "example": "nutriscore",
+                                                "type": "string"
+                                              },
+                                              "parameters": {
+                                                "description": "Additional parameters for the attribute (optional, used for specific attributes like Unwanted ingredients).",
+                                                "items": {
+                                                  "properties": {
+                                                    "id": {
+                                                      "description": "The ID of the parameter.",
+                                                      "example": "attribute_unwanted_ingredients_tags",
+                                                      "type": "string"
+                                                    },
+                                                    "name": {
+                                                      "description": "The name of the parameter.",
+                                                      "example": "Unwanted ingredients",
+                                                      "type": "string"
+                                                    },
+                                                    "tagtype": {
+                                                      "description": "The tag type of the parameter.",
+                                                      "example": "ingredients",
+                                                      "type": "string"
+                                                    },
+                                                    "type": {
+                                                      "description": "The type of the parameter. \"tags\" indicates a comma-separated list of canonical tags is expected.",
+                                                      "enum": [
+                                                        "tags"
+                                                      ],
+                                                      "example": "tags",
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "type": "object"
+                                                },
+                                                "type": "array"
+                                              },
+                                              "setting_name": {
+                                                "description": "The name of the setting for the attribute.",
+                                                "example": "Good nutritional quality (Nutri-Score)",
+                                                "type": "string"
+                                              },
+                                              "setting_note": {
+                                                "description": "Additional notes about the setting (optional).",
+                                                "example": "The Nutri-Score is computed and can be taken into account for all products, even if it is not displayed on the packaging.",
+                                                "type": "string"
+                                              },
+                                              "values": {
+                                                "description": "The possible values for the attribute. Some attributes like allergens have only values \"not_important\" and \"mandatory\".",
+                                                "items": {
+                                                  "example": "not_important",
+                                                  "type": "string"
+                                                },
+                                                "type": "array"
+                                              }
+                                            },
+                                            "type": "object"
+                                          },
+                                          "type": "array"
+                                        },
+                                        "id": {
+                                          "description": "The ID of the attribute group.",
+                                          "example": "nutritional_quality",
+                                          "type": "string"
+                                        },
+                                        "name": {
+                                          "description": "The name of the attribute group.",
+                                          "example": "Nutritional quality",
+                                          "type": "string"
+                                        },
+                                        "warning": {
+                                          "description": "A warning message related to the attribute group (optional).",
+                                          "example": "There is always a possibility that data about allergens may be missing, incomplete, incorrect or that the product's composition has changed.",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "summary": "Get List of Attribute Groups and Attributes",
+                  "tags": [
+                    "Product Attributes"
+                  ]
+                }
+              },
+              "/api/v3/external_sources": {
+                "get": {
+                  "description": "Returns the ordered list of external knowledge panel sources configured on the server.\n\nProviders can use the `knowledge_panel_url` field to point to their own API.\nThe URL may contain **template variables** that the frontend will expand before calling:\n\n- `$code` → product barcode\n- `$lc`   → UI language (2 letters)\n- `$cc`   → user/device country (2 letters)\n\nExample:\n`https://provider.example.com/off/v1/knowledge-panel/$code?lang=$lc&country=$cc`\n\nThe frontend percent-encodes the variable values when substituting them into the URL.\n",
+                  "operationId": "get-api-v3-external-sources",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              },
+                              {
+                                "properties": {
+                                  "external_sources": {
+                                    "$ref": "#/components/schemas/ExternalKnowledgePanelList"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "summary": "List external knowledge panel sources (JSON)",
+                  "tags": [
+                    "Knowledge Panels"
+                  ]
+                }
+              },
+              "/api/v3/preferences": {
+                "get": {
+                  "description": "These parameters are used to compute the product preferences score.\n\nfor an overview see [Explanation on Product Attributes](https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/explain-product-attributes/)\"\n",
+                  "operationId": "get-api-v3-preferences",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              },
+                              {
+                                "properties": {
+                                  "preferences": {
+                                    "description": "A list of user preference importance values.",
+                                    "items": {
+                                      "properties": {
+                                        "factor": {
+                                          "description": "The factor associated with the preference importance (optional, not set for not_important). Indicates that the product attribute score should be multiplied by this factor when this importance is selected.",
+                                          "example": 1,
+                                          "type": "integer"
+                                        },
+                                        "id": {
+                                          "description": "The ID of the preference importance.",
+                                          "example": "important",
+                                          "type": "string"
+                                        },
+                                        "minimum_match": {
+                                          "description": "The minimum match percentage required for the preference (optional, set for mandatory). Indicates that product with a lesser score for this attribute should not be considered a match.",
+                                          "example": 20,
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "description": "The name of the preference importance.",
+                                          "example": "Important",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "summary": "Get List of Preference Importance Values",
+                  "tags": [
+                    "Product Attributes"
+                  ]
+                }
+              },
+              "/api/v3/product/{code}": {
+                "get": {
+                  "description": "Retrieve information for a product with a specific barcode.\n\nThe fields parameter allows to specify what fields to retrieve.",
+                  "operationId": "get-api-v3-product-code",
+                  "parameters": [
+                    {
+                      "description": "The barcode of the product to be fetched\n",
+                      "explode": false,
+                      "in": "path",
+                      "name": "code",
+                      "required": true,
+                      "schema": {
+                        "example": "3017620422003",
+                        "type": "string"
+                      },
+                      "style": "simple"
+                    },
+                    {
+                      "$ref": "./parameters/requested_product_type.yaml#/components/parameters/RequestedProductType"
+                    },
+                    {
+                      "$ref": "./parameters/cc.yaml#/components/parameters/Cc"
+                    },
+                    {
+                      "$ref": "./parameters/lc.yaml#/components/parameters/Lc"
+                    },
+                    {
+                      "$ref": "./parameters/tags_lc.yaml#/components/parameters/TagsLc"
+                    },
+                    {
+                      "description": "Comma separated list of fields requested in the response.\n\nSpecial values:\n* \"none\": returns no fields\n* \"raw\": returns all fields as stored internally in the database\n* \"all\": returns all fields except generated fields that need to be explicitly requested such as \"knowledge_panels\".\n\nDefaults to \"all\" for READ requests. The \"all\" value can also be combined with fields like \"attribute_groups\" and \"knowledge_panels\".",
+                      "in": "query",
+                      "name": "fields",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "./parameters/knowledge_panels_options.yaml#/components/parameters/KnowledgePanelClient"
+                    },
+                    {
+                      "$ref": "./parameters/knowledge_panels_options.yaml#/components/parameters/ActivateKnowledgePanelsSimplified"
+                    },
+                    {
+                      "$ref": "./parameters/knowledge_panels_options.yaml#/components/parameters/ActivateKnowledgePanelsIngredientsNutritionFirst"
+                    },
+                    {
+                      "$ref": "./parameters/knowledge_panels_options.yaml#/components/parameters/ActivateKnowledgePanelPhysicalActivities"
+                    },
+                    {
+                      "$ref": "./parameters/knowledge_panels_options.yaml#/components/parameters/ActivateKnowledgePanelProductHistory"
+                    },
+                    {
+                      "$ref": "./parameters/knowledge_panels_options.yaml#/components/parameters/ActivateKnowledgePanelProductInformation"
+                    },
+                    {
+                      "$ref": "./parameters/knowledge_panels_options.yaml#/components/parameters/KnowledgePanelsIncluded"
+                    },
+                    {
+                      "$ref": "./parameters/knowledge_panels_options.yaml#/components/parameters/KnowledgePanelsExcluded"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              },
+                              {
+                                "properties": {
+                                  "product": {
+                                    "$ref": "./schemas/product_v3.yaml"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "302": {
+                      "description": "Redirect to the correct server for the product type of the requested product",
+                      "headers": {
+                        "Location": {
+                          "examples": {
+                            "redirect": {
+                              "value": "https://world.openbeautyfacts.org/api/v3/product/8710447445990"
+                            }
+                          },
+                          "schema": {
+                            "description": "URL to the correct server",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "404": {
+                      "description": "Product not found"
+                    }
+                  },
+                  "summary": "Get Product Data",
+                  "tags": [
+                    "Products"
+                  ]
+                },
+                "patch": {
+                  "description": "This API allows to create or update a product (if the product already exists, its data is updated, otherwise it is created), or to analyze a test product (in which case no product is created or updated). To analyze a product, the \"code\" path component needs to contain the value \"test\" instead of a barcode.\n\nNew API to send structured product data in a JSON format instead of in a flattened list of key / value pairs field as-in the current product add / edit API that relies on a multipart/form-data format.\n\nImportant: this new Product WRITE API has been deployed in production, but it is still under development, and it may change.\n\nThis new API is used in particular to send structured packaging data: https://openfoodfacts.github.io/openfoodfacts-server/dev/explain-packaging-data/\n\nThe new API is gradually being extended to support other product fields.\n\nCurrently supported fields are:\n  - language specific fields (e.g. product name, ingredients text)\n  - tags fields (e.g. categories, labels)\n  - packaging fields (e.g. packagings, packagings_add, packagings_complete)\n  - image selection of uploaded images (e.g. front, ingredients, nutrition, packaging) for specific languages",
+                  "operationId": "patch-api-v3-product-code",
+                  "parameters": [
+                    {
+                      "description": "The barcode of the product to create or update, or \"test\" to analyze the product data sent without creating or updating a product.\n",
+                      "explode": false,
+                      "in": "path",
+                      "name": "code",
+                      "required": true,
+                      "schema": {
+                        "example": "3017620422003",
+                        "type": "string"
+                      },
+                      "style": "simple"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "example-1": {
+                            "value": {
+                              "cc": "fr",
+                              "code": "string",
+                              "fields": "product_name,packagings",
+                              "lc": "fr",
+                              "password": "string",
+                              "product": {
+                                "packagings": [
+                                  {
+                                    "material": {
+                                      "id": "en:plastic"
+                                    },
+                                    "number_of_units": 6,
+                                    "quantity_per_unit": "25 cl",
+                                    "recycling": {
+                                      "id": "en:recycle"
+                                    },
+                                    "shape": {
+                                      "id": "en:bottle"
+                                    },
+                                    "weight_measured": 10
+                                  }
+                                ],
+                                "packagings_add": [
+                                  {
+                                    "material": {
+                                      "id": "en:plastic"
+                                    },
+                                    "number_of_units": 6,
+                                    "quantity_per_unit": "25 cl",
+                                    "recycling": {
+                                      "id": "en:recycle"
+                                    },
+                                    "shape": {
+                                      "id": "en:bottle"
+                                    },
+                                    "weight_measured": 10
+                                  }
+                                ],
+                                "product": {
+                                  "$ref": "./schemas/product_update_api_v3.yaml"
+                                }
+                              },
+                              "tags_lc": "fr",
+                              "userid": "string"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "allOf": [
+                            {
+                              "$ref": "./requestBodies/lc_cc.yaml"
+                            },
+                            {
+                              "$ref": "./requestBodies/fields_tags_lc.yaml"
+                            },
+                            {
+                              "properties": {
+                                "password": {
+                                  "description": "Password for login",
+                                  "format": "password",
+                                  "type": "string"
+                                },
+                                "product": {
+                                  "$ref": "./schemas/product_update_api_v3.yaml"
+                                },
+                                "user_id": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          ]
+                        }
+                      },
+                      "application/xml": {
+                        "schema": {
+                          "properties": {},
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "description": "Structured data for the product is passed in the product field.\n\nFor complex structures such as the packagings object, it is possible to replace pre-existing data, or completing it:\n\n- an object sent in the packagings field will replace any pre-existing data.\n- an object sent in the field suffixed with _add (e.g. packagings_add) will be merged with any pre-existing data.\n"
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Update of packagings": {
+                              "value": {
+                                "errors": [
+                                  {
+                                    "field": {
+                                      "id": "nutriment.sugars",
+                                      "value": "40"
+                                    },
+                                    "impact": {
+                                      "description": "The nutrients were not updated.",
+                                      "id": "en:nutrients-not-updated",
+                                      "lc_description": "Les nutriments n'ont pas été mis à jour.",
+                                      "lc_name": "Nutriments non mis à jour",
+                                      "name": "Nutrients not updated"
+                                    },
+                                    "message": {
+                                      "description": "Sugars (40g) are higher than carbohydrates (35g).",
+                                      "id": "en:sugars-higher-than-carbohydrates",
+                                      "lc_description": "Les sucres (40g) sont plus élévés que les glucdes.",
+                                      "lc_name": "Sucres plus élevés que les glucides",
+                                      "name": "Sugars higher than carbohydrates"
+                                    }
+                                  }
+                                ],
+                                "product": {
+                                  "packagings": [
+                                    {
+                                      "material": "en:pp-polypropylene",
+                                      "number": "2",
+                                      "recycling": "en:discard",
+                                      "shape": "en:lid"
+                                    },
+                                    {
+                                      "material": "en:non-corrugated-cardboard",
+                                      "number": "1",
+                                      "recycling": "en:recycle",
+                                      "shape": "en:box",
+                                      "weight": 120
+                                    },
+                                    {
+                                      "material": "en:paper-and-fibreboard-aluminium",
+                                      "number": "2",
+                                      "recycling": "en:recycle",
+                                      "shape": "en:seal"
+                                    },
+                                    {
+                                      "material": "en:clear-glass",
+                                      "number": "2",
+                                      "quantity": "200 ML",
+                                      "quantity_unit": "ml",
+                                      "quantity_value": 200,
+                                      "recycling": "en:recycle",
+                                      "shape": "en:jar",
+                                      "weight": 80
+                                    }
+                                  ]
+                                },
+                                "result": {
+                                  "en_name": "Product updated",
+                                  "id": "en:product-updated",
+                                  "lc_name": "Produit mis à jour"
+                                },
+                                "status": "success_with_errors"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              },
+                              {
+                                "properties": {
+                                  "product": {
+                                    "$ref": "./schemas/product_v3.yaml"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "The response will include a \"product\" structure. The fields returned in this structure will depend on the value of the \"fields\" input field:\n\n- \"updated\" (default): all fields updated by the query will be returned, including fields that are directly generated from the updated fields. For instance, sending \"packagings\" or \"packagings_add\" will return the \"packagings\" field.\n\n- \"none\": no fields are returned.\n\n- \"all\": returns all fields except generated fields that need to be explicitly requested such as \"knowledge_panels\".\n\nThe \"fields\" values can also be concatenated: \"all,knowledge_panels\""
+                    }
+                  },
+                  "security": [
+                    {
+                      "cookieAuth": [],
+                      "userAgentAuth": []
+                    }
+                  ],
+                  "summary": "Create or Update Product",
+                  "tags": [
+                    "Products"
+                  ]
+                }
+              },
+              "/api/v3/product/{code}/images": {
+                "post": {
+                  "description": "\nThis endpoint allows to upload an image for a product. The image is uploaded in the request body as a base64 encoded string.\nOptionally, it is possible to select the uploaded image for specific information (e.g. front, ingredients, nutrition, packaging) for specific languages. Each selected image is a cropped version of the uploaded image.\n\nIf the product does not exist, it will be created.",
+                  "operationId": "post-api-v3-product-code-images",
+                  "parameters": [
+                    {
+                      "description": "The barcode of the product corresponding to the image.\n",
+                      "explode": false,
+                      "in": "path",
+                      "name": "code",
+                      "required": true,
+                      "schema": {
+                        "example": "3017620422003",
+                        "type": "string"
+                      },
+                      "style": "simple"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "allOf": [
+                            {
+                              "$ref": "./requestBodies/lc_cc.yaml"
+                            },
+                            {
+                              "properties": {
+                                "image_data_base64": {
+                                  "description": "Base64 encoded image data (supported formats: JPEG, PNG, GIF, HEIC)",
+                                  "type": "string"
+                                },
+                                "password": {
+                                  "description": "Password for login",
+                                  "format": "password",
+                                  "type": "string"
+                                },
+                                "selected": {
+                                  "$ref": "./schemas/image_selected.yaml#/components/schemas/ImagesSelected",
+                                  "description": "Optional instructions to select (and possibly crop) the uploaded image for specific information (e.g. front, ingredients, nutrition, packaging) for specific languages.\n"
+                                },
+                                "user_id": {
+                                  "description": "Username for login\n\nNote: you must always use the username (and not the email)\nas it is far less brittle.\n",
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          ]
+                        }
+                      },
+                      "application/xml": {
+                        "schema": {
+                          "properties": {},
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "description": "Image data for the product is passed in the image_data_base64 field as a base64 encoded string.\n"
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              },
+                              {
+                                "properties": {
+                                  "product": {
+                                    "properties": {
+                                      "images": {
+                                        "properties": {
+                                          "uploaded": {
+                                            "description": "List with only the image just uploaded by the user. The key is the image id (imgid) and the value is an object with the image data.\n",
+                                            "patternProperties": {
+                                              "(?<imgid>\\d+)": {
+                                                "$ref": "./schemas/image_uploaded.yaml#/components/schemas/ImageUploaded"
+                                              }
+                                            },
+                                            "title": "images_uploaded",
+                                            "type": "object"
+                                          }
+                                        },
+                                        "type": "object"
+                                      }
+                                    }
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "The response will include a \"product\" structure. The fields returned in this structure will depend on the value of the \"fields\" input field:\n\n- \"updated\" (default): all fields updated by the query will be returned, including fields that are directly generated from the updated fields. For instance, sending \"packagings\" or \"packagings_add\" will return the \"packagings\" field.\n\n- \"none\": no fields are returned.\n\n- \"all\": returns all fields except generated fields that need to be explicitly requested such as \"knowledge_panels\".\n\nThe \"fields\" values can also be concatenated: \"all,knowledge_panels\""
+                    }
+                  },
+                  "security": [
+                    {
+                      "cookieAuth": [],
+                      "userAgentAuth": []
+                    }
+                  ],
+                  "summary": "Upload Product Image",
+                  "tags": [
+                    "Images"
+                  ]
+                }
+              },
+              "/api/v3/product/{code}/images/uploaded/{imgid}": {
+                "delete": {
+                  "description": "This endpoint allows to delete an uploaded image for a product.\nSelected images that are cropped from it will also be deleted.\n\nImage deletion is allowed only for moderators and admins, so the request must be authenticated with a session cookie or userid and password.",
+                  "operationId": "delete-api-v3-product-code-images-uploaded-imgid",
+                  "parameters": [
+                    {
+                      "description": "The barcode of the product corresponding to the image.\n",
+                      "explode": false,
+                      "in": "path",
+                      "name": "code",
+                      "required": true,
+                      "schema": {
+                        "example": "3017620422003",
+                        "type": "string"
+                      },
+                      "style": "simple"
+                    },
+                    {
+                      "description": "The id of the image to be deleted.\n",
+                      "explode": false,
+                      "in": "path",
+                      "name": "imgid",
+                      "required": true,
+                      "schema": {
+                        "example": 2,
+                        "type": "integer"
+                      },
+                      "style": "simple"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "403": {
+                      "description": "User not authenticated or not allowed to delete the image"
+                    },
+                    "404": {
+                      "description": "Product or image not found"
+                    }
+                  },
+                  "security": [
+                    {
+                      "cookieAuth": [],
+                      "userAgentAuth": []
+                    }
+                  ],
+                  "summary": "Delete Product Image",
+                  "tags": [
+                    "Images"
+                  ]
+                }
+              },
+              "/api/v3/product_revert": {
+                "parameters": [],
+                "post": {
+                  "description": "For moderators only, revert a product to a previous revision.",
+                  "operationId": "post-api-v3-product_revert",
+                  "parameters": [],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "allOf": [
+                            {
+                              "$ref": "./requestBodies/fields_tags_lc.yaml"
+                            },
+                            {
+                              "properties": {
+                                "code": {
+                                  "description": "Barcode of the product",
+                                  "type": "string"
+                                },
+                                "rev": {
+                                  "description": "Revision number to revert to",
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "description": "The code and rev fields are mandatory.\n"
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "security": [
+                    {
+                      "cookieAuth": [],
+                      "userAgentAuth": []
+                    }
+                  ],
+                  "summary": "Revert Product to Previous Revision",
+                  "tags": [
+                    "Products"
+                  ]
+                }
+              },
+              "/api/v3/tag/{tagtype}/{tag_or_tagid}": {
+                "get": {
+                  "description": "Return knowledge panels for a tag.\n\nCurrently the knowledge panels returned are:\n\nCategories:\n- Packaging stats for a category\n- Related categories (on request): parent categories, and direct subcategories with their number of products\n\nNOVA groups:\n- Unknown NOVA group (on request): why the NOVA group of some products is unknown",
+                  "operationId": "get-api-v3-tag-tagtype-tag_or_tagid",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              },
+                              {
+                                "properties": {
+                                  "tag": {
+                                    "properties": {
+                                      "knowledge_panels": {
+                                        "$ref": "./schemas/knowledge_panels/panels.yaml",
+                                        "description": "Knowledge panels for the tag"
+                                      },
+                                      "tagid": {
+                                        "description": "Canonicalized tagid corresponding to the input tag_or_tagid",
+                                        "type": "string"
+                                      },
+                                      "tagtype": {
+                                        "description": "Canonicalized tagtype",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "tagid": {
+                                    "description": "Input tagid\n",
+                                    "type": "string"
+                                  },
+                                  "tagtype": {
+                                    "description": "Input tagtype\n",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            ]
+                          }
+                        },
+                        "application/xml": {
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "summary": "Get Tag Knowledge Panels",
+                  "tags": [
+                    "Knowledge Panels"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "./parameters/cc.yaml#/components/parameters/Cc"
+                  },
+                  {
+                    "$ref": "./parameters/lc.yaml#/components/parameters/Lc"
+                  },
+                  {
+                    "$ref": "./parameters/knowledge_panels_options.yaml#/components/parameters/ActivateKnowledgePanelRelatedCategories"
+                  },
+                  {
+                    "$ref": "./parameters/knowledge_panels_options.yaml#/components/parameters/ActivateKnowledgePanelNovaUnknown"
+                  },
+                  {
+                    "description": "Type of the tag",
+                    "in": "path",
+                    "name": "tagtype",
+                    "required": true,
+                    "schema": {
+                      "example": "categories",
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "description": "Tag name (e.g. yogurts) or tag id (e.g. en:yogurts)",
+                    "in": "path",
+                    "name": "tag_or_tagid",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/api/v3/taxonomy_canonicalize_tags": {
+                "get": {
+                  "description": "Open Food Facts uses multilingual [taxonomies](https://wiki.openfoodfacts.org/Global_taxonomies) to normalize entries for categories, labels, ingredients, packaging shapes / materials / recycling instructions and many more fields.\n\nThis API returns the canonical tags corresponding to a list of local tags in a given language.\n\nFor instance, the local French ingredient tag \"sucre\" corresponds to the canonical tag \"en:sugar\".\n",
+                  "operationId": "get-api-v3-taxonomy-canonicalize-tags",
+                  "parameters": [
+                    {
+                      "description": "The type of taxonomy to canonicalize tags for (e.g., ingredients, categories).",
+                      "in": "query",
+                      "name": "tagtype",
+                      "required": true,
+                      "schema": {
+                        "example": "ingredients",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "A comma-separated list of local tags to canonicalize.",
+                      "in": "query",
+                      "name": "local_tags_list",
+                      "required": true,
+                      "schema": {
+                        "example": "sucre,eau",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "2-letter code of the language of the user. Used for localizing some fields in returned values.\nIf not passed, the language may be inferred by the subdomain of the request.\n",
+                      "in": "query",
+                      "name": "lc",
+                      "required": false,
+                      "schema": {
+                        "example": "fr",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              },
+                              {
+                                "properties": {
+                                  "canonical_tags_list": {
+                                    "example": "en:sugar,en:water",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "summary": "Get canonical tags for a list of local tags",
+                  "tags": [
+                    "Taxonomy"
+                  ]
+                }
+              },
+              "/api/v3/taxonomy_display_tags": {
+                "get": {
+                  "description": "Open Food Facts uses multilingual [taxonomies](https://wiki.openfoodfacts.org/Global_taxonomies) to normalize entries for categories, labels, ingredients, packaging shapes / materials / recycling instructions and many more fields.\n\nThis API returns display tags in a specific language for a list of canonical taxonomy tags.\n\nFor instance, the canonical ingredient tag \"en:sugar\" corresponds to the French display tag \"sucre\".\n",
+                  "operationId": "get-api-v3-taxonomy-display-tags",
+                  "parameters": [
+                    {
+                      "description": "The type of taxonomy to retrieve display tags for (e.g., ingredients, categories).",
+                      "in": "query",
+                      "name": "tagtype",
+                      "required": true,
+                      "schema": {
+                        "example": "ingredients",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "A comma-separated list of canonical taxonomy tags to retrieve display tags for.",
+                      "in": "query",
+                      "name": "canonical_tags_list",
+                      "required": true,
+                      "schema": {
+                        "example": "en:sugar,en:water",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "2-letter code of the language to return display tags in.\n",
+                      "in": "query",
+                      "name": "lc",
+                      "required": false,
+                      "schema": {
+                        "example": "fr",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              },
+                              {
+                                "properties": {
+                                  "display_tags": {
+                                    "items": {
+                                      "example": "sucre, eau",
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "summary": "Get display tags in a specific language for a list of taxonomy tags",
+                  "tags": [
+                    "Taxonomy"
+                  ]
+                }
+              },
+              "/api/v3/taxonomy_suggestions": {
+                "get": {
+                  "description": "Open Food Facts uses multilingual [taxonomies](https://wiki.openfoodfacts.org/Global_taxonomies) to normalize entries for categories, labels, ingredients, packaging shapes / materials / recycling instructions and many more fields.\n\nThis API returns taxonomy entries suggestions that can be used in product edit forms, search forms etc. (for instance in autocomplete dropdowns using libraries like Tagify or select2 on the Web).\n\nSuggestions filtering:\n\nThe string parameter allows to get only suggestions that contain a specific string (useful for autocomplete suggestions).\n\nSuggestions ordering:\n\n- For packaging shapes and materials, suggestions are ordered first by the number of packaging components they appear in (restricted by country, categories and shape (for materials) if they are passed as parameters).\n- for all other taxonomies, results are ordered alphabetically\n\nIf a string is passed, an additional sort is done to put first suggestions that start with the string, followed by suggestions with a word that start with the string, and then suggestions that contain the string anywhere.",
+                  "operationId": "get-api-v3-taxonomy_suggestions-taxonomy",
+                  "parameters": [
+                    {
+                      "$ref": "./parameters/tagtype.yaml#/components/parameters/Tagtype"
+                    },
+                    {
+                      "$ref": "./parameters/cc.yaml#/components/parameters/Cc"
+                    },
+                    {
+                      "$ref": "./parameters/lc.yaml#/components/parameters/Lc"
+                    },
+                    {
+                      "description": "Optional string used to filter suggestions (useful for autocomplete).  If passed, suggestions starting with the string will be returned first, followed by suggestions matching the string at the beginning of a word, and suggestions matching the string inside a word.",
+                      "in": "query",
+                      "name": "string",
+                      "schema": {
+                        "example": "pe",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Comma separated list of categories tags (e.g. \"en:fats,en:unsalted-butters\" or categories names in the language indicated by the \"lc\" field (e.g. \"graisses, beurres salés\" in French)",
+                      "in": "query",
+                      "name": "categories",
+                      "schema": {
+                        "example": "yougurts",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Shape of packaging component (tag identified in the packaging_shapes taxonomy, or plain text tag name in the language indicated by the \"lc\" field)",
+                      "in": "query",
+                      "name": "shape",
+                      "schema": {
+                        "example": "bottle",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of suggestions. Default is 25, max is 400.",
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Whether or not to include \"matched_synonyms\" in the response. Set to 1 to include.",
+                      "in": "query",
+                      "name": "get_synonyms",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Alias for the \"string\" parameter provided for backward compatibility. \"string\" takes precedence.",
+                      "in": "query",
+                      "name": "term",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "allOf": [
+                              {
+                                "$ref": "./responses/response-status/response_status.yaml"
+                              },
+                              {
+                                "properties": {
+                                  "matched_synonyms": {
+                                    "additionalProperties": {
+                                      "type": "string"
+                                    },
+                                    "description": "Dictionary of strings associating canonical names (as seen in suggestions field) with the synonym that best matches the query. An entry is present for all suggestions, even when the synonym is the same with the canonical name.\n\nThis value is present only if get_synonyms parameter is present.\n",
+                                    "type": "object"
+                                  },
+                                  "suggestions": {
+                                    "description": "Array of sorted strings suggestions in the language requested in the \"lc\" field.",
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "summary": "Get Taxonomy Suggestions",
+                  "tags": [
+                    "Taxonomy"
+                  ]
+                },
+                "parameters": []
+              }
+            },
+            "security": [
+              {
+                "userAgentAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "prod",
+                "url": "https://world.openfoodfacts.org"
+              },
+              {
+                "description": "dev",
+                "url": "https://world.openfoodfacts.net"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Endpoints for managing product data, creating, updating, and reverting products.",
+                "name": "Products"
+              },
+              {
+                "description": "Endpoints for retrieving product attribute groups and user preference importance values.",
+                "name": "Product Attributes"
+              },
+              {
+                "description": "Endpoints for uploading, managing, and deleting product images.",
+                "name": "Images"
+              },
+              {
+                "description": "Endpoints for retrieving taxonomy suggestions and data.",
+                "name": "Taxonomy"
+              },
+              {
+                "description": "Endpoints for retrieving knowledge panels for tags and categories.",
+                "name": "Knowledge Panels"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Open Food Facts"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:43.583358+00:00",
+    "license": {
+      "name": "License (MIT, Apache 2.0, etc)",
+      "url": "https://opendatacommons.org/licenses/odbl/summary/index.html"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-server/main/docs/api/ref/api-v3.yaml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "22be5edd3ac25eba3811352b5b60becdbbd77657b27ff209910a1475f6ea87ea",
+    "source_id": "open-food-facts",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-server/main/docs/api/ref/api-v3.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "3"
+}

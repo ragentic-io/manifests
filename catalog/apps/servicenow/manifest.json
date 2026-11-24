@@ -1,0 +1,994 @@
+{
+  "a2ui": {},
+  "app": "servicenow",
+  "graph": {
+    "edges": [
+      {
+        "from": "servicenow",
+        "kind": "EXPOSES",
+        "to": "operation:get:/table/{tableName}"
+      },
+      {
+        "from": "servicenow",
+        "kind": "EXPOSES",
+        "to": "operation:post:/table/{tableName}"
+      },
+      {
+        "from": "servicenow",
+        "kind": "EXPOSES",
+        "to": "operation:get:/table/{tableName}/{sys_id}"
+      },
+      {
+        "from": "servicenow",
+        "kind": "EXPOSES",
+        "to": "operation:put:/table/{tableName}/{sys_id}"
+      },
+      {
+        "from": "servicenow",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/table/{tableName}/{sys_id}"
+      },
+      {
+        "from": "servicenow",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/table/{tableName}/{sys_id}"
+      },
+      {
+        "from": "operation:get:/table/{tableName}",
+        "kind": "RETURNS",
+        "to": "schema:RecordListResponse"
+      },
+      {
+        "from": "operation:post:/table/{tableName}",
+        "kind": "ACCEPTS",
+        "to": "schema:TableRecord"
+      },
+      {
+        "from": "operation:post:/table/{tableName}",
+        "kind": "RETURNS",
+        "to": "schema:RecordResponse"
+      },
+      {
+        "from": "operation:get:/table/{tableName}/{sys_id}",
+        "kind": "RETURNS",
+        "to": "schema:RecordResponse"
+      },
+      {
+        "from": "operation:put:/table/{tableName}/{sys_id}",
+        "kind": "ACCEPTS",
+        "to": "schema:TableRecord"
+      },
+      {
+        "from": "operation:put:/table/{tableName}/{sys_id}",
+        "kind": "RETURNS",
+        "to": "schema:RecordResponse"
+      },
+      {
+        "from": "operation:patch:/table/{tableName}/{sys_id}",
+        "kind": "ACCEPTS",
+        "to": "schema:TableRecord"
+      },
+      {
+        "from": "operation:patch:/table/{tableName}/{sys_id}",
+        "kind": "RETURNS",
+        "to": "schema:RecordResponse"
+      },
+      {
+        "from": "schema:RecordListResponse",
+        "kind": "REFERENCES",
+        "to": "schema:TableRecord"
+      },
+      {
+        "from": "schema:RecordResponse",
+        "kind": "REFERENCES",
+        "to": "schema:TableRecord"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "servicenow",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "The calling user must have sufficient roles to access the table data.",
+        "id": "operation:get:/table/{tableName}",
+        "kind": "operation",
+        "method": "get",
+        "name": "listTableRecords",
+        "parameters": [
+          {
+            "description": "Name of the table to access, such as incident or asset.",
+            "in": "path",
+            "name": "tableName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Encoded query used to filter the result set.",
+            "in": "query",
+            "name": "sysparm_query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "false",
+            "description": "Select whether responses contain actual values, display values, or both.",
+            "enum": [
+              "false",
+              "true",
+              "all"
+            ],
+            "in": "query",
+            "name": "sysparm_display_value",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Exclude Table API links for reference fields.",
+            "in": "query",
+            "name": "sysparm_exclude_reference_link",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Comma-separated field names to return; invalid fields are ignored.",
+            "in": "query",
+            "name": "sysparm_fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 10000,
+            "description": "Maximum number of records to return.",
+            "in": "query",
+            "name": "sysparm_limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": false,
+            "description": "Whether to skip the query that counts rows in the table.",
+            "in": "query",
+            "name": "sysparm_no_count",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": 0,
+            "description": "Starting record index used to paginate results; negative values are not supported.",
+            "in": "query",
+            "name": "sysparm_offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": false,
+            "description": "Include records outside the logged-in user's configured domains.",
+            "in": "query",
+            "name": "sysparm_query_no_domain",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "UI view that determines which fields are returned.",
+            "enum": [
+              "desktop",
+              "mobile",
+              "both"
+            ],
+            "in": "query",
+            "name": "sysparm_view",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/table/{tableName}",
+        "pointer": "#/paths/~1table~1{tableName}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "RecordListResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Retrieve records from a table"
+      },
+      {
+        "deprecated": false,
+        "description": "Inserts one record.",
+        "id": "operation:post:/table/{tableName}",
+        "kind": "operation",
+        "method": "post",
+        "name": "createTableRecord",
+        "parameters": [
+          {
+            "description": "Name of the table to access, such as incident or asset.",
+            "in": "path",
+            "name": "tableName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "false",
+            "description": "Select whether responses contain actual values, display values, or both.",
+            "enum": [
+              "false",
+              "true",
+              "all"
+            ],
+            "in": "query",
+            "name": "sysparm_display_value",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/table/{tableName}",
+        "pointer": "#/paths/~1table~1{tableName}/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "TableRecord"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "RecordResponse"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Insert a record into a table"
+      },
+      {
+        "deprecated": false,
+        "description": "The calling user must have sufficient roles to access the record.",
+        "id": "operation:get:/table/{tableName}/{sys_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getTableRecord",
+        "parameters": [
+          {
+            "description": "Name of the table containing the record.",
+            "in": "path",
+            "name": "tableName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Identifier of the record.",
+            "in": "path",
+            "name": "sys_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "false",
+            "description": "Select whether responses contain actual values, display values, or both.",
+            "enum": [
+              "false",
+              "true",
+              "all"
+            ],
+            "in": "query",
+            "name": "sysparm_display_value",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Exclude Table API links for reference fields.",
+            "in": "query",
+            "name": "sysparm_exclude_reference_link",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Comma-separated field names to return; invalid fields are ignored.",
+            "in": "query",
+            "name": "sysparm_fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Include records outside the logged-in user's configured domains.",
+            "in": "query",
+            "name": "sysparm_query_no_domain",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "UI view that determines which fields are returned.",
+            "enum": [
+              "desktop",
+              "mobile",
+              "both"
+            ],
+            "in": "query",
+            "name": "sysparm_view",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/table/{tableName}/{sys_id}",
+        "pointer": "#/paths/~1table~1{tableName}~1{sys_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "RecordResponse"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Retrieve a record"
+      },
+      {
+        "deprecated": false,
+        "description": "Updates the record with the request body.",
+        "id": "operation:put:/table/{tableName}/{sys_id}",
+        "kind": "operation",
+        "method": "put",
+        "name": "replaceTableRecord",
+        "parameters": [
+          {
+            "description": "Name of the table containing the record.",
+            "in": "path",
+            "name": "tableName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Identifier of the record.",
+            "in": "path",
+            "name": "sys_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "false",
+            "description": "Select whether responses contain actual values, display values, or both.",
+            "enum": [
+              "false",
+              "true",
+              "all"
+            ],
+            "in": "query",
+            "name": "sysparm_display_value",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/table/{tableName}/{sys_id}",
+        "pointer": "#/paths/~1table~1{tableName}~1{sys_id}/put",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "TableRecord"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "RecordResponse"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Update a record"
+      },
+      {
+        "deprecated": false,
+        "description": "Deletes the specified record from the table.",
+        "id": "operation:delete:/table/{tableName}/{sys_id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "deleteTableRecord",
+        "parameters": [
+          {
+            "description": "Name of the table containing the record.",
+            "in": "path",
+            "name": "tableName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Identifier of the record.",
+            "in": "path",
+            "name": "sys_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/table/{tableName}/{sys_id}",
+        "pointer": "#/paths/~1table~1{tableName}~1{sys_id}/delete",
+        "responses": [
+          {
+            "status": "204"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Delete a record"
+      },
+      {
+        "deprecated": false,
+        "description": "Updates the record with the name-value pairs in the request body.",
+        "id": "operation:patch:/table/{tableName}/{sys_id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "updateTableRecord",
+        "parameters": [
+          {
+            "description": "Name of the table containing the record.",
+            "in": "path",
+            "name": "tableName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Identifier of the record.",
+            "in": "path",
+            "name": "sys_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "false",
+            "description": "Select whether responses contain actual values, display values, or both.",
+            "enum": [
+              "false",
+              "true",
+              "all"
+            ],
+            "in": "query",
+            "name": "sysparm_display_value",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/table/{tableName}/{sys_id}",
+        "pointer": "#/paths/~1table~1{tableName}~1{sys_id}/patch",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "TableRecord"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "RecordResponse"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Update fields on a record"
+      },
+      {
+        "id": "schema:RecordListResponse",
+        "kind": "schema",
+        "name": "RecordListResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:RecordResponse",
+        "kind": "schema",
+        "name": "RecordResponse",
+        "type": "object"
+      },
+      {
+        "description": "Table-specific field names and values; fields depend on the selected table and instance.",
+        "id": "schema:TableRecord",
+        "kind": "schema",
+        "name": "TableRecord",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "servicenow"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://{instance}/api/now",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "SysparmDisplayValue": {
+                  "description": "Select whether responses contain actual values, display values, or both.",
+                  "in": "query",
+                  "name": "sysparm_display_value",
+                  "schema": {
+                    "default": "false",
+                    "enum": [
+                      "false",
+                      "true",
+                      "all"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "SysparmExcludeReferenceLink": {
+                  "description": "Exclude Table API links for reference fields.",
+                  "in": "query",
+                  "name": "sysparm_exclude_reference_link",
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "SysparmFields": {
+                  "description": "Comma-separated field names to return; invalid fields are ignored.",
+                  "in": "query",
+                  "name": "sysparm_fields",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "SysparmLimit": {
+                  "description": "Maximum number of records to return. The documented default is 10000.",
+                  "in": "query",
+                  "name": "sysparm_limit",
+                  "schema": {
+                    "default": 10000,
+                    "type": "integer"
+                  }
+                },
+                "SysparmNoCount": {
+                  "description": "Whether to skip the query that counts rows in the table.",
+                  "in": "query",
+                  "name": "sysparm_no_count",
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "SysparmOffset": {
+                  "description": "Starting record index used to paginate results; negative values are not supported.",
+                  "in": "query",
+                  "name": "sysparm_offset",
+                  "schema": {
+                    "default": 0,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "SysparmQuery": {
+                  "description": "Encoded query used to filter the result set.",
+                  "in": "query",
+                  "name": "sysparm_query",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "SysparmQueryNoDomain": {
+                  "description": "Include records outside the logged-in user's configured domains. Available only to system administrators or users with the query_no_domain_table_api role.",
+                  "in": "query",
+                  "name": "sysparm_query_no_domain",
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  }
+                },
+                "SysparmView": {
+                  "description": "UI view that determines which fields are returned.",
+                  "in": "query",
+                  "name": "sysparm_view",
+                  "schema": {
+                    "enum": [
+                      "desktop",
+                      "mobile",
+                      "both"
+                    ],
+                    "type": "string"
+                  }
+                }
+              },
+              "schemas": {
+                "RecordListResponse": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "result": {
+                      "items": {
+                        "$ref": "#/components/schemas/TableRecord"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "result"
+                  ],
+                  "type": "object"
+                },
+                "RecordResponse": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "result": {
+                      "$ref": "#/components/schemas/TableRecord"
+                    }
+                  },
+                  "required": [
+                    "result"
+                  ],
+                  "type": "object"
+                },
+                "TableRecord": {
+                  "additionalProperties": true,
+                  "description": "Table-specific field names and values; fields depend on the selected table and instance.",
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "basicAuth": {
+                  "scheme": "basic",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused community-maintained specification for the JSON endpoints of the ServiceNow Table API. Table names, record fields, and access controls vary by instance. This specification covers the default unversioned endpoints and common query parameters; it omits instance-specific table schemas, versioned URLs, XML responses, less common query parameters, and other ServiceNow APIs.",
+              "externalDocs": {
+                "description": "ServiceNow Table API reference",
+                "url": "https://www.servicenow.com/docs/r/api-reference/rest-apis/c_TableAPI.html"
+              },
+              "title": "ServiceNow Table API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/table/{tableName}": {
+                "get": {
+                  "description": "The calling user must have sufficient roles to access the table data.",
+                  "operationId": "listTableRecords",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SysparmQuery"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmDisplayValue"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmExcludeReferenceLink"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmFields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmLimit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmNoCount"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmOffset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmQueryNoDomain"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmView"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RecordListResponse"
+                          }
+                        }
+                      },
+                      "description": "Records returned from the table."
+                    }
+                  },
+                  "summary": "Retrieve records from a table"
+                },
+                "parameters": [
+                  {
+                    "description": "Name of the table to access, such as incident or asset.",
+                    "in": "path",
+                    "name": "tableName",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "post": {
+                  "description": "Inserts one record. Multiple-record insertion is not supported by this method.",
+                  "operationId": "createTableRecord",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SysparmDisplayValue"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/TableRecord"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RecordResponse"
+                          }
+                        }
+                      },
+                      "description": "Record created."
+                    },
+                    "400": {
+                      "description": "The request is malformed or has an unsupported type."
+                    },
+                    "404": {
+                      "description": "The requested item was not found."
+                    }
+                  },
+                  "summary": "Insert a record into a table"
+                }
+              },
+              "/table/{tableName}/{sys_id}": {
+                "delete": {
+                  "description": "Deletes the specified record from the table.",
+                  "operationId": "deleteTableRecord",
+                  "responses": {
+                    "204": {
+                      "description": "Record deleted; the response has no body."
+                    }
+                  },
+                  "summary": "Delete a record"
+                },
+                "get": {
+                  "description": "The calling user must have sufficient roles to access the record.",
+                  "operationId": "getTableRecord",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SysparmDisplayValue"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmExcludeReferenceLink"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmFields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmQueryNoDomain"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SysparmView"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RecordResponse"
+                          }
+                        }
+                      },
+                      "description": "Record returned."
+                    },
+                    "404": {
+                      "description": "The requested item was not found."
+                    }
+                  },
+                  "summary": "Retrieve a record"
+                },
+                "parameters": [
+                  {
+                    "description": "Name of the table containing the record.",
+                    "in": "path",
+                    "name": "tableName",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "description": "Identifier of the record.",
+                    "in": "path",
+                    "name": "sys_id",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ],
+                "patch": {
+                  "description": "Updates the record with the name-value pairs in the request body.",
+                  "operationId": "updateTableRecord",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SysparmDisplayValue"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/TableRecord"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RecordResponse"
+                          }
+                        }
+                      },
+                      "description": "Record updated."
+                    },
+                    "400": {
+                      "description": "The request is malformed or has an unsupported type."
+                    },
+                    "404": {
+                      "description": "The requested item was not found."
+                    }
+                  },
+                  "summary": "Update fields on a record"
+                },
+                "put": {
+                  "description": "Updates the record with the request body.",
+                  "operationId": "replaceTableRecord",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SysparmDisplayValue"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/TableRecord"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RecordResponse"
+                          }
+                        }
+                      },
+                      "description": "Record updated."
+                    },
+                    "400": {
+                      "description": "The request is malformed or has an unsupported type."
+                    },
+                    "404": {
+                      "description": "The requested item was not found."
+                    }
+                  },
+                  "summary": "Update a record"
+                }
+              }
+            },
+            "security": [
+              {
+                "basicAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Your ServiceNow instance",
+                "url": "https://{instance}/api/now",
+                "variables": {
+                  "instance": {
+                    "default": "instance.servicenow.com",
+                    "description": "Replace with your instance hostname."
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "ServiceNow"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:51.721622+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/servicenow/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "2d54be51b8a341eb2d468a9ff995e25e4b573f3d0d81adf8101978f4e776d29a",
+    "source_id": "servicenow",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/servicenow/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

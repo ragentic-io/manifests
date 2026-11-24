@@ -1,0 +1,1431 @@
+{
+  "a2ui": {},
+  "app": "lettermint-sending",
+  "graph": {
+    "edges": [
+      {
+        "from": "lettermint-sending",
+        "kind": "EXPOSES",
+        "to": "operation:get:/ping"
+      },
+      {
+        "from": "lettermint-sending",
+        "kind": "EXPOSES",
+        "to": "operation:post:/send"
+      },
+      {
+        "from": "lettermint-sending",
+        "kind": "EXPOSES",
+        "to": "operation:post:/send/batch"
+      },
+      {
+        "from": "operation:post:/send",
+        "kind": "ACCEPTS",
+        "to": "schema:SendMailRequest"
+      },
+      {
+        "from": "operation:post:/send",
+        "kind": "RETURNS",
+        "to": "schema:PendingSendMailResponse"
+      },
+      {
+        "from": "operation:post:/send",
+        "kind": "RETURNS",
+        "to": "schema:ScheduledSendMailResponse"
+      },
+      {
+        "from": "operation:post:/send/batch",
+        "kind": "ACCEPTS",
+        "to": "schema:SendBatchMailRequest"
+      },
+      {
+        "from": "operation:post:/send/batch",
+        "kind": "RETURNS",
+        "to": "schema:PendingSendMailResponse"
+      },
+      {
+        "from": "operation:post:/send/batch",
+        "kind": "RETURNS",
+        "to": "schema:ScheduledSendMailResponse"
+      },
+      {
+        "from": "schema:PendingSendMailResponse",
+        "kind": "REFERENCES",
+        "to": "schema:SandboxResult"
+      },
+      {
+        "from": "schema:ScheduledSendMailResponse",
+        "kind": "REFERENCES",
+        "to": "schema:SandboxResult"
+      },
+      {
+        "from": "schema:SendBatchMailItem",
+        "kind": "REFERENCES",
+        "to": "schema:MessageAttachmentInput"
+      },
+      {
+        "from": "schema:SendBatchMailItem",
+        "kind": "REFERENCES",
+        "to": "schema:MessageTagInput"
+      },
+      {
+        "from": "schema:SendBatchMailItem",
+        "kind": "REFERENCES",
+        "to": "schema:SandboxResult"
+      },
+      {
+        "from": "schema:SendBatchMailItem",
+        "kind": "REFERENCES",
+        "to": "schema:TlsPolicy"
+      },
+      {
+        "from": "schema:SendBatchMailRequest",
+        "kind": "REFERENCES",
+        "to": "schema:SendBatchMailItem"
+      },
+      {
+        "from": "schema:SendMailRequest",
+        "kind": "REFERENCES",
+        "to": "schema:MessageAttachmentInput"
+      },
+      {
+        "from": "schema:SendMailRequest",
+        "kind": "REFERENCES",
+        "to": "schema:MessageTagInput"
+      },
+      {
+        "from": "schema:SendMailRequest",
+        "kind": "REFERENCES",
+        "to": "schema:SandboxResult"
+      },
+      {
+        "from": "schema:SendMailRequest",
+        "kind": "REFERENCES",
+        "to": "schema:TlsPolicy"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "lettermint-sending",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "This endpoint can be used to check the API status and verify authentication.",
+        "id": "operation:get:/ping",
+        "kind": "operation",
+        "method": "get",
+        "name": "ping",
+        "path": "/ping",
+        "pointer": "#/paths/~1ping/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          },
+          {
+            "status": "401",
+            "type": "ApiError|ErrorMessage"
+          },
+          {
+            "status": "429",
+            "type": "ErrorMessage"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "TeamApiToken": []
+          },
+          {
+            "SendingApiToken": []
+          }
+        ],
+        "summary": "Ping the API",
+        "tags": [
+          "Generic"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The request body can be at most 25 MB, including base64-encoded attachments.",
+        "id": "operation:post:/send",
+        "kind": "operation",
+        "method": "post",
+        "name": "sendMail",
+        "parameters": [
+          {
+            "description": "Project API token for the project sending this email.",
+            "in": "header",
+            "name": "x-lettermint-token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Optional key (1-255 characters) that makes the request safe to retry.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/send",
+        "pointer": "#/paths/~1send/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SendMailRequest"
+        },
+        "responses": [
+          {
+            "status": "202",
+            "type": "PendingSendMailResponse|ScheduledSendMailResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorMessage|ApiError"
+          },
+          {
+            "status": "403",
+            "type": "ApiError|ErrorMessage"
+          },
+          {
+            "status": "409",
+            "type": "ErrorMessage"
+          },
+          {
+            "status": "422",
+            "type": "ErrorMessage|ApiError|ValidationError"
+          },
+          {
+            "status": "429",
+            "type": "ApiError"
+          },
+          {
+            "status": "500",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "SendingApiToken": []
+          }
+        ],
+        "summary": "Send an email",
+        "tags": [
+          "Send"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Send up to 500 emails in a single request.",
+        "id": "operation:post:/send/batch",
+        "kind": "operation",
+        "method": "post",
+        "name": "sendBatchMail",
+        "parameters": [
+          {
+            "description": "Project API token for the project sending this email.",
+            "in": "header",
+            "name": "x-lettermint-token",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Optional key (1-255 characters) that makes the whole request safe to retry.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/send/batch",
+        "pointer": "#/paths/~1send~1batch/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SendBatchMailRequest"
+        },
+        "responses": [
+          {
+            "status": "202",
+            "type": "PendingSendMailResponse|ScheduledSendMailResponse[]"
+          },
+          {
+            "status": "401",
+            "type": "ErrorMessage"
+          },
+          {
+            "status": "403",
+            "type": "ApiError"
+          },
+          {
+            "status": "409",
+            "type": "ApiError|ErrorMessage"
+          },
+          {
+            "status": "422",
+            "type": "ApiError|ValidationError|ErrorMessage"
+          },
+          {
+            "status": "429",
+            "type": "ApiError"
+          },
+          {
+            "status": "500",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "SendingApiToken": []
+          }
+        ],
+        "summary": "Send multiple emails in a batch",
+        "tags": [
+          "Send"
+        ]
+      },
+      {
+        "description": "Structured API error.",
+        "id": "schema:ApiError",
+        "kind": "schema",
+        "name": "ApiError",
+        "type": "object"
+      },
+      {
+        "description": "Error with only a message.",
+        "id": "schema:ErrorMessage",
+        "kind": "schema",
+        "name": "ErrorMessage",
+        "type": "object"
+      },
+      {
+        "description": "A file attached to the message.",
+        "id": "schema:MessageAttachmentInput",
+        "kind": "schema",
+        "name": "MessageAttachmentInput",
+        "type": "object"
+      },
+      {
+        "description": "A reusable exact-match tag with a name and a value.",
+        "id": "schema:MessageTagInput",
+        "kind": "schema",
+        "name": "MessageTagInput",
+        "type": "object"
+      },
+      {
+        "description": "An accepted message that is queued for delivery.",
+        "id": "schema:PendingSendMailResponse",
+        "kind": "schema",
+        "name": "PendingSendMailResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:SandboxResult",
+        "kind": "schema",
+        "name": "SandboxResult",
+        "type": "string"
+      },
+      {
+        "description": "An accepted message that is scheduled for later delivery.",
+        "id": "schema:ScheduledSendMailResponse",
+        "kind": "schema",
+        "name": "ScheduledSendMailResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:SendBatchMailItem",
+        "kind": "schema",
+        "name": "SendBatchMailItem",
+        "type": "object"
+      },
+      {
+        "id": "schema:SendBatchMailRequest",
+        "kind": "schema",
+        "name": "SendBatchMailRequest",
+        "type": "SendBatchMailItem[]"
+      },
+      {
+        "id": "schema:SendMailRequest",
+        "kind": "schema",
+        "name": "SendMailRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:TlsPolicy",
+        "kind": "schema",
+        "name": "TlsPolicy",
+        "type": "string"
+      },
+      {
+        "id": "schema:ValidationError",
+        "kind": "schema",
+        "name": "ValidationError",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "lettermint-sending"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.lettermint.co/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "TooManyRequests": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorMessage"
+                      }
+                    }
+                  },
+                  "description": "Too many requests.",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "Seconds to wait before retrying.",
+                      "required": true,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              },
+              "schemas": {
+                "ApiError": {
+                  "description": "Structured API error.",
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Machine-readable error code, for example `RESOURCE_NOT_FOUND`.",
+                          "type": "string"
+                        },
+                        "details": {
+                          "description": "Additional context. Its shape depends on the error code.",
+                          "type": [
+                            "object",
+                            "array",
+                            "null"
+                          ]
+                        },
+                        "message": {
+                          "description": "Human-readable error message.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "title": "ApiError",
+                  "type": "object"
+                },
+                "ErrorMessage": {
+                  "description": "Error with only a message.",
+                  "properties": {
+                    "message": {
+                      "description": "Error overview.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "title": "ErrorMessage",
+                  "type": "object"
+                },
+                "MessageAttachmentInput": {
+                  "description": "A file attached to the message.",
+                  "properties": {
+                    "content": {
+                      "type": "string"
+                    },
+                    "content_id": {
+                      "description": "Content ID for inline attachments, referenced via `cid:` in HTML body.\nIf no `@` is present, `@lm` is appended automatically.",
+                      "examples": [
+                        "logo-image"
+                      ],
+                      "maxLength": 255,
+                      "pattern": "^[a-zA-Z0-9._@-]+$",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "content_type": {
+                      "description": "The MIME type of the attachment. Supports parameters (e.g. `text/calendar; method=REQUEST`).\nIf omitted, detected automatically from content or filename.",
+                      "examples": [
+                        "application/pdf"
+                      ],
+                      "maxLength": 255,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "filename": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "filename",
+                    "content"
+                  ],
+                  "title": "MessageAttachmentInput",
+                  "type": "object"
+                },
+                "MessageTagInput": {
+                  "description": "A reusable exact-match tag with a name and a value.",
+                  "properties": {
+                    "name": {
+                      "examples": [
+                        "campaign"
+                      ],
+                      "maxLength": 32,
+                      "minLength": 1,
+                      "pattern": "^[A-Za-z0-9_-]{1,32}$",
+                      "type": "string"
+                    },
+                    "value": {
+                      "examples": [
+                        "welcome-v2"
+                      ],
+                      "maxLength": 64,
+                      "minLength": 1,
+                      "pattern": "^[A-Za-z0-9_-]{1,64}$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "value"
+                  ],
+                  "title": "MessageTagInput",
+                  "type": "object"
+                },
+                "PendingSendMailResponse": {
+                  "description": "An accepted message that is queued for delivery.",
+                  "properties": {
+                    "message_id": {
+                      "type": "string"
+                    },
+                    "sandbox": {
+                      "const": true,
+                      "description": "Present when the project uses Sandbox delivery",
+                      "type": "boolean"
+                    },
+                    "sandbox_result": {
+                      "$ref": "#/components/schemas/SandboxResult",
+                      "description": "The simulated delivery result. Present when the project uses Sandbox delivery"
+                    },
+                    "status": {
+                      "const": "pending",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message_id",
+                    "status"
+                  ],
+                  "title": "PendingSendMailResponse",
+                  "type": "object"
+                },
+                "SandboxResult": {
+                  "enum": [
+                    "delivered",
+                    "hard_bounced",
+                    "soft_bounced",
+                    "deferred",
+                    "failed",
+                    "suppressed",
+                    "spam_complaint",
+                    "auto_replied",
+                    "opened",
+                    "clicked",
+                    "unsubscribed"
+                  ],
+                  "title": "SandboxResult",
+                  "type": "string"
+                },
+                "ScheduledSendMailResponse": {
+                  "description": "An accepted message that is scheduled for later delivery.",
+                  "properties": {
+                    "message_id": {
+                      "type": "string"
+                    },
+                    "sandbox": {
+                      "const": true,
+                      "description": "Present when the project uses Sandbox delivery",
+                      "type": "boolean"
+                    },
+                    "sandbox_result": {
+                      "$ref": "#/components/schemas/SandboxResult",
+                      "description": "The simulated delivery result. Present when the project uses Sandbox delivery"
+                    },
+                    "scheduled_at": {
+                      "description": "The scheduled delivery time in ISO 8601 format",
+                      "type": "string"
+                    },
+                    "status": {
+                      "const": "scheduled",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message_id",
+                    "status",
+                    "scheduled_at"
+                  ],
+                  "title": "ScheduledSendMailResponse",
+                  "type": "object"
+                },
+                "SendBatchMailItem": {
+                  "properties": {
+                    "attachments": {
+                      "items": {
+                        "$ref": "#/components/schemas/MessageAttachmentInput"
+                      },
+                      "type": "array"
+                    },
+                    "bcc": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "cc": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "from": {
+                      "type": "string"
+                    },
+                    "headers": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Custom headers to include in the email. To preserve a submitted RFC Message-ID,\ninclude both Message-ID and X-LM-Preserve-Message-ID with a string value of true or 1.\nHeader names and control values are case-insensitive; false or 0 retains replacement.\nSend values as plain text: Lettermint encodes non-ASCII characters and repairs small formatting\nerrors, such as line breaks, control characters and missing angle brackets. Header names must\nbe printable ASCII without a colon.",
+                      "examples": [
+                        {
+                          "Message-ID": "<ticket-123@example.com>",
+                          "X-LM-Preserve-Message-ID": "true"
+                        }
+                      ],
+                      "type": "object"
+                    },
+                    "html": {
+                      "minLength": 3,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "idempotency_key": {
+                      "description": "Optional key (1-255 characters) that makes this email safe to send again, in this or a later batch. If an email with the same key and content was accepted in the last 24 hours, its original result is returned and it is not sent again. Keys must be unique within a batch. Reusing a key with different content, or while the email with that key is still being processed, rejects the whole batch with `409 Conflict` and sends nothing.",
+                      "maxLength": 255,
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "metadata": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Metadata to track with the email (not added as email headers).",
+                      "examples": [
+                        {
+                          "campaign_id": "welcome-2025",
+                          "user_id": "123"
+                        }
+                      ],
+                      "type": "object"
+                    },
+                    "reply_to": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "route": {
+                      "type": "string"
+                    },
+                    "sandbox_result": {
+                      "$ref": "#/components/schemas/SandboxResult",
+                      "description": "The result that a Sandbox project simulates for every recipient.",
+                      "examples": [
+                        "hard_bounced"
+                      ]
+                    },
+                    "scheduled_at": {
+                      "description": "ISO 8601 or English delivery time. A time without a timezone uses UTC.",
+                      "examples": [
+                        "tomorrow at 9am"
+                      ],
+                      "maxLength": 255,
+                      "type": "string"
+                    },
+                    "settings": {
+                      "description": "Per-email settings that override the selected route settings for this email only.",
+                      "examples": [
+                        {
+                          "tls": "enforced",
+                          "track_clicks": true,
+                          "track_opens": false
+                        }
+                      ],
+                      "properties": {
+                        "tls": {
+                          "$ref": "#/components/schemas/TlsPolicy"
+                        },
+                        "track_clicks": {
+                          "type": "boolean"
+                        },
+                        "track_opens": {
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "subject": {
+                      "maxLength": 998,
+                      "type": "string"
+                    },
+                    "tag": {
+                      "description": "Tag to categorize and filter emails (alphanumeric, underscores, hyphens, spaces allowed).",
+                      "examples": [
+                        "welcome-email"
+                      ],
+                      "maxLength": 255,
+                      "pattern": "^[a-zA-Z0-9_-]+(?:\\s[a-zA-Z0-9_-]+)*$",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "tags": {
+                      "description": "Reusable exact-match tags. Names must be unique and are case-sensitive.",
+                      "examples": [
+                        [
+                          {
+                            "name": "campaign",
+                            "value": "welcome-v2"
+                          },
+                          {
+                            "name": "environment",
+                            "value": "production"
+                          }
+                        ]
+                      ],
+                      "items": {
+                        "$ref": "#/components/schemas/MessageTagInput"
+                      },
+                      "maxItems": 20,
+                      "type": "array"
+                    },
+                    "text": {
+                      "minLength": 3,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "to": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "from",
+                    "to",
+                    "subject"
+                  ],
+                  "title": "SendBatchMailItem",
+                  "type": "object"
+                },
+                "SendBatchMailRequest": {
+                  "items": {
+                    "$ref": "#/components/schemas/SendBatchMailItem"
+                  },
+                  "minItems": 1,
+                  "title": "SendBatchMailRequest",
+                  "type": "array"
+                },
+                "SendMailRequest": {
+                  "properties": {
+                    "attachments": {
+                      "items": {
+                        "$ref": "#/components/schemas/MessageAttachmentInput"
+                      },
+                      "type": "array"
+                    },
+                    "bcc": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "cc": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "from": {
+                      "type": "string"
+                    },
+                    "headers": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Custom headers to include in the email. To preserve a submitted RFC Message-ID,\ninclude both Message-ID and X-LM-Preserve-Message-ID with a string value of true or 1.\nHeader names and control values are case-insensitive; false or 0 retains replacement.\nSend values as plain text: Lettermint encodes non-ASCII characters and repairs small formatting\nerrors, such as line breaks, control characters and missing angle brackets. Header names must\nbe printable ASCII without a colon.",
+                      "examples": [
+                        {
+                          "Message-ID": "<ticket-123@example.com>",
+                          "X-LM-Preserve-Message-ID": "true"
+                        }
+                      ],
+                      "type": "object"
+                    },
+                    "html": {
+                      "minLength": 3,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "metadata": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Metadata to track with the email (not added as email headers).",
+                      "examples": [
+                        {
+                          "campaign_id": "welcome-2025",
+                          "user_id": "123"
+                        }
+                      ],
+                      "type": "object"
+                    },
+                    "reply_to": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "route": {
+                      "type": "string"
+                    },
+                    "sandbox_result": {
+                      "$ref": "#/components/schemas/SandboxResult",
+                      "description": "The result that a Sandbox project simulates for every recipient.",
+                      "examples": [
+                        "hard_bounced"
+                      ]
+                    },
+                    "scheduled_at": {
+                      "description": "ISO 8601 or English delivery time. A time without a timezone uses UTC.",
+                      "examples": [
+                        "tomorrow at 9am"
+                      ],
+                      "maxLength": 255,
+                      "type": "string"
+                    },
+                    "settings": {
+                      "description": "Per-email settings that override the selected route settings for this email only.",
+                      "examples": [
+                        {
+                          "tls": "enforced",
+                          "track_clicks": true,
+                          "track_opens": false
+                        }
+                      ],
+                      "properties": {
+                        "tls": {
+                          "$ref": "#/components/schemas/TlsPolicy"
+                        },
+                        "track_clicks": {
+                          "type": "boolean"
+                        },
+                        "track_opens": {
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "subject": {
+                      "maxLength": 998,
+                      "type": "string"
+                    },
+                    "tag": {
+                      "description": "Tag to categorize and filter emails (alphanumeric, underscores, hyphens, spaces allowed).",
+                      "examples": [
+                        "welcome-email"
+                      ],
+                      "maxLength": 255,
+                      "pattern": "^[a-zA-Z0-9_-]+(?:\\s[a-zA-Z0-9_-]+)*$",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "tags": {
+                      "description": "Reusable exact-match tags. Names must be unique and are case-sensitive.",
+                      "examples": [
+                        [
+                          {
+                            "name": "campaign",
+                            "value": "welcome-v2"
+                          },
+                          {
+                            "name": "environment",
+                            "value": "production"
+                          }
+                        ]
+                      ],
+                      "items": {
+                        "$ref": "#/components/schemas/MessageTagInput"
+                      },
+                      "maxItems": 20,
+                      "type": "array"
+                    },
+                    "text": {
+                      "minLength": 3,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "to": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "from",
+                    "to",
+                    "subject"
+                  ],
+                  "title": "SendMailRequest",
+                  "type": "object"
+                },
+                "TlsPolicy": {
+                  "enum": [
+                    "opportunistic",
+                    "enforced"
+                  ],
+                  "title": "TlsPolicy",
+                  "type": "string"
+                },
+                "ValidationError": {
+                  "properties": {
+                    "errors": {
+                      "additionalProperties": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "description": "A detailed description of each field that failed validation.",
+                      "type": "object"
+                    },
+                    "message": {
+                      "description": "Errors overview.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "errors"
+                  ],
+                  "title": "ValidationError",
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "SendingApiToken": {
+                  "description": "Project API token for the project sending email. Create one in your project settings.",
+                  "in": "header",
+                  "name": "x-lettermint-token",
+                  "type": "apiKey"
+                },
+                "TeamApiToken": {
+                  "description": "Team API token. Find this in your team settings.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "API for sending transactional emails. Authenticate using your Project API token via the `x-lettermint-token` header.",
+              "title": "Lettermint Sending API",
+              "version": "0.0.1"
+            },
+            "openapi": "3.1.2",
+            "paths": {
+              "/ping": {
+                "get": {
+                  "description": "This endpoint can be used to check the API status and verify authentication.\nIt accepts both Team API tokens (via Bearer authentication) and Project API tokens (via X-Lettermint-Token header).",
+                  "operationId": "ping",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/html; charset=UTF-8": {
+                          "schema": {
+                            "const": "pong",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": ""
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/components/schemas/ApiError"
+                              },
+                              {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "The team or project API token is missing or invalid.\n\nThe project API token is not allowed from this IP address."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/TooManyRequests"
+                    }
+                  },
+                  "security": [
+                    {
+                      "TeamApiToken": []
+                    },
+                    {
+                      "SendingApiToken": []
+                    }
+                  ],
+                  "summary": "Ping the API",
+                  "tags": [
+                    "Generic"
+                  ]
+                }
+              },
+              "/send": {
+                "post": {
+                  "description": "The request body can be at most 25 MB, including base64-encoded attachments. A larger request is rejected with a `413 Request Entity Too Large` before it reaches the API, and the email is not sent.",
+                  "operationId": "sendMail",
+                  "parameters": [
+                    {
+                      "description": "Project API token for the project sending this email.",
+                      "example": "lm_...",
+                      "in": "header",
+                      "name": "x-lettermint-token",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Optional key (1-255 characters) that makes the request safe to retry. Repeating a request with the same key and body within 24 hours returns the original response instead of sending again.",
+                      "in": "header",
+                      "name": "Idempotency-Key",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SendMailRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "202": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/components/schemas/PendingSendMailResponse"
+                              },
+                              {
+                                "$ref": "#/components/schemas/ScheduledSendMailResponse"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Message accepted for delivery"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                              },
+                              {
+                                "$ref": "#/components/schemas/ApiError"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "The request is not authenticated.\n\nThe credential type is not accepted by this endpoint.\n\nThe project API token is missing or invalid.\n\nThe OAuth access token is invalid or revoked."
+                    },
+                    "403": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/components/schemas/ApiError"
+                              },
+                              {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Error code `FEATURE_NOT_AVAILABLE`.\n\nThe OAuth connection is not allowed to use the API.\n\nThe user does not have the required team permission."
+                    },
+                    "409": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ErrorMessage"
+                          }
+                        }
+                      },
+                      "description": "The idempotency key was used with a different request, a request with the same key is still being processed, or an earlier request with the same key failed after its email may have been accepted."
+                    },
+                    "422": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                              },
+                              {
+                                "$ref": "#/components/schemas/ApiError"
+                              },
+                              {
+                                "$ref": "#/components/schemas/ValidationError"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "An error\n\nError code `INVALID_SCHEDULE`.\n\nError code `VALIDATION_ERROR`.\n\nValidation error\n\nThe idempotency key must be 1 to 255 characters."
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "Error code `RATE_LIMITED`.\n\nToo many OAuth requests.",
+                      "headers": {
+                        "Retry-After": {
+                          "description": "Seconds to wait before retrying.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "Error code `INTERNAL_ERROR`."
+                    }
+                  },
+                  "security": [
+                    {
+                      "SendingApiToken": []
+                    }
+                  ],
+                  "summary": "Send an email",
+                  "tags": [
+                    "Send"
+                  ],
+                  "x-code-samples": [
+                    {
+                      "label": "cURL",
+                      "lang": "shell",
+                      "source": "curl -X POST https://api.lettermint.co/v1/send \\\n  -H \"x-lettermint-token: $LETTERMINT_PROJECT_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"from\":\"John Doe <john@example.com>\",\"to\":[\"recipient@example.com\"],\"subject\":\"Hello\",\"text\":\"Sent with Lettermint.\"}'"
+                    },
+                    {
+                      "label": "Node.js",
+                      "lang": "javascript",
+                      "source": "const response = await fetch(\"https://api.lettermint.co/v1/send\", {\n  method: \"POST\",\n  headers: {\n    \"x-lettermint-token\": process.env.LETTERMINT_PROJECT_TOKEN,\n    \"Content-Type\": \"application/json\",\n  },\n  body: JSON.stringify({\n    from: \"John Doe <john@example.com>\",\n    to: [\"recipient@example.com\"],\n    subject: \"Hello\",\n    text: \"Sent with Lettermint.\",\n  }),\n});"
+                    }
+                  ]
+                }
+              },
+              "/send/batch": {
+                "post": {
+                  "description": "Send up to 500 emails in a single request. Each email in the batch supports the same parameters as the single send endpoint. The whole request body can be at most 25 MB, including base64-encoded attachments. A larger request is rejected with a `413 Request Entity Too Large` before it reaches the API, and none of its emails are sent, so split larger batches into several requests.\n\nEmails are accepted in order. When an email fails, the emails before it may already be accepted and are not rolled back. The error then lists them in `details.accepted`, with their index in the batch and their `message_id`. Give each email an `idempotency_key` to retry safely: a retry returns the original result of every email that was accepted and sends only the rest.",
+                  "operationId": "sendBatchMail",
+                  "parameters": [
+                    {
+                      "description": "Project API token for the project sending this email.",
+                      "example": "lm_...",
+                      "in": "header",
+                      "name": "x-lettermint-token",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Optional key (1-255 characters) that makes the whole request safe to retry. Repeating a request with the same key and body within 24 hours returns the original response instead of sending again. To retry part of a batch, give each email an `idempotency_key` instead.",
+                      "in": "header",
+                      "name": "Idempotency-Key",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SendBatchMailRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "202": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "$ref": "#/components/schemas/PendingSendMailResponse"
+                                },
+                                {
+                                  "$ref": "#/components/schemas/ScheduledSendMailResponse"
+                                }
+                              ]
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Array of message IDs and their status"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ErrorMessage"
+                          }
+                        }
+                      },
+                      "description": "The project API token is missing or invalid."
+                    },
+                    "403": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "Error code `FEATURE_NOT_AVAILABLE`."
+                    },
+                    "409": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/components/schemas/ApiError"
+                              },
+                              {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Error code `IDEMPOTENCY_CONFLICT`.\n\nThe idempotency key was used with a different request, a request with the same key is still being processed, or an earlier request with the same key failed after its email may have been accepted."
+                    },
+                    "422": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "anyOf": [
+                              {
+                                "$ref": "#/components/schemas/ApiError"
+                              },
+                              {
+                                "$ref": "#/components/schemas/ValidationError"
+                              },
+                              {
+                                "$ref": "#/components/schemas/ErrorMessage"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "description": "Error code `INVALID_SCHEDULE`.\n\nError code `VALIDATION_ERROR`.\n\nValidation error\n\nThe idempotency key must be 1 to 255 characters."
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "Error code `RATE_LIMITED`.",
+                      "headers": {
+                        "Retry-After": {
+                          "description": "Seconds to wait before retrying.",
+                          "required": true,
+                          "schema": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                          }
+                        }
+                      },
+                      "description": "Error code `INTERNAL_ERROR`."
+                    }
+                  },
+                  "security": [
+                    {
+                      "SendingApiToken": []
+                    }
+                  ],
+                  "summary": "Send multiple emails in a batch",
+                  "tags": [
+                    "Send"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "SendingApiToken": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://api.lettermint.co/v1"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Send a single transactional email or a batch of them in one request, with attachments, custom headers and tags.",
+                "name": "Send"
+              },
+              {
+                "description": "Check that the API is reachable and that your Project API token is accepted.",
+                "name": "Generic"
+              }
+            ],
+            "x-tagGroups": [
+              {
+                "name": "Sending",
+                "tags": [
+                  "Send"
+                ]
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Lettermint Sending"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:29.807866+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://lettermint.co/docs/api-reference/sending/0.0.1/lettermint-sending-openapi.json",
+        "version": "3.1.2"
+      }
+    ],
+    "sha256": "cb2786c46218a31d967f3d1cc4b106ef0c7bb3babf6355e9a277a05ec181a23e",
+    "source_id": "lettermint-sending",
+    "source_updated": null,
+    "url": "https://lettermint.co/docs/api-reference/sending/0.0.1/lettermint-sending-openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "0.0.1"
+}

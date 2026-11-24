@@ -1,0 +1,3874 @@
+{
+  "a2ui": {},
+  "app": "outrank",
+  "graph": {
+    "edges": [
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/articles"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/articles/bulk-replace"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/articles/generate"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/articles/precreate"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/articles/{id}"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/articles/{id}/content"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/articles/{id}/replace"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/articles/{id}/retry-publish"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/auth/whoami"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/billing/portal-url"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/billing/purchase-products"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/keywords"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/keywords/bulk-delete"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/keywords/bulk-process"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/keywords/bulk-reschedule"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/keywords/export"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/keywords/generate"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/keywords/suggest"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/products"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/products"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/products/{id}"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/products/{id}"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/products/{id}/gsc"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/products/{id}/gsc/cannibalization"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/products/{id}/gsc/connect"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/products/{id}/gsc/performance"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/products/{id}/gsc/url-inspection"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/products/{id}/pause"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/products/{id}/resume"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/subscription/status"
+      },
+      {
+        "from": "outrank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/usage/stats"
+      },
+      {
+        "from": "operation:post:/articles/bulk-replace",
+        "kind": "ACCEPTS",
+        "to": "schema:OpenJsonObject"
+      },
+      {
+        "from": "operation:post:/articles/{id}/replace",
+        "kind": "ACCEPTS",
+        "to": "schema:OpenJsonObject"
+      },
+      {
+        "from": "operation:post:/billing/purchase-products",
+        "kind": "ACCEPTS",
+        "to": "schema:PurchaseProductsRequest"
+      },
+      {
+        "from": "operation:post:/keywords/bulk-delete",
+        "kind": "ACCEPTS",
+        "to": "schema:OpenJsonObject"
+      },
+      {
+        "from": "operation:post:/keywords/bulk-process",
+        "kind": "ACCEPTS",
+        "to": "schema:OpenJsonObject"
+      },
+      {
+        "from": "operation:post:/keywords/bulk-reschedule",
+        "kind": "ACCEPTS",
+        "to": "schema:OpenJsonObject"
+      },
+      {
+        "from": "operation:post:/keywords/generate",
+        "kind": "ACCEPTS",
+        "to": "schema:OpenJsonObject"
+      },
+      {
+        "from": "operation:post:/keywords/suggest",
+        "kind": "ACCEPTS",
+        "to": "schema:OpenJsonObject"
+      },
+      {
+        "from": "operation:post:/products",
+        "kind": "ACCEPTS",
+        "to": "schema:OpenJsonObject"
+      },
+      {
+        "from": "operation:patch:/products/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:OpenJsonObject"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "outrank",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/articles",
+        "kind": "operation",
+        "method": "get",
+        "name": "listArticles",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "product_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "title",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "keyword",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "content",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "slug",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "created_from",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "created_to",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "scheduled_from",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "scheduled_to",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of results to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/articles",
+        "pointer": "#/paths/~1articles/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List articles",
+        "tags": [
+          "Articles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/articles/bulk-replace",
+        "kind": "operation",
+        "method": "post",
+        "name": "bulkReplaceArticles",
+        "path": "/articles/bulk-replace",
+        "pointer": "#/paths/~1articles~1bulk-replace/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "OpenJsonObject"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Bulk replace articles",
+        "tags": [
+          "Articles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/articles/generate",
+        "kind": "operation",
+        "method": "post",
+        "name": "generateArticle",
+        "path": "/articles/generate",
+        "pointer": "#/paths/~1articles~1generate/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Generate an article for a keyword",
+        "tags": [
+          "Articles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/articles/precreate",
+        "kind": "operation",
+        "method": "post",
+        "name": "precreateArticle",
+        "path": "/articles/precreate",
+        "pointer": "#/paths/~1articles~1precreate/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Precreate an article for a keyword",
+        "tags": [
+          "Articles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/articles/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getArticle",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/articles/{id}",
+        "pointer": "#/paths/~1articles~1{id}/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get an article",
+        "tags": [
+          "Articles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/articles/{id}/content",
+        "kind": "operation",
+        "method": "get",
+        "name": "getArticleContent",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/articles/{id}/content",
+        "pointer": "#/paths/~1articles~1{id}~1content/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get article content",
+        "tags": [
+          "Articles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/articles/{id}/replace",
+        "kind": "operation",
+        "method": "post",
+        "name": "replaceArticle",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/articles/{id}/replace",
+        "pointer": "#/paths/~1articles~1{id}~1replace/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "OpenJsonObject"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Replace an article",
+        "tags": [
+          "Articles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/articles/{id}/retry-publish",
+        "kind": "operation",
+        "method": "post",
+        "name": "retryArticlePublish",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/articles/{id}/retry-publish",
+        "pointer": "#/paths/~1articles~1{id}~1retry-publish/post",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Retry publishing an article",
+        "tags": [
+          "Articles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the user, organization, and remaining article credits associated with the key.",
+        "id": "operation:get:/auth/whoami",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCurrentIdentity",
+        "path": "/auth/whoami",
+        "pointer": "#/paths/~1auth~1whoami/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Verify the API key",
+        "tags": [
+          "Auth"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/billing/portal-url",
+        "kind": "operation",
+        "method": "get",
+        "name": "getBillingPortalUrl",
+        "path": "/billing/portal-url",
+        "pointer": "#/paths/~1billing~1portal-url/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get the billing portal URL",
+        "tags": [
+          "Billing & Usage"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The official CLI sends a quote request without confirm_charge_cents, then sends a confirmed purchase with that value and an idempotency key.",
+        "id": "operation:post:/billing/purchase-products",
+        "kind": "operation",
+        "method": "post",
+        "name": "purchaseProducts",
+        "parameters": [
+          {
+            "description": "Stable key used by the official CLI to make purchase retries idempotent.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/billing/purchase-products",
+        "pointer": "#/paths/~1billing~1purchase-products/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "PurchaseProductsRequest"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "409",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Quote or purchase additional products",
+        "tags": [
+          "Billing & Usage"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/keywords",
+        "kind": "operation",
+        "method": "get",
+        "name": "listKeywords",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "product_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "scope",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Search query.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "article_type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "article_subtype",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "scheduled_from",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "scheduled_to",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "search_volume_min",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "search_volume_max",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "difficulty_min",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "difficulty_max",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Maximum number of results to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/keywords",
+        "pointer": "#/paths/~1keywords/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List keywords",
+        "tags": [
+          "Keywords"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/keywords/bulk-delete",
+        "kind": "operation",
+        "method": "post",
+        "name": "bulkDeleteKeywords",
+        "path": "/keywords/bulk-delete",
+        "pointer": "#/paths/~1keywords~1bulk-delete/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "OpenJsonObject"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Bulk delete keywords",
+        "tags": [
+          "Keywords"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/keywords/bulk-process",
+        "kind": "operation",
+        "method": "post",
+        "name": "bulkProcessKeywords",
+        "path": "/keywords/bulk-process",
+        "pointer": "#/paths/~1keywords~1bulk-process/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "OpenJsonObject"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Bulk process keywords",
+        "tags": [
+          "Keywords"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/keywords/bulk-reschedule",
+        "kind": "operation",
+        "method": "post",
+        "name": "bulkRescheduleKeywords",
+        "path": "/keywords/bulk-reschedule",
+        "pointer": "#/paths/~1keywords~1bulk-reschedule/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "OpenJsonObject"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Bulk reschedule keywords",
+        "tags": [
+          "Keywords"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/keywords/export",
+        "kind": "operation",
+        "method": "get",
+        "name": "exportKeywords",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "product_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/keywords/export",
+        "pointer": "#/paths/~1keywords~1export/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Export keywords",
+        "tags": [
+          "Keywords"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/keywords/generate",
+        "kind": "operation",
+        "method": "post",
+        "name": "generateKeywords",
+        "path": "/keywords/generate",
+        "pointer": "#/paths/~1keywords~1generate/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "OpenJsonObject"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Generate keywords",
+        "tags": [
+          "Keywords"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/keywords/suggest",
+        "kind": "operation",
+        "method": "post",
+        "name": "suggestKeywords",
+        "path": "/keywords/suggest",
+        "pointer": "#/paths/~1keywords~1suggest/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "OpenJsonObject"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Suggest keywords",
+        "tags": [
+          "Keywords"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/products",
+        "kind": "operation",
+        "method": "get",
+        "name": "listProducts",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of results to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Opaque pagination cursor.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/products",
+        "pointer": "#/paths/~1products/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List products",
+        "tags": [
+          "Products"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/products",
+        "kind": "operation",
+        "method": "post",
+        "name": "createProduct",
+        "path": "/products",
+        "pointer": "#/paths/~1products/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "OpenJsonObject"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a product",
+        "tags": [
+          "Products"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/products/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getProduct",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/products/{id}",
+        "pointer": "#/paths/~1products~1{id}/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get a product",
+        "tags": [
+          "Products"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:patch:/products/{id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "updateProduct",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/products/{id}",
+        "pointer": "#/paths/~1products~1{id}/patch",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "OpenJsonObject"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Update a product",
+        "tags": [
+          "Products"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/products/{id}/gsc",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSearchConsoleConnection",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/products/{id}/gsc",
+        "pointer": "#/paths/~1products~1{id}~1gsc/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get the Search Console connection",
+        "tags": [
+          "Search Console"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/products/{id}/gsc/cannibalization",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSearchConsoleCannibalization",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/products/{id}/gsc/cannibalization",
+        "pointer": "#/paths/~1products~1{id}~1gsc~1cannibalization/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get Search Console cannibalization data",
+        "tags": [
+          "Search Console"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/products/{id}/gsc/connect",
+        "kind": "operation",
+        "method": "post",
+        "name": "connectSearchConsole",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/products/{id}/gsc/connect",
+        "pointer": "#/paths/~1products~1{id}~1gsc~1connect/post",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Connect Search Console",
+        "tags": [
+          "Search Console"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/products/{id}/gsc/performance",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSearchConsolePerformance",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "months",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/products/{id}/gsc/performance",
+        "pointer": "#/paths/~1products~1{id}~1gsc~1performance/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get Search Console performance",
+        "tags": [
+          "Search Console"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/products/{id}/gsc/url-inspection",
+        "kind": "operation",
+        "method": "post",
+        "name": "inspectSearchConsoleUrl",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/products/{id}/gsc/url-inspection",
+        "pointer": "#/paths/~1products~1{id}~1gsc~1url-inspection/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Inspect a URL in Search Console",
+        "tags": [
+          "Search Console"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/products/{id}/pause",
+        "kind": "operation",
+        "method": "post",
+        "name": "pauseProduct",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/products/{id}/pause",
+        "pointer": "#/paths/~1products~1{id}~1pause/post",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Pause a product",
+        "tags": [
+          "Products"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/products/{id}/resume",
+        "kind": "operation",
+        "method": "post",
+        "name": "resumeProduct",
+        "parameters": [
+          {
+            "description": "Product or article identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/products/{id}/resume",
+        "pointer": "#/paths/~1products~1{id}~1resume/post",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Resume a product",
+        "tags": [
+          "Products"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/subscription/status",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSubscriptionStatus",
+        "path": "/subscription/status",
+        "pointer": "#/paths/~1subscription~1status/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get subscription status",
+        "tags": [
+          "Billing & Usage"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/usage/stats",
+        "kind": "operation",
+        "method": "get",
+        "name": "getUsageStats",
+        "path": "/usage/stats",
+        "pointer": "#/paths/~1usage~1stats/get",
+        "responses": [
+          {
+            "status": "2XX"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "5XX",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get usage statistics",
+        "tags": [
+          "Billing & Usage"
+        ]
+      },
+      {
+        "id": "schema:ErrorResponse",
+        "kind": "schema",
+        "name": "ErrorResponse",
+        "type": "object"
+      },
+      {
+        "description": "Open object schema used where the published API reference omits request fields.",
+        "id": "schema:OpenJsonObject",
+        "kind": "schema",
+        "name": "OpenJsonObject",
+        "type": "object"
+      },
+      {
+        "id": "schema:PurchaseProductsRequest",
+        "kind": "schema",
+        "name": "PurchaseProductsRequest",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "outrank"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://www.outrank.so/api/agent/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Cursor": {
+                  "description": "Opaque pagination cursor.",
+                  "in": "query",
+                  "name": "cursor",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Limit100": {
+                  "description": "Maximum number of results to return.",
+                  "in": "query",
+                  "name": "limit",
+                  "required": false,
+                  "schema": {
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "Offset": {
+                  "in": "query",
+                  "name": "offset",
+                  "required": false,
+                  "schema": {
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "ResourceId": {
+                  "description": "Product or article identifier.",
+                  "in": "path",
+                  "name": "id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "requestBodies": {
+                "ArticleGeneration": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "additionalProperties": true,
+                        "properties": {
+                          "keyword_id": {
+                            "description": "Identifier of the keyword for which to create the article.",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "keyword_id"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "Request body used by the official CLI to precreate or generate an article.",
+                  "required": true
+                },
+                "SearchConsoleUrlInspection": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "additionalProperties": true,
+                        "properties": {
+                          "inspection_url": {
+                            "description": "URL to inspect.",
+                            "type": "string"
+                          },
+                          "language_code": {
+                            "description": "Optional language code.",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "inspection_url"
+                        ],
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "Request body fields exposed by the official CLI.",
+                  "required": true
+                },
+                "UndocumentedJsonObject": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/OpenJsonObject"
+                      }
+                    }
+                  },
+                  "description": "JSON object body; the public API reference does not document the supported fields for this operation.",
+                  "required": true
+                }
+              },
+              "responses": {
+                "BadRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "Invalid request body or query parameters."
+                },
+                "Forbidden": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "The organization's plan does not support the operation or access to the resource is unavailable."
+                },
+                "NotFound": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "The resource does not exist or belongs to another organization."
+                },
+                "RateLimited": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "Rate limit exceeded. Honor Retry-After before retrying.",
+                  "headers": {
+                    "Retry-After": {
+                      "description": "How long to wait before retrying.",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "ServerError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "Transient server error. Retry idempotent calls with backoff."
+                },
+                "Success": {
+                  "content": {
+                    "application/json": {
+                      "schema": {}
+                    }
+                  },
+                  "description": "Successful response. The reference does not specify the success status code or response fields for this operation. Includes Outrank rate-limit headers."
+                },
+                "Unauthorized": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "Missing, malformed, expired, or revoked API key."
+                }
+              },
+              "schemas": {
+                "ErrorResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "error": {
+                      "additionalProperties": true,
+                      "description": "Error details; the reference does not publish its fields.",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                },
+                "OpenJsonObject": {
+                  "additionalProperties": true,
+                  "description": "Open object schema used where the published API reference omits request fields.",
+                  "type": "object"
+                },
+                "PurchaseProductsRequest": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "additional_products": {
+                      "description": "Integer range accepted by the official CLI; the public reference does not define its semantics.",
+                      "maximum": 30,
+                      "minimum": 1,
+                      "type": "integer"
+                    },
+                    "confirm_charge_cents": {
+                      "description": "Confirmed charge amount in cents for the purchase flow.",
+                      "minimum": 0,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "additional_products"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "bearerFormat": "Outrank API key (prefix outr_live_)",
+                  "description": "Create keys in the Outrank dashboard. Keys are scoped to one organization and shown only once.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "OpenAPI description of the endpoints listed in Outrank's public REST API reference.\n\nRequests use JSON and an organization-scoped bearer API key. The API reference does not publish\nfield-level request and response schemas for every operation; open schemas below mark those\nundocumented contracts without inventing fields. Query parameters and request fields are included\nwhere exposed by Outrank's official CLI (see the [CLI package](https://www.npmjs.com/package/outrank-cli)).\n\nRate limits are 120 requests per minute and 10,000 requests per day per API key. Outrank states\nthat responses include X-RateLimit-* headers; the reference does not enumerate their exact names.\n",
+              "externalDocs": {
+                "description": "Outrank REST API documentation",
+                "url": "https://www.outrank.so/docs/api"
+              },
+              "summary": "Organization-scoped API for Outrank products, keywords, articles, Search Console, billing, and usage.",
+              "title": "Outrank REST API",
+              "version": "0.1.0"
+            },
+            "openapi": "3.2.1",
+            "paths": {
+              "/articles": {
+                "get": {
+                  "operationId": "listArticles",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "product_id",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "status",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "title",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "keyword",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "content",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "slug",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "created_from",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "created_to",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "scheduled_from",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "scheduled_to",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "sort_by",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "sort_order",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit100"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Offset"
+                    }
+                  ],
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "List articles",
+                  "tags": [
+                    "Articles"
+                  ]
+                }
+              },
+              "/articles/bulk-replace": {
+                "post": {
+                  "operationId": "bulkReplaceArticles",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/UndocumentedJsonObject"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Bulk replace articles",
+                  "tags": [
+                    "Articles"
+                  ]
+                }
+              },
+              "/articles/generate": {
+                "post": {
+                  "operationId": "generateArticle",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/ArticleGeneration"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Generate an article for a keyword",
+                  "tags": [
+                    "Articles"
+                  ]
+                }
+              },
+              "/articles/precreate": {
+                "post": {
+                  "operationId": "precreateArticle",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/ArticleGeneration"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Precreate an article for a keyword",
+                  "tags": [
+                    "Articles"
+                  ]
+                }
+              },
+              "/articles/{id}": {
+                "get": {
+                  "operationId": "getArticle",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Get an article",
+                  "tags": [
+                    "Articles"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/articles/{id}/content": {
+                "get": {
+                  "operationId": "getArticleContent",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "format",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Get article content",
+                  "tags": [
+                    "Articles"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/articles/{id}/replace": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ],
+                "post": {
+                  "operationId": "replaceArticle",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/UndocumentedJsonObject"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Replace an article",
+                  "tags": [
+                    "Articles"
+                  ]
+                }
+              },
+              "/articles/{id}/retry-publish": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ],
+                "post": {
+                  "operationId": "retryArticlePublish",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Retry publishing an article",
+                  "tags": [
+                    "Articles"
+                  ]
+                }
+              },
+              "/auth/whoami": {
+                "get": {
+                  "description": "Returns the user, organization, and remaining article credits associated with the key.",
+                  "operationId": "getCurrentIdentity",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Verify the API key",
+                  "tags": [
+                    "Auth"
+                  ]
+                }
+              },
+              "/billing/portal-url": {
+                "get": {
+                  "operationId": "getBillingPortalUrl",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Get the billing portal URL",
+                  "tags": [
+                    "Billing & Usage"
+                  ]
+                }
+              },
+              "/billing/purchase-products": {
+                "post": {
+                  "description": "The official CLI sends a quote request without confirm_charge_cents, then sends a confirmed purchase with that value and an idempotency key.",
+                  "operationId": "purchaseProducts",
+                  "parameters": [
+                    {
+                      "description": "Stable key used by the official CLI to make purchase retries idempotent.",
+                      "in": "header",
+                      "name": "Idempotency-Key",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/PurchaseProductsRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ErrorResponse"
+                          }
+                        }
+                      },
+                      "description": "The official CLI handles this response as a quote result; quote details are returned in the error object."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Quote or purchase additional products",
+                  "tags": [
+                    "Billing & Usage"
+                  ]
+                }
+              },
+              "/keywords": {
+                "get": {
+                  "operationId": "listKeywords",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "product_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "scope",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "status",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Search query.",
+                      "in": "query",
+                      "name": "q",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "article_type",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "article_subtype",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "scheduled_from",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "scheduled_to",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "search_volume_min",
+                      "required": false,
+                      "schema": {
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "search_volume_max",
+                      "required": false,
+                      "schema": {
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "difficulty_min",
+                      "required": false,
+                      "schema": {
+                        "maximum": 100,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "difficulty_max",
+                      "required": false,
+                      "schema": {
+                        "maximum": 100,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit100"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Offset"
+                    }
+                  ],
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "List keywords",
+                  "tags": [
+                    "Keywords"
+                  ]
+                }
+              },
+              "/keywords/bulk-delete": {
+                "post": {
+                  "operationId": "bulkDeleteKeywords",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/UndocumentedJsonObject"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Bulk delete keywords",
+                  "tags": [
+                    "Keywords"
+                  ]
+                }
+              },
+              "/keywords/bulk-process": {
+                "post": {
+                  "operationId": "bulkProcessKeywords",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/UndocumentedJsonObject"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Bulk process keywords",
+                  "tags": [
+                    "Keywords"
+                  ]
+                }
+              },
+              "/keywords/bulk-reschedule": {
+                "post": {
+                  "operationId": "bulkRescheduleKeywords",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/UndocumentedJsonObject"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Bulk reschedule keywords",
+                  "tags": [
+                    "Keywords"
+                  ]
+                }
+              },
+              "/keywords/export": {
+                "get": {
+                  "operationId": "exportKeywords",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "product_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Export keywords",
+                  "tags": [
+                    "Keywords"
+                  ]
+                }
+              },
+              "/keywords/generate": {
+                "post": {
+                  "operationId": "generateKeywords",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/UndocumentedJsonObject"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Generate keywords",
+                  "tags": [
+                    "Keywords"
+                  ]
+                }
+              },
+              "/keywords/suggest": {
+                "post": {
+                  "operationId": "suggestKeywords",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/UndocumentedJsonObject"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Suggest keywords",
+                  "tags": [
+                    "Keywords"
+                  ]
+                }
+              },
+              "/products": {
+                "get": {
+                  "operationId": "listProducts",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "status",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit100"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Cursor"
+                    }
+                  ],
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "List products",
+                  "tags": [
+                    "Products"
+                  ]
+                },
+                "post": {
+                  "operationId": "createProduct",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/UndocumentedJsonObject"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Create a product",
+                  "tags": [
+                    "Products"
+                  ]
+                }
+              },
+              "/products/{id}": {
+                "get": {
+                  "operationId": "getProduct",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Get a product",
+                  "tags": [
+                    "Products"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ],
+                "patch": {
+                  "operationId": "updateProduct",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/UndocumentedJsonObject"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Update a product",
+                  "tags": [
+                    "Products"
+                  ]
+                }
+              },
+              "/products/{id}/gsc": {
+                "get": {
+                  "operationId": "getSearchConsoleConnection",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Get the Search Console connection",
+                  "tags": [
+                    "Search Console"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/products/{id}/gsc/cannibalization": {
+                "get": {
+                  "operationId": "getSearchConsoleCannibalization",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Get Search Console cannibalization data",
+                  "tags": [
+                    "Search Console"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/products/{id}/gsc/connect": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ],
+                "post": {
+                  "operationId": "connectSearchConsole",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Connect Search Console",
+                  "tags": [
+                    "Search Console"
+                  ]
+                }
+              },
+              "/products/{id}/gsc/performance": {
+                "get": {
+                  "operationId": "getSearchConsolePerformance",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "months",
+                      "required": false,
+                      "schema": {
+                        "maximum": 16,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Get Search Console performance",
+                  "tags": [
+                    "Search Console"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ]
+              },
+              "/products/{id}/gsc/url-inspection": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ],
+                "post": {
+                  "operationId": "inspectSearchConsoleUrl",
+                  "requestBody": {
+                    "$ref": "#/components/requestBodies/SearchConsoleUrlInspection"
+                  },
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Inspect a URL in Search Console",
+                  "tags": [
+                    "Search Console"
+                  ]
+                }
+              },
+              "/products/{id}/pause": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ],
+                "post": {
+                  "operationId": "pauseProduct",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Pause a product",
+                  "tags": [
+                    "Products"
+                  ]
+                }
+              },
+              "/products/{id}/resume": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ResourceId"
+                  }
+                ],
+                "post": {
+                  "operationId": "resumeProduct",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Resume a product",
+                  "tags": [
+                    "Products"
+                  ]
+                }
+              },
+              "/subscription/status": {
+                "get": {
+                  "operationId": "getSubscriptionStatus",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Get subscription status",
+                  "tags": [
+                    "Billing & Usage"
+                  ]
+                }
+              },
+              "/usage/stats": {
+                "get": {
+                  "operationId": "getUsageStats",
+                  "responses": {
+                    "2XX": {
+                      "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "5XX": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "summary": "Get usage statistics",
+                  "tags": [
+                    "Billing & Usage"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Outrank production API",
+                "url": "https://www.outrank.so/api/agent/v1"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Verify API key identity and organization.",
+                "name": "Auth"
+              },
+              {
+                "description": "Manage websites in the organization.",
+                "name": "Products"
+              },
+              {
+                "description": "Generate, list, schedule, and manage keywords.",
+                "name": "Keywords"
+              },
+              {
+                "description": "Generate, retrieve, replace, and publish articles.",
+                "name": "Articles"
+              },
+              {
+                "description": "Connect Google Search Console and inspect performance.",
+                "name": "Search Console"
+              },
+              {
+                "description": "Inspect subscription and usage or manage billing.",
+                "name": "Billing & Usage"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Outrank"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:33.838358+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/outrank/openapi.yml",
+        "version": "3.2.1"
+      }
+    ],
+    "sha256": "25d20704e9976369ca82aee105bebeb9fa45d8c06fa3118f8fe4cc3f0375f1be",
+    "source_id": "outrank",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/outrank/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "0.1.0"
+}

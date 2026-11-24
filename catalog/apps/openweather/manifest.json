@@ -1,0 +1,1458 @@
+{
+  "a2ui": {},
+  "app": "openweather",
+  "graph": {
+    "edges": [
+      {
+        "from": "openweather",
+        "kind": "EXPOSES",
+        "to": "operation:get:/alert/{alert_id}"
+      },
+      {
+        "from": "openweather",
+        "kind": "EXPOSES",
+        "to": "operation:get:/current"
+      },
+      {
+        "from": "openweather",
+        "kind": "EXPOSES",
+        "to": "operation:get:/timeline/15min"
+      },
+      {
+        "from": "openweather",
+        "kind": "EXPOSES",
+        "to": "operation:get:/timeline/1day"
+      },
+      {
+        "from": "openweather",
+        "kind": "EXPOSES",
+        "to": "operation:get:/timeline/1h"
+      },
+      {
+        "from": "openweather",
+        "kind": "EXPOSES",
+        "to": "operation:get:/timeline/1min"
+      },
+      {
+        "from": "operation:get:/alert/{alert_id}",
+        "kind": "RETURNS",
+        "to": "schema:WeatherAlert"
+      },
+      {
+        "from": "operation:get:/current",
+        "kind": "RETURNS",
+        "to": "schema:CurrentWeatherResponse"
+      },
+      {
+        "from": "operation:get:/timeline/15min",
+        "kind": "RETURNS",
+        "to": "schema:QuarterHourlyTimelineResponse"
+      },
+      {
+        "from": "operation:get:/timeline/1day",
+        "kind": "RETURNS",
+        "to": "schema:DailyTimelineResponse"
+      },
+      {
+        "from": "operation:get:/timeline/1h",
+        "kind": "RETURNS",
+        "to": "schema:HourlyTimelineResponse"
+      },
+      {
+        "from": "operation:get:/timeline/1min",
+        "kind": "RETURNS",
+        "to": "schema:MinuteTimelineResponse"
+      },
+      {
+        "from": "schema:CurrentObservation",
+        "kind": "REFERENCES",
+        "to": "schema:PrecipitationAmount"
+      },
+      {
+        "from": "schema:CurrentObservation",
+        "kind": "REFERENCES",
+        "to": "schema:WeatherCondition"
+      },
+      {
+        "from": "schema:CurrentWeatherResponse",
+        "kind": "REFERENCES",
+        "to": "schema:CurrentObservation"
+      },
+      {
+        "from": "schema:CurrentWeatherResponse",
+        "kind": "REFERENCES",
+        "to": "schema:WeatherEnvelope"
+      },
+      {
+        "from": "schema:DailyRecord",
+        "kind": "REFERENCES",
+        "to": "schema:WeatherCondition"
+      },
+      {
+        "from": "schema:DailyTimelineResponse",
+        "kind": "REFERENCES",
+        "to": "schema:DailyRecord"
+      },
+      {
+        "from": "schema:DailyTimelineResponse",
+        "kind": "REFERENCES",
+        "to": "schema:TimelineEnvelope"
+      },
+      {
+        "from": "schema:HourlyRecord",
+        "kind": "REFERENCES",
+        "to": "schema:PrecipitationAmount"
+      },
+      {
+        "from": "schema:HourlyRecord",
+        "kind": "REFERENCES",
+        "to": "schema:QuarterHourlyRecord"
+      },
+      {
+        "from": "schema:HourlyTimelineResponse",
+        "kind": "REFERENCES",
+        "to": "schema:HourlyRecord"
+      },
+      {
+        "from": "schema:HourlyTimelineResponse",
+        "kind": "REFERENCES",
+        "to": "schema:TimelineEnvelope"
+      },
+      {
+        "from": "schema:MinuteTimelineResponse",
+        "kind": "REFERENCES",
+        "to": "schema:MinuteRecord"
+      },
+      {
+        "from": "schema:MinuteTimelineResponse",
+        "kind": "REFERENCES",
+        "to": "schema:TimelineEnvelope"
+      },
+      {
+        "from": "schema:QuarterHourlyRecord",
+        "kind": "REFERENCES",
+        "to": "schema:WeatherCondition"
+      },
+      {
+        "from": "schema:QuarterHourlyTimelineResponse",
+        "kind": "REFERENCES",
+        "to": "schema:QuarterHourlyRecord"
+      },
+      {
+        "from": "schema:QuarterHourlyTimelineResponse",
+        "kind": "REFERENCES",
+        "to": "schema:TimelineEnvelope"
+      },
+      {
+        "from": "schema:TimelineEnvelope",
+        "kind": "REFERENCES",
+        "to": "schema:WeatherEnvelope"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "openweather",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/alert/{alert_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getWeatherAlert",
+        "parameters": [
+          {
+            "description": "Alert ID returned by a weather timeline.",
+            "in": "path",
+            "name": "alert_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/alert/{alert_id}",
+        "pointer": "#/paths/~1alert~1{alert_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "WeatherAlert"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "appid": []
+          }
+        ],
+        "summary": "Get detailed weather alert information",
+        "tags": [
+          "One Call API 4.0"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/current",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCurrentWeather",
+        "parameters": [
+          {
+            "description": "Latitude in decimal degrees, from -90 to 90.",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Longitude in decimal degrees, from -180 to 180.",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Units for temperature and wind speed.",
+            "enum": [
+              "standard",
+              "metric",
+              "imperial"
+            ],
+            "in": "query",
+            "name": "units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Language used for weather descriptions.",
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/current",
+        "pointer": "#/paths/~1current/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CurrentWeatherResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "appid": []
+          }
+        ],
+        "summary": "Get current weather",
+        "tags": [
+          "One Call API 4.0"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/timeline/15min",
+        "kind": "operation",
+        "method": "get",
+        "name": "getQuarterHourlyTimeline",
+        "parameters": [
+          {
+            "description": "Latitude in decimal degrees, from -90 to 90.",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Longitude in decimal degrees, from -180 to 180.",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "UTC Unix timestamp used as the starting point for timeline data; defaults to the current UTC time.",
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Units for temperature and wind speed.",
+            "enum": [
+              "standard",
+              "metric",
+              "imperial"
+            ],
+            "in": "query",
+            "name": "units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Language used for weather descriptions.",
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/timeline/15min",
+        "pointer": "#/paths/~1timeline~115min/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "QuarterHourlyTimelineResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "appid": []
+          }
+        ],
+        "summary": "Get the 15-minute weather timeline",
+        "tags": [
+          "One Call API 4.0"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/timeline/1day",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDailyTimeline",
+        "parameters": [
+          {
+            "description": "Latitude in decimal degrees, from -90 to 90.",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Longitude in decimal degrees, from -180 to 180.",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "UTC Unix timestamp used as the starting point for timeline data; defaults to the current UTC time.",
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Units for temperature and wind speed.",
+            "enum": [
+              "standard",
+              "metric",
+              "imperial"
+            ],
+            "in": "query",
+            "name": "units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Language used for weather descriptions.",
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/timeline/1day",
+        "pointer": "#/paths/~1timeline~11day/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DailyTimelineResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "appid": []
+          }
+        ],
+        "summary": "Get the daily weather timeline",
+        "tags": [
+          "One Call API 4.0"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/timeline/1h",
+        "kind": "operation",
+        "method": "get",
+        "name": "getHourlyTimeline",
+        "parameters": [
+          {
+            "description": "Latitude in decimal degrees, from -90 to 90.",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Longitude in decimal degrees, from -180 to 180.",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "UTC Unix timestamp used as the starting point for timeline data; defaults to the current UTC time.",
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Units for temperature and wind speed.",
+            "enum": [
+              "standard",
+              "metric",
+              "imperial"
+            ],
+            "in": "query",
+            "name": "units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Language used for weather descriptions.",
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/timeline/1h",
+        "pointer": "#/paths/~1timeline~11h/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "HourlyTimelineResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "appid": []
+          }
+        ],
+        "summary": "Get the hourly weather timeline",
+        "tags": [
+          "One Call API 4.0"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/timeline/1min",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMinuteTimeline",
+        "parameters": [
+          {
+            "description": "Latitude in decimal degrees, from -90 to 90.",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Longitude in decimal degrees, from -180 to 180.",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "UTC Unix timestamp used as the starting point for timeline data; defaults to the current UTC time.",
+            "in": "query",
+            "name": "start",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Units for temperature and wind speed.",
+            "enum": [
+              "standard",
+              "metric",
+              "imperial"
+            ],
+            "in": "query",
+            "name": "units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Language used for weather descriptions.",
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/timeline/1min",
+        "pointer": "#/paths/~1timeline~11min/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "MinuteTimelineResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "appid": []
+          }
+        ],
+        "summary": "Get the one-minute weather timeline",
+        "tags": [
+          "One Call API 4.0"
+        ]
+      },
+      {
+        "id": "schema:CurrentObservation",
+        "kind": "schema",
+        "name": "CurrentObservation",
+        "type": "object"
+      },
+      {
+        "id": "schema:CurrentWeatherResponse",
+        "kind": "schema",
+        "name": "CurrentWeatherResponse",
+        "type": "WeatherEnvelope|object"
+      },
+      {
+        "id": "schema:DailyRecord",
+        "kind": "schema",
+        "name": "DailyRecord",
+        "type": "object"
+      },
+      {
+        "id": "schema:DailyTimelineResponse",
+        "kind": "schema",
+        "name": "DailyTimelineResponse",
+        "type": "TimelineEnvelope|object"
+      },
+      {
+        "id": "schema:HourlyRecord",
+        "kind": "schema",
+        "name": "HourlyRecord",
+        "type": "QuarterHourlyRecord|object"
+      },
+      {
+        "id": "schema:HourlyTimelineResponse",
+        "kind": "schema",
+        "name": "HourlyTimelineResponse",
+        "type": "TimelineEnvelope|object"
+      },
+      {
+        "id": "schema:MinuteRecord",
+        "kind": "schema",
+        "name": "MinuteRecord",
+        "type": "object"
+      },
+      {
+        "id": "schema:MinuteTimelineResponse",
+        "kind": "schema",
+        "name": "MinuteTimelineResponse",
+        "type": "TimelineEnvelope|object"
+      },
+      {
+        "id": "schema:PrecipitationAmount",
+        "kind": "schema",
+        "name": "PrecipitationAmount",
+        "type": "object"
+      },
+      {
+        "id": "schema:QuarterHourlyRecord",
+        "kind": "schema",
+        "name": "QuarterHourlyRecord",
+        "type": "object"
+      },
+      {
+        "id": "schema:QuarterHourlyTimelineResponse",
+        "kind": "schema",
+        "name": "QuarterHourlyTimelineResponse",
+        "type": "TimelineEnvelope|object"
+      },
+      {
+        "id": "schema:TimelineEnvelope",
+        "kind": "schema",
+        "name": "TimelineEnvelope",
+        "type": "WeatherEnvelope|object"
+      },
+      {
+        "id": "schema:WeatherAlert",
+        "kind": "schema",
+        "name": "WeatherAlert",
+        "type": "object"
+      },
+      {
+        "id": "schema:WeatherCondition",
+        "kind": "schema",
+        "name": "WeatherCondition",
+        "type": "object"
+      },
+      {
+        "id": "schema:WeatherEnvelope",
+        "kind": "schema",
+        "name": "WeatherEnvelope",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "openweather"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.openweathermap.org/data/4.0/onecall",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Language": {
+                  "description": "Language used for weather descriptions.",
+                  "in": "query",
+                  "name": "lang",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Latitude": {
+                  "description": "Latitude in decimal degrees, from -90 to 90.",
+                  "in": "query",
+                  "name": "lat",
+                  "required": true,
+                  "schema": {
+                    "maximum": 90,
+                    "minimum": -90,
+                    "type": "number"
+                  }
+                },
+                "Longitude": {
+                  "description": "Longitude in decimal degrees, from -180 to 180.",
+                  "in": "query",
+                  "name": "lon",
+                  "required": true,
+                  "schema": {
+                    "maximum": 180,
+                    "minimum": -180,
+                    "type": "number"
+                  }
+                },
+                "TimelineStart": {
+                  "description": "UTC Unix timestamp used as the starting point for timeline data; defaults to the current UTC time.",
+                  "in": "query",
+                  "name": "start",
+                  "required": false,
+                  "schema": {
+                    "format": "int64",
+                    "type": "integer"
+                  }
+                },
+                "Units": {
+                  "description": "Units for temperature and wind speed. Defaults to standard units.",
+                  "in": "query",
+                  "name": "units",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "standard",
+                      "metric",
+                      "imperial"
+                    ],
+                    "type": "string"
+                  }
+                }
+              },
+              "schemas": {
+                "CurrentObservation": {
+                  "properties": {
+                    "alerts": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "clouds": {
+                      "type": "integer"
+                    },
+                    "dew_point": {
+                      "type": "number"
+                    },
+                    "dt": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "feels_like": {
+                      "type": "number"
+                    },
+                    "humidity": {
+                      "type": "integer"
+                    },
+                    "pressure": {
+                      "type": "integer"
+                    },
+                    "rain": {
+                      "$ref": "#/components/schemas/PrecipitationAmount"
+                    },
+                    "snow": {
+                      "$ref": "#/components/schemas/PrecipitationAmount"
+                    },
+                    "sunrise": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "sunset": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "temp": {
+                      "type": "number"
+                    },
+                    "uvi": {
+                      "type": "number"
+                    },
+                    "visibility": {
+                      "type": "integer"
+                    },
+                    "weather": {
+                      "items": {
+                        "$ref": "#/components/schemas/WeatherCondition"
+                      },
+                      "type": "array"
+                    },
+                    "wind_deg": {
+                      "type": "integer"
+                    },
+                    "wind_gust": {
+                      "type": "number"
+                    },
+                    "wind_speed": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CurrentWeatherResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/WeatherEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "items": {
+                            "$ref": "#/components/schemas/CurrentObservation"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "DailyRecord": {
+                  "properties": {
+                    "alerts": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "clouds": {
+                      "type": "integer"
+                    },
+                    "dew_point": {
+                      "type": "number"
+                    },
+                    "dt": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "feels_like": {
+                      "properties": {
+                        "day": {
+                          "type": "number"
+                        },
+                        "eve": {
+                          "type": "number"
+                        },
+                        "morn": {
+                          "type": "number"
+                        },
+                        "night": {
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "humidity": {
+                      "type": "integer"
+                    },
+                    "moon_phase": {
+                      "type": "number"
+                    },
+                    "moonrise": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "moonset": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "pop": {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    "pressure": {
+                      "type": "integer"
+                    },
+                    "rain": {
+                      "type": "number"
+                    },
+                    "snow": {
+                      "type": "number"
+                    },
+                    "sunrise": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "sunset": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "temp": {
+                      "properties": {
+                        "day": {
+                          "type": "number"
+                        },
+                        "eve": {
+                          "type": "number"
+                        },
+                        "max": {
+                          "type": "number"
+                        },
+                        "min": {
+                          "type": "number"
+                        },
+                        "morn": {
+                          "type": "number"
+                        },
+                        "night": {
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "uvi": {
+                      "type": "number"
+                    },
+                    "visibility": {
+                      "type": "integer"
+                    },
+                    "weather": {
+                      "items": {
+                        "$ref": "#/components/schemas/WeatherCondition"
+                      },
+                      "type": "array"
+                    },
+                    "wind_deg": {
+                      "type": "integer"
+                    },
+                    "wind_gust": {
+                      "type": "number"
+                    },
+                    "wind_speed": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "DailyTimelineResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/TimelineEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "items": {
+                            "$ref": "#/components/schemas/DailyRecord"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "HourlyRecord": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/QuarterHourlyRecord"
+                    },
+                    {
+                      "properties": {
+                        "rain": {
+                          "$ref": "#/components/schemas/PrecipitationAmount"
+                        },
+                        "snow": {
+                          "$ref": "#/components/schemas/PrecipitationAmount"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "HourlyTimelineResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/TimelineEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "items": {
+                            "$ref": "#/components/schemas/HourlyRecord"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "MinuteRecord": {
+                  "properties": {
+                    "alerts": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "dt": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "precipitation": {
+                      "description": "Precipitation in millimeters per hour.",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "MinuteTimelineResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/TimelineEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "items": {
+                            "$ref": "#/components/schemas/MinuteRecord"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "PrecipitationAmount": {
+                  "properties": {
+                    "1h": {
+                      "description": "Precipitation in millimeters per hour.",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "QuarterHourlyRecord": {
+                  "properties": {
+                    "alerts": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "clouds": {
+                      "type": "integer"
+                    },
+                    "dew_point": {
+                      "type": "number"
+                    },
+                    "dt": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "feels_like": {
+                      "type": "number"
+                    },
+                    "humidity": {
+                      "type": "integer"
+                    },
+                    "pop": {
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    "pressure": {
+                      "type": "integer"
+                    },
+                    "temp": {
+                      "type": "number"
+                    },
+                    "uvi": {
+                      "type": "number"
+                    },
+                    "visibility": {
+                      "type": "integer"
+                    },
+                    "weather": {
+                      "items": {
+                        "$ref": "#/components/schemas/WeatherCondition"
+                      },
+                      "type": "array"
+                    },
+                    "wind_deg": {
+                      "type": "integer"
+                    },
+                    "wind_gust": {
+                      "type": "number"
+                    },
+                    "wind_speed": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "QuarterHourlyTimelineResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/TimelineEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "items": {
+                            "$ref": "#/components/schemas/QuarterHourlyRecord"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "TimelineEnvelope": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/WeatherEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "next": {
+                          "description": "API-generated URL for the next portion of the timeline, when available.",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "prev": {
+                          "description": "API-generated URL for the previous portion of the timeline, when available.",
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "WeatherAlert": {
+                  "properties": {
+                    "description": {
+                      "items": {
+                        "properties": {
+                          "description": {
+                            "type": "string"
+                          },
+                          "language": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "end": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "event": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "sender_name": {
+                      "type": "string"
+                    },
+                    "start": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "WeatherCondition": {
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "integer"
+                    },
+                    "main": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "WeatherEnvelope": {
+                  "properties": {
+                    "lat": {
+                      "type": "number"
+                    },
+                    "lon": {
+                      "type": "number"
+                    },
+                    "timezone": {
+                      "type": "string"
+                    },
+                    "timezone_offset": {
+                      "description": "Offset from UTC in seconds.",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "appid": {
+                  "description": "Obtain an API key through an OpenWeather account.",
+                  "in": "query",
+                  "name": "appid",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "OpenWeather One Call API 4.0 documentation",
+              "url": "https://openweathermap.org/api/one-call-4"
+            },
+            "info": {
+              "description": "Community-maintained specification for the six documented One Call API 4.0 endpoints.",
+              "title": "OpenWeather One Call API 4.0",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/alert/{alert_id}": {
+                "get": {
+                  "operationId": "getWeatherAlert",
+                  "parameters": [
+                    {
+                      "description": "Alert ID returned by a weather timeline.",
+                      "in": "path",
+                      "name": "alert_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/WeatherAlert"
+                          }
+                        }
+                      },
+                      "description": "Detailed information for the requested weather alert."
+                    }
+                  },
+                  "summary": "Get detailed weather alert information",
+                  "tags": [
+                    "One Call API 4.0"
+                  ]
+                }
+              },
+              "/current": {
+                "get": {
+                  "operationId": "getCurrentWeather",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Latitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Longitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Units"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Language"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CurrentWeatherResponse"
+                          }
+                        }
+                      },
+                      "description": "Current weather data for the requested coordinates."
+                    }
+                  },
+                  "summary": "Get current weather",
+                  "tags": [
+                    "One Call API 4.0"
+                  ]
+                }
+              },
+              "/timeline/15min": {
+                "get": {
+                  "operationId": "getQuarterHourlyTimeline",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Latitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Longitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/TimelineStart"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Units"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Language"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/QuarterHourlyTimelineResponse"
+                          }
+                        }
+                      },
+                      "description": "15-minute weather records with pagination links when more data is available."
+                    }
+                  },
+                  "summary": "Get the 15-minute weather timeline",
+                  "tags": [
+                    "One Call API 4.0"
+                  ]
+                }
+              },
+              "/timeline/1day": {
+                "get": {
+                  "operationId": "getDailyTimeline",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Latitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Longitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/TimelineStart"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Units"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Language"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DailyTimelineResponse"
+                          }
+                        }
+                      },
+                      "description": "Up to 10 daily weather records per response, with pagination links when more data is available."
+                    }
+                  },
+                  "summary": "Get the daily weather timeline",
+                  "tags": [
+                    "One Call API 4.0"
+                  ]
+                }
+              },
+              "/timeline/1h": {
+                "get": {
+                  "operationId": "getHourlyTimeline",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Latitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Longitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/TimelineStart"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Units"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Language"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HourlyTimelineResponse"
+                          }
+                        }
+                      },
+                      "description": "Up to 20 hourly weather records per response, with pagination links when more data is available."
+                    }
+                  },
+                  "summary": "Get the hourly weather timeline",
+                  "tags": [
+                    "One Call API 4.0"
+                  ]
+                }
+              },
+              "/timeline/1min": {
+                "get": {
+                  "operationId": "getMinuteTimeline",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Latitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Longitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/TimelineStart"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Units"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Language"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/MinuteTimelineResponse"
+                          }
+                        }
+                      },
+                      "description": "Up to 60 one-minute precipitation records."
+                    }
+                  },
+                  "summary": "Get the one-minute weather timeline",
+                  "tags": [
+                    "One Call API 4.0"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "appid": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "OpenWeather One Call API 4.0",
+                "url": "https://api.openweathermap.org/data/4.0/onecall"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Current conditions, weather timelines, and detailed weather alerts.",
+                "name": "One Call API 4.0"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OpenWeather"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:43.702402+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openweather/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "02b93b7c13d085b3c3eabd59b4a766c4b23045123238a11de8bd3f3ac059e884",
+    "source_id": "openweather",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openweather/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

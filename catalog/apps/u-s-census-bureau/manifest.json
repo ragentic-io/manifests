@@ -1,0 +1,239 @@
+{
+  "a2ui": {},
+  "app": "u-s-census-bureau",
+  "graph": {
+    "edges": [
+      {
+        "from": "u-s-census-bureau",
+        "kind": "EXPOSES",
+        "to": "operation:get:/data/{year}/acs/acs1"
+      },
+      {
+        "from": "operation:get:/data/{year}/acs/acs1",
+        "kind": "RETURNS",
+        "to": "schema:CensusTable"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "u-s-census-bureau",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Queries variables and geographies for a selected ACS 1-year vintage.",
+        "id": "operation:get:/data/{year}/acs/acs1",
+        "kind": "operation",
+        "method": "get",
+        "name": "queryAcsOneYearData",
+        "parameters": [
+          {
+            "description": "Data year, for example 2023.",
+            "in": "path",
+            "name": "year",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated Census variable names to return, such as `NAME`.",
+            "in": "query",
+            "name": "get",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Geography predicate, such as `state:*`; supported geographies vary by dataset and year.",
+            "in": "query",
+            "name": "for",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Optional parent-geography predicate used with `for`.",
+            "in": "query",
+            "name": "in",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/data/{year}/acs/acs1",
+        "pointer": "#/paths/~1data~1{year}~1acs~1acs1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CensusTable"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "censusApiKey": []
+          }
+        ],
+        "summary": "Query American Community Survey 1-year data"
+      },
+      {
+        "description": "Two-dimensional JSON array.",
+        "id": "schema:CensusTable",
+        "kind": "schema",
+        "name": "CensusTable",
+        "type": "string[][]"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "u-s-census-bureau"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.census.gov",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "CensusTable": {
+                  "description": "Two-dimensional JSON array. The first row contains column names; subsequent rows contain values, which may be null when unavailable.",
+                  "items": {
+                    "items": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "type": "array"
+                  },
+                  "type": "array"
+                }
+              },
+              "securitySchemes": {
+                "censusApiKey": {
+                  "description": "Free API key requested through the Census developer site.",
+                  "in": "query",
+                  "name": "key",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused community-maintained specification for queries against the American Community Survey 1-year dataset. Census API keys are available free of charge. The variables and supported geographies depend on the selected year and dataset. JSON responses are tabular arrays whose first row contains column names and later rows contain data values.",
+              "externalDocs": {
+                "description": "Census Data API User Guide",
+                "url": "https://www.census.gov/data/developers/guidance/api-user-guide.html"
+              },
+              "title": "U.S. Census Data API — ACS 1-Year",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/data/{year}/acs/acs1": {
+                "get": {
+                  "description": "Queries variables and geographies for a selected ACS 1-year vintage. Use only variables and geography predicates listed for that dataset in the Census discovery tool.",
+                  "operationId": "queryAcsOneYearData",
+                  "parameters": [
+                    {
+                      "description": "Data year, for example 2023.",
+                      "in": "path",
+                      "name": "year",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Comma-separated Census variable names to return, such as `NAME`.",
+                      "in": "query",
+                      "name": "get",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Geography predicate, such as `state:*`; supported geographies vary by dataset and year.",
+                      "in": "query",
+                      "name": "for",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Optional parent-geography predicate used with `for`.",
+                      "in": "query",
+                      "name": "in",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CensusTable"
+                          }
+                        }
+                      },
+                      "description": "Tabular results with a column-name row followed by data rows."
+                    }
+                  },
+                  "summary": "Query American Community Survey 1-year data"
+                }
+              }
+            },
+            "security": [
+              {
+                "censusApiKey": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "U.S. Census Bureau Data API",
+                "url": "https://api.census.gov"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "U.S. Census Bureau"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.715827+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/us-census-bureau/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "e14f2e9bd4d043d0fe847a7e213fd8c08efe15d8e7096f6f6d1a3341390544ee",
+    "source_id": "u-s-census-bureau",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/us-census-bureau/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

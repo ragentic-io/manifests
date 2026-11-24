@@ -1,0 +1,1728 @@
+{
+  "a2ui": {},
+  "app": "openf1-rest-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/car_data"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/championship_drivers"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/championship_teams"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/drivers"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/intervals"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/laps"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/location"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/meetings"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/overtakes"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/pit"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/position"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/race_control"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/session_result"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/sessions"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/starting_grid"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/stints"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/team_radio"
+      },
+      {
+        "from": "openf1-rest-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/weather"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "openf1-rest-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns telemetry samples for cars in a session.",
+        "id": "operation:get:/car_data",
+        "kind": "operation",
+        "method": "get",
+        "name": "listCarData",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/car_data",
+        "pointer": "#/paths/~1car_data/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve car telemetry",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns driver championship standings for a race session.",
+        "id": "operation:get:/championship_drivers",
+        "kind": "operation",
+        "method": "get",
+        "name": "listDriverChampionshipStandings",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "One or more driver numbers; repeat this parameter to select multiple drivers.",
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer[]"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/championship_drivers",
+        "pointer": "#/paths/~1championship_drivers/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve driver championship standings",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns team championship standings for a race session.",
+        "id": "operation:get:/championship_teams",
+        "kind": "operation",
+        "method": "get",
+        "name": "listTeamChampionshipStandings",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "team_name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/championship_teams",
+        "pointer": "#/paths/~1championship_teams/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve team championship standings",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns information about drivers participating in a session.",
+        "id": "operation:get:/drivers",
+        "kind": "operation",
+        "method": "get",
+        "name": "listDrivers",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/drivers",
+        "pointer": "#/paths/~1drivers/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve driver information",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns time gaps between drivers and the race leader during a session.",
+        "id": "operation:get:/intervals",
+        "kind": "operation",
+        "method": "get",
+        "name": "listIntervals",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/intervals",
+        "pointer": "#/paths/~1intervals/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve driver interval data",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns lap timing and sector data for a session.",
+        "id": "operation:get:/laps",
+        "kind": "operation",
+        "method": "get",
+        "name": "listLaps",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "lap_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/laps",
+        "pointer": "#/paths/~1laps/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve lap data",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns approximate car coordinates recorded during a session.",
+        "id": "operation:get:/location",
+        "kind": "operation",
+        "method": "get",
+        "name": "listLocations",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/location",
+        "pointer": "#/paths/~1location/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve car location samples",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns Formula 1 meeting details and schedule information.",
+        "id": "operation:get:/meetings",
+        "kind": "operation",
+        "method": "get",
+        "name": "listMeetings",
+        "parameters": [
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "year",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/meetings",
+        "pointer": "#/paths/~1meetings/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve meeting and event information",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns position exchanges recorded during races.",
+        "id": "operation:get:/overtakes",
+        "kind": "operation",
+        "method": "get",
+        "name": "listOvertakes",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "overtaking_driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "overtaken_driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "position",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/overtakes",
+        "pointer": "#/paths/~1overtakes/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve overtake records",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns records of cars going through the pit lane.",
+        "id": "operation:get:/pit",
+        "kind": "operation",
+        "method": "get",
+        "name": "listPitStops",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/pit",
+        "pointer": "#/paths/~1pit/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve pit stop data",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns recorded driver positions during a session.",
+        "id": "operation:get:/position",
+        "kind": "operation",
+        "method": "get",
+        "name": "listPositions",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/position",
+        "pointer": "#/paths/~1position/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve driver position data",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns messages and flag information issued by race control.",
+        "id": "operation:get:/race_control",
+        "kind": "operation",
+        "method": "get",
+        "name": "listRaceControlMessages",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/race_control",
+        "pointer": "#/paths/~1race_control/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve race control messages",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns driver standings after results are published.",
+        "id": "operation:get:/session_result",
+        "kind": "operation",
+        "method": "get",
+        "name": "listSessionResults",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/session_result",
+        "pointer": "#/paths/~1session_result/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve session standings",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns Formula 1 session details, including scheduled sessions.",
+        "id": "operation:get:/sessions",
+        "kind": "operation",
+        "method": "get",
+        "name": "listSessions",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "session_name",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "session_type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "year",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/sessions",
+        "pointer": "#/paths/~1sessions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve session and schedule information",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns starting grid information for a race.",
+        "id": "operation:get:/starting_grid",
+        "kind": "operation",
+        "method": "get",
+        "name": "listStartingGrid",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/starting_grid",
+        "pointer": "#/paths/~1starting_grid/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve starting grid positions",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns tyre stint information for drivers in a session.",
+        "id": "operation:get:/stints",
+        "kind": "operation",
+        "method": "get",
+        "name": "listStints",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/stints",
+        "pointer": "#/paths/~1stints/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve tyre stint data",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns team radio records associated with a session and driver.",
+        "id": "operation:get:/team_radio",
+        "kind": "operation",
+        "method": "get",
+        "name": "listTeamRadio",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "driver_number",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/team_radio",
+        "pointer": "#/paths/~1team_radio/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve team radio records",
+        "tags": [
+          "Formula 1 data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns weather observations recorded during a session.",
+        "id": "operation:get:/weather",
+        "kind": "operation",
+        "method": "get",
+        "name": "listWeather",
+        "parameters": [
+          {
+            "description": "Session identifier; the value latest selects the latest/current session.",
+            "in": "query",
+            "name": "session_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+            "in": "query",
+            "name": "meeting_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Set to true to return CSV instead of JSON.",
+            "in": "query",
+            "name": "csv",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/weather",
+        "pointer": "#/paths/~1weather/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve session weather data",
+        "tags": [
+          "Formula 1 data"
+        ]
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "openf1-rest-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.openf1.org/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Csv": {
+                  "description": "Set to true to return CSV instead of JSON.",
+                  "in": "query",
+                  "name": "csv",
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                "DriverNumber": {
+                  "in": "query",
+                  "name": "driver_number",
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "DriverNumbers": {
+                  "description": "One or more driver numbers; repeat this parameter to select multiple drivers.",
+                  "explode": true,
+                  "in": "query",
+                  "name": "driver_number",
+                  "schema": {
+                    "items": {
+                      "type": "integer"
+                    },
+                    "type": "array"
+                  },
+                  "style": "form"
+                },
+                "LapNumber": {
+                  "in": "query",
+                  "name": "lap_number",
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "MeetingKey": {
+                  "description": "Meeting identifier; the value latest selects the latest/current meeting.",
+                  "in": "query",
+                  "name": "meeting_key",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "OvertakenDriverNumber": {
+                  "in": "query",
+                  "name": "overtaken_driver_number",
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "OvertakingDriverNumber": {
+                  "in": "query",
+                  "name": "overtaking_driver_number",
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Position": {
+                  "in": "query",
+                  "name": "position",
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "SessionKey": {
+                  "description": "Session identifier; the value latest selects the latest/current session.",
+                  "in": "query",
+                  "name": "session_key",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "SessionName": {
+                  "in": "query",
+                  "name": "session_name",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "SessionType": {
+                  "in": "query",
+                  "name": "session_type",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "TeamName": {
+                  "in": "query",
+                  "name": "team_name",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Year": {
+                  "in": "query",
+                  "name": "year",
+                  "schema": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "responses": {
+                "Records": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "items": {
+                          "additionalProperties": true,
+                          "type": "object"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    "text/csv": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "description": "A list of records; result fields depend on the selected endpoint."
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "OpenF1 API documentation",
+              "url": "https://openf1.org/docs/"
+            },
+            "info": {
+              "description": "Community-maintained coverage of the documented OpenF1 v1 endpoints. The provider makes historical data from 2023 onward available without authentication; real-time access requires a paid subscription. Response record fields vary by endpoint and are left open. The API can filter by scalar record attributes, but this specification lists common selectors and documented examples rather than every endpoint-specific filter.",
+              "title": "OpenF1 API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/car_data": {
+                "get": {
+                  "description": "Returns telemetry samples for cars in a session.",
+                  "operationId": "listCarData",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve car telemetry",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/championship_drivers": {
+                "get": {
+                  "description": "Returns driver championship standings for a race session.",
+                  "operationId": "listDriverChampionshipStandings",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumbers"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve driver championship standings",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/championship_teams": {
+                "get": {
+                  "description": "Returns team championship standings for a race session.",
+                  "operationId": "listTeamChampionshipStandings",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/TeamName"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve team championship standings",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/drivers": {
+                "get": {
+                  "description": "Returns information about drivers participating in a session.",
+                  "operationId": "listDrivers",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve driver information",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/intervals": {
+                "get": {
+                  "description": "Returns time gaps between drivers and the race leader during a session.",
+                  "operationId": "listIntervals",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve driver interval data",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/laps": {
+                "get": {
+                  "description": "Returns lap timing and sector data for a session.",
+                  "operationId": "listLaps",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/LapNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve lap data",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/location": {
+                "get": {
+                  "description": "Returns approximate car coordinates recorded during a session.",
+                  "operationId": "listLocations",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve car location samples",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/meetings": {
+                "get": {
+                  "description": "Returns Formula 1 meeting details and schedule information.",
+                  "operationId": "listMeetings",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Year"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve meeting and event information",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/overtakes": {
+                "get": {
+                  "description": "Returns position exchanges recorded during races. The provider notes that this data may be incomplete.",
+                  "operationId": "listOvertakes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/OvertakingDriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/OvertakenDriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Position"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve overtake records",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/pit": {
+                "get": {
+                  "description": "Returns records of cars going through the pit lane.",
+                  "operationId": "listPitStops",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve pit stop data",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/position": {
+                "get": {
+                  "description": "Returns recorded driver positions during a session.",
+                  "operationId": "listPositions",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve driver position data",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/race_control": {
+                "get": {
+                  "description": "Returns messages and flag information issued by race control.",
+                  "operationId": "listRaceControlMessages",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve race control messages",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/session_result": {
+                "get": {
+                  "description": "Returns driver standings after results are published.",
+                  "operationId": "listSessionResults",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve session standings",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/sessions": {
+                "get": {
+                  "description": "Returns Formula 1 session details, including scheduled sessions.",
+                  "operationId": "listSessions",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SessionName"
+                    },
+                    {
+                      "$ref": "#/components/parameters/SessionType"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Year"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve session and schedule information",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/starting_grid": {
+                "get": {
+                  "description": "Returns starting grid information for a race.",
+                  "operationId": "listStartingGrid",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve starting grid positions",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/stints": {
+                "get": {
+                  "description": "Returns tyre stint information for drivers in a session.",
+                  "operationId": "listStints",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve tyre stint data",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/team_radio": {
+                "get": {
+                  "description": "Returns team radio records associated with a session and driver.",
+                  "operationId": "listTeamRadio",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DriverNumber"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve team radio records",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              },
+              "/weather": {
+                "get": {
+                  "description": "Returns weather observations recorded during a session.",
+                  "operationId": "listWeather",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/SessionKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/MeetingKey"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Csv"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Records"
+                    }
+                  },
+                  "summary": "Retrieve session weather data",
+                  "tags": [
+                    "Formula 1 data"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "url": "https://api.openf1.org/v1"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Formula 1 data"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OpenF1 REST API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:41.904748+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openf1/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "55c76b716a16c4437732ee05ab8826001e576b27610ef2ad8940291fa5b3e7ec",
+    "source_id": "openf1-rest-api",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openf1/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

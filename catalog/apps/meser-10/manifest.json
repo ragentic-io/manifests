@@ -1,0 +1,937 @@
+{
+  "a2ui": {},
+  "app": "meser-10",
+  "graph": {
+    "edges": [
+      {
+        "from": "meser-10",
+        "kind": "EXPOSES",
+        "to": "operation:get:/JsonServices.aspx"
+      },
+      {
+        "from": "meser-10",
+        "kind": "EXPOSES",
+        "to": "operation:post:/JsonServices.aspx"
+      },
+      {
+        "from": "operation:get:/JsonServices.aspx",
+        "kind": "RETURNS",
+        "to": "schema:ContactStatusResult"
+      },
+      {
+        "from": "operation:post:/JsonServices.aspx",
+        "kind": "ACCEPTS",
+        "to": "schema:ChangeContactStatusRequest"
+      },
+      {
+        "from": "operation:post:/JsonServices.aspx",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateContactRequest"
+      },
+      {
+        "from": "operation:post:/JsonServices.aspx",
+        "kind": "ACCEPTS",
+        "to": "schema:SendSingleEMailMessageRequest"
+      },
+      {
+        "from": "operation:post:/JsonServices.aspx",
+        "kind": "ACCEPTS",
+        "to": "schema:SendSingleSmsMessageRequest"
+      },
+      {
+        "from": "operation:post:/JsonServices.aspx",
+        "kind": "RETURNS",
+        "to": "schema:WriteResult"
+      },
+      {
+        "from": "schema:CallResult",
+        "kind": "REFERENCES",
+        "to": "schema:ErrorCode"
+      },
+      {
+        "from": "schema:ContactStatusResult",
+        "kind": "REFERENCES",
+        "to": "schema:CallResult"
+      },
+      {
+        "from": "schema:WriteResult",
+        "kind": "REFERENCES",
+        "to": "schema:CallResult"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "meser-10",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "The only read on the gateway, and the one function called differently: the address goes on the query string, not in a JSON body.",
+        "id": "operation:get:/JsonServices.aspx",
+        "kind": "operation",
+        "method": "get",
+        "name": "getContactStatus",
+        "parameters": [
+          {
+            "default": "GetContactStatus",
+            "description": "The function name.",
+            "in": "query",
+            "name": "f",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The address to look up.",
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "type": "string:email"
+          },
+          {
+            "description": "Required in practice, not by the application.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/JsonServices.aspx",
+        "pointer": "#/paths/~1JsonServices.aspx/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContactStatusResult"
+          },
+          {
+            "status": "403",
+            "type": "string"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Read a contact's current status",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Four functions are reached this way.",
+        "id": "operation:post:/JsonServices.aspx",
+        "kind": "operation",
+        "method": "post",
+        "name": "callFunction",
+        "parameters": [
+          {
+            "description": "The function name.",
+            "enum": [
+              "SendSingleSmsMessage",
+              "SendSingleEMailMessage",
+              "CreateContact",
+              "ChangeContactStatus"
+            ],
+            "in": "query",
+            "name": "f",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Required in practice, not by the application.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/JsonServices.aspx",
+        "pointer": "#/paths/~1JsonServices.aspx/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SendSingleSmsMessageRequest|SendSingleEMailMessageRequest|CreateContactRequest|ChangeContactStatusRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "WriteResult"
+          },
+          {
+            "status": "403",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Call a write function",
+        "tags": [
+          "Messaging",
+          "Contacts"
+        ]
+      },
+      {
+        "id": "schema:CallResult",
+        "kind": "schema",
+        "name": "CallResult",
+        "type": "object"
+      },
+      {
+        "description": "Identify the contact by either `EMail` or `PhoneNo`.",
+        "id": "schema:ChangeContactStatusRequest",
+        "kind": "schema",
+        "name": "ChangeContactStatusRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:ContactStatusResult",
+        "kind": "schema",
+        "name": "ContactStatusResult",
+        "type": "CallResult|object"
+      },
+      {
+        "description": "Subscribes a contact to a named list, or updates them if they already exist.",
+        "id": "schema:CreateContactRequest",
+        "kind": "schema",
+        "name": "CreateContactRequest",
+        "type": "object"
+      },
+      {
+        "description": "The only reliable indicator of the outcome.",
+        "id": "schema:ErrorCode",
+        "kind": "schema",
+        "name": "ErrorCode",
+        "type": "integer|string"
+      },
+      {
+        "description": "One email, one recipient, sent immediately.",
+        "id": "schema:SendSingleEMailMessageRequest",
+        "kind": "schema",
+        "name": "SendSingleEMailMessageRequest",
+        "type": "object"
+      },
+      {
+        "description": "One SMS, one recipient, sent immediately.",
+        "id": "schema:SendSingleSmsMessageRequest",
+        "kind": "schema",
+        "name": "SendSingleSmsMessageRequest",
+        "type": "object"
+      },
+      {
+        "description": "The answer to any of the four write functions.",
+        "id": "schema:WriteResult",
+        "kind": "schema",
+        "name": "WriteResult",
+        "type": "CallResult|object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "meser-10"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://heb.mesereser.com/Services",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Function": {
+                  "description": "The function name. Canonical spelling; other casings also work.",
+                  "in": "query",
+                  "name": "f",
+                  "required": true,
+                  "schema": {
+                    "enum": [
+                      "SendSingleSmsMessage",
+                      "SendSingleEMailMessage",
+                      "CreateContact",
+                      "ChangeContactStatus"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "UserAgent": {
+                  "description": "Required in practice, not by the application. Cloudflare's Browser\nIntegrity Check reads it, and default library signatures are blocked.\nAny custom string passes. Declared optional because browsers forbid\nscripts from setting this header at all.\n",
+                  "example": "myapp/1.0",
+                  "in": "header",
+                  "name": "User-Agent",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "CloudflareRefused": {
+                  "content": {
+                    "text/html": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "description": "Not from the application. Cloudflare's Browser Integrity Check refused\nthe request because the `User-Agent` was a default library signature.\nThe body is Cloudflare's HTML, not JSON. Set any custom `User-Agent`\nand the same request succeeds. `Python-urllib/3.x` presents as\nCloudflare error 1010 rather than 403.\n\nBrowser-based API explorers cannot help here: the Fetch specification\nforbids scripts from setting `User-Agent`, so the browser's own value\nis sent whatever is typed into the field.\n"
+                }
+              },
+              "schemas": {
+                "CallResult": {
+                  "properties": {
+                    "ErrorCode": {
+                      "$ref": "#/components/schemas/ErrorCode"
+                    },
+                    "Result": {
+                      "description": "A human-readable message, returned in Hebrew on most failures. Map\non `ErrorCode` and supply your own text rather than passing this\nthrough to an international audience. Do not string-match on it.\n",
+                      "example": "Call successful",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ErrorCode"
+                  ],
+                  "type": "object"
+                },
+                "ChangeContactStatusRequest": {
+                  "additionalProperties": false,
+                  "anyOf": [
+                    {
+                      "properties": {
+                        "EMail": {
+                          "format": "email",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "EMail"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "PhoneNo": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "PhoneNo"
+                      ]
+                    }
+                  ],
+                  "description": "Identify the contact by either `EMail` or `PhoneNo`.\n\nOne behaviour to plan for: an address that is not on the account also\nanswers `ErrorCode` 0. A successful call is **not** proof that the\ncontact existed, so do not use this as an existence check. Use\n`GetContactStatus` for that.\n",
+                  "properties": {
+                    "EMail": {
+                      "example": "person@example.com",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "PhoneNo": {
+                      "example": "0501234567",
+                      "type": "string"
+                    },
+                    "Status": {
+                      "description": "Any other value answers `ErrorCode` 4 with\n`Unknown value of status`.\n",
+                      "enum": [
+                        "Active",
+                        "Unsubscribed",
+                        "Bounced"
+                      ],
+                      "example": "Unsubscribed",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "Status"
+                  ],
+                  "title": "ChangeContactStatus",
+                  "type": "object"
+                },
+                "ContactStatusResult": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CallResult"
+                    },
+                    {
+                      "properties": {
+                        "Status": {
+                          "description": "Display text, in Hebrew for the states a contact can be in. Do\nnot branch on it, and do not assume it is present.\n",
+                          "example": "פעיל",
+                          "type": "string"
+                        },
+                        "StatusID": {
+                          "description": "| Id | Meaning |\n|---|---|\n| 0 | Not on this account |\n| 10 | Active |\n| 30 | Active, after being reactivated |\n| 40 | Bounced |\n| 50 | Unsubscribed |\n\n**10 and 30 both mean mailable.**\n",
+                          "enum": [
+                            0,
+                            10,
+                            30,
+                            40,
+                            50
+                          ],
+                          "example": 10,
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "CreateContactRequest": {
+                  "additionalProperties": false,
+                  "anyOf": [
+                    {
+                      "properties": {
+                        "EMail": {
+                          "format": "email",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "EMail"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "PhoneNo": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "PhoneNo"
+                      ]
+                    }
+                  ],
+                  "description": "Subscribes a contact to a named list, or updates them if they already\nexist. Thirteen fields are accepted, spelled exactly as below, note\nthe capitalisation of `EMail` and `PhoneNo`. Omit fields you are not\nsending rather than sending empty strings.\n\n**The list is not created for you.** A list that does not exist on the\nsame account as the key answers `ErrorCode` 4 with\n`Contact list does not exist: <name>`. Build the integration so the\nuser names a list they already have, and show that error as \"that list\nwas not found on your account\" rather than as a generic failure.\n",
+                  "properties": {
+                    "Address": {
+                      "example": "12 Herzl St",
+                      "type": "string"
+                    },
+                    "City": {
+                      "example": "Tel Aviv",
+                      "type": "string"
+                    },
+                    "ContactListName": {
+                      "description": "Must already exist on the account the key belongs to.",
+                      "example": "Newsletter",
+                      "type": "string"
+                    },
+                    "CustomField1": {
+                      "type": "string"
+                    },
+                    "CustomField2": {
+                      "type": "string"
+                    },
+                    "CustomField3": {
+                      "type": "string"
+                    },
+                    "CustomField4": {
+                      "type": "string"
+                    },
+                    "CustomField5": {
+                      "type": "string"
+                    },
+                    "EMail": {
+                      "example": "person@example.com",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "FirstName": {
+                      "example": "Dana",
+                      "type": "string"
+                    },
+                    "LastName": {
+                      "example": "Levi",
+                      "type": "string"
+                    },
+                    "PhoneNo": {
+                      "example": "0501234567",
+                      "type": "string"
+                    },
+                    "Zipcode": {
+                      "example": "6100000",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ContactListName"
+                  ],
+                  "title": "CreateContact",
+                  "type": "object"
+                },
+                "ErrorCode": {
+                  "description": "The only reliable indicator of the outcome. Serialised as a number on\nsome functions and as a string on others, so normalise before\ncomparing.\n\n| Code | Meaning | What to do |\n|---|---|---|\n| 0 | Success | Continue |\n| 1 | Key wrong, missing or revoked | Authentication failure. **Stop. Do not retry.** |\n| 3 | Application error our side, or a payload the function could not process | Retry once. If it persists, send us the tracking id in `Result`. |\n| 4 | A parameter is missing or invalid, most often a list that does not exist on this account | Show the user which field or list was named in `Result`. |\n| 6 | Unknown function name | Fix `f`. |\n",
+                  "oneOf": [
+                    {
+                      "enum": [
+                        0,
+                        1,
+                        3,
+                        4,
+                        6
+                      ],
+                      "type": "integer"
+                    },
+                    {
+                      "enum": [
+                        "0",
+                        "1",
+                        "3",
+                        "4",
+                        "6"
+                      ],
+                      "type": "string"
+                    }
+                  ]
+                },
+                "SendSingleEMailMessageRequest": {
+                  "additionalProperties": false,
+                  "description": "One email, one recipient, sent immediately.\n\nNote what this function does **not** accept: a From address, only a\ndisplay name; no CC or BCC; no attachments; and no more than one\nrecipient. Check for all four before calling and fall back to your own\ntransport when you see one.\n",
+                  "properties": {
+                    "Body": {
+                      "description": "HTML. Set `dir=\"rtl\"` yourself on Hebrew content.",
+                      "example": "<p>Thank you for your order.</p>",
+                      "type": "string"
+                    },
+                    "FromName": {
+                      "description": "A display name only. The From address is the account's.",
+                      "example": "MyShop",
+                      "type": "string"
+                    },
+                    "LinkClickCountType": {
+                      "description": "Optional. Omit it, or send an empty string, unless support has told\nyou otherwise.\n",
+                      "example": "",
+                      "type": "string"
+                    },
+                    "ReplyToEMail": {
+                      "description": "**Required**, even though older documentation shows it as an empty\nstring. Omit it and the call answers a null reference error with\n`ErrorCode` 3.\n",
+                      "example": "orders@myshop.example",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "Subject": {
+                      "example": "Your receipt",
+                      "type": "string"
+                    },
+                    "ToEMail": {
+                      "description": "One recipient per call.",
+                      "example": "person@example.com",
+                      "format": "email",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ToEMail",
+                    "Subject",
+                    "Body",
+                    "FromName",
+                    "ReplyToEMail"
+                  ],
+                  "title": "SendSingleEMailMessage",
+                  "type": "object"
+                },
+                "SendSingleSmsMessageRequest": {
+                  "additionalProperties": false,
+                  "description": "One SMS, one recipient, sent immediately.",
+                  "properties": {
+                    "FromName": {
+                      "description": "A sender identity already approved on the account. Until it is\napproved the call answers `ErrorCode` 4 with\n`The SMS sender identity is not verified`.\n\nTwo forms are accepted:\n\n- **An alphanumeric sender name**, up to 11 characters, Latin\n  letters, digits and spaces only, and it has to contain at least\n  one letter. Hebrew text and digits-only values are rejected. The\n  \"at least one letter\" rule is not expressed in the patterns\n  below, because doing so needs a lookahead that several regex\n  engines cannot compile; it is enforced on our side.\n- **A numeric sender**, in local or E.164 form.\n\nThe 11-character limit is a GSM constraint on alphanumeric sender\nIDs, not a Meser 10 limit. Support varies by destination country:\nalphanumeric sender IDs are not available in the United States or\nCanada, where a number is used instead.\n",
+                      "example": "MyShop",
+                      "oneOf": [
+                        {
+                          "pattern": "^[A-Za-z0-9]([A-Za-z0-9 ]{0,9}[A-Za-z0-9])?$",
+                          "title": "Alphanumeric sender name",
+                          "type": "string"
+                        },
+                        {
+                          "pattern": "^\\+?[0-9]{6,19}$",
+                          "title": "Numeric sender",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "MessageBody": {
+                      "description": "Hebrew is sent as Unicode, which shortens a single-part message\nfrom 160 characters to 70. Longer messages are concatenated and\nbilled per part.\n",
+                      "example": "Your code is 481902. It expires in 5 minutes.",
+                      "type": "string"
+                    },
+                    "ToPhone": {
+                      "description": "One recipient per call. Israeli local format or E.164.",
+                      "example": "0501234567",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ToPhone",
+                    "MessageBody",
+                    "FromName"
+                  ],
+                  "title": "SendSingleSmsMessage",
+                  "type": "object"
+                },
+                "WriteResult": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CallResult"
+                    },
+                    {
+                      "properties": {
+                        "MessageID": {
+                          "description": "Returned as `0` in practice, so it is not usable as a handle for\nthe message, and there is no function on this gateway that reads\na message's delivery state either. If you need to trace a\nspecific send, keep your own identifier in the message or in\nyour logs.\n",
+                          "example": 0,
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ],
+                  "description": "The answer to any of the four write functions. `MessageID` appears only\non `SendSingleSmsMessage`.\n"
+                }
+              },
+              "securitySchemes": {
+                "ApiKeyAuth": {
+                  "description": "One header carries the account key, issued per account in the Meser 10\ninterface under account settings, advanced settings, API settings.\nThere is no OAuth flow, no token exchange and no refresh, and the key\nstays valid until the account owner replaces it.\n\nSend it in the header. Never in the query string, where it lands in\nserver logs, browser history and referrer headers.\n",
+                  "in": "header",
+                  "name": "ApiKey",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "The full reference, including the SOAP service and the IP allowlist",
+              "url": "https://www.meser10.co.il/en/json-api/"
+            },
+            "info": {
+              "contact": {
+                "email": "support@meser10.co.il",
+                "name": "Meser 10 support",
+                "url": "https://www.meser10.co.il/api-docs/"
+              },
+              "description": "Five functions on one endpoint, authenticated with a single header.\nIntended for transactional traffic: a one-time password, an order\nconfirmation, a receipt, a delivery notice.\n\nCampaigns, mailing lists, groups, reporting, attachments and user\nmanagement are not here. They are on the SOAP service at\n`https://ns.mesereser.com/Services/Services.asmx?wsdl`, which exposes 61\noperations and authenticates with the same key.\n\nDocumentation © Meser 10 Ltd.\n\n## Behaviours that commonly cause integration failures\n\n**1. HTTP 200 is returned for every outcome, including a rejected key.**\n`ErrorCode` is the only reliable indicator. It is serialised as a number on\nsome functions and as a string on others, and we have not catalogued which\ndoes which, so normalise before comparing on every call:\n`String(body.ErrorCode) === \"0\"`. Coerce `StatusID` and `MessageID` the\nsame way rather than relying on their declared integer type.\n\n**2. Never retry an authentication failure.** Repeated failures block the\ncalling IP address for several hours. The block is on the address, not the\nkey, so reissuing the key and trying again makes it worse, and on a shared\nhost it takes down every other integration sending from that address.\nTreat `ErrorCode` 1 as fatal and stop.\n\n**3. Set a User-Agent header.** The hosts sit behind Cloudflare with\nBrowser Integrity Check on, and it reads that header. Default library\nsignatures are blocked: `Java/1.8.0_241` answers 403 and\n`Python-urllib/3.x` answers Cloudflare error 1010. Any custom string\npasses, and the value itself does not matter. The symptom is intermittent,\nbecause a system often has two code paths to the same endpoint and only one\nof them sets the header.\n\n**4. `Result` is a human-readable message, returned in Hebrew on most\nfailures.** Branch on `ErrorCode` and supply your own wording. Every\nmessage quoted in this document is an English translation of what the\ngateway returns, not the string on the wire, so do not match on it.\n\n## Limitations\n\n- No webhooks, so event-driven integrations poll.\n- No list-reading function, so a JSON-only integration cannot offer a\n  dropdown of the account's lists and has to ask for the list name. The\n  SOAP `GetGroupsList` covers it.\n- Date and time fields come back without timezone information. Treat them\n  as Israel local time.\n- No sandbox. See the `GetContactStatus` notes for testing a key without\n  creating anything.\n\n## Why the four write functions share one operation\n\nThe gateway selects its function with a query-string parameter rather than\na path, and OpenAPI allows one POST per path. So all four write functions\nare one operation here, their bodies given as an `anyOf` with a named\nexample each. The body shape cannot be validated from the body alone -\n`f` decides which schema applies, so a generated client will expose a\nsingle method taking a body. For five separate ready-to-run requests, use\nthe Postman collection published alongside this file.\n",
+              "license": {
+                "name": "Proprietary",
+                "url": "https://www.meser10.co.il/terms/"
+              },
+              "summary": "Transactional SMS and email, and contact management, over a single JSON endpoint.",
+              "title": "Meser 10 JSON API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/JsonServices.aspx": {
+                "get": {
+                  "description": "The only read on the gateway, and the one function called differently:\nthe address goes on the query string, not in a JSON body. Every JSON\nbody spelling answers `email parameter is empty`. POST with an empty\nbody works too, as long as the parameter is on the query string; this\ndocument models the GET form.\n\nOnly `email` is supported. A `phone` parameter is not read and returns\nthe same empty-parameter error.\n\n**Branch on `StatusID`, never on `Status`,** which is display text. And\nnote that **two ids mean active**: a contact created through the API\nreturns 10, and one moved back to Active after a bounce or an\nunsubscribe returns 30. Treat both as mailable or you will silently\ndrop reactivated contacts.\n\n**Testing a key without side effects.** Call this function with an\naddress that is not on the account: a valid key answers `ErrorCode` 0\nwith `StatusID` 0, a rejected key answers `ErrorCode` 1, and nothing is\ncreated either way.\n",
+                  "operationId": "getContactStatus",
+                  "parameters": [
+                    {
+                      "description": "The function name. Canonical spelling; other casings also work.",
+                      "in": "query",
+                      "name": "f",
+                      "required": true,
+                      "schema": {
+                        "default": "GetContactStatus",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The address to look up.",
+                      "example": "person@example.com",
+                      "in": "query",
+                      "name": "email",
+                      "required": true,
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/UserAgent"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "active": {
+                              "summary": "On the account and mailable",
+                              "value": {
+                                "ErrorCode": 0,
+                                "Result": "Call successful",
+                                "Status": "פעיל",
+                                "StatusID": 10
+                              }
+                            },
+                            "badKey": {
+                              "summary": "Key rejected. Stop; do not retry.",
+                              "value": {
+                                "ErrorCode": 1,
+                                "Result": "[Hebrew] Incorrect user name or password"
+                              }
+                            },
+                            "emptyEmail": {
+                              "summary": "The address was sent in a JSON body instead of the query string",
+                              "value": {
+                                "ErrorCode": 4,
+                                "Result": "[Hebrew] email parameter is empty"
+                              }
+                            },
+                            "notFound": {
+                              "summary": "Not on this account. Branch on StatusID, not on Status.",
+                              "value": {
+                                "ErrorCode": 0,
+                                "Result": "Call successful",
+                                "StatusID": 0
+                              }
+                            },
+                            "unsubscribed": {
+                              "summary": "Removed themselves",
+                              "value": {
+                                "ErrorCode": 0,
+                                "Result": "Call successful",
+                                "Status": "הוסר",
+                                "StatusID": 50
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ContactStatusResult"
+                          }
+                        }
+                      },
+                      "description": "Always 200. Read `ErrorCode`, then `StatusID`."
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/CloudflareRefused"
+                    }
+                  },
+                  "summary": "Read a contact's current status",
+                  "tags": [
+                    "Contacts"
+                  ]
+                },
+                "post": {
+                  "description": "Four functions are reached this way. Pick one with the `f` query\nparameter and send its body as JSON.\n\n| `f` | What it does |\n|---|---|\n| `SendSingleSmsMessage` | One SMS, immediately |\n| `SendSingleEMailMessage` | One email, immediately |\n| `CreateContact` | Add or update a contact on a named list |\n| `ChangeContactStatus` | Move a contact between Active, Unsubscribed and Bounced |\n\nThe gateway also accepts these names in other casings, and accepts GET\nfor them as well. This document models the canonical spelling and POST,\nbecause that is what a request validator or a generated client can\ncheck.\n",
+                  "operationId": "callFunction",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Function"
+                    },
+                    {
+                      "$ref": "#/components/parameters/UserAgent"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "ChangeContactStatus": {
+                            "summary": "Unsubscribe an address",
+                            "value": {
+                              "EMail": "person@example.com",
+                              "Status": "Unsubscribed"
+                            }
+                          },
+                          "CreateContact": {
+                            "summary": "Subscribe a contact to an existing list",
+                            "value": {
+                              "ContactListName": "Newsletter",
+                              "EMail": "person@example.com",
+                              "FirstName": "Dana",
+                              "LastName": "Levi",
+                              "PhoneNo": "0501234567"
+                            }
+                          },
+                          "SendSingleEMailMessage": {
+                            "summary": "A transactional receipt",
+                            "value": {
+                              "Body": "<p>Thank you for your order.</p>",
+                              "FromName": "MyShop",
+                              "ReplyToEMail": "orders@myshop.example",
+                              "Subject": "Your receipt",
+                              "ToEMail": "person@example.com"
+                            }
+                          },
+                          "SendSingleSmsMessage": {
+                            "summary": "An SMS one-time password",
+                            "value": {
+                              "FromName": "MyShop",
+                              "MessageBody": "Your code is 481902. It expires in 5 minutes.",
+                              "ToPhone": "0501234567"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/components/schemas/SendSingleSmsMessageRequest"
+                            },
+                            {
+                              "$ref": "#/components/schemas/SendSingleEMailMessageRequest"
+                            },
+                            {
+                              "$ref": "#/components/schemas/CreateContactRequest"
+                            },
+                            {
+                              "$ref": "#/components/schemas/ChangeContactStatusRequest"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "applicationError": {
+                              "summary": "Our side, or a payload the function could not process at all",
+                              "value": {
+                                "ErrorCode": 3,
+                                "Result": "[Hebrew] Object reference not set to an instance of an object"
+                              }
+                            },
+                            "badKey": {
+                              "summary": "Key wrong, missing or revoked. Stop; do not retry.",
+                              "value": {
+                                "ErrorCode": 1,
+                                "Result": "[Hebrew] Incorrect user name or password"
+                              }
+                            },
+                            "listMissing": {
+                              "summary": "A named list does not exist on this account",
+                              "value": {
+                                "ErrorCode": 4,
+                                "Result": "[Hebrew] Contact list does not exist: Newsletter"
+                              }
+                            },
+                            "senderNotVerified": {
+                              "summary": "The SMS sender name is not approved yet",
+                              "value": {
+                                "ErrorCode": 4,
+                                "Result": "[Hebrew] The SMS sender identity is not verified"
+                              }
+                            },
+                            "smsAccepted": {
+                              "summary": "SMS accepted. MessageID comes back as 0.",
+                              "value": {
+                                "ErrorCode": 0,
+                                "MessageID": 0,
+                                "Result": ""
+                              }
+                            },
+                            "success": {
+                              "summary": "Accepted",
+                              "value": {
+                                "ErrorCode": 0,
+                                "Result": "Call successful"
+                              }
+                            },
+                            "successAsString": {
+                              "summary": "Accepted, with ErrorCode serialised as a string",
+                              "value": {
+                                "ErrorCode": "0",
+                                "Result": "Call successful"
+                              }
+                            },
+                            "unknownFunction": {
+                              "summary": "Bad `f` value",
+                              "value": {
+                                "ErrorCode": 6,
+                                "Result": "[Hebrew] Unknown function"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/WriteResult"
+                          }
+                        }
+                      },
+                      "description": "Always 200, whatever happened. Read `ErrorCode`.\n"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/CloudflareRefused"
+                    }
+                  },
+                  "summary": "Call a write function",
+                  "tags": [
+                    "Messaging",
+                    "Contacts"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "ApiKeyAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://heb.mesereser.com/Services"
+              }
+            ],
+            "tags": [
+              {
+                "description": "One message, one recipient, sent immediately.",
+                "name": "Messaging"
+              },
+              {
+                "description": "Subscribe, change status, read status.",
+                "name": "Contacts"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Meser 10"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:29.601223+00:00",
+    "license": {
+      "name": "Proprietary",
+      "url": "https://www.meser10.co.il/terms/"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://www.meser10.co.il/api-docs/meser10-json-api.json",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "ee155ff8bcde373f5cef1a6e5c06bf1344ade9acc04ad67b598438d21282b60c",
+    "source_id": "meser-10",
+    "source_updated": null,
+    "url": "https://www.meser10.co.il/api-docs/meser10-json-api.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

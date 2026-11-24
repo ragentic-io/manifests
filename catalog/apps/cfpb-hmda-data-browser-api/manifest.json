@@ -1,0 +1,1496 @@
+{
+  "a2ui": {},
+  "app": "cfpb-hmda-data-browser-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "cfpb-hmda-data-browser-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/view/aggregations"
+      },
+      {
+        "from": "cfpb-hmda-data-browser-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/view/csv"
+      },
+      {
+        "from": "cfpb-hmda-data-browser-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/view/filers"
+      },
+      {
+        "from": "cfpb-hmda-data-browser-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/view/nationwide/aggregations"
+      },
+      {
+        "from": "cfpb-hmda-data-browser-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/view/nationwide/csv"
+      },
+      {
+        "from": "operation:get:/view/aggregations",
+        "kind": "RETURNS",
+        "to": "schema:AggregationResponse"
+      },
+      {
+        "from": "operation:get:/view/filers",
+        "kind": "RETURNS",
+        "to": "schema:FilerResponse"
+      },
+      {
+        "from": "operation:get:/view/nationwide/aggregations",
+        "kind": "RETURNS",
+        "to": "schema:AggregationResponse"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "cfpb-hmda-data-browser-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a JSON aggregation report for a geographic or LEI subset.",
+        "id": "operation:get:/view/aggregations",
+        "kind": "operation",
+        "method": "get",
+        "name": "getFilteredAggregations",
+        "parameters": [
+          {
+            "description": "Filing year or comma-separated filing years.",
+            "in": "query",
+            "name": "years",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "List of Legal Entity Identifiers used to filter institutions.",
+            "in": "query",
+            "name": "leis",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Five-digit MSA/MD code; multiple codes can be comma-separated.",
+            "in": "query",
+            "name": "msamds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter state abbreviation; multiple codes can be comma-separated.",
+            "in": "query",
+            "name": "states",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Five-digit county FIPS code.",
+            "in": "query",
+            "name": "counties",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented construction method codes, such as `1,2`.",
+            "in": "query",
+            "name": "construction_methods",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented dwelling categories.",
+            "enum": [
+              "Single Family (1-4 Units):Site-Built",
+              "Multifamily:Site-Built",
+              "Single Family (1-4 Units):Manufactured",
+              "Multifamily:Manufactured"
+            ],
+            "in": "query",
+            "name": "dwelling_categories",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented ethnicity categories.",
+            "enum": [
+              "Hispanic or Latino",
+              "Not Hispanic or Latino",
+              "Joint",
+              "Ethnicity Not Available",
+              "Free Form Text Only"
+            ],
+            "in": "query",
+            "name": "ethnicities",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented lien status codes.",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "in": "query",
+            "name": "lien_statuses",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan product categories.",
+            "enum": [
+              "Conventional:First Lien",
+              "FHA:First Lien",
+              "VA:First Lien",
+              "FSA/RHS:First Lien",
+              "Conventional:Subordinate Lien",
+              "FHA:Subordinate Lien",
+              "VA:Subordinate Lien",
+              "FSA/RHS:Subordinate Lien"
+            ],
+            "in": "query",
+            "name": "loan_products",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan purpose codes.",
+            "enum": [
+              "1",
+              "2",
+              "31",
+              "32",
+              "4",
+              "5"
+            ],
+            "in": "query",
+            "name": "loan_purposes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan type codes.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            "in": "query",
+            "name": "loan_types",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented race categories.",
+            "enum": [
+              "Asian",
+              "Native Hawaiian or Other Pacific Islander",
+              "Free Form Text Only",
+              "Race Not Available",
+              "American Indian or Alaska Native",
+              "Black or African American",
+              "2 or more minority races",
+              "White",
+              "Joint"
+            ],
+            "in": "query",
+            "name": "races",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented sex categories.",
+            "enum": [
+              "Male",
+              "Female",
+              "Joint",
+              "Sex Not Available"
+            ],
+            "in": "query",
+            "name": "sexes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented total unit counts or ranges.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5-24",
+              "25-49",
+              "50-99",
+              "100-149",
+              ">149"
+            ],
+            "in": "query",
+            "name": "total_units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Action-taken filter shown in the provider's request examples.",
+            "in": "query",
+            "name": "actions_taken",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/view/aggregations",
+        "pointer": "#/paths/~1view~1aggregations/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "AggregationResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get HMDA aggregations for a geography or institution"
+      },
+      {
+        "deprecated": false,
+        "description": "Streams filtered HMDA records as CSV.",
+        "id": "operation:get:/view/csv",
+        "kind": "operation",
+        "method": "get",
+        "name": "downloadFilteredCsv",
+        "parameters": [
+          {
+            "description": "Filing year or comma-separated filing years.",
+            "in": "query",
+            "name": "years",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "List of Legal Entity Identifiers used to filter institutions.",
+            "in": "query",
+            "name": "leis",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Five-digit MSA/MD code; multiple codes can be comma-separated.",
+            "in": "query",
+            "name": "msamds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter state abbreviation; multiple codes can be comma-separated.",
+            "in": "query",
+            "name": "states",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Five-digit county FIPS code.",
+            "in": "query",
+            "name": "counties",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented construction method codes, such as `1,2`.",
+            "in": "query",
+            "name": "construction_methods",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented dwelling categories.",
+            "enum": [
+              "Single Family (1-4 Units):Site-Built",
+              "Multifamily:Site-Built",
+              "Single Family (1-4 Units):Manufactured",
+              "Multifamily:Manufactured"
+            ],
+            "in": "query",
+            "name": "dwelling_categories",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented ethnicity categories.",
+            "enum": [
+              "Hispanic or Latino",
+              "Not Hispanic or Latino",
+              "Joint",
+              "Ethnicity Not Available",
+              "Free Form Text Only"
+            ],
+            "in": "query",
+            "name": "ethnicities",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented lien status codes.",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "in": "query",
+            "name": "lien_statuses",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan product categories.",
+            "enum": [
+              "Conventional:First Lien",
+              "FHA:First Lien",
+              "VA:First Lien",
+              "FSA/RHS:First Lien",
+              "Conventional:Subordinate Lien",
+              "FHA:Subordinate Lien",
+              "VA:Subordinate Lien",
+              "FSA/RHS:Subordinate Lien"
+            ],
+            "in": "query",
+            "name": "loan_products",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan purpose codes.",
+            "enum": [
+              "1",
+              "2",
+              "31",
+              "32",
+              "4",
+              "5"
+            ],
+            "in": "query",
+            "name": "loan_purposes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan type codes.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            "in": "query",
+            "name": "loan_types",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented race categories.",
+            "enum": [
+              "Asian",
+              "Native Hawaiian or Other Pacific Islander",
+              "Free Form Text Only",
+              "Race Not Available",
+              "American Indian or Alaska Native",
+              "Black or African American",
+              "2 or more minority races",
+              "White",
+              "Joint"
+            ],
+            "in": "query",
+            "name": "races",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented sex categories.",
+            "enum": [
+              "Male",
+              "Female",
+              "Joint",
+              "Sex Not Available"
+            ],
+            "in": "query",
+            "name": "sexes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented total unit counts or ranges.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5-24",
+              "25-49",
+              "50-99",
+              "100-149",
+              ">149"
+            ],
+            "in": "query",
+            "name": "total_units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Action-taken filter shown in the provider's request examples.",
+            "in": "query",
+            "name": "actions_taken",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/view/csv",
+        "pointer": "#/paths/~1view~1csv/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "string:binary"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Download a filtered HMDA data subset as CSV"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns financial institutions present in HMDA data.",
+        "id": "operation:get:/view/filers",
+        "kind": "operation",
+        "method": "get",
+        "name": "listHmdaFilers",
+        "parameters": [
+          {
+            "description": "Filing year or comma-separated filing years.",
+            "in": "query",
+            "name": "years",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter state abbreviation; multiple codes can be comma-separated.",
+            "in": "query",
+            "name": "states",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Five-digit MSA/MD code; multiple codes can be comma-separated.",
+            "in": "query",
+            "name": "msamds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Five-digit county FIPS code.",
+            "in": "query",
+            "name": "counties",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/view/filers",
+        "pointer": "#/paths/~1view~1filers/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "FilerResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List HMDA filers"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a JSON aggregation report for nationwide HMDA data.",
+        "id": "operation:get:/view/nationwide/aggregations",
+        "kind": "operation",
+        "method": "get",
+        "name": "getNationwideAggregations",
+        "parameters": [
+          {
+            "description": "Filing year or comma-separated filing years.",
+            "in": "query",
+            "name": "years",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Documented construction method codes, such as `1,2`.",
+            "in": "query",
+            "name": "construction_methods",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented dwelling categories.",
+            "enum": [
+              "Single Family (1-4 Units):Site-Built",
+              "Multifamily:Site-Built",
+              "Single Family (1-4 Units):Manufactured",
+              "Multifamily:Manufactured"
+            ],
+            "in": "query",
+            "name": "dwelling_categories",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented ethnicity categories.",
+            "enum": [
+              "Hispanic or Latino",
+              "Not Hispanic or Latino",
+              "Joint",
+              "Ethnicity Not Available",
+              "Free Form Text Only"
+            ],
+            "in": "query",
+            "name": "ethnicities",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented lien status codes.",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "in": "query",
+            "name": "lien_statuses",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan product categories.",
+            "enum": [
+              "Conventional:First Lien",
+              "FHA:First Lien",
+              "VA:First Lien",
+              "FSA/RHS:First Lien",
+              "Conventional:Subordinate Lien",
+              "FHA:Subordinate Lien",
+              "VA:Subordinate Lien",
+              "FSA/RHS:Subordinate Lien"
+            ],
+            "in": "query",
+            "name": "loan_products",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan purpose codes.",
+            "enum": [
+              "1",
+              "2",
+              "31",
+              "32",
+              "4",
+              "5"
+            ],
+            "in": "query",
+            "name": "loan_purposes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan type codes.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            "in": "query",
+            "name": "loan_types",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented race categories.",
+            "enum": [
+              "Asian",
+              "Native Hawaiian or Other Pacific Islander",
+              "Free Form Text Only",
+              "Race Not Available",
+              "American Indian or Alaska Native",
+              "Black or African American",
+              "2 or more minority races",
+              "White",
+              "Joint"
+            ],
+            "in": "query",
+            "name": "races",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented sex categories.",
+            "enum": [
+              "Male",
+              "Female",
+              "Joint",
+              "Sex Not Available"
+            ],
+            "in": "query",
+            "name": "sexes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented total unit counts or ranges.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5-24",
+              "25-49",
+              "50-99",
+              "100-149",
+              ">149"
+            ],
+            "in": "query",
+            "name": "total_units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Action-taken filter shown in the provider's request examples.",
+            "in": "query",
+            "name": "actions_taken",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/view/nationwide/aggregations",
+        "pointer": "#/paths/~1view~1nationwide~1aggregations/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "AggregationResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get nationwide HMDA aggregations"
+      },
+      {
+        "deprecated": false,
+        "description": "Streams nationwide HMDA records as CSV.",
+        "id": "operation:get:/view/nationwide/csv",
+        "kind": "operation",
+        "method": "get",
+        "name": "downloadNationwideCsv",
+        "parameters": [
+          {
+            "description": "Filing year or comma-separated filing years.",
+            "in": "query",
+            "name": "years",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Documented construction method codes, such as `1,2`.",
+            "in": "query",
+            "name": "construction_methods",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented dwelling categories.",
+            "enum": [
+              "Single Family (1-4 Units):Site-Built",
+              "Multifamily:Site-Built",
+              "Single Family (1-4 Units):Manufactured",
+              "Multifamily:Manufactured"
+            ],
+            "in": "query",
+            "name": "dwelling_categories",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented ethnicity categories.",
+            "enum": [
+              "Hispanic or Latino",
+              "Not Hispanic or Latino",
+              "Joint",
+              "Ethnicity Not Available",
+              "Free Form Text Only"
+            ],
+            "in": "query",
+            "name": "ethnicities",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented lien status codes.",
+            "enum": [
+              "1",
+              "2"
+            ],
+            "in": "query",
+            "name": "lien_statuses",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan product categories.",
+            "enum": [
+              "Conventional:First Lien",
+              "FHA:First Lien",
+              "VA:First Lien",
+              "FSA/RHS:First Lien",
+              "Conventional:Subordinate Lien",
+              "FHA:Subordinate Lien",
+              "VA:Subordinate Lien",
+              "FSA/RHS:Subordinate Lien"
+            ],
+            "in": "query",
+            "name": "loan_products",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan purpose codes.",
+            "enum": [
+              "1",
+              "2",
+              "31",
+              "32",
+              "4",
+              "5"
+            ],
+            "in": "query",
+            "name": "loan_purposes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented loan type codes.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            "in": "query",
+            "name": "loan_types",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented race categories.",
+            "enum": [
+              "Asian",
+              "Native Hawaiian or Other Pacific Islander",
+              "Free Form Text Only",
+              "Race Not Available",
+              "American Indian or Alaska Native",
+              "Black or African American",
+              "2 or more minority races",
+              "White",
+              "Joint"
+            ],
+            "in": "query",
+            "name": "races",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented sex categories.",
+            "enum": [
+              "Male",
+              "Female",
+              "Joint",
+              "Sex Not Available"
+            ],
+            "in": "query",
+            "name": "sexes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Documented total unit counts or ranges.",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5-24",
+              "25-49",
+              "50-99",
+              "100-149",
+              ">149"
+            ],
+            "in": "query",
+            "name": "total_units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Action-taken filter shown in the provider's request examples.",
+            "in": "query",
+            "name": "actions_taken",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/view/nationwide/csv",
+        "pointer": "#/paths/~1view~1nationwide~1csv/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "string:binary"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Download a nationwide HMDA data subset as CSV"
+      },
+      {
+        "id": "schema:AggregationResponse",
+        "kind": "schema",
+        "name": "AggregationResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:FilerResponse",
+        "kind": "schema",
+        "name": "FilerResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "cfpb-hmda-data-browser-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://ffiec.cfpb.gov/v2/data-browser-api",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "actions_taken": {
+                  "description": "Action-taken filter shown in the provider's request examples.",
+                  "in": "query",
+                  "name": "actions_taken",
+                  "required": false,
+                  "schema": {
+                    "example": "5,6",
+                    "type": "string"
+                  }
+                },
+                "construction_methods": {
+                  "description": "Documented construction method codes, such as `1,2`.",
+                  "in": "query",
+                  "name": "construction_methods",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "counties": {
+                  "description": "Five-digit county FIPS code.",
+                  "in": "query",
+                  "name": "counties",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "dwelling_categories": {
+                  "description": "Documented dwelling categories.",
+                  "in": "query",
+                  "name": "dwelling_categories",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "Single Family (1-4 Units):Site-Built",
+                      "Multifamily:Site-Built",
+                      "Single Family (1-4 Units):Manufactured",
+                      "Multifamily:Manufactured"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "ethnicities": {
+                  "description": "Documented ethnicity categories.",
+                  "in": "query",
+                  "name": "ethnicities",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "Hispanic or Latino",
+                      "Not Hispanic or Latino",
+                      "Joint",
+                      "Ethnicity Not Available",
+                      "Free Form Text Only"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "leis": {
+                  "description": "List of Legal Entity Identifiers used to filter institutions.",
+                  "in": "query",
+                  "name": "leis",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "lien_statuses": {
+                  "description": "Documented lien status codes.",
+                  "in": "query",
+                  "name": "lien_statuses",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "1",
+                      "2"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "loan_products": {
+                  "description": "Documented loan product categories.",
+                  "in": "query",
+                  "name": "loan_products",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "Conventional:First Lien",
+                      "FHA:First Lien",
+                      "VA:First Lien",
+                      "FSA/RHS:First Lien",
+                      "Conventional:Subordinate Lien",
+                      "FHA:Subordinate Lien",
+                      "VA:Subordinate Lien",
+                      "FSA/RHS:Subordinate Lien"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "loan_purposes": {
+                  "description": "Documented loan purpose codes.",
+                  "in": "query",
+                  "name": "loan_purposes",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "1",
+                      "2",
+                      "31",
+                      "32",
+                      "4",
+                      "5"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "loan_types": {
+                  "description": "Documented loan type codes.",
+                  "in": "query",
+                  "name": "loan_types",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "1",
+                      "2",
+                      "3",
+                      "4"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "msamds": {
+                  "description": "Five-digit MSA/MD code; multiple codes can be comma-separated.",
+                  "in": "query",
+                  "name": "msamds",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "races": {
+                  "description": "Documented race categories.",
+                  "in": "query",
+                  "name": "races",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "Asian",
+                      "Native Hawaiian or Other Pacific Islander",
+                      "Free Form Text Only",
+                      "Race Not Available",
+                      "American Indian or Alaska Native",
+                      "Black or African American",
+                      "2 or more minority races",
+                      "White",
+                      "Joint"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "sexes": {
+                  "description": "Documented sex categories.",
+                  "in": "query",
+                  "name": "sexes",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "Male",
+                      "Female",
+                      "Joint",
+                      "Sex Not Available"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "states": {
+                  "description": "Two-letter state abbreviation; multiple codes can be comma-separated.",
+                  "in": "query",
+                  "name": "states",
+                  "required": false,
+                  "schema": {
+                    "example": "CA,MD,DC",
+                    "type": "string"
+                  }
+                },
+                "total_units": {
+                  "description": "Documented total unit counts or ranges.",
+                  "in": "query",
+                  "name": "total_units",
+                  "required": false,
+                  "schema": {
+                    "enum": [
+                      "1",
+                      "2",
+                      "3",
+                      "4",
+                      "5-24",
+                      "25-49",
+                      "50-99",
+                      "100-149",
+                      ">149"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "years": {
+                  "description": "Filing year or comma-separated filing years.",
+                  "in": "query",
+                  "name": "years",
+                  "required": true,
+                  "schema": {
+                    "example": "2018,2019",
+                    "type": "string"
+                  }
+                }
+              },
+              "schemas": {
+                "AggregationResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "aggregations": {
+                      "items": {
+                        "additionalProperties": true,
+                        "properties": {
+                          "count": {
+                            "type": "integer"
+                          },
+                          "sum": {
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "parameters": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "servedFrom": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "FilerResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "institutions": {
+                      "items": {
+                        "additionalProperties": true,
+                        "properties": {
+                          "lei": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "period": {
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused community-maintained specification for the documented HMDA Data Browser endpoints. Requests use public HMDA data; query requirements and available values are described in the provider documentation.",
+              "externalDocs": {
+                "description": "CFPB HMDA Data Browser API documentation",
+                "url": "https://ffiec.cfpb.gov/documentation/api/data-browser/"
+              },
+              "title": "CFPB HMDA Data Browser API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/view/aggregations": {
+                "get": {
+                  "description": "Returns a JSON aggregation report for a geographic or LEI subset. Include `years`, at least one HMDA data filter, and either a geographic filter or `leis`; both may be supplied.",
+                  "operationId": "getFilteredAggregations",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/years"
+                    },
+                    {
+                      "$ref": "#/components/parameters/leis"
+                    },
+                    {
+                      "$ref": "#/components/parameters/msamds"
+                    },
+                    {
+                      "$ref": "#/components/parameters/states"
+                    },
+                    {
+                      "$ref": "#/components/parameters/counties"
+                    },
+                    {
+                      "$ref": "#/components/parameters/construction_methods"
+                    },
+                    {
+                      "$ref": "#/components/parameters/dwelling_categories"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ethnicities"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lien_statuses"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_products"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_purposes"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_types"
+                    },
+                    {
+                      "$ref": "#/components/parameters/races"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sexes"
+                    },
+                    {
+                      "$ref": "#/components/parameters/total_units"
+                    },
+                    {
+                      "$ref": "#/components/parameters/actions_taken"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AggregationResponse"
+                          }
+                        }
+                      },
+                      "description": "Aggregated HMDA results in JSON format."
+                    }
+                  },
+                  "summary": "Get HMDA aggregations for a geography or institution"
+                }
+              },
+              "/view/csv": {
+                "get": {
+                  "description": "Streams filtered HMDA records as CSV. Include `years`, at least one documented HMDA data filter, and either a geographic filter or `leis`; both may be supplied.",
+                  "operationId": "downloadFilteredCsv",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/years"
+                    },
+                    {
+                      "$ref": "#/components/parameters/leis"
+                    },
+                    {
+                      "$ref": "#/components/parameters/msamds"
+                    },
+                    {
+                      "$ref": "#/components/parameters/states"
+                    },
+                    {
+                      "$ref": "#/components/parameters/counties"
+                    },
+                    {
+                      "$ref": "#/components/parameters/construction_methods"
+                    },
+                    {
+                      "$ref": "#/components/parameters/dwelling_categories"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ethnicities"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lien_statuses"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_products"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_purposes"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_types"
+                    },
+                    {
+                      "$ref": "#/components/parameters/races"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sexes"
+                    },
+                    {
+                      "$ref": "#/components/parameters/total_units"
+                    },
+                    {
+                      "$ref": "#/components/parameters/actions_taken"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/csv": {
+                          "schema": {
+                            "format": "binary",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "Streamed comma-separated HMDA records."
+                    }
+                  },
+                  "summary": "Download a filtered HMDA data subset as CSV"
+                }
+              },
+              "/view/filers": {
+                "get": {
+                  "description": "Returns financial institutions present in HMDA data. Include `years`; state, MSA/MD, and county filters are documented as optional.",
+                  "operationId": "listHmdaFilers",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/years"
+                    },
+                    {
+                      "$ref": "#/components/parameters/states"
+                    },
+                    {
+                      "$ref": "#/components/parameters/msamds"
+                    },
+                    {
+                      "$ref": "#/components/parameters/counties"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/FilerResponse"
+                          }
+                        }
+                      },
+                      "description": "Financial institutions in the selected HMDA data."
+                    }
+                  },
+                  "summary": "List HMDA filers"
+                }
+              },
+              "/view/nationwide/aggregations": {
+                "get": {
+                  "description": "Returns a JSON aggregation report for nationwide HMDA data. Include `years` and at least one documented HMDA data filter.",
+                  "operationId": "getNationwideAggregations",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/years"
+                    },
+                    {
+                      "$ref": "#/components/parameters/construction_methods"
+                    },
+                    {
+                      "$ref": "#/components/parameters/dwelling_categories"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ethnicities"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lien_statuses"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_products"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_purposes"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_types"
+                    },
+                    {
+                      "$ref": "#/components/parameters/races"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sexes"
+                    },
+                    {
+                      "$ref": "#/components/parameters/total_units"
+                    },
+                    {
+                      "$ref": "#/components/parameters/actions_taken"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AggregationResponse"
+                          }
+                        }
+                      },
+                      "description": "Aggregated HMDA results in JSON format."
+                    }
+                  },
+                  "summary": "Get nationwide HMDA aggregations"
+                }
+              },
+              "/view/nationwide/csv": {
+                "get": {
+                  "description": "Streams nationwide HMDA records as CSV. Include `years` and at least one documented HMDA data filter.",
+                  "operationId": "downloadNationwideCsv",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/years"
+                    },
+                    {
+                      "$ref": "#/components/parameters/construction_methods"
+                    },
+                    {
+                      "$ref": "#/components/parameters/dwelling_categories"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ethnicities"
+                    },
+                    {
+                      "$ref": "#/components/parameters/lien_statuses"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_products"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_purposes"
+                    },
+                    {
+                      "$ref": "#/components/parameters/loan_types"
+                    },
+                    {
+                      "$ref": "#/components/parameters/races"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sexes"
+                    },
+                    {
+                      "$ref": "#/components/parameters/total_units"
+                    },
+                    {
+                      "$ref": "#/components/parameters/actions_taken"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/csv": {
+                          "schema": {
+                            "format": "binary",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "Streamed comma-separated HMDA records."
+                    }
+                  },
+                  "summary": "Download a nationwide HMDA data subset as CSV"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "CFPB HMDA Data Browser API",
+                "url": "https://ffiec.cfpb.gov/v2/data-browser-api"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "CFPB HMDA Data Browser API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.420961+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/cfpb-hmda/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "0748494216408429fafe5f10fa8fed8e071fa6c8ac4d3b7805560812e0115225",
+    "source_id": "cfpb-hmda-data-browser-api",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/cfpb-hmda/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

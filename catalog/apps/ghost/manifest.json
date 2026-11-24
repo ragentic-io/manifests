@@ -1,0 +1,1593 @@
+{
+  "a2ui": {},
+  "app": "ghost",
+  "graph": {
+    "edges": [
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/authors/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/authors/slug/{slug}/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/authors/{id}/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/pages/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/pages/slug/{slug}/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/pages/{id}/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/posts/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/posts/slug/{slug}/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/posts/{id}/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/settings/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/tags/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/tags/slug/{slug}/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/tags/{id}/"
+      },
+      {
+        "from": "ghost",
+        "kind": "EXPOSES",
+        "to": "operation:get:/tiers/"
+      },
+      {
+        "from": "operation:get:/authors/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/authors/slug/{slug}/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/authors/{id}/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/pages/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/pages/slug/{slug}/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/pages/{id}/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/posts/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/posts/slug/{slug}/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/posts/{id}/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/settings/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/tags/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/tags/slug/{slug}/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/tags/{id}/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      },
+      {
+        "from": "operation:get:/tiers/",
+        "kind": "RETURNS",
+        "to": "schema:ContentResponse"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "ghost",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/authors/",
+        "kind": "operation",
+        "method": "get",
+        "name": "browseAuthors",
+        "parameters": [
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ghost NQL filter expression.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "15",
+            "description": "Number of results per page, or all.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "One-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sort expression using Ghost's documented SQL-like syntax.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/authors/",
+        "pointer": "#/paths/~1authors~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Browse authors"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/authors/slug/{slug}/",
+        "kind": "operation",
+        "method": "get",
+        "name": "readAuthorBySlug",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/authors/slug/{slug}/",
+        "pointer": "#/paths/~1authors~1slug~1{slug}~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Read an author by slug"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/authors/{id}/",
+        "kind": "operation",
+        "method": "get",
+        "name": "readAuthorById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/authors/{id}/",
+        "pointer": "#/paths/~1authors~1{id}~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Read an author by ID"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/pages/",
+        "kind": "operation",
+        "method": "get",
+        "name": "browsePages",
+        "parameters": [
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ghost NQL filter expression.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "15",
+            "description": "Number of results per page, or all.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "One-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sort expression using Ghost's documented SQL-like syntax.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Additional formats to return for posts and pages.",
+            "in": "query",
+            "name": "formats",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/pages/",
+        "pointer": "#/paths/~1pages~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Browse pages"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/pages/slug/{slug}/",
+        "kind": "operation",
+        "method": "get",
+        "name": "readPageBySlug",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Additional formats to return for posts and pages.",
+            "in": "query",
+            "name": "formats",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/pages/slug/{slug}/",
+        "pointer": "#/paths/~1pages~1slug~1{slug}~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Read a page by slug"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/pages/{id}/",
+        "kind": "operation",
+        "method": "get",
+        "name": "readPageById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Additional formats to return for posts and pages.",
+            "in": "query",
+            "name": "formats",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/pages/{id}/",
+        "pointer": "#/paths/~1pages~1{id}~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Read a page by ID"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/posts/",
+        "kind": "operation",
+        "method": "get",
+        "name": "browsePosts",
+        "parameters": [
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ghost NQL filter expression.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "15",
+            "description": "Number of results per page, or all.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "One-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sort expression using Ghost's documented SQL-like syntax.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Additional formats to return for posts and pages.",
+            "in": "query",
+            "name": "formats",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/posts/",
+        "pointer": "#/paths/~1posts~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Browse posts"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/posts/slug/{slug}/",
+        "kind": "operation",
+        "method": "get",
+        "name": "readPostBySlug",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Additional formats to return for posts and pages.",
+            "in": "query",
+            "name": "formats",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/posts/slug/{slug}/",
+        "pointer": "#/paths/~1posts~1slug~1{slug}~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Read a post by slug"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/posts/{id}/",
+        "kind": "operation",
+        "method": "get",
+        "name": "readPostById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Additional formats to return for posts and pages.",
+            "in": "query",
+            "name": "formats",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/posts/{id}/",
+        "pointer": "#/paths/~1posts~1{id}~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Read a post by ID"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/settings/",
+        "kind": "operation",
+        "method": "get",
+        "name": "browseSettings",
+        "parameters": [
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/settings/",
+        "pointer": "#/paths/~1settings~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Browse settings"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/tags/",
+        "kind": "operation",
+        "method": "get",
+        "name": "browseTags",
+        "parameters": [
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ghost NQL filter expression.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "15",
+            "description": "Number of results per page, or all.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "One-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sort expression using Ghost's documented SQL-like syntax.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/tags/",
+        "pointer": "#/paths/~1tags~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Browse tags"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/tags/slug/{slug}/",
+        "kind": "operation",
+        "method": "get",
+        "name": "readTagBySlug",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/tags/slug/{slug}/",
+        "pointer": "#/paths/~1tags~1slug~1{slug}~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Read a tag by slug"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/tags/{id}/",
+        "kind": "operation",
+        "method": "get",
+        "name": "readTagById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/tags/{id}/",
+        "pointer": "#/paths/~1tags~1{id}~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Read a tag by ID"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/tiers/",
+        "kind": "operation",
+        "method": "get",
+        "name": "browseTiers",
+        "parameters": [
+          {
+            "description": "Comma-separated related resources to include.",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ghost NQL filter expression.",
+            "in": "query",
+            "name": "filter",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "15",
+            "description": "Number of results per page, or all.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "One-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sort expression using Ghost's documented SQL-like syntax.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/tiers/",
+        "pointer": "#/paths/~1tiers~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ContentResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ContentApiKey": []
+          }
+        ],
+        "summary": "Browse tiers"
+      },
+      {
+        "description": "Resource keys and resource fields vary by endpoint.",
+        "id": "schema:ContentResponse",
+        "kind": "schema",
+        "name": "ContentResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "ghost"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://{admin_domain}/ghost/api/content",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Fields": {
+                  "description": "Comma-separated fields to return.",
+                  "in": "query",
+                  "name": "fields",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Filter": {
+                  "description": "Ghost NQL filter expression.",
+                  "in": "query",
+                  "name": "filter",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Formats": {
+                  "description": "Additional formats to return for posts and pages.",
+                  "in": "query",
+                  "name": "formats",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Include": {
+                  "description": "Comma-separated related resources to include.",
+                  "in": "query",
+                  "name": "include",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Limit": {
+                  "description": "Number of results per page, or all.",
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                    "default": "15",
+                    "type": "string"
+                  }
+                },
+                "Order": {
+                  "description": "Sort expression using Ghost's documented SQL-like syntax.",
+                  "in": "query",
+                  "name": "order",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Page": {
+                  "description": "One-based page number.",
+                  "in": "query",
+                  "name": "page",
+                  "schema": {
+                    "default": 1,
+                    "type": "integer"
+                  }
+                }
+              },
+              "schemas": {
+                "ContentResponse": {
+                  "additionalProperties": true,
+                  "description": "Resource keys and resource fields vary by endpoint. Browse responses include meta.pagination; settings returns a single object.",
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "ContentApiKey": {
+                  "in": "query",
+                  "name": "key",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained read-only definition for browsing and reading Ghost posts, pages, authors, tags, tiers, and settings. Send Accept-Version: v5.0 to set the API version. Resource payload fields are left open because the API supports field selection and related resources.",
+              "externalDocs": {
+                "description": "Ghost Content API documentation",
+                "url": "https://ghost.org/docs/content-api/"
+              },
+              "title": "Ghost Content API (focused)",
+              "version": "5.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/authors/": {
+                "get": {
+                  "operationId": "browseAuthors",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Filter"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Order"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "Authors and pagination metadata."
+                    }
+                  },
+                  "summary": "Browse authors"
+                }
+              },
+              "/authors/slug/{slug}/": {
+                "get": {
+                  "operationId": "readAuthorBySlug",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "slug",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "The requested author."
+                    }
+                  },
+                  "summary": "Read an author by slug"
+                }
+              },
+              "/authors/{id}/": {
+                "get": {
+                  "operationId": "readAuthorById",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "The requested author."
+                    }
+                  },
+                  "summary": "Read an author by ID"
+                }
+              },
+              "/pages/": {
+                "get": {
+                  "operationId": "browsePages",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Filter"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Order"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Formats"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "Pages and pagination metadata."
+                    }
+                  },
+                  "summary": "Browse pages"
+                }
+              },
+              "/pages/slug/{slug}/": {
+                "get": {
+                  "operationId": "readPageBySlug",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "slug",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Formats"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "The requested page."
+                    }
+                  },
+                  "summary": "Read a page by slug"
+                }
+              },
+              "/pages/{id}/": {
+                "get": {
+                  "operationId": "readPageById",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Formats"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "The requested page."
+                    }
+                  },
+                  "summary": "Read a page by ID"
+                }
+              },
+              "/posts/": {
+                "get": {
+                  "operationId": "browsePosts",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Filter"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Order"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Formats"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "Posts and pagination metadata."
+                    }
+                  },
+                  "summary": "Browse posts"
+                }
+              },
+              "/posts/slug/{slug}/": {
+                "get": {
+                  "operationId": "readPostBySlug",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "slug",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Formats"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "The requested post."
+                    }
+                  },
+                  "summary": "Read a post by slug"
+                }
+              },
+              "/posts/{id}/": {
+                "get": {
+                  "operationId": "readPostById",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Formats"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "The requested post."
+                    }
+                  },
+                  "summary": "Read a post by ID"
+                }
+              },
+              "/settings/": {
+                "get": {
+                  "operationId": "browseSettings",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "Site settings."
+                    }
+                  },
+                  "summary": "Browse settings"
+                }
+              },
+              "/tags/": {
+                "get": {
+                  "operationId": "browseTags",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Filter"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Order"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "Tags and pagination metadata."
+                    }
+                  },
+                  "summary": "Browse tags"
+                }
+              },
+              "/tags/slug/{slug}/": {
+                "get": {
+                  "operationId": "readTagBySlug",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "slug",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "The requested tag."
+                    }
+                  },
+                  "summary": "Read a tag by slug"
+                }
+              },
+              "/tags/{id}/": {
+                "get": {
+                  "operationId": "readTagById",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "The requested tag."
+                    }
+                  },
+                  "summary": "Read a tag by ID"
+                }
+              },
+              "/tiers/": {
+                "get": {
+                  "operationId": "browseTiers",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Include"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Fields"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Filter"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Order"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ContentResponse"
+                          }
+                        }
+                      },
+                      "description": "Tiers and pagination metadata."
+                    }
+                  },
+                  "summary": "Browse tiers"
+                }
+              }
+            },
+            "security": [
+              {
+                "ContentApiKey": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://{admin_domain}/ghost/api/content",
+                "variables": {
+                  "admin_domain": {
+                    "default": "demo.ghost.io",
+                    "description": "The Ghost site's admin domain."
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Ghost"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.335733+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/ghost/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "4572805a78405505940f16a2bf669f5cf379b17eed5240992c9f09f590cf753a",
+    "source_id": "ghost",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/ghost/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "5.0.0"
+}

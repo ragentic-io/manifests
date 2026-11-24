@@ -1,0 +1,762 @@
+{
+  "a2ui": {},
+  "app": "hacker-news",
+  "graph": {
+    "edges": [
+      {
+        "from": "hacker-news",
+        "kind": "EXPOSES",
+        "to": "operation:get:/askstories.json"
+      },
+      {
+        "from": "hacker-news",
+        "kind": "EXPOSES",
+        "to": "operation:get:/beststories.json"
+      },
+      {
+        "from": "hacker-news",
+        "kind": "EXPOSES",
+        "to": "operation:get:/item/{id}.json"
+      },
+      {
+        "from": "hacker-news",
+        "kind": "EXPOSES",
+        "to": "operation:get:/jobstories.json"
+      },
+      {
+        "from": "hacker-news",
+        "kind": "EXPOSES",
+        "to": "operation:get:/maxitem.json"
+      },
+      {
+        "from": "hacker-news",
+        "kind": "EXPOSES",
+        "to": "operation:get:/newstories.json"
+      },
+      {
+        "from": "hacker-news",
+        "kind": "EXPOSES",
+        "to": "operation:get:/showstories.json"
+      },
+      {
+        "from": "hacker-news",
+        "kind": "EXPOSES",
+        "to": "operation:get:/topstories.json"
+      },
+      {
+        "from": "hacker-news",
+        "kind": "EXPOSES",
+        "to": "operation:get:/updates.json"
+      },
+      {
+        "from": "hacker-news",
+        "kind": "EXPOSES",
+        "to": "operation:get:/user/{id}.json"
+      },
+      {
+        "from": "operation:get:/item/{id}.json",
+        "kind": "RETURNS",
+        "to": "schema:Item"
+      },
+      {
+        "from": "operation:get:/updates.json",
+        "kind": "RETURNS",
+        "to": "schema:Updates"
+      },
+      {
+        "from": "operation:get:/user/{id}.json",
+        "kind": "RETURNS",
+        "to": "schema:User"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "hacker-news",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns up to 200 recent Ask HN story IDs.",
+        "id": "operation:get:/askstories.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "listAskStoryIds",
+        "path": "/askstories.json",
+        "pointer": "#/paths/~1askstories.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "integer:int64[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List Ask HN story IDs",
+        "tags": [
+          "Stories"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/beststories.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "listBestStoryIds",
+        "path": "/beststories.json",
+        "pointer": "#/paths/~1beststories.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "integer:int64[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List best story IDs",
+        "tags": [
+          "Stories"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/item/{id}.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getItemById",
+        "parameters": [
+          {
+            "description": "Unique integer item ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/item/{id}.json",
+        "pointer": "#/paths/~1item~1{id}.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Item"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get an item",
+        "tags": [
+          "Items"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns up to 200 recent job story IDs.",
+        "id": "operation:get:/jobstories.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "listJobStoryIds",
+        "path": "/jobstories.json",
+        "pointer": "#/paths/~1jobstories.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "integer:int64[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List job story IDs",
+        "tags": [
+          "Stories"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The largest item ID can be used to walk backward through items.",
+        "id": "operation:get:/maxitem.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMaxItemId",
+        "path": "/maxitem.json",
+        "pointer": "#/paths/~1maxitem.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "integer:int64"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get the current largest item ID",
+        "tags": [
+          "Stories"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns up to 500 new story IDs.",
+        "id": "operation:get:/newstories.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "listNewStoryIds",
+        "path": "/newstories.json",
+        "pointer": "#/paths/~1newstories.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "integer:int64[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List new story IDs",
+        "tags": [
+          "Stories"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns up to 200 recent Show HN story IDs.",
+        "id": "operation:get:/showstories.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "listShowStoryIds",
+        "path": "/showstories.json",
+        "pointer": "#/paths/~1showstories.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "integer:int64[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List Show HN story IDs",
+        "tags": [
+          "Stories"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns up to 500 top story IDs; the list may include jobs.",
+        "id": "operation:get:/topstories.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "listTopStoryIds",
+        "path": "/topstories.json",
+        "pointer": "#/paths/~1topstories.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "integer:int64[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List top story IDs",
+        "tags": [
+          "Stories"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/updates.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getUpdates",
+        "path": "/updates.json",
+        "pointer": "#/paths/~1updates.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Updates"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get recently changed items and profiles",
+        "tags": [
+          "Updates"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "User IDs are case-sensitive; only users with public activity are available.",
+        "id": "operation:get:/user/{id}.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getUserById",
+        "parameters": [
+          {
+            "description": "Case-sensitive Hacker News username.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/user/{id}.json",
+        "pointer": "#/paths/~1user~1{id}.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "User"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a public user profile",
+        "tags": [
+          "Users"
+        ]
+      },
+      {
+        "id": "schema:Item",
+        "kind": "schema",
+        "name": "Item",
+        "type": "object"
+      },
+      {
+        "id": "schema:Updates",
+        "kind": "schema",
+        "name": "Updates",
+        "type": "object"
+      },
+      {
+        "id": "schema:User",
+        "kind": "schema",
+        "name": "User",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "hacker-news"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://hacker-news.firebaseio.com/v0",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "ItemIds": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "items": {
+                          "format": "int64",
+                          "type": "integer"
+                        },
+                        "type": "array"
+                      }
+                    }
+                  },
+                  "description": "List of Hacker News item IDs"
+                }
+              },
+              "schemas": {
+                "Item": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "by": {
+                      "type": "string"
+                    },
+                    "dead": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "boolean"
+                    },
+                    "descendants": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "kids": {
+                      "items": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "parent": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "parts": {
+                      "items": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "poll": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "score": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "text": {
+                      "description": "Comment, story, or poll text; may contain HTML.",
+                      "type": "string"
+                    },
+                    "time": {
+                      "description": "Creation time in Unix seconds.",
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "title": {
+                      "description": "Story, poll, or job title; may contain HTML.",
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "job",
+                        "story",
+                        "comment",
+                        "poll",
+                        "pollopt"
+                      ],
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "type": "object"
+                },
+                "Updates": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "items": {
+                      "items": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "profiles": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "User": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "about": {
+                      "description": "Optional self-description; may contain HTML.",
+                      "type": "string"
+                    },
+                    "created": {
+                      "description": "Account creation time in Unix seconds.",
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "karma": {
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "submitted": {
+                      "items": {
+                        "format": "int64",
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused community specification for the public Hacker News v0 HTTP API. This document covers the official read endpoints for item and user data, story ID lists, the latest item ID, and recent updates. The provider may add fields; clients should tolerate unknown response fields.",
+              "externalDocs": {
+                "description": "Official Hacker News API documentation",
+                "url": "https://github.com/HackerNews/API"
+              },
+              "title": "Hacker News API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/askstories.json": {
+                "get": {
+                  "description": "Returns up to 200 recent Ask HN story IDs.",
+                  "operationId": "listAskStoryIds",
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/ItemIds"
+                    }
+                  },
+                  "summary": "List Ask HN story IDs",
+                  "tags": [
+                    "Stories"
+                  ]
+                }
+              },
+              "/beststories.json": {
+                "get": {
+                  "operationId": "listBestStoryIds",
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/ItemIds"
+                    }
+                  },
+                  "summary": "List best story IDs",
+                  "tags": [
+                    "Stories"
+                  ]
+                }
+              },
+              "/item/{id}.json": {
+                "get": {
+                  "operationId": "getItemById",
+                  "parameters": [
+                    {
+                      "description": "Unique integer item ID.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Item"
+                          }
+                        }
+                      },
+                      "description": "Item data"
+                    }
+                  },
+                  "summary": "Get an item",
+                  "tags": [
+                    "Items"
+                  ]
+                }
+              },
+              "/jobstories.json": {
+                "get": {
+                  "description": "Returns up to 200 recent job story IDs.",
+                  "operationId": "listJobStoryIds",
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/ItemIds"
+                    }
+                  },
+                  "summary": "List job story IDs",
+                  "tags": [
+                    "Stories"
+                  ]
+                }
+              },
+              "/maxitem.json": {
+                "get": {
+                  "description": "The largest item ID can be used to walk backward through items.",
+                  "operationId": "getMaxItemId",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "format": "int64",
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "description": "Largest item ID"
+                    }
+                  },
+                  "summary": "Get the current largest item ID",
+                  "tags": [
+                    "Stories"
+                  ]
+                }
+              },
+              "/newstories.json": {
+                "get": {
+                  "description": "Returns up to 500 new story IDs.",
+                  "operationId": "listNewStoryIds",
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/ItemIds"
+                    }
+                  },
+                  "summary": "List new story IDs",
+                  "tags": [
+                    "Stories"
+                  ]
+                }
+              },
+              "/showstories.json": {
+                "get": {
+                  "description": "Returns up to 200 recent Show HN story IDs.",
+                  "operationId": "listShowStoryIds",
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/ItemIds"
+                    }
+                  },
+                  "summary": "List Show HN story IDs",
+                  "tags": [
+                    "Stories"
+                  ]
+                }
+              },
+              "/topstories.json": {
+                "get": {
+                  "description": "Returns up to 500 top story IDs; the list may include jobs.",
+                  "operationId": "listTopStoryIds",
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/ItemIds"
+                    }
+                  },
+                  "summary": "List top story IDs",
+                  "tags": [
+                    "Stories"
+                  ]
+                }
+              },
+              "/updates.json": {
+                "get": {
+                  "operationId": "getUpdates",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Updates"
+                          }
+                        }
+                      },
+                      "description": "IDs of changed items and usernames of changed profiles"
+                    }
+                  },
+                  "summary": "Get recently changed items and profiles",
+                  "tags": [
+                    "Updates"
+                  ]
+                }
+              },
+              "/user/{id}.json": {
+                "get": {
+                  "description": "User IDs are case-sensitive; only users with public activity are available.",
+                  "operationId": "getUserById",
+                  "parameters": [
+                    {
+                      "description": "Case-sensitive Hacker News username.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/User"
+                          }
+                        }
+                      },
+                      "description": "User profile"
+                    }
+                  },
+                  "summary": "Get a public user profile",
+                  "tags": [
+                    "Users"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Hacker News Firebase API",
+                "url": "https://hacker-news.firebaseio.com/v0"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Stories"
+              },
+              {
+                "name": "Items"
+              },
+              {
+                "name": "Users"
+              },
+              {
+                "name": "Updates"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Hacker News"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.748922+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/hacker-news/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "d5aa140c7d22d92461365e7a69c45ded2b7d48366db8c899a8b8b472111be737",
+    "source_id": "hacker-news",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/hacker-news/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}
