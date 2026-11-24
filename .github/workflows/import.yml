@@ -1,0 +1,90 @@
+# Imports items from their upstreams into catalog/items/ and opens (or updates)
+# one pull request for a person to review (docs/registry.md in ragentic, 3):
+#
+#   agency-agents      msitarzewski/agency-agents at the newest main commit,
+#                      converted by TeamSource's mapping; tiers, tools and leads
+#                      from the reviewed catalog/sources/agency-agents/tiers.json
+#   ragentic-examples  ragentic-io/ragentic's examples at the newest main commit,
+#                      as listed in catalog/sources/ragentic-examples/items.json
+#
+# Nothing reaches the signed index without review: a maintainer merges the PR,
+# then the Sign workflow signs the changed items.
+name: Import
+
+on:
+  schedule:
+    - cron: "41 5 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: import
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  import:
+    runs-on: manifests-ci
+    timeout-minutes: 30
+    env:
+      MIX_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: erlef/setup-beam@v1
+        with:
+          elixir-version: "1.20.4"
+          otp-version: "29.1.2"
+      - name: Restore deps and _build
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            deps
+            _build
+          key: mix-test-${{ runner.os }}-1.20.4-29.1.2-${{ hashFiles('mix.lock') }}
+          restore-keys: mix-test-${{ runner.os }}-1.20.4-29.1.2-
+      - run: mix deps.get
+      - run: mix compile
+      - name: Fetch upstreams (untrusted data, outside the workspace)
+        id: upstream
+        run: |
+          mkdir -p "$RUNNER_TEMP/agency" "$RUNNER_TEMP/ragentic"
+          git clone -q --depth 1 https://github.com/msitarzewski/agency-agents.git "$RUNNER_TEMP/agency/repo"
+          git clone -q --depth 1 https://github.com/ragentic-io/ragentic.git "$RUNNER_TEMP/ragentic/repo"
+          echo "agency=$(git -C "$RUNNER_TEMP/agency/repo" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "ragentic=$(git -C "$RUNNER_TEMP/ragentic/repo" rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Pin the agency-agents commit
+        run: |
+          mix run --no-start --no-compile -e '
+            [path, sha] = System.argv()
+            cfg = path |> File.read!() |> JSON.decode!()
+            File.write!(path, Manifests.CatalogTools.Json.pretty(put_in(cfg, ["upstream", "commit"], sha)))
+          ' catalog/sources/agency-agents/tiers.json "${{ steps.upstream.outputs.agency }}"
+      - run: mix catalog.import agency-agents --from "$RUNNER_TEMP/agency/repo"
+      - run: mix catalog.import ragentic-examples --from "$RUNNER_TEMP/ragentic/repo"
+      - run: mix catalog.validate
+      - name: Open or update the import pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AGENCY: ${{ steps.upstream.outputs.agency }}
+          RAGENTIC: ${{ steps.upstream.outputs.ragentic }}
+        run: |
+          git add -A catalog
+          if git diff --cached --quiet; then echo "Nothing changed upstream."; exit 0; fi
+          branch=import/items
+          short=${AGENCY:0:7}
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git commit -q -m "import: agency-agents @ $short, ragentic examples @ ${RAGENTIC:0:7}"
+          git push -f origin "$branch"
+          title="import: agency-agents @ $short"
+          body="Items imported by the Import workflow: agency-agents at ${AGENCY}, ragentic examples at ${RAGENTIC}. Review the prompts and tiers, then merge; the Sign workflow signs the changed items."
+          if gh pr view "$branch" --json state -q .state 2>/dev/null | grep -q OPEN; then
+            gh pr edit "$branch" --title "$title" --body "$body"
+          else
+            gh pr create --base main --head "$branch" --title "$title" --body "$body"
+          fi

@@ -1,7 +1,7 @@
 defmodule Mix.Tasks.Catalog.Validate do
   @shortdoc "Check catalog sources, signatures and generated docs"
   @moduledoc """
-  Check every application's sources, verify the signed indexes, bundles and
+  Check every application's and item's sources, verify the signed indexes, bundles and
   `sources.json` against the root pinned in `registry.json`, and check that the
   generated docs are current. Ends with `ok`, or exits with status 1.
 
@@ -22,11 +22,13 @@ defmodule Mix.Tasks.Catalog.Validate do
     if positional != [],
       do: CLI.usage_error!(@usage, "unrecognized arguments: #{Enum.join(positional, " ")}")
 
+    require_signed = Keyword.get(opts, :require_signed, false)
+    now = opts[:now] || now()
+
     CLI.run(fn ->
-      Validate.run(c,
-        require_signed: Keyword.get(opts, :require_signed, false),
-        now: opts[:now] || now()
-      )
+      apps = Validate.run(c, require_signed: require_signed, now: now)
+      items = Manifests.Items.Validate.report(c, require_signed: require_signed, now: now)
+      if apps == :ok and items == :ok, do: :ok, else: {:error, 1}
     end)
   end
 

@@ -21,7 +21,8 @@ defmodule Manifests.CatalogImportTest do
         }
       ])
 
-    assert {:ok, [{"index", %{new: 1}}, {"browse_index", %{new: 1}}]} = Catalog.import_dir(dir)
+    assert {:ok, [{"index", %{new: 1}}, {"browse_index", %{new: 1}}, {"items_index", :missing}]} =
+             Catalog.import_dir(dir)
 
     pay = Registry.get_manifest!("pay")
     assert pay.title == "Pay Co"
@@ -36,7 +37,8 @@ defmodule Manifests.CatalogImportTest do
     assert ["pay"] == ids(%{catalog: "published"})
 
     # Re-importing the same catalog adds nothing.
-    assert {:ok, [{"index", %{new: 0}}, {"browse_index", %{new: 0}}]} = Catalog.import_dir(dir)
+    assert {:ok, [{"index", %{new: 0}}, {"browse_index", %{new: 0}}, {"items_index", :missing}]} =
+             Catalog.import_dir(dir)
   end
 
   test "keeps every version and resolves latest, a version, or a digest", %{tmp_dir: tmp} do
@@ -79,7 +81,12 @@ defmodule Manifests.CatalogImportTest do
     dir = catalog(tmp, "v1", [%{id: "pay", version: "1.0.0"}])
     {other, _} = :crypto.generate_key(:eddsa, :ed25519)
 
-    assert {:ok, [{"index", :untrusted_index}, {"browse_index", :untrusted_index}]} =
+    assert {:ok,
+            [
+              {"index", :untrusted_index},
+              {"browse_index", :untrusted_index},
+              {"items_index", :missing}
+            ]} =
              Manifests.Catalog.Import.run(Manifests.Catalog.Import.dir(dir),
                root: other,
                registry: "manifests.ragentic.io"

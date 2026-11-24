@@ -336,7 +336,10 @@ defmodule Manifests.CatalogTools.Catalog do
 
   @doc "Path relative to the root -> SHA-256 of every plain-text file `sources.json` covers."
   def source_files(c) do
-    files = walk(apps_dir(c)) ++ [path(c, "CATALOG.md"), path(c, "categories.json")]
+    files =
+      walk(apps_dir(c)) ++
+        walk(path(c, "items")) ++
+        walk(path(c, "sources")) ++ [path(c, "CATALOG.md"), path(c, "categories.json")]
 
     for file <- files, File.exists?(file), into: %{} do
       {Path.relative_to(file, c.root), Trust.sha256(read_bytes!(file))}

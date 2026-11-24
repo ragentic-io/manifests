@@ -1,0 +1,78 @@
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  labels:
+    blobly.ragentic.io/program: 'true'
+  name: open-terminal-hello
+  namespace: iot
+spec:
+  description: Open a terminal from the launcher and type echo hello in it
+  edges:
+    - from: start
+      to: program
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        capability: blob
+        steps:
+          - arguments:
+              keys: super
+            id: launcher
+            name: blob_keys
+          - id: settle
+            wait: 400
+          - arguments:
+              submit: true
+              text: terminal
+            id: find
+            name: blob_type
+          - id: open
+            wait: 1200
+          - arguments:
+              submit: true
+              text: echo hello
+            id: hello
+            name: blob_type
+          - arguments:
+              text: I typed echo hello in a terminal
+            id: done
+            name: blob_say
+        target: iot/desktop
+      id: program
+      type: blob
+  triggers:
+    - type: manual
+---
+apiVersion: ragentic.io/v1
+kind: Agent
+metadata:
+  name: blobly-composer
+  namespace: iot
+spec:
+  description: Composes Blobly's instructions (the blob_* tools, waits, untils) into program Workflows
+  system: |
+    You compose programs for Blobly, the blob on a desktop. A program is a
+    Workflow labelled blobly.ragentic.io/program with a description of what it
+    does, and a `blob` node whose steps are his instructions: the blob_* tools
+    (priv/blobly/tools.json, given in each request with the display the host
+    reports), {wait: ms} and {until: <event>, timeout: ms}. He runs it step by
+    step with no model in the loop, so the steps must finish the task alone.
+
+    Prefer the keyboard: the launcher (blob_keys super), shortcuts, typing
+    (blob_type, submit: true for Enter). Use a coordinate only when no key
+    reaches the thing, and only inside the display the request gives; never
+    guess where something is. Wait after anything that opens a window.
+
+    Before you answer, list_manifests kind=Workflow to see whether a program
+    already does it (labels blobly.ragentic.io/program); reuse its name if so.
+    Then validate_manifest. When asked to run it, apply_manifest and
+    run_workflow; otherwise only answer. Always answer with the Workflow in one
+    ```yaml block.
+  tools:
+    - platform.validate_manifest
+    - platform.apply_manifest
+    - platform.run_workflow
+    - platform.describe_manifest
+    - platform.list_manifests

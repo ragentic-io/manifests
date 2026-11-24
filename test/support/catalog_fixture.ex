@@ -121,4 +121,77 @@ defmodule Manifests.CatalogFixture do
       "review_required" => %{"authentication" => true}
     }
   end
+
+  @doc """
+  Signed items (`items-index.json`, `item-bundles/`) in `dir`. `items` are maps
+  with `:id`, `:version`, `:kind` and optionally `:title`, `:tiers` (agent name
+  => tier map), `:categories`.
+  """
+  def write_items!(dir, items, opts \\ []) do
+    {_pub, priv} = keys()
+    now = Keyword.get(opts, :now, System.system_time(:second))
+    File.mkdir_p!(Path.join(dir, "item-bundles"))
+
+    entries =
+      for item <- items do
+        payload = item_payload(item, now - 60)
+        envelope = Trust.sign(payload, priv)
+        digest = Trust.digest(envelope)
+
+        File.write!(
+          Path.join([dir, "item-bundles", "#{digest}.json"]),
+          Jason.encode!(%{"chain" => [], "envelope" => envelope})
+        )
+
+        Manifests.Items.index_entry(payload, digest)
+      end
+
+    index = %{
+      "kind" => "items_index",
+      "registry" => "manifests.ragentic.io",
+      "sequence" => Keyword.get(opts, :sequence, 1),
+      "not_before" => now - 60,
+      "expires" => now + 86_400,
+      "entries" => entries
+    }
+
+    File.write!(Path.join(dir, "items-index.json"), Jason.encode!(Trust.sign(index, priv)))
+    dir
+  end
+
+  @doc "An item payload (unsigned) for tests."
+  def item_payload(item, nb) do
+    tiers = item[:tiers] || %{item.id => %{"tier" => "large", "tools" => true}}
+
+    agents =
+      for {name, _} <- tiers do
+        %{
+          "apiVersion" => "ragentic.io/v1",
+          "kind" => "Agent",
+          "metadata" => %{"name" => name, "namespace" => "ops"},
+          "spec" => %{"system" => "You are #{name}."}
+        }
+      end
+
+    %{
+      "kind" => "item",
+      "id" => item.id,
+      "version" => item.version,
+      "not_before" => nb,
+      "expires" => nb + 86_400 * 90,
+      "item" => %{
+        "kind" => item[:kind] || "Agent",
+        "title" => item[:title] || "Item #{item.id}",
+        "description" => "The #{item.id} item.",
+        "categories" => item[:categories] || ["ai"],
+        "keywords" => ["test"],
+        "publisher" => item[:publisher] || "ragentic",
+        "provides" => item[:provides] || []
+      },
+      "manifests" => agents,
+      "models" => tiers,
+      "provenance" => %{},
+      "rights" => %{"license" => "MIT"}
+    }
+  end
 end

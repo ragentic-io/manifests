@@ -1,0 +1,1095 @@
+---
+kind: Package
+metadata:
+  name: dev-team
+spec:
+  description: a software development team — triage, architect, developer, reviewer, QA, release, scrum-master — working a ticket graph
+  manifests:
+    - kind: Workspace
+      metadata:
+        name: devteam
+      spec: {}
+    - kind: Schema
+      metadata:
+        name: sdlc
+        namespace: devteam
+      spec:
+        description: tickets, their artifacts and the hand-offs that move them between stages
+        edges:
+          ABOUT:
+            from: Decision
+            to: Task
+          BELONGS_TO:
+            from: Ticket
+            to: Epic
+          BLOCKS:
+            from: Ticket
+            to: Ticket
+          DEPENDS_ON:
+            from: Task
+            to: Task
+          FOR:
+            from: Task
+            to: Ticket
+          PART_OF:
+            from: Task
+            to: Goal
+          PRODUCED:
+            from: Ticket
+            to: Artifact
+        nodes:
+          Artifact:
+            properties:
+              author:
+                type: string
+              body:
+                type: string
+              id:
+                type: string
+              kind:
+                enum:
+                  - triage
+                  - design
+                  - plan
+                  - patch
+                  - review
+                  - test-report
+                  - release-note
+                type: string
+              ticket:
+                type: string
+            required:
+              - id
+              - kind
+              - ticket
+          Decision:
+            properties:
+              at:
+                type: string
+              goal:
+                type: string
+              id:
+                type: string
+              pass:
+                type: boolean
+              statement:
+                type: string
+              task:
+                type: string
+            required:
+              - id
+          Epic:
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+            required:
+              - id
+          Goal:
+            properties:
+              id:
+                type: string
+              objective:
+                type: string
+              state:
+                type: string
+              tasks:
+                type: integer
+              team:
+                type: string
+            required:
+              - id
+          Report:
+            properties:
+              at:
+                type: string
+              body:
+                type: string
+              id:
+                type: string
+            required:
+              - id
+          Task:
+            properties:
+              agent:
+                type: string
+              attempts:
+                type: integer
+              criteria:
+                type: string
+              discipline:
+                type: string
+              goal:
+                type: string
+              id:
+                type: string
+              note:
+                type: string
+              result:
+                type: string
+              state:
+                type: string
+              task:
+                type: string
+              ticket:
+                type: string
+              title:
+                type: string
+            required:
+              - id
+          Ticket:
+            properties:
+              acceptance:
+                type: string
+              assignee:
+                type: string
+              bounces:
+                type: integer
+              branch:
+                type: string
+              description:
+                type: string
+              id:
+                type: string
+              notes:
+                type: string
+              pr:
+                type: string
+              priority:
+                enum:
+                  - p0
+                  - p1
+                  - p2
+                  - p3
+                type: string
+              repo:
+                type: string
+              stage:
+                enum:
+                  - backlog
+                  - triage
+                  - design
+                  - implement
+                  - review
+                  - test
+                  - done
+                  - blocked
+                type: string
+              title:
+                type: string
+              topic:
+                enum:
+                  - feature
+                  - bug
+                  - chore
+                  - docs
+                  - infra
+                type: string
+              touches:
+                items:
+                  type: string
+                type: array
+            required:
+              - id
+          ToDesign:
+            properties:
+              id:
+                type: string
+              ticket:
+                type: string
+            required:
+              - id
+              - ticket
+          ToImplement:
+            properties:
+              id:
+                type: string
+              ticket:
+                type: string
+            required:
+              - id
+              - ticket
+          ToRelease:
+            properties:
+              id:
+                type: string
+              ticket:
+                type: string
+            required:
+              - id
+              - ticket
+          ToReview:
+            properties:
+              id:
+                type: string
+              ticket:
+                type: string
+            required:
+              - id
+              - ticket
+          ToTest:
+            properties:
+              id:
+                type: string
+              ticket:
+                type: string
+            required:
+              - id
+              - ticket
+          ToTriage:
+            properties:
+              id:
+                type: string
+              ticket:
+                type: string
+            required:
+              - id
+              - ticket
+        strict: false
+    - kind: Agent
+      metadata:
+        name: triage
+        namespace: devteam
+      spec:
+        context: false
+        description: reads new tickets, classifies them and writes acceptance criteria
+        memory: false
+        system: |
+          You triage tickets for a software team. For the ticket you are given, decide its topic
+          (feature, bug, chore, docs, infra) and priority (p0 urgent … p3 someday) and write two or three
+          acceptance criteria. Features go to stage design; bugs, chores, docs and infra go to stage implement.
+          Update the ticket with your graph tool — write_graph (workspace "devteam") or graph_write_devteam,
+          whichever you have — writing ONE node: label "Ticket", properties {id: "<ID>", stage: "<design or implement>", topic: "<topic>", priority: "<priority>", acceptance: "<criteria>", assignee: "<architect or developer>"}.
+          Only the ticket you were given — never invent tickets. Then answer with your reasoning in two or three sentences.
+        tools:
+          - graph:write:devteam
+    - kind: Agent
+      metadata:
+        name: architect
+        namespace: devteam
+      spec:
+        context: true
+        description: designs features before they are built
+        memory: false
+        system: |
+          You are the architect. For the ticket you are given, write a short design: the approach, the
+          components or files to touch (look at the repository in your working directory when the ticket
+          names it), data or API changes, and risks.
+          Update the ticket with your graph tool — write_graph (workspace "devteam") or graph_write_devteam,
+          whichever you have — writing ONE node: label "Ticket", properties {id: "<ID>", stage: "implement", assignee: "developer"}.
+          Then answer with the design itself, as plain text.
+        tools:
+          - graph:write:devteam
+    - kind: Agent
+      metadata:
+        name: developer
+        namespace: devteam
+      spec:
+        context: true
+        description: implements tickets — a concrete plan and the change, step by step
+        memory: false
+        system: |
+          You are the developer. For the ticket you are given (and its design, if any), implement it.
+          When the ticket's repo is the repository in your working directory: read AGENTS.md, make the
+          change there (your working directory is already a git worktree on its own branch — `git branch
+          --show-current` names it), build and verify it for real — `mix compile --warnings-as-errors`,
+          `mix test <files you touched>`, `cargo test` in the crate when you touched Rust (deps/glider_ex),
+          and for anything end-to-end start the server yourself on a free port (`PORT=41xx mix phx.server`
+          in the background, the local Postgres is there; `E2E_BASE_URL=http://localhost:41xx pnpm e2e`
+          in e2e/) and stop what you started — then commit with a clear message that names the ticket.
+          When your session is signed in to GitHub (the system prompt says so): `git push -u origin HEAD`,
+          open the pull request against main (`gh pr create --base main --title "<ID>: <the ticket's title>"
+          --body "<what changed and how you verified it>"`; when you have the open_pull_request tool, call it
+          instead of gh pr create: it may hold the pull request until your reviewer has room, and a held
+          one is done, not a failure), then `gh pr checks <number> --watch` — it blocks
+          until every check has finished; fix what fails and push until they are green. A red or pending
+          check is not done. Your turn ends when you answer and nothing notifies you afterwards, so never
+          answer while a check is still running. When the session is not signed in, commit and name the
+          branch. When the ticket's repo is another repository, write the implementation as exact steps
+          and code instead. If a reviewer or QA sent it back, start from the branch named in the ticket
+          (`git switch <branch>`), address their notes first, push again.
+          Update the ticket with your graph tool — write_graph (workspace "devteam") or graph_write_devteam,
+          whichever you have — writing ONE node: label "Ticket", properties {id: "<ID>", stage: "review", assignee: "reviewer", branch: "<the branch you committed on>", pr: "<the pull request URL, if any>"}.
+          Then answer with what you changed and how you verified it (branch, commit, pull request, checks, files, tests).
+        tools:
+          - graph:write:devteam
+          - github.*
+    - kind: Agent
+      metadata:
+        name: reviewer
+        namespace: devteam
+      spec:
+        context: false
+        description: reviews implementations for correctness, scope and risk
+        memory: false
+        system: |
+          You review code changes. For the ticket you are given, look at the developer's branch when the
+          ticket names one (git log main..<branch> and git diff main...<branch> in your working directory —
+          all branches of the repository are visible there; `git worktree`/`git switch` to it and run
+          `mix test` on what changed when reading is not enough) and check it against
+          the acceptance criteria and design: correctness, missing cases, tests, scope creep, risk. When the
+          ticket names a pull request and your session is signed in to GitHub, review it there too:
+          `gh pr diff <number>`, `gh pr checks <number>` (red checks are a request in themselves), and leave
+          your verdict on it — `gh pr review <number> --approve` or `--request-changes --body "<requests>"`.
+          Decide: approve, or send back with concrete requests.
+          Update the ticket with your graph tool — write_graph (workspace "devteam") or graph_write_devteam,
+          whichever you have — writing ONE node: label "Ticket", properties {id: "<ID>", stage: "<test if approved, implement if sent back>", assignee: "<qa or developer>", notes: "<your requests, or approved>"}.
+          Then answer with the review itself, as plain text.
+        tools:
+          - graph:write:devteam
+          - github.*
+    - kind: Agent
+      metadata:
+        name: qa
+        namespace: devteam
+      spec:
+        context: false
+        description: tests what was built against the acceptance criteria
+        memory: false
+        system: |
+          You are QA. For the ticket you are given, write the test plan from its acceptance criteria and run
+          it for real: switch your worktree to the ticket's branch, `mix compile --warnings-as-errors`,
+          `mix test` (the files that changed, then the suite if they are central), `cargo test` for Rust,
+          and for end-to-end work start the server on a free port (`PORT=41xx mix phx.server` in the
+          background, local Postgres) and run the suite against it (`E2E_BASE_URL=http://localhost:41xx
+          pnpm e2e` in e2e/), stopping what you started. You have the whole toolchain; "could not run"
+          is not a verdict. When the ticket names a pull request and your session is signed in to GitHub,
+          its checks count too: `gh pr checks <number>` must be green (`gh run view <id> --log-failed` says
+          why one is not). Report pass, or fail with the failing cases and their output.
+          Update the ticket with your graph tool — write_graph (workspace "devteam") or graph_write_devteam,
+          whichever you have — writing ONE node: label "Ticket", properties {id: "<ID>", stage: "<done if pass, implement if fail>", assignee: "<release-manager or developer>", notes: "<failing cases, or passed>"}.
+          Then answer with the plan and results, as plain text.
+        tools:
+          - graph:write:devteam
+          - github.*
+    - kind: Agent
+      metadata:
+        name: release-manager
+        namespace: devteam
+      spec:
+        context: false
+        description: closes tickets with a release note
+        memory: false
+        system: |
+          You manage releases. For the ticket you are given: when it names a pull request and your session
+          is signed in to GitHub, ship it — `gh pr view <number> --json state,mergeable,reviewDecision,reviews,statusCheckRollup`
+          must show it open, mergeable and every check green, and the review must be in: either reviewDecision
+          APPROVED, or — because GitHub refuses to let the team's own identity approve a pull request it
+          opened — a COMMENTED review by that identity saying it approves, which the ticket's notes
+          ("approved") confirm. That counts as approved; only a repository rule that demands a formal
+          approval stops you, and then you say so. Then `gh pr merge <number> --squash --delete-branch`.
+          Red checks or an unresolved request for changes go back to the developer with the reason
+          (write the ticket with stage "implement", assignee "developer", notes: why — and a ToImplement
+          hand-off {id: "<ID>:implement", ticket: "<ID>"} so the developer actually runs). Then write a user-facing release note: what changed, why it
+          matters, anything to watch (the merge commit, or the branch to merge when there was no pull request).
+          Update the ticket with your graph tool — write_graph (workspace "devteam") or graph_write_devteam,
+          whichever you have — writing ONE node: label "Ticket", properties {id: "<ID>", stage: "done", notes: "released"}.
+          Then answer with the release note itself, as plain text.
+        tools:
+          - graph:write:devteam
+          - github.*
+    - kind: Agent
+      metadata:
+        name: scrum-master
+        namespace: devteam
+      spec:
+        context: true
+        description: the team's coordinator and voice — creates tickets, reports the board, unblocks
+        memory: true
+        system: |
+          You are the scrum-master of a software team of agents (triage, architect, developer,
+          reviewer, qa, release-manager). Work lives in the devteam workspace as Ticket nodes with a
+          stage (backlog, triage, design, implement, review, test, done, blocked) and Artifact nodes
+          the team produced. Stages advance when a hand-off node is written: ToTriage, ToDesign,
+          ToImplement, ToReview, ToTest, ToRelease.
+          - To create work: write_graph (workspace devteam) or graph_write_devteam with a Ticket {id: "T-<short-slug>", title, description,
+            stage: "backlog", repo} and a ToTriage {id: "<ID>:triage", ticket: "<ID>"} — triage takes it from there.
+          - To report: query_graph, e.g. MATCH (t:Ticket {ws:"devteam"}) RETURN t.key, t.title, t.stage, t.assignee
+            and MATCH (t:Ticket {ws:"devteam", key:"T-x"})-[:PRODUCED]->(a:Artifact) RETURN a.kind, a.body.
+          - To push a stuck ticket: write its next hand-off node again, or ask the agent directly.
+          - To plan a feature (someone asks you to plan, scope or break down work): ask the two or three
+            questions you need, then propose the plan as a DIRECTED ACYCLIC GRAPH of tasks — each with an
+            id, a discipline (triage, design, implement, review, test, release), depends_on (ids), a title
+            and completion criteria — fanning out what can run in parallel and fanning in where results
+            meet. When they say go, apply it with apply_manifest as
+            kind: Goal, metadata: {name: <slug>, namespace: devteam}, spec: {team: product, objective: "...", tasks: [...]}
+            and tell them the goal name. The goal then runs on its own; report its status from
+            MATCH (t:Task {ws:"devteam", goal:"<slug>"}) RETURN t.task, t.state, t.agent, t.note when asked.
+          - When they accept a plan ("go", "accepted", "start") you apply it in that same turn — never
+            answer that you cannot act or that no action was taken: applying the Goal IS the action.
+          - What the team can do: every member runs in its own git worktree of the ragentic repository with
+            the whole toolchain — mix, cargo, node/pnpm/npx (Playwright included), psql, curl, a dev server on
+            a free port — so "passes" is verified locally by the task itself. With the team's GitHub App
+            (the github App's credential set) every member is signed in to GitHub: the developer pushes its
+            branch and opens the pull request, the reviewer reviews it there, QA watches its checks, the
+            release manager merges it when it is approved and green — so a feature is delivered when its
+            pull request is merged, and a plan ends with review → test → release. Without the App, nobody
+            can push: branches are named in the reports for DJ to merge. Plan with what is there.
+          Be concrete and brief: ticket ids, stages, who has it, what is blocked and why.
+        tools:
+          - graph
+          - graph:write:devteam
+          - context
+          - platform.apply_manifest
+          - platform.describe_manifest
+          - workflow:devteam/*
+          - agent:devteam/triage
+          - agent:devteam/architect
+          - agent:devteam/developer
+          - agent:devteam/reviewer
+          - agent:devteam/qa
+          - github.*
+    - kind: Team
+      metadata:
+        name: product
+        namespace: devteam
+      spec:
+        description: the product team — the scrum-master leads, the stages are its members
+        disciplines:
+          design: architect
+          implement: developer
+          release: release-manager
+          review: reviewer
+          test: qa
+          triage: triage
+        inherit:
+          rules: |
+            You work goals as tasks in a DAG: do your task, verify it for real, and report what you did
+            and how it meets the completion criteria — your report is what the next tasks receive. Always
+            name the branch you worked on, the commit, and the pull request when you opened one. You have
+            the whole toolchain in your worktree (mix, cargo, node/pnpm/npx, psql, curl, a dev server on
+            PORT=41xx). When your session is signed in to GitHub (the system prompt says so) you push your
+            own branch and open pull requests — never to main directly; a pull request's checks must be
+            green before you report done. Otherwise commit locally and name the branch. When
+            you decide something others should know (an approach rejected, a scope cut, a risk accepted),
+            write it as a Decision node in workspace devteam: {id: "<goal>:<task>:<n>", goal, task, statement}.
+          tools:
+            - graph
+            - graph:write:devteam
+            - context
+            - github.*
+          workflows:
+            - workflow:devteam/*
+        lead: scrum-master
+        members:
+          - triage
+          - architect
+          - developer
+          - reviewer
+          - qa
+          - release-manager
+        spawn:
+          allow: true
+          maxMembers: 12
+    - kind: Workflow
+      metadata:
+        name: intake
+        namespace: devteam
+      spec:
+        description: a new ticket — POST /hooks/<token> with {title, description, topic?, priority?, repo?, id?, epic?} — into the backlog; handed to triage now, or when its epic's current ticket is done
+        edges:
+          - from: start
+            to: create
+        nodes:
+          - config:
+              description: a ticket request
+              example:
+                description: Users asked for a dark theme on the dashboard.
+                repo: ragentic
+                title: Add dark mode
+            id: start
+            type: trigger
+          - config:
+              code: |
+                local t = input.trigger or {}
+                if not t.title or t.title == "" then error("a ticket needs a title") end
+                local id = t.id
+                if not id or id == "" then
+                  local rows = ragentic.graph.query('MATCH (t:Ticket {ws:"devteam"}) RETURN count(t) AS n')
+                  local n = (rows and rows[1] and rows[1].n) or 0
+                  id = string.format("T-%03d", n + 1)
+                end
+                local props = { id = id, title = t.title, description = t.description or "", stage = "backlog", repo = t.repo or "" }
+                if t.topic then props.topic = t.topic end
+                if t.priority then props.priority = t.priority end
+                local ok, err = ragentic.graph.put_node("Ticket", props)
+                if not ok then error("ticket: " .. tostring(err)) end
+                -- an epic runs one ticket at a time: the first starts now, the rest wait their turn
+                local start = true
+                if t.epic and t.epic ~= "" then
+                  ragentic.graph.put_node("Epic", { id = t.epic, title = t.epic_title or t.epic })
+                  local ok2, err2 = ragentic.graph.put_edge("BELONGS_TO", "Ticket", id, "Epic", t.epic)
+                  if not ok2 then error("epic: " .. tostring(err2)) end
+                  local busy = ragentic.graph.query(string.format('MATCH (o:Ticket {ws:"devteam"})-[:BELONGS_TO]->(e:Epic {ws:"devteam", key:%q}) WHERE o.key <> %q AND o.stage <> "done" AND o.stage <> "backlog" RETURN count(o) AS n', t.epic, id))
+                  start = ((busy and busy[1] and busy[1].n) or 0) == 0
+                end
+                if start then
+                  -- claimed for the epic right away: intake runs are asynchronous, and two tickets
+                  -- filed together must not both start
+                  ragentic.graph.put_node("Ticket", { id = id, stage = "triage" })
+                  ok, err = ragentic.graph.put_node("ToTriage", { id = id .. ":triage", ticket = id })
+                  if not ok then error("hand-off: " .. tostring(err)) end
+                  ragentic.log("ticket " .. id .. " created, handed to triage")
+                else
+                  ragentic.log("ticket " .. id .. " queued in epic " .. t.epic)
+                end
+                return { id = id, title = t.title, stage = "backlog", started = start }
+            id: create
+            type: lua
+        triggers:
+          - type: webhook
+          - type: manual
+    - kind: Workflow
+      metadata:
+        name: stage-triage
+        namespace: devteam
+      spec:
+        description: a ToTriage hand-off — the triage agent classifies the ticket and hands it on
+        edges:
+          - from: start
+            to: prep
+          - from: prep
+            to: ask
+          - from: ask
+            to: advance
+        nodes:
+          - id: start
+            type: trigger
+          - config:
+              code: |
+                local parts = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToTriage/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToTriage {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    local r = id and ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.title AS title, t.description AS description, t.repo AS repo, t.notes AS notes', id))
+                    r = r and r[1]
+                    if r then parts[#parts + 1] = string.format("Ticket %s: %s\nrepo: %s\n%s\nNotes: %s", id, r.title or "", r.repo or "-", r.description or "", r.notes or "-") end
+                  end
+                end
+                if #parts == 0 then error("no devteam ToTriage hand-off in this event") end
+                return "Triage this ticket.\n\n" .. table.concat(parts, "\n\n")
+            id: prep
+            type: lua
+          - config:
+              agent: triage
+              prompt: '{{prep}}'
+            id: ask
+            type: agent
+          - config:
+              code: |
+                -- deterministic hand-off: the stage the agent set decides the next label; its answer is the artifact
+                local next_label = { design = "ToDesign", implement = "ToImplement" }
+                local text = (input.ask and input.ask.text) or ""
+                local done = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToTriage/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToTriage {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    if id then
+                      local r = ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.stage AS stage', id))
+                      local stage = r and r[1] and r[1].stage
+                      if text ~= "" then
+                        local ok, err = ragentic.graph.put_node("Artifact", { id = id .. ":triage", kind = "triage", ticket = id, author = "triage", body = text })
+                        if not ok then error("artifact: " .. tostring(err)) end
+                        ragentic.graph.put_edge("PRODUCED", "Ticket", id, "Artifact", id .. ":triage")
+                      end
+                      local nl = stage and next_label[stage]
+                      if nl then
+                        local ok, err = ragentic.graph.put_node(nl, { id = id .. ":" .. stage, ticket = id })
+                        if not ok then error("hand-off: " .. tostring(err)) end
+                      end
+                      ragentic.log(string.format("%s: stage %s, hand-off %s", id, tostring(stage), nl or "none"))
+                      done[#done + 1] = { ticket = id, stage = stage or "unchanged", handoff = nl or "none" }
+                    end
+                  end
+                end
+                return done
+            id: advance
+            type: lua
+        triggers:
+          - label: ToTriage
+            type: graph_event
+          - type: manual
+    - kind: Workflow
+      metadata:
+        name: stage-design
+        namespace: devteam
+      spec:
+        description: a ToDesign hand-off — the architect designs the feature and hands it to the developer
+        edges:
+          - from: start
+            to: prep
+          - from: prep
+            to: ask
+          - from: ask
+            to: advance
+        nodes:
+          - id: start
+            type: trigger
+          - config:
+              code: |
+                local parts = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToDesign/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToDesign {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    local r = id and ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.title AS title, t.description AS description, t.repo AS repo, t.acceptance AS acceptance, t.topic AS topic, t.priority AS priority', id))
+                    r = r and r[1]
+                    if r then parts[#parts + 1] = string.format("Ticket %s: %s (%s, %s)\nrepo: %s\n%s\nAcceptance: %s", id, r.title or "", r.topic or "-", r.priority or "-", r.repo or "-", r.description or "", r.acceptance or "-") end
+                  end
+                end
+                if #parts == 0 then error("no devteam ToDesign hand-off in this event") end
+                return "Design this feature.\n\n" .. table.concat(parts, "\n\n")
+            id: prep
+            type: lua
+          - config:
+              agent: architect
+              prompt: '{{prep}}'
+            id: ask
+            type: agent
+          - config:
+              code: |
+                -- deterministic hand-off: the stage the agent set decides the next label; its answer is the artifact
+                local next_label = { implement = "ToImplement" }
+                local text = (input.ask and input.ask.text) or ""
+                local done = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToDesign/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToDesign {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    if id then
+                      local r = ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.stage AS stage', id))
+                      local stage = r and r[1] and r[1].stage
+                      if text ~= "" then
+                        local ok, err = ragentic.graph.put_node("Artifact", { id = id .. ":design", kind = "design", ticket = id, author = "architect", body = text })
+                        if not ok then error("artifact: " .. tostring(err)) end
+                        ragentic.graph.put_edge("PRODUCED", "Ticket", id, "Artifact", id .. ":design")
+                      end
+                      local nl = stage and next_label[stage]
+                      if nl then
+                        local ok, err = ragentic.graph.put_node(nl, { id = id .. ":" .. stage, ticket = id })
+                        if not ok then error("hand-off: " .. tostring(err)) end
+                      end
+                      ragentic.log(string.format("%s: stage %s, hand-off %s", id, tostring(stage), nl or "none"))
+                      done[#done + 1] = { ticket = id, stage = stage or "unchanged", handoff = nl or "none" }
+                    end
+                  end
+                end
+                return done
+            id: advance
+            type: lua
+        triggers:
+          - label: ToDesign
+            type: graph_event
+          - type: manual
+    - kind: Workflow
+      metadata:
+        name: stage-implement
+        namespace: devteam
+      spec:
+        description: a ToImplement hand-off — the developer implements and hands it to review (one run per ticket, each an instance of its own)
+        edges:
+          - from: start
+            to: prep
+          - from: prep
+            to: ask
+          - from: ask
+            to: advance
+        nodes:
+          - id: start
+            type: trigger
+          - config:
+              code: |
+                -- one run per ticket (each: true): the ticket is the run's unit, its touches its conflicts
+                local parts, tickets, touches = {}, {}, {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToImplement/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToImplement {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    local r = id and ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.title AS title, t.description AS description, t.repo AS repo, t.acceptance AS acceptance, t.notes AS notes, t.branch AS branch, t.pr AS pr, t.touches AS touches', id))
+                    r = r and r[1]
+                    if r then
+                      local d = ragentic.graph.query(string.format('MATCH (a:Artifact {ws:"devteam", key:%q}) RETURN a.body AS body', id .. ":design"))
+                      local design = (d and d[1] and d[1].body) or "-"
+                      parts[#parts + 1] = string.format("Ticket %s: %s\nrepo: %s\nBranch so far: %s\nPull request so far: %s\n%s\nAcceptance: %s\nDesign: %s\nNotes from review/QA: %s", id, r.title or "", r.repo or "-", r.branch or "-", r.pr or "-", r.description or "", r.acceptance or "-", design, r.notes or "-")
+                      tickets[#tickets + 1] = id
+                      if type(r.touches) == "table" then
+                        for _, t in ipairs(r.touches) do touches[#touches + 1] = tostring(t) end
+                      elseif type(r.touches) == "string" and r.touches ~= "" then
+                        touches[#touches + 1] = r.touches
+                      end
+                    end
+                  end
+                end
+                if #parts == 0 then error("no devteam ToImplement hand-off in this event") end
+                return {
+                  prompt = "Implement this ticket.\n\n" .. table.concat(parts, "\n\n"),
+                  ticket = table.concat(tickets, "+"),
+                  touches = table.concat(touches, "\n")
+                }
+            id: prep
+            type: lua
+          - config:
+              agent: developer
+              prompt: '{{prep.prompt}}'
+              touches: '{{prep.touches}}'
+              unit: '{{prep.ticket}}'
+            id: ask
+            type: agent
+          - config:
+              code: |
+                -- deterministic hand-off: the stage the agent set decides the next label; its answer is the artifact
+                local next_label = { review = "ToReview" }
+                local text = (input.ask and input.ask.text) or ""
+                local done = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToImplement/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToImplement {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    if id then
+                      local r = ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.stage AS stage', id))
+                      local stage = r and r[1] and r[1].stage
+                      if text ~= "" then
+                        local ok, err = ragentic.graph.put_node("Artifact", { id = id .. ":patch", kind = "patch", ticket = id, author = "developer", body = text })
+                        if not ok then error("artifact: " .. tostring(err)) end
+                        ragentic.graph.put_edge("PRODUCED", "Ticket", id, "Artifact", id .. ":patch")
+                      end
+                      local nl = stage and next_label[stage]
+                      if nl then
+                        local ok, err = ragentic.graph.put_node(nl, { id = id .. ":" .. stage, ticket = id })
+                        if not ok then error("hand-off: " .. tostring(err)) end
+                      end
+                      ragentic.log(string.format("%s: stage %s, hand-off %s", id, tostring(stage), nl or "none"))
+                      done[#done + 1] = { ticket = id, stage = stage or "unchanged", handoff = nl or "none" }
+                    end
+                  end
+                end
+                return done
+            id: advance
+            type: lua
+        triggers:
+          - each: true
+            label: ToImplement
+            type: graph_event
+          - type: manual
+    - kind: Workflow
+      metadata:
+        name: stage-review
+        namespace: devteam
+      spec:
+        description: a ToReview hand-off — the reviewer approves or sends back
+        edges:
+          - from: start
+            to: prep
+          - from: prep
+            to: ask
+          - from: ask
+            to: advance
+        nodes:
+          - id: start
+            type: trigger
+          - config:
+              code: |
+                local parts = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToReview/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToReview {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    local r = id and ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.title AS title, t.acceptance AS acceptance, t.branch AS branch, t.pr AS pr', id))
+                    r = r and r[1]
+                    if r then
+                      local d = ragentic.graph.query(string.format('MATCH (a:Artifact {ws:"devteam", key:%q}) RETURN a.body AS body', id .. ":design"))
+                      local p = ragentic.graph.query(string.format('MATCH (a:Artifact {ws:"devteam", key:%q}) RETURN a.body AS body', id .. ":patch"))
+                      parts[#parts + 1] = string.format("Ticket %s: %s\nBranch: %s\nPull request: %s\nAcceptance: %s\nDesign: %s\nImplementation report: %s", id, r.title or "", r.branch or "-", r.pr or "-", r.acceptance or "-", (d and d[1] and d[1].body) or "-", (p and p[1] and p[1].body) or "-")
+                    end
+                  end
+                end
+                if #parts == 0 then error("no devteam ToReview hand-off in this event") end
+                return "Review this implementation.\n\n" .. table.concat(parts, "\n\n")
+            id: prep
+            type: lua
+          - config:
+              agent: reviewer
+              prompt: '{{prep}}'
+            id: ask
+            type: agent
+          - config:
+              code: |
+                -- deterministic hand-off: the stage the agent set decides the next label; its answer is the artifact
+                local next_label = { test = "ToTest", implement = "ToImplement" }
+                local text = (input.ask and input.ask.text) or ""
+                local done = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToReview/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToReview {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    if id then
+                      local r = ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.stage AS stage', id))
+                      local stage = r and r[1] and r[1].stage
+                      if text ~= "" then
+                        local ok, err = ragentic.graph.put_node("Artifact", { id = id .. ":review", kind = "review", ticket = id, author = "reviewer", body = text })
+                        if not ok then error("artifact: " .. tostring(err)) end
+                        ragentic.graph.put_edge("PRODUCED", "Ticket", id, "Artifact", id .. ":review")
+                      end
+                      local nl = stage and next_label[stage]
+                      if nl == "ToImplement" then
+                        local b = ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.bounces AS bounces', id))
+                        local bounces = ((b and b[1] and b[1].bounces) or 0) + 1
+                        if bounces >= 2 then
+                          local ok, err = ragentic.graph.put_node("Ticket", { id = id, stage = "blocked", bounces = bounces, notes = "needs a human: sent back " .. bounces .. " times — see the latest review/test-report artifact" })
+                          if not ok then error("block: " .. tostring(err)) end
+                          stage, nl = "blocked", nil
+                        else
+                          ragentic.graph.put_node("Ticket", { id = id, bounces = bounces })
+                        end
+                      end
+                      if nl then
+                        local ok, err = ragentic.graph.put_node(nl, { id = id .. ":" .. stage, ticket = id })
+                        if not ok then error("hand-off: " .. tostring(err)) end
+                      end
+                      ragentic.log(string.format("%s: stage %s, hand-off %s", id, tostring(stage), nl or "none"))
+                      done[#done + 1] = { ticket = id, stage = stage or "unchanged", handoff = nl or "none" }
+                    end
+                  end
+                end
+                return done
+            id: advance
+            type: lua
+        triggers:
+          - label: ToReview
+            type: graph_event
+          - type: manual
+    - kind: Workflow
+      metadata:
+        name: stage-test
+        namespace: devteam
+      spec:
+        description: a ToTest hand-off — QA passes it to release or fails it back to the developer
+        edges:
+          - from: start
+            to: prep
+          - from: prep
+            to: ask
+          - from: ask
+            to: advance
+        nodes:
+          - id: start
+            type: trigger
+          - config:
+              code: |
+                local parts = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToTest/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToTest {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    local r = id and ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.title AS title, t.acceptance AS acceptance, t.branch AS branch, t.pr AS pr', id))
+                    r = r and r[1]
+                    if r then
+                      local p = ragentic.graph.query(string.format('MATCH (a:Artifact {ws:"devteam", key:%q}) RETURN a.body AS body', id .. ":patch"))
+                      parts[#parts + 1] = string.format("Ticket %s: %s\nBranch: %s\nPull request: %s\nAcceptance: %s\nImplementation report: %s", id, r.title or "", r.branch or "-", r.pr or "-", r.acceptance or "-", (p and p[1] and p[1].body) or "-")
+                    end
+                  end
+                end
+                if #parts == 0 then error("no devteam ToTest hand-off in this event") end
+                return "Test this ticket.\n\n" .. table.concat(parts, "\n\n")
+            id: prep
+            type: lua
+          - config:
+              agent: qa
+              prompt: '{{prep}}'
+            id: ask
+            type: agent
+          - config:
+              code: |
+                -- deterministic hand-off: the stage the agent set decides the next label; its answer is the artifact
+                local next_label = { done = "ToRelease", implement = "ToImplement" }
+                local text = (input.ask and input.ask.text) or ""
+                local done = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToTest/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToTest {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    if id then
+                      local r = ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.stage AS stage', id))
+                      local stage = r and r[1] and r[1].stage
+                      if text ~= "" then
+                        local ok, err = ragentic.graph.put_node("Artifact", { id = id .. ":test-report", kind = "test-report", ticket = id, author = "qa", body = text })
+                        if not ok then error("artifact: " .. tostring(err)) end
+                        ragentic.graph.put_edge("PRODUCED", "Ticket", id, "Artifact", id .. ":test-report")
+                      end
+                      local nl = stage and next_label[stage]
+                      if nl == "ToImplement" then
+                        local b = ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.bounces AS bounces', id))
+                        local bounces = ((b and b[1] and b[1].bounces) or 0) + 1
+                        if bounces >= 2 then
+                          local ok, err = ragentic.graph.put_node("Ticket", { id = id, stage = "blocked", bounces = bounces, notes = "needs a human: sent back " .. bounces .. " times — see the latest review/test-report artifact" })
+                          if not ok then error("block: " .. tostring(err)) end
+                          stage, nl = "blocked", nil
+                        else
+                          ragentic.graph.put_node("Ticket", { id = id, bounces = bounces })
+                        end
+                      end
+                      if nl then
+                        local ok, err = ragentic.graph.put_node(nl, { id = id .. ":" .. stage, ticket = id })
+                        if not ok then error("hand-off: " .. tostring(err)) end
+                      end
+                      ragentic.log(string.format("%s: stage %s, hand-off %s", id, tostring(stage), nl or "none"))
+                      done[#done + 1] = { ticket = id, stage = stage or "unchanged", handoff = nl or "none" }
+                    end
+                  end
+                end
+                return done
+            id: advance
+            type: lua
+        triggers:
+          - label: ToTest
+            type: graph_event
+          - type: manual
+    - kind: Workflow
+      metadata:
+        name: stage-release
+        namespace: devteam
+      spec:
+        description: a ToRelease hand-off — the release manager closes the ticket with a release note
+        edges:
+          - from: start
+            to: prep
+          - from: prep
+            to: ask
+          - from: ask
+            to: advance
+        nodes:
+          - id: start
+            type: trigger
+          - config:
+              code: |
+                local parts = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToRelease/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToRelease {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    local r = id and ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.title AS title, t.description AS description, t.branch AS branch, t.pr AS pr', id))
+                    r = r and r[1]
+                    if r then
+                      local p = ragentic.graph.query(string.format('MATCH (a:Artifact {ws:"devteam", key:%q}) RETURN a.body AS body', id .. ":patch"))
+                      parts[#parts + 1] = string.format("Ticket %s: %s\n%s\nBranch: %s\nPull request: %s\nWhat was built: %s", id, r.title or "", r.description or "", r.branch or "-", r.pr or "-", (p and p[1] and p[1].body) or "-")
+                    end
+                  end
+                end
+                if #parts == 0 then error("no devteam ToRelease hand-off in this event") end
+                return "Release this ticket.\n\n" .. table.concat(parts, "\n\n")
+            id: prep
+            type: lua
+          - config:
+              agent: release-manager
+              prompt: '{{prep}}'
+            id: ask
+            type: agent
+          - config:
+              code: |
+                -- deterministic hand-off: the stage the agent set decides the next label; its answer is the artifact
+                local next_label = {  }
+                local text = (input.ask and input.ask.text) or ""
+                local done = {}
+                for _, k in ipairs((input.trigger and input.trigger.keys) or {}) do
+                  local hid = k:match("^ws:devteam/ToRelease/(.+)$")
+                  if hid then
+                    local h = ragentic.graph.query(string.format('MATCH (h:ToRelease {ws:"devteam", key:%q}) RETURN h.ticket AS ticket', hid))
+                    local id = h and h[1] and h[1].ticket
+                    if id then
+                      local r = ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q}) RETURN t.stage AS stage', id))
+                      local stage = r and r[1] and r[1].stage
+                      if text ~= "" then
+                        local ok, err = ragentic.graph.put_node("Artifact", { id = id .. ":release-note", kind = "release-note", ticket = id, author = "release-manager", body = text })
+                        if not ok then error("artifact: " .. tostring(err)) end
+                        ragentic.graph.put_edge("PRODUCED", "Ticket", id, "Artifact", id .. ":release-note")
+                      end
+                      local nl = stage and next_label[stage]
+                      if nl then
+                        local ok, err = ragentic.graph.put_node(nl, { id = id .. ":" .. stage, ticket = id })
+                        if not ok then error("hand-off: " .. tostring(err)) end
+                      end
+                      -- the epic moves on: its next backlog ticket (lowest id) goes to triage
+                      if stage == "done" then
+                        local nxt = ragentic.graph.query(string.format('MATCH (t:Ticket {ws:"devteam", key:%q})-[:BELONGS_TO]->(e:Epic)<-[:BELONGS_TO]-(n:Ticket {stage:"backlog"}) RETURN n.key AS id ORDER BY id LIMIT 1', id))
+                        local nid = nxt and nxt[1] and nxt[1].id
+                        if nid then
+                          local ok, err = ragentic.graph.put_node("ToTriage", { id = nid .. ":triage", ticket = nid })
+                          if not ok then error("epic next: " .. tostring(err)) end
+                          ragentic.log(id .. " done; epic continues with " .. nid)
+                        end
+                      end
+                      ragentic.log(string.format("%s: stage %s, hand-off %s", id, tostring(stage), nl or "none"))
+                      done[#done + 1] = { ticket = id, stage = stage or "unchanged", handoff = nl or "none" }
+                    end
+                  end
+                end
+                return done
+            id: advance
+            type: lua
+        triggers:
+          - label: ToRelease
+            type: graph_event
+          - type: manual
+    - kind: Workflow
+      metadata:
+        name: standup
+        namespace: devteam
+      spec:
+        description: the daily standup — the board as it stands, summarized by the scrum-master into a Report node
+        edges:
+          - from: start
+            to: board
+          - from: board
+            to: ask
+          - from: ask
+            to: save
+        nodes:
+          - id: start
+            type: trigger
+          - config:
+              code: |
+                local rows = ragentic.graph.query('MATCH (t:Ticket {ws:"devteam"}) RETURN t.key AS id, t.title AS title, t.stage AS stage, t.assignee AS assignee, t.priority AS priority, t.notes AS notes ORDER BY t.stage') or {}
+                if #rows == 0 then return "The board is empty: no tickets yet." end
+                local lines = {}
+                for _, r in ipairs(rows) do
+                  lines[#lines + 1] = string.format("- %s [%s] %s — %s (%s) %s", r.id, r.stage or "?", r.title or "", r.assignee or "unassigned", r.priority or "-", r.notes and r.notes ~= "" and ("notes: " .. r.notes) or "")
+                end
+                return "Board (" .. #rows .. " tickets):\n" .. table.concat(lines, "\n")
+            id: board
+            type: lua
+          - config:
+              agent: scrum-master
+              prompt: |-
+                Write today's standup from this board: what moved, what is blocked or stuck in one stage, what needs a human decision. Under 120 words.
+
+                {{board}}
+            id: ask
+            type: agent
+          - config:
+              code: |
+                local at = (input.trigger and input.trigger.at) or "manual"
+                local text = (input.ask and input.ask.text) or ""
+                local ok, err = ragentic.graph.put_node("Report", { id = "standup-" .. at, body = text, at = at })
+                if not ok then error("report: " .. tostring(err)) end
+                return { id = "standup-" .. at, body = text }
+            id: save
+            type: lua
+        triggers:
+          - schedule: 0 14 * * 1-5
+            type: cron
+          - type: manual
+  version: 1.0.0

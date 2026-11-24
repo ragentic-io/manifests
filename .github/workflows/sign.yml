@@ -20,9 +20,14 @@ on:
     branches: [main]
     paths:
       - "catalog/apps/**"
+      - "catalog/items/**"
+      - "catalog/sources/**"
+      - "catalog/categories.json"
       - "catalog/registry.json"
       - "lib/mix/tasks/catalog*"
       - "lib/manifests/catalog_tools/**"
+      - "lib/manifests/items/**"
+      - "lib/manifests/items.ex"
   schedule:
     - cron: "17 6 * * *" # re-sign before signatures expire
   workflow_dispatch:
@@ -81,7 +86,7 @@ jobs:
           }
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -q -m "Sign catalog: index sequence $(seq catalog/index.json), browse sequence $(seq catalog/browse-index.json)"
+          git commit -q -m "Sign catalog: index sequence $(seq catalog/index.json), browse sequence $(seq catalog/browse-index.json), items sequence $(seq catalog/items-index.json)"
           # main must let github-actions[bot] push (a ruleset bypass actor)
           git push origin HEAD:main
           echo "pushed=true" >> "$GITHUB_OUTPUT"

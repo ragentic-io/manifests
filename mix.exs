@@ -44,6 +44,7 @@ defmodule Manifests.MixProject do
     [
       {:req_llm, "~> 1.18"},
       {:yaml_elixir, "~> 2.11"},
+      {:ymlr, "~> 5.1"},
       {:sourceror, "~> 1.8", only: [:dev, :test]},
       {:oban, "~> 2.0"},
       {:cinder, "~> 0.18"},

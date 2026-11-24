@@ -1,0 +1,737 @@
+---
+apiVersion: ragentic.io/v1
+kind: Workspace
+metadata:
+  name: demo
+spec:
+  description: A mock PLC and the plant around it, for demonstrations
+---
+apiVersion: ragentic.io/v1
+kind: PlcSimulator
+metadata:
+  name: tank-sim
+  namespace: demo
+spec:
+  bind: 0.0.0.0
+  cpu:
+    moduleType: CPU 1214C DC/DC/DC
+    name: TANK_1
+    orderCode: 6ES7 214-1AG40-0XB0
+  dbs:
+    '1': 16
+  description: Tank 1 — fill to the setpoint, settle, drain, count the batch
+  plant:
+    - st: LIMIT(0.0, Level + (SEL(Pump, 0.0, 6.0) - SEL(Valve, 0.0, 9.0)) * DT + NOISE(0.02), 100.0)
+      var: Level
+    - st: Level > 98.0
+      var: HighSwitch
+    - lua: return 210 + math.floor(15 * math.sin(t / 20))
+      var: Temp
+  port: 10102
+  scanMs: 50
+  sources:
+    - lang: st
+      name: tank.st
+      source: |
+        VAR_GLOBAL
+          Level      AT %ID0 : REAL;         (* level transmitter, 0..100 % *)
+          HighSwitch AT %IX4.0 : BOOL;       (* overflow float switch *)
+          Temp       AT %IW8 : INT;          (* tank temperature, 0.1 degC *)
+          Pump       AT %QX0.0 : BOOL;
+          Valve      AT %QX0.1 : BOOL;       (* the drain valve *)
+          Alarm      AT %QX0.2 : BOOL;
+          Running    AT %QX0.3 : BOOL;
+          HmiStart   AT %MX0.0 : BOOL;       (* push buttons an HMI or a workflow sets; *)
+          HmiStop    AT %MX0.1 : BOOL;       (* the program clears them *)
+          HmiReset   AT %MX0.2 : BOOL;
+          Setpoint   AT %DB1.DBD0 : REAL := 80.0;
+          Batches    AT %DB1.DBW4 : INT;
+        END_VAR
+
+        PROGRAM Tank
+        VAR
+          Hot : TON;
+        END_VAR
+          (* fill while running, not draining, below the setpoint *)
+          Pump := Running AND NOT Valve AND Level < Setpoint;
+          (* too hot for 5 s, or about to overflow: alarm *)
+          Hot(IN := Temp > 450, PT := T#5s);
+          Alarm := HighSwitch OR Hot.Q;
+        END_PROGRAM
+    - lang: ladder
+      name: station.ld
+      source: |
+        PROGRAM Station
+        VAR
+          Settle : TON;
+          Count : CTU;
+        END_VAR
+          (* start / stop seal-in; an alarm drops it *)
+          BST XIC(HmiStart) NXB XIC(Running) BND XIO(HmiStop) XIO(Alarm) OTE(Running);
+          XIC(HmiStart) OTU(HmiStart);
+          XIC(HmiStop) OTU(HmiStop);
+          (* full: settle 2 s, then drain until nearly empty *)
+          XIC(Running) CMP(Level >= Setpoint) TON(Settle, T#2s) OTL(Valve);
+          XIC(Valve) CMP(Level <= 5.0) OTU(Valve);
+          XIO(Running) OTU(Valve);
+          (* every drain is one batch *)
+          XIC(Valve) CTU(Count, 32767, HmiReset);
+          XIC(HmiReset) OTU(HmiReset);
+          MOV(Count.CV, Batches);
+        END_PROGRAM
+---
+apiVersion: ragentic.io/v1
+kind: Connector
+metadata:
+  name: tank-plc
+  namespace: demo
+spec:
+  driver: s7
+  options:
+    allowControl: true
+    discover:
+      dbs: 1-10
+      timeBudgetMs: 5000
+    rack: 0
+    slot: 1
+    tags:
+      alarm: Q0.2
+      batches: DB1.DBW4:INT
+      high: I4.0
+      level: ID0:REAL
+      pump: Q0.0
+      reset: M0.2
+      running: Q0.3
+      setpoint: DB1.DBD0:REAL
+      start: M0.0
+      stop: M0.1
+      temp: IW8:INT
+      valve: Q0.1
+    timeoutMs: 2000
+  type: data
+  url: s7://sim/demo/tank-sim
+---
+apiVersion: ragentic.io/v1
+kind: DataConnector
+metadata:
+  name: plc-bus
+spec:
+  type: memory
+---
+apiVersion: ragentic.io/v1
+kind: Stream
+metadata:
+  name: tank-tags
+  namespace: demo
+spec:
+  batch:
+    count: 20
+    periodMs: 100
+  description: Every tag of tank-plc, every 500 ms, when it changed
+  input:
+    plc:
+      connector: tank-plc
+      deadband: 0.5
+      intervalMs: 500
+      onChange: true
+      tags:
+        - '*'
+  output:
+    bus:
+      connector: plc-bus
+      subject: demo.tank.{{tag}}
+---
+apiVersion: ragentic.io/v1
+kind: Stream
+metadata:
+  name: tank-graph
+  namespace: demo
+spec:
+  batch:
+    count: 20
+    periodMs: 250
+  description: The latest reading of each tag as a PlcTag node
+  input:
+    bus:
+      connector: plc-bus
+      queue: tank-graph
+      subject: demo.tank.>
+  output:
+    graph:
+      key: tag
+      label: PlcTag
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  name: tank-start
+  namespace: demo
+spec:
+  description: Press the tank's Start button (M0.0); the ladder seals Running in and clears it.
+  edges:
+    - from: start
+      to: press
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        connector: tank-plc
+        op: write
+        writes:
+          start: true
+      id: press
+      type: plc
+  triggers:
+    - type: manual
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  name: tank-stop
+  namespace: demo
+spec:
+  description: Press the tank's Stop button (M0.1).
+  edges:
+    - from: start
+      to: press
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        connector: tank-plc
+        op: write
+        writes:
+          stop: true
+      id: press
+      type: plc
+  triggers:
+    - type: manual
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  name: tank-reset
+  namespace: demo
+spec:
+  description: Reset the batch counter (M0.2).
+  edges:
+    - from: start
+      to: press
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        connector: tank-plc
+        op: write
+        writes:
+          reset: true
+      id: press
+      type: plc
+  triggers:
+    - type: manual
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  name: tank-status
+  namespace: demo
+spec:
+  description: Read every tag of the tank PLC and its order code and RUN/STOP state.
+  edges:
+    - from: start
+      to: tags
+    - from: start
+      to: info
+  nodes:
+    - id: start
+      type: trigger
+    - config:
+        connector: tank-plc
+        op: read
+        tags:
+          - '*'
+      id: tags
+      type: plc
+    - config:
+        connector: tank-plc
+        op: info
+      id: info
+      type: plc
+  triggers:
+    - type: manual
+---
+apiVersion: ragentic.io/v1
+kind: Site
+metadata:
+  name: tank-hmi
+  namespace: demo
+spec:
+  nav:
+    - label: Tank 1
+      to: /
+    - label: 3D view
+      to: /3d
+  title: Tank demo
+---
+apiVersion: ragentic.io/v1
+kind: Page
+metadata:
+  name: tank
+  namespace: demo
+spec:
+  actions:
+    reset:
+      confirm: Reset the batch count?
+      workflow: demo/tank-reset
+    start:
+      busy: Starting…
+      workflow: demo/tank-start
+    stop:
+      busy: Stopping…
+      workflow: demo/tank-stop
+  body:
+    - section:
+        children:
+          - stack:
+              children:
+                - button:
+                    action: start
+                    text: Start
+                    tone: primary
+                - button:
+                    action: stop
+                    text: Stop
+                - button:
+                    action: reset
+                    text: Reset batches
+              direction: row
+              gap: sm
+        subtitle: The buttons write the PLC's HMI bits over S7, as a panel would.
+        title: Controls
+    - section:
+        children:
+          - $if: tags
+            else:
+              - empty: No readings yet — the tank-tags and tank-graph streams fill this in.
+            then:
+              - grid:
+                  children:
+                    - $each: tags
+                      as: t
+                      do:
+                        - stat:
+                            detail: '{{t.quality}}'
+                            label: '{{t.tag}}'
+                            value: '{{t.value}}'
+                  cols: 4
+        subtitle: The latest reading of each tag (tank-tags → tank-graph). The simulator itself is at /plc/demo/tank-sim.
+        title: Tags
+  data:
+    tags:
+      graph: "MATCH (t:PlcTag) WHERE t.connector = 'tank-plc' RETURN t ORDER BY t.tag"
+      live:
+        labels:
+          - PlcTag
+  route: /
+  site: tank-hmi
+  title: Tank 1
+---
+apiVersion: ragentic.io/v1
+kind: Workspace
+metadata:
+  name: models
+spec:
+  displayName: Models
+---
+apiVersion: ragentic.io/v1
+kind: Connector
+metadata:
+  name: assets
+  namespace: models
+spec:
+  description: the models bucket (industrial-models packs)
+  driver: s3
+  options:
+    publicUrl: https://assets.ragentic.io/buckets/ragentic-assets
+  type: data
+  url: http://assets-external.default.svc.cluster.local:8333/ragentic-assets
+---
+apiVersion: ragentic.io/v1
+kind: Model
+metadata:
+  name: tank
+  namespace: demo
+spec:
+  description: A vertical process tank, a glass shell on legs; the liquid rises with the level, the ring marks the setpoint
+  dimensions:
+    height: 2.45
+    liquid_bottom: 0.4
+    liquid_height: 1.68
+    radius: 0.55
+  license:
+    name: same as ragentic
+    notice: Built from code in ragentic-io/industrial-models (models/rebar/tank.mjs).
+    url: https://github.com/ragentic-io/industrial-models
+  materials:
+    dark_steel: dark_steel
+    glass: glass
+    hazard: hazard
+    liquid: glow
+    steel: steel
+  nodes:
+    inlet: inlet
+    liquid: liquid
+    outlet: outlet
+    setpoint: setpoint
+  rig: tank
+  src:
+    connector: models/assets
+    key: models/tank.glb
+---
+apiVersion: ragentic.io/v1
+kind: Model
+metadata:
+  name: tank-pump
+  namespace: demo
+spec:
+  description: A close-coupled centrifugal pump; its motor's fan turns while the pump output is on
+  dimensions:
+    discharge:
+      - -0.3
+      - 0.55
+      - 0
+    height: 0.6
+    length: 0.95
+    suction:
+      - -0.45
+      - 0.3
+      - 0
+    width: 0.38
+  license:
+    name: same as ragentic
+    notice: Built from code in ragentic-io/industrial-models (models/rebar/tank-pump.mjs).
+    url: https://github.com/ragentic-io/industrial-models
+  materials:
+    dark_steel: dark_steel
+    graphite: graphite
+    paint: paint
+    steel: steel
+    yellow: yellow
+  nodes:
+    discharge: discharge
+    rotor: rotor
+    suction: suction
+  rig: pump
+  src:
+    connector: models/assets
+    key: models/tank-pump.glb
+---
+apiVersion: ragentic.io/v1
+kind: Model
+metadata:
+  name: tank-valve
+  namespace: demo
+spec:
+  description: A butterfly valve; the disc and lever turn a quarter turn open with the valve output
+  dimensions:
+    height: 0.22
+    length: 0.14
+    travel: 90
+    width: 0.2
+  license:
+    name: same as ragentic
+    notice: Built from code in ragentic-io/industrial-models (models/rebar/tank-valve.mjs).
+    url: https://github.com/ragentic-io/industrial-models
+  materials:
+    dark_steel: dark_steel
+    paint: paint
+    steel: steel
+  nodes:
+    disc: disc
+  rig: valve
+  src:
+    connector: models/assets
+    key: models/tank-valve.glb
+---
+apiVersion: ragentic.io/v1
+kind: Model
+metadata:
+  name: tank-pipes
+  namespace: demo
+spec:
+  description: "The tank line's piping: the supply, the riser over to the tank, the drain"
+  dimensions:
+    drain_valve:
+      - 1.3
+      - 0.55
+      - 0
+    height: 2.6
+    inlet_valve:
+      - -1.1
+      - 2.5
+      - 0
+    lamp:
+      - 0.95
+      - 0
+      - -0.85
+    length: 5.9
+    pump:
+      - -1.9
+      - 0
+      - 0
+    radius: 0.05
+    tank:
+      - 0
+      - 0
+      - 0
+    width: 0.4
+  license:
+    name: same as ragentic
+    notice: Built from code in ragentic-io/industrial-models (models/rebar/tank-pipes.mjs).
+    url: https://github.com/ragentic-io/industrial-models
+  materials:
+    dark_steel: dark_steel
+    graphite: graphite
+    steel: steel
+  nodes:
+    at-drain-valve: at-drain-valve
+    at-inlet-valve: at-inlet-valve
+    at-lamp: at-lamp
+    at-pump: at-pump
+    run: run
+  rig: static
+  src:
+    connector: models/assets
+    key: models/tank-pipes.glb
+---
+apiVersion: ragentic.io/v1
+kind: Model
+metadata:
+  name: tank-lamp
+  namespace: demo
+spec:
+  description: A beacon on a post; red and blinking on an alarm, green while running, dark when stopped
+  dimensions:
+    height: 2
+  license:
+    name: same as ragentic
+    notice: Built from code in ragentic-io/industrial-models (models/rebar/tank-lamp.mjs).
+    url: https://github.com/ragentic-io/industrial-models
+  materials:
+    dark_steel: dark_steel
+    graphite: graphite
+    lens: glow
+    steel: steel
+  nodes:
+    lens: lens
+  rig: lamp
+  src:
+    connector: models/assets
+    key: models/tank-lamp.glb
+---
+apiVersion: ragentic.io/v1
+kind: Page
+metadata:
+  name: tank-3d
+  namespace: demo
+spec:
+  actions:
+    reset:
+      confirm: Reset the batch count?
+      workflow: demo/tank-reset
+    start:
+      busy: Starting…
+      workflow: demo/tank-start
+    stop:
+      busy: Stopping…
+      workflow: demo/tank-stop
+  body:
+    - section:
+        children:
+          - scene:
+              camera:
+                lookAt:
+                  - -0.5
+                  - 1.1
+                  - 0
+                position:
+                  - 4.2
+                  - 3.4
+                  - 5.6
+              height: 560
+              objects:
+                - id: pipes
+                  model: tank-pipes
+                  position:
+                    - 0
+                    - 0
+                    - 0
+                - id: tank
+                  label: Tank 1
+                  model: tank
+                  position:
+                    - 0
+                    - 0
+                    - 0
+                  tags: '{{tags}}'
+                - id: pump
+                  label: Pump
+                  model: tank-pump
+                  position:
+                    - -1.9
+                    - 0
+                    - 0
+                  tags: '{{tags}}'
+                - id: inlet-valve
+                  model: tank-valve
+                  position:
+                    - -1.1
+                    - 2.5
+                    - 0
+                  signals:
+                    open: pump
+                  tags: '{{tags}}'
+                - id: drain-valve
+                  label: Drain
+                  model: tank-valve
+                  position:
+                    - 1.3
+                    - 0.55
+                    - 0
+                  tags: '{{tags}}'
+                - id: lamp
+                  model: tank-lamp
+                  position:
+                    - 0.95
+                    - 0
+                    - -0.85
+                  tags: '{{tags}}'
+          - stack:
+              children:
+                - button:
+                    action: start
+                    text: Start
+                    tone: primary
+                - button:
+                    action: stop
+                    text: Stop
+                - button:
+                    action: reset
+                    text: Reset batches
+              direction: row
+              gap: sm
+        subtitle: Drag to orbit, scroll to zoom. The liquid follows the level and the ring the setpoint; the pump turns, the valves open and the lamp lights as the PLC's tags say.
+        title: Tank 1 — 3D view
+    - section:
+        children:
+          - flow:
+              direction: right
+              edges:
+                - from: supply
+                  tag: pump
+                  to: pump
+                - from: pump
+                  tag: pump
+                  to: inlet
+                - from: inlet
+                  label: fill
+                  tag: pump
+                  to: tank
+                - from: tank
+                  tag: valve
+                  to: drain
+                - from: drain
+                  label: drain
+                  tag: valve
+                  to: product
+                - from: tank
+                  to: lt
+                - from: tank
+                  to: tt
+                - from: tank
+                  to: lsh
+                - from: lt
+                  to: plc
+                - from: lsh
+                  to: alarm
+                - from: tt
+                  to: alarm
+              nodes:
+                - id: supply
+                  kind: source
+                  label: Supply
+                - id: pump
+                  kind: pump
+                  label: Pump P-101
+                  tag: pump
+                - id: inlet
+                  kind: valve
+                  label: Inlet XV-101
+                  tag: pump
+                - id: tank
+                  kind: tank
+                  label: Tank T-1
+                  tag: level
+                  unit: '%'
+                - id: drain
+                  kind: valve
+                  label: Drain XV-102
+                  tag: valve
+                - id: product
+                  kind: sink
+                  label: Batches out
+                  tag: batches
+                - id: lt
+                  kind: sensor
+                  label: Level LT-101
+                  symbol: LT
+                  tag: level
+                  unit: '%'
+                - id: tt
+                  kind: sensor
+                  label: Temp TT-101
+                  symbol: TT
+                  tag: temp
+                  unit: ×0.1 °C
+                - id: lsh
+                  kind: sensor
+                  label: High LSH-101
+                  symbol: LSH
+                  tag: high
+                - id: plc
+                  kind: controller
+                  label: PLC TANK_1
+                  tag: running
+                - id: alarm
+                  kind: alarm
+                  label: Alarm
+                  tag: alarm
+              tags: '{{tags}}'
+        subtitle: 'The line as a directed acyclic graph: product flows left to right, the instruments feed the PLC and the alarm. Pipes move while they carry flow; a node lights from its tag.'
+        title: Process
+    - section:
+        children:
+          - $if: tags
+            else:
+              - empty: No readings yet — the tank-tags and tank-graph streams fill this in.
+            then:
+              - grid:
+                  children:
+                    - $each: tags
+                      as: t
+                      do:
+                        - stat:
+                            detail: '{{t.quality}}'
+                            label: '{{t.tag}}'
+                            value: '{{t.value}}'
+                  cols: 4
+        title: Tags
+  data:
+    tags:
+      graph: "MATCH (t:PlcTag) WHERE t.connector = 'tank-plc' RETURN t ORDER BY t.tag"
+      live:
+        labels:
+          - PlcTag
+  route: /3d
+  site: tank-hmi
+  title: Tank 3D

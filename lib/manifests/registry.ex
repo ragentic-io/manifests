@@ -23,6 +23,13 @@ defmodule Manifests.Registry do
       define :version_by_digest, action: :read, get_by: [:digest]
     end
 
+    resource Manifests.Registry.Item do
+      define :search_items, action: :search, args: [:q, :kind, :category, :publisher, :tier]
+      define :listed_item, action: :listed_item, args: [:item_id]
+      define :item_versions, action: :for_item, args: [:item_id]
+      define :item_by_digest, action: :read, get_by: [:digest]
+    end
+
     resource Manifests.Registry.Snapshot do
       define :latest_snapshot, action: :latest, args: [:kind], get?: true
     end

@@ -1,0 +1,194 @@
+---
+apiVersion: ragentic.io/v1
+kind: Workspace
+metadata:
+  name: vision
+spec:
+  description: image reading with the laptop's vision model
+---
+apiVersion: ragentic.io/v1
+kind: Agent
+metadata:
+  name: reader
+  namespace: vision
+spec:
+  context: false
+  memory: false
+  system: |
+    You read images. Describe what the attached image shows in a few plain
+    sentences, then transcribe any text in it exactly, under "Text:". If there
+    is no text, say "Text: none". Do not guess at what you cannot see.
+---
+apiVersion: ragentic.io/v1
+kind: Workflow
+metadata:
+  name: read-image
+  namespace: vision
+spec:
+  description: an uploaded image read by vision/reader (MiniCPM-V on the laptop), written to a Reading
+  edges:
+    - from: start
+      to: prepare
+    - from: prepare
+      to: ask
+    - from: ask
+      to: done
+    - from: prepare
+      to: done
+  nodes:
+    - id: start
+      position:
+        x: 40
+        'y': 160
+      type: trigger
+    - config:
+        code: |
+          local i = (input.trigger or {}).input or {}
+          local f = i.file
+          local id = ragentic.run_id
+          if not f or not f.blob then
+            ragentic.graph.put_node("Reading", { id = id, status = "failed", error = "no image uploaded", updated_at = ragentic.now() })
+            error("no image uploaded")
+          end
+          ragentic.graph.put_node("Reading", { id = id, status = "reading", image = f.url, name = f.name or "",
+                                               text = "", error = "", updated_at = ragentic.now() })
+          local q = i.question
+          if q == nil or q == "" then q = "What is in this image? Transcribe any text in it." end
+          return { id = id, blob = f.blob, question = q }
+      id: prepare
+      position:
+        x: 300
+        'y': 160
+      type: lua
+    - config:
+        agent: reader
+        attachments:
+          - '{{prepare.blob}}'
+        on_error: output
+        prompt: '{{prepare.question}}'
+        require_vision: true
+      id: ask
+      position:
+        x: 560
+        'y': 160
+      type: agent
+    - config:
+        code: |
+          local a = input.ask or {}
+          local err = a.error
+          if err ~= nil and err ~= "" then
+            ragentic.graph.put_node("Reading", { id = input.prepare.id, status = "failed", error = tostring(err), updated_at = ragentic.now() })
+            return { id = input.prepare.id, status = "failed" }
+          end
+          ragentic.graph.put_node("Reading", { id = input.prepare.id, status = "ready", text = a.text or "", error = "", updated_at = ragentic.now() })
+          return { id = input.prepare.id, status = "ready" }
+      id: done
+      position:
+        x: 820
+        'y': 160
+      type: lua
+  triggers:
+    - type: manual
+---
+apiVersion: ragentic.io/v1
+kind: Site
+metadata:
+  name: lab
+  namespace: vision
+spec:
+  nav:
+    - label: Read an image
+      to: /
+  title: Vision lab
+---
+apiVersion: ragentic.io/v1
+kind: Page
+metadata:
+  name: read
+  namespace: vision
+spec:
+  actions:
+    read:
+      busy: Reading the image…
+      input:
+        properties:
+          file:
+            format: blob
+            type: object
+          question:
+            maxLength: 500
+            type: string
+        type: object
+      record:
+        id: '{{run_id}}'
+        label: Reading
+        props:
+          id: '{{run_id}}'
+          status: reading
+      requires_any:
+        fields:
+          - file
+        message: upload an image to read
+      workflow: vision/read-image
+  body:
+    - heading: Read an image
+    - text:
+        text: Upload a picture and MiniCPM-V, running on DJ's laptop, says what is in it and transcribes any text.
+        tone: quiet
+    - card:
+        children:
+          - form:
+              action: read
+              children:
+                - field:
+                    accept:
+                      - image/*
+                    label: Image
+                    name: file
+                    type: file
+                - field:
+                    label: Question (optional)
+                    name: question
+                    placeholder: What is in this image? Transcribe any text in it.
+              submit: Read image
+        title: New reading
+    - $if: ui.result.read.run_id
+      then:
+        - tag:
+            text: '{{ui.result.read.state}}'
+            tone: run
+    - $each: readings
+      as: r
+      do:
+        - card:
+            children:
+              - tag:
+                  text: "{{r.status | default: 'reading'}}"
+                  tone: "{{r.status == 'ready' and 'ok' or r.status == 'failed' and 'bad' or 'run'}}"
+              - $if: r.image
+                then:
+                  - image:
+                      alt: '{{r.name}}'
+                      src: '{{r.image}}'
+              - $if: "{{r.status == 'ready'}}"
+                then:
+                  - markdown: '{{r.text}}'
+              - $if: "{{r.status == 'failed'}}"
+                then:
+                  - text:
+                      text: '{{r.error}}'
+                      tone: quiet
+            title: "{{r.name | default: 'Image'}}"
+    - $if: '{{not readings}}'
+      then:
+        - empty: No readings yet.
+  data:
+    readings:
+      graph: "MATCH (r:Reading) WHERE r.ws = 'vision' RETURN r ORDER BY r.updated_at DESC"
+      limit: 20
+      live:
+        labels:
+          - Reading
+  route: /
+  site: lab
+  title: Read an image

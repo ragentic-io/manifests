@@ -7,6 +7,10 @@ defmodule Manifests.Trust do
   @prefix "ragentic.manifests/v1\n"
   @max_payload_bytes 16_777_216
   @max_encoded_bytes div(@max_payload_bytes * 4 + 2, 3)
+  @catalog_kinds ~w(index browse_index items_index items_browse_index)
+
+  @doc "The signed index kinds: apps (`index`, `browse_index`) and items of any kind."
+  def catalog_kinds, do: @catalog_kinds
 
   def keypair, do: :crypto.generate_key(:eddsa, :ed25519)
   def key_id(public), do: :crypto.hash(:sha256, public) |> Base.encode16(case: :lower)
@@ -37,7 +41,28 @@ defmodule Manifests.Trust do
   end
 
   @doc "Verify against a pinned root and exact expected identity, version and SHA-256."
-  def verify(bundle, root, expected, opts \\ []) do
+  def verify(bundle, root, expected, opts \\ []),
+    do:
+      verify_payload(
+        bundle,
+        root,
+        "bundle",
+        "app",
+        expected.app,
+        expected,
+        opts,
+        :untrusted_bundle
+      )
+
+  @doc """
+  Verify a signed item bundle (payload kind `item`, any manifest kind) against a
+  pinned root and its exact expected `id`, version and SHA-256. Delegated
+  authorities' id scope (`apps`) covers item ids too: ids are one namespace.
+  """
+  def verify_item(bundle, root, expected, opts \\ []),
+    do: verify_payload(bundle, root, "item", "id", expected.id, expected, opts, :untrusted_item)
+
+  defp verify_payload(bundle, root, kind, id_key, expected_id, expected, opts, error) do
     now = Keyword.get(opts, :now, System.system_time(:second))
     revoked = Keyword.get(opts, :revoked, [])
 
@@ -54,24 +79,24 @@ defmodule Manifests.Trust do
            ),
          {:ok, payload} <- open(envelope, authority.key),
          %{
-           "kind" => "bundle",
-           "app" => app,
+           "kind" => ^kind,
+           ^id_key => id,
            "version" => version,
            "expires" => expires,
            "not_before" => starts
          } <- payload,
          true <- valid_time?(starts, expires, now),
          true <- starts >= authority.not_before and expires <= authority.expires,
-         true <- allowed?(authority.apps, app),
-         true <- app == expected.app and version == expected.version,
+         true <- allowed?(authority.apps, id),
+         true <- id == expected_id and version == expected.version,
          {:ok, bytes} <- Base.url_decode64(envelope["payload"], padding: false),
          true <- key_id(bytes) == expected.digest do
       {:ok, payload}
     else
-      _ -> {:error, :untrusted_bundle}
+      _ -> {:error, error}
     end
   rescue
-    _ -> {:error, :untrusted_bundle}
+    _ -> {:error, error}
   end
 
   @doc "Verify a root-signed catalog index with an independently pinned registry identity."
@@ -80,7 +105,7 @@ defmodule Manifests.Trust do
     revoked = Keyword.get(opts, :revoked, [])
     kind = Keyword.get(opts, :catalog_kind, "index")
 
-    with true <- kind in ["index", "browse_index"],
+    with true <- kind in @catalog_kinds,
          true <- is_binary(root) and byte_size(root) == 32,
          false <- key_id(root) in revoked,
          true <- is_integer(minimum_sequence) and minimum_sequence >= 0,
@@ -96,7 +121,7 @@ defmodule Manifests.Trust do
          true <- is_integer(sequence) and sequence >= minimum_sequence,
          true <- valid_time?(starts, expires, now),
          true <- is_list(entries) and length(entries) <= 10_000,
-         true <- Enum.all?(entries, &valid_entry?/1),
+         true <- Enum.all?(entries, &valid_entry?(kind, &1)),
          ids = Enum.map(entries, & &1["id"]),
          true <- length(ids) == length(Enum.uniq(ids)) do
       {:ok, payload}
@@ -107,21 +132,43 @@ defmodule Manifests.Trust do
     _ -> {:error, :untrusted_index}
   end
 
-  defp valid_entry?(%{
+  # app indexes list connector apps; items indexes list items of any manifest kind
+  defp valid_entry?(kind, entry) when kind in ["items_index", "items_browse_index"],
+    do: valid_item_entry?(entry)
+
+  defp valid_entry?(_kind, entry), do: valid_app_entry?(entry)
+
+  defp valid_item_entry?(%{
+         "id" => id,
+         "version" => version,
+         "digest" => digest,
+         "title" => title,
+         "kind" => kind
+       }) do
+    valid_identity?(id, version, digest, title) and is_binary(kind) and
+      Regex.match?(~r/\A[A-Z][A-Za-z0-9]{0,63}\z/, kind)
+  end
+
+  defp valid_item_entry?(_), do: false
+
+  defp valid_app_entry?(%{
          "id" => id,
          "version" => version,
          "digest" => digest,
          "title" => title,
          "protocol" => protocol
        }) do
+    valid_identity?(id, version, digest, title) and protocol in ~w(openapi graphql asyncapi)
+  end
+
+  defp valid_app_entry?(_), do: false
+
+  defp valid_identity?(id, version, digest, title) do
     is_binary(id) and Regex.match?(~r/\A[a-z0-9][a-z0-9._-]{0,127}\z/, id) and
       is_binary(version) and byte_size(version) in 1..128 and
       is_binary(digest) and Regex.match?(~r/\A[0-9a-f]{64}\z/, digest) and
-      is_binary(title) and byte_size(title) in 1..256 and
-      protocol in ~w(openapi graphql asyncapi)
+      is_binary(title) and byte_size(title) in 1..256
   end
-
-  defp valid_entry?(_), do: false
 
   def digest(%{"payload" => encoded}) do
     encoded |> Base.url_decode64!(padding: false) |> key_id()
