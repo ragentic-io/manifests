@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `cdf8964363b1ca761d2a074cd502799864d689e173f29062bd4e7c497b39aa36` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.polar.sh` |
 | Credential | — |
 | Connection test | — |

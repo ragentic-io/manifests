@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_remove.bg_apple-touch-icon.png"
 | | |
 | --- | --- |
 | Categories | Media & entertainment, AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `06416bf24194851a957d3d367035c92276547354ae41903fba0dc0540d3b575b` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

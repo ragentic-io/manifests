@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a4cecccc5ffd1c6a77fbd04757b5007e535173654ccf711ad3f4dfa3357df69b` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://lead-api.lead-metrics.com/api/v1` |
 | Credential | — |
 | Connection test | — |

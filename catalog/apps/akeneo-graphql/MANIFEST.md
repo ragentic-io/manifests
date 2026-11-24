@@ -12,7 +12,7 @@ categories: ["ecommerce", "business"]
 | | |
 | --- | --- |
 | Categories | E-commerce, Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c346be3e6c9c58bd8984727c5e943f18e2f0dfc8e8974cb3cf2687e1dda3fc88` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://graphql.sdk.akeneo.cloud` |
 | Credential | — |
 | Connection test | — |

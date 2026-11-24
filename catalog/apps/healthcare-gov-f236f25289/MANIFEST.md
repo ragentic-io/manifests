@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.healthcare.gov_images_logo.
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b90a26e1eaf814a0b2555142901d99324d4410a2096b3b0c75985017292d8661` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

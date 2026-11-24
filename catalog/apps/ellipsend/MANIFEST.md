@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8d1c6722a6aa4d228c0baec12ef52c562f4cfb646df74e108c7db82435de73d8` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.ellipsend.com/v1` |
 | Credential | — |
 | Connection test | — |

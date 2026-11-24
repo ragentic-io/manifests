@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `0fd9eba5d03eefa222947f5440b6f45b8314f1e3320c1d896e8cda03eb55f450` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.manyreach.com` |
 | Credential | — |
 | Connection test | — |

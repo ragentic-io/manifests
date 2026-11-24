@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_ix-api.net_ix-api_icons_cropped
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5ccbcfddc10a100935cfd7332f4566729ae73d19ba1326725d78580ccadbf57c` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

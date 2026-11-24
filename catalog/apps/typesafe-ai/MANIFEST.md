@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d16da6b1ac7b527a4949ab5f3e1143ffb65e1d7ab1ad0c39be0184c7c19b4119` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.typesafe.ai` |
 | Credential | — |
 | Connection test | — |

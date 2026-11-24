@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `0195279c0ecd7c769ba81b34dc217233b9198bae105386b3c95761e5c9162f29` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.moosend.com/v3` |
 | Credential | — |
 | Connection test | — |

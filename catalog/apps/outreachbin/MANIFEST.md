@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `96e0aad233b774ee685ae95a9dda052b5d39a9a5997f000f650e95b939a506ae` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://app.outreachbin.com/api/v1` |
 | Credential | — |
 | Connection test | — |

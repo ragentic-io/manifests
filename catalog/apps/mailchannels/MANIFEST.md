@@ -12,7 +12,7 @@ categories: ["communication"]
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `124a8784458e0bfce82f39230fd659aff0f6e1ff27372a27c29192bdbf641bea` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.mailchannels.net/tx/v1` |
 | Credential | — |
 | Connection test | — |

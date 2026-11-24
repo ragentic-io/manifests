@@ -14,7 +14,7 @@ Connect to Bluesky (AT Protocol) with an independent Ragentic integration: read 
 | | |
 | --- | --- |
 | Categories | Social media, Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `eeef247f94996076997ec7823c7565c3f2976b4f530ed4786fd302b4e0587c1d` in `bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://bsky.social` |
 | Credential | atproto_session |
 | Connection test | GET `https://bsky.social/xrpc/com.atproto.server.getSession` |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `06c889d768b4f655667c93dadcfb9d4d525c41a11652ad650927110a648923e6` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.leadmagic.io` |
 | Credential | — |
 | Connection test | — |

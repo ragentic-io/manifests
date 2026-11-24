@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `0565ffc65dcd754a5937f76fa9d611c6ae1d35e0d24b8a4ecf69fa039c1b82af` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.nobelprize.org/2.1` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["software-development", "cloud"]
 | | |
 | --- | --- |
 | Categories | Software development, Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e48d6eff9fa8693a8afde82e303bc02db218a0d9e35102d0723f4d48f13295cb` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.apollographql.com/api/graphql` |
 | Credential | — |
 | Connection test | — |

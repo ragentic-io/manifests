@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2c6202d23e7c936c4263070e847ac285c579162ece7d73acc5caba87feb69239` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.createsend.com/api/v3.3` |
 | Credential | — |
 | Connection test | — |

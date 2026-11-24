@@ -13,7 +13,7 @@ logo: "https://saleor.io/favicon.ico"
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2a8e0bbf254cd3dac32121b1095c8170d2fc50c92ef3c9f0906056db296e0af1` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://example.saleor.cloud/graphql/` |
 | Credential | static_bearer |
 | Connection test | `https://example.saleor.cloud/graphql/` |

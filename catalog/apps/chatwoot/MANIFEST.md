@@ -14,7 +14,7 @@ Connect to Chatwoot Cloud with an independent Ragentic integration. Self-hosted 
 | | |
 | --- | --- |
 | Categories | Business & CRM, Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f0ec2f33e4bf1910a4de24c7bedce4510f8a43ed4bfd43743bbaf9eaaff92613` in `bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://app.chatwoot.com` |
 | Credential | static_bearer |
 | Connection test | GET `https://app.chatwoot.com/api/v1/profile` |

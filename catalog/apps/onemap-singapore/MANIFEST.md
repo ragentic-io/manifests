@@ -12,7 +12,7 @@ categories: ["location"]
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7096581c7af465bb5d5e1e9ee2e0018330a20e39775dc8151e2700c6a12e46b1` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://www.onemap.gov.sg` |
 | Credential | — |
 | Connection test | — |

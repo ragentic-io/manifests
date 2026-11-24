@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_storage.googleapis.com_bank-277
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c1759bef0e8a3f5a6971c09aa2bb8869d066522860d4cf3213eb9678416b5ca2` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

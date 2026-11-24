@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `12cdd9c31df9d8a272fb1e7a42cfbf32a6733e9dfb9243e02e91e49a276930c4` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.pagerduty.com` |
 | Credential | — |
 | Connection test | — |

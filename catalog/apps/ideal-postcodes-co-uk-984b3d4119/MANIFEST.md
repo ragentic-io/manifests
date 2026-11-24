@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_ideal-postcodes_co_uk_apple-ico
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d61b9690230a57f8981bfce6ce7d4f955346ada1a1cd420fdcbe39d486eee083` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `269d74d0e023e8e7ae08e7541e86d032b88f21268402a4fd71b4d2d3f4061717` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.beta.agorapulse.com` |
 | Credential | — |
 | Connection test | — |

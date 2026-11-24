@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5d3134a3ad10904feeea83c87b8616e2379c775ee3e17ca3e8debd5c9622727b` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://openapi.okx.com` |
 | Credential | — |
 | Connection test | — |

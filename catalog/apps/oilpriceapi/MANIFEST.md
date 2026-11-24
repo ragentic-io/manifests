@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8ba807ed794a76ebbdadb4d2c77b61531146121f84de71b78ca0efd5835846ac` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.oilpriceapi.com` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["location"]
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2beca1940d94f7f43594f7d0192e760fc0730eb49864926d32c35f69e909ea46` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.heigit.org/openrouteservice` |
 | Credential | — |
 | Connection test | — |

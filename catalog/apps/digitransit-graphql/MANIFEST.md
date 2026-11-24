@@ -12,7 +12,7 @@ categories: ["travel", "location"]
 | | |
 | --- | --- |
 | Categories | Travel & transport, Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `918c2b21f56cee1d06bbc4ffd9377f1b28510c15c1a7cec4085ba4b4d123a6e6` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.digitransit.fi/routing/v2/hsl/gtfs/v1` |
 | Credential | — |
 | Connection test | — |

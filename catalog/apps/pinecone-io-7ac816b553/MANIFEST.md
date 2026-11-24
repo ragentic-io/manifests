@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.pinecone.io_images_pinecone
 | | |
 | --- | --- |
 | Categories | AI & language, Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fd98dda3885042be1d34f4d58b3728149832c14482933ca39bf858e14b7bcea4` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

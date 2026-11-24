@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_cdn.zappy.app_510654b671e2f1ac4
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration, AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `57227b2be54974d0810ff8bed4279fb9aa48eba8e2a9f73099f42dce8f523ad5` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

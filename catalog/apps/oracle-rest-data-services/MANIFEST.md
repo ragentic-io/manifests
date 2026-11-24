@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `248e0c54a62c33916aa14f8d7eb70c1334da5159f60529b24052adf855c2276a` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://{host}/{contextRoot}/{database}/{schema}/_/db-api/stable` |
 | Credential | — |
 | Connection test | — |

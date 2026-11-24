@@ -12,7 +12,7 @@ categories: ["productivity"]
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8bdf6d2f89e3dfc464bdf3ab31e6ac7c31dcb8fb9429f94ca29f268a85ee11b9` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://app.documenso.com/api/v2` |
 | Credential | — |
 | Connection test | — |

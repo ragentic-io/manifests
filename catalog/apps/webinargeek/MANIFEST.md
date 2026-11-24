@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `32fca4dd26d67dfef9fe431f12110c1e7d50e75b69855661a58b9b416a292202` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://app.webinargeek.com/api/v2` |
 | Credential | — |
 | Connection test | — |

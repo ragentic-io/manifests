@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7e24f539f73a4acf66e7c35574d71b25c8d50f6ecbaa8f8d1ca15bd52563404d` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://vpic.nhtsa.dot.gov/api` |
 | Credential | — |
 | Connection test | — |

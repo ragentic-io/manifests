@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `39c57657bdd69e24c12fe29a38ca144fea3d4b74d01a7e8c40c818ba44b0755c` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://app.bulkpublish.com` |
 | Credential | — |
 | Connection test | — |

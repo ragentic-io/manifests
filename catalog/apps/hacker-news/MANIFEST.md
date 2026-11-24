@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f4e0b4fcd58b2757595c5b7ad48f835051b5c144cfab2ba695d37d1998fae300` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://hacker-news.firebaseio.com/v0` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4760443dc5820a6cc2ec0ec36bc7ba65a14bde65a0f9578beba5b7cf1fbe8d07` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.newreleases.io/v1` |
 | Credential | — |
 | Connection test | — |

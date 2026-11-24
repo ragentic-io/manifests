@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a1e8a19444e912ba964c391d1e000c6c744638e755857f4788e3a0fe3006e4c6` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://openpagerank.keywordseverywhere.com` |
 | Credential | — |
 | Connection test | — |

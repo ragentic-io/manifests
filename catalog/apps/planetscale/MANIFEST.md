@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `28579c159fbb0d7dc9f9989ab5ceb110bbc0d28227d75fd439023aa86a52b157` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.planetscale.com/v1` |
 | Credential | — |
 | Connection test | — |

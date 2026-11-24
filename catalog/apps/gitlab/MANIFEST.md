@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f5e50026cbd7342f2fa10e5b85de550d3493a58dc95470c0ff513fb96f1eecf5` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://{hostname}` |
 | Credential | — |
 | Connection test | — |

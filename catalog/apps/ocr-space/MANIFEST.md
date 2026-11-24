@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b5dbfefb9f7570811a95f321639b9c4c08d638c38a369ebc5397a9d970652a8f` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.ocr.space` |
 | Credential | — |
 | Connection test | — |

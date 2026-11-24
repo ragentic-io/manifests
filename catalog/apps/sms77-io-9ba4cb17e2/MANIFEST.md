@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.sms77.io_wp-content_uploads
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7645d9f6a54c2cda7206b90d310f37f3a78ffe1947a46facc7f94594b7eed75e` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

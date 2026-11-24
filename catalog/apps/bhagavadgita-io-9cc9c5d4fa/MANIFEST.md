@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_bhagavadgita.io_static_images_r
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e3e9fc8b557bcd73cf92e09f2d884c457732c9a5ceb56ea60e589bf565fe6535` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_api.cloudmersive.com_Content_cl
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bf1d2cef9804ddf4be27eb5a1215b8678667b20c9739fc2054cdb73a19c572b4` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

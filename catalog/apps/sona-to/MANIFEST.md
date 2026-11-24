@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `798b10cc58a4dd3dedd35183f85583f2d0dae94bfbe7b987c399e371953d67cb` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.sona.to/v1` |
 | Credential | — |
 | Connection test | — |

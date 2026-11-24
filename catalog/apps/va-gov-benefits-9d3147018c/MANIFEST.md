@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_prod-va-gov-assets.s3-us-gov-we
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8d07faefbe47b5fcd272bf75d3a5cc704e44536d3ac205d855e945bf922cb8de` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

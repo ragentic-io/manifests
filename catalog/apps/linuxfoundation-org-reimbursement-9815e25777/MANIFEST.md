@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_linuxfoundation_org_wp-content_
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c3248462f4c8d56d74d4c04f07d1394a3826a38b7192924b50104cd712374538` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

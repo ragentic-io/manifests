@@ -14,7 +14,7 @@ Connect Miro with an independent Ragentic integration through Miro's REST API v2
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `66b1e88e47540d30c23738ee65616cf274cdcc6a43f1c36d9a6d60927a742ad6` in `bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.miro.com/` |
 | Credential | static_bearer |
 | Connection test | GET `https://api.miro.com/v1/oauth-token` |

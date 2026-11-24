@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_webtropy_profile_im
 | | |
 | --- | --- |
 | Categories | Travel & transport, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `61639d91c9af375374af15a1a9c45fa4a9f2c020b5ee6c29c457dfd4800e9930` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

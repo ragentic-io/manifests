@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2c59131017630c4762e9bc317718c23f41b75560ecc4b3f8e4d88640fe5680b9` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://{subdomain}.nationbuilder.com` |
 | Credential | — |
 | Connection test | — |

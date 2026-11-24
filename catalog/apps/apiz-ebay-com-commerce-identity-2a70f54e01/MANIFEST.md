@@ -13,7 +13,7 @@ logo: "https://developer.ebay.com/favicon.ico"
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8dfca7d4207a824391d5ae6ec4543430ca6476bc33b4a8d9e9d8ac3a312eba53` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

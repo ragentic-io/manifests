@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3c42c07785fce76225ea7ba0575ccb04454444bc114f3be76e3083dbfd524c54` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://us.posthog.com` |
 | Credential | — |
 | Connection test | — |

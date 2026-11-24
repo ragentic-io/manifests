@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `be9ad8f68d630a7a1dcd9af5ded6164111084c5d03ccd9309477769a193eb56b` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.ngrok.com` |
 | Credential | — |
 | Connection test | — |

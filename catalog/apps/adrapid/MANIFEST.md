@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `21ccd60afc7df0e063a76808fa7cf546e16e17f0f07e7bd358a8dda738f5d4f0` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.adrapid.com/v1/api` |
 | Credential | — |
 | Connection test | — |

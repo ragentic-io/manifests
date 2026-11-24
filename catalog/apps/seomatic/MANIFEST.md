@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `beff5e82561232cb8b0b0a1e84048d5dc6e3205f5dfe693d2bbc5d8317bffbe9` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://app.seomatic.ai/api/v1` |
 | Credential | — |
 | Connection test | — |

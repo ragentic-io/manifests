@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_files.readme.io_53cd56d-2d5efc7
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9a8b3c7035cf5127a4fc35a68c652837c6749e818dd68f2c062da6324f190911` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

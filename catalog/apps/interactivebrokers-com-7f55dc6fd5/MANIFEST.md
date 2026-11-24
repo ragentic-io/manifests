@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_interactivebrokers.com_images_w
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6e3d2c7215a7abb33e25ddf91ccdc800504481714e32a3d3654cb421600913b7` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f30d4fab5b8d91a617aa484615046d50e07c973409689cbdc35c4c344c0cbc1e` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.airbyte.com/v1` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fb2790471fad62aa3304fa87b0b82a8a0ac86bee1cd2e2e079b06575e16093a1` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://sandbox.openpayd.com/api` |
 | Credential | — |
 | Connection test | — |

@@ -14,7 +14,7 @@ Connect Azure DevOps Services Git repositories (dev.azure.com REST 7.1) with a p
 | | |
 | --- | --- |
 | Categories | Software development, Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5d8247d41c084dd5729ba8fa547ace78dffb47c51850ab56e7e7f930222da23d` in `bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://dev.azure.com` |
 | Credential | basic |
 | Connection test | GET `https://dev.azure.com/{value}/_apis/connectionData` |

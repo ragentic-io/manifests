@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `26c526937f53d10e78acaf5fb47f2cccaf3fc00f1c83476d9675a5fea40f7b2c` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.restcountries.com` |
 | Credential | — |
 | Connection test | — |

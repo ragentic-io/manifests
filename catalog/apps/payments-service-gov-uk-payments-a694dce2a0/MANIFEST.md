@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_GOVUK_profile_image
 | | |
 | --- | --- |
 | Categories | Finance & payments, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4ba62ceb28ba4e7123e6301dc537edd1817462a99ca3693b19fe133b660623d1` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

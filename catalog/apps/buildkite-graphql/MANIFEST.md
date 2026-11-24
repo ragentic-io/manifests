@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `cae278a978011d477c8cd2d0de030e0696c8174ce246c1f919d12ff9dff34789` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://graphql.buildkite.com/v1` |
 | Credential | — |
 | Connection test | — |

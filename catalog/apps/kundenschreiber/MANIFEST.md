@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1c3290cd3696e376aaaf5aa3f9164882d5c82101aa2bbf2a30a4e3c48c18be88` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.kundenschreiber.de/functions/v1/public-api/v1` |
 | Credential | — |
 | Connection test | — |

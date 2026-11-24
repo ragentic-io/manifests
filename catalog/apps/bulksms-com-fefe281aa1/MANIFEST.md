@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/_developer_images_bulksms.svg"
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bec36a530ae8c1463c68e766f6eb60ef158cd727c3ae4a22cb88ff14255743c8` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

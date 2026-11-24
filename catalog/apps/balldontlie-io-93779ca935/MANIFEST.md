@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_balldontlie_io_logo192.svg"
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9d07bbeca5a7e3fda6ae7a098b03a51e62a22f6ae7d1143d6ae1af16ad86b144` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

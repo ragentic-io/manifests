@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f4980162e9b77451619d7c5a810adbb485a2ec78947c8da0011eabeb770786e5` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.dataplatform.knmi.nl/open-data` |
 | Credential | — |
 | Connection test | — |

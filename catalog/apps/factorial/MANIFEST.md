@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `86fc5c14e7a5f15d0eec8a23c56eb800e1b01c9909485f59cf5e5a9e2f500ddc` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.factorialhr.com` |
 | Credential | — |
 | Connection test | — |

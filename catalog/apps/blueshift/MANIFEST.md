@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `16c6ca3958df2d0352d8121b3a09276dab465d8fb102a5c3df4d7049427ef719` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.getblueshift.com` |
 | Credential | — |
 | Connection test | — |

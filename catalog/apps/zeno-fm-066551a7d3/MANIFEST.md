@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_i.postimg.cc_m2vR2wwB_ZenoAPI.p
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `228df2bfee85aca5a68e143c7acc31cae00d8cc12b4d082258f800119c684246` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

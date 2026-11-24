@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `13b0f56944d7ca9d91994d3f1e0240ba2e0a028ec0b29f335be044b4ab5d016e` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://backend.botconversa.com.br/api/v1/webhook` |
 | Credential | — |
 | Connection test | — |

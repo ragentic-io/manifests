@@ -14,7 +14,7 @@ Firecracker's microVM API (Swagger 2.0, release v1.18.0): machine config, boot s
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `de55ca6c9467067cf5021dd5a49f829242e2553bdbce51e840471cf4f47fe49a` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | none |
 | Connection test | — |

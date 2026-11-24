@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_greip.io_img_xapp-icon-180.png.
 | | |
 | --- | --- |
 | Categories | Security & identity, Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3f30ad177b044b019a8866cd565e68e135551d0e3ec883ef73c136175f57ca98` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

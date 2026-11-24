@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_cenit.io_images_logo.png"
 | | |
 | --- | --- |
 | Categories | Software development, Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e19faa2d77a8163a6e1af841dd88407eeb1a40381655e468a32a04ceb1f9214c` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

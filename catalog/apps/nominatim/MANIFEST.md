@@ -12,7 +12,7 @@ categories: ["location"]
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `046714bdba71242698ce97803d94b855c282c0942ce20a7bfc997723431b0e6f` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://nominatim.openstreetmap.org` |
 | Credential | — |
 | Connection test | — |

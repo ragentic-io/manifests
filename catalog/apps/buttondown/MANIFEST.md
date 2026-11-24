@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8d55fc119d40915cea409bc6c4beed7b63a7ab0eef65b69a50dec014686cb21d` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.buttondown.com/v1` |
 | Credential | — |
 | Connection test | — |

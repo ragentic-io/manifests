@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/http_miataru.com_images_clientapp.png
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a80c7204e26144145583155cfc744a82398a0458b2f71369aa569311f5a894e8` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

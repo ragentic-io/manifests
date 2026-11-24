@@ -12,7 +12,7 @@ categories: ["security"]
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fb4ba64fa2b8de52b04c553b8b6083e620b10040e21e1a15895c525ae469a776` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://sandbox.fusionauth.io` |
 | Credential | — |
 | Connection test | — |

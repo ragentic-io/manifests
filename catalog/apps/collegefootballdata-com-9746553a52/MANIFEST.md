@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_collegefootballdata.com_Logo.pn
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9226da25d3b17715ca2b62662ed09f687149213b54ee798c0c282b677c4adbfc` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5f26f683db1214418c79c09d5fae7bf8525c638072027c37891b04c9d9f4df01` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://app.thegoodapi.com` |
 | Credential | — |
 | Connection test | — |

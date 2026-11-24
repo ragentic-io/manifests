@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f5ea1a1f42784b71ab0f3936940df5316875832cdefc9c6efa4a6f29abf66aec` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.autocontentapi.com` |
 | Credential | — |
 | Connection test | — |
