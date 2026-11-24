@@ -247,6 +247,10 @@ these settings live in `catalog/registry.json`. Maintainers provision the matchi
 private key as an environment secret, restrict that environment to `main`, and
 allow the signing bot to push its generated commit through branch protection.
 
+For the complete source-to-GraphX operator checklist, including manual deploy,
+public-registry and GraphX verification commands, see the
+[deployment runbook](deploy/README.md#operator-runbook).
+
 Bundles are canonical JSON in signed envelopes. Ed25519 signs the domain prefix
 `ragentic.manifests/v1\n` plus the payload bytes; bundle filenames contain the
 SHA-256 of those bytes. This lets clients verify content independently of the

@@ -82,6 +82,115 @@ The init container runs migrations. Readiness is `/v1/index.json`, which turns
 importing about a minute later, so draft app pages 404 to the search page
 until then.
 
+## Operator runbook
+
+Use this procedure to publish catalog changes. It is deliberately split into
+source, signing, deployment and consumer verification: a source commit is not
+public until all four stages complete.
+
+### 1. Prepare the source commit
+
+From a clean checkout of `main`, add or update application source directories
+under `catalog/apps/`. Do **not** edit signed indexes, bundles or
+`sources.json` by hand. Regenerate the human-readable catalog and validate the
+editable sources:
+
+```sh
+mix catalog.docs
+mix catalog.validate
+mix precommit
+git add catalog/apps catalog/CATALOG.md
+git commit -m "Add latest catalog manifests"
+git push origin main
+```
+
+`mix catalog.validate` may report new or edited applications as `pending`:
+that is expected before the signing stage. `mix precommit` must pass before
+pushing. Keep every new application as a **draft** unless its connection flow
+has been reviewed and tested according to the root README.
+
+### 2. Follow signing and deployment
+
+Pushing `catalog/apps/**` to `main` starts both CI and Sign. With one
+`manifests-ci` runner, Sign can be queued until CI frees it. The normal sequence
+is:
+
+1. CI validates the source commit.
+2. Sign validates, signs the catalog, commits `Sign catalog: ...` to `main`,
+   and dispatches CI because a `GITHUB_TOKEN` push does not trigger workflows.
+3. CI passes for the signing commit.
+4. Deploy builds the signed commit's image and, when `AUTO_DEPLOY=true`, rolls
+   it out to `manifests.ragentic.io`.
+
+Monitor the workflow runs for the source commit and the follow-up signing
+commit. These commands are safe to run from the repository root:
+
+```sh
+gh run list --branch main --limit 12
+gh run watch <source-ci-run-id> --exit-status
+gh run watch <sign-run-id> --exit-status
+gh run watch <deploy-run-id> --exit-status
+```
+
+Do not manually deploy an unsigned source commit. If automatic deployment is
+disabled, wait for Sign and the follow-up CI to succeed, then intentionally
+start the deploy workflow:
+
+```sh
+gh workflow run deploy.yml -f ref=main -f deploy=true
+```
+
+This command builds and rolls out the current signed `main`; it does not sign
+catalog changes. To build without changing production, omit `-f deploy=true`.
+
+### 3. Verify the public registry
+
+After the deploy workflow succeeds, fetch both signed transports and verify an
+expected application. Compare the local checkout only after pulling the signing
+commit that the workflow created:
+
+```sh
+git pull --ff-only origin main
+for file in index.json browse-index.json; do
+  curl --fail --silent --show-error "https://manifests.ragentic.io/v1/$file" \
+    | cmp - "catalog/$file"
+done
+curl --fail --silent --show-error \
+  "https://manifests.ragentic.io/api/v1/manifests/<application-id>?version=latest" \
+  >/dev/null
+```
+
+Draft entries belong in `browse-index.json`; published entries belong in
+`index.json`. The deploy workflow performs an equivalent published-entry smoke
+test and automatically undoes a rollout that does not become ready.
+
+### 4. Verify GraphX
+
+GraphX consumes this registry as the signed CatalogSource
+`manifests.ragentic.io`, with the registry identity and root key pinned in
+`catalog/registry.json`. Once the public checks pass:
+
+1. Open `https://graphx.ragentic.io/catalog/registries` and confirm
+   `manifests.ragentic.io` is healthy.
+2. Browse or search the catalog for a newly deployed application id.
+3. Open the definition and confirm its displayed version matches the signed
+   bundle. Draft applications are discoverable but cannot be connected;
+   published applications offer the connection flow.
+
+If a new entry is absent, first compare the public signed index above. If the
+index contains it, refresh the GraphX catalog view and inspect the CatalogSource
+status; do not weaken its pinned key, identity, or minimum sequence to bypass
+signature verification.
+
+### Failure guide
+
+| Stage | What it means | Next action |
+| --- | --- | --- |
+| CI fails | Source or generated docs are invalid. | Fix the reported source files, rerun the preparation checks, then push a new commit. |
+| Sign fails | The signing environment, pinned root, or strict signed validation failed. | Inspect the Sign logs; never create local substitute signatures or edit generated signed files. |
+| Deploy fails | The rollout or public signed-index smoke check failed. | The script rolls back automatically. Inspect deploy logs and cluster events, fix the cause, then rerun the signed deploy. |
+| GraphX cannot browse an entry | The registry is not yet serving the signed entry or the consumer needs a refresh. | Verify the public index first, then refresh/check the signed CatalogSource. |
+
 ## History
 
 The image only carries the current catalog. Older signed versions come from
