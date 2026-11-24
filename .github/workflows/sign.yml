@@ -38,7 +38,7 @@ concurrency:
 
 permissions:
   contents: write
-  actions: write
+  pull-requests: write
 
 jobs:
   sign:
@@ -72,8 +72,10 @@ jobs:
         env:
           MANIFESTS_SIGNING_KEY: ${{ secrets.MANIFESTS_SIGNING_KEY }}
       - run: mix catalog.validate --require-signed
-      - name: Commit signed objects
+      - name: Create signing pull request
         id: commit
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git add -A catalog
           if git diff --cached --quiet; then echo "Nothing to sign."; exit 0; fi
@@ -86,18 +88,13 @@ jobs:
           }
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -q -m "Sign catalog: index sequence $(seq catalog/index.json), browse sequence $(seq catalog/browse-index.json), items sequence $(seq catalog/items-index.json)"
-          # main must let github-actions[bot] push (a ruleset bypass actor)
-          git push origin HEAD:main
+          message="Sign catalog: index sequence $(seq catalog/index.json), browse sequence $(seq catalog/browse-index.json), items sequence $(seq catalog/items-index.json)"
+          branch="sign-catalog-${GITHUB_RUN_ID}"
+          git commit -q -m "$message"
+          git push origin "HEAD:refs/heads/$branch"
+          gh pr create \
+            --base main \
+            --head "$branch" \
+            --title "$message" \
+            --body "Automated signed catalog update. The Sign workflow has passed strict signed validation."
           echo "pushed=true" >> "$GITHUB_OUTPUT"
-      # CI on main, and on its success deploy.yml (workflow_run)
-      - name: Dispatch CI for the signing commit
-        if: steps.commit.outputs.pushed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          curl -fsS -X POST \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/dispatches" \
-            -d '{"ref":"main"}'

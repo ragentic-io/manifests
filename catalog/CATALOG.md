@@ -10,25 +10,25 @@ An application can have up to four categories. They are defined in [categories.j
 
 | Id | Category | Published | Drafts |
 | --- | --- | --- | --- |
-| `ai` | AI & language | 0 | 35 |
-| `analytics` | Data & analytics | 1 | 16 |
-| `business` | Business & CRM | 1 | 17 |
-| `cloud` | Cloud & infrastructure | 3 | 30 |
-| `communication` | Communication | 3 | 33 |
-| `ecommerce` | E-commerce | 0 | 39 |
-| `education` | Education | 0 | 4 |
-| `finance` | Finance & payments | 2 | 60 |
-| `health` | Health & science | 1 | 10 |
-| `iot` | IoT & smart home | 0 | 14 |
-| `location` | Maps & location | 0 | 31 |
-| `marketing` | Marketing | 5 | 17 |
-| `media` | Media & entertainment | 1 | 64 |
-| `open-data` | Open data & government | 2 | 73 |
-| `productivity` | Productivity & collaboration | 10 | 27 |
-| `security` | Security & identity | 2 | 34 |
-| `social-media` | Social media | 5 | 14 |
-| `software-development` | Software development | 17 | 91 |
-| `travel` | Travel & transport | 0 | 13 |
+| `ai` | AI & language | 0 | 52 |
+| `analytics` | Data & analytics | 1 | 43 |
+| `business` | Business & CRM | 1 | 35 |
+| `cloud` | Cloud & infrastructure | 3 | 47 |
+| `communication` | Communication | 3 | 42 |
+| `ecommerce` | E-commerce | 0 | 52 |
+| `education` | Education | 0 | 11 |
+| `finance` | Finance & payments | 2 | 90 |
+| `health` | Health & science | 1 | 22 |
+| `iot` | IoT & smart home | 0 | 17 |
+| `location` | Maps & location | 0 | 42 |
+| `marketing` | Marketing | 5 | 146 |
+| `media` | Media & entertainment | 1 | 88 |
+| `open-data` | Open data & government | 2 | 110 |
+| `productivity` | Productivity & collaboration | 10 | 36 |
+| `security` | Security & identity | 2 | 44 |
+| `social-media` | Social media | 5 | 39 |
+| `software-development` | Software development | 17 | 109 |
+| `travel` | Travel & transport | 0 | 23 |
 | `diagrams` | Diagrams | 0 | 0 |
 | `engineering` | Engineering | 0 | 0 |
 | `design` | Design | 0 | 0 |
