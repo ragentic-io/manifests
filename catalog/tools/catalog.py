@@ -439,6 +439,11 @@ def index_entry(app_id, payload, listing, digest):
     }
     if listing.get("logo"):
         entry["logo"] = listing["logo"]
+    # The bundle's signed labels (labels/TAXONOMY.md): Ragentic's entry schema keeps them,
+    # and matches a coworker's need on `provides` from the index alone.
+    labels = ((payload.get("manifest") or {}).get("metadata") or {}).get("labels")
+    if labels:
+        entry["labels"] = labels
     if listing["catalog"] == "drafts":
         entry["readiness"] = payload["readiness"]
         entry["setup_verification"] = payload["setup_verification"]
