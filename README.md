@@ -229,11 +229,12 @@ After a maintainer merges application sources into `main`:
 
 1. Sign validates the catalog, signs changed/expiring bundles and indexes,
    updates timestamps and index sequences, regenerates docs, and signs the
-   plain-text source inventory. It commits the results back to `main`.
+   plain-text source inventory. It opens a pull request with the signed results.
+   A maintainer merges that verified PR into `main`.
 2. A new draft enters `browse-index.json`; a published entry enters `index.json`.
    Being merged or signed does not by itself promote a draft.
-3. Sign dispatches CI for its signing commit. Successful CI on `main` starts
-   the [deployment workflow](.github/workflows/deploy.yml), which builds the
+3. The merge starts CI on `main`. Successful CI starts the
+   [deployment workflow](.github/workflows/deploy.yml), which builds the
    registry image with the catalog. Automatic rollout runs when the repository
    variable `AUTO_DEPLOY` is `true`.
 4. The server verifies and imports that catalog, then serves the updated website,
