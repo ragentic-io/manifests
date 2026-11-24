@@ -1,0 +1,565 @@
+{
+  "a2ui": {},
+  "app": "open-trivia-database",
+  "graph": {
+    "edges": [
+      {
+        "from": "open-trivia-database",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api.php"
+      },
+      {
+        "from": "open-trivia-database",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api_category.php"
+      },
+      {
+        "from": "open-trivia-database",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api_count.php"
+      },
+      {
+        "from": "open-trivia-database",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api_count_global.php"
+      },
+      {
+        "from": "open-trivia-database",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api_token.php"
+      },
+      {
+        "from": "operation:get:/api.php",
+        "kind": "RETURNS",
+        "to": "schema:JsonResponse"
+      },
+      {
+        "from": "operation:get:/api_category.php",
+        "kind": "RETURNS",
+        "to": "schema:JsonResponse"
+      },
+      {
+        "from": "operation:get:/api_count.php",
+        "kind": "RETURNS",
+        "to": "schema:JsonResponse"
+      },
+      {
+        "from": "operation:get:/api_count_global.php",
+        "kind": "RETURNS",
+        "to": "schema:JsonResponse"
+      },
+      {
+        "from": "operation:get:/api_token.php",
+        "kind": "RETURNS",
+        "to": "schema:JsonResponse"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "open-trivia-database",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Only one category can be requested per call.",
+        "id": "operation:get:/api.php",
+        "kind": "operation",
+        "method": "get",
+        "name": "getQuestions",
+        "parameters": [
+          {
+            "description": "Number of questions to retrieve; maximum 50.",
+            "in": "query",
+            "name": "amount",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Category ID.",
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Question difficulty.",
+            "enum": [
+              "easy",
+              "medium",
+              "hard"
+            ],
+            "in": "query",
+            "name": "difficulty",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Question type.",
+            "enum": [
+              "multiple",
+              "boolean"
+            ],
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Response encoding.",
+            "enum": [
+              "urlLegacy",
+              "url3986",
+              "base64"
+            ],
+            "in": "query",
+            "name": "encode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Session token used to avoid returning previously retrieved questions.",
+            "in": "query",
+            "name": "token",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api.php",
+        "pointer": "#/paths/~1api.php/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve trivia questions",
+        "tags": [
+          "Questions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api_category.php",
+        "kind": "operation",
+        "method": "get",
+        "name": "listCategories",
+        "path": "/api_category.php",
+        "pointer": "#/paths/~1api_category.php/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List trivia categories",
+        "tags": [
+          "Categories"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api_count.php",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCategoryQuestionCount",
+        "parameters": [
+          {
+            "description": "Category ID.",
+            "in": "query",
+            "name": "category",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "path": "/api_count.php",
+        "pointer": "#/paths/~1api_count.php/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a category's question count",
+        "tags": [
+          "Counts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api_count_global.php",
+        "kind": "operation",
+        "method": "get",
+        "name": "getGlobalQuestionCounts",
+        "path": "/api_count_global.php",
+        "pointer": "#/paths/~1api_count_global.php/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get global question counts",
+        "tags": [
+          "Counts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Resetting a token clears its question history.",
+        "id": "operation:get:/api_token.php",
+        "kind": "operation",
+        "method": "get",
+        "name": "manageSessionToken",
+        "parameters": [
+          {
+            "description": "Request a new token or reset an existing token.",
+            "enum": [
+              "request",
+              "reset"
+            ],
+            "in": "query",
+            "name": "command",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Required when command is reset.",
+            "in": "query",
+            "name": "token",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api_token.php",
+        "pointer": "#/paths/~1api_token.php/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Request or reset a session token",
+        "tags": [
+          "Session tokens"
+        ]
+      },
+      {
+        "description": "The provider documents response behavior but not the JSON property schema.",
+        "id": "schema:JsonResponse",
+        "kind": "schema",
+        "name": "JsonResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "open-trivia-database"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://opentdb.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "JsonResponse": {
+                  "additionalProperties": true,
+                  "description": "The provider documents response behavior but not the JSON property schema.",
+                  "type": "object"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Official Open Trivia Database API documentation",
+              "url": "https://opentdb.com/api_config.php"
+            },
+            "info": {
+              "description": "Community-maintained description of the public Open Trivia Database API.\nThe provider says the JSON API is free and requires no API key. It limits\neach IP address to one request every five seconds and allows at most 50\nquestions per request. The provider documents response-code meanings but\ndoes not publish response property schemas, so response objects are left\nopen rather than guessing fields. Question data is licensed CC BY-SA 4.0.",
+              "title": "Open Trivia Database API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/api.php": {
+                "get": {
+                  "description": "Only one category can be requested per call. Omit category to retrieve\nquestions from any category. The provider documents response codes for\nsuccess, insufficient results, invalid parameters, missing or exhausted\ntokens, and rate limiting.",
+                  "operationId": "getQuestions",
+                  "parameters": [
+                    {
+                      "description": "Number of questions to retrieve; maximum 50.",
+                      "example": 10,
+                      "in": "query",
+                      "name": "amount",
+                      "required": true,
+                      "schema": {
+                        "maximum": 50,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Category ID. Only one category may be selected per call.",
+                      "in": "query",
+                      "name": "category",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Question difficulty.",
+                      "in": "query",
+                      "name": "difficulty",
+                      "schema": {
+                        "enum": [
+                          "easy",
+                          "medium",
+                          "hard"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Question type.",
+                      "in": "query",
+                      "name": "type",
+                      "schema": {
+                        "enum": [
+                          "multiple",
+                          "boolean"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Response encoding. If omitted, the API uses its default HTML-code encoding.",
+                      "in": "query",
+                      "name": "encode",
+                      "schema": {
+                        "enum": [
+                          "urlLegacy",
+                          "url3986",
+                          "base64"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Session token used to avoid returning previously retrieved questions. Tokens expire after six hours of inactivity.",
+                      "in": "query",
+                      "name": "token",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonResponse"
+                          }
+                        }
+                      },
+                      "description": "JSON result or documented response-code outcome."
+                    }
+                  },
+                  "summary": "Retrieve trivia questions",
+                  "tags": [
+                    "Questions"
+                  ]
+                }
+              },
+              "/api_category.php": {
+                "get": {
+                  "operationId": "listCategories",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonResponse"
+                          }
+                        }
+                      },
+                      "description": "JSON category list with category names and IDs."
+                    }
+                  },
+                  "summary": "List trivia categories",
+                  "tags": [
+                    "Categories"
+                  ]
+                }
+              },
+              "/api_count.php": {
+                "get": {
+                  "operationId": "getCategoryQuestionCount",
+                  "parameters": [
+                    {
+                      "description": "Category ID.",
+                      "in": "query",
+                      "name": "category",
+                      "required": true,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonResponse"
+                          }
+                        }
+                      },
+                      "description": "JSON question count for the category."
+                    }
+                  },
+                  "summary": "Get a category's question count",
+                  "tags": [
+                    "Counts"
+                  ]
+                }
+              },
+              "/api_count_global.php": {
+                "get": {
+                  "operationId": "getGlobalQuestionCounts",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonResponse"
+                          }
+                        }
+                      },
+                      "description": "JSON counts for total, pending, verified, and rejected questions."
+                    }
+                  },
+                  "summary": "Get global question counts",
+                  "tags": [
+                    "Counts"
+                  ]
+                }
+              },
+              "/api_token.php": {
+                "get": {
+                  "description": "Resetting a token clears its question history. A token is deleted after six hours of inactivity.",
+                  "operationId": "manageSessionToken",
+                  "parameters": [
+                    {
+                      "description": "Request a new token or reset an existing token.",
+                      "in": "query",
+                      "name": "command",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "request",
+                          "reset"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Required when command is reset.",
+                      "in": "query",
+                      "name": "token",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonResponse"
+                          }
+                        }
+                      },
+                      "description": "JSON token operation result."
+                    }
+                  },
+                  "summary": "Request or reset a session token",
+                  "tags": [
+                    "Session tokens"
+                  ]
+                }
+              }
+            },
+            "security": [],
+            "servers": [
+              {
+                "description": "Open Trivia Database",
+                "url": "https://opentdb.com"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Questions"
+              },
+              {
+                "name": "Categories"
+              },
+              {
+                "name": "Counts"
+              },
+              {
+                "name": "Session tokens"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Open Trivia Database"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.292211+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/opentdb/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "3226d236b3e6b013ff88a1831fd2df07c3ba1616e8fb3c51d90a16976158cfab",
+    "source_id": "open-trivia-database",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/opentdb/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

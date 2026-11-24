@@ -1,0 +1,341 @@
+{
+  "a2ui": {},
+  "app": "manychat-profile",
+  "graph": {
+    "edges": [
+      {
+        "from": "manychat-profile",
+        "kind": "EXPOSES",
+        "to": "operation:post:/user/template/generateSingleUseLink"
+      },
+      {
+        "from": "schema:Response Error",
+        "kind": "REFERENCES",
+        "to": "schema:Response Error Message"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "manychat-profile",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/user/template/generateSingleUseLink",
+        "kind": "operation",
+        "method": "post",
+        "name": "1fc7d7960d592bd7d6162fd0a373d16a",
+        "path": "/user/template/generateSingleUseLink",
+        "pointer": "#/paths/~1user~1template~1generateSingleUseLink/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Response Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "",
+        "tags": [
+          "Template"
+        ]
+      },
+      {
+        "id": "schema:Response Error",
+        "kind": "schema",
+        "name": "Response Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:Response Error Message",
+        "kind": "schema",
+        "name": "Response Error Message",
+        "type": "object"
+      },
+      {
+        "id": "schema:Response Error With Code",
+        "kind": "schema",
+        "name": "Response Error With Code",
+        "type": "object"
+      },
+      {
+        "id": "schema:Response Success",
+        "kind": "schema",
+        "name": "Response Success",
+        "type": "object"
+      },
+      {
+        "id": "schema:Template Installation Link",
+        "kind": "schema",
+        "name": "Template Installation Link",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "manychat-profile"
+    },
+    "spec": {
+      "base": {
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "Response Error": {
+                  "additionalProperties": false,
+                  "description": "",
+                  "properties": {
+                    "details": {
+                      "additionalProperties": false,
+                      "isRequired": true,
+                      "properties": {
+                        "messages": {
+                          "isRequired": true,
+                          "items": {
+                            "$ref": "#/components/schemas/Response Error Message"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "required": [
+                        "messages"
+                      ],
+                      "type": "object"
+                    },
+                    "message": {
+                      "isRequired": true,
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": "error",
+                      "isRequired": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "details"
+                  ],
+                  "type": "object"
+                },
+                "Response Error Message": {
+                  "additionalProperties": false,
+                  "description": "",
+                  "properties": {
+                    "message": {
+                      "isRequired": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "type": "object"
+                },
+                "Response Error With Code": {
+                  "additionalProperties": false,
+                  "description": "",
+                  "properties": {
+                    "code": {
+                      "isRequired": true,
+                      "type": "integer"
+                    },
+                    "message": {
+                      "isRequired": true,
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": "error",
+                      "isRequired": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message",
+                    "code"
+                  ],
+                  "type": "object"
+                },
+                "Response Success": {
+                  "additionalProperties": false,
+                  "description": "",
+                  "properties": {
+                    "status": {
+                      "example": "success",
+                      "isRequired": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ],
+                  "type": "object"
+                },
+                "Template Installation Link": {
+                  "additionalProperties": false,
+                  "description": "",
+                  "properties": {
+                    "hash_code": {
+                      "isRequired": true,
+                      "type": "string"
+                    },
+                    "installation_link": {
+                      "isRequired": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "hash_code",
+                    "installation_link"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "Bearer": {
+                  "in": "header",
+                  "name": "Authorization",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "Help article is available [here](https://help.manychat.com/hc/en-us/articles/14959510331420-API-Manychat)",
+              "title": "ManyChat API",
+              "version": "beta"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/user/template/generateSingleUseLink": {
+                "post": {
+                  "operationId": "1fc7d7960d592bd7d6162fd0a373d16a",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "template_id": {
+                              "isRequired": true,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "template_id"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "description": "Generate a unique link to share your template with someone with a single-use link that expires after the first installation.<br>\nThe link will be generated only if the Template access is set to active and single-use link sharing option is enabled.<br>\nYou can change the way you share your Template on the Template page (Profile>Templates>) <https://app.manychat.com/profile/dashboard#templates>",
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Template Installation Link"
+                              },
+                              "status": {
+                                "example": "success",
+                                "isRequired": true,
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": ""
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response Error"
+                          }
+                        }
+                      },
+                      "description": ""
+                    }
+                  },
+                  "security": [
+                    {
+                      "Bearer": []
+                    }
+                  ],
+                  "summary": "",
+                  "tags": [
+                    "Template"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "url": ""
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "ManyChat Profile"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:27.973817+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.manychat.com/swagger/compileJson?type=Profile_API",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "8fec54b8b28106e8fa046b3318edde497d8a2ae5fe473b264e61cec4179afce1",
+    "source_id": "manychat-profile",
+    "source_updated": null,
+    "url": "https://api.manychat.com/swagger/compileJson?type=Profile_API"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "beta"
+}

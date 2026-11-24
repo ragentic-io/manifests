@@ -1,0 +1,1459 @@
+{
+  "a2ui": {},
+  "app": "newreleases-io",
+  "graph": {
+    "edges": [
+      {
+        "from": "newreleases-io",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects"
+      },
+      {
+        "from": "newreleases-io",
+        "kind": "EXPOSES",
+        "to": "operation:post:/projects"
+      },
+      {
+        "from": "newreleases-io",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/search"
+      },
+      {
+        "from": "newreleases-io",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/{id}"
+      },
+      {
+        "from": "newreleases-io",
+        "kind": "EXPOSES",
+        "to": "operation:post:/projects/{id}"
+      },
+      {
+        "from": "newreleases-io",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/projects/{id}"
+      },
+      {
+        "from": "newreleases-io",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/{id}/latest-release"
+      },
+      {
+        "from": "newreleases-io",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/{id}/releases"
+      },
+      {
+        "from": "newreleases-io",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/{id}/releases/{version}"
+      },
+      {
+        "from": "newreleases-io",
+        "kind": "EXPOSES",
+        "to": "operation:get:/projects/{id}/releases/{version}/note"
+      },
+      {
+        "from": "operation:get:/projects",
+        "kind": "RETURNS",
+        "to": "schema:ProjectList"
+      },
+      {
+        "from": "operation:post:/projects",
+        "kind": "ACCEPTS",
+        "to": "schema:NewProject"
+      },
+      {
+        "from": "operation:post:/projects",
+        "kind": "RETURNS",
+        "to": "schema:Project"
+      },
+      {
+        "from": "operation:get:/projects/search",
+        "kind": "RETURNS",
+        "to": "schema:ProjectSearch"
+      },
+      {
+        "from": "operation:get:/projects/{id}",
+        "kind": "RETURNS",
+        "to": "schema:Project"
+      },
+      {
+        "from": "operation:post:/projects/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:ProjectSettings"
+      },
+      {
+        "from": "operation:post:/projects/{id}",
+        "kind": "RETURNS",
+        "to": "schema:Project"
+      },
+      {
+        "from": "operation:delete:/projects/{id}",
+        "kind": "RETURNS",
+        "to": "schema:Message"
+      },
+      {
+        "from": "operation:get:/projects/{id}/latest-release",
+        "kind": "RETURNS",
+        "to": "schema:Release"
+      },
+      {
+        "from": "operation:get:/projects/{id}/releases",
+        "kind": "RETURNS",
+        "to": "schema:ReleaseList"
+      },
+      {
+        "from": "operation:get:/projects/{id}/releases/{version}",
+        "kind": "RETURNS",
+        "to": "schema:Release"
+      },
+      {
+        "from": "operation:get:/projects/{id}/releases/{version}/note",
+        "kind": "RETURNS",
+        "to": "schema:ReleaseNote"
+      },
+      {
+        "from": "schema:NewProject",
+        "kind": "REFERENCES",
+        "to": "schema:ProjectSettings"
+      },
+      {
+        "from": "schema:Project",
+        "kind": "REFERENCES",
+        "to": "schema:ProjectSettings"
+      },
+      {
+        "from": "schema:ProjectList",
+        "kind": "REFERENCES",
+        "to": "schema:Project"
+      },
+      {
+        "from": "schema:ProjectSearch",
+        "kind": "REFERENCES",
+        "to": "schema:Project"
+      },
+      {
+        "from": "schema:ProjectSettings",
+        "kind": "REFERENCES",
+        "to": "schema:Exclusion"
+      },
+      {
+        "from": "schema:ReleaseList",
+        "kind": "REFERENCES",
+        "to": "schema:Release"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "newreleases-io",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/projects",
+        "kind": "operation",
+        "method": "get",
+        "name": "listProjects",
+        "parameters": [
+          {
+            "default": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": "updated",
+            "enum": [
+              "name",
+              "updated",
+              "added"
+            ],
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Presence reverses sort order; the documented flag has no value.",
+            "in": "query",
+            "name": "reverse",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by tag ID.",
+            "in": "query",
+            "name": "tag",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/projects",
+        "pointer": "#/paths/~1projects/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ProjectList"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "xKey": []
+          },
+          {
+            "apiKeyBasic": []
+          }
+        ],
+        "summary": "List tracked projects",
+        "tags": [
+          "Projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/projects",
+        "kind": "operation",
+        "method": "post",
+        "name": "addProject",
+        "path": "/projects",
+        "pointer": "#/paths/~1projects/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "NewProject"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "Project"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "xKey": []
+          },
+          {
+            "apiKeyBasic": []
+          }
+        ],
+        "summary": "Track a project",
+        "tags": [
+          "Projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/projects/search",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchProjects",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "provider",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/search",
+        "pointer": "#/paths/~1projects~1search/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ProjectSearch"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "xKey": []
+          },
+          {
+            "apiKeyBasic": []
+          }
+        ],
+        "summary": "Search projects",
+        "tags": [
+          "Projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/projects/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getProject",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{id}",
+        "pointer": "#/paths/~1projects~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Project"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "xKey": []
+          },
+          {
+            "apiKeyBasic": []
+          }
+        ],
+        "summary": "Get a tracked project by ID",
+        "tags": [
+          "Projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/projects/{id}",
+        "kind": "operation",
+        "method": "post",
+        "name": "updateProject",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{id}",
+        "pointer": "#/paths/~1projects~1{id}/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "ProjectSettings"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "Project"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "xKey": []
+          },
+          {
+            "apiKeyBasic": []
+          }
+        ],
+        "summary": "Update a tracked project",
+        "tags": [
+          "Projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:delete:/projects/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "deleteProject",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{id}",
+        "pointer": "#/paths/~1projects~1{id}/delete",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Message"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "xKey": []
+          },
+          {
+            "apiKeyBasic": []
+          }
+        ],
+        "summary": "Stop tracking a project",
+        "tags": [
+          "Projects"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/projects/{id}/latest-release",
+        "kind": "operation",
+        "method": "get",
+        "name": "getLatestRelease",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{id}/latest-release",
+        "pointer": "#/paths/~1projects~1{id}~1latest-release/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Release"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "xKey": []
+          },
+          {
+            "apiKeyBasic": []
+          }
+        ],
+        "summary": "Get the latest non-excluded release",
+        "tags": [
+          "Releases"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/projects/{id}/releases",
+        "kind": "operation",
+        "method": "get",
+        "name": "listProjectReleases",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/projects/{id}/releases",
+        "pointer": "#/paths/~1projects~1{id}~1releases/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ReleaseList"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "xKey": []
+          },
+          {
+            "apiKeyBasic": []
+          }
+        ],
+        "summary": "List releases for a tracked project",
+        "tags": [
+          "Releases"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/projects/{id}/releases/{version}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getProjectRelease",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "version",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{id}/releases/{version}",
+        "pointer": "#/paths/~1projects~1{id}~1releases~1{version}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Release"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "xKey": []
+          },
+          {
+            "apiKeyBasic": []
+          }
+        ],
+        "summary": "Get a release",
+        "tags": [
+          "Releases"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/projects/{id}/releases/{version}/note",
+        "kind": "operation",
+        "method": "get",
+        "name": "getReleaseNote",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "version",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/projects/{id}/releases/{version}/note",
+        "pointer": "#/paths/~1projects~1{id}~1releases~1{version}~1note/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ReleaseNote"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "xKey": []
+          },
+          {
+            "apiKeyBasic": []
+          }
+        ],
+        "summary": "Get a release note",
+        "tags": [
+          "Releases"
+        ]
+      },
+      {
+        "id": "schema:ApiError",
+        "kind": "schema",
+        "name": "ApiError",
+        "type": "object"
+      },
+      {
+        "id": "schema:Exclusion",
+        "kind": "schema",
+        "name": "Exclusion",
+        "type": "object"
+      },
+      {
+        "id": "schema:Message",
+        "kind": "schema",
+        "name": "Message",
+        "type": "object"
+      },
+      {
+        "id": "schema:NewProject",
+        "kind": "schema",
+        "name": "NewProject",
+        "type": "object|ProjectSettings"
+      },
+      {
+        "id": "schema:Project",
+        "kind": "schema",
+        "name": "Project",
+        "type": "object|ProjectSettings"
+      },
+      {
+        "id": "schema:ProjectList",
+        "kind": "schema",
+        "name": "ProjectList",
+        "type": "object"
+      },
+      {
+        "id": "schema:ProjectSearch",
+        "kind": "schema",
+        "name": "ProjectSearch",
+        "type": "object"
+      },
+      {
+        "id": "schema:ProjectSettings",
+        "kind": "schema",
+        "name": "ProjectSettings",
+        "type": "object"
+      },
+      {
+        "id": "schema:Release",
+        "kind": "schema",
+        "name": "Release",
+        "type": "object"
+      },
+      {
+        "id": "schema:ReleaseList",
+        "kind": "schema",
+        "name": "ReleaseList",
+        "type": "object"
+      },
+      {
+        "id": "schema:ReleaseNote",
+        "kind": "schema",
+        "name": "ReleaseNote",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "newreleases-io"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.newreleases.io/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Order": {
+                  "in": "query",
+                  "name": "order",
+                  "required": false,
+                  "schema": {
+                    "default": "updated",
+                    "enum": [
+                      "name",
+                      "updated",
+                      "added"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "Page": {
+                  "in": "query",
+                  "name": "page",
+                  "required": false,
+                  "schema": {
+                    "default": 1,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "ProjectId": {
+                  "in": "path",
+                  "name": "id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Reverse": {
+                  "allowEmptyValue": true,
+                  "description": "Presence reverses sort order; the documented flag has no value.",
+                  "in": "query",
+                  "name": "reverse",
+                  "required": false,
+                  "schema": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "responses": {
+                "ApiError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "API errors use documented HTTP statuses 400, 401, 403, 404, 405, 429, 500, or 503. The 400 response may include error details."
+                }
+              },
+              "schemas": {
+                "ApiError": {
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "errors": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Exclusion": {
+                  "properties": {
+                    "inverse": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Message": {
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "NewProject": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "provider": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "provider",
+                        "name"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProjectSettings"
+                    }
+                  ]
+                },
+                "Project": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "provider": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProjectSettings"
+                    }
+                  ]
+                },
+                "ProjectList": {
+                  "properties": {
+                    "projects": {
+                      "items": {
+                        "$ref": "#/components/schemas/Project"
+                      },
+                      "type": "array"
+                    },
+                    "total_pages": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "projects",
+                    "total_pages"
+                  ],
+                  "type": "object"
+                },
+                "ProjectSearch": {
+                  "properties": {
+                    "projects": {
+                      "items": {
+                        "$ref": "#/components/schemas/Project"
+                      },
+                      "type": "array"
+                    },
+                    "provider": {
+                      "default": "",
+                      "type": "string"
+                    },
+                    "q": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "q",
+                    "projects"
+                  ],
+                  "type": "object"
+                },
+                "ProjectSettings": {
+                  "properties": {
+                    "discord_channels": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "email_notification": {
+                      "enum": [
+                        "none",
+                        "instant",
+                        "hourly",
+                        "daily",
+                        "weekly",
+                        "default"
+                      ],
+                      "type": "string"
+                    },
+                    "exclude_prereleases": {
+                      "type": "boolean"
+                    },
+                    "exclude_updated": {
+                      "type": "boolean"
+                    },
+                    "exclude_version_regexp": {
+                      "items": {
+                        "$ref": "#/components/schemas/Exclusion"
+                      },
+                      "type": "array"
+                    },
+                    "hangouts_chat_webhooks": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "matrix_rooms": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "mattermost_webhooks": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "microsoft_teams_webhooks": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "note": {
+                      "type": "string"
+                    },
+                    "rocketchat_webhooks": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "slack_channels": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "telegram_chats": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "webhooks": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Release": {
+                  "properties": {
+                    "cve": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "date": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "has_note": {
+                      "type": "boolean"
+                    },
+                    "is_excluded": {
+                      "type": "boolean"
+                    },
+                    "is_prerelease": {
+                      "type": "boolean"
+                    },
+                    "is_updated": {
+                      "type": "boolean"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ReleaseList": {
+                  "properties": {
+                    "releases": {
+                      "items": {
+                        "$ref": "#/components/schemas/Release"
+                      },
+                      "type": "array"
+                    },
+                    "total_pages": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "releases",
+                    "total_pages"
+                  ],
+                  "type": "object"
+                },
+                "ReleaseNote": {
+                  "properties": {
+                    "message": {
+                      "description": "Release note content, which may contain HTML.",
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "apiKeyBasic": {
+                  "description": "The API key may be supplied as the Basic Auth username or password.",
+                  "scheme": "basic",
+                  "type": "http"
+                },
+                "xKey": {
+                  "description": "API key.",
+                  "in": "header",
+                  "name": "X-Key",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "NewReleases API v1 documentation",
+              "url": "https://newreleases.io/api/v1"
+            },
+            "info": {
+              "description": "Focused definition of the documented v1 project and release endpoints. GET requests consume one hourly quota unit and other requests consume ten; quota responses may include X-Ratelimit-* and Retry-After headers.",
+              "externalDocs": {
+                "description": "NewReleases API v1 documentation",
+                "url": "https://newreleases.io/api/v1"
+              },
+              "title": "NewReleases API",
+              "version": "1"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/projects": {
+                "get": {
+                  "operationId": "listProjects",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Order"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Reverse"
+                    },
+                    {
+                      "description": "Filter by tag ID.",
+                      "in": "query",
+                      "name": "tag",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ProjectList"
+                          }
+                        }
+                      },
+                      "description": "Projects and total page count."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "List tracked projects",
+                  "tags": [
+                    "Projects"
+                  ]
+                },
+                "post": {
+                  "operationId": "addProject",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/NewProject"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Project"
+                          }
+                        }
+                      },
+                      "description": "The newly tracked project."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Track a project",
+                  "tags": [
+                    "Projects"
+                  ]
+                }
+              },
+              "/projects/search": {
+                "get": {
+                  "operationId": "searchProjects",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "q",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "provider",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ProjectSearch"
+                          }
+                        }
+                      },
+                      "description": "Matching projects."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Search projects",
+                  "tags": [
+                    "Projects"
+                  ]
+                }
+              },
+              "/projects/{id}": {
+                "delete": {
+                  "operationId": "deleteProject",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Message"
+                          }
+                        }
+                      },
+                      "description": "The project was removed."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Stop tracking a project",
+                  "tags": [
+                    "Projects"
+                  ]
+                },
+                "get": {
+                  "operationId": "getProject",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Project"
+                          }
+                        }
+                      },
+                      "description": "The requested project."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Get a tracked project by ID",
+                  "tags": [
+                    "Projects"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ProjectId"
+                  }
+                ],
+                "post": {
+                  "operationId": "updateProject",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/ProjectSettings"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Project"
+                          }
+                        }
+                      },
+                      "description": "The updated project."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Update a tracked project",
+                  "tags": [
+                    "Projects"
+                  ]
+                }
+              },
+              "/projects/{id}/latest-release": {
+                "get": {
+                  "operationId": "getLatestRelease",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ProjectId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Release"
+                          }
+                        }
+                      },
+                      "description": "Latest release not excluded by project settings."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Get the latest non-excluded release",
+                  "tags": [
+                    "Releases"
+                  ]
+                }
+              },
+              "/projects/{id}/releases": {
+                "get": {
+                  "operationId": "listProjectReleases",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ReleaseList"
+                          }
+                        }
+                      },
+                      "description": "Releases and total page count."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "List releases for a tracked project",
+                  "tags": [
+                    "Releases"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ProjectId"
+                  }
+                ]
+              },
+              "/projects/{id}/releases/{version}": {
+                "get": {
+                  "operationId": "getProjectRelease",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Release"
+                          }
+                        }
+                      },
+                      "description": "The requested release."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Get a release",
+                  "tags": [
+                    "Releases"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ProjectId"
+                  },
+                  {
+                    "in": "path",
+                    "name": "version",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/projects/{id}/releases/{version}/note": {
+                "get": {
+                  "operationId": "getReleaseNote",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ReleaseNote"
+                          }
+                        }
+                      },
+                      "description": "Release note content and source URL."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Get a release note",
+                  "tags": [
+                    "Releases"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/ProjectId"
+                  },
+                  {
+                    "in": "path",
+                    "name": "version",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              }
+            },
+            "security": [
+              {
+                "xKey": []
+              },
+              {
+                "apiKeyBasic": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "NewReleases API v1",
+                "url": "https://api.newreleases.io/v1"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Projects"
+              },
+              {
+                "name": "Releases"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "NewReleases.io"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:44.713504+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/newreleasesio/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "6987dd5839f5c7bf4ece2896d82410b806c729e3e9ff735b62c82348918e6167",
+    "source_id": "newreleases-io",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/newreleasesio/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1"
+}

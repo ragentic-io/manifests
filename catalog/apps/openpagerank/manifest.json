@@ -1,0 +1,743 @@
+{
+  "a2ui": {},
+  "app": "openpagerank",
+  "graph": {
+    "edges": [
+      {
+        "from": "openpagerank",
+        "kind": "EXPOSES",
+        "to": "operation:post:/v1/domains/bulk"
+      },
+      {
+        "from": "openpagerank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/health"
+      },
+      {
+        "from": "openpagerank",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/usage"
+      },
+      {
+        "from": "operation:post:/v1/domains/bulk",
+        "kind": "RETURNS",
+        "to": "schema:BulkResponse"
+      },
+      {
+        "from": "operation:get:/v1/health",
+        "kind": "RETURNS",
+        "to": "schema:Health"
+      },
+      {
+        "from": "operation:get:/v1/usage",
+        "kind": "RETURNS",
+        "to": "schema:Usage"
+      },
+      {
+        "from": "schema:BulkResponse",
+        "kind": "REFERENCES",
+        "to": "schema:DomainResult"
+      },
+      {
+        "from": "schema:DomainResult",
+        "kind": "REFERENCES",
+        "to": "schema:HistoryPoint"
+      },
+      {
+        "from": "schema:DomainResult",
+        "kind": "REFERENCES",
+        "to": "schema:HostResult"
+      },
+      {
+        "from": "schema:HostResult",
+        "kind": "REFERENCES",
+        "to": "schema:HistoryPoint"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "openpagerank",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the current OpenPageRank and, by default, the full monthly history for up to 100 domains.",
+        "id": "operation:post:/v1/domains/bulk",
+        "kind": "operation",
+        "method": "post",
+        "name": "lookupDomains",
+        "path": "/v1/domains/bulk",
+        "pointer": "#/paths/~1v1~1domains~1bulk/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "BulkResponse"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "405",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Look up domains (current score + monthly history)",
+        "tags": [
+          "domains"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/v1/health",
+        "kind": "operation",
+        "method": "get",
+        "name": "getHealth",
+        "path": "/v1/health",
+        "pointer": "#/paths/~1v1~1health/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Health"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Service health and current data release",
+        "tags": [
+          "account"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Read-only; does not count against your limit.",
+        "id": "operation:get:/v1/usage",
+        "kind": "operation",
+        "method": "get",
+        "name": "getUsage",
+        "path": "/v1/usage",
+        "pointer": "#/paths/~1v1~1usage/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Usage"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Current plan tier and monthly domain usage",
+        "tags": [
+          "account"
+        ]
+      },
+      {
+        "id": "schema:BulkResponse",
+        "kind": "schema",
+        "name": "BulkResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:DomainResult",
+        "kind": "schema",
+        "name": "DomainResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:Health",
+        "kind": "schema",
+        "name": "Health",
+        "type": "object"
+      },
+      {
+        "id": "schema:HistoryPoint",
+        "kind": "schema",
+        "name": "HistoryPoint",
+        "type": "object"
+      },
+      {
+        "id": "schema:HostResult",
+        "kind": "schema",
+        "name": "HostResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:Usage",
+        "kind": "schema",
+        "name": "Usage",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "openpagerank"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://openpagerank.keywordseverywhere.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "BulkResponse": {
+                  "properties": {
+                    "as_of": {
+                      "description": "Latest data release.",
+                      "example": "2026-06-01",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "invalid": {
+                      "description": "Inputs that could not be parsed to a domain.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "results": {
+                      "items": {
+                        "$ref": "#/components/schemas/DomainResult"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "DomainResult": {
+                  "properties": {
+                    "domain": {
+                      "example": "github.com",
+                      "type": "string"
+                    },
+                    "found": {
+                      "type": "boolean"
+                    },
+                    "history": {
+                      "description": "Monthly series, oldest first. Present only when include_history is not false; omitted from the object entirely otherwise.",
+                      "items": {
+                        "$ref": "#/components/schemas/HistoryPoint"
+                      },
+                      "type": "array"
+                    },
+                    "hosts": {
+                      "description": "Present only when the request contained subdomain inputs for this domain: one entry per queried subdomain.",
+                      "items": {
+                        "$ref": "#/components/schemas/HostResult"
+                      },
+                      "type": "array"
+                    },
+                    "open_page_rank": {
+                      "description": "Authority score: a number from 0 to 10 with up to 2 decimal places (e.g. 10, 9.7, 4.92). null when not found.",
+                      "example": 9.67,
+                      "maximum": 10,
+                      "minimum": 0,
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "rank": {
+                      "description": "Global PageRank position (1 = highest).",
+                      "example": 30,
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "referring_domains": {
+                      "description": "Authority-weighted count of linking domains.",
+                      "example": 282833,
+                      "nullable": true,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Error": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "message": {
+                          "type": "string"
+                        },
+                        "param": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "type": {
+                          "example": "quota_error",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Health": {
+                  "properties": {
+                    "as_of": {
+                      "example": "2026-06-01",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": "ok",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "HistoryPoint": {
+                  "properties": {
+                    "date": {
+                      "example": "2026-06-01",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "estimated": {
+                      "description": "false for a month with a Common Crawl release (measured); true for a month with no release, linearly interpolated from the surrounding measured months. Interpolated months are most common before 2024, when releases were quarterly.",
+                      "type": "boolean"
+                    },
+                    "open_page_rank": {
+                      "example": 9.67,
+                      "maximum": 10,
+                      "minimum": 0,
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "HostResult": {
+                  "properties": {
+                    "found": {
+                      "type": "boolean"
+                    },
+                    "history": {
+                      "description": "Monthly series, oldest first, when include_history is not false. Subdomains scoring below 0.5 keep only their current score (empty history).",
+                      "items": {
+                        "$ref": "#/components/schemas/HistoryPoint"
+                      },
+                      "type": "array"
+                    },
+                    "host": {
+                      "example": "pages.github.com",
+                      "type": "string"
+                    },
+                    "open_page_rank": {
+                      "description": "Authority score on the same 0-10 scale as domains, so subdomains are comparable with each other and with root domains. Never above the root domain's score. null when not found.",
+                      "example": 9.15,
+                      "maximum": 10,
+                      "minimum": 0,
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "rank": {
+                      "description": "Position in the host-level web graph (1 = highest).",
+                      "example": 1954,
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "referring_hosts": {
+                      "description": "Authority-filtered count of linking hosts.",
+                      "example": 5888,
+                      "nullable": true,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Usage": {
+                  "properties": {
+                    "domains_remaining": {
+                      "type": "integer"
+                    },
+                    "domains_used": {
+                      "description": "Domains looked up so far this month.",
+                      "type": "integer"
+                    },
+                    "monthly_domain_limit": {
+                      "description": "Domains you can look up per month on your plan.",
+                      "type": "integer"
+                    },
+                    "requests_per_minute": {
+                      "type": "integer"
+                    },
+                    "resets_at": {
+                      "description": "When the monthly domain limit resets.",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "tier": {
+                      "enum": [
+                        "free",
+                        "bronze",
+                        "silver",
+                        "gold",
+                        "platinum"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "description": "Your OPR API key (opr_live_…), minted in the dashboard.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "name": "OpenPageRank",
+                "url": "https://openpagerank.keywordseverywhere.com"
+              },
+              "description": "Authority (OpenPageRank, a 0-10 score) for up to 100 domains per call, each with its full monthly history back to 2018.\n\n**One data call:** `POST /v1/domains/bulk`. History is included by default; set `include_history: false` for a lighter, current-only response.\n\n**Domain limits:** each domain looked up (current **and** history) counts once toward your **monthly domain limit**, free 30,000, bronze 100,000, silver 200,000, gold 1,000,000, platinum 4,000,000. Watch the `X-Domains-*` response headers, or call `GET /v1/usage` to see how many you've used. Limits reset on the 1st of each month.\n\n**Auth:** send your OPR API key as `Authorization: Bearer <key>` (mint keys in the dashboard).",
+              "title": "OpenPageRank API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/v1/domains/bulk": {
+                "post": {
+                  "description": "Returns the current OpenPageRank and, by default, the full monthly history for up to 100 domains. Each unique domain counts once toward your monthly domain limit (history included or not). Input accepts a bare domain, hostname, or full URL, it is reduced to the registered domain.\n\nA subdomain input (blog.example.com, but not bare www) additionally attaches a `hosts` entry on its root domain's result with the subdomain's own score on the same 0-10 scale. Subdomain data is free (it does not count toward the monthly limit; up to 100 unique hostnames per request), and a subdomain never scores above its root domain.",
+                  "operationId": "lookupDomains",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "domains": [
+                            "github.com",
+                            "google.com"
+                          ],
+                          "include_history": true
+                        },
+                        "schema": {
+                          "properties": {
+                            "domains": {
+                              "description": "Up to 100 unique domains. Duplicates and equivalent forms (e.g. URLs of the same site) are merged before the limit is applied.",
+                              "example": [
+                                "github.com",
+                                "google.com"
+                              ],
+                              "items": {
+                                "type": "string"
+                              },
+                              "maxItems": 100,
+                              "type": "array"
+                            },
+                            "include_history": {
+                              "default": true,
+                              "description": "Include the monthly history array per domain. Set false for a smaller, current-only response.",
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "domains"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/BulkResponse"
+                          }
+                        }
+                      },
+                      "description": "Per-domain results, in request order.",
+                      "headers": {
+                        "X-Domains-Limit": {
+                          "description": "Monthly domain allowance for the plan.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        },
+                        "X-Domains-Remaining": {
+                          "description": "Domains left this month.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        },
+                        "X-Domains-Reset": {
+                          "description": "Unix time when the monthly domain limit resets (first of next month).",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        },
+                        "X-OPR-Metering": {
+                          "description": "Present only while the metering store is briefly unavailable: the call was served but not counted, and the remaining-count headers repeat the plan limits.",
+                          "schema": {
+                            "enum": [
+                              "degraded"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "X-RateLimit-Limit": {
+                          "description": "Requests/minute allowed for the plan.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        },
+                        "X-RateLimit-Remaining": {
+                          "description": "Requests left in the current minute.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Malformed request: missing domains array, over the cap, or include_history is not a boolean."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Missing or invalid OPR API key."
+                    },
+                    "405": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Wrong HTTP method (use POST). The Allow header lists accepted methods.",
+                      "headers": {
+                        "Allow": {
+                          "description": "Accepted methods.",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Monthly domain limit reached, or per-minute rate exceeded. A rejected call does NOT count against your limit.",
+                      "headers": {
+                        "X-Domains-Limit": {
+                          "description": "Monthly domain allowance for the plan.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        },
+                        "X-Domains-Remaining": {
+                          "description": "Domains left this month.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        },
+                        "X-Domains-Reset": {
+                          "description": "Unix time when the monthly domain limit resets (first of next month).",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        },
+                        "X-OPR-Metering": {
+                          "description": "Present only while the metering store is briefly unavailable: the call was served but not counted, and the remaining-count headers repeat the plan limits.",
+                          "schema": {
+                            "enum": [
+                              "degraded"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "X-RateLimit-Limit": {
+                          "description": "Requests/minute allowed for the plan.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        },
+                        "X-RateLimit-Remaining": {
+                          "description": "Requests left in the current minute.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "summary": "Look up domains (current score + monthly history)",
+                  "tags": [
+                    "domains"
+                  ]
+                }
+              },
+              "/v1/health": {
+                "get": {
+                  "operationId": "getHealth",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Health"
+                          }
+                        }
+                      },
+                      "description": "OK."
+                    }
+                  },
+                  "security": [],
+                  "summary": "Service health and current data release",
+                  "tags": [
+                    "account"
+                  ]
+                }
+              },
+              "/v1/usage": {
+                "get": {
+                  "description": "Read-only; does not count against your limit.",
+                  "operationId": "getUsage",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Usage"
+                          }
+                        }
+                      },
+                      "description": "Tier + domain usage."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Missing or invalid OPR API key."
+                    }
+                  },
+                  "summary": "Current plan tier and monthly domain usage",
+                  "tags": [
+                    "account"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://openpagerank.keywordseverywhere.com"
+              }
+            ],
+            "tags": [
+              {
+                "name": "domains"
+              },
+              {
+                "name": "account"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OpenPageRank"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:28:57.509579+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://openpagerank.keywordseverywhere.com/v1/openapi.json",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "a8c4591b0fd0f63a5e617b4faf335ac281760a52d33525ea2836567b4ee94dd4",
+    "source_id": "openpagerank",
+    "source_updated": null,
+    "url": "https://openpagerank.keywordseverywhere.com/v1/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

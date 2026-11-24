@@ -1,0 +1,3323 @@
+{
+  "a2ui": {},
+  "app": "kundenschreiber",
+  "graph": {
+    "edges": [
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/customer-inserts"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:post:/enrich-company"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/funnels"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/funnels/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/orders"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:post:/orders"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/orders/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/qr/campaigns"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:post:/qr/campaigns"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/qr/campaigns/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/qr/campaigns/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/qr/codes"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:post:/qr/codes"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/qr/codes/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/qr/domains"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/recipients"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:post:/recipients"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/recipients/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/recipients/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/recipients/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/senders"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:post:/senders"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/senders/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/senders/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/senders/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/shipment-balance"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/signatures"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/signatures/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/signatures/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/signatures/{id}"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/templates"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/templates/envelopes"
+      },
+      {
+        "from": "kundenschreiber",
+        "kind": "EXPOSES",
+        "to": "operation:get:/templates/{id}"
+      },
+      {
+        "from": "operation:post:/qr/codes",
+        "kind": "ACCEPTS",
+        "to": "schema:QrCodeCreate"
+      },
+      {
+        "from": "operation:post:/recipients",
+        "kind": "ACCEPTS",
+        "to": "schema:Recipient"
+      },
+      {
+        "from": "operation:post:/recipients",
+        "kind": "RETURNS",
+        "to": "schema:RecipientFull"
+      },
+      {
+        "from": "operation:get:/recipients/{id}",
+        "kind": "RETURNS",
+        "to": "schema:RecipientFull"
+      },
+      {
+        "from": "schema:OrderItem",
+        "kind": "REFERENCES",
+        "to": "schema:Recipient"
+      },
+      {
+        "from": "schema:Signature",
+        "kind": "REFERENCES",
+        "to": "schema:SignatureVariation"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "kundenschreiber",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Listet alle eigenen Beilagen (Broschüren, Flyer etc.) auf.",
+        "id": "operation:get:/customer-inserts",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /customer-inserts",
+        "path": "/customer-inserts",
+        "pointer": "#/paths/~1customer-inserts/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List customer inserts",
+        "tags": [
+          "Orders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Searches for a German company by name, website domain, or email address and returns official address data, management (CEO/directors), and contact information…",
+        "id": "operation:post:/enrich-company",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /enrich-company",
+        "path": "/enrich-company",
+        "pointer": "#/paths/~1enrich-company/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Enrich company data",
+        "tags": [
+          "Enrichment"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/funnels",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /funnels",
+        "path": "/funnels",
+        "pointer": "#/paths/~1funnels/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List funnels",
+        "tags": [
+          "Funnels"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/funnels/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /funnels/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/funnels/{id}",
+        "pointer": "#/paths/~1funnels~1{id}/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get funnel details",
+        "tags": [
+          "Funnels"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/orders",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /orders",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 50,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/orders",
+        "pointer": "#/paths/~1orders/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List orders",
+        "tags": [
+          "Orders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a single letter order.",
+        "id": "operation:post:/orders",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /orders",
+        "path": "/orders",
+        "pointer": "#/paths/~1orders/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "201"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Create order",
+        "tags": [
+          "Orders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/orders/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /orders/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/orders/{id}",
+        "pointer": "#/paths/~1orders~1{id}/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get order details",
+        "tags": [
+          "Orders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/qr/campaigns",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /qr/campaigns",
+        "path": "/qr/campaigns",
+        "pointer": "#/paths/~1qr~1campaigns/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List QR campaigns",
+        "tags": [
+          "QR Codes"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/qr/campaigns",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /qr/campaigns",
+        "path": "/qr/campaigns",
+        "pointer": "#/paths/~1qr~1campaigns/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "201"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Create QR campaign",
+        "tags": [
+          "QR Codes"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/qr/campaigns/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /qr/campaigns/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/qr/campaigns/{id}",
+        "pointer": "#/paths/~1qr~1campaigns~1{id}/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get campaign details",
+        "tags": [
+          "QR Codes"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:patch:/qr/campaigns/{id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch /qr/campaigns/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/qr/campaigns/{id}",
+        "pointer": "#/paths/~1qr~1campaigns~1{id}/patch",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Update campaign",
+        "tags": [
+          "QR Codes"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/qr/codes",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /qr/codes",
+        "parameters": [
+          {
+            "description": "Filter by campaign ID",
+            "in": "query",
+            "name": "campaign_id",
+            "required": true,
+            "type": "string:uuid"
+          },
+          {
+            "default": 50,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/qr/codes",
+        "pointer": "#/paths/~1qr~1codes/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List QR codes",
+        "tags": [
+          "QR Codes"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Erstellt einen individuellen QR-Code.",
+        "id": "operation:post:/qr/codes",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /qr/codes",
+        "path": "/qr/codes",
+        "pointer": "#/paths/~1qr~1codes/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "QrCodeCreate"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Create QR Code",
+        "tags": [
+          "QR Codes"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:patch:/qr/codes/{id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch /qr/codes/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/qr/codes/{id}",
+        "pointer": "#/paths/~1qr~1codes~1{id}/patch",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Update QR code",
+        "tags": [
+          "QR Codes"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/qr/domains",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /qr/domains",
+        "path": "/qr/domains",
+        "pointer": "#/paths/~1qr~1domains/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List QR domains",
+        "tags": [
+          "QR Codes"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List all recipients with optional search.",
+        "id": "operation:get:/recipients",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /recipients",
+        "parameters": [
+          {
+            "description": "Search in first_name, last_name, company_name, email",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 20,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/recipients",
+        "pointer": "#/paths/~1recipients/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List recipients",
+        "tags": [
+          "Recipients"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Create a new recipient.",
+        "id": "operation:post:/recipients",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /recipients",
+        "path": "/recipients",
+        "pointer": "#/paths/~1recipients/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "Recipient"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "RecipientFull"
+          },
+          {
+            "status": "201",
+            "type": "RecipientFull"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Create recipient",
+        "tags": [
+          "Recipients"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/recipients/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /recipients/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/recipients/{id}",
+        "pointer": "#/paths/~1recipients~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "RecipientFull"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get recipient details",
+        "tags": [
+          "Recipients"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Delete a recipient.",
+        "id": "operation:delete:/recipients/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete /recipients/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/recipients/{id}",
+        "pointer": "#/paths/~1recipients~1{id}/delete",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "409"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Delete recipient",
+        "tags": [
+          "Recipients"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:patch:/recipients/{id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch /recipients/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/recipients/{id}",
+        "pointer": "#/paths/~1recipients~1{id}/patch",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Update recipient",
+        "tags": [
+          "Recipients"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/senders",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /senders",
+        "path": "/senders",
+        "pointer": "#/paths/~1senders/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List senders",
+        "tags": [
+          "Senders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/senders",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /senders",
+        "path": "/senders",
+        "pointer": "#/paths/~1senders/post",
+        "responses": [
+          {
+            "status": "201"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Create sender",
+        "tags": [
+          "Senders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/senders/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /senders/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/senders/{id}",
+        "pointer": "#/paths/~1senders~1{id}/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get sender details",
+        "tags": [
+          "Senders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:delete:/senders/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete /senders/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/senders/{id}",
+        "pointer": "#/paths/~1senders~1{id}/delete",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Delete sender",
+        "tags": [
+          "Senders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:patch:/senders/{id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch /senders/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/senders/{id}",
+        "pointer": "#/paths/~1senders~1{id}/patch",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Update sender",
+        "tags": [
+          "Senders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the current shipment credit balance.",
+        "id": "operation:get:/shipment-balance",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /shipment-balance",
+        "path": "/shipment-balance",
+        "pointer": "#/paths/~1shipment-balance/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get shipment credit balance",
+        "tags": [
+          "Credits"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns all active signatures including their handwritten variations (SVG paths)",
+        "id": "operation:get:/signatures",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /signatures",
+        "path": "/signatures",
+        "pointer": "#/paths/~1signatures/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List signatures with variations",
+        "tags": [
+          "Signatures"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a single signature including all its handwritten variations",
+        "id": "operation:get:/signatures/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /signatures/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/signatures/{id}",
+        "pointer": "#/paths/~1signatures~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get signature details with variations",
+        "tags": [
+          "Signatures"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Deactivates the signature and permanently deletes all its variations",
+        "id": "operation:delete:/signatures/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete /signatures/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/signatures/{id}",
+        "pointer": "#/paths/~1signatures~1{id}/delete",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Delete signature and variations",
+        "tags": [
+          "Signatures"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:patch:/signatures/{id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch /signatures/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/signatures/{id}",
+        "pointer": "#/paths/~1signatures~1{id}/patch",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Update signature",
+        "tags": [
+          "Signatures"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/templates",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /templates",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 50,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/templates",
+        "pointer": "#/paths/~1templates/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List templates",
+        "tags": [
+          "Templates"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Listet alle verfügbaren Umschlag-Vorlagen auf.",
+        "id": "operation:get:/templates/envelopes",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /templates/envelopes",
+        "path": "/templates/envelopes",
+        "pointer": "#/paths/~1templates~1envelopes/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List envelope templates",
+        "tags": [
+          "Templates"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/templates/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /templates/{id}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/templates/{id}",
+        "pointer": "#/paths/~1templates~1{id}/get",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get template details",
+        "tags": [
+          "Templates"
+        ]
+      },
+      {
+        "id": "schema:Balance",
+        "kind": "schema",
+        "name": "Balance",
+        "type": "object"
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:Funnel",
+        "kind": "schema",
+        "name": "Funnel",
+        "type": "object"
+      },
+      {
+        "id": "schema:FunnelSession",
+        "kind": "schema",
+        "name": "FunnelSession",
+        "type": "object"
+      },
+      {
+        "id": "schema:Order",
+        "kind": "schema",
+        "name": "Order",
+        "type": "object"
+      },
+      {
+        "description": "Either recipient_id OR recipient object is required.",
+        "id": "schema:OrderItem",
+        "kind": "schema",
+        "name": "OrderItem",
+        "type": "object"
+      },
+      {
+        "id": "schema:QrCampaign",
+        "kind": "schema",
+        "name": "QrCampaign",
+        "type": "object"
+      },
+      {
+        "id": "schema:QrCode",
+        "kind": "schema",
+        "name": "QrCode",
+        "type": "object"
+      },
+      {
+        "description": "Erstellt einen individuellen QR-Code.",
+        "id": "schema:QrCodeCreate",
+        "kind": "schema",
+        "name": "QrCodeCreate",
+        "type": "object"
+      },
+      {
+        "id": "schema:Recipient",
+        "kind": "schema",
+        "name": "Recipient",
+        "type": "object"
+      },
+      {
+        "description": "Complete recipient object with all fields",
+        "id": "schema:RecipientFull",
+        "kind": "schema",
+        "name": "RecipientFull",
+        "type": "object"
+      },
+      {
+        "id": "schema:Sender",
+        "kind": "schema",
+        "name": "Sender",
+        "type": "object"
+      },
+      {
+        "id": "schema:Signature",
+        "kind": "schema",
+        "name": "Signature",
+        "type": "object"
+      },
+      {
+        "id": "schema:SignatureVariation",
+        "kind": "schema",
+        "name": "SignatureVariation",
+        "type": "object"
+      },
+      {
+        "id": "schema:Template",
+        "kind": "schema",
+        "name": "Template",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "kundenschreiber"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.kundenschreiber.de/functions/v1/public-api/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "Balance": {
+                  "properties": {
+                    "current_credits": {
+                      "type": "integer"
+                    },
+                    "plan": {
+                      "properties": {
+                        "base_credit_price": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "slug": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "rollover_credits": {
+                      "type": "integer"
+                    },
+                    "service_discount_balance": {
+                      "type": "number"
+                    },
+                    "total_available": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Error": {
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Funnel": {
+                  "properties": {
+                    "completed_sessions": {
+                      "type": "integer"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "total_sessions": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "FunnelSession": {
+                  "properties": {
+                    "completed_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "device_type": {
+                      "type": "string"
+                    },
+                    "funnel_id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "started_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Order": {
+                  "properties": {
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "credit_mode": {
+                      "description": "Credit mode used for this order. 'legacy' = EUR-based credits (variable pricing per format), 'shipment' = 1 credit per shipment (flat rate). Auto-detected based on account configuration.",
+                      "enum": [
+                        "legacy",
+                        "shipment"
+                      ],
+                      "type": "string"
+                    },
+                    "credits_used": {
+                      "description": "Credits charged. For legacy mode: EUR amount. For shipment mode: number of shipment credits (1 per letter).",
+                      "type": "number"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "total_items": {
+                      "type": "integer"
+                    },
+                    "total_price": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "OrderItem": {
+                  "description": "Either recipient_id OR recipient object is required. If recipient object is provided, the system will automatically check for duplicates and reuse existing contacts.",
+                  "properties": {
+                    "personalization": {
+                      "additionalProperties": true,
+                      "description": "Template variables for personalization",
+                      "type": "object"
+                    },
+                    "qr_code_id": {
+                      "description": "ID of an existing QR code to link to this order item (create QR codes first via POST /v1/qr/codes)",
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "recipient": {
+                      "$ref": "#/components/schemas/Recipient",
+                      "description": "Recipient address (alternative to recipient_id). System auto-deduplicates by matching first_name, last_name, street, zip, city."
+                    },
+                    "recipient_id": {
+                      "description": "ID of an existing recipient (alternative to providing recipient object)",
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "sender_id": {
+                      "description": "ID of an existing sender (create senders first via POST /v1/senders)",
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "template_id": {
+                      "format": "uuid",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "QrCampaign": {
+                  "properties": {
+                    "default_target_url": {
+                      "type": "string"
+                    },
+                    "domain_id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "total_codes": {
+                      "type": "integer"
+                    },
+                    "total_scans": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "QrCode": {
+                  "properties": {
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "redirect_url": {
+                      "type": "string"
+                    },
+                    "scan_count": {
+                      "type": "integer"
+                    },
+                    "short_code": {
+                      "type": "string"
+                    },
+                    "target_url": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "QrCodeCreate": {
+                  "description": "Erstellt einen individuellen QR-Code. Jeder QR-Code erhält eine eindeutige URL. Ideal für personalisierte Sendungen, bei denen jeder Empfänger einen eigenen QR-Code bekommt.",
+                  "example": {
+                    "campaign_id": "123e4567-e89b-12d3-a456-426614174000",
+                    "target_url": "https://example.com/product/123"
+                  },
+                  "properties": {
+                    "campaign_id": {
+                      "description": "ID der QR-Kampagne (erforderlich). Kampagnen können über POST /v1/qr/campaigns erstellt werden.",
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Optionaler Name für diesen QR-Code (nützlich zur internen Referenzierung)",
+                      "type": "string"
+                    },
+                    "target_url": {
+                      "description": "Ziel-URL, zu der der QR-Code weiterleitet (erforderlich)",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "campaign_id",
+                    "target_url"
+                  ],
+                  "type": "object"
+                },
+                "Recipient": {
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "company_name": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "default": "Deutschland",
+                      "type": "string"
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "street": {
+                      "type": "string"
+                    },
+                    "zip": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "first_name",
+                    "last_name",
+                    "street",
+                    "zip",
+                    "city",
+                    "country"
+                  ],
+                  "type": "object"
+                },
+                "RecipientFull": {
+                  "description": "Complete recipient object with all fields",
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "company_name": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "street": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "zip": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Sender": {
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "company_name": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "street": {
+                      "type": "string"
+                    },
+                    "zip": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Signature": {
+                  "properties": {
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "variations": {
+                      "description": "Handwritten signature variations (SVG paths)",
+                      "items": {
+                        "$ref": "#/components/schemas/SignatureVariation"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SignatureVariation": {
+                  "properties": {
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "height_mm": {
+                      "description": "Height in millimeters",
+                      "type": "number"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "svg_path_data": {
+                      "description": "SVG path data for the handwritten signature",
+                      "type": "string"
+                    },
+                    "width_mm": {
+                      "description": "Width in millimeters",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Template": {
+                  "properties": {
+                    "format_code": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "is_active": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "variables": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "ApiKeyAuth": {
+                  "description": "API key with ks_live_ or ks_test_ prefix",
+                  "in": "header",
+                  "name": "x-api-key",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "support@kundenschreiber.de",
+                "name": "Kundenschreiber Support"
+              },
+              "description": "API for creating handwritten letters and postcards",
+              "title": "Kundenschreiber Public API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/customer-inserts": {
+                "get": {
+                  "description": "Listet alle eigenen Beilagen (Broschüren, Flyer etc.) auf. Beilagen müssen vorab im Dashboard angelegt werden. Die ID kann beim Erstellen einer Bestellung als customer_insert_id übergeben werden.",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "current_stock": {
+                                      "type": "integer"
+                                    },
+                                    "height_mm": {
+                                      "type": "number"
+                                    },
+                                    "id": {
+                                      "format": "uuid",
+                                      "type": "string"
+                                    },
+                                    "is_active": {
+                                      "type": "boolean"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "reserved_stock": {
+                                      "type": "integer"
+                                    },
+                                    "thickness_mm": {
+                                      "type": "number"
+                                    },
+                                    "weight_g": {
+                                      "type": "number"
+                                    },
+                                    "width_mm": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Liste der Beilagen"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List customer inserts",
+                  "tags": [
+                    "Orders"
+                  ]
+                }
+              },
+              "/enrich-company": {
+                "post": {
+                  "description": "Searches for a German company by name, website domain, or email address and returns official address data, management (CEO/directors), and contact information from the German trade register (Handelsregister). Ideal for CRM enrichment workflows.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "by_email": {
+                            "summary": "Search by email",
+                            "value": {
+                              "email": "info@kundenschreiber.de"
+                            }
+                          },
+                          "by_name": {
+                            "summary": "Search by company name",
+                            "value": {
+                              "company_name": "Kundenschreiber GmbH"
+                            }
+                          },
+                          "by_website": {
+                            "summary": "Search by website",
+                            "value": {
+                              "website": "kundenschreiber.de"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "properties": {
+                            "company_name": {
+                              "description": "Company name to search for (highest priority)",
+                              "type": "string"
+                            },
+                            "email": {
+                              "description": "Email address - domain will be extracted for search",
+                              "format": "email",
+                              "type": "string"
+                            },
+                            "website": {
+                              "description": "Website URL or domain (e.g. 'example.de' or 'https://www.example.de')",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "company": {
+                                "properties": {
+                                  "address": {
+                                    "properties": {
+                                      "city": {
+                                        "type": "string"
+                                      },
+                                      "country": {
+                                        "type": "string"
+                                      },
+                                      "street": {
+                                        "type": "string"
+                                      },
+                                      "zip": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "contact": {
+                                    "properties": {
+                                      "email": {
+                                        "type": "string"
+                                      },
+                                      "phone": {
+                                        "type": "string"
+                                      },
+                                      "website": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "incorporated_at": {
+                                    "format": "date",
+                                    "type": "string"
+                                  },
+                                  "legal_form": {
+                                    "type": "string"
+                                  },
+                                  "management": {
+                                    "items": {
+                                      "properties": {
+                                        "first_name": {
+                                          "type": "string"
+                                        },
+                                        "last_name": {
+                                          "type": "string"
+                                        },
+                                        "role": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "register_court": {
+                                    "type": "string"
+                                  },
+                                  "register_number": {
+                                    "type": "string"
+                                  },
+                                  "status": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "confidence": {
+                                "enum": [
+                                  "high",
+                                  "medium",
+                                  "low"
+                                ],
+                                "type": "string"
+                              },
+                              "found": {
+                                "type": "boolean"
+                              },
+                              "message": {
+                                "description": "Only present when found=false",
+                                "type": "string"
+                              },
+                              "openregister_id": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Company data found or not found"
+                    },
+                    "400": {
+                      "description": "Missing required fields"
+                    },
+                    "403": {
+                      "description": "Missing enrichment:read scope"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Enrich company data",
+                  "tags": [
+                    "Enrichment"
+                  ]
+                }
+              },
+              "/funnels": {
+                "get": {
+                  "responses": {
+                    "200": {
+                      "description": "List of funnels"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List funnels",
+                  "tags": [
+                    "Funnels"
+                  ]
+                }
+              },
+              "/funnels/{id}": {
+                "get": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Funnel details with pages"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Get funnel details",
+                  "tags": [
+                    "Funnels"
+                  ]
+                }
+              },
+              "/orders": {
+                "get": {
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "status",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": 50,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "offset",
+                      "schema": {
+                        "default": 0,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "List of orders"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List orders",
+                  "tags": [
+                    "Orders"
+                  ]
+                },
+                "post": {
+                  "description": "Creates a single letter order. Multiple API calls can be combined into one order if made on the same day with the same format/envelope/QR configuration.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "customer_insert_id": {
+                              "description": "ID einer eigenen Beilage (Broschüre, Flyer etc.). Muss vorab im Dashboard angelegt und mit Lagerbestand versehen sein. Siehe GET /v1/customer-inserts.",
+                              "format": "uuid",
+                              "type": "string"
+                            },
+                            "envelope_template_id": {
+                              "description": "ID einer Umschlag-Vorlage (siehe GET /v1/templates/envelopes). Optional -- wenn nicht angegeben, wird der Standard-Umschlag verwendet.",
+                              "format": "uuid",
+                              "type": "string"
+                            },
+                            "metadata": {
+                              "additionalProperties": true,
+                              "type": "object"
+                            },
+                            "personalization": {
+                              "additionalProperties": true,
+                              "description": "Template variables for personalization",
+                              "type": "object"
+                            },
+                            "qr_code_id": {
+                              "description": "ID of an existing QR code to link",
+                              "format": "uuid",
+                              "type": "string"
+                            },
+                            "recipient": {
+                              "$ref": "#/components/schemas/Recipient",
+                              "description": "Recipient address (alternative to recipient_id)"
+                            },
+                            "recipient_id": {
+                              "description": "ID of an existing recipient (alternative to recipient object)",
+                              "format": "uuid",
+                              "type": "string"
+                            },
+                            "sender_id": {
+                              "description": "ID of an existing sender",
+                              "format": "uuid",
+                              "type": "string"
+                            },
+                            "template_id": {
+                              "description": "ID of the template to use",
+                              "format": "uuid",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "template_id"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "description": "Order created"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Create order",
+                  "tags": [
+                    "Orders"
+                  ]
+                }
+              },
+              "/orders/{id}": {
+                "get": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Order details"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Get order details",
+                  "tags": [
+                    "Orders"
+                  ]
+                }
+              },
+              "/qr/campaigns": {
+                "get": {
+                  "responses": {
+                    "200": {
+                      "description": "List of campaigns"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List QR campaigns",
+                  "tags": [
+                    "QR Codes"
+                  ]
+                },
+                "post": {
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "domain_id": {
+                              "description": "Optionale ID einer verifizierten Redirect-Domain",
+                              "format": "uuid",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Name der Kampagne",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "name"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "description": "Campaign created"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Create QR campaign",
+                  "tags": [
+                    "QR Codes"
+                  ]
+                }
+              },
+              "/qr/campaigns/{id}": {
+                "get": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Campaign details"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Get campaign details",
+                  "tags": [
+                    "QR Codes"
+                  ]
+                },
+                "patch": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Campaign updated"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Update campaign",
+                  "tags": [
+                    "QR Codes"
+                  ]
+                }
+              },
+              "/qr/codes": {
+                "get": {
+                  "parameters": [
+                    {
+                      "description": "Filter by campaign ID",
+                      "in": "query",
+                      "name": "campaign_id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": 50,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "offset",
+                      "schema": {
+                        "default": 0,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "List of QR codes"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List QR codes",
+                  "tags": [
+                    "QR Codes"
+                  ]
+                },
+                "post": {
+                  "description": "Erstellt einen individuellen QR-Code. Jeder QR-Code erhält eine eindeutige URL. Ideal für personalisierte Sendungen, bei denen jeder Empfänger einen eigenen QR-Code bekommt.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/QrCodeCreate"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "campaign_id": {
+                                "format": "uuid",
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "format": "date-time",
+                                "type": "string"
+                              },
+                              "id": {
+                                "format": "uuid",
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "redirect_url": {
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "short_code": {
+                                "type": "string"
+                              },
+                              "target_url": {
+                                "format": "uri",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "QR code created"
+                    },
+                    "400": {
+                      "description": "Validation error"
+                    },
+                    "404": {
+                      "description": "Campaign not found"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Create QR Code",
+                  "tags": [
+                    "QR Codes"
+                  ]
+                }
+              },
+              "/qr/codes/{id}": {
+                "patch": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "QR code updated"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Update QR code",
+                  "tags": [
+                    "QR Codes"
+                  ]
+                }
+              },
+              "/qr/domains": {
+                "get": {
+                  "responses": {
+                    "200": {
+                      "description": "List of domains"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List QR domains",
+                  "tags": [
+                    "QR Codes"
+                  ]
+                }
+              },
+              "/recipients": {
+                "get": {
+                  "description": "List all recipients with optional search. Supports pagination.",
+                  "parameters": [
+                    {
+                      "description": "Search in first_name, last_name, company_name, email",
+                      "in": "query",
+                      "name": "search",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": 20,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "offset",
+                      "schema": {
+                        "default": 0,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/RecipientFull"
+                                },
+                                "type": "array"
+                              },
+                              "limit": {
+                                "type": "integer"
+                              },
+                              "offset": {
+                                "type": "integer"
+                              },
+                              "total": {
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "List of recipients"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List recipients",
+                  "tags": [
+                    "Recipients"
+                  ]
+                },
+                "post": {
+                  "description": "Create a new recipient. If a recipient with matching address (first_name, last_name, street, zip, city) already exists, returns the existing recipient with _reused: true.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/Recipient"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RecipientFull"
+                          }
+                        }
+                      },
+                      "description": "Existing recipient matched (includes _reused: true)"
+                    },
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RecipientFull"
+                          }
+                        }
+                      },
+                      "description": "Recipient created"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Create recipient",
+                  "tags": [
+                    "Recipients"
+                  ]
+                }
+              },
+              "/recipients/{id}": {
+                "delete": {
+                  "description": "Delete a recipient. Will fail if recipient is used in any orders.",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Recipient deleted"
+                    },
+                    "404": {
+                      "description": "Recipient not found"
+                    },
+                    "409": {
+                      "description": "Conflict - recipient is used in orders"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Delete recipient",
+                  "tags": [
+                    "Recipients"
+                  ]
+                },
+                "get": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RecipientFull"
+                          }
+                        }
+                      },
+                      "description": "Recipient details"
+                    },
+                    "404": {
+                      "description": "Recipient not found"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Get recipient details",
+                  "tags": [
+                    "Recipients"
+                  ]
+                },
+                "patch": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "city": {
+                              "type": "string"
+                            },
+                            "company_name": {
+                              "type": "string"
+                            },
+                            "country": {
+                              "type": "string"
+                            },
+                            "email": {
+                              "format": "email",
+                              "type": "string"
+                            },
+                            "first_name": {
+                              "type": "string"
+                            },
+                            "last_name": {
+                              "type": "string"
+                            },
+                            "phone": {
+                              "type": "string"
+                            },
+                            "street": {
+                              "type": "string"
+                            },
+                            "zip": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "description": "Recipient updated"
+                    },
+                    "404": {
+                      "description": "Recipient not found"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Update recipient",
+                  "tags": [
+                    "Recipients"
+                  ]
+                }
+              },
+              "/senders": {
+                "get": {
+                  "responses": {
+                    "200": {
+                      "description": "List of senders"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List senders",
+                  "tags": [
+                    "Senders"
+                  ]
+                },
+                "post": {
+                  "responses": {
+                    "201": {
+                      "description": "Sender created"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Create sender",
+                  "tags": [
+                    "Senders"
+                  ]
+                }
+              },
+              "/senders/{id}": {
+                "delete": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Sender deleted"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Delete sender",
+                  "tags": [
+                    "Senders"
+                  ]
+                },
+                "get": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Sender details"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Get sender details",
+                  "tags": [
+                    "Senders"
+                  ]
+                },
+                "patch": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Sender updated"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Update sender",
+                  "tags": [
+                    "Senders"
+                  ]
+                }
+              },
+              "/shipment-balance": {
+                "get": {
+                  "description": "Returns the current shipment credit balance. Each credit equals one letter (card + envelope).",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "shipment_credits": 142,
+                            "status": "active"
+                          },
+                          "schema": {
+                            "properties": {
+                              "shipment_credits": {
+                                "description": "Number of available shipment credits (1 credit = 1 letter)",
+                                "type": "integer"
+                              },
+                              "status": {
+                                "description": "Subscription status",
+                                "enum": [
+                                  "active",
+                                  "trialing",
+                                  "inactive"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Current shipment balance"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Get shipment credit balance",
+                  "tags": [
+                    "Credits"
+                  ]
+                }
+              },
+              "/signatures": {
+                "get": {
+                  "description": "Returns all active signatures including their handwritten variations (SVG paths)",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "signatures": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Signature"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "List of signatures with variations"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List signatures with variations",
+                  "tags": [
+                    "Signatures"
+                  ]
+                }
+              },
+              "/signatures/{id}": {
+                "delete": {
+                  "description": "Deactivates the signature and permanently deletes all its variations",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Signature and variations deleted"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Delete signature and variations",
+                  "tags": [
+                    "Signatures"
+                  ]
+                },
+                "get": {
+                  "description": "Returns a single signature including all its handwritten variations",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "signature": {
+                                "$ref": "#/components/schemas/Signature"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Signature details with variations"
+                    },
+                    "404": {
+                      "description": "Signature not found"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Get signature details with variations",
+                  "tags": [
+                    "Signatures"
+                  ]
+                },
+                "patch": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Signature updated"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Update signature",
+                  "tags": [
+                    "Signatures"
+                  ]
+                }
+              },
+              "/templates": {
+                "get": {
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "format",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": 50,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "List of templates"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List templates",
+                  "tags": [
+                    "Templates"
+                  ]
+                }
+              },
+              "/templates/envelopes": {
+                "get": {
+                  "description": "Listet alle verfügbaren Umschlag-Vorlagen auf. Die ID kann beim Erstellen einer Bestellung als envelope_template_id übergeben werden.",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "envelope_type": {
+                                      "type": "string"
+                                    },
+                                    "format_name": {
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "format": "uuid",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Liste der Umschlag-Vorlagen"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "List envelope templates",
+                  "tags": [
+                    "Templates"
+                  ]
+                }
+              },
+              "/templates/{id}": {
+                "get": {
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Template details"
+                    }
+                  },
+                  "security": [
+                    {
+                      "ApiKeyAuth": []
+                    }
+                  ],
+                  "summary": "Get template details",
+                  "tags": [
+                    "Templates"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "ApiKeyAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production (Custom Domain)",
+                "url": "https://api.kundenschreiber.de/functions/v1/public-api/v1"
+              },
+              {
+                "description": "Production (Supabase)",
+                "url": "https://ysxsxtpdlhyxmslabwhk.supabase.co/functions/v1/public-api/v1"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Credit balance and transactions",
+                "name": "Credits"
+              },
+              {
+                "description": "Order management",
+                "name": "Orders"
+              },
+              {
+                "description": "Letter and envelope templates",
+                "name": "Templates"
+              },
+              {
+                "description": "QR code campaigns and tracking",
+                "name": "QR Codes"
+              },
+              {
+                "description": "Sender address management",
+                "name": "Senders"
+              },
+              {
+                "description": "Recipient/contact address management with auto-deduplication",
+                "name": "Recipients"
+              },
+              {
+                "description": "Landing page funnels and analytics",
+                "name": "Funnels"
+              },
+              {
+                "description": "Handwritten signature management",
+                "name": "Signatures"
+              },
+              {
+                "description": "Company data enrichment via German trade register",
+                "name": "Enrichment"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Kundenschreiber"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:24.783783+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.kundenschreiber.de/functions/v1/public-api/openapi.json",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "88dc1e592b0cf7ae9fbce93aea9ee15492d4bc74d9a88ce5dfe34fcf600198b3",
+    "source_id": "kundenschreiber",
+    "source_updated": null,
+    "url": "https://api.kundenschreiber.de/functions/v1/public-api/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

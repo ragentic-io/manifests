@@ -14,7 +14,7 @@ Connect a LinkedIn member account with an independent Ragentic integration: sign
 | | |
 | --- | --- |
 | Categories | Social media, Marketing |
-| Signed bundle | `2f4f1e0ff9a24685dd627e2dc84139528dd45ebe157894952dba783b0fb4ad8d` in `bundles/`, expires 2027-01-31 17:16 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | `https://api.linkedin.com` |
 | Credential | oauth2_authorization_code |
 | Connection test | GET `https://api.linkedin.com/v2/userinfo` |

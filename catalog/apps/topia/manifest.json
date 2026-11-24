@@ -1,0 +1,436 @@
+{
+  "a2ui": {},
+  "app": "topia",
+  "graph": {
+    "edges": [],
+    "nodes": [
+      {
+        "id": "topia",
+        "kind": "application"
+      },
+      {
+        "id": "schema:Asset",
+        "kind": "schema",
+        "name": "Asset"
+      },
+      {
+        "id": "schema:DroppedAsset",
+        "kind": "schema",
+        "name": "DroppedAsset"
+      },
+      {
+        "id": "schema:ErrorObject",
+        "kind": "schema",
+        "name": "ErrorObject"
+      },
+      {
+        "id": "schema:Media",
+        "kind": "schema",
+        "name": "Media"
+      },
+      {
+        "id": "schema:Profile",
+        "kind": "schema",
+        "name": "Profile"
+      },
+      {
+        "id": "schema:Scene",
+        "kind": "schema",
+        "name": "Scene"
+      },
+      {
+        "id": "schema:User",
+        "kind": "schema",
+        "name": "User"
+      },
+      {
+        "id": "schema:Visitor",
+        "kind": "schema",
+        "name": "Visitor"
+      },
+      {
+        "id": "schema:WhitelistUser",
+        "kind": "schema",
+        "name": "WhitelistUser"
+      },
+      {
+        "id": "schema:World",
+        "kind": "schema",
+        "name": "World"
+      },
+      {
+        "id": "schema:WorldWebhook",
+        "kind": "schema",
+        "name": "WorldWebhook"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "topia"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.topia.io/api/",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "UnauthorizedError": {
+                  "$ref": "./responses/unauthorizedError.yaml"
+                }
+              },
+              "schemas": {
+                "Asset": {
+                  "$ref": "./schemas/asset.yaml"
+                },
+                "DroppedAsset": {
+                  "$ref": "./schemas/droppedAsset.yaml"
+                },
+                "ErrorObject": {
+                  "$ref": "./schemas/errorObject.yaml"
+                },
+                "Media": {
+                  "$ref": "./schemas/media.yaml"
+                },
+                "Profile": {
+                  "$ref": "./schemas/profile.yaml"
+                },
+                "Scene": {
+                  "$ref": "./schemas/scene.yaml"
+                },
+                "User": {
+                  "$ref": "./schemas/user.yaml"
+                },
+                "Visitor": {
+                  "$ref": "./schemas/visitor.yaml"
+                },
+                "WhitelistUser": {
+                  "$ref": "./schemas/whitelistUser.yaml"
+                },
+                "World": {
+                  "$ref": "./schemas/world.yaml"
+                },
+                "WorldWebhook": {
+                  "$ref": "./schemas/worldWebhook.yaml"
+                }
+              },
+              "securitySchemes": {
+                "apiKey": {
+                  "in": "header",
+                  "name": "authorization",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Welcome to Topia's Public API documentation.",
+              "title": "Topia Public API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/v1/analytics/public-key-analytics": {
+                "$ref": "./paths/v1/analytics.yaml"
+              },
+              "/v1/assets": {
+                "$ref": "./paths/v1/assets.yaml"
+              },
+              "/v1/assets/my-assets": {
+                "$ref": "./paths/v1/myAssets.yaml"
+              },
+              "/v1/assets/topia-assets": {
+                "$ref": "./paths/v1/topiaAssets.yaml"
+              },
+              "/v1/auth/verification-code": {
+                "$ref": "./paths/v1/sendEmailVerificationCode.yaml"
+              },
+              "/v1/avatars/{profileId}": {
+                "$ref": "./paths/v1/avatars.yaml"
+              },
+              "/v1/avatars/{profileId}/{avatarId}": {
+                "$ref": "./paths/v1/avatarsById.yaml"
+              },
+              "/v1/expressions": {
+                "$ref": "./paths/v1/expressions.yaml"
+              },
+              "/v1/inventory": {
+                "$ref": "./paths/v1/getInventoryItems.yaml"
+              },
+              "/v1/inventory/{itemId}": {
+                "$ref": "./paths/v1/getInventoryItem.yaml"
+              },
+              "/v1/media/{urlSlug}": {
+                "$ref": "./paths/v1/media.yaml"
+              },
+              "/v1/notifications/send-email": {
+                "$ref": "./paths/v1/notifications.yaml"
+              },
+              "/v1/particles": {
+                "$ref": "./paths/v1/particles.yaml"
+              },
+              "/v1/profile/friend-profile/{relationshipId}": {
+                "$ref": "./paths/v1/friendProfile.yaml"
+              },
+              "/v1/scenes/my-scenes": {
+                "$ref": "./paths/v1/scenes.yaml"
+              },
+              "/v1/scenes/topia-scenes": {
+                "$ref": "./paths/v1/topiaScenes.yaml"
+              },
+              "/v1/scenes/{sceneId}": {
+                "$ref": "./paths/v1/scene.yaml"
+              },
+              "/v1/user/admin-worlds": {
+                "$ref": "./paths/v1/adminWorlds.yaml"
+              },
+              "/v1/user/dataObjects/{profileId}/get-data-object": {
+                "$ref": "./paths/v1/getUserDataObject.yaml"
+              },
+              "/v1/user/dataObjects/{profileId}/increment-data-object-value": {
+                "$ref": "./paths/v1/incrementUserDataObjectValue.yaml"
+              },
+              "/v1/user/dataObjects/{profileId}/set-data-object": {
+                "$ref": "./paths/v1/setUserDataObject.yaml"
+              },
+              "/v1/user/dataObjects/{profileId}/update-data-object": {
+                "$ref": "./paths/v1/updateUserDataObject.yaml"
+              },
+              "/v1/user/interactive-worlds": {
+                "$ref": "./paths/v1/interactiveWorlds.yaml"
+              },
+              "/v1/user/worlds": {
+                "$ref": "./paths/v1/userWorlds.yaml"
+              },
+              "/v1/whitelist/{urlSlug}/add-to-whitelist": {
+                "$ref": "./paths/v1/addToWhitelist.yaml"
+              },
+              "/v1/whitelist/{urlSlug}/replace-whitelist": {
+                "$ref": "./paths/v1/replaceWhitelist.yaml"
+              },
+              "/v1/world/{urlSlug}/asset-by-unique-name/{uniqueName}": {
+                "$ref": "./paths/v1/droppedAssetByUniqueName.yaml"
+              },
+              "/v1/world/{urlSlug}/assets": {
+                "$ref": "./paths/v1/droppedAssets.yaml"
+              },
+              "/v1/world/{urlSlug}/assets-with-scene-drop-id/{sceneDropId}": {
+                "$ref": "./paths/v1/droppedAssetsBySceneDropId.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}": {
+                "$ref": "./paths/v1/droppedAsset.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/change-click-type": {
+                "$ref": "./paths/v1/droppedAssetChangeClickType.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/change-media-type": {
+                "$ref": "./paths/v1/droppedAssetChangeMediaType.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/change-scale": {
+                "$ref": "./paths/v1/droppedAssetChangeScale.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/change-uploaded-media-selected": {
+                "$ref": "./paths/v1/droppedAssetChangeUploadedMediaSelected.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/flip": {
+                "$ref": "./paths/v1/droppedAssetFlip.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/increment-data-object-value": {
+                "$ref": "./paths/v1/incrementDroppedAssetDataObjectValue.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/set-asset-broadcast": {
+                "$ref": "./paths/v1/droppedAssetSetAssetBroadcast.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/set-asset-interactive-settings": {
+                "$ref": "./paths/v1/droppedAssetSetInteractiveSettings.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/set-custom-text": {
+                "$ref": "./paths/v1/droppedAssetSetCustomText.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/set-mute-zone": {
+                "$ref": "./paths/v1/droppedAssetSetMuteZone.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/set-position": {
+                "$ref": "./paths/v1/droppedAssetSetPosition.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/set-private-zone": {
+                "$ref": "./paths/v1/droppedAssetSetPrivateZone.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/set-webhook-zone": {
+                "$ref": "./paths/v1/droppedAssetSetWebhookZone.yaml"
+              },
+              "/v1/world/{urlSlug}/assets/{id}/set-webimage-layers": {
+                "$ref": "./paths/v1/droppedAssetSetWebImageLayers.yaml"
+              },
+              "/v1/world/{urlSlug}/change-scene": {
+                "$ref": "./paths/v1/changeScene.yaml"
+              },
+              "/v1/world/{urlSlug}/drop-scene": {
+                "$ref": "./paths/v1/dropScene.yaml"
+              },
+              "/v1/world/{urlSlug}/dropped-asset-analytics/{droppedAssetId}": {
+                "$ref": "./paths/v1/droppedAssetAnalytics.yaml"
+              },
+              "/v1/world/{urlSlug}/enter-world": {
+                "$ref": "./paths/v1/enterWorld.yaml"
+              },
+              "/v1/world/{urlSlug}/fire-toast": {
+                "$ref": "./paths/v1/fireToastInWorld.yaml"
+              },
+              "/v1/world/{urlSlug}/get-data-object": {
+                "$ref": "./paths/v1/getWorldDataObject.yaml"
+              },
+              "/v1/world/{urlSlug}/increment-data-object-value": {
+                "$ref": "./paths/v1/incrementWorldDataObjectValue.yaml"
+              },
+              "/v1/world/{urlSlug}/interactive-dropped-assets": {
+                "$ref": "./paths/v1/interactiveDroppedAssets.yaml"
+              },
+              "/v1/world/{urlSlug}/particles": {
+                "$ref": "./paths/v1/triggerParticles.yaml"
+              },
+              "/v1/world/{urlSlug}/scenes": {
+                "$ref": "./paths/v1/sceneDropIds.yaml"
+              },
+              "/v1/world/{urlSlug}/scenes-with-dropped-assets": {
+                "$ref": "./paths/v1/sceneWithDroppedAssets.yaml"
+              },
+              "/v1/world/{urlSlug}/set-close-world-settings": {
+                "$ref": "./paths/v1/setCloseWorldSettings.yaml"
+              },
+              "/v1/world/{urlSlug}/set-data-object": {
+                "$ref": "./paths/v1/setWorldDataObject.yaml"
+              },
+              "/v1/world/{urlSlug}/update-data-object": {
+                "$ref": "./paths/v1/updateWorldDataObject.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors": {
+                "$ref": "./paths/v1/visitors.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}": {
+                "$ref": "./paths/v1/visitor.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/close-iframe": {
+                "$ref": "./paths/v1/closeIframe.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/fire-toast": {
+                "$ref": "./paths/v1/fireToast.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/get-data-object": {
+                "$ref": "./paths/v1/getVisitorDataObject.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/get-visitor-inventory-items": {
+                "$ref": "./paths/v1/getVisitorInventoryItems.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/get-visitor-inventory-items/{itemId}": {
+                "$ref": "./paths/v1/getVisitorSpecificInventoryItem.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/grant-visitor-inventory-item": {
+                "$ref": "./paths/v1/grantVisitorInventoryItem.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/increment-data-object-value": {
+                "$ref": "./paths/v1/incrementVisitorDataObjectValue.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/move": {
+                "$ref": "./paths/v1/moveVisitor.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/open-iframe": {
+                "$ref": "./paths/v1/openIframe.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/reload-iframe": {
+                "$ref": "./paths/v1/reloadIframe.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/set-data-object": {
+                "$ref": "./paths/v1/setVisitorDataObject.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/turn-av-off": {
+                "$ref": "./paths/v1/turnAVOff.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/update-data-object": {
+                "$ref": "./paths/v1/updateVisitorDataObject.yaml"
+              },
+              "/v1/world/{urlSlug}/visitors/{visitorId}/update-visitor-inventory-item-quantity": {
+                "$ref": "./paths/v1/updateVisitorInventoryItemQuantity.yaml"
+              },
+              "/v1/world/{urlSlug}/webhooks": {
+                "$ref": "./paths/v1/webhooks.yaml"
+              },
+              "/v1/world/{urlSlug}/webhooks/{webhookId}": {
+                "$ref": "./paths/v1/webhook.yaml"
+              },
+              "/v1/world/{urlSlug}/world-analytics": {
+                "$ref": "./paths/v1/worldAnalytics.yaml"
+              },
+              "/v1/world/{urlSlug}/world-details": {
+                "$ref": "./paths/v1/world.yaml"
+              }
+            },
+            "security": [
+              {
+                "apiKey": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://api.topia.io/api/"
+              },
+              {
+                "description": "Stage",
+                "url": "https://api-stage.topia.io/api/"
+              },
+              {
+                "description": "Development",
+                "url": "https://api-dev.topia.io/api/"
+              },
+              {
+                "description": "LocalHost",
+                "url": "http://localhost:4000/api/"
+              },
+              {
+                "description": "Stride Production",
+                "url": "https://zone-public.k12.com/api/"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Topia"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:25.933443+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.topia.io/api-docs/swagger.yaml",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "8b3bcd74ed84e8f7158af475ec088c3bd4d00ddd07fb7f77e2c4375b68b14068",
+    "source_id": "topia",
+    "source_updated": null,
+    "url": "https://api.topia.io/api-docs/swagger.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

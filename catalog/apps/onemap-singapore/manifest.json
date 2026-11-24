@@ -1,0 +1,748 @@
+{
+  "a2ui": {},
+  "app": "onemap-singapore",
+  "graph": {
+    "edges": [
+      {
+        "from": "onemap-singapore",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/auth/post/getToken"
+      },
+      {
+        "from": "onemap-singapore",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/common/elastic/search"
+      },
+      {
+        "from": "onemap-singapore",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/public/revgeocode"
+      },
+      {
+        "from": "onemap-singapore",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/public/routingsvc/route"
+      },
+      {
+        "from": "operation:post:/api/auth/post/getToken",
+        "kind": "RETURNS",
+        "to": "schema:TokenResponse"
+      },
+      {
+        "from": "operation:get:/api/common/elastic/search",
+        "kind": "RETURNS",
+        "to": "schema:SearchResponse"
+      },
+      {
+        "from": "operation:get:/api/public/revgeocode",
+        "kind": "RETURNS",
+        "to": "schema:ReverseGeocodeResponse"
+      },
+      {
+        "from": "operation:get:/api/public/routingsvc/route",
+        "kind": "RETURNS",
+        "to": "schema:RouteResponse"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "onemap-singapore",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Exchanges registered OneMap account credentials for an access token valid for three days.",
+        "id": "operation:post:/api/auth/post/getToken",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /api/auth/post/getToken",
+        "path": "/api/auth/post/getToken",
+        "pointer": "#/paths/~1api~1auth~1post~1getToken/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "TokenResponse"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Create an access token",
+        "tags": [
+          "Authentication"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api/common/elastic/search",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /api/common/elastic/search",
+        "parameters": [
+          {
+            "description": "Keywords used to filter the results.",
+            "in": "query",
+            "name": "searchVal",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Whether to return geometry.",
+            "enum": [
+              "Y",
+              "N"
+            ],
+            "in": "query",
+            "name": "returnGeom",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Whether to return address details.",
+            "enum": [
+              "Y",
+              "N"
+            ],
+            "in": "query",
+            "name": "getAddrDetails",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page of results to retrieve.",
+            "in": "query",
+            "name": "pageNum",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/api/common/elastic/search",
+        "pointer": "#/paths/~1api~1common~1elastic~1search/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SearchResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "accessToken": []
+          }
+        ],
+        "summary": "Search Singapore addresses and places",
+        "tags": [
+          "Search"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api/public/revgeocode",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /api/public/revgeocode",
+        "parameters": [
+          {
+            "description": "Latitude and longitude separated by a comma.",
+            "in": "query",
+            "name": "location",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Search radius in meters, from 0 to 500.",
+            "in": "query",
+            "name": "buffer",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Property types to include in the search radius.",
+            "enum": [
+              "HDB",
+              "All"
+            ],
+            "in": "query",
+            "name": "addressType",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/public/revgeocode",
+        "pointer": "#/paths/~1api~1public~1revgeocode/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ReverseGeocodeResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "accessToken": []
+          }
+        ],
+        "summary": "Reverse geocode WGS84 coordinates",
+        "tags": [
+          "Geocoding"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api/public/routingsvc/route",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /api/public/routingsvc/route",
+        "parameters": [
+          {
+            "description": "Starting point in WGS84 latitude,longitude format.",
+            "in": "query",
+            "name": "start",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Destination in WGS84 latitude,longitude format.",
+            "in": "query",
+            "name": "end",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "drive",
+              "pt",
+              "walk",
+              "cycle"
+            ],
+            "in": "query",
+            "name": "routeType",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/public/routingsvc/route",
+        "pointer": "#/paths/~1api~1public~1routingsvc~1route/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "RouteResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "accessToken": []
+          }
+        ],
+        "summary": "Find a route between two points",
+        "tags": [
+          "Routing"
+        ]
+      },
+      {
+        "id": "schema:ReverseGeocodeResponse",
+        "kind": "schema",
+        "name": "ReverseGeocodeResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:RouteResponse",
+        "kind": "schema",
+        "name": "RouteResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:SearchResponse",
+        "kind": "schema",
+        "name": "SearchResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:TokenResponse",
+        "kind": "schema",
+        "name": "TokenResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "onemap-singapore"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://www.onemap.gov.sg",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "ReverseGeocodeResponse": {
+                  "properties": {
+                    "GeocodeInfo": {
+                      "items": {
+                        "properties": {
+                          "BLOCK": {
+                            "type": "string"
+                          },
+                          "BUILDINGNAME": {
+                            "type": "string"
+                          },
+                          "LATITUDE": {
+                            "type": "string"
+                          },
+                          "LONGITUDE": {
+                            "type": "string"
+                          },
+                          "POSTALCODE": {
+                            "type": "string"
+                          },
+                          "ROAD": {
+                            "type": "string"
+                          },
+                          "XCOORD": {
+                            "type": "string"
+                          },
+                          "YCOORD": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "RouteResponse": {
+                  "properties": {
+                    "route_geometry": {
+                      "type": "string"
+                    },
+                    "route_instructions": {
+                      "items": {
+                        "items": {
+                          "oneOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "integer"
+                            }
+                          ]
+                        },
+                        "type": "array"
+                      },
+                      "type": "array"
+                    },
+                    "route_name": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "route_summary": {
+                      "properties": {
+                        "end_point": {
+                          "type": "string"
+                        },
+                        "start_point": {
+                          "type": "string"
+                        },
+                        "total_distance": {
+                          "type": "number"
+                        },
+                        "total_time": {
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "status": {
+                      "type": "integer"
+                    },
+                    "status_message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SearchResponse": {
+                  "properties": {
+                    "found": {
+                      "type": "integer"
+                    },
+                    "pageNum": {
+                      "type": "integer"
+                    },
+                    "results": {
+                      "items": {
+                        "properties": {
+                          "ADDRESS": {
+                            "type": "string"
+                          },
+                          "BLK_NO": {
+                            "type": "string"
+                          },
+                          "BUILDING": {
+                            "type": "string"
+                          },
+                          "LATITUDE": {
+                            "type": "string"
+                          },
+                          "LONGITUDE": {
+                            "type": "string"
+                          },
+                          "LONGTITUDE": {
+                            "type": "string"
+                          },
+                          "POSTAL": {
+                            "type": "string"
+                          },
+                          "ROAD_NAME": {
+                            "type": "string"
+                          },
+                          "SEARCHVAL": {
+                            "type": "string"
+                          },
+                          "X": {
+                            "type": "string"
+                          },
+                          "Y": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "totalNumPages": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "TokenResponse": {
+                  "properties": {
+                    "access_token": {
+                      "type": "string"
+                    },
+                    "expiry_timestamp": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "accessToken": {
+                  "description": "Registered user's OneMap access token, sent as the Authorization header value.",
+                  "in": "header",
+                  "name": "Authorization",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "OneMap API documentation",
+              "url": "https://www.onemap.gov.sg/apidocs/"
+            },
+            "info": {
+              "contact": {
+                "name": "Singapore Land Authority - OneMap",
+                "url": "https://www.onemap.gov.sg/"
+              },
+              "description": "A focused community specification for OneMap authentication, address search,\nreverse geocoding, and route planning. OneMap requires free account\nregistration. These documented API operations require the access token\nreturned by the authentication endpoint; tokens are valid for three days.\n",
+              "title": "OneMap API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.2.1",
+            "paths": {
+              "/api/auth/post/getToken": {
+                "post": {
+                  "description": "Exchanges registered OneMap account credentials for an access token valid for three days.",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "email": {
+                              "format": "email",
+                              "type": "string"
+                            },
+                            "password": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "email",
+                            "password"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TokenResponse"
+                          }
+                        }
+                      },
+                      "description": "Access token and expiry timestamp"
+                    }
+                  },
+                  "security": [],
+                  "summary": "Create an access token",
+                  "tags": [
+                    "Authentication"
+                  ]
+                }
+              },
+              "/api/common/elastic/search": {
+                "get": {
+                  "parameters": [
+                    {
+                      "description": "Keywords used to filter the results.",
+                      "in": "query",
+                      "name": "searchVal",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Whether to return geometry.",
+                      "in": "query",
+                      "name": "returnGeom",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "Y",
+                          "N"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Whether to return address details.",
+                      "in": "query",
+                      "name": "getAddrDetails",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "Y",
+                          "N"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Page of results to retrieve.",
+                      "in": "query",
+                      "name": "pageNum",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SearchResponse"
+                          }
+                        }
+                      },
+                      "description": "Address search results"
+                    }
+                  },
+                  "summary": "Search Singapore addresses and places",
+                  "tags": [
+                    "Search"
+                  ]
+                }
+              },
+              "/api/public/revgeocode": {
+                "get": {
+                  "parameters": [
+                    {
+                      "description": "Latitude and longitude separated by a comma.",
+                      "in": "query",
+                      "name": "location",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Search radius in meters, from 0 to 500.",
+                      "in": "query",
+                      "name": "buffer",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Property types to include in the search radius.",
+                      "in": "query",
+                      "name": "addressType",
+                      "schema": {
+                        "enum": [
+                          "HDB",
+                          "All"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ReverseGeocodeResponse"
+                          }
+                        }
+                      },
+                      "description": "Nearby address information"
+                    }
+                  },
+                  "summary": "Reverse geocode WGS84 coordinates",
+                  "tags": [
+                    "Geocoding"
+                  ]
+                }
+              },
+              "/api/public/routingsvc/route": {
+                "get": {
+                  "parameters": [
+                    {
+                      "description": "Starting point in WGS84 latitude,longitude format.",
+                      "in": "query",
+                      "name": "start",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Destination in WGS84 latitude,longitude format.",
+                      "in": "query",
+                      "name": "end",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "routeType",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "drive",
+                          "pt",
+                          "walk",
+                          "cycle"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/RouteResponse"
+                          }
+                        }
+                      },
+                      "description": "Route geometry, instructions, and summary"
+                    }
+                  },
+                  "summary": "Find a route between two points",
+                  "tags": [
+                    "Routing"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "accessToken": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://www.onemap.gov.sg"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Authentication"
+              },
+              {
+                "name": "Search"
+              },
+              {
+                "name": "Geocoding"
+              },
+              {
+                "name": "Routing"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OneMap Singapore"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.406505+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/onemap/openapi.yml",
+        "version": "3.2.1"
+      }
+    ],
+    "sha256": "98529edff5acd4856da9cd110125e79e12fb325f3c9a3de2838f687a81fe6f46",
+    "source_id": "onemap-singapore",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/onemap/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

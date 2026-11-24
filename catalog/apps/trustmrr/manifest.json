@@ -1,0 +1,1444 @@
+{
+  "a2ui": {},
+  "app": "trustmrr",
+  "graph": {
+    "edges": [
+      {
+        "from": "trustmrr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/startups"
+      },
+      {
+        "from": "trustmrr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/startups/{slug}"
+      },
+      {
+        "from": "operation:get:/startups",
+        "kind": "RETURNS",
+        "to": "schema:StartupListResponse"
+      },
+      {
+        "from": "operation:get:/startups/{slug}",
+        "kind": "RETURNS",
+        "to": "schema:StartupResponse"
+      },
+      {
+        "from": "schema:StartupDetail",
+        "kind": "REFERENCES",
+        "to": "schema:StartupSummary"
+      },
+      {
+        "from": "schema:StartupListResponse",
+        "kind": "REFERENCES",
+        "to": "schema:Pagination"
+      },
+      {
+        "from": "schema:StartupListResponse",
+        "kind": "REFERENCES",
+        "to": "schema:StartupSummary"
+      },
+      {
+        "from": "schema:StartupResponse",
+        "kind": "REFERENCES",
+        "to": "schema:StartupDetail"
+      },
+      {
+        "from": "schema:StartupSummary",
+        "kind": "REFERENCES",
+        "to": "schema:Category"
+      },
+      {
+        "from": "schema:StartupSummary",
+        "kind": "REFERENCES",
+        "to": "schema:Revenue"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "trustmrr",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a paginated list of startups with verified revenue.",
+        "id": "operation:get:/startups",
+        "kind": "operation",
+        "method": "get",
+        "name": "listStartups",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "One-based page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Number of startups per page.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sort order.",
+            "enum": [
+              "revenue-desc",
+              "revenue-asc",
+              "price-desc",
+              "price-asc",
+              "multiple-asc",
+              "multiple-desc",
+              "growth-desc",
+              "growth-asc",
+              "listed-desc",
+              "listed-asc",
+              "best-deal"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by sale status; omit to include both listed and unlisted startups.",
+            "in": "query",
+            "name": "onSale",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Filter by startup category.",
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "type": "Category"
+          },
+          {
+            "description": "Filter by the founder's X handle, without the @ symbol.",
+            "in": "query",
+            "name": "xHandle",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Founder-provided team-size range.",
+            "enum": [
+              "1",
+              "2-5",
+              "6-10",
+              "11-25",
+              "26-50",
+              "51+"
+            ],
+            "in": "query",
+            "name": "teamSize",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by funding type; startups without a known status are excluded.",
+            "enum": [
+              "bootstrapped",
+              "vc-funded"
+            ],
+            "in": "query",
+            "name": "fundingStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Minimum last-30-days revenue in USD cents.",
+            "in": "query",
+            "name": "minRevenue",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Maximum last-30-days revenue in USD cents.",
+            "in": "query",
+            "name": "maxRevenue",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Minimum monthly recurring revenue in USD cents.",
+            "in": "query",
+            "name": "minMrr",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Maximum monthly recurring revenue in USD cents.",
+            "in": "query",
+            "name": "maxMrr",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Minimum 30-day revenue growth as a decimal; 0.1 means 10% growth.",
+            "in": "query",
+            "name": "minGrowth",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "description": "Maximum 30-day revenue growth as a decimal; 0.5 means 50% growth.",
+            "in": "query",
+            "name": "maxGrowth",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "description": "Minimum asking price in USD cents.",
+            "in": "query",
+            "name": "minPrice",
+            "required": false,
+            "type": "integer:int64"
+          },
+          {
+            "description": "Maximum asking price in USD cents.",
+            "in": "query",
+            "name": "maxPrice",
+            "required": false,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/startups",
+        "pointer": "#/paths/~1startups/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "StartupListResponse"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "500",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "TrustMRRBearer": []
+          }
+        ],
+        "summary": "List and filter startups",
+        "tags": [
+          "Startups"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the full startup profile and detail fields.",
+        "id": "operation:get:/startups/{slug}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getStartup",
+        "parameters": [
+          {
+            "description": "URL-friendly startup identifier from the list endpoint.",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/startups/{slug}",
+        "pointer": "#/paths/~1startups~1{slug}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "StartupResponse"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "401",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "403",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "404",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "500",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "TrustMRRBearer": []
+          }
+        ],
+        "summary": "Get a startup by slug",
+        "tags": [
+          "Startups"
+        ]
+      },
+      {
+        "id": "schema:Category",
+        "kind": "schema",
+        "name": "Category",
+        "type": "string"
+      },
+      {
+        "id": "schema:ErrorResponse",
+        "kind": "schema",
+        "name": "ErrorResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:Pagination",
+        "kind": "schema",
+        "name": "Pagination",
+        "type": "object"
+      },
+      {
+        "id": "schema:Revenue",
+        "kind": "schema",
+        "name": "Revenue",
+        "type": "object"
+      },
+      {
+        "id": "schema:StartupDetail",
+        "kind": "schema",
+        "name": "StartupDetail",
+        "type": "StartupSummary|object"
+      },
+      {
+        "id": "schema:StartupListResponse",
+        "kind": "schema",
+        "name": "StartupListResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:StartupResponse",
+        "kind": "schema",
+        "name": "StartupResponse",
+        "type": "object"
+      },
+      {
+        "description": "Startup fields returned by the list endpoint.",
+        "id": "schema:StartupSummary",
+        "kind": "schema",
+        "name": "StartupSummary",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "trustmrr"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://trustmrr.com/api/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "headers": {
+                "RateLimitLimit": {
+                  "description": "Maximum requests allowed in the current rate-limit window (10 standard or 60 premium).",
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "RateLimitRemaining": {
+                  "description": "Requests remaining in the current rate-limit window.",
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "RateLimitReset": {
+                  "description": "Unix timestamp when the current rate-limit window resets.",
+                  "schema": {
+                    "format": "int64",
+                    "type": "integer"
+                  }
+                }
+              },
+              "responses": {
+                "BadRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "Invalid or missing request parameters.",
+                  "headers": {
+                    "X-RateLimit-Limit": {
+                      "$ref": "#/components/headers/RateLimitLimit"
+                    },
+                    "X-RateLimit-Remaining": {
+                      "$ref": "#/components/headers/RateLimitRemaining"
+                    },
+                    "X-RateLimit-Reset": {
+                      "$ref": "#/components/headers/RateLimitReset"
+                    }
+                  }
+                },
+                "Forbidden": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "API access is disabled under the Acceptable Use Policy.",
+                  "headers": {
+                    "X-RateLimit-Limit": {
+                      "$ref": "#/components/headers/RateLimitLimit"
+                    },
+                    "X-RateLimit-Remaining": {
+                      "$ref": "#/components/headers/RateLimitRemaining"
+                    },
+                    "X-RateLimit-Reset": {
+                      "$ref": "#/components/headers/RateLimitReset"
+                    }
+                  }
+                },
+                "InternalServerError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "An unexpected server error occurred.",
+                  "headers": {
+                    "X-RateLimit-Limit": {
+                      "$ref": "#/components/headers/RateLimitLimit"
+                    },
+                    "X-RateLimit-Remaining": {
+                      "$ref": "#/components/headers/RateLimitRemaining"
+                    },
+                    "X-RateLimit-Reset": {
+                      "$ref": "#/components/headers/RateLimitReset"
+                    }
+                  }
+                },
+                "NotFound": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "The requested resource does not exist.",
+                  "headers": {
+                    "X-RateLimit-Limit": {
+                      "$ref": "#/components/headers/RateLimitLimit"
+                    },
+                    "X-RateLimit-Remaining": {
+                      "$ref": "#/components/headers/RateLimitRemaining"
+                    },
+                    "X-RateLimit-Reset": {
+                      "$ref": "#/components/headers/RateLimitReset"
+                    }
+                  }
+                },
+                "TooManyRequests": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "Rate limit exceeded. Check the rate-limit headers before retrying.",
+                  "headers": {
+                    "X-RateLimit-Limit": {
+                      "$ref": "#/components/headers/RateLimitLimit"
+                    },
+                    "X-RateLimit-Remaining": {
+                      "$ref": "#/components/headers/RateLimitRemaining"
+                    },
+                    "X-RateLimit-Reset": {
+                      "$ref": "#/components/headers/RateLimitReset"
+                    }
+                  }
+                },
+                "Unauthorized": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    }
+                  },
+                  "description": "The API key is missing or invalid.",
+                  "headers": {
+                    "X-RateLimit-Limit": {
+                      "$ref": "#/components/headers/RateLimitLimit"
+                    },
+                    "X-RateLimit-Remaining": {
+                      "$ref": "#/components/headers/RateLimitRemaining"
+                    },
+                    "X-RateLimit-Reset": {
+                      "$ref": "#/components/headers/RateLimitReset"
+                    }
+                  }
+                }
+              },
+              "schemas": {
+                "Category": {
+                  "enum": [
+                    "ai",
+                    "saas",
+                    "developer-tools",
+                    "fintech",
+                    "marketing",
+                    "ecommerce",
+                    "productivity",
+                    "design-tools",
+                    "no-code",
+                    "analytics",
+                    "crypto-web3",
+                    "education",
+                    "health-fitness",
+                    "social-media",
+                    "content-creation",
+                    "sales",
+                    "customer-support",
+                    "recruiting",
+                    "real-estate",
+                    "travel",
+                    "legal",
+                    "security",
+                    "iot-hardware",
+                    "green-tech",
+                    "entertainment",
+                    "games",
+                    "community",
+                    "news-magazines",
+                    "utilities",
+                    "marketplace",
+                    "mobile-apps"
+                  ],
+                  "type": "string"
+                },
+                "ErrorResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "error": {
+                      "description": "Human-readable error message.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                },
+                "Pagination": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "hasMore": {
+                      "description": "Whether another page of results is available.",
+                      "type": "boolean"
+                    },
+                    "limit": {
+                      "description": "Maximum startups returned on this page (up to 10).",
+                      "type": "integer"
+                    },
+                    "page": {
+                      "description": "Current one-based page number.",
+                      "type": "integer"
+                    },
+                    "total": {
+                      "description": "Total number of matching startups.",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "total",
+                    "page",
+                    "limit",
+                    "hasMore"
+                  ],
+                  "type": "object"
+                },
+                "Revenue": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "last30Days": {
+                      "description": "Verified revenue over the last 30 days, in USD cents.",
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "mrr": {
+                      "description": "Monthly recurring revenue, in USD cents.",
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "total": {
+                      "description": "Total available revenue, in USD cents.",
+                      "format": "int64",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "last30Days",
+                    "mrr",
+                    "total"
+                  ],
+                  "type": "object"
+                },
+                "StartupDetail": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/StartupSummary"
+                    },
+                    {
+                      "additionalProperties": true,
+                      "description": "Additional fields returned by the detail endpoint.",
+                      "properties": {
+                        "cofounders": {
+                          "items": {
+                            "additionalProperties": true,
+                            "properties": {
+                              "xHandle": {
+                                "type": "string"
+                              },
+                              "xName": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "description": {
+                          "description": "Full startup description; unlike list results, it is not truncated.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "domainRating": {
+                          "description": "Ahrefs Domain Rating on a 0-100 scale, when available.",
+                          "maximum": 100,
+                          "minimum": 0,
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "founderMessage": {
+                          "description": "Founder-provided message; returned when the startup is on sale.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "isMerchantOfRecord": {
+                          "description": "Whether the startup uses a merchant of record.",
+                          "type": "boolean"
+                        },
+                        "marketingChannels": {
+                          "description": "Marketing channels used to acquire customers.",
+                          "items": {
+                            "additionalProperties": true,
+                            "properties": {
+                              "category": {
+                                "type": "string"
+                              },
+                              "slug": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "startupInsights": {
+                          "additionalProperties": true,
+                          "description": "Public founder-edited startup insights when available.",
+                          "properties": {
+                            "businessType": {
+                              "enum": [
+                                "B2B",
+                                "B2C",
+                                "Both",
+                                "Unknown",
+                                null
+                              ],
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "estimatedUserCount": {
+                              "type": [
+                                "integer",
+                                "null"
+                              ]
+                            },
+                            "fundingStatus": {
+                              "enum": [
+                                "bootstrapped",
+                                "vc-funded",
+                                null
+                              ],
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "pricingModel": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "problemSolved": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "targetPersona": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "teamSize": {
+                              "enum": [
+                                "1",
+                                "2-5",
+                                "6-10",
+                                "11-25",
+                                "26-50",
+                                "51+",
+                                null
+                              ],
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "valueProposition": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "techStack": {
+                          "description": "Technologies used by the startup.",
+                          "items": {
+                            "additionalProperties": true,
+                            "properties": {
+                              "category": {
+                                "type": "string"
+                              },
+                              "slug": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "xFollowerCount": {
+                          "description": "Number of X followers.",
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "StartupListResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/StartupSummary"
+                      },
+                      "type": "array"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/Pagination"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "type": "object"
+                },
+                "StartupResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/StartupDetail"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "StartupSummary": {
+                  "additionalProperties": true,
+                  "description": "Startup fields returned by the list endpoint.",
+                  "properties": {
+                    "activeSubscriptions": {
+                      "description": "Number of currently active subscriptions.",
+                      "type": "integer"
+                    },
+                    "askingPrice": {
+                      "description": "Asking price, when listed for sale, in USD cents.",
+                      "format": "int64",
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "category": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/components/schemas/Category"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "country": {
+                      "description": "ISO 3166-1 alpha-2 country code.",
+                      "maxLength": 2,
+                      "minLength": 2,
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "customers": {
+                      "description": "Total customer count.",
+                      "type": "integer"
+                    },
+                    "description": {
+                      "description": "Description truncated to 200 characters in list results.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "firstListedForSaleAt": {
+                      "description": "Timestamp when the startup was first listed for sale.",
+                      "format": "date-time",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "foundedDate": {
+                      "description": "Founding date; the API example represents this as an ISO 8601 timestamp.",
+                      "format": "date-time",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "googleSearchImpressionsLast30Days": {
+                      "description": "Google search result impressions over the last 30 days, when Search Console is connected.",
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "growth30d": {
+                      "description": "Revenue growth over the last 30 days. TrustMRR's guide describes examples such as 24 meaning 24%, while its example payload uses 0.12; the documented scale is inconsistent.",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "growthMRR30d": {
+                      "description": "MRR growth over the last 30 days, as a percentage.",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "icon": {
+                      "description": "URL to the startup icon or logo.",
+                      "format": "uri",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "multiple": {
+                      "description": "Asking price divided by annualized revenue.",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "onSale": {
+                      "description": "Whether the startup is currently listed for sale.",
+                      "type": "boolean"
+                    },
+                    "paymentProvider": {
+                      "description": "Payment provider used for revenue verification.",
+                      "enum": [
+                        "stripe",
+                        "lemonsqueezy",
+                        "polar",
+                        "revenuecat",
+                        "dodopayment",
+                        "paddle",
+                        "superwall",
+                        "creem"
+                      ],
+                      "type": "string"
+                    },
+                    "profitMarginLast30Days": {
+                      "description": "Profit margin over the last 30 days, as a percentage from 0 to 100.",
+                      "maximum": 100,
+                      "minimum": 0,
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "rank": {
+                      "description": "Hourly updated revenue rank among active startups; 1 is highest.",
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "revenue": {
+                      "$ref": "#/components/schemas/Revenue"
+                    },
+                    "revenuePerVisitor": {
+                      "description": "Last-30-days revenue divided by last-30-days visitors.",
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "slug": {
+                      "description": "URL-friendly identifier for the detail endpoint.",
+                      "type": "string"
+                    },
+                    "targetAudience": {
+                      "enum": [
+                        "b2b",
+                        "b2c",
+                        "both",
+                        null
+                      ],
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "visitorsLast30Days": {
+                      "description": "Total website visitors over the last 30 days.",
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "website": {
+                      "description": "Startup website URL.",
+                      "format": "uri",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "xHandle": {
+                      "description": "Founder's X handle without the @ symbol.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "TrustMRRBearer": {
+                  "bearerFormat": "TrustMRR API key (tmrr_...)",
+                  "description": "Create an API key in the TrustMRR developer dashboard.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "OpenAPI description of the documented TrustMRR v1 read API. Revenue and\nasking-price amounts are USD cents. Requests require a TrustMRR API key.\n\nTrustMRR's API Acceptable Use Policy prohibits bulk export and systematic\nreconstruction of its database; public display, republication, or AI use\nmay require prior written permission. The API guide includes an example\nthat iterates through all pages, but that example does not override the\ncurrent Terms of Service.",
+              "externalDocs": {
+                "description": "Official API documentation",
+                "url": "https://trustmrr.com/docs/api"
+              },
+              "termsOfService": "https://trustmrr.com/terms",
+              "title": "TrustMRR API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.2.1",
+            "paths": {
+              "/startups": {
+                "get": {
+                  "description": "Returns a paginated list of startups with verified revenue.",
+                  "externalDocs": {
+                    "description": "List startups endpoint documentation",
+                    "url": "https://trustmrr.com/docs/api/list-startups"
+                  },
+                  "operationId": "listStartups",
+                  "parameters": [
+                    {
+                      "description": "One-based page number. No overall record-count ceiling is documented.",
+                      "in": "query",
+                      "name": "page",
+                      "schema": {
+                        "default": 1,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Number of startups per page.",
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": 10,
+                        "maximum": 10,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Sort order. Defaults to revenue-desc, or best-deal when onSale=true.",
+                      "in": "query",
+                      "name": "sort",
+                      "schema": {
+                        "enum": [
+                          "revenue-desc",
+                          "revenue-asc",
+                          "price-desc",
+                          "price-asc",
+                          "multiple-asc",
+                          "multiple-desc",
+                          "growth-desc",
+                          "growth-asc",
+                          "listed-desc",
+                          "listed-asc",
+                          "best-deal"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by sale status; omit to include both listed and unlisted startups.",
+                      "in": "query",
+                      "name": "onSale",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Filter by startup category.",
+                      "in": "query",
+                      "name": "category",
+                      "schema": {
+                        "$ref": "#/components/schemas/Category"
+                      }
+                    },
+                    {
+                      "description": "Filter by the founder's X handle, without the @ symbol.",
+                      "in": "query",
+                      "name": "xHandle",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Founder-provided team-size range. Startups without a known team size are excluded. Encode 51+ as %2B when constructing a URL manually.",
+                      "in": "query",
+                      "name": "teamSize",
+                      "schema": {
+                        "enum": [
+                          "1",
+                          "2-5",
+                          "6-10",
+                          "11-25",
+                          "26-50",
+                          "51+"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by funding type; startups without a known status are excluded.",
+                      "in": "query",
+                      "name": "fundingStatus",
+                      "schema": {
+                        "enum": [
+                          "bootstrapped",
+                          "vc-funded"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Minimum last-30-days revenue in USD cents.",
+                      "in": "query",
+                      "name": "minRevenue",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Maximum last-30-days revenue in USD cents.",
+                      "in": "query",
+                      "name": "maxRevenue",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Minimum monthly recurring revenue in USD cents.",
+                      "in": "query",
+                      "name": "minMrr",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Maximum monthly recurring revenue in USD cents.",
+                      "in": "query",
+                      "name": "maxMrr",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Minimum 30-day revenue growth as a decimal; 0.1 means 10% growth.",
+                      "in": "query",
+                      "name": "minGrowth",
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Maximum 30-day revenue growth as a decimal; 0.5 means 50% growth.",
+                      "in": "query",
+                      "name": "maxGrowth",
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Minimum asking price in USD cents.",
+                      "in": "query",
+                      "name": "minPrice",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Maximum asking price in USD cents.",
+                      "in": "query",
+                      "name": "maxPrice",
+                      "schema": {
+                        "format": "int64",
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "page": {
+                              "summary": "First page of startup results",
+                              "value": {
+                                "data": [
+                                  {
+                                    "name": "ShipFast",
+                                    "onSale": true,
+                                    "revenue": {
+                                      "last30Days": 4250000,
+                                      "mrr": 180000,
+                                      "total": 98000000
+                                    },
+                                    "slug": "shipfast"
+                                  }
+                                ],
+                                "meta": {
+                                  "hasMore": true,
+                                  "limit": 10,
+                                  "page": 1,
+                                  "total": 142
+                                }
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/StartupListResponse"
+                          }
+                        }
+                      },
+                      "description": "A page of startups and pagination metadata.",
+                      "headers": {
+                        "X-RateLimit-Limit": {
+                          "$ref": "#/components/headers/RateLimitLimit"
+                        },
+                        "X-RateLimit-Remaining": {
+                          "$ref": "#/components/headers/RateLimitRemaining"
+                        },
+                        "X-RateLimit-Reset": {
+                          "$ref": "#/components/headers/RateLimitReset"
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/TooManyRequests"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalServerError"
+                    }
+                  },
+                  "summary": "List and filter startups",
+                  "tags": [
+                    "Startups"
+                  ]
+                }
+              },
+              "/startups/{slug}": {
+                "get": {
+                  "description": "Returns the full startup profile and detail fields.",
+                  "externalDocs": {
+                    "description": "Get startup endpoint documentation",
+                    "url": "https://trustmrr.com/docs/api/get-startup"
+                  },
+                  "operationId": "getStartup",
+                  "parameters": [
+                    {
+                      "description": "URL-friendly startup identifier from the list endpoint.",
+                      "in": "path",
+                      "name": "slug",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "details": {
+                              "summary": "Startup profile with detail fields",
+                              "value": {
+                                "data": {
+                                  "cofounders": [
+                                    {
+                                      "xHandle": "marc_louvion",
+                                      "xName": "Marc Lou"
+                                    }
+                                  ],
+                                  "description": "The NextJS boilerplate with all you need to build your SaaS, AI tool, or any other web app. From idea to production in 5 minutes.",
+                                  "name": "ShipFast",
+                                  "revenue": {
+                                    "last30Days": 4250000,
+                                    "mrr": 180000,
+                                    "total": 98000000
+                                  },
+                                  "slug": "shipfast",
+                                  "startupInsights": {
+                                    "businessType": "B2B",
+                                    "fundingStatus": "bootstrapped",
+                                    "teamSize": "2-5"
+                                  },
+                                  "techStack": [
+                                    {
+                                      "category": "framework",
+                                      "slug": "nextjs"
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/StartupResponse"
+                          }
+                        }
+                      },
+                      "description": "The full startup profile.",
+                      "headers": {
+                        "X-RateLimit-Limit": {
+                          "$ref": "#/components/headers/RateLimitLimit"
+                        },
+                        "X-RateLimit-Remaining": {
+                          "$ref": "#/components/headers/RateLimitRemaining"
+                        },
+                        "X-RateLimit-Reset": {
+                          "$ref": "#/components/headers/RateLimitReset"
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/TooManyRequests"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalServerError"
+                    }
+                  },
+                  "summary": "Get a startup by slug",
+                  "tags": [
+                    "Startups"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "TrustMRRBearer": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "TrustMRR API v1",
+                "url": "https://trustmrr.com/api/v1"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Search verified startup profiles and retrieve full details.",
+                "name": "Startups"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "TrustMRR"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:37.434295+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/trustmrr/openapi.yml",
+        "version": "3.2.1"
+      }
+    ],
+    "sha256": "3efbd71e8fdc83131cd3bfb87ee0f8f7c8c0d58b14c9405d0af6c9941342f7bb",
+    "source_id": "trustmrr",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/trustmrr/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

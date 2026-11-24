@@ -1,0 +1,878 @@
+{
+  "a2ui": {},
+  "app": "feedly",
+  "graph": {
+    "edges": [
+      {
+        "from": "feedly",
+        "kind": "EXPOSES",
+        "to": "operation:get:/custom-agents/{id}"
+      },
+      {
+        "from": "feedly",
+        "kind": "EXPOSES",
+        "to": "operation:get:/dashboards"
+      },
+      {
+        "from": "operation:get:/custom-agents/{id}",
+        "kind": "RETURNS",
+        "to": "schema:CustomAgentItemsResponse"
+      },
+      {
+        "from": "operation:get:/dashboards",
+        "kind": "RETURNS",
+        "to": "schema:CustomAgentDashboard"
+      },
+      {
+        "from": "operation:get:/dashboards",
+        "kind": "RETURNS",
+        "to": "schema:DashboardSummary"
+      },
+      {
+        "from": "schema:Cell",
+        "kind": "REFERENCES",
+        "to": "schema:Citation"
+      },
+      {
+        "from": "schema:Citation",
+        "kind": "REFERENCES",
+        "to": "schema:CitationEntry"
+      },
+      {
+        "from": "schema:CustomAgentDashboard",
+        "kind": "REFERENCES",
+        "to": "schema:CustomAgentSchema"
+      },
+      {
+        "from": "schema:CustomAgentDashboard",
+        "kind": "REFERENCES",
+        "to": "schema:DashboardCommon"
+      },
+      {
+        "from": "schema:CustomAgentDashboard",
+        "kind": "REFERENCES",
+        "to": "schema:PirMention"
+      },
+      {
+        "from": "schema:CustomAgentItemsResponse",
+        "kind": "REFERENCES",
+        "to": "schema:CustomAgentRow"
+      },
+      {
+        "from": "schema:CustomAgentRow",
+        "kind": "REFERENCES",
+        "to": "schema:Cell"
+      },
+      {
+        "from": "schema:CustomAgentSchema",
+        "kind": "REFERENCES",
+        "to": "schema:DashboardColumn"
+      },
+      {
+        "from": "schema:DashboardSummary",
+        "kind": "REFERENCES",
+        "to": "schema:DashboardCommon"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "feedly",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "> 🚧 Alpha: Custom Agents is a new capability and still under active development.",
+        "id": "operation:get:/custom-agents/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-custom-agent",
+        "parameters": [
+          {
+            "description": "Id of the Custom Agent, from the `id` field of a `customAgent` item returned by `GET /dashboards`.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of rows to return in this page.",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Continuation token from a previous response's `continuation` field.",
+            "in": "query",
+            "name": "continuation",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/custom-agents/{id}",
+        "pointer": "#/paths/~1custom-agents~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CustomAgentItemsResponse"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Get a Custom Agent's rows",
+        "tags": [
+          "Custom Agents"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "> 🚧 Alpha: Custom Agents is a new capability and still under active development.",
+        "id": "operation:get:/dashboards",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-dashboards",
+        "path": "/dashboards",
+        "pointer": "#/paths/~1dashboards/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CustomAgentDashboard|DashboardSummary[]"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Get list of dashboards",
+        "tags": [
+          "Custom Agents"
+        ]
+      },
+      {
+        "description": "The value of a single column for a single row in a Custom Agent's table.",
+        "id": "schema:Cell",
+        "kind": "schema",
+        "name": "Cell",
+        "type": "object"
+      },
+      {
+        "description": "A source citation backing part of a cell's `value`.",
+        "id": "schema:Citation",
+        "kind": "schema",
+        "name": "Citation",
+        "type": "object"
+      },
+      {
+        "description": "The source article a citation was pulled from.",
+        "id": "schema:CitationEntry",
+        "kind": "schema",
+        "name": "CitationEntry",
+        "type": "object"
+      },
+      {
+        "description": "A Custom Agent: a user-defined table of entities tracked against a natural-language Priority Intelligence Requirement (PIR).",
+        "id": "schema:CustomAgentDashboard",
+        "kind": "schema",
+        "name": "CustomAgentDashboard",
+        "type": "DashboardCommon|object"
+      },
+      {
+        "description": "A page of rows from a Custom Agent's table.",
+        "id": "schema:CustomAgentItemsResponse",
+        "kind": "schema",
+        "name": "CustomAgentItemsResponse",
+        "type": "object"
+      },
+      {
+        "description": "One row of a Custom Agent's table — one tracked entity and its cell data.",
+        "id": "schema:CustomAgentRow",
+        "kind": "schema",
+        "name": "CustomAgentRow",
+        "type": "object"
+      },
+      {
+        "description": "Defines the shape of the table a Custom Agent produces: the entity type it tracks, and the columns that show up as `cells` on each row returned by `GET /custom…",
+        "id": "schema:CustomAgentSchema",
+        "kind": "schema",
+        "name": "CustomAgentSchema",
+        "type": "object"
+      },
+      {
+        "description": "A single column definition in a Custom Agent's table.",
+        "id": "schema:DashboardColumn",
+        "kind": "schema",
+        "name": "DashboardColumn",
+        "type": "object"
+      },
+      {
+        "description": "Fields present on every item returned by `GET /dashboards`, regardless of `type`.",
+        "id": "schema:DashboardCommon",
+        "kind": "schema",
+        "name": "DashboardCommon",
+        "type": "object"
+      },
+      {
+        "description": "A dashboard/agent item from `GET /dashboards` whose type is **not** `customAgent`.",
+        "id": "schema:DashboardSummary",
+        "kind": "schema",
+        "name": "DashboardSummary",
+        "type": "DashboardCommon|object"
+      },
+      {
+        "description": "Standard Feedly API error response.",
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "description": "An Intel Profile or entity list `@`-mentioned in a Custom Agent's `pir`, used to scope which entities the agent tracks.",
+        "id": "schema:PirMention",
+        "kind": "schema",
+        "name": "PirMention",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "feedly"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.feedly.com/v3",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "Cell": {
+                  "description": "The value of a single column for a single row in a Custom Agent's table.",
+                  "properties": {
+                    "citations": {
+                      "description": "Source citations backing `value`. Empty for columns that don't require sourcing.\n",
+                      "items": {
+                        "$ref": "#/components/schemas/Citation"
+                      },
+                      "type": "array"
+                    },
+                    "column": {
+                      "description": "Which column this cell fills in, matched against `name` in the agent's `schema.columns` (see `GET /dashboards`).\n",
+                      "example": "Malware Category",
+                      "type": "string"
+                    },
+                    "entity": {
+                      "description": "Id/name of the row this cell belongs to. Matches the parent row's `id`.",
+                      "example": "SCMBANKER",
+                      "type": "string"
+                    },
+                    "insufficientData": {
+                      "description": "`true` when Feedly AI didn't have enough source material to confidently populate this cell.\n",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "value": {
+                      "description": "The cell's content. Predefined columns hold a plain value; `userProvided` columns generated by Feedly AI are typically Markdown, often a bullet list with inline citation links (`[↗](url)`) that correspond to entries in `citations`.\n",
+                      "example": "Banker",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "entity",
+                    "column",
+                    "value",
+                    "citations",
+                    "insufficientData"
+                  ],
+                  "type": "object"
+                },
+                "Citation": {
+                  "description": "A source citation backing part of a cell's `value`.",
+                  "properties": {
+                    "citedText": {
+                      "description": "Excerpt of the source article text supporting the value.",
+                      "example": "A new banking fraudulent operation is targeting customers of Mexican banks, fintech, payment processors, and cryptocurrency exchanges using ClickFix lures.",
+                      "type": "string"
+                    },
+                    "entry": {
+                      "$ref": "#/components/schemas/CitationEntry"
+                    },
+                    "llmPredictionMatch": {
+                      "description": "The substring of the cell's `value` that this citation supports.",
+                      "example": "[↗](https://thehackernews.com/2026/07/scmbanker-malware-uses-clickfix-lures.html#:~:text=A%20new%20banking,SCMBANKER%20.)",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CitationEntry": {
+                  "description": "The source article a citation was pulled from.",
+                  "properties": {
+                    "entryId": {
+                      "description": "Feedly entry ID of the source article.",
+                      "example": "7UmKRsN0d7peR76m42Icx5pdP/ltJWYFjUFipD0Y80Q=_19f43151a58:97baac7:fe7e62e0",
+                      "type": "string"
+                    },
+                    "url": {
+                      "description": "URL of the source article.",
+                      "example": "https://thehackernews.com/2026/07/scmbanker-malware-uses-clickfix-lures.html",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CustomAgentDashboard": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/DashboardCommon"
+                    },
+                    {
+                      "properties": {
+                        "pir": {
+                          "description": "The Priority Intelligence Requirement (natural-language question) this Custom Agent was built to answer.\n",
+                          "example": "What malware families are being used in attacks against financial institutions?",
+                          "type": "string"
+                        },
+                        "pirMentions": {
+                          "description": "Intel Profiles or entity lists `@`-mentioned in `pir`, used to scope the agent. Empty when the PIR doesn't reference one.\n",
+                          "items": {
+                            "$ref": "#/components/schemas/PirMention"
+                          },
+                          "type": "array"
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/CustomAgentSchema"
+                        },
+                        "type": {
+                          "enum": [
+                            "customAgent"
+                          ],
+                          "example": "customAgent",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "pir",
+                        "schema"
+                      ],
+                      "type": "object"
+                    }
+                  ],
+                  "description": "A Custom Agent: a user-defined table of entities tracked against a natural-language Priority Intelligence Requirement (PIR). Returned by `GET /dashboards` when `type` is `customAgent`.\n"
+                },
+                "CustomAgentItemsResponse": {
+                  "description": "A page of rows from a Custom Agent's table.",
+                  "properties": {
+                    "continuation": {
+                      "description": "Present when more rows are available beyond this page. Pass it back as the `continuation` query parameter on your next request to `GET /custom-agents/{id}` to fetch the next page. Omitted on the last page.\n",
+                      "example": "WyIxOWY0MzU4M2ZiODoxZDM2NmU6MzBhZWZhMjAiLCJTQ01CQU5LRVIiXQ==",
+                      "type": "string"
+                    },
+                    "items": {
+                      "items": {
+                        "$ref": "#/components/schemas/CustomAgentRow"
+                      },
+                      "type": "array"
+                    },
+                    "lastRefresh": {
+                      "description": "EPOCH timestamp, in milliseconds, of the last time this agent's data was refreshed.",
+                      "example": 1783539484792,
+                      "format": "int64",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "items",
+                    "lastRefresh"
+                  ],
+                  "type": "object"
+                },
+                "CustomAgentRow": {
+                  "description": "One row of a Custom Agent's table — one tracked entity and its cell data.",
+                  "properties": {
+                    "cells": {
+                      "description": "One cell per column defined in the agent's `schema.columns`.",
+                      "items": {
+                        "$ref": "#/components/schemas/Cell"
+                      },
+                      "type": "array"
+                    },
+                    "created": {
+                      "description": "EPOCH timestamp, in milliseconds, of when this row was first added to the table.",
+                      "example": 1783541284792,
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "events": {
+                      "description": "Timeline events associated with this row. Not yet documented in this spec — observed as an empty array in current responses.\n",
+                      "items": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "description": "Id/name of the tracked entity this row represents (e.g. a malware family or threat actor name).",
+                      "example": "SCMBANKER",
+                      "type": "string"
+                    },
+                    "updated": {
+                      "description": "EPOCH timestamp, in milliseconds, of the last time any cell in this row was updated.\n",
+                      "example": 1783541284792,
+                      "format": "int64",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "created",
+                    "updated",
+                    "id",
+                    "cells"
+                  ],
+                  "type": "object"
+                },
+                "CustomAgentSchema": {
+                  "description": "Defines the shape of the table a Custom Agent produces: the entity type it tracks, and the columns that show up as `cells` on each row returned by `GET /custom-agents/{id}`.\n",
+                  "properties": {
+                    "columns": {
+                      "description": "The columns of this agent's table, in display order. Each row returned by `GET /custom-agents/{id}` has one cell per column here, matched by `cell.column` equal to `column.name`.\n",
+                      "items": {
+                        "$ref": "#/components/schemas/DashboardColumn"
+                      },
+                      "type": "array"
+                    },
+                    "entityType": {
+                      "description": "The Feedly entity type this agent tracks one row per instance of.",
+                      "example": "threatActor",
+                      "type": "string"
+                    },
+                    "entityTypeLabel": {
+                      "description": "Human-readable label for `entityType`, used as a column header in Feedly's UI.",
+                      "example": "APT Group",
+                      "type": "string"
+                    },
+                    "idFunction": {
+                      "description": "Internal prompt Feedly AI uses to decide which entities belong in this agent's table (e.g. which APT groups or malware families are relevant). Included for reference; not needed to consume the agent's data.\n",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "entityType",
+                    "columns"
+                  ],
+                  "type": "object"
+                },
+                "DashboardColumn": {
+                  "description": "A single column definition in a Custom Agent's table.",
+                  "properties": {
+                    "description": {
+                      "description": "Explanation of what this column captures, shown when building the agent.",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Stable identifier for built-in (`predefined`) columns. `null` for user-defined (`userProvided`) columns — match those on `name` instead.\n",
+                      "example": "what-soWhat",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Column header, as shown in Feedly's UI. This is the value that shows up in `column` on each cell returned by `GET /custom-agents/{id}`.\n",
+                      "example": "What / So What",
+                      "type": "string"
+                    },
+                    "prompt": {
+                      "description": "For `userProvided` columns, the instructions given to Feedly AI to populate this column for every row. Not present on `predefined` columns.\n",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Whether this column ships with every Custom Agent (`predefined`) or was added by the person who built this agent (`userProvided`).\n",
+                      "enum": [
+                        "predefined",
+                        "userProvided"
+                      ],
+                      "example": "predefined",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                "DashboardCommon": {
+                  "description": "Fields present on every item returned by `GET /dashboards`, regardless of `type`.\n",
+                  "properties": {
+                    "created": {
+                      "description": "EPOCH timestamp, in milliseconds, of when this dashboard/agent was created.",
+                      "example": 1783541284792,
+                      "format": "int64",
+                      "type": "integer"
+                    },
+                    "createdBy": {
+                      "description": "Feedly user ID of the person who created this dashboard/agent.",
+                      "example": "c6d7e1e8-072b-42b8-9484-f873be3ce4dd",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Unique identifier for this dashboard/agent. For `customAgent` items, this is the value you pass as `id` to `GET /custom-agents/{id}`.\n",
+                      "example": "174aa5c2-e63d-46ff-800e-8d344ba29d57",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Display name of the dashboard/agent, as set by the person who created it.",
+                      "example": "Malware families targeting financial institutions",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The kind of dashboard/agent this item represents. Feedly Threat Intelligence currently supports `customAgent`, `ttp`, `cyberAttack`, `brandMonitoring`, `vulnerability`, and `credentialLeaks`.\n",
+                      "example": "customAgent",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "name",
+                    "created",
+                    "createdBy"
+                  ],
+                  "type": "object"
+                },
+                "DashboardSummary": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/DashboardCommon"
+                    },
+                    {
+                      "additionalProperties": true,
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "ttp",
+                            "cyberAttack",
+                            "brandMonitoring",
+                            "vulnerability",
+                            "credentialLeaks"
+                          ],
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ],
+                  "description": "A dashboard/agent item from `GET /dashboards` whose type is **not** `customAgent`. Feedly's built-in TTP, Cyberattacks, Brand Monitoring, Vulnerability, and Credential Leaks agents are not yet fully modeled in this spec — this schema only guarantees the common fields, plus whatever else the API happens to return, via `additionalProperties`.\n"
+                },
+                "Error": {
+                  "description": "Standard Feedly API error response. See [Status Codes](https://developers.feedly.com/reference/status-codes) for the full list of error scenarios.\n",
+                  "properties": {
+                    "errorId": {
+                      "description": "Opaque ID Feedly support can use to look up this specific error occurrence.",
+                      "example": "xyz.2018021111.12345",
+                      "type": "string"
+                    },
+                    "errorMessage": {
+                      "description": "Human-readable explanation of what went wrong.",
+                      "example": "must provide authorization token",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PirMention": {
+                  "description": "An Intel Profile or entity list `@`-mentioned in a Custom Agent's `pir`, used to scope which entities the agent tracks.\n",
+                  "properties": {
+                    "id": {
+                      "example": "enterprise/christeam/intelProfile/tx:OrganizationIntelligenceProfileShipbuildingandmaretimeindustry-gnpzbv",
+                      "type": "string"
+                    },
+                    "mention": {
+                      "description": "The literal `@`-mention text as typed in the PIR.",
+                      "example": "@# Organization Intelligence Profile — Shipbuilding and maretime industry",
+                      "type": "string"
+                    },
+                    "type": {
+                      "example": "entityList",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "BearerAuth": {
+                  "bearerFormat": "token",
+                  "description": "Pass your Feedly API Access Token in the `Authorization` header as a Bearer token, e.g. `Authorization: Bearer <token>`. See [Authorization](https://developers.feedly.com/reference/authorization) for how to generate one.\n",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "name": "Feedly Support",
+                "url": "https://feedly.com/support"
+              },
+              "description": "Feedly's public REST API — Articles, Search, Enterprise, Feedly AI, Threat Intelligence (TI) Endpoints, Market Intelligence (MI) Endpoints, Custom Agents, and Webhooks.\n\nThis spec is the source of truth for the [Feedly API Reference](https://developers.feedly.com/reference) on ReadMe, migrated from ReadMe into GitHub so it can be reviewed and edited as code. See the repo README for the migration status and the contribution workflow (lint, bundle, and how to push changes back to ReadMe).\n",
+              "title": "Feedly API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/custom-agents/{id}": {
+                "get": {
+                  "description": "> 🚧 Alpha: Custom Agents is a new capability and still under active development. Endpoints, fields, and behavior may change without notice.\n\nReturns the rows (one per tracked entity) and cell data for a single Custom Agent, paginated with `count`/`continuation`.\n\nFind the `id` to use here from a `customAgent`-type item returned by `GET /dashboards`, and use that same item's `schema.columns` to interpret each row's `cells`.\n",
+                  "operationId": "get-custom-agent",
+                  "parameters": [
+                    {
+                      "description": "Id of the Custom Agent, from the `id` field of a `customAgent` item returned by `GET /dashboards`.",
+                      "example": "174aa5c2-e63d-46ff-800e-8d344ba29d57",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of rows to return in this page. Defaults to the platform's standard page size when omitted.",
+                      "example": 20,
+                      "in": "query",
+                      "name": "count",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Continuation token from a previous response's `continuation` field. Include it to fetch the next page of rows; omit it to fetch the first page. See [Understanding Continuation](https://developers.feedly.com/docs/understanding-continuation).\n",
+                      "example": "WyIxOWY0MzU4M2ZiODoxZDM2NmU6MzBhZWZhMjAiLCJTQ01CQU5LRVIiXQ==",
+                      "in": "query",
+                      "name": "continuation",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CustomAgentItemsResponse"
+                          }
+                        }
+                      },
+                      "description": "A page of rows for this Custom Agent."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Missing or invalid Authorization header."
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "No Custom Agent exists with the given `id` for this enterprise team."
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Rate limit exceeded. See [Request Limits](https://developers.feedly.com/reference/request-limits)."
+                    }
+                  },
+                  "summary": "Get a Custom Agent's rows",
+                  "tags": [
+                    "Custom Agents"
+                  ]
+                }
+              },
+              "/dashboards": {
+                "get": {
+                  "description": "> 🚧 Alpha: Custom Agents is a new capability and still under active development. Endpoints, fields, and behavior may change without notice.\n\nReturns every Threat Intelligence dashboard/agent set up for the authenticated enterprise team — Custom Agents as well as the built-in TTP, Cyberattacks, Brand Monitoring, Vulnerability, and Credential Leaks agents.\n\nTo find your team's Custom Agents, filter the response for items where `type` is `customAgent`, then pass each one's `id` to `GET /custom-agents/{id}` to fetch that agent's rows.\n",
+                  "operationId": "get-dashboards",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": [
+                            {
+                              "created": 1783541284792,
+                              "createdBy": "c6d7e1e8-072b-42b8-9484-f873be3ce4dd",
+                              "id": "174aa5c2-e63d-46ff-800e-8d344ba29d57",
+                              "name": "Malware families targeting financial institutions",
+                              "pir": "What malware families are being used in attacks against financial institutions?",
+                              "pirMentions": [],
+                              "schema": {
+                                "columns": [
+                                  {
+                                    "description": "The category of malware (e.g. Banker, Ransomware, Infostealer).",
+                                    "id": null,
+                                    "name": "Malware Category",
+                                    "prompt": "Classify the malware family into a single category.",
+                                    "type": "userProvided"
+                                  }
+                                ],
+                                "entityType": "malware",
+                                "entityTypeLabel": "Malware Family"
+                              },
+                              "type": "customAgent"
+                            }
+                          ],
+                          "schema": {
+                            "items": {
+                              "discriminator": {
+                                "mapping": {
+                                  "brandMonitoring": "#/components/schemas/DashboardSummary",
+                                  "credentialLeaks": "#/components/schemas/DashboardSummary",
+                                  "customAgent": "#/components/schemas/CustomAgentDashboard",
+                                  "cyberAttack": "#/components/schemas/DashboardSummary",
+                                  "ttp": "#/components/schemas/DashboardSummary",
+                                  "vulnerability": "#/components/schemas/DashboardSummary"
+                                },
+                                "propertyName": "type"
+                              },
+                              "oneOf": [
+                                {
+                                  "$ref": "#/components/schemas/CustomAgentDashboard"
+                                },
+                                {
+                                  "$ref": "#/components/schemas/DashboardSummary"
+                                }
+                              ]
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "A list of dashboards/agents for the enterprise team."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Missing or invalid Authorization header."
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Rate limit exceeded. See [Request Limits](https://developers.feedly.com/reference/request-limits)."
+                    }
+                  },
+                  "summary": "Get list of dashboards",
+                  "tags": [
+                    "Custom Agents"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Feedly API v3",
+                "url": "https://api.feedly.com/v3"
+              }
+            ],
+            "tags": [
+              {
+                "description": "> 🚧 Alpha: Custom Agents is a new capability and still under active development. Endpoints, fields, and behavior may change without notice.\n\nCustom Agents let enterprise teams stand up their own tables of AI-tracked entities (malware families, threat actors, vendors, etc.) driven by a natural-language Priority Intelligence Requirement (PIR). Custom Agents are one `type` of dashboard returned by `GET /dashboards`.\n",
+                "name": "Custom Agents"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Feedly"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:29.313510+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://dash.readme.com/api/v1/api-registry/gbzx1fmrdkepna",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "c8df0c34064228f4a088d2dee508ec062fb59091496daf866fad513800f73377",
+    "source_id": "feedly",
+    "source_updated": null,
+    "url": "https://dash.readme.com/api/v1/api-registry/gbzx1fmrdkepna"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

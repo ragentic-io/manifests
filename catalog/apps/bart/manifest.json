@@ -1,0 +1,412 @@
+{
+  "a2ui": {},
+  "app": "bart",
+  "graph": {
+    "edges": [
+      {
+        "from": "bart",
+        "kind": "EXPOSES",
+        "to": "operation:get:/etd.aspx"
+      },
+      {
+        "from": "operation:get:/etd.aspx",
+        "kind": "RETURNS",
+        "to": "schema:DepartureEstimatesResponse"
+      },
+      {
+        "from": "schema:DepartureEstimatesResponse",
+        "kind": "REFERENCES",
+        "to": "schema:StationEstimates"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "bart",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns estimated departures for a station.",
+        "id": "operation:get:/etd.aspx",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDepartureEstimates",
+        "parameters": [
+          {
+            "description": "Selects the real-time estimates command.",
+            "enum": [
+              "etd"
+            ],
+            "in": "query",
+            "name": "cmd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Station abbreviation, or `ALL` for all current estimates.",
+            "in": "query",
+            "name": "orig",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Limit results to a platform available at the selected station.",
+            "in": "query",
+            "name": "plat",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Limit results to a travel direction.",
+            "enum": [
+              "n",
+              "s"
+            ],
+            "in": "query",
+            "name": "dir",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Set to `1` to sort by line color; `0` uses the default destination sort.",
+            "enum": [
+              "0",
+              "1"
+            ],
+            "in": "query",
+            "name": "gbColor",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Request JSON output; this focused specification covers JSON mode.",
+            "enum": [
+              "y"
+            ],
+            "in": "query",
+            "name": "json",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/etd.aspx",
+        "pointer": "#/paths/~1etd.aspx/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DepartureEstimatesResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BARTApiKey": []
+          }
+        ],
+        "summary": "Get real-time train departures"
+      },
+      {
+        "id": "schema:DepartureEstimatesResponse",
+        "kind": "schema",
+        "name": "DepartureEstimatesResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:StationEstimates",
+        "kind": "schema",
+        "name": "StationEstimates",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "bart"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.bart.gov/api",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "DepartureEstimatesResponse": {
+                  "properties": {
+                    "?xml": {
+                      "properties": {
+                        "@encoding": {
+                          "type": "string"
+                        },
+                        "@version": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "root": {
+                      "properties": {
+                        "@id": {
+                          "type": "string"
+                        },
+                        "date": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        },
+                        "station": {
+                          "items": {
+                            "$ref": "#/components/schemas/StationEstimates"
+                          },
+                          "type": "array"
+                        },
+                        "time": {
+                          "type": "string"
+                        },
+                        "uri": {
+                          "properties": {
+                            "#cdata-section": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "StationEstimates": {
+                  "properties": {
+                    "abbr": {
+                      "type": "string"
+                    },
+                    "etd": {
+                      "items": {
+                        "properties": {
+                          "abbreviation": {
+                            "type": "string"
+                          },
+                          "destination": {
+                            "type": "string"
+                          },
+                          "estimate": {
+                            "items": {
+                              "properties": {
+                                "bikeflag": {
+                                  "type": "string"
+                                },
+                                "cancelflag": {
+                                  "description": "Whether the scheduled departure was cancelled.",
+                                  "type": "string"
+                                },
+                                "color": {
+                                  "type": "string"
+                                },
+                                "delay": {
+                                  "description": "Seconds from the original scheduled departure time.",
+                                  "type": "string"
+                                },
+                                "direction": {
+                                  "type": "string"
+                                },
+                                "dynamicflag": {
+                                  "description": "Whether the departure was added to service.",
+                                  "type": "string"
+                                },
+                                "hexcolor": {
+                                  "type": "string"
+                                },
+                                "length": {
+                                  "type": "string"
+                                },
+                                "minutes": {
+                                  "type": "string"
+                                },
+                                "platform": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "limited": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "BARTApiKey": {
+                  "description": "BART requires an API key and publishes a public key that does not require registration on its developer API page.",
+                  "in": "query",
+                  "name": "key",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused community-maintained specification for BART's documented JSON mode of the legacy real-time departure estimates endpoint. BART recommends its GTFS and GTFS-Realtime feeds for more up-to-date, supported standards.",
+              "externalDocs": {
+                "description": "BART real-time estimates API documentation",
+                "url": "https://api.bart.gov/docs/etd/etd.aspx"
+              },
+              "title": "BART Legacy Real-Time API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/etd.aspx": {
+                "get": {
+                  "description": "Returns estimated departures for a station. `orig` may be a station abbreviation or `ALL`. When `orig` is `ALL`, `plat` and `dir` cannot be used. If both `plat` and `dir` are supplied, BART ignores `dir`.",
+                  "operationId": "getDepartureEstimates",
+                  "parameters": [
+                    {
+                      "description": "Selects the real-time estimates command.",
+                      "in": "query",
+                      "name": "cmd",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "etd"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Station abbreviation, or `ALL` for all current estimates.",
+                      "in": "query",
+                      "name": "orig",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Limit results to a platform available at the selected station.",
+                      "in": "query",
+                      "name": "plat",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Limit results to a travel direction.",
+                      "in": "query",
+                      "name": "dir",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "n",
+                          "s"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Set to `1` to sort by line color; `0` uses the default destination sort.",
+                      "in": "query",
+                      "name": "gbColor",
+                      "required": false,
+                      "schema": {
+                        "enum": [
+                          "0",
+                          "1"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Request JSON output; this focused specification covers JSON mode.",
+                      "in": "query",
+                      "name": "json",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "y"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DepartureEstimatesResponse"
+                          }
+                        }
+                      },
+                      "description": "Departure estimates for the requested station or stations."
+                    }
+                  },
+                  "security": [
+                    {
+                      "BARTApiKey": []
+                    }
+                  ],
+                  "summary": "Get real-time train departures"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "BART API",
+                "url": "https://api.bart.gov/api"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "BART"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.321609+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/bart/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "b5d13e677f6d25a3e13b8ab588c0e1cc067951cfbb5690ae2134d8122bd2ad31",
+    "source_id": "bart",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/bart/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

@@ -1,0 +1,352 @@
+{
+  "a2ui": {},
+  "app": "overpass-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "overpass-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/interpreter"
+      },
+      {
+        "from": "overpass-api",
+        "kind": "EXPOSES",
+        "to": "operation:post:/interpreter"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "overpass-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Supply the Overpass QL program in `data`.",
+        "id": "operation:get:/interpreter",
+        "kind": "operation",
+        "method": "get",
+        "name": "runQueryGet",
+        "parameters": [
+          {
+            "description": "Overpass QL program; request JSON output with `[out:json]`.",
+            "in": "query",
+            "name": "data",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/interpreter",
+        "pointer": "#/paths/~1interpreter/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "302"
+          },
+          {
+            "status": "400",
+            "type": "string"
+          },
+          {
+            "status": "429"
+          },
+          {
+            "status": "504"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Run an Overpass query with GET"
+      },
+      {
+        "deprecated": false,
+        "description": "Submit the Overpass QL program as the `data` form field.",
+        "id": "operation:post:/interpreter",
+        "kind": "operation",
+        "method": "post",
+        "name": "runQueryPost",
+        "path": "/interpreter",
+        "pointer": "#/paths/~1interpreter/post",
+        "request": {
+          "content_types": [
+            "application/x-www-form-urlencoded"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "302"
+          },
+          {
+            "status": "400",
+            "type": "string"
+          },
+          {
+            "status": "429"
+          },
+          {
+            "status": "504"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Run an Overpass query with POST"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "overpass-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://overpass-api.de/api",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "externalDocs": {
+              "description": "Overpass API HTTP request documentation",
+              "url": "https://dev.overpass-api.de/command_line.html"
+            },
+            "info": {
+              "description": "Community-maintained description of the main public Overpass instance. This specification covers the interpreter endpoint when a query requests JSON output with the `[out:json]` directive. Query results vary with the query and its output modifiers; follow the shared instance's fair-use policy.",
+              "title": "Overpass API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/interpreter": {
+                "get": {
+                  "description": "Supply the Overpass QL program in `data`. Include `[out:json]` in the program for the JSON response documented here.",
+                  "operationId": "runQueryGet",
+                  "parameters": [
+                    {
+                      "description": "Overpass QL program; request JSON output with `[out:json]`.",
+                      "example": "[out:json];node(50.746,7.152,50.747,7.153);out;",
+                      "in": "query",
+                      "name": "data",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "elements": {
+                                "description": "Element fields vary by query and output modifiers.",
+                                "items": {
+                                  "additionalProperties": true,
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "generator": {
+                                "type": "string"
+                              },
+                              "osm3s": {
+                                "properties": {
+                                  "copyright": {
+                                    "type": "string"
+                                  },
+                                  "timestamp_osm_base": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "timestamp_osm_base",
+                                  "copyright"
+                                ],
+                                "type": "object"
+                              },
+                              "version": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "version",
+                              "generator",
+                              "osm3s",
+                              "elements"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Query result in Overpass JSON format."
+                    },
+                    "302": {
+                      "description": "Redirect used by the permanent ID feature."
+                    },
+                    "400": {
+                      "content": {
+                        "text/html": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "Invalid query; the response body is an HTML error document."
+                    },
+                    "429": {
+                      "description": "Request rejected by the fair-use policy."
+                    },
+                    "504": {
+                      "description": "Query timed out or the server is too busy to complete it."
+                    }
+                  },
+                  "summary": "Run an Overpass query with GET"
+                },
+                "post": {
+                  "description": "Submit the Overpass QL program as the `data` form field. Include `[out:json]` in the program for the JSON response documented here.",
+                  "operationId": "runQueryPost",
+                  "requestBody": {
+                    "content": {
+                      "application/x-www-form-urlencoded": {
+                        "schema": {
+                          "properties": {
+                            "data": {
+                              "description": "Overpass QL program; request JSON output with `[out:json]`.",
+                              "example": "[out:json];node(50.746,7.152,50.747,7.153);out;",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "data"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "elements": {
+                                "description": "Element fields vary by query and output modifiers.",
+                                "items": {
+                                  "additionalProperties": true,
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "generator": {
+                                "type": "string"
+                              },
+                              "osm3s": {
+                                "properties": {
+                                  "copyright": {
+                                    "type": "string"
+                                  },
+                                  "timestamp_osm_base": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "timestamp_osm_base",
+                                  "copyright"
+                                ],
+                                "type": "object"
+                              },
+                              "version": {
+                                "type": "number"
+                              }
+                            },
+                            "required": [
+                              "version",
+                              "generator",
+                              "osm3s",
+                              "elements"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Query result in Overpass JSON format."
+                    },
+                    "302": {
+                      "description": "Redirect used by the permanent ID feature."
+                    },
+                    "400": {
+                      "content": {
+                        "text/html": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "Invalid query; the response body is an HTML error document."
+                    },
+                    "429": {
+                      "description": "Request rejected by the fair-use policy."
+                    },
+                    "504": {
+                      "description": "Query timed out or the server is too busy to complete it."
+                    }
+                  },
+                  "summary": "Run an Overpass query with POST"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Main public instance operated by FOSSGIS. Check its current usage policy at https://wiki.openstreetmap.org/wiki/Overpass_API#Public_Overpass_API_instances.",
+                "url": "https://overpass-api.de/api"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Overpass API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.428943+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/overpass/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "698e4e200aa3da1781c1e7161ef71a9bf5d847a00596f977283d4e6a7ed6f87c",
+    "source_id": "overpass-api",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/overpass/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

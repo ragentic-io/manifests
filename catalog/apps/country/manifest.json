@@ -1,0 +1,531 @@
+{
+  "a2ui": {},
+  "app": "country",
+  "graph": {
+    "edges": [
+      {
+        "from": "country",
+        "kind": "EXPOSES",
+        "to": "operation:get:/"
+      },
+      {
+        "from": "country",
+        "kind": "EXPOSES",
+        "to": "operation:post:/"
+      },
+      {
+        "from": "country",
+        "kind": "EXPOSES",
+        "to": "operation:get:/info"
+      },
+      {
+        "from": "country",
+        "kind": "EXPOSES",
+        "to": "operation:get:/{ip}"
+      },
+      {
+        "from": "operation:get:/",
+        "kind": "RETURNS",
+        "to": "schema:LookupResult"
+      },
+      {
+        "from": "operation:post:/",
+        "kind": "RETURNS",
+        "to": "schema:LookupResult"
+      },
+      {
+        "from": "operation:get:/{ip}",
+        "kind": "RETURNS",
+        "to": "schema:LookupResult"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "country",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Resolves the country of the caller's IP address.",
+        "id": "operation:get:/",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /",
+        "parameters": [
+          {
+            "description": "Comma-separated list of extra fields to include.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/",
+        "pointer": "#/paths/~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "LookupResult"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Look up the caller's IP"
+      },
+      {
+        "deprecated": false,
+        "description": "Look up multiple IPs in a single request.",
+        "id": "operation:post:/",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /",
+        "parameters": [
+          {
+            "description": "Comma-separated list of extra fields to include.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/",
+        "pointer": "#/paths/~1/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "string:ipv4 or ipv6[]"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "LookupResult[]"
+          },
+          {
+            "status": "422",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Batch lookup"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/info",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /info",
+        "path": "/info",
+        "pointer": "#/paths/~1info/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Service info"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/{ip}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /{ip}",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ip",
+            "required": true,
+            "type": "string:ipv4 or ipv6"
+          },
+          {
+            "description": "Comma-separated list of extra fields to include.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/{ip}",
+        "pointer": "#/paths/~1{ip}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "LookupResult"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          },
+          {
+            "status": "422",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Look up a specific IP"
+      },
+      {
+        "id": "schema:LookupResult",
+        "kind": "schema",
+        "name": "LookupResult",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "country"
+    },
+    "spec": {
+      "base": {
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "fields": {
+                  "description": "Comma-separated list of extra fields to include. Valid values: city, continent, subdivision, postal, location, asn.",
+                  "in": "query",
+                  "name": "fields",
+                  "schema": {
+                    "example": "city,asn",
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "NotFound": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "error": {
+                            "properties": {
+                              "code": {
+                                "example": 404,
+                                "type": "integer"
+                              },
+                              "message": {
+                                "example": "Not Found",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "IP could not be resolved"
+                },
+                "UnprocessableEntity": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "error": {
+                            "properties": {
+                              "code": {
+                                "example": 422,
+                                "type": "integer"
+                              },
+                              "message": {
+                                "example": "Unprocessable Entity",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "Invalid input"
+                }
+              },
+              "schemas": {
+                "LookupResult": {
+                  "properties": {
+                    "asn": {
+                      "nullable": true,
+                      "properties": {
+                        "number": {
+                          "example": 15169,
+                          "type": "integer"
+                        },
+                        "organization": {
+                          "example": "Google LLC",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "city": {
+                      "example": "Mountain View",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "continent": {
+                      "example": "NA",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "country": {
+                      "example": "US",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "ip": {
+                      "example": "8.8.8.8",
+                      "type": "string"
+                    },
+                    "location": {
+                      "nullable": true,
+                      "properties": {
+                        "accuracy_radius": {
+                          "example": 1000,
+                          "type": "integer"
+                        },
+                        "latitude": {
+                          "example": 37.386,
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "example": -122.0838,
+                          "type": "number"
+                        },
+                        "time_zone": {
+                          "example": "America/Los_Angeles",
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "postal": {
+                      "example": "94043",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "subdivision": {
+                      "example": "CA",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ip",
+                    "country"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "IP geolocation API",
+              "title": "Country",
+              "version": "4.2.3"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/": {
+                "get": {
+                  "description": "Resolves the country of the caller's IP address. When behind Cloudflare, the CF-IPCountry header is preferred.",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/fields"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/LookupResult"
+                          }
+                        }
+                      },
+                      "description": "Successful lookup"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "summary": "Look up the caller's IP"
+                },
+                "post": {
+                  "description": "Look up multiple IPs in a single request. Maximum 100 IPs per request.",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/fields"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "example": [
+                            "8.8.8.8",
+                            "1.1.1.1"
+                          ],
+                          "items": {
+                            "format": "ipv4 or ipv6",
+                            "type": "string"
+                          },
+                          "maxItems": 100,
+                          "type": "array"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/LookupResult"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Array of lookup results. IPs without a match are omitted."
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/UnprocessableEntity"
+                    }
+                  },
+                  "summary": "Batch lookup"
+                }
+              },
+              "/info": {
+                "get": {
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "dataSources": {
+                                "example": [
+                                  "maxmind",
+                                  "cloudflare"
+                                ],
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "lastUpdated": {
+                                "format": "date-time",
+                                "type": "string"
+                              },
+                              "version": {
+                                "example": "4.2.3",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Service metadata"
+                    }
+                  },
+                  "summary": "Service info"
+                }
+              },
+              "/{ip}": {
+                "get": {
+                  "parameters": [
+                    {
+                      "example": "8.8.8.8",
+                      "in": "path",
+                      "name": "ip",
+                      "required": true,
+                      "schema": {
+                        "format": "ipv4 or ipv6",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/fields"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/LookupResult"
+                          }
+                        }
+                      },
+                      "description": "Successful lookup"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/UnprocessableEntity"
+                    }
+                  },
+                  "summary": "Look up a specific IP"
+                }
+              }
+            }
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Country"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.396864+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.country.is/openapi.json",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "b2ef1b167513d73caf762c0d835037483ce5c0fd2dc03914f90cc87e0256fdca",
+    "source_id": "country",
+    "source_updated": null,
+    "url": "https://api.country.is/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "4.2.3"
+}

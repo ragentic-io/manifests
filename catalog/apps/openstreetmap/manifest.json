@@ -1,0 +1,1581 @@
+{
+  "a2ui": {},
+  "app": "openstreetmap",
+  "graph": {
+    "edges": [
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:get:/capabilities"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:put:/changeset/create"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:put:/changeset/{id}/close"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:post:/changeset/{id}/upload"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:get:/map"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:put:/node/{id}"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/node/{id}"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:get:/node/{id}.json"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:post:/nodes"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:put:/relation/{id}"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/relation/{id}"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:get:/relation/{id}.json"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:post:/relations"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:put:/way/{id}"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/way/{id}"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:get:/way/{id}.json"
+      },
+      {
+        "from": "openstreetmap",
+        "kind": "EXPOSES",
+        "to": "operation:post:/ways"
+      },
+      {
+        "from": "operation:get:/capabilities",
+        "kind": "RETURNS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:put:/changeset/create",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:post:/changeset/{id}/upload",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmChangeXml"
+      },
+      {
+        "from": "operation:post:/changeset/{id}/upload",
+        "kind": "RETURNS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:get:/map",
+        "kind": "RETURNS",
+        "to": "schema:OsmJson"
+      },
+      {
+        "from": "operation:put:/node/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:delete:/node/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:get:/node/{id}.json",
+        "kind": "RETURNS",
+        "to": "schema:OsmJson"
+      },
+      {
+        "from": "operation:post:/nodes",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:put:/relation/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:delete:/relation/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:get:/relation/{id}.json",
+        "kind": "RETURNS",
+        "to": "schema:OsmJson"
+      },
+      {
+        "from": "operation:post:/relations",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:put:/way/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:delete:/way/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmXml"
+      },
+      {
+        "from": "operation:get:/way/{id}.json",
+        "kind": "RETURNS",
+        "to": "schema:OsmJson"
+      },
+      {
+        "from": "operation:post:/ways",
+        "kind": "ACCEPTS",
+        "to": "schema:OsmXml"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "openstreetmap",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/capabilities",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCapabilities",
+        "path": "/capabilities",
+        "pointer": "#/paths/~1capabilities/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "OsmXml"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get API capabilities and limits",
+        "tags": [
+          "Capabilities"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The XML document contains one or more changeset elements and their tags.",
+        "id": "operation:put:/changeset/create",
+        "kind": "operation",
+        "method": "put",
+        "name": "createChangeset",
+        "path": "/changeset/create",
+        "pointer": "#/paths/~1changeset~1create/put",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Open a changeset",
+        "tags": [
+          "Changesets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:put:/changeset/{id}/close",
+        "kind": "operation",
+        "method": "put",
+        "name": "closeChangeset",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap changeset ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/changeset/{id}/close",
+        "pointer": "#/paths/~1changeset~1{id}~1close/put",
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Close a changeset",
+        "tags": [
+          "Changesets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Accepts an OsmChange XML document.",
+        "id": "operation:post:/changeset/{id}/upload",
+        "kind": "operation",
+        "method": "post",
+        "name": "uploadChangesetDiff",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap changeset ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/changeset/{id}/upload",
+        "pointer": "#/paths/~1changeset~1{id}~1upload/post",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmChangeXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "OsmXml"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Upload an atomic changeset diff",
+        "tags": [
+          "Changesets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Intended for editing clients.",
+        "id": "operation:get:/map",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMapData",
+        "parameters": [
+          {
+            "description": "Bounding box as west,south,east,north longitude and latitude values.",
+            "in": "query",
+            "name": "bbox",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/map",
+        "pointer": "#/paths/~1map/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "OsmJson"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve map data in a bounding box",
+        "tags": [
+          "Map data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide the full node representation, including the matching current version and an open changeset owned by the authenticated user.",
+        "id": "operation:put:/node/{id}",
+        "kind": "operation",
+        "method": "put",
+        "name": "updateNode",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap element ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/node/{id}",
+        "pointer": "#/paths/~1node~1{id}/put",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Update a node",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide the node ID, current version, and an open changeset in the XML body.",
+        "id": "operation:delete:/node/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "deleteNode",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap element ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/node/{id}",
+        "pointer": "#/paths/~1node~1{id}/delete",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Delete a node",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/node/{id}.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getNode",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap element ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/node/{id}.json",
+        "pointer": "#/paths/~1node~1{id}.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "OsmJson"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "410"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Read a node",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide one new node wrapped in an OSM XML document.",
+        "id": "operation:post:/nodes",
+        "kind": "operation",
+        "method": "post",
+        "name": "createNode",
+        "path": "/nodes",
+        "pointer": "#/paths/~1nodes/post",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Create a node",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide the full relation representation, including the matching current version and an open changeset owned by the authenticated user.",
+        "id": "operation:put:/relation/{id}",
+        "kind": "operation",
+        "method": "put",
+        "name": "updateRelation",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap element ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/relation/{id}",
+        "pointer": "#/paths/~1relation~1{id}/put",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Update a relation",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide the relation ID, current version, and an open changeset in the XML body.",
+        "id": "operation:delete:/relation/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "deleteRelation",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap element ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/relation/{id}",
+        "pointer": "#/paths/~1relation~1{id}/delete",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Delete a relation",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/relation/{id}.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getRelation",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap element ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/relation/{id}.json",
+        "pointer": "#/paths/~1relation~1{id}.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "OsmJson"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "410"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Read a relation",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide one new relation wrapped in an OSM XML document.",
+        "id": "operation:post:/relations",
+        "kind": "operation",
+        "method": "post",
+        "name": "createRelation",
+        "path": "/relations",
+        "pointer": "#/paths/~1relations/post",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Create a relation",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide the full way representation, including the matching current version and an open changeset owned by the authenticated user.",
+        "id": "operation:put:/way/{id}",
+        "kind": "operation",
+        "method": "put",
+        "name": "updateWay",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap element ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/way/{id}",
+        "pointer": "#/paths/~1way~1{id}/put",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Update a way",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide the way ID, current version, and an open changeset in the XML body.",
+        "id": "operation:delete:/way/{id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "deleteWay",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap element ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/way/{id}",
+        "pointer": "#/paths/~1way~1{id}/delete",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Delete a way",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/way/{id}.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getWay",
+        "parameters": [
+          {
+            "description": "Numeric OpenStreetMap element ID.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer:int64"
+          }
+        ],
+        "path": "/way/{id}.json",
+        "pointer": "#/paths/~1way~1{id}.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "OsmJson"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "410"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Read a way",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Provide one new way wrapped in an OSM XML document.",
+        "id": "operation:post:/ways",
+        "kind": "operation",
+        "method": "post",
+        "name": "createWay",
+        "path": "/ways",
+        "pointer": "#/paths/~1ways/post",
+        "request": {
+          "content_types": [
+            "application/xml"
+          ],
+          "required": true,
+          "type": "OsmXml"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "osmOAuth": [
+              "write_api"
+            ]
+          }
+        ],
+        "summary": "Create a way",
+        "tags": [
+          "Elements"
+        ]
+      },
+      {
+        "description": "UTF-8 OsmChange XML document.",
+        "id": "schema:OsmChangeXml",
+        "kind": "schema",
+        "name": "OsmChangeXml",
+        "type": "string:xml"
+      },
+      {
+        "id": "schema:OsmJson",
+        "kind": "schema",
+        "name": "OsmJson",
+        "type": "object"
+      },
+      {
+        "description": "UTF-8 OpenStreetMap XML document.",
+        "id": "schema:OsmXml",
+        "kind": "schema",
+        "name": "OsmXml",
+        "type": "string:xml"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "openstreetmap"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.openstreetmap.org/api/0.6",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "changesetId": {
+                  "description": "Numeric OpenStreetMap changeset ID.",
+                  "in": "path",
+                  "name": "id",
+                  "required": true,
+                  "schema": {
+                    "format": "int64",
+                    "type": "integer"
+                  }
+                },
+                "elementId": {
+                  "description": "Numeric OpenStreetMap element ID.",
+                  "in": "path",
+                  "name": "id",
+                  "required": true,
+                  "schema": {
+                    "format": "int64",
+                    "type": "integer"
+                  }
+                }
+              },
+              "schemas": {
+                "OsmChangeXml": {
+                  "description": "UTF-8 OsmChange XML document.",
+                  "format": "xml",
+                  "type": "string"
+                },
+                "OsmJson": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "elements": {
+                      "items": {
+                        "additionalProperties": true,
+                        "properties": {
+                          "changeset": {
+                            "type": "integer"
+                          },
+                          "id": {
+                            "format": "int64",
+                            "type": "integer"
+                          },
+                          "lat": {
+                            "type": "number"
+                          },
+                          "lon": {
+                            "type": "number"
+                          },
+                          "timestamp": {
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "type": {
+                            "enum": [
+                              "node",
+                              "way",
+                              "relation"
+                            ],
+                            "type": "string"
+                          },
+                          "version": {
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "generator": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "const": "0.6",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "OsmXml": {
+                  "description": "UTF-8 OpenStreetMap XML document.",
+                  "format": "xml",
+                  "type": "string"
+                }
+              },
+              "securitySchemes": {
+                "osmOAuth": {
+                  "flows": {
+                    "authorizationCode": {
+                      "authorizationUrl": "https://www.openstreetmap.org/oauth2/authorize",
+                      "scopes": {
+                        "write_api": "Modify OpenStreetMap map data."
+                      },
+                      "tokenUrl": "https://www.openstreetmap.org/oauth2/token"
+                    }
+                  },
+                  "type": "oauth2"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "OpenStreetMap API v0.6 documentation",
+              "url": "https://wiki.openstreetmap.org/wiki/API_v0.6"
+            },
+            "info": {
+              "description": "Community-maintained subset of the OpenStreetMap Editing API. The API is intended for editing map data, not for read-only projects or bulk data access; follow the OpenStreetMap API Usage Policy. The source wiki itself notes that it is not official documentation and that behavior may change.",
+              "title": "OpenStreetMap Editing API",
+              "version": "0.6"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/capabilities": {
+                "get": {
+                  "operationId": "getCapabilities",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/xml": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OsmXml"
+                          }
+                        }
+                      },
+                      "description": "API capabilities document."
+                    }
+                  },
+                  "security": [],
+                  "summary": "Get API capabilities and limits",
+                  "tags": [
+                    "Capabilities"
+                  ]
+                }
+              },
+              "/changeset/create": {
+                "put": {
+                  "description": "The XML document contains one or more changeset elements and their tags.",
+                  "operationId": "createChangeset",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "ID of the newly opened changeset as plain text."
+                    }
+                  },
+                  "summary": "Open a changeset",
+                  "tags": [
+                    "Changesets"
+                  ]
+                }
+              },
+              "/changeset/{id}/close": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/changesetId"
+                  }
+                ],
+                "put": {
+                  "operationId": "closeChangeset",
+                  "responses": {
+                    "200": {
+                      "description": "Changeset closed successfully; no response body."
+                    }
+                  },
+                  "summary": "Close a changeset",
+                  "tags": [
+                    "Changesets"
+                  ]
+                }
+              },
+              "/changeset/{id}/upload": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/changesetId"
+                  }
+                ],
+                "post": {
+                  "description": "Accepts an OsmChange XML document. Each element must reference this changeset and include a version unless the element is being created.",
+                  "operationId": "uploadChangesetDiff",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmChangeXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/xml": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OsmXml"
+                          }
+                        }
+                      },
+                      "description": "Diff result document for the uploaded elements."
+                    }
+                  },
+                  "summary": "Upload an atomic changeset diff",
+                  "tags": [
+                    "Changesets"
+                  ]
+                }
+              },
+              "/map": {
+                "get": {
+                  "description": "Intended for editing clients. This endpoint is not for general read-only data access.",
+                  "operationId": "getMapData",
+                  "parameters": [
+                    {
+                      "description": "Bounding box as west,south,east,north longitude and latitude values.",
+                      "in": "query",
+                      "name": "bbox",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OsmJson"
+                          }
+                        },
+                        "application/xml": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OsmXml"
+                          }
+                        }
+                      },
+                      "description": "Map elements in the requested bounding box."
+                    }
+                  },
+                  "security": [],
+                  "summary": "Retrieve map data in a bounding box",
+                  "tags": [
+                    "Map data"
+                  ]
+                }
+              },
+              "/node/{id}": {
+                "delete": {
+                  "description": "Provide the node ID, current version, and an open changeset in the XML body.",
+                  "operationId": "deleteNode",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "New element version number as plain text."
+                    }
+                  },
+                  "summary": "Delete a node",
+                  "tags": [
+                    "Elements"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/elementId"
+                  }
+                ],
+                "put": {
+                  "description": "Provide the full node representation, including the matching current version and an open changeset owned by the authenticated user.",
+                  "operationId": "updateNode",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "New element version number as plain text."
+                    }
+                  },
+                  "summary": "Update a node",
+                  "tags": [
+                    "Elements"
+                  ]
+                }
+              },
+              "/node/{id}.json": {
+                "get": {
+                  "operationId": "getNode",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OsmJson"
+                          }
+                        }
+                      },
+                      "description": "Node data in the OSM API JSON format."
+                    },
+                    "404": {
+                      "description": "No element with that ID exists."
+                    },
+                    "410": {
+                      "description": "The element has been deleted."
+                    }
+                  },
+                  "security": [],
+                  "summary": "Read a node",
+                  "tags": [
+                    "Elements"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/elementId"
+                  }
+                ]
+              },
+              "/nodes": {
+                "post": {
+                  "description": "Provide one new node wrapped in an OSM XML document.",
+                  "operationId": "createNode",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "ID of the newly created node as plain text."
+                    }
+                  },
+                  "summary": "Create a node",
+                  "tags": [
+                    "Elements"
+                  ]
+                }
+              },
+              "/relation/{id}": {
+                "delete": {
+                  "description": "Provide the relation ID, current version, and an open changeset in the XML body.",
+                  "operationId": "deleteRelation",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "New element version number as plain text."
+                    }
+                  },
+                  "summary": "Delete a relation",
+                  "tags": [
+                    "Elements"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/elementId"
+                  }
+                ],
+                "put": {
+                  "description": "Provide the full relation representation, including the matching current version and an open changeset owned by the authenticated user.",
+                  "operationId": "updateRelation",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "New element version number as plain text."
+                    }
+                  },
+                  "summary": "Update a relation",
+                  "tags": [
+                    "Elements"
+                  ]
+                }
+              },
+              "/relation/{id}.json": {
+                "get": {
+                  "operationId": "getRelation",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OsmJson"
+                          }
+                        }
+                      },
+                      "description": "Relation data in the OSM API JSON format."
+                    },
+                    "404": {
+                      "description": "No element with that ID exists."
+                    },
+                    "410": {
+                      "description": "The element has been deleted."
+                    }
+                  },
+                  "security": [],
+                  "summary": "Read a relation",
+                  "tags": [
+                    "Elements"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/elementId"
+                  }
+                ]
+              },
+              "/relations": {
+                "post": {
+                  "description": "Provide one new relation wrapped in an OSM XML document.",
+                  "operationId": "createRelation",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "ID of the newly created relation as plain text."
+                    }
+                  },
+                  "summary": "Create a relation",
+                  "tags": [
+                    "Elements"
+                  ]
+                }
+              },
+              "/way/{id}": {
+                "delete": {
+                  "description": "Provide the way ID, current version, and an open changeset in the XML body.",
+                  "operationId": "deleteWay",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "New element version number as plain text."
+                    }
+                  },
+                  "summary": "Delete a way",
+                  "tags": [
+                    "Elements"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/elementId"
+                  }
+                ],
+                "put": {
+                  "description": "Provide the full way representation, including the matching current version and an open changeset owned by the authenticated user.",
+                  "operationId": "updateWay",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "New element version number as plain text."
+                    }
+                  },
+                  "summary": "Update a way",
+                  "tags": [
+                    "Elements"
+                  ]
+                }
+              },
+              "/way/{id}.json": {
+                "get": {
+                  "operationId": "getWay",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OsmJson"
+                          }
+                        }
+                      },
+                      "description": "Way data in the OSM API JSON format."
+                    },
+                    "404": {
+                      "description": "No element with that ID exists."
+                    },
+                    "410": {
+                      "description": "The element has been deleted."
+                    }
+                  },
+                  "security": [],
+                  "summary": "Read a way",
+                  "tags": [
+                    "Elements"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/elementId"
+                  }
+                ]
+              },
+              "/ways": {
+                "post": {
+                  "description": "Provide one new way wrapped in an OSM XML document.",
+                  "operationId": "createWay",
+                  "requestBody": {
+                    "content": {
+                      "application/xml": {
+                        "schema": {
+                          "$ref": "#/components/schemas/OsmXml"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "ID of the newly created way as plain text."
+                    }
+                  },
+                  "summary": "Create a way",
+                  "tags": [
+                    "Elements"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "osmOAuth": [
+                  "write_api"
+                ]
+              }
+            ],
+            "servers": [
+              {
+                "description": "OpenStreetMap API v0.6",
+                "url": "https://api.openstreetmap.org/api/0.6"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Capabilities"
+              },
+              {
+                "name": "Map data"
+              },
+              {
+                "name": "Changesets"
+              },
+              {
+                "name": "Elements"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OpenStreetMap"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.438788+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openstreetmap/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "621bf2730e3a18c64fe46b20cc2ae0643f32aaeed3e124aa0c4fcf8cd0974f1c",
+    "source_id": "openstreetmap",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openstreetmap/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "0.6"
+}

@@ -1,0 +1,1008 @@
+{
+  "a2ui": {},
+  "app": "nasa-image-and-video-library",
+  "graph": {
+    "edges": [
+      {
+        "from": "nasa-image-and-video-library",
+        "kind": "EXPOSES",
+        "to": "operation:get:/album/{album_name}"
+      },
+      {
+        "from": "nasa-image-and-video-library",
+        "kind": "EXPOSES",
+        "to": "operation:get:/asset/{nasa_id}"
+      },
+      {
+        "from": "nasa-image-and-video-library",
+        "kind": "EXPOSES",
+        "to": "operation:get:/captions/{nasa_id}"
+      },
+      {
+        "from": "nasa-image-and-video-library",
+        "kind": "EXPOSES",
+        "to": "operation:get:/metadata/{nasa_id}"
+      },
+      {
+        "from": "nasa-image-and-video-library",
+        "kind": "EXPOSES",
+        "to": "operation:get:/search"
+      },
+      {
+        "from": "operation:get:/album/{album_name}",
+        "kind": "RETURNS",
+        "to": "schema:CollectionResponse"
+      },
+      {
+        "from": "operation:get:/asset/{nasa_id}",
+        "kind": "RETURNS",
+        "to": "schema:CollectionResponse"
+      },
+      {
+        "from": "operation:get:/captions/{nasa_id}",
+        "kind": "RETURNS",
+        "to": "schema:LocationResponse"
+      },
+      {
+        "from": "operation:get:/metadata/{nasa_id}",
+        "kind": "RETURNS",
+        "to": "schema:LocationResponse"
+      },
+      {
+        "from": "operation:get:/search",
+        "kind": "RETURNS",
+        "to": "schema:CollectionResponse"
+      },
+      {
+        "from": "schema:CollectionItem",
+        "kind": "REFERENCES",
+        "to": "schema:CollectionLink"
+      },
+      {
+        "from": "schema:CollectionResponse",
+        "kind": "REFERENCES",
+        "to": "schema:CollectionItem"
+      },
+      {
+        "from": "schema:CollectionResponse",
+        "kind": "REFERENCES",
+        "to": "schema:CollectionLink"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "nasa-image-and-video-library",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Album names are case-sensitive; page is one-based.",
+        "id": "operation:get:/album/{album_name}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getAlbumContents",
+        "parameters": [
+          {
+            "description": "Case-sensitive media album name.",
+            "in": "path",
+            "name": "album_name",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "One-based result page.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/album/{album_name}",
+        "pointer": "#/paths/~1album~1{album_name}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CollectionResponse"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          },
+          {
+            "status": "500",
+            "type": "ApiError"
+          },
+          {
+            "status": "502",
+            "type": "ApiError"
+          },
+          {
+            "status": "503",
+            "type": "ApiError"
+          },
+          {
+            "status": "504",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get media album contents"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns links to the available asset files and metadata.",
+        "id": "operation:get:/asset/{nasa_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getAssetManifest",
+        "parameters": [
+          {
+            "description": "NASA media asset identifier.",
+            "in": "path",
+            "name": "nasa_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/asset/{nasa_id}",
+        "pointer": "#/paths/~1asset~1{nasa_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CollectionResponse"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          },
+          {
+            "status": "500",
+            "type": "ApiError"
+          },
+          {
+            "status": "502",
+            "type": "ApiError"
+          },
+          {
+            "status": "503",
+            "type": "ApiError"
+          },
+          {
+            "status": "504",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a media asset manifest"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the URL of the video's VTT or SRT captions file.",
+        "id": "operation:get:/captions/{nasa_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getVideoCaptionsLocation",
+        "parameters": [
+          {
+            "description": "NASA media asset identifier.",
+            "in": "path",
+            "name": "nasa_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/captions/{nasa_id}",
+        "pointer": "#/paths/~1captions~1{nasa_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "LocationResponse"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          },
+          {
+            "status": "500",
+            "type": "ApiError"
+          },
+          {
+            "status": "502",
+            "type": "ApiError"
+          },
+          {
+            "status": "503",
+            "type": "ApiError"
+          },
+          {
+            "status": "504",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a video captions location"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the URL of the asset's metadata JSON file.",
+        "id": "operation:get:/metadata/{nasa_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getAssetMetadataLocation",
+        "parameters": [
+          {
+            "description": "NASA media asset identifier.",
+            "in": "path",
+            "name": "nasa_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/metadata/{nasa_id}",
+        "pointer": "#/paths/~1metadata~1{nasa_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "LocationResponse"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          },
+          {
+            "status": "500",
+            "type": "ApiError"
+          },
+          {
+            "status": "502",
+            "type": "ApiError"
+          },
+          {
+            "status": "503",
+            "type": "ApiError"
+          },
+          {
+            "status": "504",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a media asset metadata location"
+      },
+      {
+        "deprecated": false,
+        "description": "Searches indexed NASA media metadata.",
+        "id": "operation:get:/search",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchMedia",
+        "parameters": [
+          {
+            "description": "Free-text terms searched across indexed metadata.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "NASA center that published the media.",
+            "in": "query",
+            "name": "center",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Terms searched in Description fields.",
+            "in": "query",
+            "name": "description",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Terms searched in 508 Description fields.",
+            "in": "query",
+            "name": "description_508",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated terms searched in Keywords fields.",
+            "in": "query",
+            "name": "keywords",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Terms searched in Location fields.",
+            "in": "query",
+            "name": "location",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by one or more media types.",
+            "in": "query",
+            "name": "media_type",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "NASA ID of a media asset.",
+            "in": "query",
+            "name": "nasa_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "One-based result page.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 100,
+            "description": "Number of results per page; defaults to 100.",
+            "in": "query",
+            "name": "page_size",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Primary photographer's name.",
+            "in": "query",
+            "name": "photographer",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Secondary photographer or videographer's name.",
+            "in": "query",
+            "name": "secondary_creator",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Terms searched in Title fields.",
+            "in": "query",
+            "name": "title",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Start year for results, in YYYY format.",
+            "in": "query",
+            "name": "year_start",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "End year for results, in YYYY format.",
+            "in": "query",
+            "name": "year_end",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/search",
+        "pointer": "#/paths/~1search/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CollectionResponse"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "500",
+            "type": "ApiError"
+          },
+          {
+            "status": "502",
+            "type": "ApiError"
+          },
+          {
+            "status": "503",
+            "type": "ApiError"
+          },
+          {
+            "status": "504",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search NASA media"
+      },
+      {
+        "id": "schema:ApiError",
+        "kind": "schema",
+        "name": "ApiError",
+        "type": "object"
+      },
+      {
+        "id": "schema:CollectionItem",
+        "kind": "schema",
+        "name": "CollectionItem",
+        "type": "object"
+      },
+      {
+        "id": "schema:CollectionLink",
+        "kind": "schema",
+        "name": "CollectionLink",
+        "type": "object"
+      },
+      {
+        "id": "schema:CollectionResponse",
+        "kind": "schema",
+        "name": "CollectionResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:LocationResponse",
+        "kind": "schema",
+        "name": "LocationResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "nasa-image-and-video-library"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://images-api.nasa.gov",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "nasaId": {
+                  "description": "NASA media asset identifier.",
+                  "in": "path",
+                  "name": "nasa_id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "ApiError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "Error response. Most error responses include a reason."
+                }
+              },
+              "schemas": {
+                "ApiError": {
+                  "properties": {
+                    "reason": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CollectionItem": {
+                  "properties": {
+                    "data": {
+                      "description": "Asset metadata fields vary by media item.",
+                      "items": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "href": {
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "links": {
+                      "items": {
+                        "$ref": "#/components/schemas/CollectionLink"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CollectionLink": {
+                  "properties": {
+                    "href": {
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "prompt": {
+                      "type": "string"
+                    },
+                    "rel": {
+                      "type": "string"
+                    },
+                    "render": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CollectionResponse": {
+                  "properties": {
+                    "collection": {
+                      "properties": {
+                        "href": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "items": {
+                          "items": {
+                            "$ref": "#/components/schemas/CollectionItem"
+                          },
+                          "type": "array"
+                        },
+                        "links": {
+                          "items": {
+                            "$ref": "#/components/schemas/CollectionLink"
+                          },
+                          "type": "array"
+                        },
+                        "metadata": {
+                          "properties": {
+                            "total_hits": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "version": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "collection"
+                  ],
+                  "type": "object"
+                },
+                "LocationResponse": {
+                  "properties": {
+                    "location": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "location"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained specification for NASA's public Image and Video Library API. The provider guide documents JSON responses for media search, asset manifests, metadata locations, captions locations, and albums. At least one search parameter is required; result metadata varies by asset.",
+              "externalDocs": {
+                "description": "Official NASA Image and Video Library API documentation",
+                "url": "https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf"
+              },
+              "title": "NASA Image and Video Library API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/album/{album_name}": {
+                "get": {
+                  "description": "Album names are case-sensitive; page is one-based.",
+                  "operationId": "getAlbumContents",
+                  "parameters": [
+                    {
+                      "description": "Case-sensitive media album name.",
+                      "in": "path",
+                      "name": "album_name",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "One-based result page.",
+                      "in": "query",
+                      "name": "page",
+                      "required": false,
+                      "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CollectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Album items and pagination metadata."
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "502": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "503": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "504": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Get media album contents"
+                }
+              },
+              "/asset/{nasa_id}": {
+                "get": {
+                  "description": "Returns links to the available asset files and metadata.",
+                  "operationId": "getAssetManifest",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/nasaId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CollectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Asset manifest."
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "502": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "503": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "504": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Get a media asset manifest"
+                }
+              },
+              "/captions/{nasa_id}": {
+                "get": {
+                  "description": "Returns the URL of the video's VTT or SRT captions file.",
+                  "operationId": "getVideoCaptionsLocation",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/nasaId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/LocationResponse"
+                          }
+                        }
+                      },
+                      "description": "Captions file location."
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "502": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "503": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "504": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Get a video captions location"
+                }
+              },
+              "/metadata/{nasa_id}": {
+                "get": {
+                  "description": "Returns the URL of the asset's metadata JSON file.",
+                  "operationId": "getAssetMetadataLocation",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/nasaId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/LocationResponse"
+                          }
+                        }
+                      },
+                      "description": "Metadata file location."
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "502": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "503": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "504": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Get a media asset metadata location"
+                }
+              },
+              "/search": {
+                "get": {
+                  "description": "Searches indexed NASA media metadata. Supply at least one query parameter; each parameter is individually optional. Values are URL-encoded by the client. Media type filters accept comma-separated values.",
+                  "operationId": "searchMedia",
+                  "parameters": [
+                    {
+                      "description": "Free-text terms searched across indexed metadata.",
+                      "in": "query",
+                      "name": "q",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "NASA center that published the media.",
+                      "in": "query",
+                      "name": "center",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Terms searched in Description fields.",
+                      "in": "query",
+                      "name": "description",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Terms searched in 508 Description fields.",
+                      "in": "query",
+                      "name": "description_508",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Comma-separated terms searched in Keywords fields.",
+                      "in": "query",
+                      "name": "keywords",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Terms searched in Location fields.",
+                      "in": "query",
+                      "name": "location",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by one or more media types.",
+                      "explode": false,
+                      "in": "query",
+                      "name": "media_type",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "enum": [
+                            "image",
+                            "video",
+                            "audio"
+                          ],
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "style": "form"
+                    },
+                    {
+                      "description": "NASA ID of a media asset.",
+                      "in": "query",
+                      "name": "nasa_id",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "One-based result page.",
+                      "in": "query",
+                      "name": "page",
+                      "required": false,
+                      "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Number of results per page; defaults to 100.",
+                      "in": "query",
+                      "name": "page_size",
+                      "required": false,
+                      "schema": {
+                        "default": 100,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Primary photographer's name.",
+                      "in": "query",
+                      "name": "photographer",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Secondary photographer or videographer's name.",
+                      "in": "query",
+                      "name": "secondary_creator",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Terms searched in Title fields.",
+                      "in": "query",
+                      "name": "title",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Start year for results, in YYYY format.",
+                      "in": "query",
+                      "name": "year_start",
+                      "required": false,
+                      "schema": {
+                        "pattern": "^\\d{4}$",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "End year for results, in YYYY format.",
+                      "in": "query",
+                      "name": "year_end",
+                      "required": false,
+                      "schema": {
+                        "pattern": "^\\d{4}$",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CollectionResponse"
+                          }
+                        }
+                      },
+                      "description": "Search results and pagination metadata."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "502": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "503": {
+                      "$ref": "#/components/responses/ApiError"
+                    },
+                    "504": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Search NASA media"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "NASA Image and Video Library API",
+                "url": "https://images-api.nasa.gov"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "NASA Image and Video Library"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:55.974073+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/nasa-image-video-library/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "6f15e096920396e73b003a379d96f05d95e24ca9695dec729059a875b19b86b0",
+    "source_id": "nasa-image-and-video-library",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/nasa-image-video-library/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

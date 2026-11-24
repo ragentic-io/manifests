@@ -1,0 +1,285 @@
+{
+  "a2ui": {},
+  "app": "onyphe",
+  "graph": {
+    "edges": [
+      {
+        "from": "onyphe",
+        "kind": "EXPOSES",
+        "to": "operation:get:/search/"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "onyphe",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Searches the datascan category by default.",
+        "id": "operation:get:/search/",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchOnyphe",
+        "parameters": [
+          {
+            "description": "ONYPHE Query Language expression.",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "Page number to retrieve.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 100,
+            "description": "Maximum number of results for a page; account limits may be lower.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": false,
+            "description": "Include the OQL query that matched each result.",
+            "in": "query",
+            "name": "trackquery",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Include calculated fields such as defanged and undefanged URLs.",
+            "in": "query",
+            "name": "calculated",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/search/",
+        "pointer": "#/paths/~1search~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "OnypheBearerToken": []
+          }
+        ],
+        "summary": "Search ONYPHE data",
+        "tags": [
+          "Search"
+        ]
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "onyphe"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://www.onyphe.io/api/v2",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "securitySchemes": {
+                "OnypheBearerToken": {
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "ONYPHE Search API documentation",
+              "url": "https://search.onyphe.io/docs/general-apis/search"
+            },
+            "info": {
+              "description": "Community-maintained description of ONYPHE Search API v2. Free View includes API access for standard filters and categories; additional access depends on the account's view. This document covers Search only, not other API families.",
+              "title": "ONYPHE Search API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/search/": {
+                "get": {
+                  "description": "Searches the datascan category by default. Queries without a historical time filter search the last 30 days. The Search API returns at most 10,000 results; larger exports require a higher-tier Export API.",
+                  "operationId": "searchOnyphe",
+                  "parameters": [
+                    {
+                      "description": "ONYPHE Query Language expression.",
+                      "example": "domain:example.com protocol:ssh",
+                      "in": "query",
+                      "name": "q",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Page number to retrieve.",
+                      "in": "query",
+                      "name": "page",
+                      "schema": {
+                        "default": 1,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of results for a page; account limits may be lower.",
+                      "in": "query",
+                      "name": "size",
+                      "schema": {
+                        "default": 100,
+                        "maximum": 10000,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Include the OQL query that matched each result.",
+                      "in": "query",
+                      "name": "trackquery",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Include calculated fields such as defanged and undefanged URLs.",
+                      "in": "query",
+                      "name": "calculated",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "count": {
+                                "type": "integer"
+                              },
+                              "error": {
+                                "type": "integer"
+                              },
+                              "max_page": {
+                                "type": "integer"
+                              },
+                              "myip": {
+                                "type": "string"
+                              },
+                              "page": {
+                                "type": "integer"
+                              },
+                              "page_size": {
+                                "type": "integer"
+                              },
+                              "results": {
+                                "items": {
+                                  "additionalProperties": true,
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "text": {
+                                "type": "string"
+                              },
+                              "took": {
+                                "type": "number"
+                              },
+                              "total": {
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Search results. Result fields vary by category and query."
+                    }
+                  },
+                  "security": [
+                    {
+                      "OnypheBearerToken": []
+                    }
+                  ],
+                  "summary": "Search ONYPHE data",
+                  "tags": [
+                    "Search"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "ONYPHE API v2",
+                "url": "https://www.onyphe.io/api/v2"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Search ONYPHE data with the ONYPHE Query Language.",
+                "name": "Search"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "ONYPHE"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.562837+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/onyphe/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "32b388e6afe8e1cd44c1e7728540ca7831cbc981b4657cb5f5cba7f88a6a5be7",
+    "source_id": "onyphe",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/onyphe/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

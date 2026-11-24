@@ -1,0 +1,1041 @@
+{
+  "a2ui": {},
+  "app": "open-library-2",
+  "graph": {
+    "edges": [
+      {
+        "from": "open-library-2",
+        "kind": "EXPOSES",
+        "to": "operation:get:/authors/{authorKey}.json"
+      },
+      {
+        "from": "open-library-2",
+        "kind": "EXPOSES",
+        "to": "operation:get:/authors/{authorKey}/works.json"
+      },
+      {
+        "from": "open-library-2",
+        "kind": "EXPOSES",
+        "to": "operation:get:/books/{editionKey}.json"
+      },
+      {
+        "from": "open-library-2",
+        "kind": "EXPOSES",
+        "to": "operation:get:/isbn/{isbn}.json"
+      },
+      {
+        "from": "open-library-2",
+        "kind": "EXPOSES",
+        "to": "operation:get:/search.json"
+      },
+      {
+        "from": "open-library-2",
+        "kind": "EXPOSES",
+        "to": "operation:get:/search/authors.json"
+      },
+      {
+        "from": "open-library-2",
+        "kind": "EXPOSES",
+        "to": "operation:get:/works/{workKey}.json"
+      },
+      {
+        "from": "open-library-2",
+        "kind": "EXPOSES",
+        "to": "operation:get:/works/{workKey}/editions.json"
+      },
+      {
+        "from": "operation:get:/authors/{authorKey}.json",
+        "kind": "RETURNS",
+        "to": "schema:JsonObject"
+      },
+      {
+        "from": "operation:get:/authors/{authorKey}/works.json",
+        "kind": "RETURNS",
+        "to": "schema:JsonObject"
+      },
+      {
+        "from": "operation:get:/books/{editionKey}.json",
+        "kind": "RETURNS",
+        "to": "schema:JsonObject"
+      },
+      {
+        "from": "operation:get:/isbn/{isbn}.json",
+        "kind": "RETURNS",
+        "to": "schema:JsonObject"
+      },
+      {
+        "from": "operation:get:/search.json",
+        "kind": "RETURNS",
+        "to": "schema:SearchResponse"
+      },
+      {
+        "from": "operation:get:/search/authors.json",
+        "kind": "RETURNS",
+        "to": "schema:SearchResponse"
+      },
+      {
+        "from": "operation:get:/works/{workKey}.json",
+        "kind": "RETURNS",
+        "to": "schema:JsonObject"
+      },
+      {
+        "from": "operation:get:/works/{workKey}/editions.json",
+        "kind": "RETURNS",
+        "to": "schema:JsonObject"
+      },
+      {
+        "from": "schema:SearchResponse",
+        "kind": "REFERENCES",
+        "to": "schema:SearchDocument"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "open-library-2",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/authors/{authorKey}.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getAuthor",
+        "parameters": [
+          {
+            "description": "Identify the application and include a contact email to receive the higher documented rate limit.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Open Library author identifier.",
+            "in": "path",
+            "name": "authorKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/authors/{authorKey}.json",
+        "pointer": "#/paths/~1authors~1{authorKey}.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonObject"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get an author",
+        "tags": [
+          "Authors"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The documented default response contains 50 works.",
+        "id": "operation:get:/authors/{authorKey}/works.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "listAuthorWorks",
+        "parameters": [
+          {
+            "description": "Identify the application and include a contact email to receive the higher documented rate limit.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Open Library author identifier.",
+            "in": "path",
+            "name": "authorKey",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Number of works to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Starting offset for pagination.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/authors/{authorKey}/works.json",
+        "pointer": "#/paths/~1authors~1{authorKey}~1works.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonObject"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List works by an author",
+        "tags": [
+          "Authors"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/books/{editionKey}.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getEdition",
+        "parameters": [
+          {
+            "description": "Identify the application and include a contact email to receive the higher documented rate limit.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Open Library edition identifier.",
+            "in": "path",
+            "name": "editionKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/books/{editionKey}.json",
+        "pointer": "#/paths/~1books~1{editionKey}.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonObject"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get an edition",
+        "tags": [
+          "Books"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The ISBN route can redirect to the matching edition.",
+        "id": "operation:get:/isbn/{isbn}.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getBookByIsbn",
+        "parameters": [
+          {
+            "description": "Identify the application and include a contact email to receive the higher documented rate limit.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "ISBN-10 or ISBN-13.",
+            "in": "path",
+            "name": "isbn",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/isbn/{isbn}.json",
+        "pointer": "#/paths/~1isbn~1{isbn}.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonObject"
+          },
+          {
+            "status": "302"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get an edition by ISBN",
+        "tags": [
+          "Books"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Search can return multiple works and edition data in one response.",
+        "id": "operation:get:/search.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchBooks",
+        "parameters": [
+          {
+            "description": "Identify the application and include a contact email to receive the higher documented rate limit.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Solr query string.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Sort facet.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter ISO 639-1 language code used to prefer matching editions.",
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Result offset for pagination.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Number of results per page.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Page number for pagination; page numbering starts at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/search.json",
+        "pointer": "#/paths/~1search.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SearchResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search books",
+        "tags": [
+          "Search"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/search/authors.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchAuthors",
+        "parameters": [
+          {
+            "description": "Identify the application and include a contact email to receive the higher documented rate limit.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Author search query.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/search/authors.json",
+        "pointer": "#/paths/~1search~1authors.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SearchResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search authors",
+        "tags": [
+          "Authors"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/works/{workKey}.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "getWork",
+        "parameters": [
+          {
+            "description": "Identify the application and include a contact email to receive the higher documented rate limit.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Open Library work identifier.",
+            "in": "path",
+            "name": "workKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/works/{workKey}.json",
+        "pointer": "#/paths/~1works~1{workKey}.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonObject"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a work",
+        "tags": [
+          "Books"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/works/{workKey}/editions.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "listWorkEditions",
+        "parameters": [
+          {
+            "description": "Identify the application and include a contact email to receive the higher documented rate limit.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Open Library work identifier.",
+            "in": "path",
+            "name": "workKey",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/works/{workKey}/editions.json",
+        "pointer": "#/paths/~1works~1{workKey}~1editions.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonObject"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List editions of a work",
+        "tags": [
+          "Books"
+        ]
+      },
+      {
+        "description": "Open Library record fields depend on the work, edition, or author.",
+        "id": "schema:JsonObject",
+        "kind": "schema",
+        "name": "JsonObject",
+        "type": "object"
+      },
+      {
+        "description": "Search document fields are configurable and are not guaranteed to remain stable.",
+        "id": "schema:SearchDocument",
+        "kind": "schema",
+        "name": "SearchDocument",
+        "type": "object"
+      },
+      {
+        "description": "Search result fields vary by endpoint and requested fields.",
+        "id": "schema:SearchResponse",
+        "kind": "schema",
+        "name": "SearchResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "open-library-2"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://openlibrary.org",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "UserAgent": {
+                  "description": "Identify the application and include a contact email to receive the higher documented rate limit.",
+                  "example": "MyLibraryApp (contact@example.org)",
+                  "in": "header",
+                  "name": "User-Agent",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "schemas": {
+                "JsonObject": {
+                  "additionalProperties": true,
+                  "description": "Open Library record fields depend on the work, edition, or author.",
+                  "type": "object"
+                },
+                "SearchDocument": {
+                  "additionalProperties": true,
+                  "description": "Search document fields are configurable and are not guaranteed to remain stable.",
+                  "properties": {
+                    "author_key": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "author_name": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "edition_count": {
+                      "type": "integer"
+                    },
+                    "first_publish_year": {
+                      "type": "integer"
+                    },
+                    "key": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SearchResponse": {
+                  "additionalProperties": true,
+                  "description": "Search result fields vary by endpoint and requested fields.",
+                  "properties": {
+                    "docs": {
+                      "items": {
+                        "$ref": "#/components/schemas/SearchDocument"
+                      },
+                      "type": "array"
+                    },
+                    "numFound": {
+                      "type": "integer"
+                    },
+                    "num_found": {
+                      "type": "integer"
+                    },
+                    "start": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Open Library API documentation and usage guidelines",
+              "url": "https://openlibrary.org/developers/api"
+            },
+            "info": {
+              "description": "Community-maintained description of documented, public read-only search and\nbook lookup endpoints. Open Library asks clients to make useful requests\nfor human users, cache responses, and identify applications with a\nUser-Agent containing contact information. Unidentified clients are limited\nto 1 request per second; identified clients to 3 requests per second.\nThese APIs are not intended as data backends for third-party services or\nfor bulk/high-traffic commercial infrastructure; use the monthly data dumps\nfor bulk access.",
+              "title": "Open Library Web API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/authors/{authorKey}.json": {
+                "get": {
+                  "externalDocs": {
+                    "description": "Authors API documentation",
+                    "url": "https://openlibrary.org/dev/docs/api/authors"
+                  },
+                  "operationId": "getAuthor",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/UserAgent"
+                    },
+                    {
+                      "description": "Open Library author identifier.",
+                      "example": "OL23919A",
+                      "in": "path",
+                      "name": "authorKey",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonObject"
+                          }
+                        }
+                      },
+                      "description": "Author data in JSON format."
+                    }
+                  },
+                  "summary": "Get an author",
+                  "tags": [
+                    "Authors"
+                  ]
+                }
+              },
+              "/authors/{authorKey}/works.json": {
+                "get": {
+                  "description": "The documented default response contains 50 works. Use limit and offset to paginate.",
+                  "externalDocs": {
+                    "description": "Authors API documentation",
+                    "url": "https://openlibrary.org/dev/docs/api/authors"
+                  },
+                  "operationId": "listAuthorWorks",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/UserAgent"
+                    },
+                    {
+                      "description": "Open Library author identifier.",
+                      "example": "OL23919A",
+                      "in": "path",
+                      "name": "authorKey",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Number of works to return.",
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Starting offset for pagination.",
+                      "in": "query",
+                      "name": "offset",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonObject"
+                          }
+                        }
+                      },
+                      "description": "Author work data in JSON format."
+                    }
+                  },
+                  "summary": "List works by an author",
+                  "tags": [
+                    "Authors"
+                  ]
+                }
+              },
+              "/books/{editionKey}.json": {
+                "get": {
+                  "externalDocs": {
+                    "description": "Books API documentation",
+                    "url": "https://openlibrary.org/dev/docs/api/books"
+                  },
+                  "operationId": "getEdition",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/UserAgent"
+                    },
+                    {
+                      "description": "Open Library edition identifier.",
+                      "example": "OL7353617M",
+                      "in": "path",
+                      "name": "editionKey",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonObject"
+                          }
+                        }
+                      },
+                      "description": "Edition data in JSON format."
+                    }
+                  },
+                  "summary": "Get an edition",
+                  "tags": [
+                    "Books"
+                  ]
+                }
+              },
+              "/isbn/{isbn}.json": {
+                "get": {
+                  "description": "The ISBN route can redirect to the matching edition.",
+                  "externalDocs": {
+                    "description": "Books API documentation",
+                    "url": "https://openlibrary.org/dev/docs/api/books"
+                  },
+                  "operationId": "getBookByIsbn",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/UserAgent"
+                    },
+                    {
+                      "description": "ISBN-10 or ISBN-13.",
+                      "example": "9780140328721",
+                      "in": "path",
+                      "name": "isbn",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonObject"
+                          }
+                        }
+                      },
+                      "description": "Edition data in JSON format."
+                    },
+                    "302": {
+                      "description": "Redirect to the matching edition page.",
+                      "headers": {
+                        "Location": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "summary": "Get an edition by ISBN",
+                  "tags": [
+                    "Books"
+                  ]
+                }
+              },
+              "/search.json": {
+                "get": {
+                  "description": "Search can return multiple works and edition data in one response. Result fields vary by request and may change.",
+                  "externalDocs": {
+                    "description": "Search API documentation",
+                    "url": "https://openlibrary.org/dev/docs/api/search"
+                  },
+                  "operationId": "searchBooks",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/UserAgent"
+                    },
+                    {
+                      "description": "Solr query string.",
+                      "in": "query",
+                      "name": "q",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Fields to return. The special values `*` and `availability` are documented; use `availability` to request archive.org availability data.",
+                      "example": "title,author_name,first_publish_year",
+                      "in": "query",
+                      "name": "fields",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Sort facet. Documented examples include `new`, `old`, `random`, and `key`; relevance is the default.",
+                      "in": "query",
+                      "name": "sort",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Two-letter ISO 639-1 language code used to prefer matching editions.",
+                      "in": "query",
+                      "name": "lang",
+                      "schema": {
+                        "maxLength": 2,
+                        "minLength": 2,
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Result offset for pagination.",
+                      "in": "query",
+                      "name": "offset",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Number of results per page.",
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Page number for pagination; page numbering starts at 1.",
+                      "in": "query",
+                      "name": "page",
+                      "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SearchResponse"
+                          }
+                        }
+                      },
+                      "description": "Search results. Available document fields depend on the request."
+                    }
+                  },
+                  "summary": "Search books",
+                  "tags": [
+                    "Search"
+                  ]
+                }
+              },
+              "/search/authors.json": {
+                "get": {
+                  "externalDocs": {
+                    "description": "Authors API documentation",
+                    "url": "https://openlibrary.org/dev/docs/api/authors"
+                  },
+                  "operationId": "searchAuthors",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/UserAgent"
+                    },
+                    {
+                      "description": "Author search query.",
+                      "in": "query",
+                      "name": "q",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SearchResponse"
+                          }
+                        }
+                      },
+                      "description": "Matching authors."
+                    }
+                  },
+                  "summary": "Search authors",
+                  "tags": [
+                    "Authors"
+                  ]
+                }
+              },
+              "/works/{workKey}.json": {
+                "get": {
+                  "externalDocs": {
+                    "description": "Books API documentation",
+                    "url": "https://openlibrary.org/dev/docs/api/books"
+                  },
+                  "operationId": "getWork",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/UserAgent"
+                    },
+                    {
+                      "description": "Open Library work identifier.",
+                      "example": "OL45804W",
+                      "in": "path",
+                      "name": "workKey",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonObject"
+                          }
+                        }
+                      },
+                      "description": "Work data in JSON format."
+                    }
+                  },
+                  "summary": "Get a work",
+                  "tags": [
+                    "Books"
+                  ]
+                }
+              },
+              "/works/{workKey}/editions.json": {
+                "get": {
+                  "externalDocs": {
+                    "description": "Books API documentation",
+                    "url": "https://openlibrary.org/dev/docs/api/books"
+                  },
+                  "operationId": "listWorkEditions",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/UserAgent"
+                    },
+                    {
+                      "description": "Open Library work identifier.",
+                      "example": "OL45804W",
+                      "in": "path",
+                      "name": "workKey",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonObject"
+                          }
+                        }
+                      },
+                      "description": "Edition data for the work."
+                    }
+                  },
+                  "summary": "List editions of a work",
+                  "tags": [
+                    "Books"
+                  ]
+                }
+              }
+            },
+            "security": [],
+            "servers": [
+              {
+                "description": "Open Library",
+                "url": "https://openlibrary.org"
+              }
+            ],
+            "tags": [
+              {
+                "externalDocs": {
+                  "description": "Search API documentation",
+                  "url": "https://openlibrary.org/dev/docs/api/search"
+                },
+                "name": "Search"
+              },
+              {
+                "externalDocs": {
+                  "description": "Books API documentation",
+                  "url": "https://openlibrary.org/dev/docs/api/books"
+                },
+                "name": "Books"
+              },
+              {
+                "externalDocs": {
+                  "description": "Authors API documentation",
+                  "url": "https://openlibrary.org/dev/docs/api/authors"
+                },
+                "name": "Authors"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Open Library"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.324590+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openlibrary/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "2158e19fc6bc527c38face92a027a27e7d40501926f358927e87d300d34d28a7",
+    "source_id": "open-library-2",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openlibrary/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

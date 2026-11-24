@@ -1,0 +1,554 @@
+{
+  "a2ui": {},
+  "app": "noaa-co-ops-data-retrieval-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "noaa-co-ops-data-retrieval-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/datagetter"
+      },
+      {
+        "from": "operation:get:/datagetter",
+        "kind": "RETURNS",
+        "to": "schema:JsonResponse"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "noaa-co-ops-data-retrieval-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Supply a station and product.",
+        "id": "operation:get:/datagetter",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCoopsData",
+        "parameters": [
+          {
+            "description": "Seven-character station ID or a current-meter station ID.",
+            "in": "query",
+            "name": "station",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Data product; availability and compatible parameters vary by station.",
+            "enum": [
+              "water_level",
+              "hourly_height",
+              "high_low",
+              "daily_mean",
+              "daily_max_min",
+              "monthly_mean",
+              "one_minute_water_level",
+              "predictions",
+              "air_gap",
+              "air_temperature",
+              "water_temperature",
+              "wind",
+              "air_pressure",
+              "conductivity",
+              "visibility",
+              "humidity",
+              "salinity",
+              "currents",
+              "currents_predictions",
+              "currents_header",
+              "ofs_water_level"
+            ],
+            "in": "query",
+            "name": "product",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Start of a requested range.",
+            "in": "query",
+            "name": "begin_date",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "End of a requested range.",
+            "in": "query",
+            "name": "end_date",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "For supported preliminary data, meteorological products, and predictions, request today, latest, or recent data.",
+            "enum": [
+              "today",
+              "latest",
+              "recent"
+            ],
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Number of hours to retrieve.",
+            "in": "query",
+            "name": "range",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Reference datum.",
+            "enum": [
+              "CRD",
+              "IGLD",
+              "LWD",
+              "MHHW",
+              "MHW",
+              "MTL",
+              "MSL",
+              "MLW",
+              "MLLW",
+              "NAVD",
+              "STND"
+            ],
+            "in": "query",
+            "name": "datum",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Units used for supported measurements.",
+            "enum": [
+              "metric",
+              "english"
+            ],
+            "in": "query",
+            "name": "units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Time zone for returned date/time values; not applicable to monthly_mean.",
+            "enum": [
+              "gmt",
+              "lst",
+              "lst_ldt"
+            ],
+            "in": "query",
+            "name": "time_zone",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Product-specific interval.",
+            "enum": [
+              "h",
+              "1",
+              "5",
+              "6",
+              "10",
+              "15",
+              "30",
+              "60",
+              "hilo",
+              "max_slack"
+            ],
+            "in": "query",
+            "name": "interval",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Current-meter depth bin; required for many current products.",
+            "in": "query",
+            "name": "bin",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Current-prediction velocity representation for supported harmonic stations.",
+            "enum": [
+              "speed_dir",
+              "default"
+            ],
+            "in": "query",
+            "name": "vel_type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Set to detailed on the currents product to include echo intensity and correlation magnitude.",
+            "enum": [
+              "detailed"
+            ],
+            "in": "query",
+            "name": "expand",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Response format.",
+            "enum": [
+              "xml",
+              "json",
+              "csv"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Optional caller identifier used in service activity and error logs.",
+            "in": "query",
+            "name": "application",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/datagetter",
+        "pointer": "#/paths/~1datagetter/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "JsonResponse"
+          },
+          {
+            "status": "default"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve observations or predictions for a station"
+      },
+      {
+        "id": "schema:JsonResponse",
+        "kind": "schema",
+        "name": "JsonResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "noaa-co-ops-data-retrieval-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.tidesandcurrents.noaa.gov/api/prod",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "JsonResponse": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained specification for the documented CO-OPS Data API. Available products, valid parameter combinations, result fields, and retrieval limits depend on the selected product and station.",
+              "externalDocs": {
+                "description": "Official NOAA CO-OPS Data Retrieval API documentation",
+                "url": "https://api.tidesandcurrents.noaa.gov/api/dev"
+              },
+              "title": "NOAA CO-OPS Data Retrieval API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/datagetter": {
+                "get": {
+                  "description": "Supply a station and product. Use begin_date with end_date, begin_date with range, end_date with range, date, or range as supported by the selected product. Product and interval determine data-length limits.",
+                  "operationId": "getCoopsData",
+                  "parameters": [
+                    {
+                      "description": "Seven-character station ID or a current-meter station ID.",
+                      "in": "query",
+                      "name": "station",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Data product; availability and compatible parameters vary by station.",
+                      "in": "query",
+                      "name": "product",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "water_level",
+                          "hourly_height",
+                          "high_low",
+                          "daily_mean",
+                          "daily_max_min",
+                          "monthly_mean",
+                          "one_minute_water_level",
+                          "predictions",
+                          "air_gap",
+                          "air_temperature",
+                          "water_temperature",
+                          "wind",
+                          "air_pressure",
+                          "conductivity",
+                          "visibility",
+                          "humidity",
+                          "salinity",
+                          "currents",
+                          "currents_predictions",
+                          "currents_header",
+                          "ofs_water_level"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Start of a requested range. Accepted forms are yyyyMMdd, yyyyMMdd HH:mm, MM/dd/yyyy, or MM/dd/yyyy HH:mm.",
+                      "in": "query",
+                      "name": "begin_date",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "End of a requested range. Accepted forms are yyyyMMdd, yyyyMMdd HH:mm, MM/dd/yyyy, or MM/dd/yyyy HH:mm.",
+                      "in": "query",
+                      "name": "end_date",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "For supported preliminary data, meteorological products, and predictions, request today, latest, or recent data.",
+                      "in": "query",
+                      "name": "date",
+                      "schema": {
+                        "enum": [
+                          "today",
+                          "latest",
+                          "recent"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Number of hours to retrieve. With historical begin_date or end_date, daily maximum/minimum products interpret the range in years.",
+                      "in": "query",
+                      "name": "range",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Reference datum. Required for water-level products except air_gap; availability depends on station. Subordinate tide predictions use MLLW.",
+                      "in": "query",
+                      "name": "datum",
+                      "schema": {
+                        "enum": [
+                          "CRD",
+                          "IGLD",
+                          "LWD",
+                          "MHHW",
+                          "MHW",
+                          "MTL",
+                          "MSL",
+                          "MLW",
+                          "MLLW",
+                          "NAVD",
+                          "STND"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Units used for supported measurements.",
+                      "in": "query",
+                      "name": "units",
+                      "schema": {
+                        "enum": [
+                          "metric",
+                          "english"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Time zone for returned date/time values; not applicable to monthly_mean.",
+                      "in": "query",
+                      "name": "time_zone",
+                      "schema": {
+                        "enum": [
+                          "gmt",
+                          "lst",
+                          "lst_ldt"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Product-specific interval. Supported values vary across tide predictions, current predictions, and meteorological data.",
+                      "in": "query",
+                      "name": "interval",
+                      "schema": {
+                        "enum": [
+                          "h",
+                          "1",
+                          "5",
+                          "6",
+                          "10",
+                          "15",
+                          "30",
+                          "60",
+                          "hilo",
+                          "max_slack"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Current-meter depth bin; required for many current products. Zero requests all bins where supported.",
+                      "in": "query",
+                      "name": "bin",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Current-prediction velocity representation for supported harmonic stations.",
+                      "in": "query",
+                      "name": "vel_type",
+                      "schema": {
+                        "enum": [
+                          "speed_dir",
+                          "default"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Set to detailed on the currents product to include echo intensity and correlation magnitude.",
+                      "in": "query",
+                      "name": "expand",
+                      "schema": {
+                        "enum": [
+                          "detailed"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Response format.",
+                      "in": "query",
+                      "name": "format",
+                      "schema": {
+                        "enum": [
+                          "xml",
+                          "json",
+                          "csv"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Optional caller identifier used in service activity and error logs.",
+                      "in": "query",
+                      "name": "application",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/JsonResponse"
+                          }
+                        },
+                        "text/comma-separated-values": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        },
+                        "text/xml": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "Data returned in the requested format; JSON fields vary by product."
+                    },
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {}
+                        },
+                        "text/comma-separated-values": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        },
+                        "text/xml": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "Error response; NOAA documents that the response uses the requested format."
+                    }
+                  },
+                  "summary": "Retrieve observations or predictions for a station"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "NOAA CO-OPS production API",
+                "url": "https://api.tidesandcurrents.noaa.gov/api/prod"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "NOAA CO-OPS Data Retrieval API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.668221+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/noaa-co-ops-data-api/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "033579d3af29586d05298402daaa1ab1415029f579cc22ec6d57ab12eec75742",
+    "source_id": "noaa-co-ops-data-retrieval-api",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/noaa-co-ops-data-api/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

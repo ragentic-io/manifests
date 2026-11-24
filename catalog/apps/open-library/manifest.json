@@ -1,0 +1,393 @@
+{
+  "a2ui": {},
+  "app": "open-library",
+  "graph": {
+    "edges": [
+      {
+        "from": "open-library",
+        "kind": "EXPOSES",
+        "to": "operation:get:/search.json"
+      },
+      {
+        "from": "operation:get:/search.json",
+        "kind": "RETURNS",
+        "to": "schema:SearchResponse"
+      },
+      {
+        "from": "schema:SearchResponse",
+        "kind": "REFERENCES",
+        "to": "schema:SearchDocument"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "open-library",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns matching works and, when requested through `fields`, edition information.",
+        "id": "operation:get:/search.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchBooksAndWorks",
+        "parameters": [
+          {
+            "description": "Solr query string.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example title search parameter documented by Open Library.",
+            "in": "query",
+            "name": "title",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Example author search parameter documented by Open Library.",
+            "in": "query",
+            "name": "author",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated fields to return.",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Sort facet.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Two-letter ISO 639-1 language code used to influence results.",
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Result offset for pagination.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Number of results per page.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "One-based result page number.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "For regular use, identify the application and include a contact email to receive the higher documented request rate.",
+            "in": "header",
+            "name": "User-Agent",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/search.json",
+        "pointer": "#/paths/~1search.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SearchResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search books and works"
+      },
+      {
+        "id": "schema:SearchDocument",
+        "kind": "schema",
+        "name": "SearchDocument",
+        "type": "object"
+      },
+      {
+        "id": "schema:SearchResponse",
+        "kind": "schema",
+        "name": "SearchResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "open-library"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://openlibrary.org",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "SearchDocument": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "author_key": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "author_name": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "cover_i": {
+                      "type": "integer"
+                    },
+                    "edition_count": {
+                      "type": "integer"
+                    },
+                    "first_publish_year": {
+                      "type": "integer"
+                    },
+                    "has_fulltext": {
+                      "type": "boolean"
+                    },
+                    "ia": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "key": {
+                      "type": "string"
+                    },
+                    "public_scan_b": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SearchResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "docs": {
+                      "items": {
+                        "$ref": "#/components/schemas/SearchDocument"
+                      },
+                      "type": "array"
+                    },
+                    "numFound": {
+                      "type": "integer"
+                    },
+                    "numFoundExact": {
+                      "type": "boolean"
+                    },
+                    "num_found": {
+                      "type": "integer"
+                    },
+                    "start": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused specification for the documented book and work search endpoint. Search result fields vary and the provider does not guarantee that its underlying Solr schema remains stable. Follow Open Library's low-volume usage guidelines; this API is not intended for bulk downloads or as a high-traffic commercial backend.",
+              "externalDocs": {
+                "description": "Open Library Search API documentation",
+                "url": "https://openlibrary.org/dev/docs/api/search"
+              },
+              "title": "Open Library Search API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/search.json": {
+                "get": {
+                  "description": "Returns matching works and, when requested through `fields`, edition information. `q`, `title`, and `author` are query forms shown in the provider's examples. Use pagination parameters for multi-page results.",
+                  "externalDocs": {
+                    "description": "Search API documentation and response examples",
+                    "url": "https://openlibrary.org/dev/docs/api/search"
+                  },
+                  "operationId": "searchBooksAndWorks",
+                  "parameters": [
+                    {
+                      "description": "Solr query string.",
+                      "in": "query",
+                      "name": "q",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Example title search parameter documented by Open Library.",
+                      "in": "query",
+                      "name": "title",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Example author search parameter documented by Open Library.",
+                      "in": "query",
+                      "name": "author",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Comma-separated fields to return. `*` requests all fields; the special value `availability` includes availability data.",
+                      "explode": false,
+                      "in": "query",
+                      "name": "fields",
+                      "required": false,
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "style": "form"
+                    },
+                    {
+                      "description": "Sort facet. The documentation gives `new`, `old`, `random`, and `key` as examples; the default is relevance.",
+                      "in": "query",
+                      "name": "sort",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Two-letter ISO 639-1 language code used to influence results.",
+                      "in": "query",
+                      "name": "lang",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Result offset for pagination.",
+                      "in": "query",
+                      "name": "offset",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Number of results per page.",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "One-based result page number.",
+                      "in": "query",
+                      "name": "page",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "For regular use, identify the application and include a contact email to receive the higher documented request rate.",
+                      "in": "header",
+                      "name": "User-Agent",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SearchResponse"
+                          }
+                        }
+                      },
+                      "description": "Search results; document fields depend on the request and catalog data."
+                    }
+                  },
+                  "summary": "Search books and works"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Open Library public site",
+                "url": "https://openlibrary.org"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Open Library"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:55.998222+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/open-library/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "50e382a359af638ef520cabf5dbd7483873eeb09d4247b2f4ad1528df5c5a795",
+    "source_id": "open-library",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/open-library/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

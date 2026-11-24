@@ -1,0 +1,1054 @@
+{
+  "a2ui": {},
+  "app": "universe-rest",
+  "graph": {
+    "edges": [
+      {
+        "from": "universe-rest",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v2/access_keys"
+      },
+      {
+        "from": "universe-rest",
+        "kind": "EXPOSES",
+        "to": "operation:put:/api/v2/cost_item_check_ins/{id}"
+      },
+      {
+        "from": "universe-rest",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v2/current_user"
+      },
+      {
+        "from": "universe-rest",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v2/discount_codes"
+      },
+      {
+        "from": "universe-rest",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v2/guestlists"
+      },
+      {
+        "from": "universe-rest",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v2/listings"
+      },
+      {
+        "from": "universe-rest",
+        "kind": "EXPOSES",
+        "to": "operation:put:/api/v2/listings/{id}"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "universe-rest",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/api/v2/access_keys",
+        "kind": "operation",
+        "method": "post",
+        "name": "access-keys",
+        "parameters": [
+          {
+            "default": "application/json; charset=UTF-8",
+            "in": "header",
+            "name": "Content-Type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v2/access_keys",
+        "pointer": "#/paths/~1api~1v2~1access_keys/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "sec0": []
+          }
+        ],
+        "summary": "Access Keys"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:put:/api/v2/cost_item_check_ins/{id}",
+        "kind": "operation",
+        "method": "put",
+        "name": "check-ins",
+        "parameters": [
+          {
+            "description": "The Cost Item ID - if you are using the Gueslists API this is the \"ticket id\", the unique identifier for the ticket being scanned.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "Bearer YOUR_TOKEN",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The Cost Item ID - if you are using the Gueslists API this is the \"ticket id\", the unique identifier for the ticket being scanned.",
+            "in": "query",
+            "name": "cost_item_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v2/cost_item_check_ins/{id}",
+        "pointer": "#/paths/~1api~1v2~1cost_item_check_ins~1{id}/put",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "sec0": []
+          }
+        ],
+        "summary": "Check Ins"
+      },
+      {
+        "deprecated": false,
+        "description": "Authentication required",
+        "id": "operation:get:/api/v2/current_user",
+        "kind": "operation",
+        "method": "get",
+        "name": "current-user",
+        "parameters": [
+          {
+            "default": "Bearer YOUR_TOKEN",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v2/current_user",
+        "pointer": "#/paths/~1api~1v2~1current_user/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "sec0": []
+          }
+        ],
+        "summary": "Current User"
+      },
+      {
+        "deprecated": false,
+        "description": "Authentication required",
+        "id": "operation:post:/api/v2/discount_codes",
+        "kind": "operation",
+        "method": "post",
+        "name": "discountcodes",
+        "parameters": [
+          {
+            "default": "Bearer YOUR_TOKEN",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v2/discount_codes",
+        "pointer": "#/paths/~1api~1v2~1discount_codes/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "sec0": []
+          }
+        ],
+        "summary": "Discount Codes"
+      },
+      {
+        "deprecated": false,
+        "description": "Authentication required",
+        "id": "operation:get:/api/v2/guestlists",
+        "kind": "operation",
+        "method": "get",
+        "name": "guestlists",
+        "parameters": [
+          {
+            "default": "100",
+            "description": "The limit on the number of returned documents, max 1000",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "0",
+            "description": "The number of documents to skip in the result set (the starting point for the set returned)",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "An ISO8601 timestamp, which filters for documents updated/created after this moment in time.",
+            "in": "query",
+            "name": "since",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Restrict the Guestlist to just one Event",
+            "in": "query",
+            "name": "event_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Restrict the Guestlist to just one Listing",
+            "in": "query",
+            "name": "listing_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "Bearer YOUR_TOKEN",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v2/guestlists",
+        "pointer": "#/paths/~1api~1v2~1guestlists/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "sec0": []
+          }
+        ],
+        "summary": "Guestlists"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api/v2/listings",
+        "kind": "operation",
+        "method": "get",
+        "name": "listings",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "user_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "Bearer YOUR_TOKEN",
+            "in": "header",
+            "name": "Authorization",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v2/listings",
+        "pointer": "#/paths/~1api~1v2~1listings/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Listings"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:put:/api/v2/listings/{id}",
+        "kind": "operation",
+        "method": "put",
+        "name": "create-rates",
+        "parameters": [
+          {
+            "default": "application/json; charset=UTF-8",
+            "in": "header",
+            "name": "Content-Type",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The Listing ID you are adding Rates to",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v2/listings/{id}",
+        "pointer": "#/paths/~1api~1v2~1listings~1{id}/put",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "safe": false,
+        "security": [
+          {
+            "sec0": []
+          }
+        ],
+        "summary": "Rates"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "universe-rest"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://www.universe.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "securitySchemes": {
+                "sec0": {
+                  "flows": {
+                    "clientCredentials": {
+                      "scopes": {},
+                      "tokenUrl": "https://example.com/oauth2/token"
+                    }
+                  },
+                  "type": "oauth2"
+                }
+              }
+            },
+            "info": {
+              "title": "REST",
+              "version": "unknown"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/api/v2/access_keys": {
+                "post": {
+                  "deprecated": false,
+                  "description": "",
+                  "operationId": "access-keys",
+                  "parameters": [
+                    {
+                      "in": "header",
+                      "name": "Content-Type",
+                      "required": true,
+                      "schema": {
+                        "default": "application/json; charset=UTF-8",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "access_key": {
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "listing_id": {
+                                  "type": "string"
+                                },
+                                "quantity": {
+                                  "type": "string"
+                                },
+                                "rate_ids": {
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "listing_id",
+                                "rate_ids"
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{\n  \"access_key\": {\n    \"id\": \"5ad974c5eca774003f98715f\",\n    \"key\": \"EXAMPLECODE\",\n    \"used\": 0,\n    \"quantity\": 1,\n    \"is_active\": true,\n    \"available\": 1,\n    \"rate_ids\": [\n      \"5a39424f24ab9c003fd42312\"\n    ],\n    \"listing_id\": \"5879ad8f6672e70036d58ba5\"\n  }\n}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {
+                              "access_key": {
+                                "properties": {
+                                  "available": {
+                                    "default": 0,
+                                    "example": 1,
+                                    "type": "integer"
+                                  },
+                                  "id": {
+                                    "example": "5ad974c5eca774003f98715f",
+                                    "type": "string"
+                                  },
+                                  "is_active": {
+                                    "default": true,
+                                    "example": true,
+                                    "type": "boolean"
+                                  },
+                                  "key": {
+                                    "example": "EXAMPLECODE",
+                                    "type": "string"
+                                  },
+                                  "listing_id": {
+                                    "example": "5879ad8f6672e70036d58ba5",
+                                    "type": "string"
+                                  },
+                                  "quantity": {
+                                    "default": 0,
+                                    "example": 1,
+                                    "type": "integer"
+                                  },
+                                  "rate_ids": {
+                                    "items": {
+                                      "example": "5a39424f24ab9c003fd42312",
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "used": {
+                                    "default": 0,
+                                    "example": 0,
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "200"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "400"
+                    }
+                  },
+                  "summary": "Access Keys"
+                }
+              },
+              "/api/v2/cost_item_check_ins/{id}": {
+                "put": {
+                  "deprecated": false,
+                  "description": "",
+                  "operationId": "check-ins",
+                  "parameters": [
+                    {
+                      "description": "The Cost Item ID - if you are using the Gueslists API this is the \"ticket id\", the unique identifier for the ticket being scanned.",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "default": "Bearer YOUR_TOKEN",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The Cost Item ID - if you are using the Gueslists API this is the \"ticket id\", the unique identifier for the ticket being scanned.",
+                      "in": "query",
+                      "name": "cost_item_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{\n  \"cost_item_check_in\": {\n    \"id\": \"5978bbbd0c264b00473ac4fe\",\n    \"checked_in_at\":\"2018-01-11T18:24:05.509+00:00\",\n    \"check_in_state\":\"scanned_in\",\n    \"prev_check_in_state\":\"scanned_out\"\n  }\n}⏎"
+                            }
+                          }
+                        }
+                      },
+                      "description": "200"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "400"
+                    }
+                  },
+                  "summary": "Check Ins"
+                }
+              },
+              "/api/v2/current_user": {
+                "get": {
+                  "deprecated": false,
+                  "description": "Authentication required",
+                  "operationId": "current-user",
+                  "parameters": [
+                    {
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "default": "Bearer YOUR_TOKEN",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{\n  \"current_user\": {\n    \"id\": String,\n    \"slug\": String,\n    \"first_name\": String,\n    \"last_name\": String,\n    \"created_at\": ISO8601String,\n    \"updated_at\": ISO8601String,\n    \"email\": String\n  }\n}"
+                            }
+                          }
+                        }
+                      },
+                      "description": "200"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "400"
+                    }
+                  },
+                  "summary": "Current User"
+                }
+              },
+              "/api/v2/discount_codes": {
+                "post": {
+                  "deprecated": false,
+                  "description": "Authentication required",
+                  "operationId": "discountcodes",
+                  "parameters": [
+                    {
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "default": "Bearer YOUR_TOKEN",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "discount_code": {
+                              "properties": {
+                                "code": {
+                                  "description": "The user-facing string that functions as the Diiscount Code itself",
+                                  "type": "string"
+                                },
+                                "discount_type": {
+                                  "default": "percent",
+                                  "description": "Must be either 'percent' or 'fixed'",
+                                  "type": "string"
+                                },
+                                "fixed": {
+                                  "description": "A dollar-amount of the discount. Either this field or discount_code[percent] must be submitted - only one is actually required",
+                                  "format": "float",
+                                  "type": "number"
+                                },
+                                "listing_id": {
+                                  "description": "The Listing ID to which the Discount Code will apply",
+                                  "type": "string"
+                                },
+                                "percent": {
+                                  "description": "A percent amount of the discount from 0 to 1. Either this field or discount_code[fixed] must be submitted - only one is actually required",
+                                  "format": "float",
+                                  "type": "number"
+                                },
+                                "quantity": {
+                                  "description": "The number of times the Discount Code can be redemeed",
+                                  "format": "int32",
+                                  "type": "integer"
+                                },
+                                "rate_ids": {
+                                  "default": [
+                                    "[]"
+                                  ],
+                                  "description": "A list of the Rate IDs (ticket types) for which the Discount Code is redeemable",
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "required": [
+                                "listing_id",
+                                "code",
+                                "percent",
+                                "fixed"
+                              ],
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "200"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "400"
+                    }
+                  },
+                  "summary": "Discount Codes"
+                }
+              },
+              "/api/v2/guestlists": {
+                "get": {
+                  "deprecated": false,
+                  "description": "Authentication required",
+                  "operationId": "guestlists",
+                  "parameters": [
+                    {
+                      "description": "The limit on the number of returned documents, max 1000",
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": "100",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The number of documents to skip in the result set (the starting point for the set returned)",
+                      "in": "query",
+                      "name": "offset",
+                      "schema": {
+                        "default": "0",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "An ISO8601 timestamp, which filters for documents updated/created after this moment in time.",
+                      "in": "query",
+                      "name": "since",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Restrict the Guestlist to just one Event",
+                      "in": "query",
+                      "name": "event_id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Restrict the Guestlist to just one Listing",
+                      "in": "query",
+                      "name": "listing_id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "default": "Bearer YOUR_TOKEN",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "examples": {
+                            "Result": {
+                              "value": "{\n  \"data\": {\n    \"guestlist\": [{\n      \"id\": String,\n      \"token\": String\n      \"state\": StateEnum,\n      \"updated_at\": ISO8601String,\n      \"created_at\": ISO8601String,\n      \"buyer\": {\n        \"email\": String,\n        \"name\": String,\n        \"id\": String\n      },\n      \"attendee\": {\n        \"email\": String,\n        \"name\": String,\n        \"id\": String\n      },\n      \"ticket_type\": {\n        \"name\": String,\n        \"price\": Float,\n        \"id\": String\n      },\n      \"order\": {\n        \"discount_code\": String,\n        \"id\": String,\n        \"currency\": String\n      },\n      \"listing\": {\n        \"title\": String,\n        \"id\": String\n      },\n      \"event\": {\n        \"id\": String,\n        \"start_stamp\": UnixEpochInteger,\n        \"end_stamp\": UnixEpochInteger\n      },\n      \"answers\": {\n        \"name\": String,\n        \"value\": String\n      }\n    }]\n  },\n  \"meta\": {\n    \"count\": Int, \n    \"limit\": Int,\n    \"offset\": Int\n  }\n} "
+                            }
+                          }
+                        }
+                      },
+                      "description": "200"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "400"
+                    }
+                  },
+                  "summary": "Guestlists"
+                }
+              },
+              "/api/v2/listings": {
+                "get": {
+                  "deprecated": false,
+                  "description": "",
+                  "operationId": "listings",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "user_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "header",
+                      "name": "Authorization",
+                      "required": true,
+                      "schema": {
+                        "default": "Bearer YOUR_TOKEN",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{\n  \"listings\": [\n    {\n      \"id\": String,\n      \"title\": String\n    }\n  ],\n  \"meta\": {\n    \"count\": Int, \n    \"limit\": Int,\n    \"offset\": Int\n  }\n} "
+                            }
+                          }
+                        }
+                      },
+                      "description": "200"
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "Result": {
+                              "value": "{}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "400"
+                    }
+                  },
+                  "security": [],
+                  "summary": "Listings"
+                }
+              },
+              "/api/v2/listings/{id}": {
+                "put": {
+                  "deprecated": false,
+                  "description": "",
+                  "operationId": "create-rates",
+                  "parameters": [
+                    {
+                      "in": "header",
+                      "name": "Content-Type",
+                      "required": true,
+                      "schema": {
+                        "default": "application/json; charset=UTF-8",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "The Listing ID you are adding Rates to",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "listing": {
+                              "properties": {
+                                "cost_attributes": {
+                                  "properties": {
+                                    "rates_attributes": {
+                                      "properties": {
+                                        "capacity": {
+                                          "description": "The max number of this Rate that can be sold per Event (\"timeslot\")",
+                                          "format": "int32",
+                                          "type": "integer"
+                                        },
+                                        "discountable": {
+                                          "default": true,
+                                          "description": "Whether or not discounts can be used on this rate",
+                                          "type": "boolean"
+                                        },
+                                        "max_tickets": {
+                                          "description": "The maximum quantity a buyer must purchase of this rate in a single order",
+                                          "format": "int32",
+                                          "type": "integer"
+                                        },
+                                        "min_tickets": {
+                                          "description": "The minimum quantity a buyer must purchase of this rate in a single order",
+                                          "format": "int32",
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "description": "The display name of the rate - needs to be unique",
+                                          "type": "string"
+                                        },
+                                        "price": {
+                                          "description": "Amount of the rate in dollars",
+                                          "format": "float",
+                                          "type": "number"
+                                        },
+                                        "state": {
+                                          "default": "active",
+                                          "description": "Must be one of 'locked', 'active', 'inactive'",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "price",
+                                        "name"
+                                      ],
+                                      "type": "object"
+                                    }
+                                  },
+                                  "required": [],
+                                  "type": "object"
+                                }
+                              },
+                              "required": [],
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    }
+                  },
+                  "summary": "Rates"
+                }
+              }
+            },
+            "security": [
+              {
+                "sec0": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://www.universe.com"
+              }
+            ],
+            "x-readme": {
+              "headers": []
+            },
+            "x-readme-fauxas": true
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Universe REST"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.054698+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://dash.readme.com/api/v1/api-registry/1qz7y2qplt7f12sf",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "b5075b7b1c657ee22bf872bd8ee0d5955df32d19c4e66eb4a6d300c7e906d21b",
+    "source_id": "universe-rest",
+    "source_updated": null,
+    "url": "https://dash.readme.com/api/v1/api-registry/1qz7y2qplt7f12sf"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "unknown"
+}

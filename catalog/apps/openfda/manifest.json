@@ -1,0 +1,881 @@
+{
+  "a2ui": {},
+  "app": "openfda",
+  "graph": {
+    "edges": [
+      {
+        "from": "openfda",
+        "kind": "EXPOSES",
+        "to": "operation:get:/drug/drugsfda.json"
+      },
+      {
+        "from": "openfda",
+        "kind": "EXPOSES",
+        "to": "operation:get:/drug/enforcement.json"
+      },
+      {
+        "from": "openfda",
+        "kind": "EXPOSES",
+        "to": "operation:get:/drug/event.json"
+      },
+      {
+        "from": "openfda",
+        "kind": "EXPOSES",
+        "to": "operation:get:/drug/label.json"
+      },
+      {
+        "from": "openfda",
+        "kind": "EXPOSES",
+        "to": "operation:get:/drug/ndc.json"
+      },
+      {
+        "from": "openfda",
+        "kind": "EXPOSES",
+        "to": "operation:get:/drug/shortages.json"
+      },
+      {
+        "from": "operation:get:/drug/drugsfda.json",
+        "kind": "RETURNS",
+        "to": "schema:QueryResponse"
+      },
+      {
+        "from": "operation:get:/drug/enforcement.json",
+        "kind": "RETURNS",
+        "to": "schema:QueryResponse"
+      },
+      {
+        "from": "operation:get:/drug/event.json",
+        "kind": "RETURNS",
+        "to": "schema:QueryResponse"
+      },
+      {
+        "from": "operation:get:/drug/label.json",
+        "kind": "RETURNS",
+        "to": "schema:QueryResponse"
+      },
+      {
+        "from": "operation:get:/drug/ndc.json",
+        "kind": "RETURNS",
+        "to": "schema:QueryResponse"
+      },
+      {
+        "from": "operation:get:/drug/shortages.json",
+        "kind": "RETURNS",
+        "to": "schema:QueryResponse"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "openfda",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Searches FDA approval information for human drug products.",
+        "id": "operation:get:/drug/drugsfda.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchDrugsAtFda",
+        "parameters": [
+          {
+            "description": "Filter records using openFDA query syntax.",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Sort matching records by a field using the :asc or :desc suffix.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Count unique values in a field instead of returning matching records.",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of matching records to return; defaults to one.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Number of matching records to skip; combine with limit for paging.",
+            "in": "query",
+            "name": "skip",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Optional free API key; the provider documents limited no-key access.",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/drug/drugsfda.json",
+        "pointer": "#/paths/~1drug~1drugsfda.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "QueryResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search Drugs@FDA records"
+      },
+      {
+        "deprecated": false,
+        "description": "Searches FDA drug recall enforcement report data.",
+        "id": "operation:get:/drug/enforcement.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchDrugRecallEnforcementReports",
+        "parameters": [
+          {
+            "description": "Filter records using openFDA query syntax.",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Sort matching records by a field using the :asc or :desc suffix.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Count unique values in a field instead of returning matching records.",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of matching records to return; defaults to one.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Number of matching records to skip; combine with limit for paging.",
+            "in": "query",
+            "name": "skip",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Optional free API key; the provider documents limited no-key access.",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/drug/enforcement.json",
+        "pointer": "#/paths/~1drug~1enforcement.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "QueryResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search drug recall enforcement reports"
+      },
+      {
+        "deprecated": false,
+        "description": "Searches public adverse event reports from the FDA Adverse Event Reporting System.",
+        "id": "operation:get:/drug/event.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchDrugAdverseEvents",
+        "parameters": [
+          {
+            "description": "Filter records using openFDA query syntax.",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Sort matching records by a field using the :asc or :desc suffix.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Count unique values in a field instead of returning matching records.",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of matching records to return; defaults to one.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Number of matching records to skip; combine with limit for paging.",
+            "in": "query",
+            "name": "skip",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Optional free API key; the provider documents limited no-key access.",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/drug/event.json",
+        "pointer": "#/paths/~1drug~1event.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "QueryResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search drug adverse event reports"
+      },
+      {
+        "deprecated": false,
+        "description": "Searches prescription and over-the-counter drug labeling data.",
+        "id": "operation:get:/drug/label.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchDrugLabels",
+        "parameters": [
+          {
+            "description": "Filter records using openFDA query syntax.",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Sort matching records by a field using the :asc or :desc suffix.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Count unique values in a field instead of returning matching records.",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of matching records to return; defaults to one.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Number of matching records to skip; combine with limit for paging.",
+            "in": "query",
+            "name": "skip",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Optional free API key; the provider documents limited no-key access.",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/drug/label.json",
+        "pointer": "#/paths/~1drug~1label.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "QueryResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search drug product labels"
+      },
+      {
+        "deprecated": false,
+        "description": "Searches drug listing information submitted by labelers.",
+        "id": "operation:get:/drug/ndc.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchDrugNdcDirectory",
+        "parameters": [
+          {
+            "description": "Filter records using openFDA query syntax.",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Sort matching records by a field using the :asc or :desc suffix.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Count unique values in a field instead of returning matching records.",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of matching records to return; defaults to one.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Number of matching records to skip; combine with limit for paging.",
+            "in": "query",
+            "name": "skip",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Optional free API key; the provider documents limited no-key access.",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/drug/ndc.json",
+        "pointer": "#/paths/~1drug~1ndc.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "QueryResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search the National Drug Code Directory"
+      },
+      {
+        "deprecated": false,
+        "description": "Searches the FDA drug shortages data.",
+        "id": "operation:get:/drug/shortages.json",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchDrugShortages",
+        "parameters": [
+          {
+            "description": "Filter records using openFDA query syntax.",
+            "in": "query",
+            "name": "search",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Sort matching records by a field using the :asc or :desc suffix.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Count unique values in a field instead of returning matching records.",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of matching records to return; defaults to one.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Number of matching records to skip; combine with limit for paging.",
+            "in": "query",
+            "name": "skip",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Optional free API key; the provider documents limited no-key access.",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/drug/shortages.json",
+        "pointer": "#/paths/~1drug~1shortages.json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "QueryResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search drug shortage records"
+      },
+      {
+        "id": "schema:QueryResponse",
+        "kind": "schema",
+        "name": "QueryResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "openfda"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.fda.gov",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "ApiKey": {
+                  "description": "Optional free API key; the provider documents limited no-key access.",
+                  "in": "query",
+                  "name": "api_key",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Count": {
+                  "description": "Count unique values in a field instead of returning matching records.",
+                  "in": "query",
+                  "name": "count",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "DrugsFdaLimit": {
+                  "description": "Maximum number of matching records to return; defaults to one.",
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                    "maximum": 99,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "Limit": {
+                  "description": "Maximum number of matching records to return; defaults to one.",
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                    "maximum": 1000,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "NdcLimit": {
+                  "description": "Maximum number of matching records to return; defaults to one.",
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "Search": {
+                  "description": "Filter records using openFDA query syntax. A query may identify a searchable field and term, for example field:term.",
+                  "in": "query",
+                  "name": "search",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "ShortageLimit": {
+                  "description": "Maximum number of matching records to return; defaults to one.",
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "Skip": {
+                  "description": "Number of matching records to skip; combine with limit for paging.",
+                  "in": "query",
+                  "name": "skip",
+                  "schema": {
+                    "maximum": 25000,
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "Sort": {
+                  "description": "Sort matching records by a field using the :asc or :desc suffix.",
+                  "in": "query",
+                  "name": "sort",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "QueryResult": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/QueryResponse"
+                      }
+                    }
+                  },
+                  "description": "Query result. Record fields vary by endpoint and by query type."
+                }
+              },
+              "schemas": {
+                "QueryResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "meta": {
+                      "additionalProperties": true,
+                      "properties": {
+                        "disclaimer": {
+                          "type": "string"
+                        },
+                        "last_updated": {
+                          "type": "string"
+                        },
+                        "license": {
+                          "type": "string"
+                        },
+                        "results": {
+                          "additionalProperties": true,
+                          "properties": {
+                            "limit": {
+                              "type": "integer"
+                            },
+                            "skip": {
+                              "type": "integer"
+                            },
+                            "total": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "results": {
+                      "items": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "results"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "openFDA API documentation",
+              "url": "https://open.fda.gov/apis/"
+            },
+            "info": {
+              "description": "Community-maintained coverage of six public openFDA drug data endpoints. Result records vary by dataset, and the count query returns aggregate results, so record properties are left open. This is not a complete description of every openFDA endpoint or response field.",
+              "title": "openFDA Drug API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/drug/drugsfda.json": {
+                "get": {
+                  "description": "Searches FDA approval information for human drug products.",
+                  "externalDocs": {
+                    "url": "https://open.fda.gov/apis/drug/drugsfda/how-to-use-the-endpoint/"
+                  },
+                  "operationId": "searchDrugsAtFda",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Search"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Count"
+                    },
+                    {
+                      "$ref": "#/components/parameters/DrugsFdaLimit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Skip"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ApiKey"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/QueryResult"
+                    }
+                  },
+                  "summary": "Search Drugs@FDA records"
+                }
+              },
+              "/drug/enforcement.json": {
+                "get": {
+                  "description": "Searches FDA drug recall enforcement report data.",
+                  "externalDocs": {
+                    "url": "https://open.fda.gov/apis/drug/enforcement/how-to-use-the-endpoint/"
+                  },
+                  "operationId": "searchDrugRecallEnforcementReports",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Search"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Count"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Skip"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ApiKey"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/QueryResult"
+                    }
+                  },
+                  "summary": "Search drug recall enforcement reports"
+                }
+              },
+              "/drug/event.json": {
+                "get": {
+                  "description": "Searches public adverse event reports from the FDA Adverse Event Reporting System. Reports are not verified for causality and should not be used as the sole basis for clinical decisions.",
+                  "externalDocs": {
+                    "url": "https://open.fda.gov/apis/drug/event/how-to-use-the-endpoint/"
+                  },
+                  "operationId": "searchDrugAdverseEvents",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Search"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Count"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Skip"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ApiKey"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/QueryResult"
+                    }
+                  },
+                  "summary": "Search drug adverse event reports"
+                }
+              },
+              "/drug/label.json": {
+                "get": {
+                  "description": "Searches prescription and over-the-counter drug labeling data. Label content varies by product and may not reflect currently distributed products or labeling approved by FDA.",
+                  "externalDocs": {
+                    "url": "https://open.fda.gov/apis/drug/label/how-to-use-the-endpoint/"
+                  },
+                  "operationId": "searchDrugLabels",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Search"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Count"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Skip"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ApiKey"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/QueryResult"
+                    }
+                  },
+                  "summary": "Search drug product labels"
+                }
+              },
+              "/drug/ndc.json": {
+                "get": {
+                  "description": "Searches drug listing information submitted by labelers. An NDC number or directory listing does not indicate FDA approval of a product.",
+                  "externalDocs": {
+                    "url": "https://open.fda.gov/apis/drug/ndc/how-to-use-the-endpoint/"
+                  },
+                  "operationId": "searchDrugNdcDirectory",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Search"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Count"
+                    },
+                    {
+                      "$ref": "#/components/parameters/NdcLimit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Skip"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ApiKey"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/QueryResult"
+                    }
+                  },
+                  "summary": "Search the National Drug Code Directory"
+                }
+              },
+              "/drug/shortages.json": {
+                "get": {
+                  "description": "Searches the FDA drug shortages data.",
+                  "externalDocs": {
+                    "url": "https://open.fda.gov/apis/drug/drugshortages/how-to-use-the-endpoint/"
+                  },
+                  "operationId": "searchDrugShortages",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Search"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Count"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ShortageLimit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Skip"
+                    },
+                    {
+                      "$ref": "#/components/parameters/ApiKey"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/QueryResult"
+                    }
+                  },
+                  "summary": "Search drug shortage records"
+                }
+              }
+            },
+            "servers": [
+              {
+                "url": "https://api.fda.gov"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "openFDA"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.187272+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openfda/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "e0549910e03cbb346c7d0f139c448243d09a6ada4a5aeb11ef57a99d258dbbac",
+    "source_id": "openfda",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openfda/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

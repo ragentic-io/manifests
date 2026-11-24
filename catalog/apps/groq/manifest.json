@@ -1,0 +1,315 @@
+{
+  "a2ui": {},
+  "app": "groq",
+  "graph": {
+    "edges": [
+      {
+        "from": "groq",
+        "kind": "EXPOSES",
+        "to": "operation:post:/chat/completions"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "groq",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a model response for a chat conversation.",
+        "id": "operation:post:/chat/completions",
+        "kind": "operation",
+        "method": "post",
+        "name": "createChatCompletion",
+        "path": "/chat/completions",
+        "pointer": "#/paths/~1chat~1completions/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "default"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "GroqApiKey": []
+          }
+        ],
+        "summary": "Create a chat completion"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "groq"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.groq.com/openai/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "securitySchemes": {
+                "GroqApiKey": {
+                  "description": "Groq API key.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained focused definition for text chat completions. It covers basic messages, sampling controls, and standard JSON or streaming responses. Tool calling, structured outputs, multimodal content, and the provider's other API endpoints are not represented.",
+              "externalDocs": {
+                "description": "Groq API reference",
+                "url": "https://console.groq.com/docs/api-reference"
+              },
+              "title": "Groq Chat Completions API (focused)",
+              "version": "v1"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/chat/completions": {
+                "post": {
+                  "description": "Creates a model response for a chat conversation. Set stream to true for server-sent events; the stream ends with a data: [DONE] message.",
+                  "externalDocs": {
+                    "description": "Create chat completion",
+                    "url": "https://console.groq.com/docs/api-reference"
+                  },
+                  "operationId": "createChatCompletion",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "max_completion_tokens": {
+                              "description": "Maximum number of generated tokens.",
+                              "type": [
+                                "integer",
+                                "null"
+                              ]
+                            },
+                            "messages": {
+                              "description": "The messages comprising the conversation.",
+                              "items": {
+                                "properties": {
+                                  "content": {
+                                    "description": "Text content for this focused definition.",
+                                    "type": "string"
+                                  },
+                                  "role": {
+                                    "description": "The message role.",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "role",
+                                  "content"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "array"
+                            },
+                            "model": {
+                              "description": "ID of the model to use.",
+                              "type": "string"
+                            },
+                            "stream": {
+                              "default": false,
+                              "description": "Return partial message deltas as server-sent events.",
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "temperature": {
+                              "default": 1,
+                              "description": "Sampling temperature.",
+                              "maximum": 2,
+                              "minimum": 0,
+                              "type": [
+                                "number",
+                                "null"
+                              ]
+                            },
+                            "top_p": {
+                              "default": 1,
+                              "description": "Nucleus sampling probability cutoff.",
+                              "maximum": 1,
+                              "minimum": 0,
+                              "type": [
+                                "number",
+                                "null"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "messages",
+                            "model"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "choices": {
+                                "items": {
+                                  "properties": {
+                                    "finish_reason": {
+                                      "type": "string"
+                                    },
+                                    "index": {
+                                      "format": "int32",
+                                      "type": "integer"
+                                    },
+                                    "message": {
+                                      "properties": {
+                                        "content": {
+                                          "type": "string"
+                                        },
+                                        "role": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "created": {
+                                "format": "int64",
+                                "type": "integer"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "model": {
+                                "type": "string"
+                              },
+                              "object": {
+                                "const": "chat.completion",
+                                "type": "string"
+                              },
+                              "system_fingerprint": {
+                                "type": "string"
+                              },
+                              "usage": {
+                                "properties": {
+                                  "completion_tokens": {
+                                    "type": "integer"
+                                  },
+                                  "prompt_tokens": {
+                                    "type": "integer"
+                                  },
+                                  "total_tokens": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "x_groq": {
+                                "properties": {
+                                  "id": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "object",
+                              "created",
+                              "model",
+                              "choices"
+                            ],
+                            "type": "object"
+                          }
+                        },
+                        "text/event-stream": {
+                          "description": "Server-sent event data chunks followed by data: [DONE].",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "A chat completion or a server-sent event stream."
+                    },
+                    "default": {
+                      "description": "Error response. Error body details are omitted from this focused definition."
+                    }
+                  },
+                  "summary": "Create a chat completion"
+                }
+              }
+            },
+            "security": [
+              {
+                "GroqApiKey": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://api.groq.com/openai/v1"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Groq"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:36.262439+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/groq/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "54df5da7e86b40741868537e30f53a647f079d8bc5cbf3884bc7b5ef4b989693",
+    "source_id": "groq",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/groq/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "v1"
+}

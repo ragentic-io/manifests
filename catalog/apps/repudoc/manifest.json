@@ -1,0 +1,333 @@
+{
+  "a2ui": {},
+  "app": "repudoc",
+  "graph": {
+    "edges": [
+      {
+        "from": "repudoc",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/Integration/Authenticate"
+      },
+      {
+        "from": "repudoc",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/Integration/QueueInvites"
+      },
+      {
+        "from": "operation:post:/api/v1/Integration/Authenticate",
+        "kind": "ACCEPTS",
+        "to": "schema:LoginModel"
+      },
+      {
+        "from": "operation:post:/api/v1/Integration/Authenticate",
+        "kind": "RETURNS",
+        "to": "schema:IntegrationToken"
+      },
+      {
+        "from": "operation:post:/api/v1/Integration/QueueInvites",
+        "kind": "ACCEPTS",
+        "to": "schema:InviteFormModel"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "repudoc",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/api/v1/Integration/Authenticate",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /api/v1/Integration/Authenticate",
+        "path": "/api/v1/Integration/Authenticate",
+        "pointer": "#/paths/~1api~1v1~1Integration~1Authenticate/post",
+        "request": {
+          "content_types": [
+            "application/*+json",
+            "application/json",
+            "text/json"
+          ],
+          "required": false,
+          "type": "LoginModel"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "IntegrationToken"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Generates a token valid for a week, to acquired credentials contact your admin",
+        "tags": [
+          "Integration"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/api/v1/Integration/QueueInvites",
+        "kind": "operation",
+        "method": "post",
+        "name": "post /api/v1/Integration/QueueInvites",
+        "path": "/api/v1/Integration/QueueInvites",
+        "pointer": "#/paths/~1api~1v1~1Integration~1QueueInvites/post",
+        "request": {
+          "content_types": [
+            "application/*+json",
+            "application/json",
+            "text/json"
+          ],
+          "required": false,
+          "type": "InviteFormModel[]"
+        },
+        "responses": [
+          {
+            "status": "200"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Sends invites as soon as possible and queues invites for the next 2 loops, usually 2 and 5 days after the initial invite",
+        "tags": [
+          "Integration"
+        ]
+      },
+      {
+        "id": "schema:IntegrationToken",
+        "kind": "schema",
+        "name": "IntegrationToken",
+        "type": "object"
+      },
+      {
+        "id": "schema:InviteFormModel",
+        "kind": "schema",
+        "name": "InviteFormModel",
+        "type": "object"
+      },
+      {
+        "id": "schema:LoginModel",
+        "kind": "schema",
+        "name": "LoginModel",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "repudoc"
+    },
+    "spec": {
+      "base": {
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "IntegrationToken": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "expiration": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "value": {
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "InviteFormModel": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "email": {
+                      "example": "jhon@doe.com",
+                      "nullable": true,
+                      "pattern": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$",
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "phoneNumber": {
+                      "example": "(555) 123-4567",
+                      "nullable": true,
+                      "pattern": "^(\\+\\d{1,2}\\s?)?1?\\-?\\.?\\s?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "firstName",
+                    "lastName"
+                  ],
+                  "type": "object"
+                },
+                "LoginModel": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "password": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "username": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "password",
+                    "username"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "name": "Contact Us",
+                "url": "https://repudoc.com/contact"
+              },
+              "description": "Serves as an easy way to push invites through the Repudoc system",
+              "termsOfService": "https://repudoc.com/terms",
+              "title": "Repudoc Integration",
+              "version": "v1"
+            },
+            "openapi": "3.0.1",
+            "paths": {
+              "/api/v1/Integration/Authenticate": {
+                "post": {
+                  "requestBody": {
+                    "content": {
+                      "application/*+json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/LoginModel"
+                        }
+                      },
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/LoginModel"
+                        }
+                      },
+                      "text/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/LoginModel"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/IntegrationToken"
+                          }
+                        },
+                        "text/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/IntegrationToken"
+                          }
+                        },
+                        "text/plain": {
+                          "schema": {
+                            "$ref": "#/components/schemas/IntegrationToken"
+                          }
+                        }
+                      },
+                      "description": "Success"
+                    }
+                  },
+                  "summary": "Generates a token valid for a week, to acquired credentials contact your admin",
+                  "tags": [
+                    "Integration"
+                  ]
+                }
+              },
+              "/api/v1/Integration/QueueInvites": {
+                "post": {
+                  "requestBody": {
+                    "content": {
+                      "application/*+json": {
+                        "schema": {
+                          "items": {
+                            "$ref": "#/components/schemas/InviteFormModel"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "application/json": {
+                        "schema": {
+                          "items": {
+                            "$ref": "#/components/schemas/InviteFormModel"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "text/json": {
+                        "schema": {
+                          "items": {
+                            "$ref": "#/components/schemas/InviteFormModel"
+                          },
+                          "type": "array"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "description": "Success"
+                    }
+                  },
+                  "summary": "Sends invites as soon as possible and queues invites for the next 2 loops, usually 2 and 5 days after the initial invite",
+                  "tags": [
+                    "Integration"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Repudoc"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:33.915517+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://repudoc.com/app/integration/v1/swagger.json",
+        "version": "3.0.1"
+      }
+    ],
+    "sha256": "fb2907a67ccaf542294d6d78279a7cfb792b8e1b2e6af51ae734aa1befcc99aa",
+    "source_id": "repudoc",
+    "source_updated": null,
+    "url": "https://repudoc.com/app/integration/v1/swagger.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "v1"
+}

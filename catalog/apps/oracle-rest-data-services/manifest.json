@@ -1,0 +1,622 @@
+{
+  "a2ui": {},
+  "app": "oracle-rest-data-services",
+  "graph": {
+    "edges": [
+      {
+        "from": "oracle-rest-data-services",
+        "kind": "EXPOSES",
+        "to": "operation:get:/database/objects/"
+      },
+      {
+        "from": "oracle-rest-data-services",
+        "kind": "EXPOSES",
+        "to": "operation:get:/database/objects/tables/"
+      },
+      {
+        "from": "oracle-rest-data-services",
+        "kind": "EXPOSES",
+        "to": "operation:get:/database/status"
+      },
+      {
+        "from": "operation:get:/database/objects/",
+        "kind": "RETURNS",
+        "to": "schema:DatabaseObjectPage"
+      },
+      {
+        "from": "operation:get:/database/objects/tables/",
+        "kind": "RETURNS",
+        "to": "schema:DatabaseTablePage"
+      },
+      {
+        "from": "operation:get:/database/status",
+        "kind": "RETURNS",
+        "to": "schema:DatabaseStatus"
+      },
+      {
+        "from": "schema:DatabaseObjectPage",
+        "kind": "REFERENCES",
+        "to": "schema:DatabaseObject"
+      },
+      {
+        "from": "schema:DatabaseObjectPage",
+        "kind": "REFERENCES",
+        "to": "schema:LinkRelation"
+      },
+      {
+        "from": "schema:DatabaseStatus",
+        "kind": "REFERENCES",
+        "to": "schema:LinkRelation"
+      },
+      {
+        "from": "schema:DatabaseTablePage",
+        "kind": "REFERENCES",
+        "to": "schema:DatabaseTable"
+      },
+      {
+        "from": "schema:DatabaseTablePage",
+        "kind": "REFERENCES",
+        "to": "schema:LinkRelation"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "oracle-rest-data-services",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns records from DBA_OBJECTS or ALL_OBJECTS, depending on the caller's role.",
+        "id": "operation:get:/database/objects/",
+        "kind": "operation",
+        "method": "get",
+        "name": "listDatabaseObjects",
+        "parameters": [
+          {
+            "description": "Maximum number of records to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/database/objects/",
+        "pointer": "#/paths/~1database~1objects~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DatabaseObjectPage"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "List database objects"
+      },
+      {
+        "deprecated": false,
+        "description": "Describes tables from DBA_TABLES or ALL_TABLES, depending on the caller's role.",
+        "id": "operation:get:/database/objects/tables/",
+        "kind": "operation",
+        "method": "get",
+        "name": "listDatabaseTables",
+        "parameters": [
+          {
+            "description": "Maximum number of records to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/database/objects/tables/",
+        "pointer": "#/paths/~1database~1objects~1tables~1/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DatabaseTablePage"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "List database tables"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns status information from GV$INSTANCE and GV$DATABASE.",
+        "id": "operation:get:/database/status",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDatabaseStatus",
+        "path": "/database/status",
+        "pointer": "#/paths/~1database~1status/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DatabaseStatus"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Get database status"
+      },
+      {
+        "description": "Database object fields returned from DBA_OBJECTS or ALL_OBJECTS.",
+        "id": "schema:DatabaseObject",
+        "kind": "schema",
+        "name": "DatabaseObject",
+        "type": "object"
+      },
+      {
+        "id": "schema:DatabaseObjectPage",
+        "kind": "schema",
+        "name": "DatabaseObjectPage",
+        "type": "object"
+      },
+      {
+        "description": "Status fields from GV$INSTANCE and GV$DATABASE.",
+        "id": "schema:DatabaseStatus",
+        "kind": "schema",
+        "name": "DatabaseStatus",
+        "type": "object"
+      },
+      {
+        "description": "Documented table metadata fields; additional fields may be returned.",
+        "id": "schema:DatabaseTable",
+        "kind": "schema",
+        "name": "DatabaseTable",
+        "type": "object"
+      },
+      {
+        "id": "schema:DatabaseTablePage",
+        "kind": "schema",
+        "name": "DatabaseTablePage",
+        "type": "object"
+      },
+      {
+        "id": "schema:LinkRelation",
+        "kind": "schema",
+        "name": "LinkRelation",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "oracle-rest-data-services"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://{host}/{contextRoot}/{database}/{schema}/_/db-api/stable",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Limit": {
+                  "description": "Maximum number of records to return.",
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                    "format": "int32",
+                    "type": "integer"
+                  }
+                }
+              },
+              "schemas": {
+                "DatabaseObject": {
+                  "additionalProperties": true,
+                  "description": "Database object fields returned from DBA_OBJECTS or ALL_OBJECTS.",
+                  "properties": {
+                    "created": {
+                      "type": "string"
+                    },
+                    "data_object_id": {
+                      "type": "integer"
+                    },
+                    "generated": {
+                      "type": "string"
+                    },
+                    "last_ddl_time": {
+                      "type": "string"
+                    },
+                    "object_id": {
+                      "type": "integer"
+                    },
+                    "object_name": {
+                      "type": "string"
+                    },
+                    "object_type": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "temporary": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "DatabaseObjectPage": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "hasMore": {
+                      "type": "boolean"
+                    },
+                    "items": {
+                      "items": {
+                        "$ref": "#/components/schemas/DatabaseObject"
+                      },
+                      "type": "array"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "links": {
+                      "items": {
+                        "$ref": "#/components/schemas/LinkRelation"
+                      },
+                      "type": "array"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "DatabaseStatus": {
+                  "additionalProperties": true,
+                  "description": "Status fields from GV$INSTANCE and GV$DATABASE.",
+                  "properties": {
+                    "active_state": {
+                      "type": "string"
+                    },
+                    "archiver": {
+                      "type": "string"
+                    },
+                    "blocked": {
+                      "type": "string"
+                    },
+                    "con_id": {
+                      "type": "integer"
+                    },
+                    "database_status": {
+                      "type": "string"
+                    },
+                    "database_type": {
+                      "type": "string"
+                    },
+                    "db_unique_name": {
+                      "type": "string"
+                    },
+                    "edition": {
+                      "type": "string"
+                    },
+                    "host_name": {
+                      "type": "string"
+                    },
+                    "inst_id": {
+                      "type": "integer"
+                    },
+                    "instance_mode": {
+                      "type": "string"
+                    },
+                    "instance_name": {
+                      "type": "string"
+                    },
+                    "instance_number": {
+                      "type": "integer"
+                    },
+                    "instance_role": {
+                      "type": "string"
+                    },
+                    "links": {
+                      "items": {
+                        "$ref": "#/components/schemas/LinkRelation"
+                      },
+                      "type": "array"
+                    },
+                    "log_switch_wait": {
+                      "type": "string"
+                    },
+                    "logins": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "open_mode": {
+                      "type": "string"
+                    },
+                    "parallel": {
+                      "type": "string"
+                    },
+                    "shutdown_pending": {
+                      "type": "string"
+                    },
+                    "startup_time": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "thread#": {
+                      "type": "integer"
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "version_full": {
+                      "type": "string"
+                    },
+                    "version_legacy": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "DatabaseTable": {
+                  "additionalProperties": true,
+                  "description": "Documented table metadata fields; additional fields may be returned.",
+                  "properties": {
+                    "blocks": {
+                      "type": "integer"
+                    },
+                    "last_analyzed": {
+                      "type": "string"
+                    },
+                    "num_rows": {
+                      "type": "integer"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "partitioned": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "table_name": {
+                      "type": "string"
+                    },
+                    "tablespace_name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "DatabaseTablePage": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "count": {
+                      "type": "integer"
+                    },
+                    "hasMore": {
+                      "type": "boolean"
+                    },
+                    "items": {
+                      "items": {
+                        "$ref": "#/components/schemas/DatabaseTable"
+                      },
+                      "type": "array"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    },
+                    "links": {
+                      "items": {
+                        "$ref": "#/components/schemas/LinkRelation"
+                      },
+                      "type": "array"
+                    },
+                    "offset": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "LinkRelation": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "href": {
+                      "type": "string"
+                    },
+                    "rel": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "rel",
+                    "href"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "basicAuth": {
+                  "description": "Database username and password for ORDS authentication.",
+                  "scheme": "basic",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused community-maintained specification for three read operations in the Oracle REST Data Services Database API. The documented OpenAPI file is generated by a running ORDS instance, and its URL, available services, and returned fields depend on installation, database version, configuration, and caller privileges. This specification models the database/schema qualified URL form and omits other operations and the optional q filter.",
+              "externalDocs": {
+                "description": "Oracle REST Data Services API reference",
+                "url": "https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html"
+              },
+              "title": "Oracle REST Data Services Database API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/database/objects/": {
+                "get": {
+                  "description": "Returns records from DBA_OBJECTS or ALL_OBJECTS, depending on the caller's role. The caller requires the SQL Administrator or SQL Developer role.",
+                  "externalDocs": {
+                    "description": "Get all database objects documentation",
+                    "url": "https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/op-database-objects-get.html"
+                  },
+                  "operationId": "listDatabaseObjects",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DatabaseObjectPage"
+                          }
+                        }
+                      },
+                      "description": "A page of database object records."
+                    }
+                  },
+                  "summary": "List database objects"
+                }
+              },
+              "/database/objects/tables/": {
+                "get": {
+                  "description": "Describes tables from DBA_TABLES or ALL_TABLES, depending on the caller's role. The caller requires the SQL Administrator or SQL Developer role.",
+                  "externalDocs": {
+                    "description": "Get all tables documentation",
+                    "url": "https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/op-database-objects-tables-get.html"
+                  },
+                  "operationId": "listDatabaseTables",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Limit"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DatabaseTablePage"
+                          }
+                        }
+                      },
+                      "description": "A page of database table records."
+                    }
+                  },
+                  "summary": "List database tables"
+                }
+              },
+              "/database/status": {
+                "get": {
+                  "description": "Returns status information from GV$INSTANCE and GV$DATABASE. The calling user must have the SQL Administrator role.",
+                  "externalDocs": {
+                    "description": "Get database status documentation",
+                    "url": "https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/op-database-status-get.html"
+                  },
+                  "operationId": "getDatabaseStatus",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DatabaseStatus"
+                          }
+                        }
+                      },
+                      "description": "Database status information."
+                    }
+                  },
+                  "summary": "Get database status"
+                }
+              }
+            },
+            "security": [
+              {
+                "basicAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Database API base URL for an ORDS installation",
+                "url": "https://{host}/{contextRoot}/{database}/{schema}/_/db-api/stable",
+                "variables": {
+                  "contextRoot": {
+                    "default": "ords",
+                    "description": "Context root configured for ORDS."
+                  },
+                  "database": {
+                    "default": "mydb",
+                    "description": "Database name or alias in the ORDS URL."
+                  },
+                  "host": {
+                    "default": "localhost:8080",
+                    "description": "Replace with the hostname and port of your ORDS server."
+                  },
+                  "schema": {
+                    "default": "myschema",
+                    "description": "REST-enabled database schema in the ORDS URL."
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Oracle REST Data Services"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:41.936486+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/oracle-rest-data-services/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "255dcbf61bed11ae3b66306058385142e6c890684c8af9014ebf8ef28dd218e0",
+    "source_id": "oracle-rest-data-services",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/oracle-rest-data-services/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

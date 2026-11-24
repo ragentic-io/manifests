@@ -1,0 +1,4275 @@
+{
+  "a2ui": {},
+  "app": "bonusqr",
+  "graph": {
+    "edges": [
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/customers"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/device/heartbeat"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/device/pair"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/me"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/pos/config"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/pos/scan"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/pos/scan/{scan_id}"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/pos/scan/{scan_id}"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/pos/scan/{scan_id}/cancel"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/shop/bonus"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/shop/config"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/shop/earn"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/shop/lookup"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/shop/redeem"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/shop/reverse"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/shop/verify"
+      },
+      {
+        "from": "bonusqr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/shop/verify/confirm"
+      },
+      {
+        "from": "operation:get:/customers",
+        "kind": "RETURNS",
+        "to": "schema:User"
+      },
+      {
+        "from": "operation:post:/device/heartbeat",
+        "kind": "RETURNS",
+        "to": "schema:DeviceStatus"
+      },
+      {
+        "from": "operation:post:/device/pair",
+        "kind": "RETURNS",
+        "to": "schema:DevicePairing"
+      },
+      {
+        "from": "operation:get:/me",
+        "kind": "RETURNS",
+        "to": "schema:Me"
+      },
+      {
+        "from": "operation:get:/pos/config",
+        "kind": "RETURNS",
+        "to": "schema:PosConfig"
+      },
+      {
+        "from": "operation:post:/pos/scan",
+        "kind": "RETURNS",
+        "to": "schema:PosScanResult"
+      },
+      {
+        "from": "operation:get:/pos/scan/{scan_id}",
+        "kind": "RETURNS",
+        "to": "schema:PosScanResult"
+      },
+      {
+        "from": "operation:post:/pos/scan/{scan_id}",
+        "kind": "RETURNS",
+        "to": "schema:PosScanResult"
+      },
+      {
+        "from": "operation:post:/pos/scan/{scan_id}/cancel",
+        "kind": "RETURNS",
+        "to": "schema:PosScanResult"
+      },
+      {
+        "from": "operation:post:/shop/earn",
+        "kind": "RETURNS",
+        "to": "schema:ShopResult"
+      },
+      {
+        "from": "operation:post:/shop/lookup",
+        "kind": "RETURNS",
+        "to": "schema:ShopLookup"
+      },
+      {
+        "from": "operation:post:/shop/redeem",
+        "kind": "RETURNS",
+        "to": "schema:ShopResult"
+      },
+      {
+        "from": "schema:DevicePairing",
+        "kind": "REFERENCES",
+        "to": "schema:DeviceStatus"
+      },
+      {
+        "from": "schema:DeviceStatus",
+        "kind": "REFERENCES",
+        "to": "schema:DevicePlace"
+      },
+      {
+        "from": "schema:EarnedOffer",
+        "kind": "REFERENCES",
+        "to": "schema:Offer"
+      },
+      {
+        "from": "schema:Loyalty",
+        "kind": "REFERENCES",
+        "to": "schema:SpendingProgress"
+      },
+      {
+        "from": "schema:Loyalty",
+        "kind": "REFERENCES",
+        "to": "schema:StampCard"
+      },
+      {
+        "from": "schema:Loyalty",
+        "kind": "REFERENCES",
+        "to": "schema:VisitsProgress"
+      },
+      {
+        "from": "schema:PosConfig",
+        "kind": "REFERENCES",
+        "to": "schema:PosModule"
+      },
+      {
+        "from": "schema:PosConfig",
+        "kind": "REFERENCES",
+        "to": "schema:PosRewardDefinition"
+      },
+      {
+        "from": "schema:PosCustomer",
+        "kind": "REFERENCES",
+        "to": "schema:Loyalty"
+      },
+      {
+        "from": "schema:PosError",
+        "kind": "REFERENCES",
+        "to": "schema:PosReward"
+      },
+      {
+        "from": "schema:PosScanResult",
+        "kind": "REFERENCES",
+        "to": "schema:PosAction"
+      },
+      {
+        "from": "schema:PosScanResult",
+        "kind": "REFERENCES",
+        "to": "schema:PosCustomer"
+      },
+      {
+        "from": "schema:PosScanResult",
+        "kind": "REFERENCES",
+        "to": "schema:PosError"
+      },
+      {
+        "from": "schema:PosScanResult",
+        "kind": "REFERENCES",
+        "to": "schema:PosInput"
+      },
+      {
+        "from": "schema:PosScanResult",
+        "kind": "REFERENCES",
+        "to": "schema:PosMessage"
+      },
+      {
+        "from": "schema:PosScanResult",
+        "kind": "REFERENCES",
+        "to": "schema:PosReward"
+      },
+      {
+        "from": "schema:ShopLookup",
+        "kind": "REFERENCES",
+        "to": "schema:Loyalty"
+      },
+      {
+        "from": "schema:ShopLookup",
+        "kind": "REFERENCES",
+        "to": "schema:ShopReward"
+      },
+      {
+        "from": "schema:ShopResult",
+        "kind": "REFERENCES",
+        "to": "schema:Loyalty"
+      },
+      {
+        "from": "schema:ShopResult",
+        "kind": "REFERENCES",
+        "to": "schema:PosError"
+      },
+      {
+        "from": "schema:ShopResult",
+        "kind": "REFERENCES",
+        "to": "schema:PosMessage"
+      },
+      {
+        "from": "schema:ShopResult",
+        "kind": "REFERENCES",
+        "to": "schema:PosReward"
+      },
+      {
+        "from": "schema:User",
+        "kind": "REFERENCES",
+        "to": "schema:EarnedOffer"
+      },
+      {
+        "from": "schema:User",
+        "kind": "REFERENCES",
+        "to": "schema:Loyalty"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "bonusqr",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "This endpoint retrieves a list of customers associated with your spot, newest first.",
+        "id": "operation:get:/customers",
+        "kind": "operation",
+        "method": "get",
+        "name": "d8e52c8ea7783f02f20733272a46dc24",
+        "parameters": [
+          {
+            "description": "Items per page (1-200).",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1,
+            "description": "Page number (used only together with limit)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Id of a venue of the key's business (listed by `GET /me`) to list the customers of",
+            "in": "query",
+            "name": "venue",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/customers",
+        "pointer": "#/paths/~1customers/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "User[]"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Retrieve customers",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Sent by the device when it starts and then every `heartbeat_interval` seconds (five minutes).",
+        "id": "operation:post:/device/heartbeat",
+        "kind": "operation",
+        "method": "post",
+        "name": "0076f9330cc4abdfb314ad7a28881ebb",
+        "path": "/device/heartbeat",
+        "pointer": "#/paths/~1device~1heartbeat/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "DeviceStatus"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "403",
+            "type": "DeviceError"
+          },
+          {
+            "status": "422",
+            "type": "DeviceError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Report that the device is alive",
+        "tags": [
+          "Device"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Pairs the device by the five-digit code the manager got in the admin.",
+        "id": "operation:post:/device/pair",
+        "kind": "operation",
+        "method": "post",
+        "name": "fccdbe2a011130997eb788ee5245a624",
+        "path": "/device/pair",
+        "pointer": "#/paths/~1device~1pair/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "DevicePairing"
+          },
+          {
+            "status": "422",
+            "type": "DeviceError"
+          },
+          {
+            "status": "429",
+            "type": "DeviceError"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Pair a device",
+        "tags": [
+          "Device"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the account behind the bearer token and the business (client) it manages.",
+        "id": "operation:get:/me",
+        "kind": "operation",
+        "method": "get",
+        "name": "18e376124cfe105ca42a35dd2afa5160",
+        "path": "/me",
+        "pointer": "#/paths/~1me/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Me"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "403",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Test authentication / current account",
+        "tags": [
+          "Account"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the loyalty modules of the business behind the token.",
+        "id": "operation:get:/pos/config",
+        "kind": "operation",
+        "method": "get",
+        "name": "45916e7efb54c1799e8276b840c8e5c0",
+        "parameters": [
+          {
+            "description": "Id of a venue of the key's business to read the setup of (see \"Brands with several venues\")",
+            "in": "query",
+            "name": "venue",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/pos/config",
+        "pointer": "#/paths/~1pos~1config/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "PosConfig"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Loyalty setup of the business",
+        "tags": [
+          "POS"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Send a QR code that was scanned at the till and get back what the cash register has to do.",
+        "id": "operation:post:/pos/scan",
+        "kind": "operation",
+        "method": "post",
+        "name": "040e9f5e42efee08b54d675eadda260e",
+        "parameters": [
+          {
+            "description": "Repeat-safe identifier of this request.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/pos/scan",
+        "pointer": "#/paths/~1pos~1scan/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "PosScanResult"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "403"
+          },
+          {
+            "status": "422",
+            "type": "PosRequestError"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Scan a code at the till",
+        "tags": [
+          "POS"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a scan again, exactly as it was answered before.",
+        "id": "operation:get:/pos/scan/{scan_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "2d8abf7ca9ad183c9c908c39d5e86975",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "scan_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/pos/scan/{scan_id}",
+        "pointer": "#/paths/~1pos~1scan~1{scan_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "PosScanResult"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Look up a scan",
+        "tags": [
+          "POS"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Answer the `inputs` of a scan that came back with `input_required`.",
+        "id": "operation:post:/pos/scan/{scan_id}",
+        "kind": "operation",
+        "method": "post",
+        "name": "f07bda5ff55de060cac827ce69d289cb",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "scan_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/pos/scan/{scan_id}",
+        "pointer": "#/paths/~1pos~1scan~1{scan_id}/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "PosScanResult"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Answer a pending scan",
+        "tags": [
+          "POS"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Abandons a scan that is waiting for input, for example because the sale was cancelled at the till.",
+        "id": "operation:post:/pos/scan/{scan_id}/cancel",
+        "kind": "operation",
+        "method": "post",
+        "name": "759b1032cb7a032ab1d15615f44af93a",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "scan_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/pos/scan/{scan_id}/cancel",
+        "pointer": "#/paths/~1pos~1scan~1{scan_id}~1cancel/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "PosScanResult"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Abandon a pending scan",
+        "tags": [
+          "POS"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Points or credit for something that is not a sale - creating an account, writing a review, sharing a link, a birthday.",
+        "id": "operation:post:/shop/bonus",
+        "kind": "operation",
+        "method": "post",
+        "name": "d0c3b69dd549306896a87dfd84b6a705",
+        "path": "/shop/bonus",
+        "pointer": "#/paths/~1shop~1bonus/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "403"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "409",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Award a bonus",
+        "tags": [
+          "Online shop"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Everything the storefront needs to render its checkout box: whether the integration is on, the member discount, the prompt text the business configured and whi…",
+        "id": "operation:get:/shop/config",
+        "kind": "operation",
+        "method": "get",
+        "name": "b5af32dfa1e10697a967bcc89129f588",
+        "parameters": [
+          {
+            "description": "Address of the shop, shown to the business in its admin panel",
+            "in": "query",
+            "name": "site_url",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Version of the plugin, shown to the business in its admin panel",
+            "in": "query",
+            "name": "plugin_version",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/shop/config",
+        "pointer": "#/paths/~1shop~1config/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "403",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Shop configuration",
+        "tags": [
+          "Online shop"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The order is paid: the customer collects whatever the business runs - cashback, points, spending progress, stamps - exactly as if the order had been scanned at…",
+        "id": "operation:post:/shop/earn",
+        "kind": "operation",
+        "method": "post",
+        "name": "34a661aa93e8410122919131d831582f",
+        "path": "/shop/earn",
+        "pointer": "#/paths/~1shop~1earn/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "ShopResult"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "409",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Award loyalty for a paid order",
+        "tags": [
+          "Online shop"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Is this e-mail address a customer of the business, and what does the account hold?",
+        "id": "operation:post:/shop/lookup",
+        "kind": "operation",
+        "method": "post",
+        "name": "3dc51b2a65c52d3a86eb62550b745f61",
+        "path": "/shop/lookup",
+        "pointer": "#/paths/~1shop~1lookup/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "ShopLookup"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "403",
+            "type": "object"
+          },
+          {
+            "status": "409",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Look a customer up by e-mail",
+        "tags": [
+          "Online shop"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Spends something from the loyalty account.",
+        "id": "operation:post:/shop/redeem",
+        "kind": "operation",
+        "method": "post",
+        "name": "15788903225943e5d6b372bf51a7ed3d",
+        "path": "/shop/redeem",
+        "pointer": "#/paths/~1shop~1redeem/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "ShopResult"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "409",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Redeem credit, a reward or a points item",
+        "tags": [
+          "Online shop"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The order was refunded or cancelled.",
+        "id": "operation:post:/shop/reverse",
+        "kind": "operation",
+        "method": "post",
+        "name": "a3969198c3d47be29c20624a5fa0ad83",
+        "path": "/shop/reverse",
+        "pointer": "#/paths/~1shop~1reverse/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "409",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Take back the loyalty of a refunded order",
+        "tags": [
+          "Online shop"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "E-mails a six digit code to the address.",
+        "id": "operation:post:/shop/verify",
+        "kind": "operation",
+        "method": "post",
+        "name": "786679149cfdf5a3053b586265b68d94",
+        "path": "/shop/verify",
+        "pointer": "#/paths/~1shop~1verify/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "409",
+            "type": "object"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Send a verification code",
+        "tags": [
+          "Online shop"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Exchanges a correct code for a `token`.",
+        "id": "operation:post:/shop/verify/confirm",
+        "kind": "operation",
+        "method": "post",
+        "name": "f10efaf57662f0f9764f4ede92b1814c",
+        "path": "/shop/verify/confirm",
+        "pointer": "#/paths/~1shop~1verify~1confirm/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "object"
+          },
+          {
+            "status": "409",
+            "type": "object"
+          },
+          {
+            "status": "422"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Confirm a verification code",
+        "tags": [
+          "Online shop"
+        ]
+      },
+      {
+        "id": "schema:DeviceError",
+        "kind": "schema",
+        "name": "DeviceError",
+        "type": "object"
+      },
+      {
+        "id": "schema:DevicePairing",
+        "kind": "schema",
+        "name": "DevicePairing",
+        "type": "object|DeviceStatus"
+      },
+      {
+        "description": "The place the device scans at: the home of its employee, so a manager moving it in the staff list moves the device too",
+        "id": "schema:DevicePlace",
+        "kind": "schema",
+        "name": "DevicePlace",
+        "type": "object"
+      },
+      {
+        "id": "schema:DeviceStatus",
+        "kind": "schema",
+        "name": "DeviceStatus",
+        "type": "object"
+      },
+      {
+        "id": "schema:EarnedOffer",
+        "kind": "schema",
+        "name": "EarnedOffer",
+        "type": "object"
+      },
+      {
+        "description": "Where the customer stands in the loyalty program of this business, ready to be shown at the till or printed on a receipt.",
+        "id": "schema:Loyalty",
+        "kind": "schema",
+        "name": "Loyalty",
+        "type": "object"
+      },
+      {
+        "id": "schema:Me",
+        "kind": "schema",
+        "name": "Me",
+        "type": "object"
+      },
+      {
+        "id": "schema:Offer",
+        "kind": "schema",
+        "name": "Offer",
+        "type": "object"
+      },
+      {
+        "description": "Something the cash register has to do with the bill.",
+        "id": "schema:PosAction",
+        "kind": "schema",
+        "name": "PosAction",
+        "type": "object"
+      },
+      {
+        "description": "Loyalty setup of the business.",
+        "id": "schema:PosConfig",
+        "kind": "schema",
+        "name": "PosConfig",
+        "type": "object"
+      },
+      {
+        "id": "schema:PosCustomer",
+        "kind": "schema",
+        "name": "PosCustomer",
+        "type": "object"
+      },
+      {
+        "description": "Business outcome that the staff has to see.",
+        "id": "schema:PosError",
+        "kind": "schema",
+        "name": "PosError",
+        "type": "object"
+      },
+      {
+        "description": "One value the cash register has to supply.",
+        "id": "schema:PosInput",
+        "kind": "schema",
+        "name": "PosInput",
+        "type": "object"
+      },
+      {
+        "description": "A text for the staff display.",
+        "id": "schema:PosMessage",
+        "kind": "schema",
+        "name": "PosMessage",
+        "type": "object"
+      },
+      {
+        "id": "schema:PosModule",
+        "kind": "schema",
+        "name": "PosModule",
+        "type": "object"
+      },
+      {
+        "description": "The request itself was wrong (HTTP 4xx).",
+        "id": "schema:PosRequestError",
+        "kind": "schema",
+        "name": "PosRequestError",
+        "type": "object"
+      },
+      {
+        "id": "schema:PosReward",
+        "kind": "schema",
+        "name": "PosReward",
+        "type": "object"
+      },
+      {
+        "description": "One reward the business can hand out.",
+        "id": "schema:PosRewardDefinition",
+        "kind": "schema",
+        "name": "PosRewardDefinition",
+        "type": "object"
+      },
+      {
+        "description": "Result of a scan.",
+        "id": "schema:PosScanResult",
+        "kind": "schema",
+        "name": "PosScanResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:ShopLookup",
+        "kind": "schema",
+        "name": "ShopLookup",
+        "type": "object"
+      },
+      {
+        "id": "schema:ShopResult",
+        "kind": "schema",
+        "name": "ShopResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:ShopReward",
+        "kind": "schema",
+        "name": "ShopReward",
+        "type": "object"
+      },
+      {
+        "description": "Progress of the \"reward per spent sum\" module: the customer collects spendings and gets a reward for every `goal` spent",
+        "id": "schema:SpendingProgress",
+        "kind": "schema",
+        "name": "SpendingProgress",
+        "type": "object"
+      },
+      {
+        "description": "Progress of one stamp card: the customer collects items and gets a reward for every `goal` collected",
+        "id": "schema:StampCard",
+        "kind": "schema",
+        "name": "StampCard",
+        "type": "object"
+      },
+      {
+        "id": "schema:User",
+        "kind": "schema",
+        "name": "User",
+        "type": "object"
+      },
+      {
+        "description": "Progress of the \"every N-th visit\" module: the customer gets a reward for every `goal` visits (counted since the module was activated)",
+        "id": "schema:VisitsProgress",
+        "kind": "schema",
+        "name": "VisitsProgress",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "bonusqr"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://app.bonusqr.com/api",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "ClientNotFound": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "error": {
+                            "example": "Client not found",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "The account behind the token is not linked to a business"
+                },
+                "ShopDisabled": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "error": {
+                            "properties": {
+                              "code": {
+                                "example": "integration_disabled",
+                                "type": "string"
+                              },
+                              "message": {
+                                "example": "The online shop integration is switched off for this business.",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "The business has not switched the online shop integration on"
+                },
+                "Unauthenticated": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "message": {
+                            "example": "Unauthenticated.",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "Missing or invalid bearer token"
+                }
+              },
+              "schemas": {
+                "DeviceError": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "`invalid_code` - the code is wrong, used or expired (always the same answer); `too_many_attempts` - five wrong codes from this IP address within 15 minutes, wait `retry_after` seconds; `invalid_request` - a field is missing or malformed (`fields` says which); `not_a_device` - the key is not a device's",
+                          "enum": [
+                            "invalid_code",
+                            "too_many_attempts",
+                            "invalid_request",
+                            "not_a_device"
+                          ],
+                          "example": "invalid_code",
+                          "type": "string"
+                        },
+                        "fields": {
+                          "description": "With `invalid_request`: the field names and what is wrong with them",
+                          "example": {
+                            "hardware_id": [
+                              "The hardware id field is required."
+                            ]
+                          },
+                          "nullable": true,
+                          "type": "object"
+                        },
+                        "message": {
+                          "example": "This pairing code is not valid.",
+                          "type": "string"
+                        },
+                        "retry_after": {
+                          "description": "With `too_many_attempts`: seconds until the next try (also in the `Retry-After` header)",
+                          "example": 540,
+                          "nullable": true,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                },
+                "DevicePairing": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "token": {
+                          "description": "The API key, exactly as it goes after `Bearer `. Shown this once - store it.",
+                          "example": "412|kq0w1yJb7m2dXo9VhR3sTzPq8aLcN5eF4gU6iBvW",
+                          "type": "string"
+                        },
+                        "token_type": {
+                          "enum": [
+                            "Bearer"
+                          ],
+                          "example": "Bearer",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "token",
+                        "token_type"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "$ref": "#/components/schemas/DeviceStatus"
+                    }
+                  ]
+                },
+                "DevicePlace": {
+                  "description": "The place the device scans at: the home of its employee, so a manager moving it in the staff list moves the device too",
+                  "properties": {
+                    "id": {
+                      "description": "The API of the BonusQR counter device (App\\Services\\Devices): pairing by the code from the\nadmin, the only request a device makes without a key, and the heartbeat it sends with its key\nwhen it starts and every five minutes. Scanning goes through the POS API (PosController).",
+                      "example": 1562,
+                      "type": "integer"
+                    },
+                    "locale": {
+                      "description": "The language of the place - the POS API answers in it, and the device shows its own texts in it",
+                      "example": "sk",
+                      "type": "string"
+                    },
+                    "name": {
+                      "example": "Coffee House",
+                      "type": "string"
+                    },
+                    "timezone": {
+                      "description": "IANA time zone of the place",
+                      "example": "Europe/Bratislava",
+                      "type": "string"
+                    },
+                    "utc_offset": {
+                      "description": "Offset of that zone from UTC at `server_time`, in seconds - add it to UTC for the local time (it changes with summer time, read it again with every heartbeat)",
+                      "example": 7200,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "locale",
+                    "timezone",
+                    "utc_offset"
+                  ],
+                  "type": "object"
+                },
+                "DeviceStatus": {
+                  "properties": {
+                    "device": {
+                      "properties": {
+                        "id": {
+                          "example": 7,
+                          "type": "integer"
+                        },
+                        "name": {
+                          "description": "Its current name, as the manager set it",
+                          "example": "Zariadenie 1",
+                          "type": "string"
+                        },
+                        "terminal_id": {
+                          "description": "Send it as `terminal_id` with every `POST /pos/scan`",
+                          "example": "device-7",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "terminal_id"
+                      ],
+                      "type": "object"
+                    },
+                    "firmware_manifest": {
+                      "description": "Where the manifest of the current firmware lies",
+                      "example": "https://app.bonusqr.com/firmware/manifest.json",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "heartbeat_interval": {
+                      "description": "Seconds between two heartbeats",
+                      "example": 300,
+                      "type": "integer"
+                    },
+                    "place": {
+                      "$ref": "#/components/schemas/DevicePlace"
+                    },
+                    "server_time": {
+                      "description": "Current time of the server, UTC",
+                      "example": "2026-10-21T17:05:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "server_timestamp": {
+                      "description": "The same as a Unix timestamp",
+                      "example": 1792602300,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "device",
+                    "place",
+                    "server_time",
+                    "server_timestamp",
+                    "heartbeat_interval",
+                    "firmware_manifest"
+                  ],
+                  "type": "object"
+                },
+                "EarnedOffer": {
+                  "properties": {
+                    "created_at": {
+                      "example": "2024-01-01T08:30:00.000000Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "offer": {
+                      "$ref": "#/components/schemas/Offer"
+                    },
+                    "used": {
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "used",
+                    "created_at",
+                    "offer"
+                  ],
+                  "type": "object"
+                },
+                "Loyalty": {
+                  "description": "Where the customer stands in the loyalty program of this business, ready to be shown at the till or printed on a receipt.\n\n**Which fields are present depends on which modules the business has enabled:**\n\n| Enabled loyalty module | Fields |\n|---|---|\n| Cashback | `credit` |\n| Tiered cashback | `credit`, `level`, `cashback_percent`, `spent_until_next_level` |\n| Points | `points` |\n| Reward per spent sum | `spending` |\n| Every N-th visit | `visits_progress` |\n| Stamp card(s) | `stamp_cards` (one entry per card) |\n\nThe object is empty (`{}`) when the business runs only modules without per-customer state - a discount, an information text or an occasional coupon. Never assume a field is there: read what you get, and expect the set to change when the merchant edits their program.",
+                  "properties": {
+                    "cashback_percent": {
+                      "description": "Tiered cashback module: cashback percentage of the current level",
+                      "example": 7,
+                      "type": "integer"
+                    },
+                    "credit": {
+                      "description": "Cashback module: current credit balance the customer can pay with",
+                      "example": 12.5,
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "level": {
+                      "description": "Tiered cashback module: name of the level the customer is currently on",
+                      "example": "Silver",
+                      "type": "string"
+                    },
+                    "points": {
+                      "description": "Points module: current points balance",
+                      "example": 140,
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "spending": {
+                      "$ref": "#/components/schemas/SpendingProgress"
+                    },
+                    "spent_until_next_level": {
+                      "description": "Tiered cashback module: how much the customer still has to spend to reach the next level (null when already on the highest level)",
+                      "example": 350,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "stamp_cards": {
+                      "description": "Stamp card module: one entry per stamp card (a business can run several at once)",
+                      "items": {
+                        "$ref": "#/components/schemas/StampCard"
+                      },
+                      "type": "array"
+                    },
+                    "visits_progress": {
+                      "$ref": "#/components/schemas/VisitsProgress"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Me": {
+                  "properties": {
+                    "client": {
+                      "properties": {
+                        "id": {
+                          "example": 1562,
+                          "type": "integer"
+                        },
+                        "name": {
+                          "example": "Coffee House",
+                          "type": "string"
+                        },
+                        "slug": {
+                          "example": "12345",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "email": {
+                      "example": "manager@business.com",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": 927,
+                      "type": "integer"
+                    },
+                    "name": {
+                      "example": "John Manager",
+                      "type": "string"
+                    },
+                    "role": {
+                      "enum": [
+                        "manager",
+                        "employee"
+                      ],
+                      "example": "manager",
+                      "type": "string"
+                    },
+                    "venues": {
+                      "description": "The venues of the business (and of a brand the account owns or co-owns) a request with this key may name as `venue`; empty for a business without venues",
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "example": 2214,
+                            "type": "integer"
+                          },
+                          "name": {
+                            "example": "Coffee House Old Town",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "email",
+                    "role",
+                    "client"
+                  ],
+                  "type": "object"
+                },
+                "Offer": {
+                  "properties": {
+                    "headline": {
+                      "example": "Every 10-th T-Shirt",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "note": {
+                      "example": "Applies to all T-Shirts in the store",
+                      "type": "string"
+                    },
+                    "quantifier": {
+                      "description": "Represent amount of cashback, or number of items customer needs to collect to achieve the offer",
+                      "example": 10,
+                      "type": "integer"
+                    },
+                    "subheadline": {
+                      "example": "For Free",
+                      "type": "string"
+                    },
+                    "type": {
+                      "example": "cashback",
+                      "type": "string"
+                    },
+                    "valid_from": {
+                      "example": "09:00:00",
+                      "type": "string"
+                    },
+                    "valid_until": {
+                      "example": "18:00:00",
+                      "type": "string"
+                    },
+                    "validity_in_days": {
+                      "example": 30,
+                      "type": "integer"
+                    },
+                    "voucher_name": {
+                      "example": "Free T-Shirt",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "type",
+                    "valid_from",
+                    "valid_until",
+                    "headline",
+                    "subheadline",
+                    "quantifier",
+                    "voucher_name",
+                    "validity_in_days",
+                    "note"
+                  ],
+                  "type": "object"
+                },
+                "PosAction": {
+                  "description": "Something the cash register has to do with the bill.",
+                  "properties": {
+                    "action_id": {
+                      "description": "Stable id - apply each action only once",
+                      "example": "2c9f1d64-...-0",
+                      "type": "string"
+                    },
+                    "amount": {
+                      "example": 5,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "item": {
+                      "example": "Coffee",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "note": {
+                      "description": "Condition the business attached to the reward",
+                      "example": "Applies to all coffees",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "offer_id": {
+                      "description": "Loyalty module this action comes from - map it to your own product once via /pos/config",
+                      "example": 55,
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "offer_type": {
+                      "description": "Where the reward comes from - the same vocabulary as `source` in `GET /pos/config`, so both can be matched directly",
+                      "enum": [
+                        "stamp_card",
+                        "spending",
+                        "visits",
+                        "occasion",
+                        "referral",
+                        "review",
+                        "coupon",
+                        "product",
+                        "points_item"
+                      ],
+                      "example": "stamp_card",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "percent": {
+                      "example": 20,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "points_spent": {
+                      "example": 100,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "reason": {
+                      "description": "Ready-made text for the receipt or the staff display",
+                      "example": "Reward earned by this purchase",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "repeatable": {
+                      "description": "True for permanent benefits that are never used up",
+                      "example": false,
+                      "nullable": true,
+                      "type": "boolean"
+                    },
+                    "reward": {
+                      "description": "What the customer receives",
+                      "example": "Free Coffee",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "`apply_percent_discount` - reduce the bill by `percent`; `apply_amount_discount` - reduce the bill by `amount`; `redeem_voucher` - hand over `reward` (usually remove that item from the bill); `redeem_points_item` - hand over `item`",
+                      "enum": [
+                        "apply_percent_discount",
+                        "apply_amount_discount",
+                        "redeem_voucher",
+                        "redeem_points_item"
+                      ],
+                      "example": "redeem_voucher",
+                      "type": "string"
+                    },
+                    "unit": {
+                      "example": "EUR",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "voucher_id": {
+                      "example": 4021,
+                      "nullable": true,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "action_id",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                "PosConfig": {
+                  "description": "Loyalty setup of the business. Read it once when the integration is configured and map `offer_id` to your own products.",
+                  "properties": {
+                    "client": {
+                      "description": "The business the scans are made at: the one the key belongs to, or the venue the request named",
+                      "properties": {
+                        "id": {
+                          "example": 1562,
+                          "type": "integer"
+                        },
+                        "name": {
+                          "example": "Coffee House",
+                          "type": "string"
+                        },
+                        "timezone": {
+                          "description": "The clock the scans run on: the loyalty program's (the same as `programme.timezone`), which times the happy-hour windows and every visit - at a venue of a brand the brand's, whatever the venue's own setting",
+                          "example": "Europe/Bratislava",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "expected_inputs": {
+                      "description": "Input keys a loyalty card scan will ask for at this business",
+                      "example": [
+                        "bill_amount",
+                        "item_55"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "modules": {
+                      "items": {
+                        "$ref": "#/components/schemas/PosModule"
+                      },
+                      "type": "array"
+                    },
+                    "programme": {
+                      "description": "Whose loyalty program the modules below are: the business itself, or the brand a venue collects for",
+                      "properties": {
+                        "id": {
+                          "example": 1562,
+                          "type": "integer"
+                        },
+                        "name": {
+                          "example": "Coffee House",
+                          "type": "string"
+                        },
+                        "timezone": {
+                          "description": "The clock of the program: its happy-hour windows (`valid_from`/`valid_until`) and the times of its visits",
+                          "example": "Europe/Bratislava",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "rewards": {
+                      "description": "Every reward a customer of this business can present as a voucher. Decide once what each one does to a bill - see the description of this endpoint.",
+                      "items": {
+                        "$ref": "#/components/schemas/PosRewardDefinition"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PosCustomer": {
+                  "properties": {
+                    "id": {
+                      "example": 42,
+                      "type": "integer"
+                    },
+                    "loyalty": {
+                      "$ref": "#/components/schemas/Loyalty"
+                    },
+                    "name": {
+                      "example": "John Doe",
+                      "type": "string"
+                    },
+                    "visit_number": {
+                      "description": "How many times the customer has visited this business",
+                      "example": 12,
+                      "nullable": true,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PosError": {
+                  "description": "Business outcome that the staff has to see. It is returned with HTTP 200 and status `failed`.",
+                  "properties": {
+                    "available_credit": {
+                      "description": "With `insufficient_credit`",
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "available_points": {
+                      "description": "With `insufficient_points`",
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "code": {
+                      "description": "Stable identifier. New codes may be added, so treat an unknown code as \"show `message` to the staff\".",
+                      "enum": [
+                        "unrecognized_code",
+                        "customer_not_found",
+                        "voucher_not_found",
+                        "voucher_foreign_business",
+                        "voucher_already_used",
+                        "voucher_expired",
+                        "points_item_not_found",
+                        "insufficient_points",
+                        "insufficient_credit",
+                        "module_not_enabled",
+                        "scan_expired",
+                        "scan_not_pending",
+                        "missing_input",
+                        "invalid_input",
+                        "idempotency_key_reused"
+                      ],
+                      "example": "voucher_already_used",
+                      "type": "string"
+                    },
+                    "expired_at": {
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "item": {
+                      "description": "With `insufficient_points` - the reward the customer wanted",
+                      "example": "Free Coffee",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "message": {
+                      "description": "Ready-made text for the staff display, in the language of the business",
+                      "example": "This voucher has already been redeemed.",
+                      "type": "string"
+                    },
+                    "requested_amount": {
+                      "description": "With `insufficient_credit`",
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "required_points": {
+                      "description": "With `insufficient_points`",
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "used_at": {
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "voucher": {
+                      "description": "With `voucher_already_used` and `voucher_expired`",
+                      "nullable": true,
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/PosReward"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                },
+                "PosInput": {
+                  "description": "One value the cash register has to supply. Send it back under its `key`.",
+                  "properties": {
+                    "hint": {
+                      "example": "Total amount the customer is paying.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "item": {
+                      "description": "Name of the collected item",
+                      "example": "Coffee",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "key": {
+                      "description": "`bill_amount` (total the customer pays), `amount` (how much credit to use), `item_<offer_id>` (number of collected items)",
+                      "example": "bill_amount",
+                      "type": "string"
+                    },
+                    "label": {
+                      "description": "Ready-made label for the staff display",
+                      "example": "Bill amount",
+                      "type": "string"
+                    },
+                    "max": {
+                      "example": 1000,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "min": {
+                      "example": 0,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "modules": {
+                      "description": "Which loyalty modules this value feeds",
+                      "example": [
+                        "cashback",
+                        "points"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "offer_id": {
+                      "description": "Set for `item_<offer_id>` inputs",
+                      "example": 55,
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "required": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "type": {
+                      "enum": [
+                        "decimal",
+                        "integer"
+                      ],
+                      "example": "decimal",
+                      "type": "string"
+                    },
+                    "unit": {
+                      "example": "EUR",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "type",
+                    "label",
+                    "required"
+                  ],
+                  "type": "object"
+                },
+                "PosMessage": {
+                  "description": "A text for the staff display. `warning` asks the staff to do something with the bill, such as taking off a discount.",
+                  "properties": {
+                    "level": {
+                      "enum": [
+                        "success",
+                        "info",
+                        "warning",
+                        "error"
+                      ],
+                      "example": "success",
+                      "type": "string"
+                    },
+                    "lines": {
+                      "example": [
+                        "Visit: 12"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "title": {
+                      "example": "Visit recorded",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PosModule": {
+                  "properties": {
+                    "goal": {
+                      "description": "How much has to be collected for one reward",
+                      "example": 8,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "input_key": {
+                      "description": "Which input key this module needs at a scan",
+                      "example": "item_55",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "item": {
+                      "description": "What the customer collects on this stamp card, as the business named it. Match it to a product in your own catalogue and remember the pairing (your product id ↔ our `offer_id`) - it is what lets you count the items at a scan and recognise the reward later.",
+                      "example": "Coffee",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "items": {
+                      "description": "Rewards that can be redeemed for points",
+                      "items": {
+                        "properties": {
+                          "index": {
+                            "example": 0,
+                            "type": "integer"
+                          },
+                          "name": {
+                            "example": "Free Coffee",
+                            "type": "string"
+                          },
+                          "points": {
+                            "example": 100,
+                            "format": "float",
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "levels": {
+                      "description": "Tiered cashback levels",
+                      "items": {
+                        "properties": {
+                          "name": {
+                            "example": "SILVER",
+                            "type": "string"
+                          },
+                          "percent": {
+                            "example": 5,
+                            "format": "float",
+                            "type": "number"
+                          },
+                          "spent": {
+                            "description": "Amount to spend to leave this level",
+                            "example": 100,
+                            "format": "float",
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "note": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "offer_id": {
+                      "example": 55,
+                      "type": "integer"
+                    },
+                    "percent": {
+                      "description": "Cashback percentage or discount percentage",
+                      "example": 5,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "points_per_unit": {
+                      "example": 10,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "reward": {
+                      "example": "Free Coffee",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "stages": {
+                      "description": "Tiered stamp card: a coupon at every stage of the cycle, `at` counted from its start; `goal` is the length of the cycle, after which it starts again",
+                      "items": {
+                        "properties": {
+                          "at": {
+                            "example": 12,
+                            "type": "integer"
+                          },
+                          "reward": {
+                            "example": "Free Coffee",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "nullable": true,
+                      "type": "array"
+                    },
+                    "type": {
+                      "enum": [
+                        "cashback",
+                        "tiered_cashback",
+                        "points",
+                        "spending",
+                        "visits",
+                        "stamp_card",
+                        "discount",
+                        "info",
+                        "occasion",
+                        "referral"
+                      ],
+                      "example": "stamp_card",
+                      "type": "string"
+                    },
+                    "unit": {
+                      "example": "EUR",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "valid_from": {
+                      "example": "15:00:00",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "valid_until": {
+                      "example": "18:00:00",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "validity_in_days": {
+                      "example": 30,
+                      "nullable": true,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PosRequestError": {
+                  "description": "The request itself was wrong (HTTP 4xx). Not to be confused with a scan that `failed` - that one comes back with HTTP 200.",
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "enum": [
+                            "idempotency_key_reused"
+                          ],
+                          "example": "idempotency_key_reused",
+                          "type": "string"
+                        },
+                        "message": {
+                          "example": "This Idempotency-Key was already used with a different request body.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PosReward": {
+                  "properties": {
+                    "id": {
+                      "description": "Voucher id - the customer can also present it later as QR code \"o<id>\"",
+                      "example": 4021,
+                      "type": "integer"
+                    },
+                    "note": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "offer_id": {
+                      "example": 55,
+                      "type": "integer"
+                    },
+                    "offer_type": {
+                      "description": "Same vocabulary as `source` in `GET /pos/config`",
+                      "enum": [
+                        "stamp_card",
+                        "spending",
+                        "visits",
+                        "occasion",
+                        "referral",
+                        "review",
+                        "coupon",
+                        "product",
+                        "points_item"
+                      ],
+                      "example": "stamp_card",
+                      "type": "string"
+                    },
+                    "reward": {
+                      "example": "Free Coffee",
+                      "type": "string"
+                    },
+                    "valid_until": {
+                      "example": "2026-08-30",
+                      "format": "date",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PosRewardDefinition": {
+                  "description": "One reward the business can hand out. `name` is free text chosen by the business, so only you can decide what it means for a bill.",
+                  "properties": {
+                    "index": {
+                      "description": "For `points_item` rewards: position inside the points module",
+                      "example": 0,
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "name": {
+                      "description": "What the customer gets, as the business worded it",
+                      "example": "Free Coffee",
+                      "type": "string"
+                    },
+                    "note": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "offer_id": {
+                      "description": "Matches `offer_id` of the `redeem_voucher` / `redeem_points_item` action you will receive",
+                      "example": 55,
+                      "type": "integer"
+                    },
+                    "points": {
+                      "description": "For `points_item` rewards: what it costs the customer",
+                      "example": 100,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "source": {
+                      "description": "Where the reward comes from. `points_item` rewards share the `offer_id` of the points module and are told apart by `name`.",
+                      "enum": [
+                        "stamp_card",
+                        "spending",
+                        "visits",
+                        "occasion",
+                        "referral",
+                        "review",
+                        "coupon",
+                        "product",
+                        "points_item"
+                      ],
+                      "example": "stamp_card",
+                      "type": "string"
+                    },
+                    "stage": {
+                      "description": "For the rewards of a tiered stamp card (a `stamp_card` module with `stages`): which stage, from 1. Every stage shares the module's `offer_id`; the coupon you are shown names its stage in `reward`.",
+                      "example": 2,
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "subtype": {
+                      "description": "For `occasion` rewards: `onboarding`, `birth_day`, `valentine`, ...",
+                      "example": "onboarding",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "validity_in_days": {
+                      "example": 30,
+                      "nullable": true,
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PosScanResult": {
+                  "description": "Result of a scan. `status` tells the cash register what to do next.",
+                  "properties": {
+                    "actions": {
+                      "description": "What the cash register has to do with the bill. Apply every action exactly once - identify it by `action_id`, because an action announced in the `input_required` response is repeated in the final response.",
+                      "items": {
+                        "$ref": "#/components/schemas/PosAction"
+                      },
+                      "type": "array"
+                    },
+                    "code": {
+                      "description": "What the scanned code stands for - a `bq_…` token is echoed back as the value behind it",
+                      "example": "12345",
+                      "type": "string"
+                    },
+                    "customer": {
+                      "nullable": true,
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/PosCustomer"
+                        }
+                      ]
+                    },
+                    "error": {
+                      "nullable": true,
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/PosError"
+                        }
+                      ]
+                    },
+                    "expires_at": {
+                      "description": "Until when a scan with status `input_required` accepts its answer",
+                      "format": "date-time",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "inputs": {
+                      "description": "Values the cash register has to send back (only when status is `input_required`)",
+                      "items": {
+                        "$ref": "#/components/schemas/PosInput"
+                      },
+                      "type": "array"
+                    },
+                    "kind": {
+                      "description": "What was scanned: `customer` loyalty card, `voucher`, `credit_spend` (customer pays with credit) or `points_item`",
+                      "enum": [
+                        "customer",
+                        "voucher",
+                        "credit_spend",
+                        "points_item",
+                        "unknown"
+                      ],
+                      "example": "customer",
+                      "type": "string"
+                    },
+                    "messages": {
+                      "description": "Ready-made texts for the staff display, in the language of the business. Every action that asks something of the staff comes here in words too (a discount to take off already in the `input_required` response that asks for the bill), so a terminal that shows only `messages` - the BonusQR counter device - misses nothing.",
+                      "items": {
+                        "$ref": "#/components/schemas/PosMessage"
+                      },
+                      "type": "array"
+                    },
+                    "rewards_earned": {
+                      "description": "Rewards the customer earned with this scan. They are **not** handed over now - they become vouchers in the customer app, redeemed on a later visit. Like `actions`, a reward announced in the `input_required` response appears again in the final response; deduplicate by `id`.",
+                      "items": {
+                        "$ref": "#/components/schemas/PosReward"
+                      },
+                      "type": "array"
+                    },
+                    "scan_id": {
+                      "description": "Identifier of this scan, used to answer or to look it up again",
+                      "example": "2c9f1d64-6f7a-4c0a-9c2f-6a1b2c3d4e5f",
+                      "type": "string"
+                    },
+                    "status": {
+                      "description": "`completed` - nothing more to do; `input_required` - answer the `inputs` (if `error` is also present, the previous answer was refused and you can answer again); `failed` - show `error` to the staff and start over; `cancelled` - the scan was abandoned; `processing` - another request is applying this scan right now (only visible through `GET`, it is released automatically after two minutes)",
+                      "enum": [
+                        "completed",
+                        "input_required",
+                        "failed",
+                        "cancelled",
+                        "processing"
+                      ],
+                      "example": "completed",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "scan_id",
+                    "status",
+                    "code",
+                    "kind"
+                  ],
+                  "type": "object"
+                },
+                "ShopLookup": {
+                  "properties": {
+                    "customer": {
+                      "nullable": true,
+                      "properties": {
+                        "id": {
+                          "example": 4211,
+                          "type": "integer"
+                        },
+                        "name": {
+                          "example": "Jana Nováková",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "discount_percent": {
+                      "description": "The same discounts added up, for a shop that would rather show one line",
+                      "example": 10,
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "discounts": {
+                      "description": "Discount offers of the business that are running at this moment. Comes from its loyalty offer, not from a separate shop setting, so a happy hour applies online exactly when it applies at the counter - re-read it per order rather than caching it.",
+                      "items": {
+                        "properties": {
+                          "offer_id": {
+                            "example": 39,
+                            "type": "integer"
+                          },
+                          "percent": {
+                            "example": 10,
+                            "format": "float",
+                            "type": "number"
+                          },
+                          "reason": {
+                            "example": "Happy hour",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "loyalty": {
+                      "nullable": true,
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/Loyalty"
+                        }
+                      ]
+                    },
+                    "member": {
+                      "description": "Whether this e-mail belongs to a customer of the business",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "points_items": {
+                      "description": "The business points shop, with what this customer can already afford",
+                      "items": {
+                        "properties": {
+                          "affordable": {
+                            "example": true,
+                            "type": "boolean"
+                          },
+                          "index": {
+                            "example": 0,
+                            "type": "integer"
+                          },
+                          "name": {
+                            "example": "Main course",
+                            "type": "string"
+                          },
+                          "offer_id": {
+                            "example": 55,
+                            "type": "integer"
+                          },
+                          "points": {
+                            "example": 100,
+                            "format": "float",
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "rewards": {
+                      "description": "Unused rewards the customer could spend in this order",
+                      "items": {
+                        "$ref": "#/components/schemas/ShopReward"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ShopResult": {
+                  "properties": {
+                    "error": {
+                      "nullable": true,
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/PosError"
+                        }
+                      ]
+                    },
+                    "loyalty": {
+                      "$ref": "#/components/schemas/Loyalty"
+                    },
+                    "messages": {
+                      "items": {
+                        "$ref": "#/components/schemas/PosMessage"
+                      },
+                      "type": "array"
+                    },
+                    "ok": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "rewards_earned": {
+                      "items": {
+                        "$ref": "#/components/schemas/PosReward"
+                      },
+                      "type": "array"
+                    },
+                    "scan_id": {
+                      "description": "Same id the POS endpoints use, so the movement can be looked up later",
+                      "example": "0f1c6e2a-...",
+                      "type": "string"
+                    },
+                    "status": {
+                      "example": "completed",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ShopReward": {
+                  "properties": {
+                    "earned_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "headline": {
+                      "example": "10th coffee free",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": 151,
+                      "type": "integer"
+                    },
+                    "name": {
+                      "example": "Free coffee",
+                      "type": "string"
+                    },
+                    "type": {
+                      "example": "quantity",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SpendingProgress": {
+                  "description": "Progress of the \"reward per spent sum\" module: the customer collects spendings and gets a reward for every `goal` spent",
+                  "properties": {
+                    "collected": {
+                      "description": "Progress towards the next reward (total_spent modulo goal)",
+                      "example": 55,
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "goal": {
+                      "description": "Sum needed for one reward",
+                      "example": 100,
+                      "type": "integer"
+                    },
+                    "remaining": {
+                      "description": "How much is left to spend until the next reward",
+                      "example": 45,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "reward": {
+                      "description": "Name of the reward",
+                      "example": "Free Dessert",
+                      "type": "string"
+                    },
+                    "total_spent": {
+                      "description": "Sum the customer has spent in total",
+                      "example": 155,
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "unit": {
+                      "description": "Currency/unit label configured by the business",
+                      "example": "EUR",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "total_spent",
+                    "collected",
+                    "goal",
+                    "remaining",
+                    "unit",
+                    "reward"
+                  ],
+                  "type": "object"
+                },
+                "StampCard": {
+                  "description": "Progress of one stamp card: the customer collects items and gets a reward for every `goal` collected",
+                  "properties": {
+                    "collected": {
+                      "description": "Stamps on the current card (total_collected modulo goal)",
+                      "example": 3,
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "goal": {
+                      "description": "Stamps needed for one reward",
+                      "example": 8,
+                      "type": "integer"
+                    },
+                    "item": {
+                      "description": "Name of the collected item",
+                      "example": "Coffee",
+                      "type": "string"
+                    },
+                    "remaining": {
+                      "description": "Stamps left until the next reward",
+                      "example": 5,
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "reward": {
+                      "description": "Name of the reward",
+                      "example": "Free Coffee",
+                      "type": "string"
+                    },
+                    "stage": {
+                      "description": "Tiered stamp cards only: the stage the customer is collecting for, from 1 (`goal` and `reward` are that stage's, `collected` counts from the start of the cycle)",
+                      "example": 2,
+                      "type": "integer"
+                    },
+                    "stages": {
+                      "description": "Tiered stamp cards only: every stage of the cycle, ascending - after which item (`at`, counted from the start of the cycle) the customer gets which coupon (`reward`); after the last one the cycle starts again",
+                      "items": {
+                        "properties": {
+                          "at": {
+                            "example": 12,
+                            "type": "integer"
+                          },
+                          "reward": {
+                            "example": "Free Coffee",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total_collected": {
+                      "description": "Items the customer has collected in total",
+                      "example": 11,
+                      "format": "float",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "item",
+                    "total_collected",
+                    "collected",
+                    "goal",
+                    "remaining",
+                    "reward"
+                  ],
+                  "type": "object"
+                },
+                "User": {
+                  "properties": {
+                    "earned_offers": {
+                      "items": {
+                        "$ref": "#/components/schemas/EarnedOffer"
+                      },
+                      "type": "array"
+                    },
+                    "email": {
+                      "example": "joh***oe@gm***.com",
+                      "type": "string"
+                    },
+                    "id": {
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "loyalty": {
+                      "$ref": "#/components/schemas/Loyalty"
+                    },
+                    "name": {
+                      "example": "John Doe",
+                      "type": "string"
+                    },
+                    "visits_count": {
+                      "example": 12,
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "email",
+                    "loyalty",
+                    "earned_offers"
+                  ],
+                  "type": "object"
+                },
+                "VisitsProgress": {
+                  "description": "Progress of the \"every N-th visit\" module: the customer gets a reward for every `goal` visits (counted since the module was activated)",
+                  "properties": {
+                    "collected": {
+                      "description": "Visits collected on the current card",
+                      "example": 3,
+                      "type": "integer"
+                    },
+                    "goal": {
+                      "description": "Visits needed for one reward",
+                      "example": 10,
+                      "type": "integer"
+                    },
+                    "remaining": {
+                      "description": "Visits left until the next reward",
+                      "example": 7,
+                      "nullable": true,
+                      "type": "integer"
+                    },
+                    "reward": {
+                      "description": "Name of the reward",
+                      "example": "Free Pizza",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "collected",
+                    "goal",
+                    "remaining",
+                    "reward"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "description": "API token generated in your BonusQR account. Paste only the token itself - the \"Bearer\" prefix is added automatically.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "info@bonusqr.com",
+                "name": "Admin"
+              },
+              "description": "REST API for the BonusQR loyalty platform.\n\n**Point of sale integration:** if you build a cash register or POS system, start with the **POS** section below. Your terminal sends the QR code the customer presents and gets back what to do with the bill - no second device and no BonusQR app needed at the till.\n\n**Authentication:** every request needs a bearer token (`Authorization: Bearer <token>`). Tokens are issued per business account.\n\n**Conventions:** list endpoints return plain JSON arrays ordered newest first, each item has a unique integer `id` (polling/deduplication friendly, e.g. for Zapier triggers). Use `limit` and `page` query parameters for pagination. Timestamps are in the business' local timezone.\n\n**Rate limit:** 60 requests per minute, counted per account the key belongs to (not per token), answered with HTTP 429 when exceeded.",
+              "title": "BonusQR.com API Documentation",
+              "version": "2.0.0"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/customers": {
+                "get": {
+                  "description": "This endpoint retrieves a list of customers associated with your spot, newest first. Without `limit` the full list is returned - for polling integrations always pass `limit`.\n\nEach customer carries a `loyalty` object with their current loyalty metrics. **Which fields it contains depends on the loyalty modules your business has enabled** (the same rules that drive the customer app and the admin dashboard):\n\n| Enabled loyalty module | Fields in `loyalty` |\n|---|---|\n| Cashback | `credit` - current credit balance |\n| Tiered cashback | `credit` plus `level`, `cashback_percent`, `spent_until_next_level` |\n| Points | `points` - current points balance |\n| Reward per spent sum | `spending` - progress towards the reward |\n| Every N-th visit | `visits_progress` - progress towards the reward |\n| Stamp card(s) | `stamp_cards` - one entry per active card |\n\nModules without per-customer state (discount, happy hours, text info, special occasion coupons, referral) add nothing to `loyalty`. Rewards the customer has already earned are always listed in `earned_offers`, regardless of module.\n\n**Venues of a brand:** the customers belong to whoever runs the loyalty program. A key of the brand may name one of its venues that collect for it as `venue`: the list then holds the customers seen at that venue, `visits_count` counts their visits there, and `loyalty` and `earned_offers` are their standing in the brand's program, which every venue of the brand shares. The key of such a venue itself gets HTTP 403 here, as its manager does not see the brand's customers in the admin either.",
+                  "operationId": "d8e52c8ea7783f02f20733272a46dc24",
+                  "parameters": [
+                    {
+                      "description": "Items per page (1-200). Omit to return all customers.",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "maximum": 200,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Page number (used only together with limit)",
+                      "in": "query",
+                      "name": "page",
+                      "required": false,
+                      "schema": {
+                        "default": 1,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Id of a venue of the key's business (listed by `GET /me`) to list the customers of",
+                      "in": "query",
+                      "name": "venue",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/User"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "List of customers"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "description": "The account behind the token is not linked to a business, the key may not act at the venue named, or the business (or venue) collects for its brand, whose customers they are"
+                    }
+                  },
+                  "summary": "Retrieve customers",
+                  "tags": [
+                    "Customers"
+                  ]
+                }
+              },
+              "/device/heartbeat": {
+                "post": {
+                  "description": "Sent by the device when it starts and then every `heartbeat_interval` seconds (five minutes). The admin shows a device online while its last heartbeat is at most twelve minutes old. The answer carries what the device needs to show its own texts: its current name, its place, the place's language and time zone, and the time of the server.\n\n**HTTP 401** means the device was removed in the admin: forget the key and go back to pairing.",
+                  "operationId": "0076f9330cc4abdfb314ad7a28881ebb",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "firmware_version": {
+                              "description": "The firmware running now; left out, the last one stays",
+                              "example": "1.0.1",
+                              "maxLength": 50,
+                              "type": "string"
+                            },
+                            "wifi_rssi": {
+                              "description": "Wi-Fi signal strength in dBm",
+                              "example": -61,
+                              "maximum": 0,
+                              "minimum": -127,
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": false
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DeviceStatus"
+                          }
+                        }
+                      },
+                      "description": "Recorded"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DeviceError"
+                          }
+                        }
+                      },
+                      "description": "`not_a_device`: a key without the `device` ability, or one of an account that is no device"
+                    },
+                    "422": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DeviceError"
+                          }
+                        }
+                      },
+                      "description": "`invalid_request`"
+                    }
+                  },
+                  "summary": "Report that the device is alive",
+                  "tags": [
+                    "Device"
+                  ]
+                }
+              },
+              "/device/pair": {
+                "post": {
+                  "description": "Pairs the device by the five-digit code the manager got in the admin. A valid code is used up at once: the device becomes an employee of the code's place (named \"Zariadenie 1\", \"Zariadenie 2\", ... until the manager renames it) and gets its API key.\n\nThe same `hardware_id` paired before - after a firmware reinstall, say - loses that pairing first: one device has at most one live pairing, and its old key stops working.\n\nA wrong, used or expired code gets the same `invalid_code`. Five wrong codes from one IP address within 15 minutes, and further tries are refused with `too_many_attempts` until the oldest of them is 15 minutes old.",
+                  "operationId": "fccdbe2a011130997eb788ee5245a624",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "code": {
+                              "description": "The five digits, leading zeros included",
+                              "example": "04821",
+                              "pattern": "^[0-9]{5}$",
+                              "type": "string"
+                            },
+                            "firmware_version": {
+                              "example": "1.0.0",
+                              "maxLength": 50,
+                              "type": "string"
+                            },
+                            "hardware_id": {
+                              "description": "The MAC address of the device - letters, digits and `:` `-` `.` `_`, case does not matter",
+                              "example": "A0:B7:65:1C:2D:3E",
+                              "maxLength": 64,
+                              "type": "string"
+                            },
+                            "model": {
+                              "example": "waveshare-esp32-s3-touch-lcd-3.5",
+                              "maxLength": 100,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "hardware_id",
+                            "model",
+                            "firmware_version"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DevicePairing"
+                          }
+                        }
+                      },
+                      "description": "Paired"
+                    },
+                    "422": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DeviceError"
+                          }
+                        }
+                      },
+                      "description": "`invalid_code` or `invalid_request`"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DeviceError"
+                          }
+                        }
+                      },
+                      "description": "`too_many_attempts` (wait `retry_after` seconds). A 429 without a body of this shape is the general rate limit of the API: wait the `Retry-After` header."
+                    }
+                  },
+                  "security": [],
+                  "summary": "Pair a device",
+                  "tags": [
+                    "Device"
+                  ]
+                }
+              },
+              "/me": {
+                "get": {
+                  "description": "Returns the account behind the bearer token and the business (client) it manages. Use this endpoint to test credentials and label the connection in integration platforms like Zapier.\n\nA key acts at its business: the one it was made for. `venues` lists the venues below it - and below a brand the account owns or co-owns - where a request may act instead by naming one with the `venue` parameter (its id), for example a till at one of the brand's venues.",
+                  "operationId": "18e376124cfe105ca42a35dd2afa5160",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Me"
+                          }
+                        }
+                      },
+                      "description": "Authenticated account"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/ClientNotFound"
+                    }
+                  },
+                  "summary": "Test authentication / current account",
+                  "tags": [
+                    "Account"
+                  ]
+                }
+              },
+              "/pos/config": {
+                "get": {
+                  "description": "Returns the loyalty modules of the business behind the token.\n\nRead this endpoint when the integration is set up (and whenever the business changes its loyalty program). It tells you:\n* which inputs a loyalty card scan will ask for at this business (`expected_inputs`), so the cash register can send them right away and finish a scan in a single request,\n* which `offer_id` belongs to which reward, so you can map our rewards to your own products once and afterwards act on `offer_id` alone.\n\n### Mapping our stamp cards to your products\nA module of type `stamp_card` means the business rewards a specific item (\"every 8th coffee\"). Its `item` field carries the name the business gave that item, and its `input_key` is the key you will have to send at every loyalty card scan.\n\nStore the pairing **your product id ↔ our `offer_id`** wherever you keep your product catalogue - it is a one-time setup step per business, and everything afterwards refers to `offer_id` only:\n* at a scan you send `item_<offer_id>` = how many of that product are on the bill,\n* when a `redeem_voucher` action arrives with the same `offer_id`, you know exactly which product to hand over or zero out on the bill.\n\nA business can run several stamp cards at once, and it can change them - re-read this endpoint when the merchant edits their loyalty program.\n\n### Deciding what a voucher does to the bill\n`rewards` lists everything a customer of this business can present. A reward is only a **name the business chose** - \"Free Coffee\", \"10% Discount\", \"Dessert\" - so BonusQR cannot tell you whether to remove a line or take a percentage off. Decide it once per reward and store it next to your own products, the same way as the stamp cards:\n\n| you decide | what your till does when that `offer_id` arrives |\n|---|---|\n| free item | set one unit of that product to zero on the bill (or add it at price 0) |\n| percentage off | reduce the bill by that percentage |\n| amount off | reduce the bill by a fixed amount |\n| hand over manually | just show the name to the cashier |\n\nRewards earned from a `stamp_card`, `spending` or `visits` module are always a free item - their `name` is the item the business gives away - except on a tiered stamp card (a `stamp_card` with `stages`): its stages give different coupons of free text, listed one per `stage` under the `offer_id` of the module, and the voucher you are shown names its stage in `reward`. `occasion`, `coupon`, `referral` and `review` (a coupon for a Google review) rewards are free text and are the ones that really need a decision.\n\nA voucher can outlive the reward that created it, so if you receive an `offer_id` that is not in this list, fall back to showing `reward` to the cashier.",
+                  "operationId": "45916e7efb54c1799e8276b840c8e5c0",
+                  "parameters": [
+                    {
+                      "description": "Id of a venue of the key's business to read the setup of (see \"Brands with several venues\")",
+                      "in": "query",
+                      "name": "venue",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PosConfig"
+                          }
+                        }
+                      },
+                      "description": "Loyalty setup"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "description": "The account behind the token is not linked to a business, or the key may not act at the venue named"
+                    }
+                  },
+                  "summary": "Loyalty setup of the business",
+                  "tags": [
+                    "POS"
+                  ]
+                }
+              },
+              "/pos/scan": {
+                "post": {
+                  "description": "Send a QR code that was scanned at the till and get back what the cash register has to do.\n\n### The flow\n1. The cash register scans a code and posts it here.\n2. We answer either `completed` (everything is done) or `input_required` together with the `inputs` we still need - typically the bill amount.\n3. The cash register posts the answers to `POST /pos/scan/{scan_id}`.\n4. We answer `completed` with the final `actions`.\n\n**Steps 3 and 4 can be skipped.** The cash register usually knows the bill amount already, so it can send the answers together with the code in this very request and get `completed` straight away. Call `GET /pos/config` once to learn which inputs this business will ask for - they are listed there as `expected_inputs`.\n\nTo finish in one request you have to send **all** of them, otherwise you get `input_required` back and answer in step 3. In particular, a business can run several stamp cards, and each one has its own `item_<offer_id>` key: send **`0`** for the cards whose item is not on this bill, never leave the key out. Which of your products counts towards which card is the mapping you set up once from `GET /pos/config`.\n\n### Codes a customer can present\nNewer codes all look the same - a short token such as `bq_TMWK6JTTFV`. **Send whatever was scanned, exactly as it is**; we work out what it stands for. Older codes carry their meaning in the value itself and stay valid forever, because they are printed on wallet passes and screenshots:\n\n| Code | Meaning | Typically needs |\n|---|---|---|\n| `bq_…` | any of the four below | depends on what it stands for |\n| `12345` (digits only) | loyalty card of the customer | bill amount and/or number of items |\n| `o151` | a reward the customer earned | nothing |\n| `cb42` | the customer wants to pay with credit | the amount to use |\n| `i42/55/0` | the customer redeems a reward for points | nothing |\n\n`kind` in the reply tells you which of them it was, and `code` echoes the value it stands for - so a `bq_…` token comes back as e.g. `12345`. Tokens are not case sensitive, which matters if you ever let the staff type one in by hand.\n\n### What you get back\n`actions` is what the cash register has to do with the bill (apply a discount, hand over a free item, subtract an amount).\nApply every action exactly once, identified by `action_id`: an action that was already announced in the `input_required` response is repeated in the final response so that a cash register which only reads the last response still sees everything.\n\n`messages` are ready-made texts for the staff display and `customer.loyalty` holds the balances after the scan, ready to be printed on the receipt.\n\n### Failures\nAnything the staff has to see (expired voucher, not enough credit, unknown code) is returned with **HTTP 200** and `status: \"failed\"` plus an `error` object - it is a normal outcome at the till, not a broken request. HTTP 4xx means the request itself was wrong (bad token, malformed body, unknown scan id).\n\n### Repeated requests\nSend an `Idempotency-Key` header with a value of your choice. If the same key arrives again for the same business we return the stored result of the first request instead of scanning again - safe to retry after a network timeout. Reusing a key with a **different** body is refused with HTTP 422 `idempotency_key_reused`, so a corrected amount can never be answered with the old result. If a response is lost entirely, `GET /pos/scan/{scan_id}` returns it again.\n\n### Rewards the customer EARNS are not handed over now\nA reward completed by this purchase (the 10th coffee, a filled stamp card) is reported in `rewards_earned` and as a message - it is **not** an action. It lands in the customer's app as a voucher and is redeemed on a later visit, when the customer presents its `o<id>` code. Only then do you get a `redeem_voucher` action.\n\n### Good to know\n* Scanning the same customer again within 10 seconds counts as the same visit, so a double scan at the till does not inflate the statistics. On top of that, an **identical request** repeated within 10 seconds returns the first scan again instead of crediting the bill twice - a double tap costs nothing. A request with a different bill amount or item count is a new sale. For anything beyond that, send one `Idempotency-Key` per sale and reuse it when you retry.\n* The visit is recorded already at step 1, together with any reward that the visit itself completes (\"every 5th visit\"). Those are reported in the first response and stay valid even if you never answer. Everything that depends on the bill amount happens only when the scan reaches `completed`.\n* A redemption is final the moment we answer `completed`. If the sale is cancelled afterwards, the voucher stays redeemed and the credit stays spent - the business can hand it back from its BonusQR administration. Use `POST /pos/scan/{scan_id}/cancel` to drop a scan that is still waiting for input.\n* `error.code`, `status`, action `type` and module `type` are stable identifiers; `message`, `label`, `reason` and `item` are texts in the language of the business and may change - never parse them. New codes and types may be added: treat unknown ones as \"show the text to the staff\" so a terminal keeps working when a business enables a new loyalty module.\n* If an answer is refused (a wrong amount, for example) the scan stays `input_required` with an `error` next to the `inputs` - correct the value and answer again, no need to re-scan the customer.\n* Amounts are decimal numbers with at most two decimal places, in the currency the business works in.\n* Rate limit: 60 requests per minute, counted per account the key belongs to - so all tills of a business normally share one budget. Exceeding it answers HTTP 429; back off and let the sale continue.",
+                  "operationId": "040e9f5e42efee08b54d675eadda260e",
+                  "parameters": [
+                    {
+                      "description": "Repeat-safe identifier of this request. Reuse it when retrying the same sale, and use a new one for every new sale.",
+                      "in": "header",
+                      "name": "Idempotency-Key",
+                      "required": false,
+                      "schema": {
+                        "maxLength": 190,
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "additionalProperties": true,
+                          "properties": {
+                            "amount": {
+                              "description": "How much credit to use - only for a `cb...` code. May not exceed the available credit.",
+                              "example": 5,
+                              "format": "float",
+                              "type": "number"
+                            },
+                            "bill_amount": {
+                              "description": "Total the customer pays. Send it right away to finish the scan in one request. Maximum two decimal places; the upper limit is announced in `inputs[].max`.",
+                              "example": 12.5,
+                              "format": "float",
+                              "type": "number"
+                            },
+                            "code": {
+                              "description": "The scanned QR code value",
+                              "example": "12345",
+                              "maxLength": 190,
+                              "type": "string"
+                            },
+                            "item_55": {
+                              "description": "**Dynamic key.** `item_` followed by the offer id of a stamp card, e.g. `item_55` - the exact keys of a business are listed by `GET /pos/config` as `expected_inputs`. Whole numbers only.",
+                              "example": 2,
+                              "type": "integer"
+                            },
+                            "terminal_id": {
+                              "description": "Your own identifier of the till, stored with the scan",
+                              "example": "till-3",
+                              "maxLength": 190,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "venue": {
+                              "description": "Id of a venue of the key's business the till stands at (see \"Brands with several venues\"). Leave it out to scan at the business the key belongs to.",
+                              "example": 2214,
+                              "nullable": true,
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "code"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "completed": {
+                              "summary": "Loyalty card, bill amount sent along - finished in one request",
+                              "value": {
+                                "actions": [
+                                  {
+                                    "action_id": "2c9f1d64-6f7a-4c0a-9c2f-6a1b2c3d4e5f-0",
+                                    "offer_id": 15,
+                                    "percent": 10,
+                                    "reason": "Loyalty club members",
+                                    "type": "apply_percent_discount"
+                                  }
+                                ],
+                                "code": "12345",
+                                "customer": {
+                                  "id": 42,
+                                  "loyalty": {
+                                    "credit": 13.55,
+                                    "stamp_cards": [
+                                      {
+                                        "collected": 4,
+                                        "goal": 5,
+                                        "item": "Coffee",
+                                        "remaining": 1,
+                                        "reward": "Free Coffee",
+                                        "total_collected": 9
+                                      }
+                                    ]
+                                  },
+                                  "name": "John Doe",
+                                  "visit_number": 12
+                                },
+                                "kind": "customer",
+                                "messages": [
+                                  {
+                                    "level": "success",
+                                    "lines": [
+                                      "Visit: 12"
+                                    ],
+                                    "title": "Visit recorded"
+                                  },
+                                  {
+                                    "level": "warning",
+                                    "lines": [
+                                      "Take it off the bill.",
+                                      "Loyalty club members"
+                                    ],
+                                    "title": "Discount 10 %"
+                                  },
+                                  {
+                                    "level": "success",
+                                    "lines": [
+                                      "+1.25 (10%)"
+                                    ],
+                                    "title": "Credit"
+                                  }
+                                ],
+                                "rewards_earned": [],
+                                "scan_id": "2c9f1d64-6f7a-4c0a-9c2f-6a1b2c3d4e5f",
+                                "status": "completed"
+                              }
+                            },
+                            "failed": {
+                              "summary": "A normal outcome at the till - show the message to the staff",
+                              "value": {
+                                "actions": [],
+                                "code": "cb42",
+                                "customer": null,
+                                "error": {
+                                  "available_credit": 3.2,
+                                  "code": "insufficient_credit",
+                                  "message": "The customer does not have enough credit.",
+                                  "requested_amount": 10
+                                },
+                                "kind": "credit_spend",
+                                "messages": [],
+                                "rewards_earned": [],
+                                "scan_id": "7e5c3b21-0d9a-4b8c-9e7f-1a2b3c4d5e6f",
+                                "status": "failed"
+                              }
+                            },
+                            "input_required": {
+                              "summary": "Loyalty card, we still need the bill amount and the number of items",
+                              "value": {
+                                "actions": [],
+                                "code": "12345",
+                                "customer": {
+                                  "id": 42,
+                                  "loyalty": {
+                                    "credit": 12.3
+                                  },
+                                  "name": "John Doe",
+                                  "visit_number": 12
+                                },
+                                "expires_at": "2026-07-30T12:27:35.000000Z",
+                                "inputs": [
+                                  {
+                                    "key": "bill_amount",
+                                    "label": "Bill amount",
+                                    "max": 1000,
+                                    "min": 0,
+                                    "modules": [
+                                      "cashback"
+                                    ],
+                                    "required": true,
+                                    "type": "decimal",
+                                    "unit": "EUR"
+                                  },
+                                  {
+                                    "item": "Coffee",
+                                    "key": "item_55",
+                                    "label": "Number of Coffee",
+                                    "max": 50,
+                                    "min": 0,
+                                    "modules": [
+                                      "stamp_card"
+                                    ],
+                                    "offer_id": 55,
+                                    "required": true,
+                                    "type": "integer"
+                                  }
+                                ],
+                                "kind": "customer",
+                                "messages": [],
+                                "rewards_earned": [],
+                                "scan_id": "2c9f1d64-6f7a-4c0a-9c2f-6a1b2c3d4e5f",
+                                "status": "input_required"
+                              }
+                            },
+                            "voucher": {
+                              "summary": "The customer presented a reward - hand it over",
+                              "value": {
+                                "actions": [
+                                  {
+                                    "action_id": "9b1f2a77-1c3d-4e5f-8a9b-0c1d2e3f4a5b-0",
+                                    "note": "Applies to all coffees",
+                                    "offer_id": 55,
+                                    "offer_type": "quantity",
+                                    "reason": "Voucher presented by the customer",
+                                    "repeatable": false,
+                                    "reward": "Free Coffee",
+                                    "type": "redeem_voucher",
+                                    "voucher_id": 4021
+                                  }
+                                ],
+                                "code": "o4021",
+                                "customer": {
+                                  "id": 42,
+                                  "loyalty": {
+                                    "credit": 13.55
+                                  },
+                                  "name": "John Doe",
+                                  "visit_number": 12
+                                },
+                                "kind": "voucher",
+                                "messages": [
+                                  {
+                                    "level": "success",
+                                    "lines": [
+                                      "Free Coffee"
+                                    ],
+                                    "title": "Redeemed coupon"
+                                  }
+                                ],
+                                "rewards_earned": [],
+                                "scan_id": "9b1f2a77-1c3d-4e5f-8a9b-0c1d2e3f4a5b",
+                                "status": "completed"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/PosScanResult"
+                          }
+                        }
+                      },
+                      "description": "Scan result - check `status`"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "description": "The account behind the token is not linked to a business, or the key may not act at the venue named"
+                    },
+                    "422": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PosRequestError"
+                          }
+                        }
+                      },
+                      "description": "The request itself is invalid: either a Laravel validation error (`{\"message\": ..., \"errors\": {...}}`) when `code` is missing or too long, or `idempotency_key_reused` when the same `Idempotency-Key` arrives with a different body"
+                    },
+                    "429": {
+                      "description": "Rate limit exceeded (60 requests per minute, counted per account the key belongs to)"
+                    }
+                  },
+                  "summary": "Scan a code at the till",
+                  "tags": [
+                    "POS"
+                  ]
+                }
+              },
+              "/pos/scan/{scan_id}": {
+                "get": {
+                  "description": "Returns a scan again, exactly as it was answered before. Use it when a response was lost on the way to the till.",
+                  "operationId": "2d8abf7ca9ad183c9c908c39d5e86975",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "scan_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PosScanResult"
+                          }
+                        }
+                      },
+                      "description": "Scan result"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "404": {
+                      "description": "Unknown scan id"
+                    }
+                  },
+                  "summary": "Look up a scan",
+                  "tags": [
+                    "POS"
+                  ]
+                },
+                "post": {
+                  "description": "Answer the `inputs` of a scan that came back with `input_required`. Send **all** of them under their `key` in one request, for example `{\"bill_amount\": 12.50, \"item_55\": 2}` - a partial answer is refused with `missing_input` and the scan stays open.\n\nIf a value is refused the scan stays `input_required`: correct it and answer again, no need to re-scan the customer. Answering a scan that is already `completed` returns its stored result unchanged, so a retry after a lost response is safe.",
+                  "operationId": "f07bda5ff55de060cac827ce69d289cb",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "scan_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "amount": {
+                              "example": 5,
+                              "format": "float",
+                              "type": "number"
+                            },
+                            "bill_amount": {
+                              "example": 12.5,
+                              "format": "float",
+                              "type": "number"
+                            },
+                            "item_55": {
+                              "example": 2,
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PosScanResult"
+                          }
+                        }
+                      },
+                      "description": "Final scan result"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "404": {
+                      "description": "Unknown scan id"
+                    }
+                  },
+                  "summary": "Answer a pending scan",
+                  "tags": [
+                    "POS"
+                  ]
+                }
+              },
+              "/pos/scan/{scan_id}/cancel": {
+                "post": {
+                  "description": "Abandons a scan that is waiting for input, for example because the sale was cancelled at the till. Nothing the customer already collected is taken back - a scan that is already `completed` cannot be cancelled.",
+                  "operationId": "759b1032cb7a032ab1d15615f44af93a",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "scan_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PosScanResult"
+                          }
+                        }
+                      },
+                      "description": "Scan result"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "404": {
+                      "description": "Unknown scan id"
+                    }
+                  },
+                  "summary": "Abandon a pending scan",
+                  "tags": [
+                    "POS"
+                  ]
+                }
+              },
+              "/shop/bonus": {
+                "post": {
+                  "description": "Points or credit for something that is not a sale - creating an account, writing a review, sharing a link, a birthday. Pass a `reference` you can reproduce (for example `review-8842`) and the same bonus will never be paid twice.\n\nRecorded as a manual adjustment, the same way a manager adding points by hand is, so it does not pretend to be a visit to the shop.",
+                  "operationId": "d0c3b69dd549306896a87dfd84b6a705",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "email": {
+                              "example": "jana@example.com",
+                              "format": "email",
+                              "type": "string"
+                            },
+                            "module": {
+                              "enum": [
+                                "points",
+                                "credit"
+                              ],
+                              "example": "points",
+                              "type": "string"
+                            },
+                            "reason": {
+                              "description": "Shown to the business in its history",
+                              "example": "Product review",
+                              "type": "string"
+                            },
+                            "reference": {
+                              "description": "Your id for this bonus - makes it payable only once",
+                              "example": "review-8842",
+                              "type": "string"
+                            },
+                            "value": {
+                              "description": "Points, or amount of credit",
+                              "example": 50,
+                              "format": "float",
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "email",
+                            "module",
+                            "value"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "awarded": {
+                                "example": 50,
+                                "format": "float",
+                                "type": "number"
+                              },
+                              "duplicate": {
+                                "description": "Present when this reference was already paid",
+                                "example": false,
+                                "type": "boolean"
+                              },
+                              "loyalty": {
+                                "$ref": "#/components/schemas/Loyalty"
+                              },
+                              "ok": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bonus awarded"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "description": "`programme_of_brand`: the business (or the venue named) collects for its brand, which awards the bonuses of its loyalty program - use the brand's key"
+                    },
+                    "404": {
+                      "description": "The e-mail is not a customer of this business"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/ShopDisabled"
+                    }
+                  },
+                  "summary": "Award a bonus",
+                  "tags": [
+                    "Online shop"
+                  ]
+                }
+              },
+              "/shop/config": {
+                "get": {
+                  "description": "Everything the storefront needs to render its checkout box: whether the integration is on, the member discount, the prompt text the business configured and which loyalty modules are running. Call it when the plugin settings page opens and cache it.",
+                  "operationId": "b5af32dfa1e10697a967bcc89129f588",
+                  "parameters": [
+                    {
+                      "description": "Address of the shop, shown to the business in its admin panel",
+                      "in": "query",
+                      "name": "site_url",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Version of the plugin, shown to the business in its admin panel",
+                      "in": "query",
+                      "name": "plugin_version",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "business": {
+                                "description": "Where the orders count: the business the key belongs to, or the venue the request named",
+                                "properties": {
+                                  "id": {
+                                    "example": 118,
+                                    "type": "integer"
+                                  },
+                                  "name": {
+                                    "example": "Café Jelinek",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "discounts": {
+                                "description": "Discount offers running at this moment, straight from the business loyalty offer",
+                                "items": {
+                                  "properties": {
+                                    "offer_id": {
+                                      "example": 39,
+                                      "type": "integer"
+                                    },
+                                    "percent": {
+                                      "example": 10,
+                                      "format": "float",
+                                      "type": "number"
+                                    },
+                                    "reason": {
+                                      "example": "Happy hour",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "earn_enabled": {
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "enabled": {
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "member_discount": {
+                                "description": "The same discounts added up",
+                                "example": 10,
+                                "format": "float",
+                                "type": "number"
+                              },
+                              "modules": {
+                                "description": "Loyalty modules the business runs",
+                                "example": [
+                                  "cashback",
+                                  "points"
+                                ],
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "programme": {
+                                "description": "Whose loyalty program the orders go into: the business itself, or the brand a venue collects for",
+                                "properties": {
+                                  "id": {
+                                    "example": 118,
+                                    "type": "integer"
+                                  },
+                                  "name": {
+                                    "example": "Café Jelinek",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "redeem_enabled": {
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "redeemable": {
+                                "description": "What the business can hand out, so the shop can map each to a value in its own catalogue",
+                                "properties": {
+                                  "points_items": {
+                                    "items": {
+                                      "properties": {
+                                        "index": {
+                                          "example": 0,
+                                          "type": "integer"
+                                        },
+                                        "name": {
+                                          "example": "Main course",
+                                          "type": "string"
+                                        },
+                                        "offer_id": {
+                                          "example": 61,
+                                          "type": "integer"
+                                        },
+                                        "points": {
+                                          "example": 100,
+                                          "format": "float",
+                                          "type": "number"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "vouchers": {
+                                    "items": {
+                                      "properties": {
+                                        "name": {
+                                          "example": "Free coffee",
+                                          "type": "string"
+                                        },
+                                        "offer_id": {
+                                          "example": 55,
+                                          "type": "integer"
+                                        },
+                                        "type": {
+                                          "example": "quantity",
+                                          "type": "string"
+                                        }
+                                      },
+                                      "type": "object"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "stamp_cards": {
+                                "description": "Stamp cards, so the shop can map its products onto them",
+                                "items": {
+                                  "properties": {
+                                    "goal": {
+                                      "example": 10,
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "example": "Coffee",
+                                      "type": "string"
+                                    },
+                                    "offer_id": {
+                                      "example": 55,
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Shop configuration"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/ClientNotFound"
+                    }
+                  },
+                  "summary": "Shop configuration",
+                  "tags": [
+                    "Online shop"
+                  ]
+                }
+              },
+              "/shop/earn": {
+                "post": {
+                  "description": "The order is paid: the customer collects whatever the business runs - cashback, points, spending progress, stamps - exactly as if the order had been scanned at the counter.\n\nSend `items` when the business runs stamp cards and your products map onto them: `{\"55\": 2}` means two of the item counted by card #55. Cards you do not mention simply collect nothing.\n\nRepeating the same `order_ref` returns the first result instead of collecting twice.",
+                  "operationId": "34a661aa93e8410122919131d831582f",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "amount": {
+                              "description": "Order total that should count towards loyalty",
+                              "example": 24.9,
+                              "format": "float",
+                              "type": "number"
+                            },
+                            "email": {
+                              "example": "jana@example.com",
+                              "format": "email",
+                              "type": "string"
+                            },
+                            "items": {
+                              "description": "Stamp card offer id to quantity",
+                              "example": {
+                                "55": 2
+                              },
+                              "type": "object"
+                            },
+                            "order_ref": {
+                              "description": "Your order id - makes the call idempotent and lets a refund find it",
+                              "example": "10241",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "email",
+                            "amount"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ShopResult"
+                          }
+                        }
+                      },
+                      "description": "What the customer collected"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "404": {
+                      "description": "The e-mail is not a customer of this business"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/ShopDisabled"
+                    }
+                  },
+                  "summary": "Award loyalty for a paid order",
+                  "tags": [
+                    "Online shop"
+                  ]
+                }
+              },
+              "/shop/lookup": {
+                "post": {
+                  "description": "Is this e-mail address a customer of the business, and what does the account hold? Safe to call as the customer types - it never changes anything.",
+                  "operationId": "3dc51b2a65c52d3a86eb62550b745f61",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "email": {
+                              "example": "jana@example.com",
+                              "format": "email",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "email"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ShopLookup"
+                          }
+                        }
+                      },
+                      "description": "Membership and balances"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/ClientNotFound"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/ShopDisabled"
+                    }
+                  },
+                  "summary": "Look a customer up by e-mail",
+                  "tags": [
+                    "Online shop"
+                  ]
+                }
+              },
+              "/shop/redeem": {
+                "post": {
+                  "description": "Spends something from the loyalty account. Needs the `token` from `POST /shop/verify/confirm` - an e-mail address alone is never enough to spend.\n\n- `type: \"credit\"` pays part of the order with cashback credit; needs `amount`.\n- `type: \"reward\"` uses a reward the customer already owns; needs `reward_id` from `rewards` in the lookup.\n- `type: \"points_item\"` buys an item from the business points shop; needs `offer_id` and `item_index` from `points_items` in the lookup.",
+                  "operationId": "15788903225943e5d6b372bf51a7ed3d",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "amount": {
+                              "description": "Required for `credit`",
+                              "example": 5,
+                              "format": "float",
+                              "type": "number"
+                            },
+                            "item_index": {
+                              "description": "Required for `points_item`",
+                              "example": 0,
+                              "type": "integer"
+                            },
+                            "offer_id": {
+                              "description": "Required for `points_item`",
+                              "example": 55,
+                              "type": "integer"
+                            },
+                            "order_ref": {
+                              "example": "10241",
+                              "type": "string"
+                            },
+                            "reward_id": {
+                              "description": "Required for `reward`",
+                              "example": 151,
+                              "type": "integer"
+                            },
+                            "token": {
+                              "example": "nR7...",
+                              "type": "string"
+                            },
+                            "type": {
+                              "enum": [
+                                "credit",
+                                "reward",
+                                "points_item"
+                              ],
+                              "example": "credit",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "token",
+                            "type"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ShopResult"
+                          }
+                        }
+                      },
+                      "description": "Result of the redemption"
+                    },
+                    "401": {
+                      "description": "Missing, expired or already spent token (`invalid_token`)"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/ShopDisabled"
+                    }
+                  },
+                  "summary": "Redeem credit, a reward or a points item",
+                  "tags": [
+                    "Online shop"
+                  ]
+                }
+              },
+              "/shop/reverse": {
+                "post": {
+                  "description": "The order was refunded or cancelled. Every movement it created is written back, and any reward it handed out is revoked while it is still unused. Calling it twice for the same order is safe.",
+                  "operationId": "a3969198c3d47be29c20624a5fa0ad83",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "order_ref": {
+                              "example": "10241",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "order_ref"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "loyalty": {
+                                "$ref": "#/components/schemas/Loyalty"
+                              },
+                              "ok": {
+                                "example": true,
+                                "type": "boolean"
+                              },
+                              "reversed_movements": {
+                                "example": 2,
+                                "type": "integer"
+                              },
+                              "revoked_rewards": {
+                                "example": 0,
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "What was taken back"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "404": {
+                      "description": "No loyalty was ever awarded for that order"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/ShopDisabled"
+                    }
+                  },
+                  "summary": "Take back the loyalty of a refunded order",
+                  "tags": [
+                    "Online shop"
+                  ]
+                }
+              },
+              "/shop/verify": {
+                "post": {
+                  "description": "E-mails a six digit code to the address. Always answers the same way whether or not the address belongs to a customer, so it cannot be used to find out who shops where.",
+                  "operationId": "786679149cfdf5a3053b586265b68d94",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "email": {
+                              "example": "jana@example.com",
+                              "format": "email",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "email"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "expires_in": {
+                                "description": "Seconds the code stays valid",
+                                "example": 900,
+                                "type": "integer"
+                              },
+                              "sent": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Code sent (if the address is a member)"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/ShopDisabled"
+                    },
+                    "429": {
+                      "description": "Too many codes requested for this address"
+                    }
+                  },
+                  "summary": "Send a verification code",
+                  "tags": [
+                    "Online shop"
+                  ]
+                }
+              },
+              "/shop/verify/confirm": {
+                "post": {
+                  "description": "Exchanges a correct code for a `token`. Hand that token to `POST /shop/redeem`; it is good for one hour and is spent by the redemption that uses it.",
+                  "operationId": "f10efaf57662f0f9764f4ede92b1814c",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "code": {
+                              "example": "481920",
+                              "type": "string"
+                            },
+                            "email": {
+                              "example": "jana@example.com",
+                              "format": "email",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "email",
+                            "code"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "expires_in": {
+                                "example": 3600,
+                                "type": "integer"
+                              },
+                              "loyalty": {
+                                "$ref": "#/components/schemas/Loyalty"
+                              },
+                              "rewards": {
+                                "items": {
+                                  "$ref": "#/components/schemas/ShopReward"
+                                },
+                                "type": "array"
+                              },
+                              "token": {
+                                "example": "nR7...",
+                                "type": "string"
+                              },
+                              "verified": {
+                                "example": true,
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Verified, token issued"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "409": {
+                      "$ref": "#/components/responses/ShopDisabled"
+                    },
+                    "422": {
+                      "description": "Wrong, expired or exhausted code (`invalid_code`, `code_expired`, `too_many_attempts`)"
+                    }
+                  },
+                  "summary": "Confirm a verification code",
+                  "tags": [
+                    "Online shop"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "BonusQR API Server",
+                "url": "https://app.bonusqr.com/api"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Authentication test and account info",
+                "name": "Account"
+              },
+              {
+                "description": "Operations related to customers",
+                "name": "Customers"
+              },
+              {
+                "description": "The BonusQR counter device: a scanner with a camera and a touch screen that a business pairs with one of its places. The full contract, firmware updates included, is in `docs/device-api.md` of the app.\n\n### Pairing\nThe manager opens **Rozšírenia a integrácie → Zariadenia → Pridať zariadenie** in the admin and gets a five-digit code, valid for one hour. The device sends it to `POST /device/pair` and receives its API key. A device knows nothing else about the business: the code decides the place.\n\n### The key\nThe key is a bearer token (`Authorization: Bearer <token>`) of the employee the device is. It never expires and has one ability, `device`: it opens `POST /device/heartbeat` and the scan endpoints of the POS API (`POST /pos/scan`, `POST /pos/scan/{scan_id}`, `GET /pos/scan/{scan_id}`, `POST /pos/scan/{scan_id}/cancel`) - nothing else, so a key read out of a device on the counter reaches no customer list. Scans act at the device's place; send `terminal_id` and an `Idempotency-Key` with every scan.\n\n### Removal\nA device is unpaired only from the admin. From that moment every request with its key is answered **HTTP 401**: forget the key and show the pairing screen again.\n\n### Errors\nEvery error of these two endpoints is `{\"error\": {\"code\": ..., \"message\": ...}}` - `code` is a stable identifier to show your own text for, `message` English for the log. Always send `Accept: application/json`.",
+                "name": "Device"
+              },
+              {
+                "description": "Scan a customer code at the till and get back what the cash register has to do.\n\nA working reference cash register - products, bill, camera scanner and every call below - is available at **[/POS/test.php](/POS/test.php)**. It is the shortest way to see the whole conversation before writing any code.\n\n### Getting a key\nEach business has its own API key, and a key always belongs to exactly one business - `GET /me` tells you which. Keys are issued by BonusQR: ask the merchant to request one, or write to info@bonusqr.com. There is nothing to register and no OAuth step.\n\n### Building the integration, in order\n1. **Connect.** Store the key, call `GET /me` to verify it and to show the merchant which business it opened.\n2. **Set up once.** Call `GET /pos/config` and let the merchant map our loyalty program onto their own catalogue: which product counts on which stamp card, and what each voucher in `rewards` does to a bill. Repeat this whenever they change their program.\n3. **Scan.** At the till, send the scanned code to `POST /pos/scan` and act on `actions`.\n\n### When to scan\nScan **at the moment of payment**, once the bill is final. A scan takes effect immediately: the visit is recorded, points and credit are added, a presented voucher is used up. There is no undo, so scanning early and then having the sale cancelled leaves the customer credited (the merchant can correct it from their BonusQR administration). While a scan is still waiting for its answer you can drop it with `POST /pos/scan/{scan_id}/cancel`.\n\n### Which amount to send\n`bill_amount` is what the customer actually pays - the total **after** your own discounts and after any discount we asked you to apply. Cashback, points and the \"reward per spent sum\" card are all calculated from that number, and the merchant sees it in their statistics, so it should match the receipt.\n\n**Careful with the discount module.** If the business runs a timed discount (happy hour), you only learn about it *from the scan response* - it arrives as an `apply_percent_discount` action, and in words as a `warning` in `messages` for a till that only shows texts. If you sent `bill_amount` in the same request, that amount was still the undiscounted one. So:\n\n* business has **no** `discount` module → send the code and the bill together, one request, done;\n* business **has** a `discount` module → send the code alone first, apply the discount you get back, then answer with the reduced total.\n\n`GET /pos/config` tells you which of the two applies, so this is a decision you make once per merchant, not per sale.\n\n### Amounts and currency\nAmounts are plain decimal numbers with at most two decimal places, always in the currency the business already works in - we do not return a currency code, and we never convert. The `unit` you see on a spending module is only a label the merchant typed (\"EUR\", \"Kreditov\"), fit for printing next to a number, not for parsing.\n\n### If we are slow or unreachable\n**A loyalty problem must never stop a customer paying.** Give the call a short timeout (5 seconds is plenty), and on a timeout, a network error or a `5xx`, let the sale go through and tell the cashier that loyalty could not be reached. The same goes for a `429`: back off, do not block the till.\n\nThere is no offline queue and no way to send a scan afterwards - a scan that never arrived simply did not happen, and the customer can be credited by the merchant from their BonusQR administration. That is deliberate: replaying old bills hours later would credit customers twice.\n\nThe one case worth retrying is an answer whose reply you lost: repeat `POST /pos/scan/{scan_id}` with the same values, or read the outcome with `GET /pos/scan/{scan_id}` - both return the stored result instead of doing the work again.\n\n### Handling customer data\nA scan returns the customer's `id` and `name`, and their balances. Keep the `id` if you want to recognise a returning customer - it is stable and means nothing outside BonusQR. Everything else is personal data belonging to the merchant's customer, so show it on the till and on the receipt, but do not build your own profile of it and do not keep the balances: they change with every purchase, in the app and on other tills, so read them from the scan reply instead of caching them.\n\n### Brands with several venues\nA key acts at the business it belongs to. When that business is a venue collecting for its brand, the scan works on the brand's loyalty program - the same balances, vouchers and points at every venue of the brand - and the brand sees which venue it happened at.\n\nA key of the brand (or of a business with venues below it) may act at one of those venues instead: send its id as `venue` (in the query or in the body) with `GET /pos/config` and `POST /pos/scan`. `GET /me` lists the venues a key may name. A venue outside the key's business is refused with HTTP 403. A scan stays at the venue it was started at, so answering, reading or cancelling it needs no `venue`.\n\n### The BonusQR counter device\nThe scanner BonusQR puts on the counter is a till like any other: its key (see the **Device** section) may call `POST /pos/scan` and the three endpoints of a scan, nothing else - not `GET /pos/config`, `GET /me` or `GET /customers`. It acts as an employee of its place and shows exactly what you get here: `customer.name`, the `inputs` with their labels and limits, `messages` and `error.message`.\n\n### Trying it out\nEvery code can also be typed instead of scanned, which is the easiest way to test: a customer id on its own (`12345`) is their loyalty card, `o<id>` is a voucher they earned, `cb<id>` pays with credit and `i<user>/<offer>/<index>` spends points. The customer finds all of them in their BonusQR app.",
+                "name": "POS"
+              },
+              {
+                "description": "Lets an online shop - the BonusQR plugin for WooCommerce, or any other storefront - use the same loyalty programme the business runs in its physical shop.\n\n**The flow at a checkout**\n\n1. `POST /shop/lookup` with the e-mail the customer typed. The answer says whether they are a member, what their balances are, which rewards they could spend and what member discount to apply.\n2. To spend anything, the address has to be proven: `POST /shop/verify` e-mails a six digit code, `POST /shop/verify/confirm` exchanges the code for a short lived `token`.\n3. When the order is paid, `POST /shop/earn` with the order total. The customer collects exactly what they would have collected at the counter.\n4. `POST /shop/redeem` (with the `token`) pays part of an order with cashback credit or uses a reward the customer already owns.\n5. `POST /shop/reverse` when the order is refunded or cancelled - the movements that order created are taken back.\n\n**Good to know**\n\n- Every call needs the same bearer token as the rest of the API. It belongs on your server, never in the browser.\n- An online order is recorded exactly like a scan at the counter, so it also counts as a visit for the \"every N-th visit\" module.\n- `POST /shop/earn` is idempotent per `order_ref`: a shop that fires its webhook twice still collects the bill once.\n- The integration has to be switched on by the business under **Rozšírenia & Integrácie -> WooCommerce**; until then every endpoint answers `409 integration_disabled`.\n- At a venue that collects for its brand, orders go into the brand's loyalty program - the balances every venue of the brand shares - and the brand sees which venue they came from. A key of the brand may count an order at one of its venues by sending that venue's id as `venue` (listed by `GET /me`); the switches stay those of the key's business.",
+                "name": "Online shop"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "BonusQR"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:25.670222+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://app.bonusqr.com/docs/api-docs.json?api-docs.json",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "764c5cb2e24b033a593d4d799bc235d2364379de780ef6a68040ae29b56321b7",
+    "source_id": "bonusqr",
+    "source_updated": null,
+    "url": "https://app.bonusqr.com/docs/api-docs.json?api-docs.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "2.0.0"
+}

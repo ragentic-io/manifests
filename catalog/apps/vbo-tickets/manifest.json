@@ -1,0 +1,3034 @@
+{
+  "a2ui": {},
+  "app": "vbo-tickets",
+  "graph": {
+    "edges": [
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api2/Account"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/api2/Account/{id}"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/Event/{id}"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/EventDate/{id}"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/Order/{id}"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/account/token"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/category/all"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/event/allevents"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/event/alleventsdetails"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/eventdate/eventdatesforevent"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/orderdetail/ticketuser/{id}"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/scan/byeventdate/{id}"
+      },
+      {
+        "from": "vbo-tickets",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api2/tickets/byeventdate/{id}"
+      },
+      {
+        "from": "operation:post:/api2/Account",
+        "kind": "ACCEPTS",
+        "to": "schema:AccountPatchModel"
+      },
+      {
+        "from": "operation:post:/api2/Account",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[Guid]"
+      },
+      {
+        "from": "operation:patch:/api2/Account/{id}",
+        "kind": "ACCEPTS",
+        "to": "schema:AccountPatchModel"
+      },
+      {
+        "from": "operation:get:/api2/Event/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[APIEventInformation]"
+      },
+      {
+        "from": "operation:get:/api2/EventDate/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[APIEventDateInformation]"
+      },
+      {
+        "from": "operation:get:/api2/Order/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[APIOrderInfo]"
+      },
+      {
+        "from": "operation:get:/api2/account/token",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[AccountTokenModel]"
+      },
+      {
+        "from": "operation:get:/api2/category/all",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[List[APICategoryInformation]]"
+      },
+      {
+        "from": "operation:get:/api2/event/allevents",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[List[APIEventLite]]"
+      },
+      {
+        "from": "operation:get:/api2/event/alleventsdetails",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[List[APIEventInformation]]"
+      },
+      {
+        "from": "operation:get:/api2/eventdate/eventdatesforevent",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[List[APIEventDateLite]]"
+      },
+      {
+        "from": "operation:get:/api2/orderdetail/ticketuser/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[APITicketUserInfo]"
+      },
+      {
+        "from": "operation:get:/api2/scan/byeventdate/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[List[APIScanInfo]]"
+      },
+      {
+        "from": "operation:get:/api2/tickets/byeventdate/{id}",
+        "kind": "RETURNS",
+        "to": "schema:ApiResponse[List[ApiTicketInfo]]"
+      },
+      {
+        "from": "schema:APIAccountInfo",
+        "kind": "REFERENCES",
+        "to": "schema:APIAddressInfo"
+      },
+      {
+        "from": "schema:APICategoryInformation",
+        "kind": "REFERENCES",
+        "to": "schema:APISubCategoryInformation"
+      },
+      {
+        "from": "schema:APIEventDateCapacity",
+        "kind": "REFERENCES",
+        "to": "schema:APIEventDateCategory"
+      },
+      {
+        "from": "schema:APIEventDateInformation",
+        "kind": "REFERENCES",
+        "to": "schema:APIEventDateCapacity"
+      },
+      {
+        "from": "schema:APIEventDateInformation",
+        "kind": "REFERENCES",
+        "to": "schema:APIVenueInfo"
+      },
+      {
+        "from": "schema:APIEventInformation",
+        "kind": "REFERENCES",
+        "to": "schema:APIEventDateLite"
+      },
+      {
+        "from": "schema:APIOrderDtlInfo",
+        "kind": "REFERENCES",
+        "to": "schema:APIEventDateInformation"
+      },
+      {
+        "from": "schema:APIOrderDtlInfo",
+        "kind": "REFERENCES",
+        "to": "schema:APIOpenSeatDtl"
+      },
+      {
+        "from": "schema:APIOrderDtlInfo",
+        "kind": "REFERENCES",
+        "to": "schema:APISeatDtl"
+      },
+      {
+        "from": "schema:APIOrderInfo",
+        "kind": "REFERENCES",
+        "to": "schema:APIAccountInfo"
+      },
+      {
+        "from": "schema:APIOrderInfo",
+        "kind": "REFERENCES",
+        "to": "schema:APIAddressInfo"
+      },
+      {
+        "from": "schema:APIOrderInfo",
+        "kind": "REFERENCES",
+        "to": "schema:APIOrderDtlInfo"
+      },
+      {
+        "from": "schema:APIOrderInfo",
+        "kind": "REFERENCES",
+        "to": "schema:APIOrderPaymentInfo"
+      },
+      {
+        "from": "schema:APIOrderInfo",
+        "kind": "REFERENCES",
+        "to": "schema:APIOrderReceiptInfo"
+      },
+      {
+        "from": "schema:APIOrderReceiptInfo",
+        "kind": "REFERENCES",
+        "to": "schema:CashRegisterSignature"
+      },
+      {
+        "from": "schema:APIVenueInfo",
+        "kind": "REFERENCES",
+        "to": "schema:APIAddressInfo"
+      },
+      {
+        "from": "schema:ApiResponse[APIEventDateInformation]",
+        "kind": "REFERENCES",
+        "to": "schema:APIEventDateInformation"
+      },
+      {
+        "from": "schema:ApiResponse[APIEventDateInformation]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[APIEventInformation]",
+        "kind": "REFERENCES",
+        "to": "schema:APIEventInformation"
+      },
+      {
+        "from": "schema:ApiResponse[APIEventInformation]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[APIOrderInfo]",
+        "kind": "REFERENCES",
+        "to": "schema:APIOrderInfo"
+      },
+      {
+        "from": "schema:ApiResponse[APIOrderInfo]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[APITicketUserInfo]",
+        "kind": "REFERENCES",
+        "to": "schema:APITicketUserInfo"
+      },
+      {
+        "from": "schema:ApiResponse[APITicketUserInfo]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[AccountTokenModel]",
+        "kind": "REFERENCES",
+        "to": "schema:AccountTokenModel"
+      },
+      {
+        "from": "schema:ApiResponse[AccountTokenModel]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[Guid]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[List[APICategoryInformation]]",
+        "kind": "REFERENCES",
+        "to": "schema:APICategoryInformation"
+      },
+      {
+        "from": "schema:ApiResponse[List[APICategoryInformation]]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[List[APIEventDateLite]]",
+        "kind": "REFERENCES",
+        "to": "schema:APIEventDateLite"
+      },
+      {
+        "from": "schema:ApiResponse[List[APIEventDateLite]]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[List[APIEventInformation]]",
+        "kind": "REFERENCES",
+        "to": "schema:APIEventInformation"
+      },
+      {
+        "from": "schema:ApiResponse[List[APIEventInformation]]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[List[APIEventLite]]",
+        "kind": "REFERENCES",
+        "to": "schema:APIEventLite"
+      },
+      {
+        "from": "schema:ApiResponse[List[APIEventLite]]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[List[APIScanInfo]]",
+        "kind": "REFERENCES",
+        "to": "schema:APIScanInfo"
+      },
+      {
+        "from": "schema:ApiResponse[List[APIScanInfo]]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[List[ApiTicketInfo]]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiError"
+      },
+      {
+        "from": "schema:ApiResponse[List[ApiTicketInfo]]",
+        "kind": "REFERENCES",
+        "to": "schema:ApiTicketInfo"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "vbo-tickets",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/api2/Account",
+        "kind": "operation",
+        "method": "post",
+        "name": "Account_Post",
+        "path": "/api2/Account",
+        "pointer": "#/paths/~1api2~1Account/post",
+        "request": {
+          "content_types": [
+            "application/json",
+            "text/json",
+            "application/xml",
+            "text/xml",
+            "application/x-www-form-urlencoded"
+          ],
+          "required": true,
+          "type": "AccountPatchModel"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[Guid]"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Create a new Account",
+        "tags": [
+          "Account"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:patch:/api2/Account/{id}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "Account_Patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/api2/Account/{id}",
+        "pointer": "#/paths/~1api2~1Account~1{id}/patch",
+        "request": {
+          "content_types": [
+            "application/json",
+            "text/json",
+            "application/xml",
+            "text/xml",
+            "application/x-www-form-urlencoded"
+          ],
+          "required": true,
+          "type": "AccountPatchModel"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Update account",
+        "tags": [
+          "Account"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns information about a specific event.",
+        "id": "operation:get:/api2/Event/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "Event_Get",
+        "parameters": [
+          {
+            "description": "The unique event id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/api2/Event/{id}",
+        "pointer": "#/paths/~1api2~1Event~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[APIEventInformation]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get information about an event",
+        "tags": [
+          "Event"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns information about a specific event date.",
+        "id": "operation:get:/api2/EventDate/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "EventDate_Get",
+        "parameters": [
+          {
+            "description": "The unique event date id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          },
+          {
+            "description": "When true, includes capacity and ticket sales summary in the response.",
+            "in": "query",
+            "name": "includeCapacity",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/api2/EventDate/{id}",
+        "pointer": "#/paths/~1api2~1EventDate~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[APIEventDateInformation]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get information about an event date",
+        "tags": [
+          "EventDate"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns information about a specific order including items, payments and event information.",
+        "id": "operation:get:/api2/Order/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "Order_Get",
+        "parameters": [
+          {
+            "description": "The unique order id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          },
+          {
+            "description": "Optional: id if a sales transation If present will only return information about this transaction.",
+            "in": "query",
+            "name": "salesReceiptID",
+            "required": false,
+            "type": "integer:int32"
+          },
+          {
+            "description": "Optional: id if a refund transation.",
+            "in": "query",
+            "name": "refundReceiptID",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/api2/Order/{id}",
+        "pointer": "#/paths/~1api2~1Order~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[APIOrderInfo]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get information about an order",
+        "tags": [
+          "Order"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get a sign in token that allows logging the user into an online sales plugin.",
+        "id": "operation:get:/api2/account/token",
+        "kind": "operation",
+        "method": "get",
+        "name": "Account_GetToken",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api2/account/token",
+        "pointer": "#/paths/~1api2~1account~1token/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[AccountTokenModel]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a sign in token",
+        "tags": [
+          "Account"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns all event categories and their sub categories for the promoter.",
+        "id": "operation:get:/api2/category/all",
+        "kind": "operation",
+        "method": "get",
+        "name": "Category_GetAll",
+        "path": "/api2/category/all",
+        "pointer": "#/paths/~1api2~1category~1all/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[List[APICategoryInformation]]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get all categories",
+        "tags": [
+          "Category"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api2/event/allevents",
+        "kind": "operation",
+        "method": "get",
+        "name": "Event_GetAllEvents",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "required": false,
+            "type": "string:date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "required": false,
+            "type": "string:date-time"
+          }
+        ],
+        "path": "/api2/event/allevents",
+        "pointer": "#/paths/~1api2~1event~1allevents/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[List[APIEventLite]]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Returns a list of Events for a given date range.\r\nIf no date range is given, default will be the next 30 days.\r\nMaximum date range is 30 days.",
+        "tags": [
+          "Event"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api2/event/alleventsdetails",
+        "kind": "operation",
+        "method": "get",
+        "name": "Event_GetAllEventsDetails",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startDate",
+            "required": false,
+            "type": "string:date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "required": false,
+            "type": "string:date-time"
+          }
+        ],
+        "path": "/api2/event/alleventsdetails",
+        "pointer": "#/paths/~1api2~1event~1alleventsdetails/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[List[APIEventInformation]]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Returns a list of Events with details for a given date range.\r\nIf no date range is given, default will be the next 30 days.\r\nMaximum date range is 90 days.",
+        "tags": [
+          "Event"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/api2/eventdate/eventdatesforevent",
+        "kind": "operation",
+        "method": "get",
+        "name": "EventDate_GetEventDateIDsForEvent",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "uniqueEventID",
+            "required": true,
+            "type": "string:uuid"
+          },
+          {
+            "in": "query",
+            "name": "startDate",
+            "required": false,
+            "type": "string:date-time"
+          },
+          {
+            "in": "query",
+            "name": "endDate",
+            "required": false,
+            "type": "string:date-time"
+          }
+        ],
+        "path": "/api2/eventdate/eventdatesforevent",
+        "pointer": "#/paths/~1api2~1eventdate~1eventdatesforevent/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[List[APIEventDateLite]]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Returns a list of EventDates for a specific event and given date range.\r\nIf no date range is given, default will be the next 30 days.\r\nMaximum date range is 30 days.",
+        "tags": [
+          "EventDate"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns information about a specific ticket user.",
+        "id": "operation:get:/api2/orderdetail/ticketuser/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "OrderDetail_GetTicketUserInfo",
+        "parameters": [
+          {
+            "description": "The unique ticket id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/api2/orderdetail/ticketuser/{id}",
+        "pointer": "#/paths/~1api2~1orderdetail~1ticketuser~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[APITicketUserInfo]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get ticket user info",
+        "tags": [
+          "OrderDetail"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns all ticket scans for a specific event date, including subscription/membership ticket type fields (Option1–Option3, Value1–Value3).",
+        "id": "operation:get:/api2/scan/byeventdate/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "ScanHistory_GetByEventDate",
+        "parameters": [
+          {
+            "description": "The unique event date ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/api2/scan/byeventdate/{id}",
+        "pointer": "#/paths/~1api2~1scan~1byeventdate~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[List[APIScanInfo]]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get scan history for an event date",
+        "tags": [
+          "ScanHistory"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns all tickets for a specific EventDate.",
+        "id": "operation:get:/api2/tickets/byeventdate/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "Tickets_GetByEventDate",
+        "parameters": [
+          {
+            "description": "EventDate Guid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/api2/tickets/byeventdate/{id}",
+        "pointer": "#/paths/~1api2~1tickets~1byeventdate~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ApiResponse[List[ApiTicketInfo]]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get ticket info",
+        "tags": [
+          "Tickets"
+        ]
+      },
+      {
+        "id": "schema:APIAccountInfo",
+        "kind": "schema",
+        "name": "APIAccountInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIAddressInfo",
+        "kind": "schema",
+        "name": "APIAddressInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:APICategoryInformation",
+        "kind": "schema",
+        "name": "APICategoryInformation",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIEventDateCapacity",
+        "kind": "schema",
+        "name": "APIEventDateCapacity",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIEventDateCategory",
+        "kind": "schema",
+        "name": "APIEventDateCategory",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIEventDateInformation",
+        "kind": "schema",
+        "name": "APIEventDateInformation",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIEventDateLite",
+        "kind": "schema",
+        "name": "APIEventDateLite",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIEventInformation",
+        "kind": "schema",
+        "name": "APIEventInformation",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIEventLite",
+        "kind": "schema",
+        "name": "APIEventLite",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIOpenSeatDtl",
+        "kind": "schema",
+        "name": "APIOpenSeatDtl",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIOrderDtlInfo",
+        "kind": "schema",
+        "name": "APIOrderDtlInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIOrderInfo",
+        "kind": "schema",
+        "name": "APIOrderInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIOrderPaymentInfo",
+        "kind": "schema",
+        "name": "APIOrderPaymentInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIOrderReceiptInfo",
+        "kind": "schema",
+        "name": "APIOrderReceiptInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIScanInfo",
+        "kind": "schema",
+        "name": "APIScanInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:APISeatDtl",
+        "kind": "schema",
+        "name": "APISeatDtl",
+        "type": "object"
+      },
+      {
+        "id": "schema:APISubCategoryInformation",
+        "kind": "schema",
+        "name": "APISubCategoryInformation",
+        "type": "object"
+      },
+      {
+        "id": "schema:APITicketUserInfo",
+        "kind": "schema",
+        "name": "APITicketUserInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:APIVenueInfo",
+        "kind": "schema",
+        "name": "APIVenueInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:AccountPatchModel",
+        "kind": "schema",
+        "name": "AccountPatchModel",
+        "type": "object"
+      },
+      {
+        "id": "schema:AccountTokenModel",
+        "kind": "schema",
+        "name": "AccountTokenModel",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiError",
+        "kind": "schema",
+        "name": "ApiError",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[APIEventDateInformation]",
+        "kind": "schema",
+        "name": "ApiResponse[APIEventDateInformation]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[APIEventInformation]",
+        "kind": "schema",
+        "name": "ApiResponse[APIEventInformation]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[APIOrderInfo]",
+        "kind": "schema",
+        "name": "ApiResponse[APIOrderInfo]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[APITicketUserInfo]",
+        "kind": "schema",
+        "name": "ApiResponse[APITicketUserInfo]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[AccountTokenModel]",
+        "kind": "schema",
+        "name": "ApiResponse[AccountTokenModel]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[Guid]",
+        "kind": "schema",
+        "name": "ApiResponse[Guid]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[List[APICategoryInformation]]",
+        "kind": "schema",
+        "name": "ApiResponse[List[APICategoryInformation]]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[List[APIEventDateLite]]",
+        "kind": "schema",
+        "name": "ApiResponse[List[APIEventDateLite]]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[List[APIEventInformation]]",
+        "kind": "schema",
+        "name": "ApiResponse[List[APIEventInformation]]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[List[APIEventLite]]",
+        "kind": "schema",
+        "name": "ApiResponse[List[APIEventLite]]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[List[APIScanInfo]]",
+        "kind": "schema",
+        "name": "ApiResponse[List[APIScanInfo]]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiResponse[List[ApiTicketInfo]]",
+        "kind": "schema",
+        "name": "ApiResponse[List[ApiTicketInfo]]",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiTicketInfo",
+        "kind": "schema",
+        "name": "ApiTicketInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:CashRegisterSignature",
+        "kind": "schema",
+        "name": "CashRegisterSignature",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "vbo-tickets"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://eventmanager.vbotickets.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "definitions": {
+              "APIAccountInfo": {
+                "properties": {
+                  "AcctID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "Address": {
+                    "$ref": "#/definitions/APIAddressInfo"
+                  },
+                  "Birthdate": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "Company": {
+                    "type": "string"
+                  },
+                  "EmailAddress": {
+                    "type": "string"
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "IsNewsletter": {
+                    "type": "boolean"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "MobilePhone": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "string"
+                  },
+                  "Salutation": {
+                    "type": "string"
+                  },
+                  "Suffix": {
+                    "type": "string"
+                  },
+                  "Title": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APIAddressInfo": {
+                "properties": {
+                  "Address1": {
+                    "type": "string"
+                  },
+                  "Address2": {
+                    "type": "string"
+                  },
+                  "City": {
+                    "type": "string"
+                  },
+                  "Country": {
+                    "type": "string"
+                  },
+                  "StateProvince": {
+                    "type": "string"
+                  },
+                  "ZipCode": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APICategoryInformation": {
+                "properties": {
+                  "CategoryID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "CategoryName": {
+                    "type": "string"
+                  },
+                  "SubCategories": {
+                    "items": {
+                      "$ref": "#/definitions/APISubCategoryInformation"
+                    },
+                    "type": "array"
+                  }
+                },
+                "type": "object"
+              },
+              "APIEventDateCapacity": {
+                "properties": {
+                  "Category": {
+                    "$ref": "#/definitions/APIEventDateCategory",
+                    "description": "Category and subcategory for the event date."
+                  },
+                  "CompTickets": {
+                    "description": "Number of complimentary tickets.",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "OpenSeats": {
+                    "description": "Number of open/available seats.",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "SoldMemberTickets": {
+                    "description": "Number of member tickets sold.",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "SoldSingleTickets": {
+                    "description": "Number of single tickets sold.",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "SoldSubscriberTickets": {
+                    "description": "Number of subscriber tickets sold.",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "TicketsMarkedAsSold": {
+                    "description": "Tickets marked as sold (Assigned Seating only).",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "TicketsOnHold": {
+                    "description": "Tickets on hold (includes holds and consignment).",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "TotalTicketsSold": {
+                    "description": "Total number of tickets sold.",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "TotalVenueCapacity": {
+                    "description": "Total venue capacity.",
+                    "format": "int32",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "APIEventDateCategory": {
+                "properties": {
+                  "CategoryName": {
+                    "description": "Category name.",
+                    "type": "string"
+                  },
+                  "SubCategoryName": {
+                    "description": "Subcategory name.",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APIEventDateInformation": {
+                "properties": {
+                  "Capacity": {
+                    "$ref": "#/definitions/APIEventDateCapacity",
+                    "description": "Capacity and ticket sales summary for the event date. Only present when includeCapacity=true."
+                  },
+                  "Date": {
+                    "description": "The date where the event takes place (local time)",
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "DateDisplay": {
+                    "description": "Custom text overriding the default displayed date/time for this event date (Datumsanzeige)",
+                    "type": "string"
+                  },
+                  "DateLabel": {
+                    "description": "Short custom label/tag for this event date, e.g. for venue changes or notices (Datumsbezeichnung)",
+                    "type": "string"
+                  },
+                  "DateLabelColor": {
+                    "description": "Hex color associated with the date label, used on the online event calendar",
+                    "type": "string"
+                  },
+                  "DoorsOpen": {
+                    "description": "The event date duration in hours",
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "EventDateID": {
+                    "description": "Numeric id of the event date",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "EventDateName": {
+                    "description": "A custom name for the event date",
+                    "type": "string"
+                  },
+                  "EventDateStatus": {
+                    "description": "Status of the event date \r\nOnline | Offline",
+                    "type": "string"
+                  },
+                  "EventDuration": {
+                    "description": "The event date duration in hours",
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "EventID": {
+                    "description": "Numeric foreign key to an event",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "EventPicture": {
+                    "description": "Picture overwrite for the event date",
+                    "type": "string"
+                  },
+                  "IsActive": {
+                    "description": "The Show Online toggle in Event Manager. Same value as ShowOnline, retained for backward compatibility.",
+                    "type": "boolean"
+                  },
+                  "ShowOnline": {
+                    "description": "The Show Online toggle in Event Manager",
+                    "type": "boolean"
+                  },
+                  "UniqueID": {
+                    "description": "Unique ID used to identify the event date",
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  },
+                  "Venue": {
+                    "$ref": "#/definitions/APIVenueInfo",
+                    "description": "Inforamtion about the venue the event takes place in"
+                  }
+                },
+                "type": "object"
+              },
+              "APIEventDateLite": {
+                "properties": {
+                  "EventDate": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "EventDateID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "EventDateStatus": {
+                    "type": "string"
+                  },
+                  "ShowOnline": {
+                    "type": "boolean"
+                  },
+                  "UniqueID": {
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APIEventInformation": {
+                "properties": {
+                  "CategoryID": {
+                    "description": "The category id of the event (categories can be looked up in the event manager)",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "CategoryName": {
+                    "description": "The category name of the event",
+                    "type": "string"
+                  },
+                  "Date": {
+                    "description": "Date when the event takes place (local time)",
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "End": {
+                    "description": "Date when the event ends (local time)",
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "EventColor": {
+                    "description": "Hex color code",
+                    "type": "string"
+                  },
+                  "EventDates": {
+                    "description": "A collection of event dates associated with the event.",
+                    "items": {
+                      "$ref": "#/definitions/APIEventDateLite"
+                    },
+                    "type": "array"
+                  },
+                  "EventID": {
+                    "description": "Numeric event id",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "EventIntro": {
+                    "description": "A short description for the event",
+                    "type": "string"
+                  },
+                  "EventTxt": {
+                    "description": "A description for the event",
+                    "type": "string"
+                  },
+                  "EventVideo": {
+                    "description": "Link to a video ressource",
+                    "type": "string"
+                  },
+                  "IsBoxOfficeOnly": {
+                    "description": "Indicates whether the event is restricted to Box Office sales only",
+                    "type": "boolean"
+                  },
+                  "IsPrivate": {
+                    "description": "Indicates whether the event is marked private and hidden from public event listings",
+                    "type": "boolean"
+                  },
+                  "Name": {
+                    "description": "Name of the event",
+                    "type": "string"
+                  },
+                  "PicBanner": {
+                    "description": "Link to a banner picture",
+                    "type": "string"
+                  },
+                  "PicLg": {
+                    "description": "Link to a large picture",
+                    "type": "string"
+                  },
+                  "PicMd": {
+                    "description": "Link to a medium picture",
+                    "type": "string"
+                  },
+                  "PicSm": {
+                    "description": "Link to a small picture",
+                    "type": "string"
+                  },
+                  "PriceRange": {
+                    "description": "Price range separated by a \":\" symbol. (May be overwritten to contain a custom text)",
+                    "type": "string"
+                  },
+                  "Sorting": {
+                    "description": "Numeric sorting indicator",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "Start": {
+                    "description": "Date when the event starts (local time)",
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "Status": {
+                    "type": "string"
+                  },
+                  "SubCategoryID": {
+                    "description": "The sub category id of the event (categories can be looked up in the event manager)",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "SubCategoryName": {
+                    "description": "The subcategory name of the event",
+                    "type": "string"
+                  },
+                  "UniqueID": {
+                    "description": "Unique ID used to identify the event",
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APIEventLite": {
+                "properties": {
+                  "EventID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "EventName": {
+                    "type": "string"
+                  },
+                  "EventStatus": {
+                    "type": "string"
+                  },
+                  "IsBoxOfficeOnly": {
+                    "type": "boolean"
+                  },
+                  "IsPrivate": {
+                    "type": "boolean"
+                  },
+                  "UniqueID": {
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APIOpenSeatDtl": {
+                "properties": {
+                  "Color": {
+                    "type": "string"
+                  },
+                  "IsVideo": {
+                    "type": "boolean"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Notes": {
+                    "type": "string"
+                  },
+                  "OpenSeatID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "Picture": {
+                    "type": "string"
+                  },
+                  "Section": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APIOrderDtlInfo": {
+                "properties": {
+                  "AuditDate": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "Barcode": {
+                    "type": "string"
+                  },
+                  "DateCreated": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "EventDate": {
+                    "$ref": "#/definitions/APIEventDateInformation"
+                  },
+                  "EventDateID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "EventID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "FacilityFee": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "FacilityFeeTax": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "GLItem": {
+                    "type": "string"
+                  },
+                  "IsRefund": {
+                    "description": "True when the line is a refund (RefundReceiptID > 0) or a cancelled line (Qty 0, Option1/Value1 = Cancelled)",
+                    "readOnly": true,
+                    "type": "boolean"
+                  },
+                  "ItemCat": {
+                    "type": "string"
+                  },
+                  "ItemDescription": {
+                    "type": "string"
+                  },
+                  "ItemID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "ItemName": {
+                    "type": "string"
+                  },
+                  "ItemTax": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "ListPrice": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "OpenSeat": {
+                    "$ref": "#/definitions/APIOpenSeatDtl"
+                  },
+                  "Option1": {
+                    "type": "string"
+                  },
+                  "Option2": {
+                    "type": "string"
+                  },
+                  "Option3": {
+                    "type": "string"
+                  },
+                  "OrderDtlID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "OrderFee": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "OrderFeeTax": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "ParentCartID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "Price": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "PriceAdjusted": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "Qty": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "RefundReceiptID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "RefundReceiptPrefix": {
+                    "type": "string"
+                  },
+                  "SalesReceiptID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "SalesReceiptPrefix": {
+                    "type": "string"
+                  },
+                  "Seat": {
+                    "$ref": "#/definitions/APISeatDtl"
+                  },
+                  "ServiceFee": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "ServiceFeePromoter": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "ServiceFeeTax": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "ShippingFee": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "ShippingFeeTax": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "SubPrice": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "Tax": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "TaxRate": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "TaxRateBase": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "TicketID": {
+                    "description": "Unique ticket id (lowercase GUID string)",
+                    "type": "string"
+                  },
+                  "TicketUserInfo": {
+                    "type": "string"
+                  },
+                  "Total": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "Value1": {
+                    "type": "string"
+                  },
+                  "Value2": {
+                    "type": "string"
+                  },
+                  "Value3": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APIOrderInfo": {
+                "properties": {
+                  "Account": {
+                    "$ref": "#/definitions/APIAccountInfo"
+                  },
+                  "BalanceDueDate": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "BillingAddress": {
+                    "$ref": "#/definitions/APIAddressInfo"
+                  },
+                  "CashChange": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "CashReceived": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "CashTotal": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "CurrencyCode": {
+                    "type": "string"
+                  },
+                  "FacilityFees": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "IsPreAuth": {
+                    "type": "boolean"
+                  },
+                  "LastWarning": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "LocaleID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "NetAmount": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "OpenBalance": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "OrderDate": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "OrderDateLocal": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "OrderDetails": {
+                    "items": {
+                      "$ref": "#/definitions/APIOrderDtlInfo"
+                    },
+                    "type": "array"
+                  },
+                  "OrderFees": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "OrderID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "OrderIDAlt": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "OrderIDParent": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "OrderPayments": {
+                    "items": {
+                      "$ref": "#/definitions/APIOrderPaymentInfo"
+                    },
+                    "type": "array"
+                  },
+                  "OrderReceipt": {
+                    "$ref": "#/definitions/APIOrderReceiptInfo"
+                  },
+                  "PaymentType": {
+                    "type": "string"
+                  },
+                  "PromoterID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "SalesMethod": {
+                    "type": "string"
+                  },
+                  "ServiceFees": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "Shipping": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "ShippingAddress": {
+                    "$ref": "#/definitions/APIAddressInfo"
+                  },
+                  "ShippingInfo": {
+                    "type": "string"
+                  },
+                  "ShippingType": {
+                    "type": "string"
+                  },
+                  "SubTotal": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "Tax": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "TicketCount": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "TimeZone": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "Total": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "UniqueOrderID": {
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  },
+                  "UserID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "WarningLevel": {
+                    "format": "int32",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "APIOrderPaymentInfo": {
+                "properties": {
+                  "BalanceDueDate": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "BalancePaid": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "CardType": {
+                    "type": "string"
+                  },
+                  "CashReceived": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "CreditAmount": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "CreditCard": {
+                    "type": "string"
+                  },
+                  "CreditDate": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "CreditTransactionID": {
+                    "type": "string"
+                  },
+                  "CreditUserID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "ExpMonth": {
+                    "type": "string"
+                  },
+                  "ExpYear": {
+                    "type": "string"
+                  },
+                  "IsPreAuth": {
+                    "type": "boolean"
+                  },
+                  "LocalisedPaymentType": {
+                    "type": "string"
+                  },
+                  "NameOnCard": {
+                    "type": "string"
+                  },
+                  "OrderPayID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "PaymentDate": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "PaymentMethod": {
+                    "type": "string"
+                  },
+                  "PaymentType": {
+                    "type": "string"
+                  },
+                  "PreAuthCaptureDate": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "RefundReceiptID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "SalesMethod": {
+                    "type": "string"
+                  },
+                  "SalesReceiptID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "Total": {
+                    "format": "double",
+                    "type": "number"
+                  },
+                  "TransactionEnd": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "TransactionID": {
+                    "type": "string"
+                  },
+                  "TransactionStart": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "TransactionStatus": {
+                    "type": "string"
+                  },
+                  "UniquePayID": {
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  },
+                  "UserID": {
+                    "format": "int32",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "APIOrderReceiptInfo": {
+                "properties": {
+                  "CashRegisterSignature": {
+                    "$ref": "#/definitions/CashRegisterSignature"
+                  },
+                  "DateEnd": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "DateStart": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "OrderReceiptID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "ReceiptID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "ReceiptPrefix": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APIScanInfo": {
+                "properties": {
+                  "BarcodeScanID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "DateScanned": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "ItemCat": {
+                    "type": "string"
+                  },
+                  "ItemName": {
+                    "type": "string"
+                  },
+                  "Option1": {
+                    "type": "string"
+                  },
+                  "Option2": {
+                    "type": "string"
+                  },
+                  "Option3": {
+                    "type": "string"
+                  },
+                  "ScanStatus": {
+                    "description": "1 = check-in, -1 = check-out",
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "ScanUser": {
+                    "type": "string"
+                  },
+                  "UniqueOrderID": {
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  },
+                  "UniqueTicketID": {
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  },
+                  "Value1": {
+                    "type": "string"
+                  },
+                  "Value2": {
+                    "type": "string"
+                  },
+                  "Value3": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APISeatDtl": {
+                "properties": {
+                  "IsTableSeating": {
+                    "type": "boolean"
+                  },
+                  "Level": {
+                    "type": "string"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Notes": {
+                    "type": "string"
+                  },
+                  "Picture": {
+                    "type": "string"
+                  },
+                  "Row": {
+                    "type": "string"
+                  },
+                  "Seat": {
+                    "type": "string"
+                  },
+                  "SeatID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "Section": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APISubCategoryInformation": {
+                "properties": {
+                  "SubCategoryID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "SubCategoryName": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APITicketUserInfo": {
+                "properties": {
+                  "Company": {
+                    "readOnly": true,
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "string"
+                  },
+                  "UniqueOrderID": {
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "APIVenueInfo": {
+                "properties": {
+                  "Address": {
+                    "$ref": "#/definitions/APIAddressInfo"
+                  },
+                  "VenueEmail": {
+                    "type": "string"
+                  },
+                  "VenueID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "VenueName": {
+                    "type": "string"
+                  },
+                  "VenuePhone": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "AccountPatchModel": {
+                "properties": {
+                  "Address1": {
+                    "type": "string"
+                  },
+                  "Address2": {
+                    "type": "string"
+                  },
+                  "City": {
+                    "type": "string"
+                  },
+                  "Country": {
+                    "type": "string"
+                  },
+                  "EmailAddress": {
+                    "type": "string"
+                  },
+                  "FieldStatus": {
+                    "additionalProperties": {
+                      "enum": [
+                        "NotPresent",
+                        "NullValue",
+                        "HasValue"
+                      ],
+                      "type": "string"
+                    },
+                    "type": "object"
+                  },
+                  "FirstName": {
+                    "type": "string"
+                  },
+                  "LastName": {
+                    "type": "string"
+                  },
+                  "MobilePhone": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "string"
+                  },
+                  "StateProvince": {
+                    "type": "string"
+                  },
+                  "ZipCode": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "AccountTokenModel": {
+                "properties": {
+                  "DateExpires": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "Token": {
+                    "type": "string"
+                  },
+                  "UniqueAcctID": {
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiError": {
+                "properties": {
+                  "Code": {
+                    "enum": [
+                      "EntityNotFound",
+                      "EntityAlreadyExists",
+                      "BadRequest",
+                      "UnknownError",
+                      "InternalServerError"
+                    ],
+                    "type": "string"
+                  },
+                  "Message": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[APIEventDateInformation]": {
+                "properties": {
+                  "Data": {
+                    "$ref": "#/definitions/APIEventDateInformation"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[APIEventInformation]": {
+                "properties": {
+                  "Data": {
+                    "$ref": "#/definitions/APIEventInformation"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[APIOrderInfo]": {
+                "properties": {
+                  "Data": {
+                    "$ref": "#/definitions/APIOrderInfo"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[APITicketUserInfo]": {
+                "properties": {
+                  "Data": {
+                    "$ref": "#/definitions/APITicketUserInfo"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[AccountTokenModel]": {
+                "properties": {
+                  "Data": {
+                    "$ref": "#/definitions/AccountTokenModel"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[Guid]": {
+                "properties": {
+                  "Data": {
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[List[APICategoryInformation]]": {
+                "properties": {
+                  "Data": {
+                    "items": {
+                      "$ref": "#/definitions/APICategoryInformation"
+                    },
+                    "type": "array"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[List[APIEventDateLite]]": {
+                "properties": {
+                  "Data": {
+                    "items": {
+                      "$ref": "#/definitions/APIEventDateLite"
+                    },
+                    "type": "array"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[List[APIEventInformation]]": {
+                "properties": {
+                  "Data": {
+                    "items": {
+                      "$ref": "#/definitions/APIEventInformation"
+                    },
+                    "type": "array"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[List[APIEventLite]]": {
+                "properties": {
+                  "Data": {
+                    "items": {
+                      "$ref": "#/definitions/APIEventLite"
+                    },
+                    "type": "array"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[List[APIScanInfo]]": {
+                "properties": {
+                  "Data": {
+                    "items": {
+                      "$ref": "#/definitions/APIScanInfo"
+                    },
+                    "type": "array"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiResponse[List[ApiTicketInfo]]": {
+                "properties": {
+                  "Data": {
+                    "items": {
+                      "$ref": "#/definitions/ApiTicketInfo"
+                    },
+                    "type": "array"
+                  },
+                  "Error": {
+                    "$ref": "#/definitions/ApiError"
+                  },
+                  "Status": {
+                    "enum": [
+                      "Success",
+                      "Error"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "ApiTicketInfo": {
+                "properties": {
+                  "Barcode": {
+                    "type": "string"
+                  },
+                  "IsValid": {
+                    "type": "boolean"
+                  },
+                  "OrderDtlID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "OrderID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "Row": {
+                    "type": "string"
+                  },
+                  "Seat": {
+                    "type": "string"
+                  },
+                  "Section": {
+                    "type": "string"
+                  },
+                  "SubBarcode": {
+                    "type": "string"
+                  },
+                  "SubCode": {
+                    "type": "string"
+                  },
+                  "TicketHolder": {
+                    "type": "string"
+                  },
+                  "TicketHolderEmail": {
+                    "type": "string"
+                  },
+                  "TicketID": {
+                    "example": "00000000-0000-0000-0000-000000000000",
+                    "format": "uuid",
+                    "type": "string"
+                  },
+                  "TicketName": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "CashRegisterSignature": {
+                "properties": {
+                  "Algorithm": {
+                    "type": "string"
+                  },
+                  "ApiID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "CashRegisterSignatureID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "CertificateSerial": {
+                    "type": "string"
+                  },
+                  "ClientSerialNumber": {
+                    "type": "string"
+                  },
+                  "OrderReceiptID": {
+                    "format": "int32",
+                    "type": "integer"
+                  },
+                  "PublicKey": {
+                    "type": "string"
+                  },
+                  "Signature": {
+                    "type": "string"
+                  },
+                  "TimeEnd": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "TimeStart": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "TimestampFormat": {
+                    "type": "string"
+                  },
+                  "TransactionNumber": {
+                    "format": "int32",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "host": "eventmanager.vbotickets.com",
+            "info": {
+              "description": "# Information\r\n\r\nThis is a general documentation for the VBO public API. \r\n\r\nTHIS API IS SUBJECT TO UNANNOUNCED ADDITIONS OF OBJECTS/FIELDS. WE DO NOT MODIFY/DELETE EXISTING FIELDS UNANNOUNCED.\r\n\r\n# Authorization\r\n<SecurityDefinitions />\r\n\r\n# Webhooks\r\n\r\nWebhooks can be configured using the Setup > Add-Ons > Webhooks area in the eventmanager.\r\nWe recommend to validate the webhooks signature in the SecretHash header using your api secret.\r\n\r\nIt is designed as a push/pull api, meaning that the webhook payload will contain a resource identifier which can be used to subsequently query the required resource.\r\n## Webhook example\r\n    {\r\n        \"UniqueTicketID\": \"13927245-5f00-42e9-aec2-f906099e0e49\"\r\n    }\r\n\r\n## Available webhooks\r\nPayload id in parenthesis.\r\n- order.sale (UniqueOrderID, SalesReceiptID)\r\n- order.refund (UniqueOrderID, RefundReceiptID)\r\n- order.cancelled (UniqueOrderID)\r\n- event.created (UniqueEventID)\r\n- event.modified (UniqueEventID)\r\n- event.deleted (UniqueEventID)\r\n- eventdate.created (UniqueEventDateID)\r\n- eventdate.modified (UniqueEventDateID)\r\n- eventdate.deleted (UniqueEventDateID)\r\n- ticket.scanned (UniqueTicketID; also includes ItemName, ItemCat, Option1-3, Value1-3)\r\n- ticketuser.modified (UniqueTicketID)\r\n",
+              "title": "VBO API",
+              "version": "v1"
+            },
+            "paths": {
+              "/api2/Account": {
+                "post": {
+                  "consumes": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml",
+                    "application/x-www-form-urlencoded"
+                  ],
+                  "operationId": "Account_Post",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "in": "body",
+                      "name": "model",
+                      "required": true,
+                      "schema": {
+                        "$ref": "#/definitions/AccountPatchModel"
+                      }
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[Guid]"
+                      }
+                    }
+                  },
+                  "summary": "Create a new Account",
+                  "tags": [
+                    "Account"
+                  ]
+                }
+              },
+              "/api2/Account/{id}": {
+                "patch": {
+                  "consumes": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml",
+                    "application/x-www-form-urlencoded"
+                  ],
+                  "operationId": "Account_Patch",
+                  "parameters": [
+                    {
+                      "format": "uuid",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "in": "body",
+                      "name": "model",
+                      "required": true,
+                      "schema": {
+                        "$ref": "#/definitions/AccountPatchModel"
+                      }
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "summary": "Update account",
+                  "tags": [
+                    "Account"
+                  ]
+                }
+              },
+              "/api2/Event/{id}": {
+                "get": {
+                  "consumes": [],
+                  "description": "Returns information about a specific event.",
+                  "operationId": "Event_Get",
+                  "parameters": [
+                    {
+                      "description": "The unique event id",
+                      "format": "uuid",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[APIEventInformation]"
+                      }
+                    }
+                  },
+                  "summary": "Get information about an event",
+                  "tags": [
+                    "Event"
+                  ]
+                }
+              },
+              "/api2/EventDate/{id}": {
+                "get": {
+                  "consumes": [],
+                  "description": "Returns information about a specific event date.",
+                  "operationId": "EventDate_Get",
+                  "parameters": [
+                    {
+                      "description": "The unique event date id",
+                      "format": "uuid",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "When true, includes capacity and ticket sales summary in the response.",
+                      "in": "query",
+                      "name": "includeCapacity",
+                      "required": false,
+                      "type": "boolean"
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[APIEventDateInformation]"
+                      }
+                    }
+                  },
+                  "summary": "Get information about an event date",
+                  "tags": [
+                    "EventDate"
+                  ]
+                }
+              },
+              "/api2/Order/{id}": {
+                "get": {
+                  "consumes": [],
+                  "description": "Returns information about a specific order including items, payments and event information.",
+                  "operationId": "Order_Get",
+                  "parameters": [
+                    {
+                      "description": "The unique order id",
+                      "format": "uuid",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "Optional: id if a sales transation If present will only return information about this transaction.",
+                      "format": "int32",
+                      "in": "query",
+                      "name": "salesReceiptID",
+                      "required": false,
+                      "type": "integer"
+                    },
+                    {
+                      "description": "Optional: id if a refund transation. If present will only return information about this transaction.",
+                      "format": "int32",
+                      "in": "query",
+                      "name": "refundReceiptID",
+                      "required": false,
+                      "type": "integer"
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[APIOrderInfo]"
+                      }
+                    }
+                  },
+                  "summary": "Get information about an order",
+                  "tags": [
+                    "Order"
+                  ]
+                }
+              },
+              "/api2/account/token": {
+                "get": {
+                  "consumes": [],
+                  "description": "Get a sign in token that allows logging the user into an online sales plugin.\r\nThe token is valid for 2 hours.",
+                  "operationId": "Account_GetToken",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "in": "query",
+                      "name": "email",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[AccountTokenModel]"
+                      }
+                    }
+                  },
+                  "summary": "Get a sign in token",
+                  "tags": [
+                    "Account"
+                  ]
+                }
+              },
+              "/api2/category/all": {
+                "get": {
+                  "consumes": [],
+                  "description": "Returns all event categories and their sub categories for the promoter.",
+                  "operationId": "Category_GetAll",
+                  "parameters": [],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[List[APICategoryInformation]]"
+                      }
+                    }
+                  },
+                  "summary": "Get all categories",
+                  "tags": [
+                    "Category"
+                  ]
+                }
+              },
+              "/api2/event/allevents": {
+                "get": {
+                  "consumes": [],
+                  "operationId": "Event_GetAllEvents",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "date-time",
+                      "in": "query",
+                      "name": "startDate",
+                      "required": false,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "format": "date-time",
+                      "in": "query",
+                      "name": "endDate",
+                      "required": false,
+                      "type": "string"
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[List[APIEventLite]]"
+                      }
+                    }
+                  },
+                  "summary": "Returns a list of Events for a given date range.\r\nIf no date range is given, default will be the next 30 days.\r\nMaximum date range is 30 days.",
+                  "tags": [
+                    "Event"
+                  ]
+                }
+              },
+              "/api2/event/alleventsdetails": {
+                "get": {
+                  "consumes": [],
+                  "operationId": "Event_GetAllEventsDetails",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "date-time",
+                      "in": "query",
+                      "name": "startDate",
+                      "required": false,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "format": "date-time",
+                      "in": "query",
+                      "name": "endDate",
+                      "required": false,
+                      "type": "string"
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[List[APIEventInformation]]"
+                      }
+                    }
+                  },
+                  "summary": "Returns a list of Events with details for a given date range.\r\nIf no date range is given, default will be the next 30 days.\r\nMaximum date range is 90 days.",
+                  "tags": [
+                    "Event"
+                  ]
+                }
+              },
+              "/api2/eventdate/eventdatesforevent": {
+                "get": {
+                  "consumes": [],
+                  "operationId": "EventDate_GetEventDateIDsForEvent",
+                  "parameters": [
+                    {
+                      "description": "",
+                      "format": "uuid",
+                      "in": "query",
+                      "name": "uniqueEventID",
+                      "required": true,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "format": "date-time",
+                      "in": "query",
+                      "name": "startDate",
+                      "required": false,
+                      "type": "string"
+                    },
+                    {
+                      "description": "",
+                      "format": "date-time",
+                      "in": "query",
+                      "name": "endDate",
+                      "required": false,
+                      "type": "string"
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[List[APIEventDateLite]]"
+                      }
+                    }
+                  },
+                  "summary": "Returns a list of EventDates for a specific event and given date range.\r\nIf no date range is given, default will be the next 30 days.\r\nMaximum date range is 30 days.",
+                  "tags": [
+                    "EventDate"
+                  ]
+                }
+              },
+              "/api2/orderdetail/ticketuser/{id}": {
+                "get": {
+                  "consumes": [],
+                  "description": "Returns information about a specific ticket user.",
+                  "operationId": "OrderDetail_GetTicketUserInfo",
+                  "parameters": [
+                    {
+                      "description": "The unique ticket id",
+                      "format": "uuid",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[APITicketUserInfo]"
+                      }
+                    }
+                  },
+                  "summary": "Get ticket user info",
+                  "tags": [
+                    "OrderDetail"
+                  ]
+                }
+              },
+              "/api2/scan/byeventdate/{id}": {
+                "get": {
+                  "consumes": [],
+                  "description": "Returns all ticket scans for a specific event date, including subscription/membership ticket type fields (Option1–Option3, Value1–Value3).\r\nScanStatus: 1 = check-in, -1 = check-out.\r\nOnly returns scans linked to order detail records (not custom barcodes or reservations).",
+                  "operationId": "ScanHistory_GetByEventDate",
+                  "parameters": [
+                    {
+                      "description": "The unique event date ID",
+                      "format": "uuid",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[List[APIScanInfo]]"
+                      }
+                    }
+                  },
+                  "summary": "Get scan history for an event date",
+                  "tags": [
+                    "ScanHistory"
+                  ]
+                }
+              },
+              "/api2/tickets/byeventdate/{id}": {
+                "get": {
+                  "consumes": [],
+                  "description": "Returns all tickets for a specific EventDate.",
+                  "operationId": "Tickets_GetByEventDate",
+                  "parameters": [
+                    {
+                      "description": "EventDate Guid",
+                      "format": "uuid",
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "type": "string"
+                    }
+                  ],
+                  "produces": [
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "OK",
+                      "schema": {
+                        "$ref": "#/definitions/ApiResponse[List[ApiTicketInfo]]"
+                      }
+                    }
+                  },
+                  "summary": "Get ticket info",
+                  "tags": [
+                    "Tickets"
+                  ]
+                }
+              }
+            },
+            "schemes": [
+              "https"
+            ],
+            "securityDefinitions": {
+              "bearer": {
+                "description": "\r\nAuthentication works by passing the VBO API Key as a bearer token.<br>\r\nAdditionaly, the the request needs to be validated using a HMACSHA256 hash of its content.\r\n\r\nExample request:\r\n\r\n    string apiUrl = \"https://eventmanager.vbotickets.com/api2/eventdate/{id}\";\r\n    string requestBody = \"\";\r\n\r\n    // generate hash consisting of the full unencoded api URL (including query strings) + the postdata\r\n    // hashed using HMACSHA256 with the users secret key\r\n    HMACSHA256Generator sha256 = new HMACSHA256Generator();\r\n    string newHash = sha256.Hash(apiUrl + requestBody, \"6C69616F68626C1729H7377867763518E4534376F6766616E\");\r\n\r\n    HttpRequestMessage msg = new HttpRequestMessage\r\n    {\r\n        Method = HttpMethod.Get,\r\n        RequestUri = new Uri(apiUrl)\r\n    };\r\n    msg.Headers.Add(\"Version\", \"1.0\"); // Version of the currently used API. Required.\r\n    msg.Headers.Add(\"Authorization\", \"Bearer DH7289HU-C78H-4393-KH9U-EA75287D00FF\"); // Authorization key. Required.\r\n    msg.Headers.Add(\"SecretHash\", newHash); // Request hash\r\n\r\n    using (HttpClient client = new HttpClient())\r\n    {\r\n        content = await client.SendAsync(msg);\r\n    }\r\n\r\n    //parse json result\r\n    string result = await content.Content.ReadAsStringAsync();\r\n\r\n## Hashing\r\nThe following hash function is recommended\r\n\r\n    public string Hash(string input, string secret)\r\n    {\r\n        Byte[] textBytes = Encoding.UTF8.GetBytes(input);\r\n\r\n        // The key is hex encoded, so it has´to be decoded prior to hashing\r\n        Byte[] keyBytes = HexDecode(secret);\r\n        Byte[] hashBytes;\r\n\r\n        using (HMACSHA256 hash = new HMACSHA256(keyBytes))\r\n            hashBytes = hash.ComputeHash(textBytes);\r\n\r\n        return BitConverter.ToString(hashBytes).Replace(\"-\", \"\").ToLower();\r\n    }\r\n\r\n    private static byte[] HexDecode(string hex)\r\n    {\r\n        var bytes = new byte[hex.Length / 2];\r\n        for (int i = 0; i < bytes.Length; i++)\r\n        {\r\n            bytes[i] = byte.Parse(hex.Substring(i * 2, 2), NumberStyles.HexNumber);\r\n        }\r\n        return bytes;\r\n    }\r\n",
+                "type": "basic"
+              }
+            },
+            "swagger": "2.0"
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "VBO Tickets"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:29.305842+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://vboblobprod.blob.core.windows.net/awsvboticketscom/_images/master/v1.json",
+        "version": "2.0"
+      }
+    ],
+    "sha256": "ded89ee1b614e33d9cb7b5bfc929873c6bb4e5acb207abcacfca36f7f66ded42",
+    "source_id": "vbo-tickets",
+    "source_updated": null,
+    "url": "https://vboblobprod.blob.core.windows.net/awsvboticketscom/_images/master/v1.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "v1"
+}

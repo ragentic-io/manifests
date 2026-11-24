@@ -1,0 +1,1069 @@
+{
+  "a2ui": {},
+  "app": "openpayd",
+  "graph": {
+    "edges": [
+      {
+        "from": "openpayd",
+        "kind": "EXPOSES",
+        "to": "operation:post:/accounts"
+      },
+      {
+        "from": "openpayd",
+        "kind": "EXPOSES",
+        "to": "operation:get:/bank-accounts"
+      },
+      {
+        "from": "openpayd",
+        "kind": "EXPOSES",
+        "to": "operation:post:/beneficiaries"
+      },
+      {
+        "from": "openpayd",
+        "kind": "EXPOSES",
+        "to": "operation:post:/beneficiaries/{parentBeneficiaryId}/bank-beneficiaries"
+      },
+      {
+        "from": "openpayd",
+        "kind": "EXPOSES",
+        "to": "operation:post:/oauth/token"
+      },
+      {
+        "from": "openpayd",
+        "kind": "EXPOSES",
+        "to": "operation:post:/transactions/bank-payouts"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "openpayd",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Create an account in a specified currency.",
+        "id": "operation:post:/accounts",
+        "kind": "operation",
+        "method": "post",
+        "name": "createAccount",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-account-holder-id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "idempotency-key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/accounts",
+        "pointer": "#/paths/~1accounts/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create an account",
+        "tags": [
+          "Accounts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/bank-accounts",
+        "kind": "operation",
+        "method": "get",
+        "name": "listPaymentAccounts",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-account-holder-id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "internalAccountId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter by multiple internal account identifiers.",
+            "in": "query",
+            "name": "internalAccountIds",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "in": "query",
+            "name": "currency",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/bank-accounts",
+        "pointer": "#/paths/~1bank-accounts/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object[]"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List payment accounts",
+        "tags": [
+          "Accounts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Create a parent beneficiary before adding bank details.",
+        "id": "operation:post:/beneficiaries",
+        "kind": "operation",
+        "method": "post",
+        "name": "createParentBeneficiary",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-account-holder-id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/beneficiaries",
+        "pointer": "#/paths/~1beneficiaries/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "default",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a beneficiary record",
+        "tags": [
+          "Beneficiaries"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/beneficiaries/{parentBeneficiaryId}/bank-beneficiaries",
+        "kind": "operation",
+        "method": "post",
+        "name": "createBankBeneficiary",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "parentBeneficiaryId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-account-holder-id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/beneficiaries/{parentBeneficiaryId}/bank-beneficiaries",
+        "pointer": "#/paths/~1beneficiaries~1{parentBeneficiaryId}~1bank-beneficiaries/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Add bank details to a beneficiary",
+        "tags": [
+          "Beneficiaries"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Exchange sandbox API credentials for a bearer access token.",
+        "id": "operation:post:/oauth/token",
+        "kind": "operation",
+        "method": "post",
+        "name": "getAccessToken",
+        "path": "/oauth/token",
+        "pointer": "#/paths/~1oauth~1token/post",
+        "request": {
+          "content_types": [
+            "application/x-www-form-urlencoded"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "summary": "Get an API access token",
+        "tags": [
+          "Authentication"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Send funds from an account to a previously created bank beneficiary.",
+        "id": "operation:post:/transactions/bank-payouts",
+        "kind": "operation",
+        "method": "post",
+        "name": "createBankPayout",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-account-holder-id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "idempotency-key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/transactions/bank-payouts",
+        "pointer": "#/paths/~1transactions~1bank-payouts/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a bank payout",
+        "tags": [
+          "Payments"
+        ]
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "openpayd"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://sandbox.openpayd.com/api",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "securitySchemes": {
+                "basicAuth": {
+                  "scheme": "basic",
+                  "type": "http"
+                },
+                "bearerAuth": {
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused account and payout operations documented by OpenPayd.",
+              "externalDocs": {
+                "description": "OpenPayd API documentation",
+                "url": "https://apidocs.openpayd.com/"
+              },
+              "title": "OpenPayd API (focused)",
+              "version": "1.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/accounts": {
+                "post": {
+                  "description": "Create an account in a specified currency.",
+                  "operationId": "createAccount",
+                  "parameters": [
+                    {
+                      "in": "header",
+                      "name": "x-account-holder-id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "header",
+                      "name": "idempotency-key",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "accountId": {
+                              "type": "string"
+                            },
+                            "currency": {
+                              "description": "Three-letter ISO 4217 currency code.",
+                              "type": "string"
+                            },
+                            "endToEndReference": {
+                              "type": "string"
+                            },
+                            "friendlyName": {
+                              "type": "string"
+                            },
+                            "ibanCountry": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "currency"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "accountHolderId": {
+                                "type": "string"
+                              },
+                              "actualBalance": {
+                                "properties": {
+                                  "currency": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "availableBalance": {
+                                "properties": {
+                                  "currency": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "createdOn": {
+                                "format": "date-time",
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "internalAccountId": {
+                                "type": "string"
+                              },
+                              "status": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Account created."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Create an account",
+                  "tags": [
+                    "Accounts"
+                  ]
+                }
+              },
+              "/bank-accounts": {
+                "get": {
+                  "operationId": "listPaymentAccounts",
+                  "parameters": [
+                    {
+                      "in": "header",
+                      "name": "x-account-holder-id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "internalAccountId",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter by multiple internal account identifiers.",
+                      "in": "query",
+                      "name": "internalAccountIds",
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "currency",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "status",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "properties": {
+                                "accountNumber": {
+                                  "type": "string"
+                                },
+                                "bankAccountHolderName": {
+                                  "type": "string"
+                                },
+                                "bankCountry": {
+                                  "type": "string"
+                                },
+                                "bankName": {
+                                  "type": "string"
+                                },
+                                "bic": {
+                                  "type": "string"
+                                },
+                                "currency": {
+                                  "type": "string"
+                                },
+                                "iban": {
+                                  "type": "string"
+                                },
+                                "internalAccountId": {
+                                  "type": "string"
+                                },
+                                "payInReference": {
+                                  "type": "string"
+                                },
+                                "provider": {
+                                  "type": "string"
+                                },
+                                "status": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Payment accounts matching the supplied filters."
+                    },
+                    "400": {
+                      "description": "The account query was invalid."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "List payment accounts",
+                  "tags": [
+                    "Accounts"
+                  ]
+                }
+              },
+              "/beneficiaries": {
+                "post": {
+                  "description": "Create a parent beneficiary before adding bank details.",
+                  "operationId": "createParentBeneficiary",
+                  "parameters": [
+                    {
+                      "in": "header",
+                      "name": "x-account-holder-id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "beneficiaryType": {
+                              "type": "string"
+                            },
+                            "firstName": {
+                              "type": "string"
+                            },
+                            "friendlyName": {
+                              "type": "string"
+                            },
+                            "lastName": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "accountHolderId": {
+                                "type": "string"
+                              },
+                              "beneficiaryType": {
+                                "type": "string"
+                              },
+                              "firstName": {
+                                "type": "string"
+                              },
+                              "friendlyName": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "lastName": {
+                                "type": "string"
+                              },
+                              "tag": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "title": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Parent beneficiary response; the guide does not specify an HTTP status code."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Create a beneficiary record",
+                  "tags": [
+                    "Beneficiaries"
+                  ]
+                }
+              },
+              "/beneficiaries/{parentBeneficiaryId}/bank-beneficiaries": {
+                "post": {
+                  "operationId": "createBankBeneficiary",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "parentBeneficiaryId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "header",
+                      "name": "x-account-holder-id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "accountNumber": {
+                              "type": "string"
+                            },
+                            "bankAccountCountry": {
+                              "type": "string"
+                            },
+                            "bankAccountCurrency": {
+                              "type": "string"
+                            },
+                            "bankAccountHolderName": {
+                              "type": "string"
+                            },
+                            "bankAccountType": {
+                              "type": "string"
+                            },
+                            "bankAddress": {
+                              "type": "string"
+                            },
+                            "bankName": {
+                              "type": "string"
+                            },
+                            "beneficiaryAddressLine": {
+                              "type": "string"
+                            },
+                            "beneficiaryCity": {
+                              "type": "string"
+                            },
+                            "beneficiaryCountry": {
+                              "type": "string"
+                            },
+                            "beneficiaryFirstName": {
+                              "type": "string"
+                            },
+                            "beneficiaryLastName": {
+                              "type": "string"
+                            },
+                            "beneficiaryPostalCode": {
+                              "type": "string"
+                            },
+                            "beneficiaryType": {
+                              "type": "string"
+                            },
+                            "bic": {
+                              "type": "string"
+                            },
+                            "iban": {
+                              "type": "string"
+                            },
+                            "paymentTypes": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "required": [
+                            "bankAccountCurrency",
+                            "paymentTypes",
+                            "beneficiaryType",
+                            "beneficiaryCountry",
+                            "bankAccountCountry",
+                            "bankAccountHolderName"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Bank beneficiary created."
+                    },
+                    "400": {
+                      "description": "The beneficiary details were invalid."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Add bank details to a beneficiary",
+                  "tags": [
+                    "Beneficiaries"
+                  ]
+                }
+              },
+              "/oauth/token": {
+                "post": {
+                  "description": "Exchange sandbox API credentials for a bearer access token.",
+                  "operationId": "getAccessToken",
+                  "requestBody": {
+                    "content": {
+                      "application/x-www-form-urlencoded": {
+                        "schema": {
+                          "properties": {
+                            "grant_type": {
+                              "enum": [
+                                "client_credentials"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "grant_type"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "access_token": {
+                                "type": "string"
+                              },
+                              "accountHolderId": {
+                                "type": "string"
+                              },
+                              "expires_in": {
+                                "type": "integer"
+                              },
+                              "scope": {
+                                "type": "string"
+                              },
+                              "token_type": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Access token issued."
+                    },
+                    "400": {
+                      "description": "The credentials or token request were rejected."
+                    }
+                  },
+                  "security": [
+                    {
+                      "basicAuth": []
+                    }
+                  ],
+                  "summary": "Get an API access token",
+                  "tags": [
+                    "Authentication"
+                  ]
+                }
+              },
+              "/transactions/bank-payouts": {
+                "post": {
+                  "description": "Send funds from an account to a previously created bank beneficiary.",
+                  "operationId": "createBankPayout",
+                  "parameters": [
+                    {
+                      "in": "header",
+                      "name": "x-account-holder-id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "header",
+                      "name": "idempotency-key",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "accountId": {
+                              "type": "string"
+                            },
+                            "amount": {
+                              "properties": {
+                                "currency": {
+                                  "type": "string"
+                                },
+                                "value": {
+                                  "format": "float",
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "currency",
+                                "value"
+                              ],
+                              "type": "object"
+                            },
+                            "beneficiaryId": {
+                              "type": "string"
+                            },
+                            "paymentDate": {
+                              "format": "date",
+                              "type": "string"
+                            },
+                            "paymentType": {
+                              "type": "string"
+                            },
+                            "purposeCode": {
+                              "type": "string"
+                            },
+                            "reasonCode": {
+                              "type": "string"
+                            },
+                            "reference": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "accountId",
+                            "beneficiaryId",
+                            "amount",
+                            "reference"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "accountId": {
+                                "type": "string"
+                              },
+                              "amount": {
+                                "properties": {
+                                  "currency": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "createdDate": {
+                                "format": "date-time",
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "paymentDate": {
+                                "format": "date-time",
+                                "type": "string"
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "transactionId": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Payout transaction created."
+                    },
+                    "400": {
+                      "description": "The payout request was invalid."
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Create a bank payout",
+                  "tags": [
+                    "Payments"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "OpenPayd sandbox",
+                "url": "https://sandbox.openpayd.com/api"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Authentication"
+              },
+              {
+                "name": "Accounts"
+              },
+              {
+                "name": "Beneficiaries"
+              },
+              {
+                "name": "Payments"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OpenPayd"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:36.981463+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openpayd/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "148227a4e2ca4039342089ba8d114ede14256ff113c6c8e8d97e7ee6a35e6295",
+    "source_id": "openpayd",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openpayd/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0"
+}

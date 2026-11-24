@@ -1,0 +1,2764 @@
+{
+  "a2ui": {},
+  "app": "mailerlite",
+  "graph": {
+    "edges": [
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:get:/campaigns"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:post:/campaigns"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:get:/campaigns/{campaign_id}"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:post:/campaigns/{campaign_id}/schedule"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:get:/groups"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:post:/groups"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:put:/groups/{group_id}"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/groups/{group_id}"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:get:/groups/{group_id}/subscribers"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:get:/subscribers"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:post:/subscribers"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:get:/subscribers/{subscriber_id}"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:put:/subscribers/{subscriber_id}"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/subscribers/{subscriber_id}"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:post:/subscribers/{subscriber_id}/forget"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:post:/subscribers/{subscriber_id}/groups/{group_id}"
+      },
+      {
+        "from": "mailerlite",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/subscribers/{subscriber_id}/groups/{group_id}"
+      },
+      {
+        "from": "operation:get:/campaigns",
+        "kind": "RETURNS",
+        "to": "schema:CampaignList"
+      },
+      {
+        "from": "operation:post:/campaigns",
+        "kind": "ACCEPTS",
+        "to": "schema:CampaignInput"
+      },
+      {
+        "from": "operation:post:/campaigns",
+        "kind": "RETURNS",
+        "to": "schema:CampaignEnvelope"
+      },
+      {
+        "from": "operation:get:/campaigns/{campaign_id}",
+        "kind": "RETURNS",
+        "to": "schema:CampaignEnvelope"
+      },
+      {
+        "from": "operation:post:/campaigns/{campaign_id}/schedule",
+        "kind": "ACCEPTS",
+        "to": "schema:CampaignSchedule"
+      },
+      {
+        "from": "operation:post:/campaigns/{campaign_id}/schedule",
+        "kind": "RETURNS",
+        "to": "schema:CampaignEnvelope"
+      },
+      {
+        "from": "operation:get:/groups",
+        "kind": "RETURNS",
+        "to": "schema:GroupList"
+      },
+      {
+        "from": "operation:post:/groups",
+        "kind": "ACCEPTS",
+        "to": "schema:GroupInput"
+      },
+      {
+        "from": "operation:post:/groups",
+        "kind": "RETURNS",
+        "to": "schema:GroupEnvelope"
+      },
+      {
+        "from": "operation:put:/groups/{group_id}",
+        "kind": "ACCEPTS",
+        "to": "schema:GroupInput"
+      },
+      {
+        "from": "operation:put:/groups/{group_id}",
+        "kind": "RETURNS",
+        "to": "schema:GroupEnvelope"
+      },
+      {
+        "from": "operation:get:/groups/{group_id}/subscribers",
+        "kind": "RETURNS",
+        "to": "schema:SubscriberList"
+      },
+      {
+        "from": "operation:get:/subscribers",
+        "kind": "RETURNS",
+        "to": "schema:SubscriberList"
+      },
+      {
+        "from": "operation:post:/subscribers",
+        "kind": "ACCEPTS",
+        "to": "schema:SubscriberUpsert"
+      },
+      {
+        "from": "operation:post:/subscribers",
+        "kind": "RETURNS",
+        "to": "schema:SubscriberEnvelope"
+      },
+      {
+        "from": "operation:get:/subscribers/{subscriber_id}",
+        "kind": "RETURNS",
+        "to": "schema:SubscriberEnvelope"
+      },
+      {
+        "from": "operation:put:/subscribers/{subscriber_id}",
+        "kind": "ACCEPTS",
+        "to": "schema:SubscriberUpdate"
+      },
+      {
+        "from": "operation:put:/subscribers/{subscriber_id}",
+        "kind": "RETURNS",
+        "to": "schema:SubscriberEnvelope"
+      },
+      {
+        "from": "operation:post:/subscribers/{subscriber_id}/forget",
+        "kind": "RETURNS",
+        "to": "schema:SubscriberEnvelope"
+      },
+      {
+        "from": "operation:post:/subscribers/{subscriber_id}/groups/{group_id}",
+        "kind": "RETURNS",
+        "to": "schema:GroupEnvelope"
+      },
+      {
+        "from": "schema:CampaignEnvelope",
+        "kind": "REFERENCES",
+        "to": "schema:Campaign"
+      },
+      {
+        "from": "schema:CampaignInput",
+        "kind": "REFERENCES",
+        "to": "schema:CampaignEmailInput"
+      },
+      {
+        "from": "schema:CampaignList",
+        "kind": "REFERENCES",
+        "to": "schema:Campaign"
+      },
+      {
+        "from": "schema:GroupEnvelope",
+        "kind": "REFERENCES",
+        "to": "schema:Group"
+      },
+      {
+        "from": "schema:GroupList",
+        "kind": "REFERENCES",
+        "to": "schema:Group"
+      },
+      {
+        "from": "schema:Subscriber",
+        "kind": "REFERENCES",
+        "to": "schema:Group"
+      },
+      {
+        "from": "schema:Subscriber",
+        "kind": "REFERENCES",
+        "to": "schema:SubscriberStatus"
+      },
+      {
+        "from": "schema:SubscriberEnvelope",
+        "kind": "REFERENCES",
+        "to": "schema:Subscriber"
+      },
+      {
+        "from": "schema:SubscriberList",
+        "kind": "REFERENCES",
+        "to": "schema:CursorLinks"
+      },
+      {
+        "from": "schema:SubscriberList",
+        "kind": "REFERENCES",
+        "to": "schema:CursorMeta"
+      },
+      {
+        "from": "schema:SubscriberList",
+        "kind": "REFERENCES",
+        "to": "schema:Subscriber"
+      },
+      {
+        "from": "schema:SubscriberUpdate",
+        "kind": "REFERENCES",
+        "to": "schema:SubscriberStatus"
+      },
+      {
+        "from": "schema:SubscriberUpsert",
+        "kind": "REFERENCES",
+        "to": "schema:SubscriberStatus"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "mailerlite",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/campaigns",
+        "kind": "operation",
+        "method": "get",
+        "name": "listCampaigns",
+        "parameters": [
+          {
+            "enum": [
+              "sent",
+              "draft",
+              "ready"
+            ],
+            "in": "query",
+            "name": "filter[status]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "regular",
+              "ab",
+              "resend",
+              "rss"
+            ],
+            "in": "query",
+            "name": "filter[type]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1,
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/campaigns",
+        "pointer": "#/paths/~1campaigns/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CampaignList"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List campaigns",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/campaigns",
+        "kind": "operation",
+        "method": "post",
+        "name": "createCampaign",
+        "path": "/campaigns",
+        "pointer": "#/paths/~1campaigns/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CampaignInput"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "CampaignEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a campaign",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/campaigns/{campaign_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCampaign",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "campaign_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/campaigns/{campaign_id}",
+        "pointer": "#/paths/~1campaigns~1{campaign_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CampaignEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get a campaign",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Use delivery instant to send immediately or scheduled to set a future delivery time.",
+        "id": "operation:post:/campaigns/{campaign_id}/schedule",
+        "kind": "operation",
+        "method": "post",
+        "name": "scheduleCampaign",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "campaign_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/campaigns/{campaign_id}/schedule",
+        "pointer": "#/paths/~1campaigns~1{campaign_id}~1schedule/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CampaignSchedule"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "CampaignEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Schedule or send a campaign",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/groups",
+        "kind": "operation",
+        "method": "get",
+        "name": "listGroups",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "filter[name]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "name",
+              "total",
+              "open_rate",
+              "click_rate",
+              "created_at",
+              "-name",
+              "-total",
+              "-open_rate",
+              "-click_rate",
+              "-created_at"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/groups",
+        "pointer": "#/paths/~1groups/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "GroupList"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List groups",
+        "tags": [
+          "Groups"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/groups",
+        "kind": "operation",
+        "method": "post",
+        "name": "createGroup",
+        "path": "/groups",
+        "pointer": "#/paths/~1groups/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "GroupInput"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "GroupEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a group",
+        "tags": [
+          "Groups"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:put:/groups/{group_id}",
+        "kind": "operation",
+        "method": "put",
+        "name": "updateGroup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/groups/{group_id}",
+        "pointer": "#/paths/~1groups~1{group_id}/put",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "GroupInput"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "GroupEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Update a group",
+        "tags": [
+          "Groups"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:delete:/groups/{group_id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "deleteGroup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/groups/{group_id}",
+        "pointer": "#/paths/~1groups~1{group_id}/delete",
+        "responses": [
+          {
+            "status": "204"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Delete a group",
+        "tags": [
+          "Groups"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/groups/{group_id}/subscribers",
+        "kind": "operation",
+        "method": "get",
+        "name": "listGroupSubscribers",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "active",
+            "enum": [
+              "active",
+              "unsubscribed",
+              "unconfirmed",
+              "bounced",
+              "junk"
+            ],
+            "in": "query",
+            "name": "filter[status]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 50,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "groups"
+            ],
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/groups/{group_id}/subscribers",
+        "pointer": "#/paths/~1groups~1{group_id}~1subscribers/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubscriberList"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List subscribers in a group",
+        "tags": [
+          "Groups"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns subscribers with cursor-based pagination.",
+        "id": "operation:get:/subscribers",
+        "kind": "operation",
+        "method": "get",
+        "name": "listSubscribers",
+        "parameters": [
+          {
+            "enum": [
+              "active",
+              "unsubscribed",
+              "unconfirmed",
+              "bounced",
+              "junk"
+            ],
+            "in": "query",
+            "name": "filter[status]",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Currently documented include value is groups.",
+            "enum": [
+              "groups"
+            ],
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/subscribers",
+        "pointer": "#/paths/~1subscribers/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubscriberList"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List subscribers",
+        "tags": [
+          "Subscribers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates a subscriber or updates the existing record matching the email.",
+        "id": "operation:post:/subscribers",
+        "kind": "operation",
+        "method": "post",
+        "name": "upsertSubscriber",
+        "path": "/subscribers",
+        "pointer": "#/paths/~1subscribers/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SubscriberUpsert"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubscriberEnvelope"
+          },
+          {
+            "status": "201",
+            "type": "SubscriberEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create or update a subscriber",
+        "tags": [
+          "Subscribers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The path value may be a subscriber ID or email address.",
+        "id": "operation:get:/subscribers/{subscriber_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSubscriber",
+        "parameters": [
+          {
+            "description": "Subscriber ID; the GET subscriber operation also accepts an email address.",
+            "in": "path",
+            "name": "subscriber_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/subscribers/{subscriber_id}",
+        "pointer": "#/paths/~1subscribers~1{subscriber_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubscriberEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get a subscriber",
+        "tags": [
+          "Subscribers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Updates documented subscriber fields and group membership for an existing record.",
+        "id": "operation:put:/subscribers/{subscriber_id}",
+        "kind": "operation",
+        "method": "put",
+        "name": "updateSubscriber",
+        "parameters": [
+          {
+            "description": "Subscriber ID; the GET subscriber operation also accepts an email address.",
+            "in": "path",
+            "name": "subscriber_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/subscribers/{subscriber_id}",
+        "pointer": "#/paths/~1subscribers~1{subscriber_id}/put",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SubscriberUpdate"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubscriberEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Update a subscriber",
+        "tags": [
+          "Subscribers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Removes a subscriber while retaining information in case they resubscribe.",
+        "id": "operation:delete:/subscribers/{subscriber_id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "deleteSubscriber",
+        "parameters": [
+          {
+            "description": "Subscriber ID; the GET subscriber operation also accepts an email address.",
+            "in": "path",
+            "name": "subscriber_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/subscribers/{subscriber_id}",
+        "pointer": "#/paths/~1subscribers~1{subscriber_id}/delete",
+        "responses": [
+          {
+            "status": "204"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Delete a subscriber",
+        "tags": [
+          "Subscribers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Requests permanent deletion of subscriber data within 30 days.",
+        "id": "operation:post:/subscribers/{subscriber_id}/forget",
+        "kind": "operation",
+        "method": "post",
+        "name": "forgetSubscriber",
+        "parameters": [
+          {
+            "description": "Subscriber ID; the GET subscriber operation also accepts an email address.",
+            "in": "path",
+            "name": "subscriber_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/subscribers/{subscriber_id}/forget",
+        "pointer": "#/paths/~1subscribers~1{subscriber_id}~1forget/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubscriberEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Request permanent subscriber deletion",
+        "tags": [
+          "Subscribers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/subscribers/{subscriber_id}/groups/{group_id}",
+        "kind": "operation",
+        "method": "post",
+        "name": "assignSubscriberToGroup",
+        "parameters": [
+          {
+            "description": "Subscriber ID; the GET subscriber operation also accepts an email address.",
+            "in": "path",
+            "name": "subscriber_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/subscribers/{subscriber_id}/groups/{group_id}",
+        "pointer": "#/paths/~1subscribers~1{subscriber_id}~1groups~1{group_id}/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "GroupEnvelope"
+          },
+          {
+            "status": "201",
+            "type": "GroupEnvelope"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Add a subscriber to a group",
+        "tags": [
+          "Groups"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:delete:/subscribers/{subscriber_id}/groups/{group_id}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "removeSubscriberFromGroup",
+        "parameters": [
+          {
+            "description": "Subscriber ID; the GET subscriber operation also accepts an email address.",
+            "in": "path",
+            "name": "subscriber_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/subscribers/{subscriber_id}/groups/{group_id}",
+        "pointer": "#/paths/~1subscribers~1{subscriber_id}~1groups~1{group_id}/delete",
+        "responses": [
+          {
+            "status": "204"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Remove a subscriber from a group",
+        "tags": [
+          "Groups"
+        ]
+      },
+      {
+        "id": "schema:Campaign",
+        "kind": "schema",
+        "name": "Campaign",
+        "type": "object"
+      },
+      {
+        "id": "schema:CampaignEmailInput",
+        "kind": "schema",
+        "name": "CampaignEmailInput",
+        "type": "object"
+      },
+      {
+        "id": "schema:CampaignEnvelope",
+        "kind": "schema",
+        "name": "CampaignEnvelope",
+        "type": "object"
+      },
+      {
+        "id": "schema:CampaignInput",
+        "kind": "schema",
+        "name": "CampaignInput",
+        "type": "object"
+      },
+      {
+        "id": "schema:CampaignList",
+        "kind": "schema",
+        "name": "CampaignList",
+        "type": "object"
+      },
+      {
+        "id": "schema:CampaignSchedule",
+        "kind": "schema",
+        "name": "CampaignSchedule",
+        "type": "object"
+      },
+      {
+        "id": "schema:CursorLinks",
+        "kind": "schema",
+        "name": "CursorLinks",
+        "type": "object"
+      },
+      {
+        "id": "schema:CursorMeta",
+        "kind": "schema",
+        "name": "CursorMeta",
+        "type": "object"
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:Group",
+        "kind": "schema",
+        "name": "Group",
+        "type": "object"
+      },
+      {
+        "id": "schema:GroupEnvelope",
+        "kind": "schema",
+        "name": "GroupEnvelope",
+        "type": "object"
+      },
+      {
+        "id": "schema:GroupInput",
+        "kind": "schema",
+        "name": "GroupInput",
+        "type": "object"
+      },
+      {
+        "id": "schema:GroupList",
+        "kind": "schema",
+        "name": "GroupList",
+        "type": "object"
+      },
+      {
+        "id": "schema:Subscriber",
+        "kind": "schema",
+        "name": "Subscriber",
+        "type": "object"
+      },
+      {
+        "id": "schema:SubscriberEnvelope",
+        "kind": "schema",
+        "name": "SubscriberEnvelope",
+        "type": "object"
+      },
+      {
+        "id": "schema:SubscriberList",
+        "kind": "schema",
+        "name": "SubscriberList",
+        "type": "object"
+      },
+      {
+        "id": "schema:SubscriberStatus",
+        "kind": "schema",
+        "name": "SubscriberStatus",
+        "type": "string"
+      },
+      {
+        "id": "schema:SubscriberUpdate",
+        "kind": "schema",
+        "name": "SubscriberUpdate",
+        "type": "object"
+      },
+      {
+        "id": "schema:SubscriberUpsert",
+        "kind": "schema",
+        "name": "SubscriberUpsert",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "mailerlite"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://connect.mailerlite.com/api",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "CampaignId": {
+                  "in": "path",
+                  "name": "campaign_id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "GroupId": {
+                  "in": "path",
+                  "name": "group_id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "SubscriberId": {
+                  "description": "Subscriber ID; the GET subscriber operation also accepts an email address.",
+                  "in": "path",
+                  "name": "subscriber_id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "Unauthorized": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "API token is missing or invalid."
+                },
+                "ValidationError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Request fields failed validation."
+                }
+              },
+              "schemas": {
+                "Campaign": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "account_id": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "emails": {
+                      "items": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "language_id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "type",
+                    "status"
+                  ],
+                  "type": "object"
+                },
+                "CampaignEmailInput": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "content": {
+                      "type": "string"
+                    },
+                    "from": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "from_name": {
+                      "maxLength": 255,
+                      "type": "string"
+                    },
+                    "reply_to": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "subject": {
+                      "maxLength": 255,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CampaignEnvelope": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Campaign"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "CampaignInput": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "ab_settings": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "emails": {
+                      "items": {
+                        "$ref": "#/components/schemas/CampaignEmailInput"
+                      },
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "groups": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "language_id": {
+                      "type": "integer"
+                    },
+                    "multivariate_settings": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "name": {
+                      "maxLength": 255,
+                      "type": "string"
+                    },
+                    "resend_settings": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "segments": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "enum": [
+                        "regular",
+                        "ab",
+                        "resend",
+                        "multivariate"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "type",
+                    "emails"
+                  ],
+                  "type": "object"
+                },
+                "CampaignList": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Campaign"
+                      },
+                      "type": "array"
+                    },
+                    "links": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "meta": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "CampaignSchedule": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "delivery": {
+                      "enum": [
+                        "instant",
+                        "scheduled",
+                        "timezone_based",
+                        "smart_sending"
+                      ],
+                      "type": "string"
+                    },
+                    "resend": {
+                      "additionalProperties": true,
+                      "properties": {
+                        "date": {
+                          "type": "string"
+                        },
+                        "delivery": {
+                          "enum": [
+                            "day",
+                            "scheduled"
+                          ],
+                          "type": "string"
+                        },
+                        "hours": {
+                          "type": "string"
+                        },
+                        "minutes": {
+                          "type": "string"
+                        },
+                        "timezone_id": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "schedule": {
+                      "additionalProperties": true,
+                      "properties": {
+                        "date": {
+                          "type": "string"
+                        },
+                        "hours": {
+                          "type": "string"
+                        },
+                        "minutes": {
+                          "type": "string"
+                        },
+                        "timezone_id": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "sending_time_test_schedule": {
+                      "items": {
+                        "additionalProperties": true,
+                        "properties": {
+                          "date": {
+                            "type": "string"
+                          },
+                          "hours": {
+                            "type": "string"
+                          },
+                          "minutes": {
+                            "type": "string"
+                          },
+                          "timezone_id": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "maxItems": 2,
+                      "minItems": 2,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "delivery"
+                  ],
+                  "type": "object"
+                },
+                "CursorLinks": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "first": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "last": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "next": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "prev": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "CursorMeta": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "next_cursor": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "per_page": {
+                      "type": "integer"
+                    },
+                    "prev_cursor": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "Error": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "errors": {
+                      "additionalProperties": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "type": "object"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Group": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "active_count": {
+                      "type": "integer"
+                    },
+                    "bounced_count": {
+                      "type": "integer"
+                    },
+                    "clicks_count": {
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "junk_count": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "opens_count": {
+                      "type": "integer"
+                    },
+                    "sent_count": {
+                      "type": "integer"
+                    },
+                    "unconfirmed_count": {
+                      "type": "integer"
+                    },
+                    "unsubscribed_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "type": "object"
+                },
+                "GroupEnvelope": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Group"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "GroupInput": {
+                  "properties": {
+                    "name": {
+                      "maxLength": 255,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ],
+                  "type": "object"
+                },
+                "GroupList": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Group"
+                      },
+                      "type": "array"
+                    },
+                    "links": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "meta": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "Subscriber": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "click_rate": {
+                      "type": "number"
+                    },
+                    "clicks_count": {
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "fields": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "groups": {
+                      "items": {
+                        "$ref": "#/components/schemas/Group"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "ip_address": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "open_rate": {
+                      "type": "number"
+                    },
+                    "opens_count": {
+                      "type": "integer"
+                    },
+                    "opted_in_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "optin_ip": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "sent": {
+                      "type": "integer"
+                    },
+                    "source": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/SubscriberStatus"
+                    },
+                    "subscribed_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "unsubscribed_at": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "email",
+                    "status"
+                  ],
+                  "type": "object"
+                },
+                "SubscriberEnvelope": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Subscriber"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "SubscriberList": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Subscriber"
+                      },
+                      "type": "array"
+                    },
+                    "links": {
+                      "$ref": "#/components/schemas/CursorLinks"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/CursorMeta"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "SubscriberStatus": {
+                  "enum": [
+                    "active",
+                    "unsubscribed",
+                    "unconfirmed",
+                    "bounced",
+                    "junk"
+                  ],
+                  "type": "string"
+                },
+                "SubscriberUpdate": {
+                  "properties": {
+                    "fields": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "groups": {
+                      "description": "Group IDs to retain on the subscriber.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "ip_address": {
+                      "type": "string"
+                    },
+                    "opted_in_at": {
+                      "description": "Date in yyyy-MM-dd HH:mm:ss format.",
+                      "type": "string"
+                    },
+                    "optin_ip": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/SubscriberStatus"
+                    },
+                    "subscribed_at": {
+                      "description": "Date in yyyy-MM-dd HH:mm:ss format.",
+                      "type": "string"
+                    },
+                    "unsubscribed_at": {
+                      "description": "Date in yyyy-MM-dd HH:mm:ss format.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SubscriberUpsert": {
+                  "properties": {
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "fields": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "groups": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "ip_address": {
+                      "type": "string"
+                    },
+                    "opted_in_at": {
+                      "description": "Date in yyyy-MM-dd HH:mm:ss format.",
+                      "type": "string"
+                    },
+                    "optin_ip": {
+                      "type": "string"
+                    },
+                    "resubscribe": {
+                      "type": "boolean"
+                    },
+                    "status": {
+                      "$ref": "#/components/schemas/SubscriberStatus"
+                    },
+                    "subscribed_at": {
+                      "description": "Date in yyyy-MM-dd HH:mm:ss format.",
+                      "type": "string"
+                    },
+                    "unsubscribed_at": {
+                      "description": "Date in yyyy-MM-dd HH:mm:ss format.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "email"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "description": "MailerLite API token passed in the Authorization header.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "name": "MailerLite API support",
+                "url": "https://www.mailerlite.com/help/c/integrations"
+              },
+              "description": "Covers documented subscriber, group, and campaign operations. The provider's public API reference remains authoritative for behavior and for API areas not included in this focused subset.",
+              "externalDocs": {
+                "description": "Official MailerLite API reference",
+                "url": "https://developers.mailerlite.com/"
+              },
+              "summary": "Community-maintained OpenAPI subset for core MailerLite marketing workflows.",
+              "title": "MailerLite API (community subset)",
+              "version": "2026-10-02"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/campaigns": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/campaigns"
+                  },
+                  "operationId": "listCampaigns",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "filter[status]",
+                      "schema": {
+                        "enum": [
+                          "sent",
+                          "draft",
+                          "ready"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "filter[type]",
+                      "schema": {
+                        "enum": [
+                          "regular",
+                          "ab",
+                          "resend",
+                          "rss"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": 25,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "page",
+                      "schema": {
+                        "default": 1,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CampaignList"
+                          }
+                        }
+                      },
+                      "description": "Campaign page."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "List campaigns",
+                  "tags": [
+                    "Campaigns"
+                  ]
+                },
+                "post": {
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/campaigns"
+                  },
+                  "operationId": "createCampaign",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CampaignInput"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CampaignEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Campaign created."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/ValidationError"
+                    }
+                  },
+                  "summary": "Create a campaign",
+                  "tags": [
+                    "Campaigns"
+                  ]
+                }
+              },
+              "/campaigns/{campaign_id}": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/campaigns"
+                  },
+                  "operationId": "getCampaign",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CampaignEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Campaign record."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "description": "Campaign was not found."
+                    }
+                  },
+                  "summary": "Get a campaign",
+                  "tags": [
+                    "Campaigns"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/CampaignId"
+                  }
+                ]
+              },
+              "/campaigns/{campaign_id}/schedule": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/CampaignId"
+                  }
+                ],
+                "post": {
+                  "description": "Use delivery instant to send immediately or scheduled to set a future delivery time.",
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/campaigns"
+                  },
+                  "operationId": "scheduleCampaign",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CampaignSchedule"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CampaignEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Campaign scheduled or sent."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/ValidationError"
+                    }
+                  },
+                  "summary": "Schedule or send a campaign",
+                  "tags": [
+                    "Campaigns"
+                  ]
+                }
+              },
+              "/groups": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/groups"
+                  },
+                  "operationId": "listGroups",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "page",
+                      "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "filter[name]",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "sort",
+                      "schema": {
+                        "enum": [
+                          "name",
+                          "total",
+                          "open_rate",
+                          "click_rate",
+                          "created_at",
+                          "-name",
+                          "-total",
+                          "-open_rate",
+                          "-click_rate",
+                          "-created_at"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/GroupList"
+                          }
+                        }
+                      },
+                      "description": "Group page."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "List groups",
+                  "tags": [
+                    "Groups"
+                  ]
+                },
+                "post": {
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/groups"
+                  },
+                  "operationId": "createGroup",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/GroupInput"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/GroupEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Group created."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/ValidationError"
+                    }
+                  },
+                  "summary": "Create a group",
+                  "tags": [
+                    "Groups"
+                  ]
+                }
+              },
+              "/groups/{group_id}": {
+                "delete": {
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/groups"
+                  },
+                  "operationId": "deleteGroup",
+                  "responses": {
+                    "204": {
+                      "description": "Group deleted."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "description": "Group was not found."
+                    }
+                  },
+                  "summary": "Delete a group",
+                  "tags": [
+                    "Groups"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/GroupId"
+                  }
+                ],
+                "put": {
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/groups"
+                  },
+                  "operationId": "updateGroup",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/GroupInput"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/GroupEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Updated group."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/ValidationError"
+                    }
+                  },
+                  "summary": "Update a group",
+                  "tags": [
+                    "Groups"
+                  ]
+                }
+              },
+              "/groups/{group_id}/subscribers": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/groups"
+                  },
+                  "operationId": "listGroupSubscribers",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "filter[status]",
+                      "schema": {
+                        "default": "active",
+                        "enum": [
+                          "active",
+                          "unsubscribed",
+                          "unconfirmed",
+                          "bounced",
+                          "junk"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": 50,
+                        "maximum": 1000,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "cursor",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "include",
+                      "schema": {
+                        "enum": [
+                          "groups"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubscriberList"
+                          }
+                        }
+                      },
+                      "description": "Subscriber page."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "description": "Group was not found."
+                    }
+                  },
+                  "summary": "List subscribers in a group",
+                  "tags": [
+                    "Groups"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/GroupId"
+                  }
+                ]
+              },
+              "/subscribers": {
+                "get": {
+                  "description": "Returns subscribers with cursor-based pagination.",
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/subscribers"
+                  },
+                  "operationId": "listSubscribers",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "filter[status]",
+                      "schema": {
+                        "enum": [
+                          "active",
+                          "unsubscribed",
+                          "unconfirmed",
+                          "bounced",
+                          "junk"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": 25,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "cursor",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Currently documented include value is groups.",
+                      "in": "query",
+                      "name": "include",
+                      "schema": {
+                        "enum": [
+                          "groups"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubscriberList"
+                          }
+                        }
+                      },
+                      "description": "Subscriber page."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    }
+                  },
+                  "summary": "List subscribers",
+                  "tags": [
+                    "Subscribers"
+                  ]
+                },
+                "post": {
+                  "description": "Creates a subscriber or updates the existing record matching the email.",
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/subscribers"
+                  },
+                  "operationId": "upsertSubscriber",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SubscriberUpsert"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubscriberEnvelope"
+                          }
+                        }
+                      },
+                      "description": "An existing subscriber was updated."
+                    },
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubscriberEnvelope"
+                          }
+                        }
+                      },
+                      "description": "A subscriber was created."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/ValidationError"
+                    }
+                  },
+                  "summary": "Create or update a subscriber",
+                  "tags": [
+                    "Subscribers"
+                  ]
+                }
+              },
+              "/subscribers/{subscriber_id}": {
+                "delete": {
+                  "description": "Removes a subscriber while retaining information in case they resubscribe.",
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/subscribers"
+                  },
+                  "operationId": "deleteSubscriber",
+                  "responses": {
+                    "204": {
+                      "description": "Subscriber deleted."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "description": "Subscriber was not found."
+                    }
+                  },
+                  "summary": "Delete a subscriber",
+                  "tags": [
+                    "Subscribers"
+                  ]
+                },
+                "get": {
+                  "description": "The path value may be a subscriber ID or email address.",
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/subscribers"
+                  },
+                  "operationId": "getSubscriber",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubscriberEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Subscriber record."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "description": "Subscriber was not found."
+                    }
+                  },
+                  "summary": "Get a subscriber",
+                  "tags": [
+                    "Subscribers"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/SubscriberId"
+                  }
+                ],
+                "put": {
+                  "description": "Updates documented subscriber fields and group membership for an existing record.",
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/subscribers"
+                  },
+                  "operationId": "updateSubscriber",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SubscriberUpdate"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubscriberEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Updated subscriber record."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/ValidationError"
+                    }
+                  },
+                  "summary": "Update a subscriber",
+                  "tags": [
+                    "Subscribers"
+                  ]
+                }
+              },
+              "/subscribers/{subscriber_id}/forget": {
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/SubscriberId"
+                  }
+                ],
+                "post": {
+                  "description": "Requests permanent deletion of subscriber data within 30 days.",
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/subscribers"
+                  },
+                  "operationId": "forgetSubscriber",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubscriberEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Deletion request accepted."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "description": "Subscriber was not found."
+                    }
+                  },
+                  "summary": "Request permanent subscriber deletion",
+                  "tags": [
+                    "Subscribers"
+                  ]
+                }
+              },
+              "/subscribers/{subscriber_id}/groups/{group_id}": {
+                "delete": {
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/groups"
+                  },
+                  "operationId": "removeSubscriberFromGroup",
+                  "responses": {
+                    "204": {
+                      "description": "Subscriber removed from group."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "404": {
+                      "description": "Subscriber or group was not found."
+                    }
+                  },
+                  "summary": "Remove a subscriber from a group",
+                  "tags": [
+                    "Groups"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/SubscriberId"
+                  },
+                  {
+                    "$ref": "#/components/parameters/GroupId"
+                  }
+                ],
+                "post": {
+                  "externalDocs": {
+                    "url": "https://developers.mailerlite.com/api/groups"
+                  },
+                  "operationId": "assignSubscriberToGroup",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/GroupEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Subscriber assigned to group."
+                    },
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/GroupEnvelope"
+                          }
+                        }
+                      },
+                      "description": "Group membership created."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/ValidationError"
+                    }
+                  },
+                  "summary": "Add a subscriber to a group",
+                  "tags": [
+                    "Groups"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "MailerLite REST API",
+                "url": "https://connect.mailerlite.com/api"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Subscriber records and engagement data.",
+                "name": "Subscribers"
+              },
+              {
+                "description": "Subscriber groups and membership.",
+                "name": "Groups"
+              },
+              {
+                "description": "Email campaign creation and delivery.",
+                "name": "Campaigns"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "MailerLite"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:37:40.499388+00:00",
+    "license": null,
+    "normalization": "YAML timestamps and non-string mapping keys converted to strings",
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/mailerlite/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "2497bd79ec5e3788e19786c3e862ae46d44826b84fffc987efd4d40947423735",
+    "source_id": "mailerlite",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/mailerlite/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "2026-10-02"
+}

@@ -14,7 +14,7 @@ Connect an Autodesk account with an independent Ragentic integration: hubs, proj
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure, Productivity & collaboration |
-| Signed bundle | `82c62d8cd42d06378b64573cd9d7ba187a744db683f6b7e83264dad4e63d5399` in `bundles/`, expires 2027-02-13 05:18 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | `https://developer.api.autodesk.com` |
 | Credential | oauth2_authorization_code |
 | Connection test | GET `https://api.userprofile.autodesk.com/userinfo` |

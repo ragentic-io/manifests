@@ -1,0 +1,1134 @@
+{
+  "a2ui": {},
+  "app": "rundossier",
+  "graph": {
+    "edges": [
+      {
+        "from": "rundossier",
+        "kind": "EXPOSES",
+        "to": "operation:get:/credits"
+      },
+      {
+        "from": "rundossier",
+        "kind": "EXPOSES",
+        "to": "operation:get:/dossiers"
+      },
+      {
+        "from": "rundossier",
+        "kind": "EXPOSES",
+        "to": "operation:post:/dossiers"
+      },
+      {
+        "from": "rundossier",
+        "kind": "EXPOSES",
+        "to": "operation:get:/dossiers/{id}"
+      },
+      {
+        "from": "rundossier",
+        "kind": "EXPOSES",
+        "to": "operation:post:/dossiers/{id}/select"
+      },
+      {
+        "from": "operation:get:/credits",
+        "kind": "RETURNS",
+        "to": "schema:Credits"
+      },
+      {
+        "from": "operation:get:/dossiers",
+        "kind": "RETURNS",
+        "to": "schema:DossierListResponse"
+      },
+      {
+        "from": "operation:post:/dossiers",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateDossierRequest"
+      },
+      {
+        "from": "operation:post:/dossiers",
+        "kind": "RETURNS",
+        "to": "schema:CreateDossierResponse"
+      },
+      {
+        "from": "operation:get:/dossiers/{id}",
+        "kind": "RETURNS",
+        "to": "schema:DossierDetail"
+      },
+      {
+        "from": "operation:post:/dossiers/{id}/select",
+        "kind": "ACCEPTS",
+        "to": "schema:SelectRequest"
+      },
+      {
+        "from": "operation:post:/dossiers/{id}/select",
+        "kind": "RETURNS",
+        "to": "schema:SelectResponse"
+      },
+      {
+        "from": "schema:DossierDetail",
+        "kind": "REFERENCES",
+        "to": "schema:CandidateProfile"
+      },
+      {
+        "from": "schema:DossierListResponse",
+        "kind": "REFERENCES",
+        "to": "schema:DossierSummary"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "rundossier",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the caller's credit balance across both pools.",
+        "id": "operation:get:/credits",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCredits",
+        "path": "/credits",
+        "pointer": "#/paths/~1credits/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Credits"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get credit balance"
+      },
+      {
+        "deprecated": false,
+        "description": "Lists the caller's non-deleted dossiers, newest first.",
+        "id": "operation:get:/dossiers",
+        "kind": "operation",
+        "method": "get",
+        "name": "listDossiers",
+        "parameters": [
+          {
+            "default": 20,
+            "description": "Maximum results to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "ISO 8601 timestamp; returns dossiers created strictly before it.",
+            "in": "query",
+            "name": "before",
+            "required": false,
+            "type": "string:date-time"
+          }
+        ],
+        "path": "/dossiers",
+        "pointer": "#/paths/~1dossiers/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DossierListResponse"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List dossiers"
+      },
+      {
+        "deprecated": false,
+        "description": "Deducts one credit, creates the dossier, and dispatches it for generation.",
+        "id": "operation:post:/dossiers",
+        "kind": "operation",
+        "method": "post",
+        "name": "createDossier",
+        "path": "/dossiers",
+        "pointer": "#/paths/~1dossiers/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateDossierRequest"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "CreateDossierResponse"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "402",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a dossier"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the current state of one of the caller's dossiers.",
+        "id": "operation:get:/dossiers/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDossier",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/dossiers/{id}",
+        "pointer": "#/paths/~1dossiers~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "DossierDetail"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Retrieve a dossier"
+      },
+      {
+        "deprecated": false,
+        "description": "Resolves a dossier in the `awaiting_selection` state.",
+        "id": "operation:post:/dossiers/{id}/select",
+        "kind": "operation",
+        "method": "post",
+        "name": "selectDossierProfile",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string:uuid"
+          }
+        ],
+        "path": "/dossiers/{id}/select",
+        "pointer": "#/paths/~1dossiers~1{id}~1select/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SelectRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "SelectResponse"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "429",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Resolve a disambiguation"
+      },
+      {
+        "id": "schema:CandidateProfile",
+        "kind": "schema",
+        "name": "CandidateProfile",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateDossierRequest",
+        "kind": "schema",
+        "name": "CreateDossierRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateDossierResponse",
+        "kind": "schema",
+        "name": "CreateDossierResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:Credits",
+        "kind": "schema",
+        "name": "Credits",
+        "type": "object"
+      },
+      {
+        "id": "schema:DossierDetail",
+        "kind": "schema",
+        "name": "DossierDetail",
+        "type": "object"
+      },
+      {
+        "id": "schema:DossierListResponse",
+        "kind": "schema",
+        "name": "DossierListResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:DossierSummary",
+        "kind": "schema",
+        "name": "DossierSummary",
+        "type": "object"
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:SelectRequest",
+        "kind": "schema",
+        "name": "SelectRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:SelectResponse",
+        "kind": "schema",
+        "name": "SelectResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "rundossier"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://rundossier.com/api/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "CandidateProfile": {
+                  "properties": {
+                    "current_company": {
+                      "type": "string"
+                    },
+                    "current_role": {
+                      "type": "string"
+                    },
+                    "headline": {
+                      "type": "string"
+                    },
+                    "location": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "title"
+                  ],
+                  "type": "object"
+                },
+                "CreateDossierRequest": {
+                  "properties": {
+                    "context": {
+                      "description": "Extra context to focus or disambiguate the research.",
+                      "maxLength": 1000,
+                      "type": "string"
+                    },
+                    "subject_name": {
+                      "description": "The person to research.",
+                      "maxLength": 200,
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "subject_name"
+                  ],
+                  "type": "object"
+                },
+                "CreateDossierResponse": {
+                  "properties": {
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "status": {
+                      "const": "pending",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "status"
+                  ],
+                  "type": "object"
+                },
+                "Credits": {
+                  "properties": {
+                    "monthly": {
+                      "description": "Recurring plan allowance.",
+                      "type": "integer"
+                    },
+                    "topup": {
+                      "description": "Purchased credits.",
+                      "type": "integer"
+                    },
+                    "total": {
+                      "description": "Sum of both pools.",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "monthly",
+                    "topup",
+                    "total"
+                  ],
+                  "type": "object"
+                },
+                "DossierDetail": {
+                  "properties": {
+                    "candidate_profiles": {
+                      "description": "Present only when `status` is `awaiting_selection`.",
+                      "items": {
+                        "$ref": "#/components/schemas/CandidateProfile"
+                      },
+                      "type": "array"
+                    },
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "duration_ms": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "error_message": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "google_doc_url": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "photo_url": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "result_markdown": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "pending",
+                        "processing",
+                        "awaiting_selection",
+                        "complete",
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "status_message": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "subject_name": {
+                      "type": "string"
+                    },
+                    "word_doc_url": {
+                      "description": "Signed S3 download link for the Word export, valid for 5 minutes.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "status",
+                    "subject_name",
+                    "status_message",
+                    "error_message",
+                    "result_markdown",
+                    "google_doc_url",
+                    "word_doc_url",
+                    "photo_url",
+                    "created_at",
+                    "duration_ms"
+                  ],
+                  "type": "object"
+                },
+                "DossierListResponse": {
+                  "properties": {
+                    "dossiers": {
+                      "items": {
+                        "$ref": "#/components/schemas/DossierSummary"
+                      },
+                      "type": "array"
+                    },
+                    "next_before": {
+                      "description": "Cursor for the next page, or null when there are no more results.",
+                      "format": "date-time",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "dossiers",
+                    "next_before"
+                  ],
+                  "type": "object"
+                },
+                "DossierSummary": {
+                  "properties": {
+                    "created_at": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "duration_ms": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "error_message": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "pending",
+                        "processing",
+                        "awaiting_selection",
+                        "complete",
+                        "error"
+                      ],
+                      "type": "string"
+                    },
+                    "subject_name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "status",
+                    "subject_name",
+                    "error_message",
+                    "created_at",
+                    "duration_ms"
+                  ],
+                  "type": "object"
+                },
+                "Error": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "description": "Machine-readable error code.",
+                          "examples": [
+                            "invalid_request",
+                            "invalid_state",
+                            "unauthorized",
+                            "insufficient_credits",
+                            "not_found",
+                            "rate_limited",
+                            "internal_error"
+                          ],
+                          "type": "string"
+                        },
+                        "message": {
+                          "description": "Human-readable explanation.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                },
+                "SelectRequest": {
+                  "properties": {
+                    "selected_url": {
+                      "description": "A candidate `url` to proceed with, or `null` to cancel and refund.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "selected_url"
+                  ],
+                  "type": "object"
+                },
+                "SelectResponse": {
+                  "properties": {
+                    "id": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "status": {
+                      "enum": [
+                        "processing",
+                        "error"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "status"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "bearerFormat": "dsk_live_...",
+                  "description": "A personal API key created in Settings → API Keys.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "name": "RunDossier Support",
+                "url": "https://rundossier.com/support"
+              },
+              "description": "Generate executive pre-meeting dossiers programmatically. Create dossiers, poll their status, and fetch the finished briefing. Human-readable docs live at https://rundossier.com/docs/api.",
+              "license": {
+                "identifier": "LicenseRef-Proprietary",
+                "name": "Proprietary"
+              },
+              "title": "RunDossier API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/credits": {
+                "get": {
+                  "description": "Returns the caller's credit balance across both pools.",
+                  "operationId": "getCredits",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Credits"
+                          }
+                        }
+                      },
+                      "description": "The current credit balance."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "The API key is missing, malformed, unknown, or revoked."
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Too many requests. Retry after the indicated number of seconds.",
+                      "headers": {
+                        "Retry-After": {
+                          "description": "Seconds to wait before retrying.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "summary": "Get credit balance"
+                }
+              },
+              "/dossiers": {
+                "get": {
+                  "description": "Lists the caller's non-deleted dossiers, newest first. Cursor-paginated.",
+                  "operationId": "listDossiers",
+                  "parameters": [
+                    {
+                      "description": "Maximum results to return. Capped at 50.",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "default": 20,
+                        "maximum": 50,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "ISO 8601 timestamp; returns dossiers created strictly before it. Pass the previous response's `next_before` to page.",
+                      "in": "query",
+                      "name": "before",
+                      "required": false,
+                      "schema": {
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DossierListResponse"
+                          }
+                        }
+                      },
+                      "description": "A page of dossiers."
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "The `before` cursor is not a valid ISO 8601 timestamp."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "The API key is missing, malformed, unknown, or revoked."
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Too many requests. Retry after the indicated number of seconds.",
+                      "headers": {
+                        "Retry-After": {
+                          "description": "Seconds to wait before retrying.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "summary": "List dossiers"
+                },
+                "post": {
+                  "description": "Deducts one credit, creates the dossier, and dispatches it for generation. Returns immediately with status `pending`.",
+                  "operationId": "createDossier",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateDossierRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CreateDossierResponse"
+                          }
+                        }
+                      },
+                      "description": "Dossier created and queued."
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "The request body is missing or invalid."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "The API key is missing, malformed, unknown, or revoked."
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "The credit balance is zero."
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Too many requests. Retry after the indicated number of seconds.",
+                      "headers": {
+                        "Retry-After": {
+                          "description": "Seconds to wait before retrying.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "summary": "Create a dossier"
+                }
+              },
+              "/dossiers/{id}": {
+                "get": {
+                  "description": "Returns the current state of one of the caller's dossiers. Poll this to track progress. `word_doc_url` is a signed download link valid for 5 minutes.",
+                  "operationId": "getDossier",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/DossierDetail"
+                          }
+                        }
+                      },
+                      "description": "The dossier. `candidate_profiles` is present only when `status` is `awaiting_selection`."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "The API key is missing, malformed, unknown, or revoked."
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "No dossier with that id belongs to the caller."
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Too many requests. Retry after the indicated number of seconds.",
+                      "headers": {
+                        "Retry-After": {
+                          "description": "Seconds to wait before retrying.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "summary": "Retrieve a dossier"
+                }
+              },
+              "/dossiers/{id}/select": {
+                "post": {
+                  "description": "Resolves a dossier in the `awaiting_selection` state. Provide the `url` of the chosen candidate to continue, or `null` to cancel and refund the credit.",
+                  "operationId": "selectDossierProfile",
+                  "parameters": [
+                    {
+                      "in": "path",
+                      "name": "id",
+                      "required": true,
+                      "schema": {
+                        "format": "uuid",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SelectRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SelectResponse"
+                          }
+                        }
+                      },
+                      "description": "Selecting a profile returns `processing`; cancelling returns `error`."
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "The body is invalid, `selected_url` is not a candidate URL, or the dossier is not awaiting selection."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "The API key is missing, malformed, unknown, or revoked."
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "No dossier with that id belongs to the caller."
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Too many requests. Retry after the indicated number of seconds.",
+                      "headers": {
+                        "Retry-After": {
+                          "description": "Seconds to wait before retrying.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "summary": "Resolve a disambiguation"
+                }
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://rundossier.com/api/v1"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "RunDossier"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:36.910214+00:00",
+    "license": {
+      "identifier": "LicenseRef-Proprietary",
+      "name": "Proprietary"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://rundossier.com/api/v1/openapi.json",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "af5e9e064d2bb5ae1fe8c2ecbd57728146dc987d98c5f559a01dc7ae6bf6e319",
+    "source_id": "rundossier",
+    "source_updated": null,
+    "url": "https://rundossier.com/api/v1/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

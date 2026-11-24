@@ -1,0 +1,3565 @@
+{
+  "a2ui": {},
+  "app": "open-charge-map",
+  "graph": {
+    "edges": [
+      {
+        "from": "open-charge-map",
+        "kind": "EXPOSES",
+        "to": "operation:post:/comment"
+      },
+      {
+        "from": "open-charge-map",
+        "kind": "EXPOSES",
+        "to": "operation:post:/mediaitem"
+      },
+      {
+        "from": "open-charge-map",
+        "kind": "EXPOSES",
+        "to": "operation:get:/openapi"
+      },
+      {
+        "from": "open-charge-map",
+        "kind": "EXPOSES",
+        "to": "operation:get:/poi"
+      },
+      {
+        "from": "open-charge-map",
+        "kind": "EXPOSES",
+        "to": "operation:post:/profile/authenticate"
+      },
+      {
+        "from": "open-charge-map",
+        "kind": "EXPOSES",
+        "to": "operation:get:/referencedata"
+      },
+      {
+        "from": "operation:get:/poi",
+        "kind": "RETURNS",
+        "to": "schema:POI"
+      },
+      {
+        "from": "operation:get:/referencedata",
+        "kind": "RETURNS",
+        "to": "schema:CoreReferenceData"
+      },
+      {
+        "from": "schema:AddressInfo",
+        "kind": "REFERENCES",
+        "to": "schema:Country"
+      },
+      {
+        "from": "schema:ConnectionInfo",
+        "kind": "REFERENCES",
+        "to": "schema:ConnectionType"
+      },
+      {
+        "from": "schema:ConnectionInfo",
+        "kind": "REFERENCES",
+        "to": "schema:LevelType"
+      },
+      {
+        "from": "schema:ConnectionInfo",
+        "kind": "REFERENCES",
+        "to": "schema:StatusType"
+      },
+      {
+        "from": "schema:ConnectionInfo",
+        "kind": "REFERENCES",
+        "to": "schema:SupplyType"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:CheckinStatusType"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:ConnectionType"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:Country"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:DataProvider"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:LevelType"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:OperatorInfo"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:StatusType"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:SubmissionStatusType"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:SupplyType"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:UsageType"
+      },
+      {
+        "from": "schema:CoreReferenceData",
+        "kind": "REFERENCES",
+        "to": "schema:UserCommentType"
+      },
+      {
+        "from": "schema:MediaItem",
+        "kind": "REFERENCES",
+        "to": "schema:UserInfo"
+      },
+      {
+        "from": "schema:OperatorInfo",
+        "kind": "REFERENCES",
+        "to": "schema:AddressInfo"
+      },
+      {
+        "from": "schema:POI",
+        "kind": "REFERENCES",
+        "to": "schema:AddressInfo"
+      },
+      {
+        "from": "schema:POI",
+        "kind": "REFERENCES",
+        "to": "schema:ConnectionInfo"
+      },
+      {
+        "from": "schema:POI",
+        "kind": "REFERENCES",
+        "to": "schema:DataProvider"
+      },
+      {
+        "from": "schema:POI",
+        "kind": "REFERENCES",
+        "to": "schema:MediaItem"
+      },
+      {
+        "from": "schema:POI",
+        "kind": "REFERENCES",
+        "to": "schema:OperatorInfo"
+      },
+      {
+        "from": "schema:POI",
+        "kind": "REFERENCES",
+        "to": "schema:StatusType"
+      },
+      {
+        "from": "schema:POI",
+        "kind": "REFERENCES",
+        "to": "schema:SubmissionStatusType"
+      },
+      {
+        "from": "schema:POI",
+        "kind": "REFERENCES",
+        "to": "schema:UsageType"
+      },
+      {
+        "from": "schema:POI",
+        "kind": "REFERENCES",
+        "to": "schema:UserComment"
+      },
+      {
+        "from": "schema:UserComment",
+        "kind": "REFERENCES",
+        "to": "schema:CheckinStatusType"
+      },
+      {
+        "from": "schema:UserComment",
+        "kind": "REFERENCES",
+        "to": "schema:UserCommentType"
+      },
+      {
+        "from": "schema:UserComment",
+        "kind": "REFERENCES",
+        "to": "schema:UserInfo"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "open-charge-map",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Submit a user comment or checkin for a specific charging location",
+        "id": "operation:post:/comment",
+        "kind": "operation",
+        "method": "post",
+        "name": "post-comment",
+        "path": "/comment",
+        "pointer": "#/paths/~1comment/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "UserAuthentication": []
+          }
+        ],
+        "summary": "Submit Comment or Checkin"
+      },
+      {
+        "deprecated": false,
+        "description": "Submit a photo for a specific charging location",
+        "id": "operation:post:/mediaitem",
+        "kind": "operation",
+        "method": "post",
+        "name": "post-mediaitem",
+        "path": "/mediaitem",
+        "pointer": "#/paths/~1mediaitem/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "UserAuthentication": []
+          }
+        ],
+        "summary": "Add Media Item (Photo)"
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieve the current OpenAPI format (YAML) definition for this API.",
+        "id": "operation:get:/openapi",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-openapi",
+        "path": "/openapi",
+        "pointer": "#/paths/~1openapi/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyQueryString": []
+          },
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Retrieve OpenAPI definition"
+      },
+      {
+        "deprecated": false,
+        "description": "Used to fetch a list of POIs (sites) within a geographic boundary or near a specific latitude/longitude.",
+        "id": "operation:get:/poi",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-poi",
+        "parameters": [
+          {
+            "default": "json",
+            "description": "Optional output format `json`,`geojson`,`xml`,`csv`, JSON is the default and recommended as the highest fidelity.",
+            "in": "query",
+            "name": "output",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "String to identify your client application.",
+            "in": "query",
+            "name": "client",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 100,
+            "description": "Limit on max number of results returned",
+            "in": "query",
+            "name": "maxresults",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "2-character ISO Country code to filter to one specific country",
+            "in": "query",
+            "name": "countrycode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Exact match on a given numeric country id (comma separated list)",
+            "in": "query",
+            "name": "countryid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Latitude for distance calculation and filtering",
+            "in": "query",
+            "name": "latitude",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Longitude for distance calculation and filtering",
+            "in": "query",
+            "name": "longitude",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "description": "Optionally filter results by a max distance from the given latitude/longitude",
+            "in": "query",
+            "name": "distance",
+            "required": false,
+            "type": "number"
+          },
+          {
+            "default": "Miles",
+            "description": "`miles` or `km` distance unit",
+            "in": "query",
+            "name": "distanceunit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Exact match on a given EVSE operator id (comma separated list)",
+            "in": "query",
+            "name": "operatorid",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "description": "Exact match on a given connection type id (comma separated list)",
+            "in": "query",
+            "name": "connectiontypeid",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "description": "Exact match on a given charging level (1-3) id (comma separated list)",
+            "in": "query",
+            "name": "levelid",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "description": "Exact match on a given usage type id (comma separated list)",
+            "in": "query",
+            "name": "usagetypeid",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "description": "Exact match on a given status type id (comma separated list)",
+            "in": "query",
+            "name": "statustypeid",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "description": "Exact match on a given data provider id id (comma separated list).",
+            "in": "query",
+            "name": "dataproviderid",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "description": "Use opendata=true for only OCM provided (\"Open\") data.",
+            "in": "query",
+            "name": "opendata",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": "false",
+            "description": "If true, user comments and media items will be include in result set",
+            "in": "query",
+            "name": "includecomments",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": "true",
+            "description": "Set to false to get a smaller result set with null items removed.",
+            "in": "query",
+            "name": "verbose",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": "false",
+            "description": "Set to true to remove reference data objects from output (just returns IDs for common reference data such as DataProvider etc).",
+            "in": "query",
+            "name": "compact",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Set to true to get a property names in camelCase format.",
+            "in": "query",
+            "name": "camelcase",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Exact match on a given OCM POI ID (comma separated list)",
+            "in": "query",
+            "name": "chargepointid",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter results to a given bounding box.",
+            "in": "query",
+            "name": "boundingbox",
+            "required": false,
+            "type": "array"
+          },
+          {
+            "description": "Filter results within a given Polygon.",
+            "in": "query",
+            "name": "polygon",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter results along an encoded polyline, use with distance param to increase search distance along line.",
+            "in": "query",
+            "name": "polyline",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Default sort order is based on spatial index but you can optionally sort by `modified_asc` for results in order of modification (oldest to newest), or ` id_asc…",
+            "in": "query",
+            "name": "sortby",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter to results modified after the given date",
+            "in": "query",
+            "name": "modifiedsince",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter to items with ID greater than given value",
+            "in": "query",
+            "name": "greaterthanid",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/poi",
+        "pointer": "#/paths/~1poi/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "POI[]"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyQueryString": []
+          },
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Retrieve POI list (sites)"
+      },
+      {
+        "deprecated": false,
+        "description": "Perform user authentication, returning a model which includes the users profile and a JWT auth token to re-use in subsequent requests.",
+        "id": "operation:post:/profile/authenticate",
+        "kind": "operation",
+        "method": "post",
+        "name": "post-authenticate",
+        "path": "/profile/authenticate",
+        "pointer": "#/paths/~1profile~1authenticate/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "APIKeyQueryString": []
+          },
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Authenticate User"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the core reference data used for looking up IDs such as Connection Types, Operators, Countries etc.",
+        "id": "operation:get:/referencedata",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-referencedata",
+        "parameters": [
+          {
+            "description": "Optional filter on countryid, exact match on a given numeric country id (comma separated list)",
+            "in": "query",
+            "name": "countryid",
+            "required": false,
+            "type": "array"
+          }
+        ],
+        "path": "/referencedata",
+        "pointer": "#/paths/~1referencedata/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CoreReferenceData"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyQueryString": []
+          },
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Core Reference Data"
+      },
+      {
+        "description": "Geographic position for site and (nearest) address component information.",
+        "id": "schema:AddressInfo",
+        "kind": "schema",
+        "name": "AddressInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:AuthenticationResult",
+        "kind": "schema",
+        "name": "AuthenticationResult",
+        "type": "object"
+      },
+      {
+        "description": "Classification for the users comment or experience using a specific charging location.",
+        "id": "schema:CheckinStatusType",
+        "kind": "schema",
+        "name": "CheckinStatusType",
+        "type": "object"
+      },
+      {
+        "description": "Details on the equipment type and power capability.",
+        "id": "schema:ConnectionInfo",
+        "kind": "schema",
+        "name": "ConnectionInfo",
+        "type": "object"
+      },
+      {
+        "description": "The type of end-user connection an EVSE supports.",
+        "id": "schema:ConnectionType",
+        "kind": "schema",
+        "name": "ConnectionType",
+        "type": "object"
+      },
+      {
+        "description": "Set of core reference data used for other API results and UI",
+        "id": "schema:CoreReferenceData",
+        "kind": "schema",
+        "name": "CoreReferenceData",
+        "type": "object"
+      },
+      {
+        "description": "Country details",
+        "id": "schema:Country",
+        "kind": "schema",
+        "name": "Country",
+        "type": "object"
+      },
+      {
+        "description": "A Data Provider is the controller of the source data set used to construct the details for this POI.",
+        "id": "schema:DataProvider",
+        "kind": "schema",
+        "name": "DataProvider",
+        "type": "object"
+      },
+      {
+        "description": "A general category for equipment power capability.",
+        "id": "schema:LevelType",
+        "kind": "schema",
+        "name": "LevelType",
+        "type": "object"
+      },
+      {
+        "description": "A user submitted media item related to a specific charge point or site.",
+        "id": "schema:MediaItem",
+        "kind": "schema",
+        "name": "MediaItem",
+        "type": "object"
+      },
+      {
+        "description": "An Operator is the public organisation which controls a network of charging points.",
+        "id": "schema:OperatorInfo",
+        "kind": "schema",
+        "name": "OperatorInfo",
+        "type": "object"
+      },
+      {
+        "description": "A POI (Point of Interest), also referred to as a `Site` or `ChargePoint`, is the top-level set of information regarding a geographic site with one or more elec…",
+        "id": "schema:POI",
+        "kind": "schema",
+        "name": "POI",
+        "type": "object"
+      },
+      {
+        "description": "The Status Type of a site or equipment item indicates whether it is generally operational.",
+        "id": "schema:StatusType",
+        "kind": "schema",
+        "name": "StatusType",
+        "type": "object"
+      },
+      {
+        "description": "Submission Status object, detailing the POI listing status",
+        "id": "schema:SubmissionStatusType",
+        "kind": "schema",
+        "name": "SubmissionStatusType",
+        "type": "object"
+      },
+      {
+        "description": "Indicates the EVSE power supply type e.g.",
+        "id": "schema:SupplyType",
+        "kind": "schema",
+        "name": "SupplyType",
+        "type": "object"
+      },
+      {
+        "description": "The Usage Type of a site indicates the general restrictions on usage.",
+        "id": "schema:UsageType",
+        "kind": "schema",
+        "name": "UsageType",
+        "type": "object"
+      },
+      {
+        "description": "A user comment or check-in for a specific charging point (POI/Site)",
+        "id": "schema:UserComment",
+        "kind": "schema",
+        "name": "UserComment",
+        "type": "object"
+      },
+      {
+        "description": "Category for a user comment, e.g.",
+        "id": "schema:UserCommentType",
+        "kind": "schema",
+        "name": "UserCommentType",
+        "type": "object"
+      },
+      {
+        "description": "Short public summary profile for a specific Open Charge Map user",
+        "id": "schema:UserInfo",
+        "kind": "schema",
+        "name": "UserInfo",
+        "type": "object"
+      },
+      {
+        "description": "Full user profile, including non-public fields such as Email Address",
+        "id": "schema:UserProfile",
+        "kind": "schema",
+        "name": "UserProfile",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "open-charge-map"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.openchargemap.io/v3",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "POI": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "Example Results": [
+                          {
+                            "AddressInfo": {
+                              "AccessComments": null,
+                              "AddressLine1": "כצנלסון 10",
+                              "AddressLine2": null,
+                              "ContactEmail": null,
+                              "ContactTelephone1": null,
+                              "ContactTelephone2": null,
+                              "Country": {
+                                "ContinentCode": "AS",
+                                "ID": 111,
+                                "ISOCode": "IL",
+                                "description": "Israel"
+                              },
+                              "CountryID": 111,
+                              "Distance": null,
+                              "DistanceUnit": 0,
+                              "ID": 190212,
+                              "Latitude": 31.66148706692408,
+                              "Longitude": 34.587748089749425,
+                              "Postcode": "78100",
+                              "RelatedURL": "https://account.afconev.co.il/findCharger?31.6615343,34.5873913,20z,%D7%9B%D7%A6%D7%A0%D7%9C%D7%A1%D7%95%D7%9F%2010%20%D7%90%D7%A9%D7%A7%D7%9C%D7%95%D7%9F,494si",
+                              "StateOrProvince": "South District",
+                              "Town": "Ashkelon",
+                              "description": "בית משה"
+                            },
+                            "Connections": [
+                              {
+                                "Amps": null,
+                                "Comments": null,
+                                "ConnectionType": {
+                                  "FormalName": "IEC 62196-2 Type 2",
+                                  "ID": 25,
+                                  "IsDiscontinued": false,
+                                  "IsObsolete": false,
+                                  "description": "Type 2 (Socket Only)"
+                                },
+                                "ConnectionTypeID": 25,
+                                "CurrentType": {
+                                  "Description": "Alternating Current - Three Phase",
+                                  "ID": 20,
+                                  "description": "AC (Three-Phase)"
+                                },
+                                "CurrentTypeID": 20,
+                                "ID": 307235,
+                                "Level": {
+                                  "Comments": "Over 2 kW, usually non-domestic socket type",
+                                  "ID": 2,
+                                  "IsFastChargeCapable": false,
+                                  "description": "Level 2 : Medium (Over 2kW)"
+                                },
+                                "LevelID": 2,
+                                "PowerKW": 22,
+                                "Quantity": 3,
+                                "Reference": null,
+                                "StatusType": {
+                                  "ID": 50,
+                                  "IsOperational": true,
+                                  "IsUserSelectable": true,
+                                  "description": "Operational"
+                                },
+                                "StatusTypeID": 50,
+                                "Voltage": null
+                              },
+                              {
+                                "Amps": null,
+                                "Comments": null,
+                                "ConnectionType": {
+                                  "FormalName": "IEC 62196-3 Configuration FF",
+                                  "ID": 33,
+                                  "IsDiscontinued": false,
+                                  "IsObsolete": false,
+                                  "description": "CCS (Type 2)"
+                                },
+                                "ConnectionTypeID": 33,
+                                "CurrentType": {
+                                  "Description": "Direct Current",
+                                  "ID": 30,
+                                  "description": "DC"
+                                },
+                                "CurrentTypeID": 30,
+                                "ID": 307236,
+                                "Level": {
+                                  "Comments": "40KW and Higher",
+                                  "ID": 3,
+                                  "IsFastChargeCapable": true,
+                                  "description": "Level 3:  High (Over 40kW)"
+                                },
+                                "LevelID": 3,
+                                "PowerKW": 50,
+                                "Quantity": 1,
+                                "Reference": null,
+                                "StatusType": {
+                                  "ID": 50,
+                                  "IsOperational": true,
+                                  "IsUserSelectable": true,
+                                  "description": "Operational"
+                                },
+                                "StatusTypeID": 50,
+                                "Voltage": null
+                              }
+                            ],
+                            "DataProvider": {
+                              "Comments": null,
+                              "DataProviderStatusType": {
+                                "ID": 1,
+                                "IsProviderEnabled": true,
+                                "description": "Manual Data Entry"
+                              },
+                              "DateLastImported": null,
+                              "ID": 1,
+                              "IsApprovedImport": true,
+                              "IsOpenDataLicensed": true,
+                              "IsRestrictedEdit": false,
+                              "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+                              "WebsiteURL": "http://openchargemap.org",
+                              "description": "Open Charge Map Contributors"
+                            },
+                            "DataProviderID": 1,
+                            "DataProvidersReference": null,
+                            "DataQualityLevel": 1,
+                            "DateCreated": "2021-11-07T16:36:00Z",
+                            "DateLastConfirmed": null,
+                            "DateLastStatusUpdate": "2021-11-07T16:36:00Z",
+                            "DateLastVerified": "2021-11-07T16:36:00Z",
+                            "DatePlanned": null,
+                            "GeneralComments": null,
+                            "ID": 189853,
+                            "IsRecentlyVerified": true,
+                            "MediaItems": null,
+                            "MetadataValues": null,
+                            "NumberOfPoints": 4,
+                            "OperatorID": 3435,
+                            "OperatorInfo": {
+                              "AddressInfo": null,
+                              "BookingURL": null,
+                              "Comments": null,
+                              "ContactEmail": null,
+                              "FaultReportEmail": null,
+                              "ID": 3435,
+                              "IsPrivateIndividual": false,
+                              "IsRestrictedEdit": false,
+                              "PhonePrimaryContact": null,
+                              "PhoneSecondaryContact": null,
+                              "WebsiteURL": "https://www.afconev.co.il/",
+                              "description": "Afcon (Israel)"
+                            },
+                            "OperatorsReference": null,
+                            "ParentChargePointID": null,
+                            "PercentageSimilarity": null,
+                            "StatusType": {
+                              "ID": 50,
+                              "IsOperational": true,
+                              "IsUserSelectable": true,
+                              "description": "Operational"
+                            },
+                            "StatusTypeID": 50,
+                            "SubmissionStatus": {
+                              "ID": 200,
+                              "IsLive": true,
+                              "description": "Submission Published"
+                            },
+                            "SubmissionStatusTypeID": 200,
+                            "UUID": "1686CE5C-95E8-450B-93C3-95D1B1AF98D4",
+                            "UsageCost": null,
+                            "UsageType": {
+                              "ID": 4,
+                              "IsAccessKeyRequired": true,
+                              "IsMembershipRequired": true,
+                              "IsPayAtLocation": false,
+                              "description": "Public - Membership Required"
+                            },
+                            "UsageTypeID": 4,
+                            "UserComments": null
+                          },
+                          {
+                            "AddressInfo": {
+                              "AccessComments": "string",
+                              "AddressLine1": "Buttsgrove Way",
+                              "AddressLine2": null,
+                              "ContactEmail": "string",
+                              "ContactTelephone1": null,
+                              "ContactTelephone2": null,
+                              "Country": {
+                                "ContinentCode": "EU",
+                                "ID": 1,
+                                "ISOCode": "GB",
+                                "Title": "United Kingdom"
+                              },
+                              "CountryID": 1,
+                              "Distance": null,
+                              "DistanceUnit": 1,
+                              "ID": 148879,
+                              "Latitude": 52.343197,
+                              "Longitude": -0.170632,
+                              "Postcode": "PE29 1PE",
+                              "RelatedURL": null,
+                              "StateOrProvince": "string",
+                              "Title": "string",
+                              "Town": "Huntingdon"
+                            },
+                            "Connections": [
+                              {
+                                "Amps": 32,
+                                "Comments": "string",
+                                "ConnectionType": {
+                                  "FormalName": "IEC 62196-2 Type 2",
+                                  "ID": 25,
+                                  "IsDiscontinued": false,
+                                  "IsObsolete": false,
+                                  "Title": "Type 2 (Socket Only)"
+                                },
+                                "ConnectionTypeID": 25,
+                                "CurrentType": {
+                                  "ID": 10,
+                                  "Title": "AC (Single-Phase)"
+                                },
+                                "CurrentTypeID": 10,
+                                "ID": 206241,
+                                "Level": {
+                                  "Comments": "Over 2 kW, usually non-domestic socket type",
+                                  "ID": 2,
+                                  "IsFastChargeCapable": true,
+                                  "Title": "Level 2 : Medium (Over 2kW)"
+                                },
+                                "LevelID": 2,
+                                "PowerKW": 7.4,
+                                "Quantity": 2,
+                                "Reference": null,
+                                "StatusType": {
+                                  "ID": 50,
+                                  "IsOperational": true,
+                                  "IsUserSelectable": true,
+                                  "Title": "Operational"
+                                },
+                                "StatusTypeID": 50,
+                                "Voltage": 230
+                              }
+                            ],
+                            "DataProvider": {
+                              "Comments": "string",
+                              "DataProviderStatusType": {
+                                "ID": [
+                                  1
+                                ],
+                                "IsProviderEnabled": true,
+                                "description": [
+                                  "Manual Data Entry"
+                                ]
+                              },
+                              "DateLastImported": "null - '2020-02-04T23:09:00Z'",
+                              "ID": 1,
+                              "IsApprovedImport": "null - true",
+                              "IsOpenDataLicensed": "null - true",
+                              "IsRestrictedEdit": false,
+                              "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+                              "Title": "Open Charge Map Contributors",
+                              "WebsiteURL": "https://openchargemap.org"
+                            },
+                            "DataProviderID": 1,
+                            "DataProvidersReference": "string",
+                            "DataQualityLevel": 5,
+                            "DateCreated": "2020-02-04T06:33:00Z",
+                            "DateLastConfirmed": "2020-02-04T06:33:00Z",
+                            "DateLastStatusUpdate": "2020-02-04T06:33:00Z",
+                            "DateLastVerified": "2020-02-04T06:33:00Z",
+                            "DatePlanned": "2020-02-04T06:33:00Z",
+                            "GeneralComments": "This is an open charge unit installed at the Coneygear Centre at Buttsgrove Way, Huntingdon",
+                            "ID": 148527,
+                            "IsRecentlyVerified": true,
+                            "MediaItems": [
+                              {
+                                "ChargePointID": "string",
+                                "Comment": "string",
+                                "DateCreated": "string",
+                                "ID": "string",
+                                "IsEnabled": true,
+                                "IsExternalResource": true,
+                                "IsFeaturedItem": true,
+                                "IsVideo": true,
+                                "ItemThumbnailURL": "string",
+                                "ItemURL": "string",
+                                "User": {
+                                  "ID": 0,
+                                  "ProfileImageURL": "string",
+                                  "ReputationPoints": 0,
+                                  "Username": "string"
+                                }
+                              }
+                            ],
+                            "MetadataValues": [
+                              null
+                            ],
+                            "NumberOfPoints": 2,
+                            "OperatorID": 3,
+                            "OperatorInfo": {
+                              "AddressInfo": {
+                                "AccessComments": "string",
+                                "AddressLine1": "Buttsgrove Way",
+                                "AddressLine2": null,
+                                "ContactEmail": "string",
+                                "ContactTelephone1": null,
+                                "ContactTelephone2": null,
+                                "Country": {
+                                  "ContinentCode": "EU",
+                                  "ID": 1,
+                                  "ISOCode": "GB",
+                                  "Title": "United Kingdom"
+                                },
+                                "CountryID": 1,
+                                "Distance": null,
+                                "DistanceUnit": 1,
+                                "ID": 148879,
+                                "Latitude": 52.343197,
+                                "Longitude": -0.170632,
+                                "Postcode": "PE29 1PE",
+                                "RelatedURL": null,
+                                "StateOrProvince": "string",
+                                "Title": "string",
+                                "Town": "Huntingdon"
+                              },
+                              "BookingURL": "string",
+                              "Comments": null,
+                              "ContactEmail": "enquiries@pod-point.com",
+                              "FaultReportEmail": "enquiries@pod-point.com",
+                              "ID": 0,
+                              "IsPrivateIndividual": false,
+                              "IsRestrictedEdit": true,
+                              "PhonePrimaryContact": null,
+                              "PhoneSecondaryContact": null,
+                              "Title": "POD Point (UK)",
+                              "WebsiteURL": "http://www.pod-point.com/"
+                            },
+                            "OperatorsReference": "PG-84306",
+                            "ParentChargePointID": 0,
+                            "StatusType": {
+                              "ID": 50,
+                              "IsOperational": true,
+                              "IsUserSelectable": true,
+                              "Title": "Operational"
+                            },
+                            "StatusTypeID": 50,
+                            "SubmissionStatus": {
+                              "ID": 200,
+                              "IsLive": false,
+                              "Title": "string"
+                            },
+                            "SubmissionStatusTypeID": 200,
+                            "UUID": "4C524AA1-3413-4D56-804C-480304FEB0FB",
+                            "UsageCost": "See network operators app for current charges",
+                            "UsageType": {
+                              "ID": 0,
+                              "IsAccessKeyRequired": true,
+                              "IsMembershipRequired": true,
+                              "IsPayAtLocation": true,
+                              "Title": "Public - Membership Required"
+                            },
+                            "UsageTypeID": 4,
+                            "UserComments": [
+                              {
+                                "ChargePointID": 0,
+                                "CheckinStatusType": {
+                                  "ID": 0,
+                                  "IsAutomatedCheckin": true,
+                                  "IsPositive": true,
+                                  "Title": "string"
+                                },
+                                "CheckinStatusTypeID": 0,
+                                "Comment": "string",
+                                "CommentType": {
+                                  "ID": 0,
+                                  "Title": "string"
+                                },
+                                "CommentTypeID": 0,
+                                "DateCreated": "2019-08-24T14:15:22Z",
+                                "ID": "string",
+                                "RelatedURL": "string",
+                                "User": {
+                                  "ID": 0,
+                                  "ProfileImageURL": "string",
+                                  "ReputationPoints": 0,
+                                  "Username": "string"
+                                },
+                                "UserName": "string"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "schema": {
+                        "items": {
+                          "$ref": "#/components/schemas/POI"
+                        },
+                        "type": "array"
+                      }
+                    }
+                  },
+                  "description": "List of POIs (sites) with associated equipment summary information.",
+                  "headers": {}
+                }
+              },
+              "schemas": {
+                "AddressInfo": {
+                  "description": "Geographic position for site and (nearest) address component information.",
+                  "properties": {
+                    "AccessComments": {
+                      "description": "Guidance for users to use or find the equipment",
+                      "type": "string"
+                    },
+                    "AddressLine1": {
+                      "default": "",
+                      "description": "First line of nearby street address",
+                      "example": "Buttsgrove Way",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "AddressLine2": {
+                      "default": null,
+                      "description": "Second line of nearby street address",
+                      "type": "string"
+                    },
+                    "ContactEmail": {
+                      "description": "Primary contact email",
+                      "type": "string"
+                    },
+                    "ContactTelephone1": {
+                      "default": null,
+                      "description": "Primary contact number",
+                      "type": "string"
+                    },
+                    "ContactTelephone2": {
+                      "default": null,
+                      "description": "Secondary contact number",
+                      "type": "string"
+                    },
+                    "Country": {
+                      "$ref": "#/components/schemas/Country"
+                    },
+                    "CountryID": {
+                      "description": "The reference ID for the Country",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "Distance": {
+                      "default": null,
+                      "description": "Distance from search location, if search is around a point",
+                      "type": "number"
+                    },
+                    "DistanceUnit": {
+                      "default": 1,
+                      "description": "Unit used for distance, 1= Miles, 2 = KM",
+                      "type": "integer"
+                    },
+                    "ID": {
+                      "default": 0,
+                      "description": "ID",
+                      "example": 148879,
+                      "type": "integer"
+                    },
+                    "Latitude": {
+                      "default": 0,
+                      "description": "Site latitude coordinate in decimal degrees",
+                      "example": 52.343197,
+                      "type": "number"
+                    },
+                    "Longitude": {
+                      "default": 0,
+                      "description": "Site longitude coordinate in decimal degrees",
+                      "example": -0.170632,
+                      "type": "number"
+                    },
+                    "Postcode": {
+                      "description": "Postal code or Zipcode",
+                      "example": "PE29 1PE",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "RelatedURL": {
+                      "default": null,
+                      "description": "Optional website for more information",
+                      "type": "string"
+                    },
+                    "StateOrProvince": {
+                      "description": "State or Province",
+                      "type": "string"
+                    },
+                    "Title": {
+                      "description": "General title for this location to aid user",
+                      "type": "string"
+                    },
+                    "Town": {
+                      "description": "Town or City",
+                      "example": "Huntingdon",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ID",
+                    "CountryID",
+                    "Latitude",
+                    "Longitude"
+                  ],
+                  "type": "object"
+                },
+                "AuthenticationResult": {
+                  "description": "",
+                  "properties": {
+                    "Data": {
+                      "properties": {
+                        "UserProfile": {
+                          "properties": {
+                            "DateCreated": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "DateLastLogin": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "EmailAddress": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "EmailHash": {},
+                            "ID": {
+                              "type": "number"
+                            },
+                            "IsProfilePublic": {
+                              "type": "boolean"
+                            },
+                            "Latitude": {
+                              "type": "number"
+                            },
+                            "Location": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "Longitude": {
+                              "type": "number"
+                            },
+                            "Permissions": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "Profile": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "ProfileImageURL": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "ReputationPoints": {
+                              "type": "number"
+                            },
+                            "Username": {
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "WebsiteURL": {
+                              "minLength": 1,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "ID",
+                            "Username",
+                            "Profile",
+                            "Location",
+                            "WebsiteURL",
+                            "ReputationPoints",
+                            "Permissions",
+                            "DateCreated",
+                            "DateLastLogin",
+                            "IsProfilePublic",
+                            "Latitude",
+                            "Longitude",
+                            "EmailAddress",
+                            "ProfileImageURL"
+                          ],
+                          "type": "object"
+                        },
+                        "access_token": {
+                          "minLength": 1,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "UserProfile",
+                        "access_token"
+                      ],
+                      "type": "object"
+                    },
+                    "Metadata": {
+                      "properties": {
+                        "StatusCode": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "StatusCode"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "Data",
+                    "Metadata"
+                  ],
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "Data": {
+                        "UserProfile": {
+                          "DateCreated": "2011-09-28T15:11:00",
+                          "DateLastLogin": "2021-11-09T07:49:00",
+                          "EmailAddress": "example@example.com",
+                          "EmailHash": null,
+                          "ID": 1000,
+                          "IsProfilePublic": true,
+                          "Latitude": -31,
+                          "Location": "San Francisco, US",
+                          "Longitude": 115,
+                          "Permissions": "{\"Permissions\":[{\"Level\":100},{\"Level\":1000}],\"LegacyPermissions\":\"[CountryLevel_Editor=All];[Administrator=true];\"}",
+                          "Profile": "Example person who uses open charge map 🤘",
+                          "ProfileImageURL": "https://www.gravatar.com/avatar/e3e76940eb5e85220db216603ee6b00f?s=80&d=robohash",
+                          "ReputationPoints": 2008,
+                          "Username": "Joe Bloggs",
+                          "WebsiteURL": "https://openchargemap.org"
+                        },
+                        "access_token": "eXampleJwt.AccessTOKEN"
+                      },
+                      "Metadata": {
+                        "StatusCode": 200
+                      }
+                    }
+                  }
+                },
+                "CheckinStatusType": {
+                  "description": "Classification for the users comment or experience using a specific charging location.",
+                  "properties": {
+                    "ID": {
+                      "type": "integer"
+                    },
+                    "IsAutomatedCheckin": {
+                      "description": "If true, checkin or comment was provided by an automated system.",
+                      "type": "boolean"
+                    },
+                    "IsPositive": {
+                      "description": "If true, this type of checkin/comment is considered positive.",
+                      "type": "boolean"
+                    },
+                    "Title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ID",
+                    "IsAutomatedCheckin"
+                  ],
+                  "type": "object"
+                },
+                "ConnectionInfo": {
+                  "description": "Details on the equipment type and power capability.\n\nIf calling the API in verbose mode related models are also included in the result (e.g. ConnectionType, Level, StatusType, CurrentType)",
+                  "properties": {
+                    "Amps": {
+                      "default": null,
+                      "description": "EVSE supply max current in Amps",
+                      "example": 32,
+                      "type": "integer"
+                    },
+                    "Comments": {
+                      "type": "string"
+                    },
+                    "ConnectionType": {
+                      "$ref": "#/components/schemas/ConnectionType"
+                    },
+                    "ConnectionTypeID": {
+                      "default": null,
+                      "example": 25,
+                      "type": "integer"
+                    },
+                    "CurrentType": {
+                      "$ref": "#/components/schemas/SupplyType"
+                    },
+                    "CurrentTypeID": {
+                      "default": null,
+                      "description": "The supply type reference ID (e.g. DC etc)",
+                      "example": 10,
+                      "type": "integer"
+                    },
+                    "ID": {
+                      "example": 206241,
+                      "type": "integer"
+                    },
+                    "Level": {
+                      "$ref": "#/components/schemas/LevelType"
+                    },
+                    "LevelID": {
+                      "deprecated": true,
+                      "description": "A general category for power capability. Depreceated in favour of documenting specific equipment power in kW.",
+                      "example": 2,
+                      "type": "integer"
+                    },
+                    "PowerKW": {
+                      "default": null,
+                      "description": "Peak available power in kW",
+                      "example": 7.4,
+                      "type": "number"
+                    },
+                    "Quantity": {
+                      "default": null,
+                      "description": "Optional summary number of equipment items available with this specification",
+                      "example": 2,
+                      "type": "integer"
+                    },
+                    "Reference": {
+                      "default": null,
+                      "description": "Optional operators reference for this connection/port",
+                      "type": "string"
+                    },
+                    "StatusType": {
+                      "$ref": "#/components/schemas/StatusType"
+                    },
+                    "StatusTypeID": {
+                      "default": 0,
+                      "description": "Status Type reference ID. 0 = Unknown",
+                      "example": 50,
+                      "type": "integer"
+                    },
+                    "Voltage": {
+                      "default": null,
+                      "description": "EVSE supply voltage",
+                      "example": 230,
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ConnectionType": {
+                  "description": "The type of end-user connection an EVSE supports.",
+                  "properties": {
+                    "FormalName": {
+                      "default": "",
+                      "description": "Formal (standard) name for this connection type",
+                      "example": "IEC 62196-2 Type 2",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "ID": {
+                      "example": 25,
+                      "type": "integer"
+                    },
+                    "IsDiscontinued": {
+                      "default": false,
+                      "description": "If true, this is an discontinued but used connection type",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "IsObsolete": {
+                      "default": false,
+                      "description": "If true, this is an obsolete connection type and is unlikely top be present in modern infrastructure",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "Title": {
+                      "example": "Type 2 (Socket Only)",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CoreReferenceData": {
+                  "description": "Set of core reference data used for other API results and UI",
+                  "properties": {
+                    "ChargerTypes": {
+                      "items": {
+                        "$ref": "#/components/schemas/LevelType"
+                      },
+                      "type": "array"
+                    },
+                    "CheckinStatusTypes": {
+                      "items": {
+                        "$ref": "#/components/schemas/CheckinStatusType"
+                      },
+                      "type": "array"
+                    },
+                    "ConnectionTypes": {
+                      "items": {
+                        "$ref": "#/components/schemas/ConnectionType"
+                      },
+                      "type": "array"
+                    },
+                    "Countries": {
+                      "items": {
+                        "$ref": "#/components/schemas/Country"
+                      },
+                      "type": "array"
+                    },
+                    "CurrentTypes": {
+                      "items": {
+                        "$ref": "#/components/schemas/SupplyType"
+                      },
+                      "type": "array"
+                    },
+                    "DataProviders": {
+                      "items": {
+                        "$ref": "#/components/schemas/DataProvider"
+                      },
+                      "type": "array"
+                    },
+                    "DataTypes": {},
+                    "MetadataGroups": {
+                      "type": "string"
+                    },
+                    "Operators": {
+                      "items": {
+                        "$ref": "#/components/schemas/OperatorInfo"
+                      },
+                      "type": "array"
+                    },
+                    "StatusTypes": {
+                      "items": {
+                        "$ref": "#/components/schemas/StatusType"
+                      },
+                      "type": "array"
+                    },
+                    "SubmissionStatusTypes": {
+                      "items": {
+                        "$ref": "#/components/schemas/SubmissionStatusType"
+                      },
+                      "type": "array"
+                    },
+                    "UsageTypes": {
+                      "items": {
+                        "$ref": "#/components/schemas/UsageType"
+                      },
+                      "type": "array"
+                    },
+                    "UserCommentTypes": {
+                      "items": {
+                        "$ref": "#/components/schemas/UserCommentType"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object",
+                  "x-examples": {
+                    "example-1": {
+                      "ChargerTypes": [
+                        {
+                          "Comments": "Over 2 kW, usually non-domestic socket type",
+                          "ID": 2,
+                          "IsFastChargeCapable": false,
+                          "description": "Level 2 : Medium (Over 2kW)"
+                        }
+                      ],
+                      "CheckinStatusTypes": [
+                        {
+                          "ID": 0,
+                          "IsAutomatedCheckin": true,
+                          "IsPositive": true,
+                          "description": "string"
+                        }
+                      ],
+                      "ConnectionTypes": [
+                        {
+                          "FormalName": "IEC 62196-2 Type 2",
+                          "ID": 25,
+                          "IsDiscontinued": false,
+                          "IsObsolete": false,
+                          "description": "Type 2 (Socket Only)"
+                        }
+                      ],
+                      "Countries": [
+                        {
+                          "ContinentCode": "EU",
+                          "ID": 1,
+                          "ISOCode": "GB",
+                          "description": "United Kingdom"
+                        }
+                      ],
+                      "CurrentTypes": [
+                        {
+                          "Description": "Alternating Current - Single Phase",
+                          "ID": 10,
+                          "description": "AC (Single-Phase)"
+                        }
+                      ],
+                      "DataProviders": [
+                        {
+                          "Comments": "string",
+                          "DataProviderStatusType": {
+                            "ID": [
+                              1
+                            ],
+                            "IsProviderEnabled": true,
+                            "description": [
+                              "Manual Data Entry"
+                            ]
+                          },
+                          "DateLastImported": "null - '2020-02-04T23:09:00Z'",
+                          "ID": 1,
+                          "IsApprovedImport": "null - true",
+                          "IsOpenDataLicensed": "null - true",
+                          "IsRestrictedEdit": false,
+                          "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+                          "WebsiteURL": "https://openchargemap.org",
+                          "description": "Open Charge Map Contributors"
+                        }
+                      ],
+                      "DataTypes": null,
+                      "MetadataGroups": "string",
+                      "Operators": [
+                        {
+                          "AddressInfo": {
+                            "AccessComments": "string",
+                            "AddressLine1": "Buttsgrove Way",
+                            "AddressLine2": null,
+                            "ContactEmail": "string",
+                            "ContactTelephone1": null,
+                            "ContactTelephone2": null,
+                            "Country": {
+                              "ContinentCode": "EU",
+                              "ID": 1,
+                              "ISOCode": "GB",
+                              "description": "United Kingdom"
+                            },
+                            "CountryID": 1,
+                            "Distance": null,
+                            "DistanceUnit": 1,
+                            "ID": 148879,
+                            "Latitude": 52.343197,
+                            "Longitude": -0.170632,
+                            "Postcode": "PE29 1PE",
+                            "RelatedURL": null,
+                            "StateOrProvince": "string",
+                            "Town": "Huntingdon",
+                            "description": "Coneygear Centre"
+                          },
+                          "BookingURL": "string",
+                          "Comments": null,
+                          "ContactEmail": "enquiries@pod-point.com",
+                          "FaultReportEmail": "enquiries@pod-point.com",
+                          "ID": 0,
+                          "IsPrivateIndividual": false,
+                          "IsRestrictedEdit": true,
+                          "PhonePrimaryContact": null,
+                          "PhoneSecondaryContact": null,
+                          "WebsiteURL": "http://www.pod-point.com/",
+                          "description": "POD Point (UK)"
+                        }
+                      ],
+                      "StatusTypes": [
+                        {
+                          "ID": 50,
+                          "IsOperational": true,
+                          "IsUserSelectable": true,
+                          "description": "Operational"
+                        }
+                      ],
+                      "SubmissionStatusTypes": [
+                        {
+                          "ID": 200,
+                          "IsLive": true,
+                          "description": "Submission Published"
+                        }
+                      ],
+                      "UsageTypes": [
+                        {
+                          "ID": 0,
+                          "IsAccessKeyRequired": true,
+                          "IsMembershipRequired": true,
+                          "IsPayAtLocation": true,
+                          "description": "Public - Membership Required"
+                        }
+                      ],
+                      "UserCommentTypes": [
+                        {
+                          "ID": 0,
+                          "Title": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "Country": {
+                  "description": "Country details",
+                  "properties": {
+                    "ContinentCode": {
+                      "default": "",
+                      "description": "The Continentcode Schema",
+                      "example": "EU",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "ID": {
+                      "default": 0,
+                      "description": "The Id Schema",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "ISOCode": {
+                      "default": "",
+                      "description": "The Isocode Schema",
+                      "example": "GB",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "Title": {
+                      "default": "",
+                      "description": "The Title Schema",
+                      "example": "United Kingdom",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ID",
+                    "ISOCode",
+                    "ContinentCode"
+                  ],
+                  "type": "object"
+                },
+                "DataProvider": {
+                  "description": "A Data Provider is the controller of the source data set used to construct the details for this POI. Data has been transformed and interpreted from it's original form. Each Data Provider provides data either by an explicit license or agreement.",
+                  "properties": {
+                    "Comments": {
+                      "description": "General public comments with information about this Data Provider.",
+                      "type": "string"
+                    },
+                    "DataProviderStatusType": {
+                      "description": "Status object describing whether this data provider is currently enabled and the type of source (manual entry, imported etc)",
+                      "properties": {
+                        "ID": {
+                          "default": 0,
+                          "description": "The reference ID for this provider status type",
+                          "example": [
+                            1
+                          ],
+                          "type": "integer"
+                        },
+                        "IsProviderEnabled": {
+                          "default": false,
+                          "description": "If false, results from this data provider are not currently enabled",
+                          "example": true,
+                          "type": "boolean"
+                        },
+                        "description": {
+                          "description": "The Title of this status type",
+                          "example": [
+                            "Manual Data Entry"
+                          ],
+                          "pattern": "^(.*)$",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "IsProviderEnabled",
+                        "ID"
+                      ],
+                      "type": "object"
+                    },
+                    "DateLastImported": {
+                      "description": "Date and time (UTC) the last import was performed for this data provider (if an import).",
+                      "example": "2020-02-04T23:09:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "ID": {
+                      "description": "The reference ID for this Data Provider",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "IsApprovedImport": {
+                      "description": "If false, data may not be imported for this provider.",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "IsOpenDataLicensed": {
+                      "description": "If true, data provider uses an Open Data license",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "IsRestrictedEdit": {
+                      "default": false,
+                      "description": "Currently not implemented. Indicates a potential editing restriction.",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "License": {
+                      "description": "Summary of the licensing which applies for this Data Provider. Each Data Provider has one specific license or agreement. Usage of the data requires acceptance of the given license.",
+                      "example": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "Title": {
+                      "description": "The Title for this Data Provider",
+                      "example": "Open Charge Map Contributors",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "WebsiteURL": {
+                      "description": "Website URL for this data provider",
+                      "example": "https://openchargemap.org",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "IsRestrictedEdit",
+                    "ID"
+                  ],
+                  "type": "object"
+                },
+                "LevelType": {
+                  "description": "A general category for equipment power capability. Deprecated for general use. Currently computed automatically based on equipment power.",
+                  "properties": {
+                    "Comments": {
+                      "example": "Over 2 kW, usually non-domestic socket type",
+                      "type": "string"
+                    },
+                    "ID": {
+                      "example": 2,
+                      "type": "integer"
+                    },
+                    "IsFastChargeCapable": {
+                      "description": "If true, this level is considered 'fast' charging, relative to other levels.",
+                      "type": "boolean"
+                    },
+                    "Title": {
+                      "example": "Level 2 : Medium (Over 2kW)",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ID",
+                    "Comments",
+                    "IsFastChargeCapable"
+                  ],
+                  "type": "object"
+                },
+                "MediaItem": {
+                  "description": "A user submitted media item related to a specific charge point or site. Currently always an image.",
+                  "properties": {
+                    "ChargePointID": {
+                      "type": "string"
+                    },
+                    "Comment": {
+                      "type": "string"
+                    },
+                    "DateCreated": {
+                      "type": "string"
+                    },
+                    "ID": {
+                      "type": "string"
+                    },
+                    "IsEnabled": {
+                      "type": "boolean"
+                    },
+                    "IsExternalResource": {
+                      "type": "boolean"
+                    },
+                    "IsFeaturedItem": {
+                      "type": "boolean"
+                    },
+                    "IsVideo": {
+                      "type": "boolean"
+                    },
+                    "ItemThumbnailURL": {
+                      "type": "string"
+                    },
+                    "ItemURL": {
+                      "type": "string"
+                    },
+                    "User": {
+                      "$ref": "#/components/schemas/UserInfo"
+                    }
+                  },
+                  "type": "object"
+                },
+                "OperatorInfo": {
+                  "description": "An Operator is the public organisation which controls a network of charging points.",
+                  "properties": {
+                    "AddressInfo": {
+                      "$ref": "#/components/schemas/AddressInfo"
+                    },
+                    "BookingURL": {
+                      "type": "string"
+                    },
+                    "Comments": {
+                      "example": null,
+                      "type": "string"
+                    },
+                    "ContactEmail": {
+                      "default": "",
+                      "example": "enquiries@pod-point.com",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "FaultReportEmail": {
+                      "description": "Used to send automated notification to network operator if a user submits a fault report comment/check-in",
+                      "example": "enquiries@pod-point.com",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "ID": {
+                      "description": "Id",
+                      "type": "integer"
+                    },
+                    "IsPrivateIndividual": {
+                      "default": false,
+                      "deprecated": true,
+                      "description": "If true, this operator represents a private individual",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "IsRestrictedEdit": {
+                      "description": "If true, this network restricts community edits for OCM data",
+                      "type": "boolean"
+                    },
+                    "PhonePrimaryContact": {
+                      "default": null,
+                      "description": "Primary contact number for network users",
+                      "type": "string"
+                    },
+                    "PhoneSecondaryContact": {
+                      "default": null,
+                      "description": "Secondary contact number",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "Title": {
+                      "description": "Title",
+                      "example": "POD Point (UK)",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    },
+                    "WebsiteURL": {
+                      "description": "Website for more information about this network",
+                      "example": "http://www.pod-point.com/",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ID"
+                  ],
+                  "type": "object"
+                },
+                "POI": {
+                  "description": "A POI (Point of Interest), also referred to as a `Site` or `ChargePoint`, is the top-level set of information regarding a geographic site with one or more electric vehicle charging equipment present. The term `ChargePointID` is used to reference the unique ID for each POI, as called OCM ID. This reference appears in various UI elements in the format `OCM-12345` to distinguish the ID number as being a reference for a specific POI/site.\n\nNote: If the API is called in verbose mode properties expanded properties are included in the results (e.g. UsageType, StatusType, DataProvider, OperatorInfo, SubmissionStatus).  With the exception of the AddressInfo property, other object properties will not be populated in a compact result set and instead only the associated reference IDs will be set (e.g. UsageTypeID, DataProviderID etc)",
+                  "examples": [
+                    {
+                      "AddressInfo": {
+                        "AccessComments": "string",
+                        "AddressLine1": "Buttsgrove Way",
+                        "AddressLine2": null,
+                        "ContactEmail": "string",
+                        "ContactTelephone1": null,
+                        "ContactTelephone2": null,
+                        "Country": {
+                          "ContinentCode": "EU",
+                          "ID": 1,
+                          "ISOCode": "GB",
+                          "Title": "United Kingdom"
+                        },
+                        "CountryID": 1,
+                        "Distance": null,
+                        "DistanceUnit": 1,
+                        "ID": 148879,
+                        "Latitude": 52.343197,
+                        "Longitude": -0.170632,
+                        "Postcode": "PE29 1PE",
+                        "RelatedURL": null,
+                        "StateOrProvince": "string",
+                        "Title": "string",
+                        "Town": "Huntingdon"
+                      },
+                      "Connections": [
+                        {
+                          "Amps": 32,
+                          "Comments": "string",
+                          "ConnectionType": {
+                            "FormalName": "IEC 62196-2 Type 2",
+                            "ID": 25,
+                            "IsDiscontinued": false,
+                            "IsObsolete": false,
+                            "Title": "Type 2 (Socket Only)"
+                          },
+                          "ConnectionTypeID": 25,
+                          "CurrentType": {
+                            "ID": 10,
+                            "Title": "AC (Single-Phase)"
+                          },
+                          "CurrentTypeID": 10,
+                          "ID": 206241,
+                          "Level": {
+                            "Comments": "Over 2 kW, usually non-domestic socket type",
+                            "ID": 2,
+                            "IsFastChargeCapable": true,
+                            "Title": "Level 2 : Medium (Over 2kW)"
+                          },
+                          "LevelID": 2,
+                          "PowerKW": 7.4,
+                          "Quantity": 2,
+                          "Reference": null,
+                          "StatusType": {
+                            "ID": 50,
+                            "IsOperational": true,
+                            "IsUserSelectable": true,
+                            "Title": "Operational"
+                          },
+                          "StatusTypeID": 50,
+                          "Voltage": 230
+                        }
+                      ],
+                      "DataProvider": {
+                        "Comments": "string",
+                        "DataProviderStatusType": {
+                          "ID": [
+                            1
+                          ],
+                          "IsProviderEnabled": true,
+                          "description": [
+                            "Manual Data Entry"
+                          ]
+                        },
+                        "DateLastImported": "2020-02-04T23:09:00Z",
+                        "ID": 1,
+                        "IsApprovedImport": true,
+                        "IsOpenDataLicensed": true,
+                        "IsRestrictedEdit": false,
+                        "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+                        "Title": "Open Charge Map Contributors",
+                        "WebsiteURL": "https://openchargemap.org"
+                      },
+                      "DataProviderID": 1,
+                      "DataProvidersReference": "string",
+                      "DataQualityLevel": 5,
+                      "DateCreated": "2020-02-04T06:33:00Z",
+                      "DateLastConfirmed": "2020-02-04T06:33:00Z",
+                      "DateLastStatusUpdate": "2020-02-04T06:33:00Z",
+                      "DateLastVerified": "2020-02-04T06:33:00Z",
+                      "DatePlanned": "2020-02-04T06:33:00Z",
+                      "GeneralComments": "This is an open charge unit installed at the Coneygear Centre at Buttsgrove Way, Huntingdon",
+                      "ID": 148527,
+                      "IsRecentlyVerified": true,
+                      "MediaItems": [
+                        {
+                          "ChargePointID": "string",
+                          "Comment": "string",
+                          "DateCreated": "string",
+                          "ID": "string",
+                          "IsEnabled": true,
+                          "IsExternalResource": true,
+                          "IsFeaturedItem": true,
+                          "IsVideo": true,
+                          "ItemThumbnailURL": "string",
+                          "ItemURL": "string",
+                          "User": {
+                            "ID": 0,
+                            "ProfileImageURL": "string",
+                            "ReputationPoints": 0,
+                            "Username": "string"
+                          }
+                        }
+                      ],
+                      "MetadataValues": [
+                        null
+                      ],
+                      "NumberOfPoints": 2,
+                      "OperatorID": 3,
+                      "OperatorInfo": {
+                        "AddressInfo": {
+                          "AccessComments": "string",
+                          "AddressLine1": "Buttsgrove Way",
+                          "AddressLine2": null,
+                          "ContactEmail": "string",
+                          "ContactTelephone1": null,
+                          "ContactTelephone2": null,
+                          "Country": {
+                            "ContinentCode": "EU",
+                            "ID": 1,
+                            "ISOCode": "GB",
+                            "Title": "United Kingdom"
+                          },
+                          "CountryID": 1,
+                          "Distance": null,
+                          "DistanceUnit": 1,
+                          "ID": 148879,
+                          "Latitude": 52.343197,
+                          "Longitude": -0.170632,
+                          "Postcode": "PE29 1PE",
+                          "RelatedURL": null,
+                          "StateOrProvince": "string",
+                          "Title": "string",
+                          "Town": "Huntingdon"
+                        },
+                        "BookingURL": "string",
+                        "Comments": null,
+                        "ContactEmail": "enquiries@pod-point.com",
+                        "FaultReportEmail": "enquiries@pod-point.com",
+                        "ID": 0,
+                        "IsPrivateIndividual": false,
+                        "IsRestrictedEdit": true,
+                        "PhonePrimaryContact": null,
+                        "PhoneSecondaryContact": null,
+                        "Title": "POD Point (UK)",
+                        "WebsiteURL": "http://www.pod-point.com/"
+                      },
+                      "OperatorsReference": "PG-84306",
+                      "ParentChargePointID": 0,
+                      "StatusType": {
+                        "ID": 50,
+                        "IsOperational": true,
+                        "IsUserSelectable": true,
+                        "Title": "Operational"
+                      },
+                      "StatusTypeID": 50,
+                      "SubmissionStatus": {
+                        "ID": 200,
+                        "IsLive": false,
+                        "Title": "string"
+                      },
+                      "SubmissionStatusTypeID": 200,
+                      "UUID": "4C524AA1-3413-4D56-804C-480304FEB0FB",
+                      "UsageCost": "See network operators app for current charges",
+                      "UsageType": {
+                        "ID": 0,
+                        "IsAccessKeyRequired": true,
+                        "IsMembershipRequired": true,
+                        "IsPayAtLocation": true,
+                        "Title": "Public - Membership Required"
+                      },
+                      "UsageTypeID": 4,
+                      "UserComments": [
+                        {
+                          "ChargePointID": 0,
+                          "CheckinStatusType": {
+                            "ID": 0,
+                            "IsAutomatedCheckin": true,
+                            "IsPositive": true,
+                            "Title": "string"
+                          },
+                          "CheckinStatusTypeID": 0,
+                          "Comment": "string",
+                          "CommentType": {
+                            "ID": 0,
+                            "Title": "string"
+                          },
+                          "CommentTypeID": 0,
+                          "DateCreated": "2019-08-24T14:15:22Z",
+                          "ID": "string",
+                          "RelatedURL": "string",
+                          "User": {
+                            "ID": 0,
+                            "ProfileImageURL": "string",
+                            "ReputationPoints": 0,
+                            "Username": "string"
+                          },
+                          "UserName": "string"
+                        }
+                      ]
+                    }
+                  ],
+                  "properties": {
+                    "AddressInfo": {
+                      "$ref": "#/components/schemas/AddressInfo"
+                    },
+                    "Connections": {
+                      "description": "List of equipment summary information for this site",
+                      "items": {
+                        "$ref": "#/components/schemas/ConnectionInfo"
+                      },
+                      "type": "array"
+                    },
+                    "DataProvider": {
+                      "$ref": "#/components/schemas/DataProvider"
+                    },
+                    "DataProviderID": {
+                      "description": "The reference ID for the Data Provider of this POI",
+                      "example": 1,
+                      "type": "integer"
+                    },
+                    "DataProvidersReference": {
+                      "description": "If present, this is the Data Providers own key for this POI within their source data set",
+                      "type": "string"
+                    },
+                    "DataQualityLevel": {
+                      "description": "A metric applied during imports to indicate a quality level based on available information detail (5 == best). Largely unused currently.",
+                      "example": 5,
+                      "type": "integer"
+                    },
+                    "DateCreated": {
+                      "description": "The date and time (UTC, ISO 8601) this POI was added to the Open Charge Map database",
+                      "example": "2020-02-04T06:33:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "DateLastConfirmed": {
+                      "description": "The date and time (UTC, ISO 8601) this POI was last confirmed according to the data provider or a user. See DateLastVerified for a dynamically computed date based on multiple signals.",
+                      "example": "2020-02-04T06:33:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "DateLastStatusUpdate": {
+                      "description": "The date and time (UTC, ISO 8601) this POI or directly related child properties were updated.",
+                      "example": "2020-02-04T06:33:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "DateLastVerified": {
+                      "description": "A dynamically computed value, the date and time (UTC, ISO 8601) this POI was last confirmed by a user edit or related user comment",
+                      "example": "2020-02-04T06:33:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "DatePlanned": {
+                      "description": "The date and time (UTC, ISO 8601) this POI is or was planned for commissioning. In general planned POIs should not be presented to end users until confirmed operational.",
+                      "example": "2020-02-04T06:33:00Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "GeneralComments": {
+                      "description": "General additional factual information for the POI. Users are discouraged from using this field for opinions on site quality etc.",
+                      "example": "This is an open charge unit installed at the Coneygear Centre at Buttsgrove Way, Huntingdon",
+                      "type": "string"
+                    },
+                    "ID": {
+                      "description": "The OCM reference ID for this POI (Point of Interest).",
+                      "example": 148527,
+                      "type": "integer"
+                    },
+                    "IsRecentlyVerified": {
+                      "default": false,
+                      "description": "A dynamically computed value indicating of any recently confirmation activity has taken place for this site (positive check-ins etc)",
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "MediaItems": {
+                      "description": "A list of user submitted photos for this site",
+                      "items": {
+                        "$ref": "#/components/schemas/MediaItem"
+                      },
+                      "type": "array"
+                    },
+                    "MetadataValues": {
+                      "description": "Optional array of metadata values. Generally used to indicate data attribution but is also intended for future use to indicate surrounding amenties, links or foreign key values into other data sets.",
+                      "items": {},
+                      "type": "array"
+                    },
+                    "NumberOfPoints": {
+                      "default": 0,
+                      "description": "The number of bays or discreet stations available overall at this site. This indicates the limiting for number of simultaneous site users.",
+                      "example": 2,
+                      "type": "integer"
+                    },
+                    "OperatorID": {
+                      "default": 0,
+                      "description": "The reference ID of the equipment network operator or owner",
+                      "example": 3,
+                      "type": "integer"
+                    },
+                    "OperatorInfo": {
+                      "$ref": "#/components/schemas/OperatorInfo"
+                    },
+                    "OperatorsReference": {
+                      "description": "The network operators own reference for this site (may be a site reference or a single equipment reference)",
+                      "example": "PG-84306",
+                      "type": "string"
+                    },
+                    "ParentChargePointID": {
+                      "description": "If present, this data in this POI supercedes information in another POI. Generally not relevant to consumers.",
+                      "type": "integer"
+                    },
+                    "StatusType": {
+                      "$ref": "#/components/schemas/StatusType"
+                    },
+                    "StatusTypeID": {
+                      "default": 0,
+                      "description": "The overall operational status type reference ID for this POI (i.e. Operational etc). 0 == Unknown",
+                      "example": 50,
+                      "type": "integer"
+                    },
+                    "SubmissionStatus": {
+                      "$ref": "#/components/schemas/SubmissionStatusType"
+                    },
+                    "SubmissionStatusTypeID": {
+                      "default": 0,
+                      "description": "The reference ID for the submission status type which applied to this POI.",
+                      "example": 200,
+                      "type": "integer"
+                    },
+                    "UUID": {
+                      "description": "A universally unique identifier used as surrogate key. ID and UUID must be preserved when submitting POI update information. ",
+                      "example": "4C524AA1-3413-4D56-804C-480304FEB0FB",
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "UsageCost": {
+                      "description": "Free text description of likely usage costs associated with this site. Generally relates to parking charges whether network operates this site as Free",
+                      "example": "See network operators app for current charges",
+                      "type": "string"
+                    },
+                    "UsageType": {
+                      "$ref": "#/components/schemas/UsageType"
+                    },
+                    "UsageTypeID": {
+                      "default": 0,
+                      "description": "The reference ID for the site Usage Type, 0 == Unknown",
+                      "example": 4,
+                      "type": "integer"
+                    },
+                    "UserComments": {
+                      "description": "A list of user comments or check-ins for this site",
+                      "items": {
+                        "$ref": "#/components/schemas/UserComment"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "title": "POI",
+                  "type": "object",
+                  "x-examples": {
+                    "Example POI Results": {
+                      "AddressInfo": {
+                        "AccessComments": "string",
+                        "AddressLine1": "Buttsgrove Way",
+                        "AddressLine2": null,
+                        "ContactEmail": "string",
+                        "ContactTelephone1": null,
+                        "ContactTelephone2": null,
+                        "Country": {
+                          "ContinentCode": "EU",
+                          "ID": 1,
+                          "ISOCode": "GB",
+                          "description": "United Kingdom"
+                        },
+                        "CountryID": 1,
+                        "Distance": null,
+                        "DistanceUnit": 1,
+                        "ID": 148879,
+                        "Latitude": 52.343197,
+                        "Longitude": -0.170632,
+                        "Postcode": "PE29 1PE",
+                        "RelatedURL": null,
+                        "StateOrProvince": "string",
+                        "Town": "Huntingdon",
+                        "description": "Coneygear Centre"
+                      },
+                      "Connections": [
+                        {
+                          "Amps": 32,
+                          "Comments": "string",
+                          "ConnectionType": {
+                            "FormalName": "IEC 62196-2 Type 2",
+                            "ID": 25,
+                            "IsDiscontinued": false,
+                            "IsObsolete": false,
+                            "description": "Type 2 (Socket Only)"
+                          },
+                          "ConnectionTypeID": 25,
+                          "CurrentType": {
+                            "Description": "Alternating Current - Single Phase",
+                            "ID": 10,
+                            "description": "AC (Single-Phase)"
+                          },
+                          "CurrentTypeID": 10,
+                          "ID": 206241,
+                          "Level": {
+                            "Comments": "Over 2 kW, usually non-domestic socket type",
+                            "ID": 2,
+                            "IsFastChargeCapable": false,
+                            "description": "Level 2 : Medium (Over 2kW)"
+                          },
+                          "LevelID": 2,
+                          "PowerKW": 7.4,
+                          "Quantity": 2,
+                          "Reference": null,
+                          "StatusType": {
+                            "ID": 50,
+                            "IsOperational": true,
+                            "IsUserSelectable": true,
+                            "description": "Operational"
+                          },
+                          "StatusTypeID": 50,
+                          "Voltage": 230
+                        }
+                      ],
+                      "DataProvider": {
+                        "Comments": "string",
+                        "DataProviderStatusType": {
+                          "ID": [
+                            1
+                          ],
+                          "IsProviderEnabled": true,
+                          "description": [
+                            "Manual Data Entry"
+                          ]
+                        },
+                        "DateLastImported": "null - '2020-02-04T23:09:00Z'",
+                        "ID": 1,
+                        "IsApprovedImport": "null - true",
+                        "IsOpenDataLicensed": "null - true",
+                        "IsRestrictedEdit": false,
+                        "License": "Licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)",
+                        "WebsiteURL": "https://openchargemap.org",
+                        "description": "Open Charge Map Contributors"
+                      },
+                      "DataProviderID": 1,
+                      "DataProvidersReference": "string",
+                      "DataQualityLevel": 5,
+                      "DateCreated": "2020-02-04T06:33:00Z",
+                      "DateLastConfirmed": "2020-02-04T06:33:00Z",
+                      "DateLastStatusUpdate": "2020-02-04T06:33:00Z",
+                      "DateLastVerified": "2020-02-04T06:33:00Z",
+                      "DatePlanned": "2020-02-04T06:33:00Z",
+                      "GeneralComments": "",
+                      "ID": 148527,
+                      "IsRecentlyVerified": false,
+                      "MediaItems": [
+                        {
+                          "ChargePointID": "string",
+                          "Comment": "string",
+                          "DateCreated": "string",
+                          "ID": "string",
+                          "IsEnabled": true,
+                          "IsExternalResource": true,
+                          "IsFeaturedItem": true,
+                          "IsVideo": true,
+                          "ItemThumbnailURL": "string",
+                          "ItemURL": "string",
+                          "User": {
+                            "ID": 0,
+                            "ProfileImageURL": "string",
+                            "ReputationPoints": 0,
+                            "Username": "string"
+                          }
+                        }
+                      ],
+                      "MetadataValues": [
+                        null
+                      ],
+                      "NumberOfPoints": 0,
+                      "OperatorID": 0,
+                      "OperatorInfo": {
+                        "AddressInfo": {
+                          "AccessComments": "string",
+                          "AddressLine1": "Buttsgrove Way",
+                          "AddressLine2": null,
+                          "ContactEmail": "string",
+                          "ContactTelephone1": null,
+                          "ContactTelephone2": null,
+                          "Country": {
+                            "ContinentCode": "EU",
+                            "ID": 1,
+                            "ISOCode": "GB",
+                            "description": "United Kingdom"
+                          },
+                          "CountryID": 1,
+                          "Distance": null,
+                          "DistanceUnit": 1,
+                          "ID": 148879,
+                          "Latitude": 52.343197,
+                          "Longitude": -0.170632,
+                          "Postcode": "PE29 1PE",
+                          "RelatedURL": null,
+                          "StateOrProvince": "string",
+                          "Town": "Huntingdon",
+                          "description": "Coneygear Centre"
+                        },
+                        "BookingURL": "string",
+                        "Comments": null,
+                        "ContactEmail": "enquiries@pod-point.com",
+                        "FaultReportEmail": "enquiries@pod-point.com",
+                        "ID": 0,
+                        "IsPrivateIndividual": false,
+                        "IsRestrictedEdit": true,
+                        "PhonePrimaryContact": null,
+                        "PhoneSecondaryContact": null,
+                        "WebsiteURL": "http://www.pod-point.com/",
+                        "description": "POD Point (UK)"
+                      },
+                      "OperatorsReference": "PG-84306",
+                      "ParentChargePointID": 0,
+                      "StatusType": {
+                        "ID": 50,
+                        "IsOperational": true,
+                        "IsUserSelectable": true,
+                        "description": "Operational"
+                      },
+                      "StatusTypeID": 0,
+                      "SubmissionStatus": {
+                        "ID": 200,
+                        "IsLive": true,
+                        "description": "Submission Published"
+                      },
+                      "SubmissionStatusTypeID": 0,
+                      "UUID": "4C524AA1-3413-4D56-804C-480304FEB0FB",
+                      "UsageCost": "See network operators app for current charges",
+                      "UsageType": {
+                        "ID": 0,
+                        "IsAccessKeyRequired": true,
+                        "IsMembershipRequired": true,
+                        "IsPayAtLocation": true,
+                        "description": "Public - Membership Required"
+                      },
+                      "UsageTypeID": 0,
+                      "UserComments": [
+                        {
+                          "": "string",
+                          "ChargePointID": 0,
+                          "CheckinStatusType": {},
+                          "CheckinStatusTypeID": 0,
+                          "Comment": "string",
+                          "CommentType": {},
+                          "CommentTypeID": 0,
+                          "DateCreated": "2019-08-24T14:15:22Z",
+                          "ID": "string",
+                          "RelatedURL": "string",
+                          "User": {
+                            "ID": 0,
+                            "ProfileImageURL": "string",
+                            "ReputationPoints": 0,
+                            "Username": "string"
+                          },
+                          "UserName": "string"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "StatusType": {
+                  "description": "The Status Type of a site or equipment item indicates whether it is generally operational.",
+                  "properties": {
+                    "ID": {
+                      "example": 50,
+                      "type": "integer"
+                    },
+                    "IsOperational": {
+                      "default": false,
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "IsUserSelectable": {
+                      "default": false,
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "Title": {
+                      "example": "Operational",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "IsOperational",
+                    "IsUserSelectable",
+                    "ID"
+                  ],
+                  "type": "object"
+                },
+                "SubmissionStatusType": {
+                  "description": "Submission Status object, detailing the POI listing status",
+                  "properties": {
+                    "ID": {
+                      "default": 0,
+                      "description": "Submission Status Type reference ID",
+                      "example": 200,
+                      "type": "integer"
+                    },
+                    "IsLive": {
+                      "default": false,
+                      "description": "If true, POI listing is live (not draft or de-listed)",
+                      "type": "boolean"
+                    },
+                    "Title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ID",
+                    "IsLive"
+                  ],
+                  "type": "object"
+                },
+                "SupplyType": {
+                  "description": "Indicates the EVSE power supply type e.g. DC (Direct Current), AC (Single Phase), AC (3 Phase).",
+                  "properties": {
+                    "ID": {
+                      "example": 10,
+                      "type": "integer"
+                    },
+                    "Title": {
+                      "example": "AC (Single-Phase)",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ID"
+                  ],
+                  "type": "object"
+                },
+                "UsageType": {
+                  "description": "The Usage Type of a site indicates the general restrictions on usage.",
+                  "properties": {
+                    "ID": {
+                      "type": "integer"
+                    },
+                    "IsAccessKeyRequired": {
+                      "deprecated": true,
+                      "description": "If true this usage required a physical access key",
+                      "type": "boolean"
+                    },
+                    "IsMembershipRequired": {
+                      "description": "If true, this usage type requires registration or membership with a service.",
+                      "type": "boolean"
+                    },
+                    "IsPayAtLocation": {
+                      "description": "If true, usage requires paying at location",
+                      "type": "boolean"
+                    },
+                    "Title": {
+                      "example": "Public - Membership Required",
+                      "pattern": "^(.*)$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "IsPayAtLocation",
+                    "IsMembershipRequired",
+                    "IsAccessKeyRequired",
+                    "ID"
+                  ],
+                  "type": "object"
+                },
+                "UserComment": {
+                  "description": "A user comment or check-in for a specific charging point (POI/Site)",
+                  "properties": {
+                    "ChargePointID": {
+                      "type": "integer"
+                    },
+                    "CheckinStatusType": {
+                      "$ref": "#/components/schemas/CheckinStatusType"
+                    },
+                    "CheckinStatusTypeID": {
+                      "type": "integer"
+                    },
+                    "Comment": {
+                      "type": "string"
+                    },
+                    "CommentType": {
+                      "$ref": "#/components/schemas/UserCommentType"
+                    },
+                    "CommentTypeID": {
+                      "type": "integer"
+                    },
+                    "DateCreated": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "ID": {
+                      "type": "string"
+                    },
+                    "RelatedURL": {
+                      "type": "string"
+                    },
+                    "User": {
+                      "$ref": "#/components/schemas/UserInfo"
+                    },
+                    "UserName": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "UserCommentType": {
+                  "description": "Category for a user comment, e.g. General Comment, Fault Report (Notice To Users And Operator)",
+                  "properties": {
+                    "ID": {
+                      "type": "integer"
+                    },
+                    "Title": {
+                      "type": "string"
+                    }
+                  },
+                  "title": "UserCommentType",
+                  "type": "object"
+                },
+                "UserInfo": {
+                  "description": "Short public summary profile for a specific Open Charge Map user",
+                  "properties": {
+                    "ID": {
+                      "type": "integer"
+                    },
+                    "ProfileImageURL": {
+                      "type": "string"
+                    },
+                    "ReputationPoints": {
+                      "type": "integer"
+                    },
+                    "Username": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "UserProfile": {
+                  "description": "Full user profile, including non-public fields such as Email Address",
+                  "properties": {
+                    "DateCreated": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "DateLastLogin": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "EmailAddress": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "ID": {
+                      "type": "number"
+                    },
+                    "IsProfilePublic": {
+                      "type": "boolean"
+                    },
+                    "Latitude": {
+                      "type": "number"
+                    },
+                    "Location": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "Longitude": {
+                      "type": "number"
+                    },
+                    "Permissions": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "Profile": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "ProfileImageURL": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "ReputationPoints": {
+                      "type": "number"
+                    },
+                    "Username": {
+                      "minLength": 1,
+                      "type": "string"
+                    },
+                    "WebsiteURL": {
+                      "minLength": 1,
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ID",
+                    "Username",
+                    "DateCreated",
+                    "IsProfilePublic"
+                  ],
+                  "type": "object",
+                  "x-examples": {
+                    "example-userprofile": {
+                      "DateCreated": "2011-09-28T15:11:00",
+                      "DateLastLogin": "2021-11-09T07:49:00",
+                      "EmailAddress": "example@example.com",
+                      "ID": 1000,
+                      "IsProfilePublic": true,
+                      "Latitude": -31,
+                      "Location": "San Francisco, US",
+                      "Longitude": 115,
+                      "Permissions": "{\"Permissions\":[{\"Level\":100},{\"Level\":1000}],\"LegacyPermissions\":\"[CountryLevel_Editor=All];[Administrator=true];\"}",
+                      "Profile": "Example Open Charge Map user. 🤘",
+                      "ProfileImageURL": "https://www.gravatar.com/avatar/examplef?s=80&d=robohash",
+                      "ReputationPoints": 2008,
+                      "Username": "Joe Bloggs",
+                      "WebsiteURL": "https://openchargemap.org"
+                    }
+                  }
+                }
+              },
+              "securitySchemes": {
+                "APIKeyHeader": {
+                  "in": "header",
+                  "name": "X-API-Key",
+                  "type": "apiKey"
+                },
+                "APIKeyQueryString": {
+                  "description": "API Key supplied as query string parameter",
+                  "in": "query",
+                  "name": "key",
+                  "type": "apiKey"
+                },
+                "UserAuthentication": {
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "name": "Contact",
+                "url": "https://openchargemap.org/site/about"
+              },
+              "description": "The Open Charge Map API provides access to the worlds largest registry of charging locations as Open Data. You can integrate this API into your own apps or services and export charging location data into your own systems. \n\n**To obtain a free API key Sign In to https://openchargemap.org/profile then sign in and choose 'my apps' from the `my profile` menu, then select `Register An Application` to get your API key.**\n\nTo retrieve site (POI) data, see the `/poi` endpoint. To fetch general lookup information such as connector types, network operators etc, use the `/referencedata` endpoint.\n\n**Use of the OCM API is subject to terms and conditions. By using the API you indicate acceptance of these terms.**\n\nIf you wish to export charging location data into your own systems or applications the most flexible way is to use our API, which provides an export in a variety of formats. If you wish to regularly refresh the entire dataset, please clone our data from GitHub. You can also opt to run your own private API mirror.\n\n### Fair Usage Policy\nThe basic API is provided as a free service with no warranty or service level agreement. Providing this API to you costs us actual money for server resources and data transfer fees.\n\nYou must provide your API key as an `X-API-Key header` (case sensitive) or set the `key=YourAPIKey` url parameter. You should also set your http user-agent to a custom value to help identify your app.\n\n\n\n*Do not repeatedly call the API with duplicate queries. Debounce/throttle your API requests to minimise the work our API has to do. The API administrator (Open Charge Map) reserves the right to ban API callers (including automated banning) if callers make excessive/indescriminate use of the API, at the discretion of the OCM administrator.*\n\nIf you need to make a high volume of queries against the API please host your own API mirror or import the data into your own API.\n\n### Example API Calls\nReturn charging location information for the US in JSON format, limited to the first 10 results: `https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&maxresults=10?key=<your key>`\n\nThe default output contains a lot of information. Here is the same call as above, but with the most compact output (formatting removed, reference data as IDs instead of full objects, null fields skipped): \n`https://api.openchargemap.io/v3/poi/?output=json&countrycode=US&maxresults=100&compact=true&verbose=false&key=<your key>`\n\nReturn KML format results suitable for viewing in google earth/maps etc (UK, max 500 locations): `https://api.openchargemap.io/v3/poi/?output=kml&countrycode=GB&maxresults=500&key=<your key>`\n\nData returned by the API has mixed licensing and applicable copyright attribution (included in results as \"Data Provider\"). If you require Open licensed data you currently must filter by opendata=true to return data marked specifically with Open Data licenses.\n\n### Linking to OCM\nIn addition to using our  API you can link directly to specific Open Charge Map URLs in order to perform specific actions, with {OCM-ID} is the numeric ID of the POI to add work with.\n\n* Add a New POI:\t`https://openchargemap.org/site/poi/add`\n* View POI Details: `https://openchargemap.org/site/poi/details/{OCM-ID}`\n* Add a Comment/Check-In to an existing POI: \t`https://openchargemap.org/site/poi/addcomment/{OCM-ID}` \n* Add a Photo to an existing POI:\t`https://openchargemap.org/site/poi/addmediaitem/{OCM-ID}`",
+              "termsOfService": "https://openchargemap.org/site/about/terms",
+              "title": "Open Charge Map API",
+              "version": "3.1"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/comment": {
+                "post": {
+                  "description": "Submit a user comment or checkin for a specific charging location",
+                  "operationId": "post-comment",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "example-1": {
+                            "value": {
+                              "chargePointID": 0,
+                              "checkinStatusTypeID": 0,
+                              "comment": "string",
+                              "commentTypeID": 0,
+                              "rating": 3,
+                              "relatedURL": "string",
+                              "userName": "string"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "description": "",
+                          "properties": {
+                            "chargePointID": {
+                              "description": "This must be a valid POI ID",
+                              "type": "integer"
+                            },
+                            "checkinStatusTypeID": {
+                              "description": "Optional valid CheckStatusTypeID to indicate overall catgeory and success/failure to use equipment e.g. 10 = Charged Successfully.",
+                              "type": "integer"
+                            },
+                            "comment": {
+                              "description": "This is an optional comment to describe the charging experience, may include guidance for future users.",
+                              "maxLength": 4000,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "commentTypeID": {
+                              "description": "This must be a valid Comment Type ID as per UserCommentTypes found in Core Reference Data. If left as null then General Comment will be used.",
+                              "type": "integer"
+                            },
+                            "rating": {
+                              "description": "Optional integer rating between 1 = Worst, 5 = Best.",
+                              "example": 3,
+                              "type": "integer"
+                            },
+                            "relatedURL": {
+                              "description": "Optional website URL for related information",
+                              "maxLength": 500,
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "userName": {
+                              "description": "This is an optional name to associate with the submission, for authenticated users their profile username is used.",
+                              "maxLength": 100,
+                              "minLength": 1,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "chargePointID"
+                          ],
+                          "type": "object",
+                          "x-examples": {
+                            "example-1": {
+                              "ChargePointID": 12345,
+                              "CheckinStatusTypeID": 0,
+                              "Comment": "This place is awesome, free cake for EV owners!",
+                              "CommentTypeID": 10,
+                              "Rating": 5,
+                              "RelatedURL": "http://awesomevplace.com",
+                              "UserName": "A. Nickname"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "example-response": {
+                              "value": {
+                                "description": "OK",
+                                "status": "OK"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "description": "",
+                            "properties": {
+                              "description": {
+                                "minLength": 1,
+                                "type": "string"
+                              },
+                              "status": {
+                                "minLength": 1,
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "status",
+                              "description"
+                            ],
+                            "type": "object",
+                            "x-examples": {
+                              "example-1": {
+                                "description": "OK",
+                                "status": "OK"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "400": {
+                      "description": "Bad Request"
+                    }
+                  },
+                  "security": [
+                    {
+                      "UserAuthentication": []
+                    }
+                  ],
+                  "summary": "Submit Comment or Checkin"
+                }
+              },
+              "/mediaitem": {
+                "post": {
+                  "description": "Submit a photo for a specific charging location",
+                  "operationId": "post-mediaitem",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "example-media-upload": {
+                            "value": {
+                              "chargePointID": 1234,
+                              "comment": "An example comment",
+                              "imageDataBase64": "data:image/jpeg;base64,<BASE64_ENCODED_DATA>"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "description": "",
+                          "properties": {
+                            "chargePointID": {
+                              "description": "ID value for the OCM site (POI) this image relates to.",
+                              "type": "integer"
+                            },
+                            "comment": {
+                              "description": "Optional description of image or context",
+                              "minLength": 1,
+                              "type": "string"
+                            },
+                            "imageDataBase64": {
+                              "description": "BASE64 encoded data",
+                              "minLength": 1,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "chargePointID",
+                            "imageDataBase64"
+                          ],
+                          "type": "object",
+                          "x-examples": {
+                            "example-1": {
+                              "chargePointID": 0,
+                              "comment": "string",
+                              "imageDataBase64": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "example-response": {
+                              "value": {
+                                "description": "OK",
+                                "status": "OK"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "description": "",
+                            "properties": {
+                              "description": {
+                                "type": "string"
+                              },
+                              "status": {
+                                "description": "status code OK",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "status"
+                            ],
+                            "type": "object",
+                            "x-examples": {
+                              "example-1": {
+                                "chargePointID": 156185,
+                                "comment": "Test",
+                                "imageDataBase64": "data:image/jpeg;base64,EXAMPLEBASE64ENCODEDJPEGORPNG"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "security": [
+                    {
+                      "UserAuthentication": []
+                    }
+                  ],
+                  "summary": "Add Media Item (Photo)"
+                }
+              },
+              "/openapi": {
+                "get": {
+                  "description": "Retrieve the current OpenAPI format (YAML) definition for this API. This is useful for documentation tools, mocking, testing and client generation.",
+                  "operationId": "get-openapi",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "examples": {
+                            "example-response": {
+                              "value": {
+                                "info": {
+                                  "title": "Open Charge Map API",
+                                  "version": "3.0"
+                                },
+                                "openapi": "3.0.3"
+                              }
+                            }
+                          },
+                          "schema": {
+                            "properties": {},
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "summary": "Retrieve OpenAPI definition",
+                  "tags": []
+                }
+              },
+              "/poi": {
+                "get": {
+                  "description": "Used to fetch a list of POIs (sites) within a geographic boundary or near a specific latitude/longitude. This is the primary method for most applications and services to consume data from Open Charge Map.",
+                  "operationId": "get-poi",
+                  "parameters": [
+                    {
+                      "description": "Optional output format `json`,`geojson`,`xml`,`csv`, JSON is the default and recommended as the highest fidelity.",
+                      "in": "query",
+                      "name": "output",
+                      "schema": {
+                        "default": "json",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "String to identify your client application. Optional but recommended to distinguish your client from other bots/crawlers",
+                      "in": "query",
+                      "name": "client",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Limit on max number of results returned",
+                      "in": "query",
+                      "name": "maxresults",
+                      "schema": {
+                        "default": 100,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "2-character ISO Country code to filter to one specific country",
+                      "in": "query",
+                      "name": "countrycode",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Exact match on a given numeric country id (comma separated list)",
+                      "in": "query",
+                      "name": "countryid",
+                      "schema": {
+                        "example": "US,GB",
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Latitude for distance calculation and filtering",
+                      "in": "query",
+                      "name": "latitude",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Longitude for distance calculation and filtering",
+                      "in": "query",
+                      "name": "longitude",
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Optionally filter results by a max distance from the given latitude/longitude",
+                      "in": "query",
+                      "name": "distance",
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "`miles` or `km` distance unit",
+                      "in": "query",
+                      "name": "distanceunit",
+                      "schema": {
+                        "default": "Miles",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Exact match on a given EVSE operator id (comma separated list)",
+                      "in": "query",
+                      "name": "operatorid",
+                      "schema": {
+                        "example": "1,2,3",
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Exact match on a given connection type id (comma separated list)",
+                      "in": "query",
+                      "name": "connectiontypeid",
+                      "schema": {
+                        "example": "1,2,3",
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "deprecated": true,
+                      "description": "Exact match on a given charging level (1-3) id (comma separated list)",
+                      "in": "query",
+                      "name": "levelid",
+                      "schema": {
+                        "example": "1,2,3",
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Exact match on a given usage type id (comma separated list)",
+                      "in": "query",
+                      "name": "usagetypeid",
+                      "schema": {
+                        "example": "1,2,3",
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Exact match on a given status type id (comma separated list)",
+                      "in": "query",
+                      "name": "statustypeid",
+                      "schema": {
+                        "example": "1,2,3",
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Exact match on a given data provider id id (comma separated list). ",
+                      "in": "query",
+                      "name": "dataproviderid",
+                      "schema": {
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Use opendata=true for only OCM provided (\"Open\") data.",
+                      "in": "query",
+                      "name": "opendata",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "If true, user comments and media items will be include in result set",
+                      "in": "query",
+                      "name": "includecomments",
+                      "schema": {
+                        "default": "false",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Set to false to get a smaller result set with null items removed.",
+                      "in": "query",
+                      "name": "verbose",
+                      "schema": {
+                        "default": "true",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Set to true to remove reference data objects from output (just returns IDs for common reference data such as DataProvider etc).",
+                      "in": "query",
+                      "name": "compact",
+                      "schema": {
+                        "default": "false",
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Set to true to get a property names in camelCase format.",
+                      "in": "query",
+                      "name": "camelcase",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Exact match on a given OCM POI ID (comma separated list)",
+                      "in": "query",
+                      "name": "chargepointid",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter results to a given bounding box. specify top left and bottom right box corners as: (lat,lng),(lat2,lng2)",
+                      "in": "query",
+                      "name": "boundingbox",
+                      "schema": {
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "description": "Filter results within a given Polygon. Specify an encoded polyline for the polygon shape. Polygon will be automatically closed from the last point to the first point.",
+                      "in": "query",
+                      "name": "polygon",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter results along an encoded polyline, use with distance param to increase search distance along line. Polyline is expanded into a polygon to cover the search distance.",
+                      "in": "query",
+                      "name": "polyline",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Default sort order is based on spatial index but you can optionally sort by  `modified_asc` for results in order of modification (oldest to newest), or ` id_asc` for results in order of ID",
+                      "in": "query",
+                      "name": "sortby",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter to results modified after the given date",
+                      "in": "query",
+                      "name": "modifiedsince",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter to items with ID greater than given value",
+                      "in": "query",
+                      "name": "greaterthanid",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/POI"
+                    }
+                  },
+                  "summary": "Retrieve POI list (sites)",
+                  "tags": [],
+                  "x-internal": false
+                },
+                "parameters": []
+              },
+              "/profile/authenticate": {
+                "parameters": [],
+                "post": {
+                  "description": "Perform user authentication, returning a model which includes the users profile and a JWT auth token to re-use in subsequent requests.",
+                  "operationId": "post-authenticate",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "example-1": {
+                            "value": {
+                              "emailaddress": "string",
+                              "password": "string"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "properties": {
+                            "emailaddress": {
+                              "type": "string"
+                            },
+                            "password": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "description": ""
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "description": "",
+                            "properties": {
+                              "Data": {
+                                "properties": {
+                                  "UserProfile": {
+                                    "$ref": "#/components/schemas/UserProfile"
+                                  },
+                                  "access_token": {
+                                    "description": "JWT Bearer Token to use in subsequent authenticated requests",
+                                    "minLength": 1,
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "UserProfile",
+                                  "access_token"
+                                ],
+                                "type": "object"
+                              },
+                              "Metadata": {
+                                "properties": {
+                                  "StatusCode": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "StatusCode"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "required": [
+                              "Data",
+                              "Metadata"
+                            ],
+                            "type": "object",
+                            "x-examples": {
+                              "example-1": {
+                                "Data": {
+                                  "UserProfile": {
+                                    "DateCreated": "2011-09-28T15:11:00",
+                                    "DateLastLogin": "2021-11-09T07:49:00",
+                                    "EmailAddress": "example@example.com",
+                                    "EmailHash": null,
+                                    "ID": 1000,
+                                    "IsProfilePublic": true,
+                                    "Latitude": -31,
+                                    "Location": "San Francisco, US",
+                                    "Longitude": 115,
+                                    "Permissions": "{\"Permissions\":[{\"Level\":100},{\"Level\":1000}],\"LegacyPermissions\":\"[CountryLevel_Editor=All];[Administrator=true];\"}",
+                                    "Profile": "Example person who uses open charge map 🤘",
+                                    "ProfileImageURL": "https://www.gravatar.com/avatar/e3e76940eb5e85220db216603ee6b00f?s=80&d=robohash",
+                                    "ReputationPoints": 2008,
+                                    "Username": "Joe Bloggs",
+                                    "WebsiteURL": "https://openchargemap.org"
+                                  },
+                                  "access_token": "eXampleJwt.AccessTOKEN"
+                                },
+                                "Metadata": {
+                                  "StatusCode": 200
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "summary": "Authenticate User"
+                }
+              },
+              "/referencedata": {
+                "get": {
+                  "description": "Returns the core reference data used for looking up IDs such as Connection Types, Operators, Countries etc. \n\nThis information is useful for UIs such as editing systems or for fetching results in the lighter non-verbose mode, then hydrating POI results back into complex objects.",
+                  "operationId": "get-referencedata",
+                  "parameters": [
+                    {
+                      "description": "Optional filter on countryid, exact match on a given numeric country id (comma separated list)",
+                      "in": "query",
+                      "name": "countryid",
+                      "schema": {
+                        "type": "array"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CoreReferenceData"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "summary": "Core Reference Data",
+                  "tags": []
+                },
+                "parameters": []
+              }
+            },
+            "security": [
+              {
+                "APIKeyQueryString": []
+              },
+              {
+                "APIKeyHeader": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "API Base URL",
+                "url": "https://api.openchargemap.io/v3"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Open Charge Map"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.421625+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/openchargemap/ocm-docs/refs/heads/master/Model/schema/ocm-openapi-spec.yaml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "0685aac964121158a5b692b64fddc44ea7316afc35be7ba74b7a7d6a7a088a87",
+    "source_id": "open-charge-map",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/openchargemap/ocm-docs/refs/heads/master/Model/schema/ocm-openapi-spec.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "3.1"
+}

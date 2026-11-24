@@ -1,0 +1,1341 @@
+{
+  "a2ui": {},
+  "app": "open-banking-branch-locator-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "open-banking-branch-locator-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/branches"
+      },
+      {
+        "from": "open-banking-branch-locator-api",
+        "kind": "EXPOSES",
+        "to": "operation:head:/branches"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "open-banking-branch-locator-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Gets a list of all `Branch` objects.",
+        "id": "operation:get:/branches",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /branches",
+        "parameters": [
+          {
+            "description": "Used for conditional request, to retrieve data only if modified since a given date",
+            "in": "header",
+            "name": "If-Modified-Since",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Used for conditional request, to retrieve data only if the given Etag value does not match",
+            "in": "header",
+            "name": "If-None-Match",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/branches",
+        "pointer": "#/paths/~1branches/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "408",
+            "type": "object"
+          },
+          {
+            "status": "429",
+            "type": "object"
+          },
+          {
+            "status": "500",
+            "type": "object"
+          },
+          {
+            "status": "503",
+            "type": "object"
+          },
+          {
+            "status": "default",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": null,
+        "tags": [
+          "Branch"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Gets header information on the current set of `Branch` data",
+        "id": "operation:head:/branches",
+        "kind": "operation",
+        "method": "head",
+        "name": "head /branches",
+        "parameters": [
+          {
+            "description": "Used for conditional request, to retrieve data only if modified since a given date",
+            "in": "header",
+            "name": "If-Modified-Since",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Used for conditional request, to retrieve data only if the given Etag value does not match",
+            "in": "header",
+            "name": "If-None-Match",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/branches",
+        "pointer": "#/paths/~1branches/head",
+        "responses": [
+          {
+            "status": "default",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": null,
+        "tags": [
+          "Branch"
+        ]
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "open-banking-branch-locator-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://developer.openbanking.org.uk/open-banking/v2.3",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "basePath": "/open-banking/v2.3",
+            "host": "developer.openbanking.org.uk",
+            "info": {
+              "description": "Latest Swagger specification for OpenData Branch Locator",
+              "title": "Open Data API",
+              "version": "v2.3"
+            },
+            "paths": {
+              "/branches": {
+                "get": {
+                  "description": "Gets a list of all `Branch` objects.",
+                  "parameters": [
+                    {
+                      "description": "Used for conditional request, to retrieve data only if modified since a given date",
+                      "in": "header",
+                      "name": "If-Modified-Since",
+                      "required": false,
+                      "type": "string"
+                    },
+                    {
+                      "description": "Used for conditional request, to retrieve data only if the given Etag value does not match",
+                      "in": "header",
+                      "name": "If-None-Match",
+                      "required": false,
+                      "type": "string"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Successful response with a list of `Branch` data",
+                      "headers": {
+                        "Cache-Control": {
+                          "default": "max-age=28800",
+                          "description": "Describes how long this response can be cached",
+                          "type": "string"
+                        },
+                        "Etag": {
+                          "description": "A unique ID identifying whether this resource has changed",
+                          "type": "string"
+                        },
+                        "Strict-Transport-Security": {
+                          "default": "max-age=31536000",
+                          "description": "HTTPS strict transport security header",
+                          "type": "string"
+                        },
+                        "X-Content-Type-Options": {
+                          "default": "nosniff",
+                          "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                          "type": "string"
+                        },
+                        "X-Frame-Options": {
+                          "default": "DENY",
+                          "description": "Prevent this request from being loaded in any iframes",
+                          "type": "string"
+                        }
+                      },
+                      "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "data": {
+                            "items": {
+                              "description": "Environment of the branch",
+                              "properties": {
+                                "Brand": {
+                                  "additionalProperties": false,
+                                  "description": "Brand owned by an organisation",
+                                  "items": {
+                                    "description": "Brand owned by an organisation",
+                                    "properties": {
+                                      "Branch": {
+                                        "additionalProperties": false,
+                                        "description": "Information that locates and identifies a specific branch of a financial institution.",
+                                        "items": {
+                                          "description": "Information that locates and identifies a specific branch of a financial institution.",
+                                          "properties": {
+                                            "Accessibility": {
+                                              "description": "Accessibility is the ability and ease a customer can access a service, good, associate, or facility. Features which make the Bank accessible to disabled people",
+                                              "items": {
+                                                "description": "Accessibility is the ability and ease a customer can access a service, good, associate, or facility. Features which make the Bank accessible to disabled people",
+                                                "enum": [
+                                                  "AutomaticDoors",
+                                                  "AudioCashMachine",
+                                                  "ExternalRamp",
+                                                  "HelpingHandUnit",
+                                                  "InductionLoop",
+                                                  "InternalRamp",
+                                                  "LevelAccess",
+                                                  "LowerLevelCounter",
+                                                  "Other",
+                                                  "WheelchairAccess"
+                                                ],
+                                                "type": "string"
+                                              },
+                                              "title": "Accessibility",
+                                              "type": "array"
+                                            },
+                                            "Availability": {
+                                              "additionalProperties": false,
+                                              "description": "Days and times defining when the branch is available for use by a customer",
+                                              "properties": {
+                                                "NonStandardAvailability": {
+                                                  "additionalProperties": false,
+                                                  "description": "Non-standard hours of availability for a branch of an organisation",
+                                                  "items": {
+                                                    "description": "Non-standard hours of availability for a branch of an organisation",
+                                                    "properties": {
+                                                      "Day": {
+                                                        "additionalProperties": false,
+                                                        "description": "Working day information",
+                                                        "items": {
+                                                          "description": "Working day information",
+                                                          "properties": {
+                                                            "Name": {
+                                                              "description": "Specifies the day of the week",
+                                                              "enum": [
+                                                                "Friday",
+                                                                "Monday",
+                                                                "Saturday",
+                                                                "Sunday",
+                                                                "Thursday",
+                                                                "Tuesday",
+                                                                "Wednesday"
+                                                              ],
+                                                              "title": "Name",
+                                                              "type": "string"
+                                                            },
+                                                            "Notes": {
+                                                              "description": "Specify any note that is related the particular opening day e.g. Closed half day on Monday",
+                                                              "maxLength": 2000,
+                                                              "minLength": 1,
+                                                              "title": "Notes",
+                                                              "type": "string"
+                                                            },
+                                                            "OpeningHours": {
+                                                              "additionalProperties": false,
+                                                              "description": "Opening & Closing Times of a branch of an organisation",
+                                                              "items": {
+                                                                "description": "Opening & Closing Times of a branch of an organisation",
+                                                                "properties": {
+                                                                  "ClosingTime": {
+                                                                    "description": "A particular point in the progression of time in a calendar day expressed in either UTC time format (hh:mm:ss.sssZ), local time with UTC offset format (hh:mm:ss.sss+/-hh:mm), or local time format (hh:mm:ss.sss). These representations are defined in \"XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004\" which is aligned with ISO 8601.\nNote on the time format:\n1) beginning / end of calendar day\n00:00:00 = the beginning of a calendar day\n24:00:00 = the end of a calendar day\n2) fractions of second in time format\nDecimal fractions of seconds may be included. In this case, the involved parties shall agree on the maximum number of digits that are allowed.",
+                                                                    "pattern": "^(2[0-3]|[01][0-9]):?([0-5][0-9])$",
+                                                                    "title": "ClosingTime",
+                                                                    "type": "string"
+                                                                  },
+                                                                  "OpeningTime": {
+                                                                    "description": "A particular point in the progression of time in a calendar day expressed in either UTC time format (hh:mm:ss.sssZ), local time with UTC offset format (hh:mm:ss.sss+/-hh:mm), or local time format (hh:mm:ss.sss). These representations are defined in \"XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004\" which is aligned with ISO 8601.\nNote on the time format:\n1) beginning / end of calendar day\n00:00:00 = the beginning of a calendar day\n24:00:00 = the end of a calendar day\n2) fractions of second in time format\nDecimal fractions of seconds may be included. In this case, the involved parties shall agree on the maximum number of digits that are allowed.",
+                                                                    "pattern": "^(2[0-3]|[01][0-9]):?([0-5][0-9])$",
+                                                                    "title": "OpeningTime",
+                                                                    "type": "string"
+                                                                  }
+                                                                },
+                                                                "required": [
+                                                                  "OpeningTime",
+                                                                  "ClosingTime"
+                                                                ],
+                                                                "type": "object"
+                                                              },
+                                                              "minItems": 1,
+                                                              "title": "OpeningHours",
+                                                              "type": "array"
+                                                            }
+                                                          },
+                                                          "required": [
+                                                            "Name",
+                                                            "OpeningHours"
+                                                          ],
+                                                          "type": "object"
+                                                        },
+                                                        "maxItems": 7,
+                                                        "minItems": 0,
+                                                        "title": "Day",
+                                                        "type": "array"
+                                                      },
+                                                      "EndDate": {
+                                                        "description": "A particular point in the progression of time in a calendar year expressed in the YYYY-MM-DD format. This representation is defined in \"XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004\" which is aligned with ISO 8601.",
+                                                        "format": "date",
+                                                        "title": "EndDate",
+                                                        "type": "string"
+                                                      },
+                                                      "Name": {
+                                                        "description": "Name provided for non-standard opening periods e.g. Christmas",
+                                                        "maxLength": 140,
+                                                        "minLength": 1,
+                                                        "title": "Name",
+                                                        "type": "string"
+                                                      },
+                                                      "Notes": {
+                                                        "description": "Notes related to the Non-standard hours e.g. During shrimp season, the branch has extended opening hours",
+                                                        "maxLength": 2000,
+                                                        "minLength": 1,
+                                                        "title": "Notes",
+                                                        "type": "string"
+                                                      },
+                                                      "StartDate": {
+                                                        "description": "A particular point in the progression of time in a calendar year expressed in the YYYY-MM-DD format. This representation is defined in \"XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004\" which is aligned with ISO 8601.",
+                                                        "format": "date",
+                                                        "title": "StartDate",
+                                                        "type": "string"
+                                                      }
+                                                    },
+                                                    "required": [
+                                                      "Name"
+                                                    ],
+                                                    "type": "object"
+                                                  },
+                                                  "title": "NonStandardAvailability",
+                                                  "type": "array"
+                                                },
+                                                "StandardAvailability": {
+                                                  "additionalProperties": false,
+                                                  "description": "Standard hours of availability for the branch of the organisation",
+                                                  "properties": {
+                                                    "Day": {
+                                                      "additionalProperties": false,
+                                                      "description": "Working day information",
+                                                      "items": {
+                                                        "description": "Working day information",
+                                                        "properties": {
+                                                          "Name": {
+                                                            "description": "Specifies the day of the week",
+                                                            "enum": [
+                                                              "Friday",
+                                                              "Monday",
+                                                              "Saturday",
+                                                              "Sunday",
+                                                              "Thursday",
+                                                              "Tuesday",
+                                                              "Wednesday"
+                                                            ],
+                                                            "title": "Name",
+                                                            "type": "string"
+                                                          },
+                                                          "Notes": {
+                                                            "description": "Specify any note that is related the particular opening day e.g. Closed half day on Monday",
+                                                            "maxLength": 2000,
+                                                            "minLength": 1,
+                                                            "title": "Notes",
+                                                            "type": "string"
+                                                          },
+                                                          "OpeningHours": {
+                                                            "additionalProperties": false,
+                                                            "description": "Opening & Closing Times of a branch of an organisation",
+                                                            "items": {
+                                                              "description": "Opening & Closing Times of a branch of an organisation",
+                                                              "properties": {
+                                                                "ClosingTime": {
+                                                                  "description": "A particular point in the progression of time in a calendar day expressed in either UTC time format (hh:mm:ss.sssZ), local time with UTC offset format (hh:mm:ss.sss+/-hh:mm), or local time format (hh:mm:ss.sss). These representations are defined in \"XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004\" which is aligned with ISO 8601.\nNote on the time format:\n1) beginning / end of calendar day\n00:00:00 = the beginning of a calendar day\n24:00:00 = the end of a calendar day\n2) fractions of second in time format\nDecimal fractions of seconds may be included. In this case, the involved parties shall agree on the maximum number of digits that are allowed.",
+                                                                  "pattern": "^(2[0-3]|[01][0-9]):?([0-5][0-9])$",
+                                                                  "title": "ClosingTime",
+                                                                  "type": "string"
+                                                                },
+                                                                "OpeningTime": {
+                                                                  "description": "A particular point in the progression of time in a calendar day expressed in either UTC time format (hh:mm:ss.sssZ), local time with UTC offset format (hh:mm:ss.sss+/-hh:mm), or local time format (hh:mm:ss.sss). These representations are defined in \"XML Schema Part 2: Datatypes Second Edition - W3C Recommendation 28 October 2004\" which is aligned with ISO 8601.\nNote on the time format:\n1) beginning / end of calendar day\n00:00:00 = the beginning of a calendar day\n24:00:00 = the end of a calendar day\n2) fractions of second in time format\nDecimal fractions of seconds may be included. In this case, the involved parties shall agree on the maximum number of digits that are allowed.",
+                                                                  "pattern": "^(2[0-3]|[01][0-9]):?([0-5][0-9])$",
+                                                                  "title": "OpeningTime",
+                                                                  "type": "string"
+                                                                }
+                                                              },
+                                                              "required": [
+                                                                "OpeningTime",
+                                                                "ClosingTime"
+                                                              ],
+                                                              "type": "object"
+                                                            },
+                                                            "minItems": 1,
+                                                            "title": "OpeningHours",
+                                                            "type": "array"
+                                                          }
+                                                        },
+                                                        "required": [
+                                                          "Name",
+                                                          "OpeningHours"
+                                                        ],
+                                                        "type": "object"
+                                                      },
+                                                      "maxItems": 7,
+                                                      "minItems": 1,
+                                                      "title": "Day",
+                                                      "type": "array"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "Day"
+                                                  ],
+                                                  "title": "StandardAvailability",
+                                                  "type": "object"
+                                                }
+                                              },
+                                              "required": [
+                                                "StandardAvailability"
+                                              ],
+                                              "title": "Availability",
+                                              "type": "object"
+                                            },
+                                            "ContactInfo": {
+                                              "additionalProperties": false,
+                                              "description": "Communication device number or electronic address used for communication.",
+                                              "items": {
+                                                "description": "Communication device number or electronic address used for communication.",
+                                                "properties": {
+                                                  "ContactContent": {
+                                                    "description": "Collection of information that identifies a phone/Fax number/ email, as defined by telecom services.",
+                                                    "maxLength": 256,
+                                                    "minLength": 1,
+                                                    "title": "ContactContent",
+                                                    "type": "string"
+                                                  },
+                                                  "ContactDescription": {
+                                                    "description": "Description of contact such as main phone number, alternate phone number, Fax number, alternate fax number, email and alternate email",
+                                                    "maxLength": 70,
+                                                    "minLength": 1,
+                                                    "title": "ContactDescription",
+                                                    "type": "string"
+                                                  },
+                                                  "ContactType": {
+                                                    "description": "Contact type such Phone, Fax and email",
+                                                    "enum": [
+                                                      "AlternateEmail",
+                                                      "AlternateFax",
+                                                      "AlternatePhone",
+                                                      "Email",
+                                                      "Fax",
+                                                      "Other",
+                                                      "Phone"
+                                                    ],
+                                                    "title": "ContactType",
+                                                    "type": "string"
+                                                  },
+                                                  "OtherContactType": {
+                                                    "additionalProperties": false,
+                                                    "description": "Other contact type which is not in the standard code list",
+                                                    "properties": {
+                                                      "Code": {
+                                                        "description": "The four letter Mnemonic used whithin an XML file to identify a code",
+                                                        "maxLength": 4,
+                                                        "minLength": 0,
+                                                        "pattern": "^\\w{0,4}$",
+                                                        "title": "Code",
+                                                        "type": "string"
+                                                      },
+                                                      "Description": {
+                                                        "description": "Description to describe the purpose of the code",
+                                                        "maxLength": 350,
+                                                        "minLength": 1,
+                                                        "title": "Description",
+                                                        "type": "string"
+                                                      },
+                                                      "Name": {
+                                                        "description": "Long name associated with the code",
+                                                        "maxLength": 70,
+                                                        "minLength": 1,
+                                                        "title": "Name",
+                                                        "type": "string"
+                                                      }
+                                                    },
+                                                    "required": [
+                                                      "Name",
+                                                      "Description"
+                                                    ],
+                                                    "title": "OtherContactType",
+                                                    "type": "object"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "ContactType",
+                                                  "ContactContent"
+                                                ],
+                                                "type": "object"
+                                              },
+                                              "title": "ContactInfo",
+                                              "type": "array"
+                                            },
+                                            "CustomerSegment": {
+                                              "description": "The marketing segment which the branch is able to address in terms of customer type. Market segmentation is a marketing term referring to the aggregating of prospective buyers into groups, or segments, that have common needs and respond similarly to a marketing action. Market segmentation enables companies to target different categories of consumers who perceive the full value of certain products and services differently from one another",
+                                              "items": {
+                                                "description": "The marketing segment which the branch is able to address in terms of customer type. Market segmentation is a marketing term referring to the aggregating of prospective buyers into groups, or segments, that have common needs and respond similarly to a marketing action. Market segmentation enables companies to target different categories of consumers who perceive the full value of certain products and services differently from one another",
+                                                "enum": [
+                                                  "Business",
+                                                  "Corporate",
+                                                  "Other",
+                                                  "Personal",
+                                                  "Private",
+                                                  "Premier",
+                                                  "Select",
+                                                  "SME",
+                                                  "Wealth"
+                                                ],
+                                                "type": "string"
+                                              },
+                                              "minItems": 1,
+                                              "title": "CustomerSegment",
+                                              "type": "array"
+                                            },
+                                            "Identification": {
+                                              "description": "Unique and unambiguous identification of a branch of a financial institution.",
+                                              "maxLength": 35,
+                                              "minLength": 1,
+                                              "title": "Identification",
+                                              "type": "string"
+                                            },
+                                            "Name": {
+                                              "description": "Name by which a branch is known and which is usually used to identify that branch.",
+                                              "maxLength": 140,
+                                              "minLength": 1,
+                                              "title": "Name",
+                                              "type": "string"
+                                            },
+                                            "Note": {
+                                              "description": "Summary description of services, facility and availability.",
+                                              "maxLength": 2000,
+                                              "minLength": 1,
+                                              "title": "Note",
+                                              "type": "string"
+                                            },
+                                            "OtherAccessibility": {
+                                              "additionalProperties": false,
+                                              "description": "Enter any new code , name and description for any other Accessibility",
+                                              "items": {
+                                                "description": "Enter any new code , name and description for any other Accessibility",
+                                                "properties": {
+                                                  "Code": {
+                                                    "description": "The four letter Mnemonic used within an XML file to identify a code",
+                                                    "maxLength": 4,
+                                                    "minLength": 0,
+                                                    "pattern": "^\\w{0,4}$",
+                                                    "title": "Code",
+                                                    "type": "string"
+                                                  },
+                                                  "Description": {
+                                                    "description": "Description to describe the purpose of the code",
+                                                    "maxLength": 350,
+                                                    "minLength": 1,
+                                                    "title": "Description",
+                                                    "type": "string"
+                                                  },
+                                                  "Name": {
+                                                    "description": "Long name associated with the code",
+                                                    "maxLength": 70,
+                                                    "minLength": 1,
+                                                    "title": "Name",
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "Name",
+                                                  "Description"
+                                                ],
+                                                "type": "object"
+                                              },
+                                              "title": "OtherAccessibility",
+                                              "type": "array"
+                                            },
+                                            "OtherCustomerSegment": {
+                                              "additionalProperties": false,
+                                              "description": "Enter a new code , name and description for any other Customer Segment",
+                                              "items": {
+                                                "description": "Enter a new code , name and description for any other Customer Segment",
+                                                "properties": {
+                                                  "Code": {
+                                                    "description": "The four letter Mnemonic used within an XML file to identify a code",
+                                                    "maxLength": 4,
+                                                    "minLength": 0,
+                                                    "pattern": "^\\w{0,4}$",
+                                                    "title": "Code",
+                                                    "type": "string"
+                                                  },
+                                                  "Description": {
+                                                    "description": "Description to describe the purpose of the code",
+                                                    "maxLength": 350,
+                                                    "minLength": 1,
+                                                    "title": "Description",
+                                                    "type": "string"
+                                                  },
+                                                  "Name": {
+                                                    "description": "Long name associated with the code",
+                                                    "maxLength": 70,
+                                                    "minLength": 1,
+                                                    "title": "Name",
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "Name",
+                                                  "Description"
+                                                ],
+                                                "type": "object"
+                                              },
+                                              "title": "OtherCustomerSegment",
+                                              "type": "array"
+                                            },
+                                            "OtherServiceAndFacility": {
+                                              "additionalProperties": false,
+                                              "description": "Enter any new code , name and description for any Other Facility",
+                                              "items": {
+                                                "description": "Enter any new code , name and description for any Other Facility",
+                                                "properties": {
+                                                  "Code": {
+                                                    "description": "The four letter Mnemonic used within an XML file to identify a code",
+                                                    "maxLength": 4,
+                                                    "minLength": 0,
+                                                    "pattern": "^\\w{0,4}$",
+                                                    "title": "Code",
+                                                    "type": "string"
+                                                  },
+                                                  "Description": {
+                                                    "description": "Description to describe the purpose of the code",
+                                                    "maxLength": 350,
+                                                    "minLength": 1,
+                                                    "title": "Description",
+                                                    "type": "string"
+                                                  },
+                                                  "Name": {
+                                                    "description": "Long name associated with the code",
+                                                    "maxLength": 70,
+                                                    "minLength": 1,
+                                                    "title": "Name",
+                                                    "type": "string"
+                                                  }
+                                                },
+                                                "required": [
+                                                  "Name",
+                                                  "Description"
+                                                ],
+                                                "type": "object"
+                                              },
+                                              "title": "OtherServiceAndFacility",
+                                              "type": "array"
+                                            },
+                                            "Photo": {
+                                              "description": "Image related to the branch",
+                                              "title": "Photo",
+                                              "type": "string"
+                                            },
+                                            "PostalAddress": {
+                                              "additionalProperties": false,
+                                              "description": "Information that locates and identifies a specific address, as defined by postal services.",
+                                              "properties": {
+                                                "AddressLine": {
+                                                  "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                                                  "items": {
+                                                    "description": "maxLength 70 text",
+                                                    "maxLength": 70,
+                                                    "minLength": 1,
+                                                    "type": "string"
+                                                  },
+                                                  "maxItems": 7,
+                                                  "minItems": 0,
+                                                  "title": "AddressLine",
+                                                  "type": "array"
+                                                },
+                                                "BuildingNumber": {
+                                                  "description": "Name or Number that identifies the position of a building on a street.",
+                                                  "maxLength": 350,
+                                                  "minLength": 1,
+                                                  "title": "BuildingNumber",
+                                                  "type": "string"
+                                                },
+                                                "Country": {
+                                                  "description": "Nation with its own government, occupying a particular territory.",
+                                                  "pattern": "[A-Z]{2}",
+                                                  "title": "Country",
+                                                  "type": "string"
+                                                },
+                                                "CountrySubDivision": {
+                                                  "description": "Identifies a subdivision of a country, for instance state, region, county.",
+                                                  "items": {
+                                                    "description": "maxLength 35 text",
+                                                    "maxLength": 35,
+                                                    "minLength": 1,
+                                                    "type": "string"
+                                                  },
+                                                  "maxItems": 2,
+                                                  "minItems": 0,
+                                                  "title": "CountrySubDivision",
+                                                  "type": "array"
+                                                },
+                                                "GeoLocation": {
+                                                  "additionalProperties": false,
+                                                  "description": "Geographic location of the ATM specified by geographic coordinates or UTM coordinates.",
+                                                  "properties": {
+                                                    "GeographicCoordinates": {
+                                                      "additionalProperties": false,
+                                                      "description": "Location on the earth specified by two numbers representing vertical and horizontal position.",
+                                                      "properties": {
+                                                        "Latitude": {
+                                                          "description": "Latitude measured in decimal degrees",
+                                                          "pattern": "^-?\\d{1,3}\\.\\d{1,8}$",
+                                                          "title": "Latitude",
+                                                          "type": "string"
+                                                        },
+                                                        "Longitude": {
+                                                          "description": "Angular measurement of the distance of a location on the earth east or west of the Greenwich observatory.\nThe longitude is measured in decimal degrees.",
+                                                          "pattern": "^-?\\d{1,3}\\.\\d{1,8}$",
+                                                          "title": "Longitude",
+                                                          "type": "string"
+                                                        }
+                                                      },
+                                                      "required": [
+                                                        "Latitude",
+                                                        "Longitude"
+                                                      ],
+                                                      "title": "GeographicCoordinates",
+                                                      "type": "object"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "GeographicCoordinates"
+                                                  ],
+                                                  "title": "GeoLocation",
+                                                  "type": "object"
+                                                },
+                                                "PostCode": {
+                                                  "description": "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.",
+                                                  "maxLength": 16,
+                                                  "minLength": 1,
+                                                  "title": "PostCode",
+                                                  "type": "string"
+                                                },
+                                                "StreetName": {
+                                                  "description": "Name of a street or thoroughfare.",
+                                                  "maxLength": 70,
+                                                  "minLength": 1,
+                                                  "title": "StreetName",
+                                                  "type": "string"
+                                                },
+                                                "TownName": {
+                                                  "description": "Name of a built-up area, with defined boundaries, and a local government.",
+                                                  "maxLength": 35,
+                                                  "minLength": 1,
+                                                  "title": "TownName",
+                                                  "type": "string"
+                                                }
+                                              },
+                                              "required": [
+                                                "PostCode"
+                                              ],
+                                              "title": "PostalAddress",
+                                              "type": "object"
+                                            },
+                                            "SequenceNumber": {
+                                              "description": "Sequence Number that is used in conjunction with Identification to uniquely identify a branch. Physical branches should have 0 assigned, mobile and sub branches should have 1,2,3....etc. assigned.",
+                                              "maxLength": 35,
+                                              "minLength": 1,
+                                              "title": "SequenceNumber",
+                                              "type": "string"
+                                            },
+                                            "ServiceAndFacility": {
+                                              "description": "Service/Facilities offered at a branch.",
+                                              "items": {
+                                                "description": "Service/Facilities offered at a branch.",
+                                                "enum": [
+                                                  "AssistedServiceCounter",
+                                                  "ExternalATM",
+                                                  "AccountVerificationService",
+                                                  "BusinessCounter",
+                                                  "BureauDeChange",
+                                                  "BusinessDepositTerminal",
+                                                  "BusinessITSupport",
+                                                  "CardIssuanceFacility",
+                                                  "CollectionLockers",
+                                                  "CounterServices",
+                                                  "ExternalQuickServicePoint",
+                                                  "InternalQuickServicePoint",
+                                                  "InternalATM",
+                                                  "LodgementDevice",
+                                                  "MortgageAdvisor",
+                                                  "MeetingRooms",
+                                                  "NightSafe",
+                                                  "OnlineBankingPoint",
+                                                  "OnDemandCurrency",
+                                                  "Other",
+                                                  "Parking",
+                                                  "PremierCounter",
+                                                  "QuickDeposit",
+                                                  "SaturdayCounterService",
+                                                  "StatementPrinter",
+                                                  "SelfServiceAccountOpening",
+                                                  "VideoBanking",
+                                                  "WiFi"
+                                                ],
+                                                "type": "string"
+                                              },
+                                              "title": "ServiceAndFacility",
+                                              "type": "array"
+                                            },
+                                            "SortCode": {
+                                              "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code, which is a six-digit number, is usually formatted as three pairs of numbers, for example 12-34-56. It identifies both the bank and the branch(s) where the account is held.",
+                                              "items": {
+                                                "description": "maxLength 8 text",
+                                                "maxLength": 8,
+                                                "minLength": 1,
+                                                "type": "string"
+                                              },
+                                              "title": "SortCode",
+                                              "type": "array"
+                                            },
+                                            "Type": {
+                                              "description": "Codeset to indicate if a branch is physically in 1 location or is mobile",
+                                              "enum": [
+                                                "Mobile",
+                                                "Physical"
+                                              ],
+                                              "title": "Type",
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "Identification",
+                                            "SequenceNumber",
+                                            "Type",
+                                            "CustomerSegment",
+                                            "PostalAddress"
+                                          ],
+                                          "type": "object"
+                                        },
+                                        "minItems": 1,
+                                        "title": "Branch",
+                                        "type": "array"
+                                      },
+                                      "BrandName": {
+                                        "description": "Brand Name that an organisation uses to market its products or services to a consumer",
+                                        "maxLength": 140,
+                                        "minLength": 1,
+                                        "title": "BrandName",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "BrandName",
+                                      "Branch"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "minItems": 1,
+                                  "title": "Brand",
+                                  "type": "array"
+                                }
+                              },
+                              "required": [
+                                "Brand"
+                              ],
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "meta": {
+                            "additionalProperties": false,
+                            "properties": {
+                              "Agreement": {
+                                "enum": [
+                                  "Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions"
+                                ],
+                                "type": "string"
+                              },
+                              "LastUpdated": {
+                                "format": "date-time",
+                                "type": "string"
+                              },
+                              "License": {
+                                "description": "Open Banking License",
+                                "enum": [
+                                  "https://www.openbanking.org.uk/open-licence"
+                                ],
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "TermsOfUse": {
+                                "description": "Open Banking Terms of Use",
+                                "enum": [
+                                  "https://www.openbanking.org.uk/terms"
+                                ],
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "TotalResults": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "LastUpdated",
+                              "TotalResults",
+                              "Agreement",
+                              "License",
+                              "TermsOfUse"
+                            ],
+                            "title": "Meta data",
+                            "type": "object"
+                          }
+                        },
+                        "required": [
+                          "meta",
+                          "data"
+                        ],
+                        "type": "object"
+                      }
+                    },
+                    "400": {
+                      "description": "You have sent a request which could not be understood.",
+                      "headers": {
+                        "Status Code": {
+                          "default": 400,
+                          "description": "The HTTP status code defining the error",
+                          "type": "integer"
+                        },
+                        "Strict-Transport-Security": {
+                          "description": "HTTPS strict transport security header",
+                          "type": "string"
+                        },
+                        "X-Content-Type-Options": {
+                          "default": "nosniff",
+                          "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                          "type": "string"
+                        },
+                        "X-Frame-Options": {
+                          "default": "DENY",
+                          "description": "Prevent this request from being loaded in any iframes",
+                          "type": "string"
+                        }
+                      },
+                      "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "description": {
+                            "enum": [
+                              "You have sent a request which could not be understood."
+                            ],
+                            "type": "string"
+                          },
+                          "status": {
+                            "enum": [
+                              "400"
+                            ],
+                            "type": "string"
+                          },
+                          "title": {
+                            "enum": [
+                              "Bad request"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "status",
+                          "title",
+                          "description"
+                        ],
+                        "title": "400 Error object",
+                        "type": "object"
+                      }
+                    },
+                    "408": {
+                      "description": "Your client has failed to submit a request, and a timeout has occurred.",
+                      "headers": {
+                        "Status Code": {
+                          "default": 400,
+                          "description": "The HTTP status code defining the error",
+                          "type": "integer"
+                        },
+                        "Strict-Transport-Security": {
+                          "description": "HTTPS strict transport security header",
+                          "type": "string"
+                        },
+                        "X-Content-Type-Options": {
+                          "default": "nosniff",
+                          "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                          "type": "string"
+                        },
+                        "X-Frame-Options": {
+                          "default": "DENY",
+                          "description": "Prevent this request from being loaded in any iframes",
+                          "type": "string"
+                        }
+                      },
+                      "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "description": {
+                            "enum": [
+                              "Your client has failed to submit a request, and a timeout has occurred."
+                            ],
+                            "type": "string"
+                          },
+                          "status": {
+                            "enum": [
+                              "408"
+                            ],
+                            "type": "string"
+                          },
+                          "title": {
+                            "enum": [
+                              "Client timeout"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "status",
+                          "title",
+                          "description"
+                        ],
+                        "title": "408 Error object",
+                        "type": "object"
+                      }
+                    },
+                    "429": {
+                      "description": "You have requested this resource too often. Slow down.",
+                      "headers": {
+                        "Status Code": {
+                          "default": 400,
+                          "description": "The HTTP status code defining the error",
+                          "type": "integer"
+                        },
+                        "Strict-Transport-Security": {
+                          "description": "HTTPS strict transport security header",
+                          "type": "string"
+                        },
+                        "X-Content-Type-Options": {
+                          "default": "nosniff",
+                          "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                          "type": "string"
+                        },
+                        "X-Frame-Options": {
+                          "default": "DENY",
+                          "description": "Prevent this request from being loaded in any iframes",
+                          "type": "string"
+                        }
+                      },
+                      "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "description": {
+                            "enum": [
+                              "You have requested this resource too often. Slow down."
+                            ],
+                            "type": "string"
+                          },
+                          "status": {
+                            "enum": [
+                              "429"
+                            ],
+                            "type": "string"
+                          },
+                          "title": {
+                            "enum": [
+                              "Too many requests"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "status",
+                          "title",
+                          "description"
+                        ],
+                        "title": "429 Error object",
+                        "type": "object"
+                      }
+                    },
+                    "500": {
+                      "description": "An error occurred on the server. No further information is available.",
+                      "headers": {
+                        "Status Code": {
+                          "default": 400,
+                          "description": "The HTTP status code defining the error",
+                          "type": "integer"
+                        },
+                        "Strict-Transport-Security": {
+                          "description": "HTTPS strict transport security header",
+                          "type": "string"
+                        },
+                        "X-Content-Type-Options": {
+                          "default": "nosniff",
+                          "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                          "type": "string"
+                        },
+                        "X-Frame-Options": {
+                          "default": "DENY",
+                          "description": "Prevent this request from being loaded in any iframes",
+                          "type": "string"
+                        }
+                      },
+                      "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "description": {
+                            "enum": [
+                              "An error occurred on the server. No further information is available."
+                            ],
+                            "type": "string"
+                          },
+                          "status": {
+                            "enum": [
+                              "500"
+                            ],
+                            "type": "string"
+                          },
+                          "title": {
+                            "enum": [
+                              "Internal server error"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "status",
+                          "title",
+                          "description"
+                        ],
+                        "title": "500 Error object",
+                        "type": "object"
+                      }
+                    },
+                    "503": {
+                      "description": "The service is temporarily unavailable.",
+                      "headers": {
+                        "Status Code": {
+                          "default": 400,
+                          "description": "The HTTP status code defining the error",
+                          "type": "integer"
+                        },
+                        "Strict-Transport-Security": {
+                          "description": "HTTPS strict transport security header",
+                          "type": "string"
+                        },
+                        "X-Content-Type-Options": {
+                          "default": "nosniff",
+                          "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                          "type": "string"
+                        },
+                        "X-Frame-Options": {
+                          "default": "DENY",
+                          "description": "Prevent this request from being loaded in any iframes",
+                          "type": "string"
+                        }
+                      },
+                      "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "description": {
+                            "enum": [
+                              "The service is temporarily unavailable."
+                            ],
+                            "type": "string"
+                          },
+                          "status": {
+                            "enum": [
+                              "503"
+                            ],
+                            "type": "string"
+                          },
+                          "title": {
+                            "enum": [
+                              "Service temporarily unavailable"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "status",
+                          "title",
+                          "description"
+                        ],
+                        "title": "503 Error object",
+                        "type": "object"
+                      }
+                    },
+                    "default": {
+                      "description": "A standard error response.",
+                      "headers": {
+                        "Status Code": {
+                          "default": 400,
+                          "description": "The HTTP status code defining the error",
+                          "type": "integer"
+                        },
+                        "Strict-Transport-Security": {
+                          "description": "HTTPS strict transport security header",
+                          "type": "string"
+                        },
+                        "X-Content-Type-Options": {
+                          "default": "nosniff",
+                          "description": "Ensures each page has a content type and prevents browsers from doing MIME type sniffing",
+                          "type": "string"
+                        },
+                        "X-Frame-Options": {
+                          "default": "DENY",
+                          "description": "Prevent this request from being loaded in any iframes",
+                          "type": "string"
+                        }
+                      },
+                      "schema": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "description": {
+                            "description": "Further details describing the error",
+                            "type": "string"
+                          },
+                          "status": {
+                            "description": "This corresponds to the HTTP status code",
+                            "type": "string"
+                          },
+                          "title": {
+                            "description": "A short title of the type of error",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "status",
+                          "title",
+                          "description"
+                        ],
+                        "title": "Error object",
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "tags": [
+                    "Branch"
+                  ]
+                },
+                "head": {
+                  "description": "Gets header information on the current set of `Branch` data",
+                  "parameters": [
+                    {
+                      "description": "Used for conditional request, to retrieve data only if modified since a given date",
+                      "in": "header",
+                      "name": "If-Modified-Since",
+                      "required": false,
+                      "type": "string"
+                    },
+                    {
+                      "description": "Used for conditional request, to retrieve data only if the given Etag value does not match",
+                      "in": "header",
+                      "name": "If-None-Match",
+                      "required": false,
+                      "type": "string"
+                    }
+                  ],
+                  "responses": {
+                    "default": {
+                      "description": "No response",
+                      "schema": {
+                        "properties": {},
+                        "title": "No response",
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "tags": [
+                    "Branch"
+                  ]
+                }
+              }
+            },
+            "produces": [
+              "application/prs.openbanking.opendata.v2.3+json"
+            ],
+            "schemes": [
+              "https"
+            ],
+            "swagger": "2.0",
+            "tags": [
+              {
+                "description": "Endpoint for getting Branch data",
+                "name": "Branch"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Open Banking Branch Locator API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:37.194617+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://openbankinguk.github.io/opendata-api-docs-pub/assets/branchlocator/bral.2.3.0.swagger.json",
+        "version": "2.0"
+      }
+    ],
+    "sha256": "55eda5958a6dde54dcc6a326704e12d3548ffaa1e3f28fd0d58cbad81af2e083",
+    "source_id": "open-banking-branch-locator-api",
+    "source_updated": null,
+    "url": "https://openbankinguk.github.io/opendata-api-docs-pub/assets/branchlocator/bral.2.3.0.swagger.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "v2.3"
+}

@@ -1,0 +1,3283 @@
+{
+  "a2ui": {},
+  "app": "opencage-geocoding-api",
+  "graph": {
+    "edges": [
+      {
+        "from": "opencage-geocoding-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/geojson"
+      },
+      {
+        "from": "opencage-geocoding-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/json"
+      },
+      {
+        "from": "opencage-geocoding-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/ping"
+      },
+      {
+        "from": "opencage-geocoding-api",
+        "kind": "EXPOSES",
+        "to": "operation:get:/xml"
+      },
+      {
+        "from": "operation:get:/geojson",
+        "kind": "RETURNS",
+        "to": "schema:GetGeojson200ResponseBody"
+      },
+      {
+        "from": "operation:get:/json",
+        "kind": "RETURNS",
+        "to": "schema:Response"
+      },
+      {
+        "from": "operation:get:/xml",
+        "kind": "RETURNS",
+        "to": "schema:Response"
+      },
+      {
+        "from": "schema:Response",
+        "kind": "REFERENCES",
+        "to": "schema:LatLng"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "opencage-geocoding-api",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Geocode (GeoJSON)",
+        "id": "operation:get:/geojson",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-geojson",
+        "parameters": [
+          {
+            "description": "string or lat,lng to be geocoded",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "when true we include only address details in the formatted field of results.",
+            "in": "query",
+            "name": "address_only",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "if true the request is included in the response.",
+            "in": "query",
+            "name": "add_request",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "four coordinate points forming the south-west and north-east corners of a bounding box",
+            "in": "query",
+            "name": "bounds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "CSV list of lowercase two letter ISO 3166-1 Alpha 2 codes to limit results to that country/countries.",
+            "in": "query",
+            "name": "countrycode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "an IETF format language code or \"native\"",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "maximum number of results to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": false,
+            "description": "when true annotations are not added to results.",
+            "in": "query",
+            "name": "no_annotations",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true results are not deduplicated",
+            "in": "query",
+            "name": "no_dedupe",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true query content is not logged",
+            "in": "query",
+            "name": "no_record",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true results are pretty printed",
+            "in": "query",
+            "name": "pretty",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "lat,lng to bias results",
+            "in": "query",
+            "name": "proximity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "when true we geocode to nearest road, include roadinfo annotation",
+            "in": "query",
+            "name": "roadinfo",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/geojson",
+        "pointer": "#/paths/~1geojson/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "GetGeojson200ResponseBody"
+          },
+          {
+            "status": "400",
+            "type": "Response"
+          },
+          {
+            "status": "401",
+            "type": "Response"
+          },
+          {
+            "status": "402",
+            "type": "Response"
+          },
+          {
+            "status": "403",
+            "type": "Response"
+          },
+          {
+            "status": "404",
+            "type": "Response"
+          },
+          {
+            "status": "405",
+            "type": "Response"
+          },
+          {
+            "status": "408",
+            "type": "Response"
+          },
+          {
+            "status": "410",
+            "type": "Response"
+          },
+          {
+            "status": "426",
+            "type": "Response"
+          },
+          {
+            "status": "429",
+            "type": "Response"
+          },
+          {
+            "status": "500",
+            "type": "Response"
+          },
+          {
+            "status": "503",
+            "type": "Response"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "request a GeoJSON geocoding response",
+        "tags": [
+          "Geocoding",
+          "Reverse Geocoding"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Geocode (JSON)",
+        "id": "operation:get:/json",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-json",
+        "parameters": [
+          {
+            "description": "string or lat,lng to be geocoded",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "when true we attempt to abbreviate the formatted field of results.",
+            "in": "query",
+            "name": "abbrv",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true we include only address details in the formatted field of results.",
+            "in": "query",
+            "name": "address_only",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "if true the request is included in the response.",
+            "in": "query",
+            "name": "add_request",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "four coordinate points forming the south-west and north-east corners of a bounding box",
+            "in": "query",
+            "name": "bounds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "CSV list of lowercase two letter ISO 3166-1 Alpha 2 codes to limit results to that country/countries.",
+            "in": "query",
+            "name": "countrycode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "an IETF format language code or \"native\"",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "maximum number of results to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": false,
+            "description": "when true annotations are not added to results.",
+            "in": "query",
+            "name": "no_annotations",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true results are not deduplicated",
+            "in": "query",
+            "name": "no_dedupe",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true query content is not logged",
+            "in": "query",
+            "name": "no_record",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true results are pretty printed",
+            "in": "query",
+            "name": "pretty",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "lat,lng to bias results",
+            "in": "query",
+            "name": "proximity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "when true we geocode to nearest road, include roadinfo annotation",
+            "in": "query",
+            "name": "roadinfo",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/json",
+        "pointer": "#/paths/~1json/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Response"
+          },
+          {
+            "status": "400",
+            "type": "Response"
+          },
+          {
+            "status": "401",
+            "type": "Response"
+          },
+          {
+            "status": "402",
+            "type": "Response"
+          },
+          {
+            "status": "403",
+            "type": "Response"
+          },
+          {
+            "status": "404",
+            "type": "Response"
+          },
+          {
+            "status": "405",
+            "type": "Response"
+          },
+          {
+            "status": "408",
+            "type": "Response"
+          },
+          {
+            "status": "410",
+            "type": "Response"
+          },
+          {
+            "status": "426",
+            "type": "Response"
+          },
+          {
+            "status": "429",
+            "type": "Response"
+          },
+          {
+            "status": "500",
+            "type": "Response"
+          },
+          {
+            "status": "503",
+            "type": "Response"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "request a JSON geocoding response",
+        "tags": [
+          "Geocoding",
+          "Reverse Geocoding"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Health check endpoint to verify API availability",
+        "id": "operation:get:/ping",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-ping",
+        "path": "/ping",
+        "pointer": "#/paths/~1ping/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "string"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "check API health and connectivity",
+        "tags": [
+          "Health"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Geocode (XML)",
+        "id": "operation:get:/xml",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-xml",
+        "parameters": [
+          {
+            "description": "string or lat,lng to be geocoded",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "when true we attempt to abbreviate the formatted field of results.",
+            "in": "query",
+            "name": "abbrv",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true we include only address details in the formatted field of results.",
+            "in": "query",
+            "name": "address_only",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "if true the request is included in the response.",
+            "in": "query",
+            "name": "add_request",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "four coordinate points forming the south-west and north-east corners of a bounding box",
+            "in": "query",
+            "name": "bounds",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "CSV list of lowercase two letter ISO 3166-1 Alpha 2 codes to limit results to that country/countries.",
+            "in": "query",
+            "name": "countrycode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "an IETF format language code or \"native\"",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "maximum number of results to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": false,
+            "description": "when true annotations are not added to results.",
+            "in": "query",
+            "name": "no_annotations",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true results are not deduplicated",
+            "in": "query",
+            "name": "no_dedupe",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true query content is not logged",
+            "in": "query",
+            "name": "no_record",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "when true results are pretty printed",
+            "in": "query",
+            "name": "pretty",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "lat,lng to bias results",
+            "in": "query",
+            "name": "proximity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "when true we geocode to nearest road, include roadinfo annotation",
+            "in": "query",
+            "name": "roadinfo",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/xml",
+        "pointer": "#/paths/~1xml/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Response"
+          },
+          {
+            "status": "400",
+            "type": "Response"
+          },
+          {
+            "status": "401",
+            "type": "Response"
+          },
+          {
+            "status": "402",
+            "type": "Response"
+          },
+          {
+            "status": "403",
+            "type": "Response"
+          },
+          {
+            "status": "404",
+            "type": "Response"
+          },
+          {
+            "status": "405",
+            "type": "Response"
+          },
+          {
+            "status": "408",
+            "type": "Response"
+          },
+          {
+            "status": "410",
+            "type": "Response"
+          },
+          {
+            "status": "426",
+            "type": "Response"
+          },
+          {
+            "status": "429",
+            "type": "Response"
+          },
+          {
+            "status": "500",
+            "type": "Response"
+          },
+          {
+            "status": "503",
+            "type": "Response"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "request an XML geocoding response",
+        "tags": [
+          "Geocoding",
+          "Reverse Geocoding"
+        ]
+      },
+      {
+        "description": "GeoJSON response from the OpenCage Geocoder API",
+        "id": "schema:GetGeojson200ResponseBody",
+        "kind": "schema",
+        "name": "GetGeojson200ResponseBody",
+        "type": "object"
+      },
+      {
+        "description": "Geographic coordinates (latitude and longitude)",
+        "id": "schema:LatLng",
+        "kind": "schema",
+        "name": "LatLng",
+        "type": "object"
+      },
+      {
+        "id": "schema:Response",
+        "kind": "schema",
+        "name": "Response",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "opencage-geocoding-api"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.opencagedata.com/geocode/v1",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "headers": {
+                "ratelimit-limit": {
+                  "description": "**Non-subscription customers only.** Total number of API requests your account is limited to over given time period (24 hours for free trials).",
+                  "schema": {
+                    "examples": [
+                      2500
+                    ],
+                    "type": "integer"
+                  },
+                  "x-externalDocs": {
+                    "description": "rate limit documentation",
+                    "url": "https://opencagedata.com/api#rate-limiting"
+                  }
+                },
+                "ratelimit-remaining": {
+                  "description": "**Non-subscription customers only.** The number of requests left for the time window.",
+                  "schema": {
+                    "examples": [
+                      2498
+                    ],
+                    "type": "integer"
+                  },
+                  "x-externalDocs": {
+                    "description": "rate limit documentation",
+                    "url": "https://opencagedata.com/api#rate-limiting"
+                  }
+                },
+                "ratelimit-reset": {
+                  "description": "**Non-subscription customers only.** The UNIX timestamp at which the current rate limit window resets.",
+                  "schema": {
+                    "examples": [
+                      1605312000
+                    ],
+                    "type": "integer"
+                  },
+                  "x-externalDocs": {
+                    "description": "rate limit documentation",
+                    "url": "https://opencagedata.com/api#rate-limiting"
+                  }
+                }
+              },
+              "parameters": {
+                "abbrv": {
+                  "description": "when true we attempt to abbreviate the formatted field of results.",
+                  "in": "query",
+                  "name": "abbrv",
+                  "required": false,
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "x-externalDocs": {
+                    "description": "abbrv parameter documentation",
+                    "url": "https://opencagedata.com/api#abbrv-param"
+                  }
+                },
+                "add_request": {
+                  "description": "if true the request is included in the response.",
+                  "in": "query",
+                  "name": "add_request",
+                  "required": false,
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "x-externalDocs": {
+                    "description": "add_request parameter documentation",
+                    "url": "https://opencagedata.com/api#add_request-param"
+                  }
+                },
+                "address_only": {
+                  "description": "when true we include only address details in the formatted field of results.",
+                  "in": "query",
+                  "name": "address_only",
+                  "required": false,
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "x-externalDocs": {
+                    "description": "address_only parameter documentation",
+                    "url": "https://opencagedata.com/api#address_only-param"
+                  }
+                },
+                "bounds": {
+                  "description": "four coordinate points forming the south-west and north-east corners of a bounding box",
+                  "in": "query",
+                  "name": "bounds",
+                  "required": false,
+                  "schema": {
+                    "description": "decimal coordinates in min long, min lat, max long, max lat order",
+                    "examples": [
+                      "-0.563160,51.280430,0.278970,51.683979"
+                    ],
+                    "type": "string"
+                  },
+                  "x-externalDocs": {
+                    "description": "bound parameter documentation",
+                    "url": "https://opencagedata.com/api#bounds-param"
+                  }
+                },
+                "countrycode": {
+                  "description": "CSV list of lowercase two letter ISO 3166-1 Alpha 2 codes to limit results to that country/countries.",
+                  "in": "query",
+                  "name": "countrycode",
+                  "required": false,
+                  "schema": {
+                    "examples": [
+                      "de",
+                      "at",
+                      "ch,li"
+                    ],
+                    "minLength": 2,
+                    "type": "string"
+                  },
+                  "x-externalDocs": {
+                    "description": "countrycode parameter documentation",
+                    "url": "https://opencagedata.com/api#countrycode-param"
+                  }
+                },
+                "language": {
+                  "description": "an IETF format language code or \"native\"",
+                  "in": "query",
+                  "name": "language",
+                  "required": false,
+                  "schema": {
+                    "description": "the preferred language of results",
+                    "examples": [
+                      "de",
+                      "pt-BR",
+                      "native"
+                    ],
+                    "type": "string"
+                  },
+                  "x-externalDocs": {
+                    "description": "language parameter documentation",
+                    "url": "https://opencagedata.com/api#language"
+                  }
+                },
+                "limit": {
+                  "description": "maximum number of results to return. Default is 10. Maximum is 100.",
+                  "in": "query",
+                  "name": "limit",
+                  "required": false,
+                  "schema": {
+                    "examples": [
+                      1,
+                      3
+                    ],
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "x-externalDocs": {
+                    "description": "limit parameter documentation",
+                    "url": "https://opencagedata.com/api#limit-param"
+                  }
+                },
+                "no_annotations": {
+                  "description": "when true annotations are not added to results.",
+                  "in": "query",
+                  "name": "no_annotations",
+                  "required": false,
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "x-externalDocs": {
+                    "description": "no_annotations parameter documentation",
+                    "url": "https://opencagedata.com/api#no_annotations-param"
+                  }
+                },
+                "no_dedupe": {
+                  "description": "when true results are not deduplicated",
+                  "in": "query",
+                  "name": "no_dedupe",
+                  "required": false,
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "x-externalDocs": {
+                    "description": "no_dedupe parameter documentation",
+                    "url": "https://opencagedata.com/api#no_dedupe-param"
+                  }
+                },
+                "no_record": {
+                  "description": "when true query content is not logged",
+                  "in": "query",
+                  "name": "no_record",
+                  "required": false,
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "x-externalDocs": {
+                    "description": "no_record parameter documentation",
+                    "url": "https://opencagedata.com/api#no_record-param"
+                  }
+                },
+                "pretty": {
+                  "description": "when true results are pretty printed",
+                  "in": "query",
+                  "name": "pretty",
+                  "required": false,
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "x-externalDocs": {
+                    "description": "pretty parameter documentation",
+                    "url": "https://opencagedata.com/api#pretty-param"
+                  }
+                },
+                "proximity": {
+                  "description": "lat,lng to bias results",
+                  "in": "query",
+                  "name": "proximity",
+                  "required": false,
+                  "schema": {
+                    "description": "Latitude and longitude decimal coordinates to bias results toward",
+                    "examples": [
+                      "52.3877830, 9.7334394",
+                      "51.522618,-0.102530",
+                      "42.359578,-71.091982"
+                    ],
+                    "pattern": "^-?[0-9]{1,2}(\\.[0-9]+)?,\\s*-?[0-9]{1,3}(\\.[0-9]+)?$",
+                    "type": "string"
+                  },
+                  "x-externalDocs": {
+                    "description": "proximity parameter documentation",
+                    "url": "https://opencagedata.com/api#proximity-param"
+                  }
+                },
+                "query": {
+                  "description": "string or lat,lng to be geocoded",
+                  "in": "query",
+                  "name": "q",
+                  "required": true,
+                  "schema": {
+                    "description": "Location to geocode - can be an address, place name, or decimal coordinates in latitude, longitude order",
+                    "examples": [
+                      "52.5432379, 13.4142133",
+                      "Times Square, New York, USA",
+                      "Eiffel Tower"
+                    ],
+                    "minLength": 2,
+                    "type": "string"
+                  },
+                  "x-externalDocs": {
+                    "description": "q parameter documentation",
+                    "url": "https://opencagedata.com/api#q-param"
+                  }
+                },
+                "roadinfo": {
+                  "description": "when true we geocode to nearest road, include roadinfo annotation",
+                  "in": "query",
+                  "name": "roadinfo",
+                  "required": false,
+                  "schema": {
+                    "default": false,
+                    "type": "boolean"
+                  },
+                  "x-externalDocs": {
+                    "description": "roadinfo parameter documentation",
+                    "url": "https://opencagedata.com/api#roadinfo-param"
+                  }
+                }
+              },
+              "schemas": {
+                "GetGeojson200ResponseBody": {
+                  "description": "GeoJSON response from the OpenCage Geocoder API",
+                  "externalDocs": {
+                    "description": "Response format documentation",
+                    "url": "https://opencagedata.com/api#response"
+                  },
+                  "properties": {
+                    "documentation": {
+                      "description": "URL to the API documentation",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "features": {
+                      "description": "Array of GeoJSON feature objects containing geocoding results",
+                      "items": {
+                        "description": "GeoJSON feature object",
+                        "properties": {
+                          "geometry": {
+                            "description": "GeoJSON geometry object representing the location point",
+                            "properties": {
+                              "coordinates": {
+                                "description": "Location coordinates in [longitude, latitude] order (GeoJSON standard)",
+                                "items": {
+                                  "format": "double",
+                                  "type": "number"
+                                },
+                                "maxItems": 3,
+                                "minItems": 2,
+                                "type": "array"
+                              },
+                              "type": {
+                                "description": "GeoJSON geometry type",
+                                "enum": [
+                                  "Point"
+                                ],
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "coordinates",
+                              "type"
+                            ],
+                            "type": "object"
+                          },
+                          "properties": {
+                            "description": "Properties of the geocoded location",
+                            "properties": {
+                              "annotations": {
+                                "description": "Additional data about the location. The annotations provided depend on \nthe specific location being geocoded.\n",
+                                "externalDocs": {
+                                  "description": "Annotations documentation",
+                                  "url": "https://opencagedata.com/api#annotations"
+                                },
+                                "properties": {
+                                  "DMS": {
+                                    "description": "Degrees, minutes, seconds representation of coordinates",
+                                    "properties": {
+                                      "lat": {
+                                        "description": "Latitude in degrees, minutes, seconds format",
+                                        "type": "string"
+                                      },
+                                      "lng": {
+                                        "description": "Longitude in degrees, minutes, seconds format",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "lat",
+                                      "lng"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "FIPS": {
+                                    "description": "FIPS (Federal Information Processing Standards) codes",
+                                    "properties": {
+                                      "county": {
+                                        "description": "FIPS county code",
+                                        "type": "string"
+                                      },
+                                      "state": {
+                                        "description": "FIPS state code",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "state"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "MGRS": {
+                                    "description": "Military Grid Reference System coordinates",
+                                    "type": "string"
+                                  },
+                                  "Maidenhead": {
+                                    "description": "Maidenhead Locator System coordinates",
+                                    "type": "string"
+                                  },
+                                  "Mercator": {
+                                    "description": "Web Mercator projection coordinates",
+                                    "properties": {
+                                      "x": {
+                                        "description": "X coordinate (longitude) in Web Mercator projection",
+                                        "type": "number"
+                                      },
+                                      "y": {
+                                        "description": "Y coordinate (latitude) in Web Mercator projection",
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "x",
+                                      "y"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "NUTS": {
+                                    "description": "Nomenclature of Territorial Units for Statistics codes",
+                                    "properties": {
+                                      "NUTS0": {
+                                        "description": "Country-level NUTS code",
+                                        "properties": {
+                                          "code": {
+                                            "description": "NUTS0 code",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "code"
+                                        ],
+                                        "type": "object"
+                                      },
+                                      "NUTS1": {
+                                        "description": "Major socio-economic region NUTS code",
+                                        "properties": {
+                                          "code": {
+                                            "description": "NUTS1 code",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "code"
+                                        ],
+                                        "type": "object"
+                                      },
+                                      "NUTS2": {
+                                        "description": "Basic region NUTS code",
+                                        "properties": {
+                                          "code": {
+                                            "description": "NUTS2 code",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "code"
+                                        ],
+                                        "type": "object"
+                                      },
+                                      "NUTS3": {
+                                        "description": "Small region NUTS code",
+                                        "properties": {
+                                          "code": {
+                                            "description": "NUTS3 code",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "code"
+                                        ],
+                                        "type": "object"
+                                      }
+                                    },
+                                    "required": [
+                                      "NUTS0",
+                                      "NUTS1",
+                                      "NUTS2",
+                                      "NUTS3"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "OSM": {
+                                    "description": "OpenStreetMap related information",
+                                    "properties": {
+                                      "edit_url": {
+                                        "description": "URL to edit this location on OpenStreetMap",
+                                        "format": "uri",
+                                        "type": "string"
+                                      },
+                                      "note_url": {
+                                        "description": "URL to add a note about this location on OpenStreetMap",
+                                        "format": "uri",
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "description": "URL to view this location on OpenStreetMap",
+                                        "format": "uri",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "note_url",
+                                      "url"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "UN_M49": {
+                                    "description": "UN M49 standard country or area codes. Response varies based on region.\n",
+                                    "externalDocs": {
+                                      "description": "UN M49 documentation",
+                                      "url": "https://opencagedata.com/api#unm49"
+                                    },
+                                    "properties": {
+                                      "regions": {
+                                        "description": "Hierarchical region codes",
+                                        "properties": {
+                                          "AMERICAS": {
+                                            "description": "Americas regional code",
+                                            "type": "string"
+                                          },
+                                          "DE": {
+                                            "description": "Country code",
+                                            "type": "string"
+                                          },
+                                          "EUROPE": {
+                                            "description": "Europe regional code",
+                                            "type": "string"
+                                          },
+                                          "NORTHERN_AMERICA": {
+                                            "description": "Northern America regional code",
+                                            "type": "string"
+                                          },
+                                          "US": {
+                                            "description": "Country code",
+                                            "type": "string"
+                                          },
+                                          "WESTERN_EUROPE": {
+                                            "description": "Western Europe regional code",
+                                            "type": "string"
+                                          },
+                                          "WORLD": {
+                                            "description": "World code",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "WORLD"
+                                        ],
+                                        "type": "object"
+                                      },
+                                      "statistical_groupings": {
+                                        "description": "Statistical groupings the location belongs to",
+                                        "items": {
+                                          "type": "string"
+                                        },
+                                        "type": "array"
+                                      }
+                                    },
+                                    "required": [
+                                      "regions",
+                                      "statistical_groupings"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "callingcode": {
+                                    "description": "International calling code for the country",
+                                    "type": "number"
+                                  },
+                                  "currency": {
+                                    "description": "Currency information for the location's country",
+                                    "properties": {
+                                      "alternate_symbols": {
+                                        "description": "Alternative symbols used for the currency",
+                                        "items": {
+                                          "type": "string"
+                                        },
+                                        "type": "array"
+                                      },
+                                      "decimal_mark": {
+                                        "description": "Character used as decimal separator",
+                                        "type": "string"
+                                      },
+                                      "disambiguate_symbol": {
+                                        "description": "Symbol used to disambiguate the currency",
+                                        "type": "string"
+                                      },
+                                      "html_entity": {
+                                        "description": "HTML entity for the currency symbol",
+                                        "type": "string"
+                                      },
+                                      "iso_code": {
+                                        "description": "ISO 4217 currency code",
+                                        "type": "string"
+                                      },
+                                      "iso_numeric": {
+                                        "description": "ISO 4217 numeric currency code",
+                                        "type": "string"
+                                      },
+                                      "name": {
+                                        "description": "Full name of the currency",
+                                        "type": "string"
+                                      },
+                                      "smallest_denomination": {
+                                        "description": "Smallest denomination in circulation",
+                                        "type": "number"
+                                      },
+                                      "subunit": {
+                                        "description": "Name of the subunit of the currency",
+                                        "type": "string"
+                                      },
+                                      "subunit_to_unit": {
+                                        "description": "Number of subunits in one unit",
+                                        "type": "number"
+                                      },
+                                      "symbol": {
+                                        "description": "Primary symbol used for the currency",
+                                        "type": "string"
+                                      },
+                                      "symbol_first": {
+                                        "description": "Whether the symbol appears before (1) or after (0) the amount",
+                                        "enum": [
+                                          0,
+                                          1
+                                        ],
+                                        "type": "number"
+                                      },
+                                      "thousands_separator": {
+                                        "description": "Character used as thousands separator",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "alternate_symbols",
+                                      "decimal_mark",
+                                      "html_entity",
+                                      "iso_code",
+                                      "iso_numeric",
+                                      "name",
+                                      "smallest_denomination",
+                                      "subunit",
+                                      "subunit_to_unit",
+                                      "symbol",
+                                      "symbol_first",
+                                      "thousands_separator"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "flag": {
+                                    "description": "Unicode representation of the country's flag",
+                                    "type": "string"
+                                  },
+                                  "geohash": {
+                                    "description": "Geohash representation of the coordinates",
+                                    "type": "string"
+                                  },
+                                  "qibla": {
+                                    "description": "Direction of the Qibla (in degrees from north)",
+                                    "type": "number"
+                                  },
+                                  "roadinfo": {
+                                    "description": "Information about roads at or near the location",
+                                    "properties": {
+                                      "drive_on": {
+                                        "description": "Which side of the road traffic drives on",
+                                        "enum": [
+                                          "left",
+                                          "right"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "road": {
+                                        "description": "Road name or identifier",
+                                        "type": "string"
+                                      },
+                                      "speed_in": {
+                                        "description": "Units used for speed limits",
+                                        "enum": [
+                                          "km/h",
+                                          "mph"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "drive_on",
+                                      "speed_in"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "sun": {
+                                    "description": "Sun rise and set times for the location",
+                                    "properties": {
+                                      "rise": {
+                                        "description": "Various sunrise times",
+                                        "properties": {
+                                          "apparent": {
+                                            "description": "Sunrise time considering atmospheric refraction",
+                                            "type": "number"
+                                          },
+                                          "astronomical": {
+                                            "description": "When the sun is 18 degrees below the horizon",
+                                            "type": "number"
+                                          },
+                                          "civil": {
+                                            "description": "When the sun is 6 degrees below the horizon",
+                                            "type": "number"
+                                          },
+                                          "nautical": {
+                                            "description": "When the sun is 12 degrees below the horizon",
+                                            "type": "number"
+                                          }
+                                        },
+                                        "required": [
+                                          "apparent",
+                                          "astronomical",
+                                          "civil",
+                                          "nautical"
+                                        ],
+                                        "type": "object"
+                                      },
+                                      "set": {
+                                        "description": "Various sunset times",
+                                        "properties": {
+                                          "apparent": {
+                                            "description": "Sunset time considering atmospheric refraction",
+                                            "type": "number"
+                                          },
+                                          "astronomical": {
+                                            "description": "When the sun is 18 degrees below the horizon",
+                                            "type": "number"
+                                          },
+                                          "civil": {
+                                            "description": "When the sun is 6 degrees below the horizon",
+                                            "type": "number"
+                                          },
+                                          "nautical": {
+                                            "description": "When the sun is 12 degrees below the horizon",
+                                            "type": "number"
+                                          }
+                                        },
+                                        "required": [
+                                          "apparent",
+                                          "astronomical",
+                                          "civil",
+                                          "nautical"
+                                        ],
+                                        "type": "object"
+                                      }
+                                    },
+                                    "required": [
+                                      "rise",
+                                      "set"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "timezone": {
+                                    "description": "Timezone information for the location",
+                                    "properties": {
+                                      "name": {
+                                        "description": "IANA timezone database name",
+                                        "type": "string"
+                                      },
+                                      "now_in_dst": {
+                                        "description": "Whether daylight saving time is currently in effect",
+                                        "enum": [
+                                          0,
+                                          1
+                                        ],
+                                        "type": "number"
+                                      },
+                                      "offset_sec": {
+                                        "description": "Offset from UTC in seconds",
+                                        "type": "number"
+                                      },
+                                      "offset_string": {
+                                        "description": "Offset from UTC as string (e.g., +01:00)",
+                                        "type": "string"
+                                      },
+                                      "short_name": {
+                                        "description": "Short timezone name (e.g., EST, CEST)",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "name",
+                                      "now_in_dst",
+                                      "offset_sec",
+                                      "offset_string",
+                                      "short_name"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "what3words": {
+                                    "description": "What3Words representation of the location",
+                                    "properties": {
+                                      "words": {
+                                        "description": "Three-word address",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "words"
+                                    ],
+                                    "type": "object"
+                                  }
+                                },
+                                "type": [
+                                  "object",
+                                  "null"
+                                ]
+                              },
+                              "bounds": {
+                                "description": "Bounding box containing the location",
+                                "properties": {
+                                  "northeast": {
+                                    "description": "Northeast corner of bounding box",
+                                    "properties": {
+                                      "lat": {
+                                        "description": "Latitude of northeast corner",
+                                        "format": "double",
+                                        "maximum": 90,
+                                        "minimum": -90,
+                                        "type": "number"
+                                      },
+                                      "lng": {
+                                        "description": "Longitude of northeast corner",
+                                        "format": "double",
+                                        "maximum": 180,
+                                        "minimum": -180,
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "lat",
+                                      "lng"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "southwest": {
+                                    "description": "Southwest corner of bounding box",
+                                    "properties": {
+                                      "lat": {
+                                        "description": "Latitude of southwest corner",
+                                        "format": "double",
+                                        "maximum": 90,
+                                        "minimum": -90,
+                                        "type": "number"
+                                      },
+                                      "lng": {
+                                        "description": "Longitude of southwest corner",
+                                        "format": "double",
+                                        "maximum": 180,
+                                        "minimum": -180,
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "lat",
+                                      "lng"
+                                    ],
+                                    "type": "object"
+                                  }
+                                },
+                                "required": [
+                                  "northeast",
+                                  "southwest"
+                                ],
+                                "type": "object"
+                              },
+                              "components": {
+                                "description": "Normalized components of the address. Fields will depend on the location.\n",
+                                "externalDocs": {
+                                  "description": "Components documentation",
+                                  "url": "https://opencagedata.com/api#components"
+                                },
+                                "properties": {
+                                  "ISO_3166-1_alpha-2": {
+                                    "description": "Two-letter country code",
+                                    "type": "string"
+                                  },
+                                  "ISO_3166-1_alpha-3": {
+                                    "description": "Three-letter country code",
+                                    "type": "string"
+                                  },
+                                  "ISO_3166-2": {
+                                    "description": "Codes for country subdivisions",
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "_category": {
+                                    "description": "Category of the location",
+                                    "type": "string"
+                                  },
+                                  "_normalized_city": {
+                                    "description": "The city / town / village placename",
+                                    "type": "string"
+                                  },
+                                  "_type": {
+                                    "description": "Type of the location",
+                                    "type": "string"
+                                  },
+                                  "borough": {
+                                    "description": "Borough or district within a city",
+                                    "type": "string"
+                                  },
+                                  "city": {
+                                    "description": "City name",
+                                    "type": "string"
+                                  },
+                                  "city_district": {
+                                    "description": "District within a city",
+                                    "type": "string"
+                                  },
+                                  "continent": {
+                                    "description": "Continent name",
+                                    "type": "string"
+                                  },
+                                  "country": {
+                                    "description": "Country name",
+                                    "type": "string"
+                                  },
+                                  "country_code": {
+                                    "description": "Two-letter country code (lowercase)",
+                                    "type": "string"
+                                  },
+                                  "county": {
+                                    "description": "County or district name",
+                                    "type": "string"
+                                  },
+                                  "house_number": {
+                                    "description": "Building or house number",
+                                    "type": "string"
+                                  },
+                                  "neighbourhood": {
+                                    "description": "Neighborhood name",
+                                    "type": "string"
+                                  },
+                                  "office": {
+                                    "description": "Office or building name",
+                                    "type": "string"
+                                  },
+                                  "political_union": {
+                                    "description": "Political union (e.g., European Union)",
+                                    "type": "string"
+                                  },
+                                  "postcode": {
+                                    "description": "Postal code",
+                                    "type": "string"
+                                  },
+                                  "road": {
+                                    "description": "Street or road name",
+                                    "type": "string"
+                                  },
+                                  "state": {
+                                    "description": "State, province, or region name",
+                                    "type": "string"
+                                  },
+                                  "state_code": {
+                                    "description": "State or province code",
+                                    "type": "string"
+                                  },
+                                  "suburb": {
+                                    "description": "Suburb name",
+                                    "type": "string"
+                                  },
+                                  "town": {
+                                    "description": "Town name",
+                                    "type": "string"
+                                  },
+                                  "village": {
+                                    "description": "Village name",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "confidence": {
+                                "description": "Confidence score from 0-10 (10 being the most confident)\n",
+                                "maximum": 10,
+                                "minimum": 0,
+                                "type": "number"
+                              },
+                              "formatted": {
+                                "description": "Human-readable formatted address",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "components",
+                              "confidence",
+                              "formatted"
+                            ],
+                            "type": "object"
+                          },
+                          "type": {
+                            "description": "GeoJSON object type",
+                            "enum": [
+                              "Feature"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "geometry",
+                          "properties",
+                          "type"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "licenses": {
+                      "description": "License information for data sources used in the response",
+                      "items": {
+                        "description": "License information",
+                        "properties": {
+                          "name": {
+                            "description": "Name of the license",
+                            "type": "string"
+                          },
+                          "url": {
+                            "description": "URL where the full license text can be found",
+                            "format": "uri",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "url"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "rate": {
+                      "description": "Rate limit information (not present for subscription customers)",
+                      "properties": {
+                        "limit": {
+                          "description": "Total number of requests allowed within the time window",
+                          "type": "number"
+                        },
+                        "remaining": {
+                          "description": "Number of requests remaining within the current time window",
+                          "type": "number"
+                        },
+                        "reset": {
+                          "description": "Unix timestamp when the rate limit will reset",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "limit",
+                        "remaining",
+                        "reset"
+                      ],
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "status": {
+                      "description": "Status information about the request",
+                      "properties": {
+                        "code": {
+                          "description": "HTTP status code",
+                          "type": "number"
+                        },
+                        "message": {
+                          "description": "Status message",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "stay_informed": {
+                      "description": "Links to follow OpenCage for updates",
+                      "properties": {
+                        "blog": {
+                          "description": "URL to the OpenCage blog",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "mastodon": {
+                          "description": "URL to OpenCage Mastodon account",
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "blog",
+                        "mastodon"
+                      ],
+                      "type": "object"
+                    },
+                    "thanks": {
+                      "description": "Thank you message",
+                      "type": "string"
+                    },
+                    "timestamp": {
+                      "description": "Timestamp information",
+                      "properties": {
+                        "created_http": {
+                          "description": "HTTP-formatted timestamp",
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        "created_unix": {
+                          "description": "Unix timestamp",
+                          "format": "int64",
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "created_http",
+                        "created_unix"
+                      ],
+                      "type": "object"
+                    },
+                    "total_results": {
+                      "description": "Total number of results found",
+                      "type": "number"
+                    },
+                    "type": {
+                      "description": "GeoJSON object type",
+                      "enum": [
+                        "FeatureCollection"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "documentation",
+                    "features",
+                    "licenses",
+                    "status",
+                    "stay_informed",
+                    "thanks",
+                    "timestamp",
+                    "total_results",
+                    "type"
+                  ],
+                  "type": "object"
+                },
+                "LatLng": {
+                  "description": "Geographic coordinates (latitude and longitude)",
+                  "properties": {
+                    "lat": {
+                      "description": "Latitude coordinate in decimal degrees",
+                      "examples": [
+                        40.7128,
+                        51.5074,
+                        -33.8688
+                      ],
+                      "format": "double",
+                      "maximum": 90,
+                      "minimum": -90,
+                      "type": "number"
+                    },
+                    "lng": {
+                      "description": "Longitude coordinate in decimal degrees",
+                      "examples": [
+                        -74.006,
+                        -0.1278,
+                        151.2093
+                      ],
+                      "format": "double",
+                      "maximum": 180,
+                      "minimum": -180,
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "lat",
+                    "lng"
+                  ],
+                  "type": "object"
+                },
+                "Response": {
+                  "properties": {
+                    "documentation": {
+                      "description": "URL to the API documentation",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "licenses": {
+                      "description": "License information for data sources used in the response",
+                      "items": {
+                        "properties": {
+                          "name": {
+                            "description": "Name of the license",
+                            "type": "string"
+                          },
+                          "url": {
+                            "description": "URL where the full license text can be found",
+                            "format": "uri",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "url"
+                        ],
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "rate": {
+                      "description": "Rate limit information. Not present for subscription customers.",
+                      "properties": {
+                        "limit": {
+                          "description": "Total number of requests allowed within the time window",
+                          "type": "integer"
+                        },
+                        "remaining": {
+                          "description": "Number of requests remaining within the current time window",
+                          "type": "integer"
+                        },
+                        "reset": {
+                          "description": "Unix timestamp when the rate limit will reset",
+                          "type": "integer"
+                        }
+                      },
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "results": {
+                      "description": "Array of geocoding results",
+                      "items": {
+                        "properties": {
+                          "annotations": {
+                            "description": "Additional data about the location. Which annotations are returned depends \non the location of the result.\n",
+                            "externalDocs": {
+                              "description": "Annotations documentation",
+                              "url": "https://opencagedata.com/api#annotations"
+                            },
+                            "properties": {
+                              "DMS": {
+                                "description": "Degrees, minutes, seconds representation of coordinates",
+                                "properties": {
+                                  "lat": {
+                                    "type": "string"
+                                  },
+                                  "lng": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "lat",
+                                  "lng"
+                                ],
+                                "type": "object"
+                              },
+                              "FIPS": {
+                                "description": "FIPS (Federal Information Processing Standards) codes",
+                                "properties": {
+                                  "county": {
+                                    "type": "string"
+                                  },
+                                  "state": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "state"
+                                ],
+                                "type": "object"
+                              },
+                              "H3": {
+                                "description": "H3 geospatial indexing system, only available to paying customers and by request\n",
+                                "externalDocs": {
+                                  "description": "H3 annotation documentation",
+                                  "url": "https://opencagedata.com/api#h3"
+                                },
+                                "type": "string"
+                              },
+                              "MGRS": {
+                                "description": "Military Grid Reference System coordinates",
+                                "type": "string"
+                              },
+                              "Maidenhead": {
+                                "description": "Maidenhead Locator System coordinates",
+                                "type": "string"
+                              },
+                              "Mercator": {
+                                "description": "Web Mercator projection coordinates",
+                                "properties": {
+                                  "x": {
+                                    "type": "number"
+                                  },
+                                  "y": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "x",
+                                  "y"
+                                ],
+                                "type": "object"
+                              },
+                              "NUTS": {
+                                "description": "Nomenclature of Territorial Units for Statistics codes",
+                                "properties": {
+                                  "NUTS0": {
+                                    "properties": {
+                                      "code": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "code"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "NUTS1": {
+                                    "properties": {
+                                      "code": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "code"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "NUTS2": {
+                                    "properties": {
+                                      "code": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "code"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "NUTS3": {
+                                    "properties": {
+                                      "code": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "code"
+                                    ],
+                                    "type": "object"
+                                  }
+                                },
+                                "required": [
+                                  "NUTS0",
+                                  "NUTS1",
+                                  "NUTS2",
+                                  "NUTS3"
+                                ],
+                                "type": "object"
+                              },
+                              "OSM": {
+                                "description": "OpenStreetMap related information",
+                                "properties": {
+                                  "edit_url": {
+                                    "format": "uri",
+                                    "type": "string"
+                                  },
+                                  "note_url": {
+                                    "format": "uri",
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "format": "uri",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "note_url",
+                                  "url"
+                                ],
+                                "type": "object"
+                              },
+                              "UN/LOCODE": {
+                                "description": "United Nations Code for Trade and Transport Locations\n",
+                                "externalDocs": {
+                                  "description": "UN/LOCODE documentation",
+                                  "url": "https://opencagedata.com/api#unlocode"
+                                },
+                                "properties": {
+                                  "code": {
+                                    "type": "string"
+                                  },
+                                  "date": {
+                                    "type": "string"
+                                  },
+                                  "function": {
+                                    "type": "object"
+                                  },
+                                  "meaning": {
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "raw": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "UN_M49": {
+                                "description": "UN M49 standard country or area codes. Response varies based on region.\n",
+                                "externalDocs": {
+                                  "description": "UN M49 documentation",
+                                  "url": "https://opencagedata.com/api#unm49"
+                                },
+                                "properties": {
+                                  "regions": {
+                                    "properties": {
+                                      "AMERICAS": {
+                                        "type": "string"
+                                      },
+                                      "DE": {
+                                        "type": "string"
+                                      },
+                                      "EUROPE": {
+                                        "type": "string"
+                                      },
+                                      "NORTHERN_AMERICA": {
+                                        "type": "string"
+                                      },
+                                      "US": {
+                                        "type": "string"
+                                      },
+                                      "WESTERN_EUROPE": {
+                                        "type": "string"
+                                      },
+                                      "WORLD": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "WORLD"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "statistical_groupings": {
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "required": [
+                                  "regions",
+                                  "statistical_groupings"
+                                ],
+                                "type": "object"
+                              },
+                              "callingcode": {
+                                "description": "International calling code for the country",
+                                "type": "number"
+                              },
+                              "currency": {
+                                "description": "Currency information for the location's country",
+                                "properties": {
+                                  "alternate_symbols": {
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "decimal_mark": {
+                                    "type": "string"
+                                  },
+                                  "disambiguate_symbol": {
+                                    "type": "string"
+                                  },
+                                  "html_entity": {
+                                    "type": "string"
+                                  },
+                                  "iso_code": {
+                                    "type": "string"
+                                  },
+                                  "iso_numeric": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "smallest_denomination": {
+                                    "type": "number"
+                                  },
+                                  "subunit": {
+                                    "type": "string"
+                                  },
+                                  "subunit_to_unit": {
+                                    "type": "number"
+                                  },
+                                  "symbol": {
+                                    "type": "string"
+                                  },
+                                  "symbol_first": {
+                                    "type": "number"
+                                  },
+                                  "thousands_separator": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "alternate_symbols",
+                                  "decimal_mark",
+                                  "html_entity",
+                                  "iso_code",
+                                  "iso_numeric",
+                                  "name",
+                                  "smallest_denomination",
+                                  "subunit",
+                                  "subunit_to_unit",
+                                  "symbol",
+                                  "symbol_first",
+                                  "thousands_separator"
+                                ],
+                                "type": "object"
+                              },
+                              "flag": {
+                                "description": "Unicode representation of the country's flag",
+                                "type": "string"
+                              },
+                              "geohash": {
+                                "description": "Geohash representation of the coordinates",
+                                "type": "string"
+                              },
+                              "qibla": {
+                                "description": "Direction of the Qibla (in degrees from north)",
+                                "type": "number"
+                              },
+                              "roadinfo": {
+                                "description": "Information about roads at or near the location",
+                                "properties": {
+                                  "drive_on": {
+                                    "description": "Which side of the road traffic drives on",
+                                    "enum": [
+                                      "left",
+                                      "right"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "lanes": {
+                                    "type": "number"
+                                  },
+                                  "maxheight": {
+                                    "type": "string"
+                                  },
+                                  "maxspeed": {
+                                    "type": "string"
+                                  },
+                                  "maxweight": {
+                                    "type": "number"
+                                  },
+                                  "maxwidth": {
+                                    "type": "number"
+                                  },
+                                  "oneway": {
+                                    "description": "Whether the road is one-way (1) or two-way (0)",
+                                    "enum": [
+                                      0,
+                                      1
+                                    ],
+                                    "type": "number"
+                                  },
+                                  "road": {
+                                    "type": "string"
+                                  },
+                                  "road_reference": {
+                                    "type": "string"
+                                  },
+                                  "road_reference_intl": {
+                                    "type": "string"
+                                  },
+                                  "road_type": {
+                                    "type": "string"
+                                  },
+                                  "speed_in": {
+                                    "description": "Units used for speed limits",
+                                    "enum": [
+                                      "km/h",
+                                      "mph"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "surface": {
+                                    "type": "number"
+                                  },
+                                  "toll": {
+                                    "type": "string"
+                                  },
+                                  "width": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "drive_on",
+                                  "speed_in"
+                                ],
+                                "type": "object"
+                              },
+                              "sun": {
+                                "description": "Sun rise and set times for the location",
+                                "properties": {
+                                  "rise": {
+                                    "description": "Various sunrise times",
+                                    "properties": {
+                                      "apparent": {
+                                        "description": "Sunrise time considering atmospheric refraction",
+                                        "type": "number"
+                                      },
+                                      "astronomical": {
+                                        "description": "When the sun is 18 degrees below the horizon",
+                                        "type": "number"
+                                      },
+                                      "civil": {
+                                        "description": "When the sun is 6 degrees below the horizon",
+                                        "type": "number"
+                                      },
+                                      "nautical": {
+                                        "description": "When the sun is 12 degrees below the horizon",
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "apparent",
+                                      "astronomical",
+                                      "civil",
+                                      "nautical"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "set": {
+                                    "description": "Various sunset times",
+                                    "properties": {
+                                      "apparent": {
+                                        "description": "Sunset time considering atmospheric refraction",
+                                        "type": "number"
+                                      },
+                                      "astronomical": {
+                                        "description": "When the sun is 18 degrees below the horizon",
+                                        "type": "number"
+                                      },
+                                      "civil": {
+                                        "description": "When the sun is 6 degrees below the horizon",
+                                        "type": "number"
+                                      },
+                                      "nautical": {
+                                        "description": "When the sun is 12 degrees below the horizon",
+                                        "type": "number"
+                                      }
+                                    },
+                                    "required": [
+                                      "apparent",
+                                      "astronomical",
+                                      "civil",
+                                      "nautical"
+                                    ],
+                                    "type": "object"
+                                  }
+                                },
+                                "required": [
+                                  "rise",
+                                  "set"
+                                ],
+                                "type": "object"
+                              },
+                              "timezone": {
+                                "description": "Timezone information for the location",
+                                "properties": {
+                                  "name": {
+                                    "description": "IANA timezone database name",
+                                    "type": "string"
+                                  },
+                                  "now_in_dst": {
+                                    "description": "Whether daylight saving time is currently in effect",
+                                    "enum": [
+                                      0,
+                                      1
+                                    ],
+                                    "type": "number"
+                                  },
+                                  "offset_sec": {
+                                    "description": "Offset from UTC in seconds",
+                                    "type": "number"
+                                  },
+                                  "offset_string": {
+                                    "description": "Offset from UTC as string (e.g., +01:00)",
+                                    "type": "string"
+                                  },
+                                  "short_name": {
+                                    "description": "Short timezone name (e.g., EST, CEST)",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "now_in_dst",
+                                  "offset_sec",
+                                  "offset_string",
+                                  "short_name"
+                                ],
+                                "type": "object"
+                              },
+                              "what3words": {
+                                "description": "What3Words representation of the location",
+                                "properties": {
+                                  "words": {
+                                    "description": "Three-word address",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "words"
+                                ],
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "bounds": {
+                            "description": "Bounding box containing the location",
+                            "properties": {
+                              "northeast": {
+                                "$ref": "#/components/schemas/LatLng"
+                              },
+                              "southwest": {
+                                "$ref": "#/components/schemas/LatLng"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "components": {
+                            "description": "Normalized components of the address. Fields will depend on the location.\n",
+                            "externalDocs": {
+                              "description": "Components documentation",
+                              "url": "https://opencagedata.com/api#formatted"
+                            },
+                            "properties": {
+                              "ISO_3166-1_alpha-2": {
+                                "description": "Two-letter country code",
+                                "type": "string"
+                              },
+                              "ISO_3166-1_alpha-3": {
+                                "description": "Three-letter country code",
+                                "type": "string"
+                              },
+                              "ISO_3166-2": {
+                                "description": "Codes for country subdivisions",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "_category": {
+                                "description": "Category of the location",
+                                "type": "string"
+                              },
+                              "_normalized_city": {
+                                "description": "Normalized city name",
+                                "type": "string"
+                              },
+                              "_type": {
+                                "description": "Type of the location",
+                                "type": "string"
+                              },
+                              "body_of_water": {
+                                "type": "string"
+                              },
+                              "borough": {
+                                "type": "string"
+                              },
+                              "city": {
+                                "type": "string"
+                              },
+                              "city_district": {
+                                "type": "string"
+                              },
+                              "continent": {
+                                "type": "string"
+                              },
+                              "country": {
+                                "type": "string"
+                              },
+                              "country_code": {
+                                "type": "string"
+                              },
+                              "county": {
+                                "type": "string"
+                              },
+                              "house_number": {
+                                "type": "string"
+                              },
+                              "neighbourhood": {
+                                "type": "string"
+                              },
+                              "office": {
+                                "type": "string"
+                              },
+                              "political_union": {
+                                "type": "string"
+                              },
+                              "postcode": {
+                                "type": "string"
+                              },
+                              "road": {
+                                "type": "string"
+                              },
+                              "state": {
+                                "type": "string"
+                              },
+                              "state_code": {
+                                "type": "string"
+                              },
+                              "suburb": {
+                                "type": "string"
+                              },
+                              "town": {
+                                "type": "string"
+                              },
+                              "village": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "_type",
+                              "_category"
+                            ],
+                            "type": "object"
+                          },
+                          "confidence": {
+                            "description": "Confidence score from 0-10 (10 being the most confident)\n",
+                            "maximum": 10,
+                            "minimum": 0,
+                            "type": "integer"
+                          },
+                          "distance_from_q": {
+                            "description": "Only for reverse geocoding requests. Distance from the query point to the result.\n",
+                            "externalDocs": {
+                              "description": "Response documentation",
+                              "url": "https://opencagedata.com/api#response"
+                            },
+                            "properties": {
+                              "meters": {
+                                "description": "Distance in meters",
+                                "type": "number"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "formatted": {
+                            "description": "Human-readable formatted address",
+                            "type": "string"
+                          },
+                          "geometry": {
+                            "$ref": "#/components/schemas/LatLng"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "status": {
+                      "description": "Status information about the request",
+                      "properties": {
+                        "code": {
+                          "description": "HTTP status code",
+                          "type": "integer"
+                        },
+                        "message": {
+                          "description": "Status message",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "stay_informed": {
+                      "description": "Links to follow OpenCage for updates",
+                      "properties": {
+                        "blog": {
+                          "description": "URL to the OpenCage blog",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "mastodon": {
+                          "description": "URL to OpenCage Mastodon account",
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "twitter": {
+                          "description": "URL to OpenCage Twitter account",
+                          "format": "uri",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "mastodon"
+                      ],
+                      "type": "object"
+                    },
+                    "thanks": {
+                      "description": "Thank you message",
+                      "type": "string"
+                    },
+                    "timestamp": {
+                      "description": "Timestamp information",
+                      "properties": {
+                        "created_http": {
+                          "description": "HTTP-formatted timestamp",
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        "created_unix": {
+                          "description": "Unix timestamp",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "total_results": {
+                      "description": "Total number of results found",
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "documentation",
+                    "licenses",
+                    "results",
+                    "status",
+                    "stay_informed",
+                    "timestamp",
+                    "total_results"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "ApiKeyAuth": {
+                  "description": "30 character long, alphanumeric string",
+                  "in": "query",
+                  "name": "key",
+                  "type": "apiKey",
+                  "x-externalDocs": {
+                    "description": "API key unique to your account",
+                    "url": "https://opencagedata.com/api#required-param"
+                  }
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "OpenCage Geocoding API documentation",
+              "url": "https://opencagedata.com/api"
+            },
+            "info": {
+              "contact": {
+                "email": "support@opencagedata.com",
+                "name": "OpenCage GmbH",
+                "url": "https://opencagedata.com/contact"
+              },
+              "description": "Worldwide forward and reverse geocoding with open data.\n# Rate Limiting\nResponses to subscription customers do NOT contain the `rate` element of the response body or `X-Ratelimit` HTTP headers, because they do not face hard limits. \n",
+              "termsOfService": "https://opencagedata.com/terms",
+              "title": "OpenCage Geocoding API",
+              "version": "1.1.0",
+              "x-logo": {
+                "url": "https://opencagedata.com/opencagelogo-green.png"
+              },
+              "x-origin": {
+                "format": "openapi",
+                "url": "https://opencagedata.com/openapi.yaml",
+                "version": "3.2.0"
+              }
+            },
+            "openapi": "3.2.0",
+            "paths": {
+              "/geojson": {
+                "get": {
+                  "description": "Geocode (GeoJSON)",
+                  "operationId": "get-geojson",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/query"
+                    },
+                    {
+                      "$ref": "#/components/parameters/address_only"
+                    },
+                    {
+                      "$ref": "#/components/parameters/add_request"
+                    },
+                    {
+                      "$ref": "#/components/parameters/bounds"
+                    },
+                    {
+                      "$ref": "#/components/parameters/countrycode"
+                    },
+                    {
+                      "$ref": "#/components/parameters/language"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_annotations"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_dedupe"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_record"
+                    },
+                    {
+                      "$ref": "#/components/parameters/pretty"
+                    },
+                    {
+                      "$ref": "#/components/parameters/proximity"
+                    },
+                    {
+                      "$ref": "#/components/parameters/roadinfo"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/GetGeojson200ResponseBody"
+                          }
+                        }
+                      },
+                      "description": "OK",
+                      "headers": {
+                        "X-RateLimit-Limit": {
+                          "$ref": "#/components/headers/ratelimit-limit"
+                        },
+                        "X-RateLimit-Remaining": {
+                          "$ref": "#/components/headers/ratelimit-remaining"
+                        },
+                        "X-RateLimit-Reset": {
+                          "$ref": "#/components/headers/ratelimit-reset"
+                        }
+                      }
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Invalid request"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Unable to authenticate"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Valid request but quota exceeded"
+                    },
+                    "403": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Forbidden"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Invalid API endpoint"
+                    },
+                    "405": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Method not allowed"
+                    },
+                    "408": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Timeout; you can try again"
+                    },
+                    "410": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Request too long"
+                    },
+                    "426": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Upgrade required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    },
+                    "503": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "summary": "request a GeoJSON geocoding response",
+                  "tags": [
+                    "Geocoding",
+                    "Reverse Geocoding"
+                  ]
+                }
+              },
+              "/json": {
+                "get": {
+                  "description": "Geocode (JSON)",
+                  "operationId": "get-json",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/query"
+                    },
+                    {
+                      "$ref": "#/components/parameters/abbrv"
+                    },
+                    {
+                      "$ref": "#/components/parameters/address_only"
+                    },
+                    {
+                      "$ref": "#/components/parameters/add_request"
+                    },
+                    {
+                      "$ref": "#/components/parameters/bounds"
+                    },
+                    {
+                      "$ref": "#/components/parameters/countrycode"
+                    },
+                    {
+                      "$ref": "#/components/parameters/language"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_annotations"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_dedupe"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_record"
+                    },
+                    {
+                      "$ref": "#/components/parameters/pretty"
+                    },
+                    {
+                      "$ref": "#/components/parameters/proximity"
+                    },
+                    {
+                      "$ref": "#/components/parameters/roadinfo"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "OK",
+                      "headers": {
+                        "X-RateLimit-Limit": {
+                          "$ref": "#/components/headers/ratelimit-limit"
+                        },
+                        "X-RateLimit-Remaining": {
+                          "$ref": "#/components/headers/ratelimit-remaining"
+                        },
+                        "X-RateLimit-Reset": {
+                          "$ref": "#/components/headers/ratelimit-reset"
+                        }
+                      }
+                    },
+                    "400": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Invalid request"
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Unable to authenticate"
+                    },
+                    "402": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Valid request but quota exceeded"
+                    },
+                    "403": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Forbidden"
+                    },
+                    "404": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Invalid API endpoint"
+                    },
+                    "405": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Method not allowed"
+                    },
+                    "408": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Timeout; you can try again"
+                    },
+                    "410": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Request too long"
+                    },
+                    "426": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Upgrade required"
+                    },
+                    "429": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    },
+                    "503": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "summary": "request a JSON geocoding response",
+                  "tags": [
+                    "Geocoding",
+                    "Reverse Geocoding"
+                  ]
+                }
+              },
+              "/ping": {
+                "get": {
+                  "description": "Health check endpoint to verify API availability",
+                  "operationId": "get-ping",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/plain": {
+                          "schema": {
+                            "example": "pong",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "API is reachable"
+                    }
+                  },
+                  "security": [],
+                  "summary": "check API health and connectivity",
+                  "tags": [
+                    "Health"
+                  ]
+                }
+              },
+              "/xml": {
+                "get": {
+                  "description": "Geocode (XML)",
+                  "operationId": "get-xml",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/query"
+                    },
+                    {
+                      "$ref": "#/components/parameters/abbrv"
+                    },
+                    {
+                      "$ref": "#/components/parameters/address_only"
+                    },
+                    {
+                      "$ref": "#/components/parameters/add_request"
+                    },
+                    {
+                      "$ref": "#/components/parameters/bounds"
+                    },
+                    {
+                      "$ref": "#/components/parameters/countrycode"
+                    },
+                    {
+                      "$ref": "#/components/parameters/language"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_annotations"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_dedupe"
+                    },
+                    {
+                      "$ref": "#/components/parameters/no_record"
+                    },
+                    {
+                      "$ref": "#/components/parameters/pretty"
+                    },
+                    {
+                      "$ref": "#/components/parameters/proximity"
+                    },
+                    {
+                      "$ref": "#/components/parameters/roadinfo"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "OK",
+                      "headers": {
+                        "X-RateLimit-Limit": {
+                          "$ref": "#/components/headers/ratelimit-limit"
+                        },
+                        "X-RateLimit-Remaining": {
+                          "$ref": "#/components/headers/ratelimit-remaining"
+                        },
+                        "X-RateLimit-Reset": {
+                          "$ref": "#/components/headers/ratelimit-reset"
+                        }
+                      }
+                    },
+                    "400": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Invalid request"
+                    },
+                    "401": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Unable to authenticate"
+                    },
+                    "402": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Valid request but quota exceeded"
+                    },
+                    "403": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Forbidden"
+                    },
+                    "404": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Invalid API endpoint"
+                    },
+                    "405": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Method not allowed"
+                    },
+                    "408": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Timeout; you can try again"
+                    },
+                    "410": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Request too long"
+                    },
+                    "426": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Upgrade required"
+                    },
+                    "429": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Too many requests"
+                    },
+                    "500": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    },
+                    "503": {
+                      "content": {
+                        "text/xml; charset=utf-8": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Response"
+                          }
+                        }
+                      },
+                      "description": "Internal server error"
+                    }
+                  },
+                  "summary": "request an XML geocoding response",
+                  "tags": [
+                    "Geocoding",
+                    "Reverse Geocoding"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "ApiKeyAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "name": "OpenCage geocoding API",
+                "url": "https://api.opencagedata.com/geocode/v1"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Convert address into coordinates (latitude, longitude) and relevant location information",
+                "name": "Geocoding",
+                "summary": "forward geocoding"
+              },
+              {
+                "description": "Convert coordinates (latitude, longitude) into addresses and relevant location information",
+                "name": "Reverse Geocoding",
+                "summary": "reverse geocoding"
+              },
+              {
+                "description": "API connectivity test",
+                "name": "Health",
+                "summary": "connectivity check"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OpenCage Geocoding API"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.412943+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://opencagedata.com/openapi.yaml",
+        "version": "3.2.0"
+      }
+    ],
+    "sha256": "250319188ce5088c7b714577603b9fbebbd99cc10a02bb196bf9402ed4abd0d3",
+    "source_id": "opencage-geocoding-api",
+    "source_updated": null,
+    "url": "https://opencagedata.com/openapi.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.1.0"
+}

@@ -14,7 +14,7 @@ Connect Bitbucket Cloud's REST API 2.0 with an Atlassian API token. Lists your r
 | | |
 | --- | --- |
 | Categories | Software development, Productivity & collaboration |
-| Signed bundle | `8843b997b030b8b9341dae4d3e97f1f10f34ecd1df9b52a2a6405cba224d1fae` in `bundles/`, expires 2027-01-31 17:16 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | `https://api.bitbucket.org/2.0` |
 | Credential | basic |
 | Connection test | GET `https://api.bitbucket.org/2.0/user` |

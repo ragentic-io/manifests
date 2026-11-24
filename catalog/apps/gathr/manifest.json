@@ -1,0 +1,3881 @@
+{
+  "a2ui": {},
+  "app": "gathr",
+  "graph": {
+    "edges": [
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/me"
+      },
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/me/hosts"
+      },
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/me/orders"
+      },
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/me/profiles"
+      },
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/me/talent"
+      },
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/films/{film_slug}/screening-request/config"
+      },
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/films/{film_slug}/screening-request/estimate"
+      },
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/films/{film_slug}/screening-request/venues/search"
+      },
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/availability-on-date"
+      },
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/weekly-availability"
+      },
+      {
+        "from": "gathr",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/v1/films/{film_slug}/screening-requests"
+      },
+      {
+        "from": "operation:get:/api/me/hosts",
+        "kind": "RETURNS",
+        "to": "schema:HostProfile"
+      },
+      {
+        "from": "operation:post:/api/me/orders",
+        "kind": "RETURNS",
+        "to": "schema:Order"
+      },
+      {
+        "from": "operation:get:/api/me/profiles",
+        "kind": "RETURNS",
+        "to": "schema:Profile"
+      },
+      {
+        "from": "operation:get:/api/me/talent",
+        "kind": "RETURNS",
+        "to": "schema:TalentProfile"
+      },
+      {
+        "from": "operation:get:/api/v1/films/{film_slug}/screening-request/config",
+        "kind": "RETURNS",
+        "to": "schema:FilmScreeningRequestConfig"
+      },
+      {
+        "from": "operation:post:/api/v1/films/{film_slug}/screening-request/estimate",
+        "kind": "ACCEPTS",
+        "to": "schema:FilmScreeningRequestEstimateInput"
+      },
+      {
+        "from": "operation:post:/api/v1/films/{film_slug}/screening-request/estimate",
+        "kind": "RETURNS",
+        "to": "schema:FilmScreeningRequestEstimate"
+      },
+      {
+        "from": "operation:post:/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/availability-on-date",
+        "kind": "ACCEPTS",
+        "to": "schema:ScreeningVenueAvailabilityDateInput"
+      },
+      {
+        "from": "operation:post:/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/availability-on-date",
+        "kind": "RETURNS",
+        "to": "schema:ScreeningVenueDateAvailability"
+      },
+      {
+        "from": "operation:get:/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/weekly-availability",
+        "kind": "RETURNS",
+        "to": "schema:ScreeningVenueWeeklyAvailability"
+      },
+      {
+        "from": "operation:post:/api/v1/films/{film_slug}/screening-requests",
+        "kind": "ACCEPTS",
+        "to": "schema:FilmScreeningRequestSubmission"
+      },
+      {
+        "from": "operation:post:/api/v1/films/{film_slug}/screening-requests",
+        "kind": "RETURNS",
+        "to": "schema:FilmScreeningRequestSubmissionResult"
+      },
+      {
+        "from": "schema:FilmScreeningRequestBaseInput",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningDetails"
+      },
+      {
+        "from": "schema:FilmScreeningRequestBaseInput",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningRequester"
+      },
+      {
+        "from": "schema:FilmScreeningRequestBaseInput",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningThreshold"
+      },
+      {
+        "from": "schema:FilmScreeningRequestBaseInput",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningTicketing"
+      },
+      {
+        "from": "schema:FilmScreeningRequestBaseInput",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningType"
+      },
+      {
+        "from": "schema:FilmScreeningRequestBaseInput",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningVenueInput"
+      },
+      {
+        "from": "schema:FilmScreeningRequestConfig",
+        "kind": "REFERENCES",
+        "to": "schema:AvailabilityWindow"
+      },
+      {
+        "from": "schema:FilmScreeningRequestConfig",
+        "kind": "REFERENCES",
+        "to": "schema:FilmCountryAvailability"
+      },
+      {
+        "from": "schema:FilmScreeningRequestConfig",
+        "kind": "REFERENCES",
+        "to": "schema:FilmScreeningRequestLegal"
+      },
+      {
+        "from": "schema:FilmScreeningRequestConfig",
+        "kind": "REFERENCES",
+        "to": "schema:HostTypeOption"
+      },
+      {
+        "from": "schema:FilmScreeningRequestConfig",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningExperienceOptions"
+      },
+      {
+        "from": "schema:FilmScreeningRequestEstimate",
+        "kind": "REFERENCES",
+        "to": "schema:FilmScreeningRequestEstimateFeeDetails"
+      },
+      {
+        "from": "schema:FilmScreeningRequestEstimate",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningType"
+      },
+      {
+        "from": "schema:FilmScreeningRequestEstimateInput",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningType"
+      },
+      {
+        "from": "schema:FilmScreeningRequestSubmission",
+        "kind": "REFERENCES",
+        "to": "schema:FilmScreeningRequestBaseInput"
+      },
+      {
+        "from": "schema:HostTypeOption",
+        "kind": "REFERENCES",
+        "to": "schema:HostTypeScreeningFees"
+      },
+      {
+        "from": "schema:HostTypePaidFreeFees",
+        "kind": "REFERENCES",
+        "to": "schema:HostTypeFee"
+      },
+      {
+        "from": "schema:HostTypeScreeningFees",
+        "kind": "REFERENCES",
+        "to": "schema:HostTypePaidFreeFees"
+      },
+      {
+        "from": "schema:ScreeningExperienceOptions",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningSubtitleOptions"
+      },
+      {
+        "from": "schema:ScreeningSubtitleOptions",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningSubtitleOption"
+      },
+      {
+        "from": "schema:ScreeningVenueDateAvailability",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningVenueDateTimeException"
+      },
+      {
+        "from": "schema:ScreeningVenueWeeklyAvailability",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningVenueDateException"
+      },
+      {
+        "from": "schema:ScreeningVenueWeeklyAvailability",
+        "kind": "REFERENCES",
+        "to": "schema:ScreeningVenueWeekdayAvailability"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "gathr",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Verify that the provided API key and account email are valid.",
+        "id": "operation:post:/api/me",
+        "kind": "operation",
+        "method": "post",
+        "name": "verifyApiKey",
+        "path": "/api/me",
+        "pointer": "#/paths/~1api~1me/post",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "GathrAccountEmail": [],
+            "GathrApiKey": []
+          }
+        ],
+        "summary": "Verify an API key",
+        "tags": [
+          "Authentication"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get a user's Host profiles.",
+        "id": "operation:get:/api/me/hosts",
+        "kind": "operation",
+        "method": "get",
+        "name": "listHostProfiles",
+        "path": "/api/me/hosts",
+        "pointer": "#/paths/~1api~1me~1hosts/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "HostProfile[]"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "GathrAccountEmail": [],
+            "GathrApiKey": []
+          }
+        ],
+        "summary": "List Host profiles",
+        "tags": [
+          "Profiles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get all Orders placed for Events created by or booked into one of the user's profiles.",
+        "id": "operation:post:/api/me/orders",
+        "kind": "operation",
+        "method": "post",
+        "name": "listOrders",
+        "path": "/api/me/orders",
+        "pointer": "#/paths/~1api~1me~1orders/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "Order[]"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "GathrAccountEmail": [],
+            "GathrApiKey": []
+          }
+        ],
+        "summary": "List orders",
+        "tags": [
+          "Orders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get all of a user's Host and Talent profiles.",
+        "id": "operation:get:/api/me/profiles",
+        "kind": "operation",
+        "method": "get",
+        "name": "listProfiles",
+        "path": "/api/me/profiles",
+        "pointer": "#/paths/~1api~1me~1profiles/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Profile[]"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "GathrAccountEmail": [],
+            "GathrApiKey": []
+          }
+        ],
+        "summary": "List profiles",
+        "tags": [
+          "Profiles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get a user's Talent profiles.",
+        "id": "operation:get:/api/me/talent",
+        "kind": "operation",
+        "method": "get",
+        "name": "listTalentProfiles",
+        "path": "/api/me/talent",
+        "pointer": "#/paths/~1api~1me~1talent/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "TalentProfile[]"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "GathrAccountEmail": [],
+            "GathrApiKey": []
+          }
+        ],
+        "summary": "List Talent profiles",
+        "tags": [
+          "Profiles"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get the public configuration needed to render a custom Screening Request form for a Film.",
+        "id": "operation:get:/api/v1/films/{film_slug}/screening-request/config",
+        "kind": "operation",
+        "method": "get",
+        "name": "getFilmScreeningRequestConfig",
+        "parameters": [
+          {
+            "description": "The public Film slug.",
+            "in": "path",
+            "name": "film_slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/films/{film_slug}/screening-request/config",
+        "pointer": "#/paths/~1api~1v1~1films~1{film_slug}~1screening-request~1config/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "FilmScreeningRequestConfig"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "GathrFilmApiKey": []
+          }
+        ],
+        "summary": "Get Screening Request configuration",
+        "tags": [
+          "Film Screening Requests"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Preview current pricing and request details before submission.",
+        "id": "operation:post:/api/v1/films/{film_slug}/screening-request/estimate",
+        "kind": "operation",
+        "method": "post",
+        "name": "estimateFilmScreeningRequest",
+        "parameters": [
+          {
+            "description": "The public Film slug.",
+            "in": "path",
+            "name": "film_slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/films/{film_slug}/screening-request/estimate",
+        "pointer": "#/paths/~1api~1v1~1films~1{film_slug}~1screening-request~1estimate/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "FilmScreeningRequestEstimateInput"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "FilmScreeningRequestEstimate"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "GathrFilmApiKey": []
+          }
+        ],
+        "summary": "Estimate Screening Request Fees",
+        "tags": [
+          "Film Screening Requests"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Search Venues for theatrical Screening Request forms.",
+        "id": "operation:get:/api/v1/films/{film_slug}/screening-request/venues/search",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchFilmScreeningRequestVenues",
+        "parameters": [
+          {
+            "description": "The public Film slug.",
+            "in": "path",
+            "name": "film_slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "City, state, ZIP/postal code, or other location string to geocode for location-based search.",
+            "in": "query",
+            "name": "location",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Latitude used for location-based search.",
+            "in": "query",
+            "name": "latitude",
+            "required": false,
+            "type": "number:float"
+          },
+          {
+            "description": "Longitude used for location-based search.",
+            "in": "query",
+            "name": "longitude",
+            "required": false,
+            "type": "number:float"
+          },
+          {
+            "description": "Search radius in kilometers around the provided latitude/longitude.",
+            "in": "query",
+            "name": "radius",
+            "required": false,
+            "type": "number:float"
+          }
+        ],
+        "path": "/api/v1/films/{film_slug}/screening-request/venues/search",
+        "pointer": "#/paths/~1api~1v1~1films~1{film_slug}~1screening-request~1venues~1search/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "GathrFilmApiKey": []
+          }
+        ],
+        "summary": "Search Venues",
+        "tags": [
+          "Film Screening Requests"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Check availability for a selected theatrical Venue on a specific date.",
+        "id": "operation:post:/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/availability-on-date",
+        "kind": "operation",
+        "method": "post",
+        "name": "getFilmScreeningRequestVenueAvailabilityOnDate",
+        "parameters": [
+          {
+            "description": "The public Film slug.",
+            "in": "path",
+            "name": "film_slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The Venue slug returned by Venue search.",
+            "in": "path",
+            "name": "venue_slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/availability-on-date",
+        "pointer": "#/paths/~1api~1v1~1films~1{film_slug}~1screening-request~1venues~1{venue_slug}~1availability-on-date/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "ScreeningVenueAvailabilityDateInput"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "ScreeningVenueDateAvailability"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "GathrFilmApiKey": []
+          }
+        ],
+        "summary": "Get Venue availability on a date",
+        "tags": [
+          "Film Screening Requests"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get weekly availability for a selected theatrical Venue.",
+        "id": "operation:get:/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/weekly-availability",
+        "kind": "operation",
+        "method": "get",
+        "name": "getFilmScreeningRequestVenueWeeklyAvailability",
+        "parameters": [
+          {
+            "description": "The public Film slug.",
+            "in": "path",
+            "name": "film_slug",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The Venue slug returned by Venue search.",
+            "in": "path",
+            "name": "venue_slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/weekly-availability",
+        "pointer": "#/paths/~1api~1v1~1films~1{film_slug}~1screening-request~1venues~1{venue_slug}~1weekly-availability/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ScreeningVenueWeeklyAvailability"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "GathrFilmApiKey": []
+          }
+        ],
+        "summary": "Get Venue weekly availability",
+        "tags": [
+          "Film Screening Requests"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Submit a custom Film Screening Request form.",
+        "id": "operation:post:/api/v1/films/{film_slug}/screening-requests",
+        "kind": "operation",
+        "method": "post",
+        "name": "submitFilmScreeningRequest",
+        "parameters": [
+          {
+            "description": "The public Film slug.",
+            "in": "path",
+            "name": "film_slug",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v1/films/{film_slug}/screening-requests",
+        "pointer": "#/paths/~1api~1v1~1films~1{film_slug}~1screening-requests/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "FilmScreeningRequestSubmission"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "FilmScreeningRequestSubmissionResult"
+          },
+          {
+            "status": "201",
+            "type": "FilmScreeningRequestSubmissionResult"
+          },
+          {
+            "status": "400",
+            "type": "Error"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          },
+          {
+            "status": "403",
+            "type": "Error"
+          },
+          {
+            "status": "404",
+            "type": "Error"
+          },
+          {
+            "status": "422",
+            "type": "Error"
+          },
+          {
+            "status": "500",
+            "type": "Error"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "GathrFilmApiKey": []
+          }
+        ],
+        "summary": "Submit a Screening Request",
+        "tags": [
+          "Film Screening Requests"
+        ]
+      },
+      {
+        "id": "schema:AvailabilityWindow",
+        "kind": "schema",
+        "name": "AvailabilityWindow",
+        "type": "object"
+      },
+      {
+        "description": "Standard error response.",
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "description": "Country availability lists for external form display.",
+        "id": "schema:FilmCountryAvailability",
+        "kind": "schema",
+        "name": "FilmCountryAvailability",
+        "type": "object"
+      },
+      {
+        "description": "Fields submitted by a custom Film Screening Request form.",
+        "id": "schema:FilmScreeningRequestBaseInput",
+        "kind": "schema",
+        "name": "FilmScreeningRequestBaseInput",
+        "type": "object"
+      },
+      {
+        "id": "schema:FilmScreeningRequestConfig",
+        "kind": "schema",
+        "name": "FilmScreeningRequestConfig",
+        "type": "object"
+      },
+      {
+        "description": "Informational fee preview for external rendering.",
+        "id": "schema:FilmScreeningRequestEstimate",
+        "kind": "schema",
+        "name": "FilmScreeningRequestEstimate",
+        "type": "object"
+      },
+      {
+        "description": "Structured fee-rule metadata for machine use and user-facing explanation.",
+        "id": "schema:FilmScreeningRequestEstimateFeeDetails",
+        "kind": "schema",
+        "name": "FilmScreeningRequestEstimateFeeDetails",
+        "type": "object"
+      },
+      {
+        "description": "Optional pricing preview input.",
+        "id": "schema:FilmScreeningRequestEstimateInput",
+        "kind": "schema",
+        "name": "FilmScreeningRequestEstimateInput",
+        "type": "object"
+      },
+      {
+        "description": "Legal policy links and the required terms checkbox copy for external Screening Request forms.",
+        "id": "schema:FilmScreeningRequestLegal",
+        "kind": "schema",
+        "name": "FilmScreeningRequestLegal",
+        "type": "object"
+      },
+      {
+        "description": "Creates a GATHR Screening Request and sends the requester an email to continue in GATHR.",
+        "id": "schema:FilmScreeningRequestSubmission",
+        "kind": "schema",
+        "name": "FilmScreeningRequestSubmission",
+        "type": "FilmScreeningRequestBaseInput|object"
+      },
+      {
+        "description": "Submit success response.",
+        "id": "schema:FilmScreeningRequestSubmissionResult",
+        "kind": "schema",
+        "name": "FilmScreeningRequestSubmissionResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:HostProfile",
+        "kind": "schema",
+        "name": "HostProfile",
+        "type": "object"
+      },
+      {
+        "description": "Null when no applicable Film fee is configured.",
+        "id": "schema:HostTypeFee",
+        "kind": "schema",
+        "name": "HostTypeFee",
+        "type": "object"
+      },
+      {
+        "id": "schema:HostTypeOption",
+        "kind": "schema",
+        "name": "HostTypeOption",
+        "type": "object"
+      },
+      {
+        "id": "schema:HostTypePaidFreeFees",
+        "kind": "schema",
+        "name": "HostTypePaidFreeFees",
+        "type": "object"
+      },
+      {
+        "description": "Display fee metadata for this Host type.",
+        "id": "schema:HostTypeScreeningFees",
+        "kind": "schema",
+        "name": "HostTypeScreeningFees",
+        "type": "object"
+      },
+      {
+        "id": "schema:Order",
+        "kind": "schema",
+        "name": "Order",
+        "type": "object"
+      },
+      {
+        "id": "schema:Profile",
+        "kind": "schema",
+        "name": "Profile",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScreeningDetails",
+        "kind": "schema",
+        "name": "ScreeningDetails",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScreeningExperienceOptions",
+        "kind": "schema",
+        "name": "ScreeningExperienceOptions",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScreeningRequester",
+        "kind": "schema",
+        "name": "ScreeningRequester",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScreeningSubtitleOption",
+        "kind": "schema",
+        "name": "ScreeningSubtitleOption",
+        "type": "object"
+      },
+      {
+        "description": "Optional subtitle choices for non-theatrical in-person Screening Requests.",
+        "id": "schema:ScreeningSubtitleOptions",
+        "kind": "schema",
+        "name": "ScreeningSubtitleOptions",
+        "type": "object"
+      },
+      {
+        "description": "Threshold/deadline data for on-demand experiences.",
+        "id": "schema:ScreeningThreshold",
+        "kind": "schema",
+        "name": "ScreeningThreshold",
+        "type": "object"
+      },
+      {
+        "description": "Ticketing details for instant Screening submissions.",
+        "id": "schema:ScreeningTicketing",
+        "kind": "schema",
+        "name": "ScreeningTicketing",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScreeningType",
+        "kind": "schema",
+        "name": "ScreeningType",
+        "type": "string"
+      },
+      {
+        "id": "schema:ScreeningVenueAvailabilityDateInput",
+        "kind": "schema",
+        "name": "ScreeningVenueAvailabilityDateInput",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScreeningVenueDateAvailability",
+        "kind": "schema",
+        "name": "ScreeningVenueDateAvailability",
+        "type": "object"
+      },
+      {
+        "description": "A date-level availability override for the Venue, returned by the weekly availability endpoint.",
+        "id": "schema:ScreeningVenueDateException",
+        "kind": "schema",
+        "name": "ScreeningVenueDateException",
+        "type": "object"
+      },
+      {
+        "description": "A time-window availability override for the requested date.",
+        "id": "schema:ScreeningVenueDateTimeException",
+        "kind": "schema",
+        "name": "ScreeningVenueDateTimeException",
+        "type": "object"
+      },
+      {
+        "description": "Location fields for the Screening.",
+        "id": "schema:ScreeningVenueInput",
+        "kind": "schema",
+        "name": "ScreeningVenueInput",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScreeningVenueSummary",
+        "kind": "schema",
+        "name": "ScreeningVenueSummary",
+        "type": "object"
+      },
+      {
+        "description": "Availability for one weekday.",
+        "id": "schema:ScreeningVenueWeekdayAvailability",
+        "kind": "schema",
+        "name": "ScreeningVenueWeekdayAvailability",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScreeningVenueWeeklyAvailability",
+        "kind": "schema",
+        "name": "ScreeningVenueWeeklyAvailability",
+        "type": "object"
+      },
+      {
+        "id": "schema:TalentProfile",
+        "kind": "schema",
+        "name": "TalentProfile",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "gathr"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://gathr.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "FilmSlug": {
+                  "description": "The public Film slug.",
+                  "in": "path",
+                  "name": "film_slug",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "BadRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Bad request. Make sure the request contains all required parameters."
+                },
+                "FilmApiUnauthorized": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "invalidApiKey": {
+                          "value": {
+                            "error": {
+                              "code": "INVALID_API_KEY",
+                              "message": "The Film API key is invalid."
+                            },
+                            "success": false
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Unauthorized. Make sure the Film API key is valid for this Film."
+                },
+                "NotFound": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "The requested resource was not found."
+                },
+                "OriginNotAllowed": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "originNotAllowed": {
+                          "value": {
+                            "error": {
+                              "code": "ORIGIN_NOT_ALLOWED",
+                              "message": "This domain is not allowed to use the Film API key."
+                            },
+                            "success": false
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Forbidden. The request origin is not whitelisted for this Film API key."
+                },
+                "ServerError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Server error."
+                },
+                "Unauthorized": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "Unauthorized. Make sure the request is properly authenticated."
+                },
+                "ValidationError": {
+                  "content": {
+                    "application/json": {
+                      "examples": {
+                        "emailUndeliverable": {
+                          "summary": "Invalid requester email",
+                          "value": {
+                            "error": {
+                              "code": "VALIDATION_ERROR",
+                              "field": "requester.email",
+                              "message": "Please enter a valid email address."
+                            },
+                            "success": false
+                          }
+                        },
+                        "missingRequiredField": {
+                          "summary": "Missing field",
+                          "value": {
+                            "error": {
+                              "code": "VALIDATION_ERROR",
+                              "field": "requester.email",
+                              "message": "Please enter an email address."
+                            },
+                            "success": false
+                          }
+                        },
+                        "theatricalVenueUnavailable": {
+                          "summary": "Selected Venue/date unavailable",
+                          "value": {
+                            "error": {
+                              "code": "VALIDATION_ERROR",
+                              "field": "screening.start_date",
+                              "message": "Venue is not available on the selected date."
+                            },
+                            "success": false
+                          }
+                        },
+                        "thresholdDeadlineInvalid": {
+                          "summary": "Threshold deadline error",
+                          "value": {
+                            "error": {
+                              "code": "VALIDATION_ERROR",
+                              "field": "threshold.deadline",
+                              "message": "Threshold deadline must be in the future."
+                            },
+                            "success": false
+                          }
+                        },
+                        "ticketPriceInvalid": {
+                          "summary": "Ticketing field error",
+                          "value": {
+                            "error": {
+                              "code": "VALIDATION_ERROR",
+                              "field": "ticketing.single.price",
+                              "message": "Ticket price must be zero or greater."
+                            },
+                            "success": false
+                          }
+                        }
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/Error"
+                      }
+                    }
+                  },
+                  "description": "The request could not be submitted with the provided fields. When\n`error.field` is present, it uses the submitted JSON path so the\nfrontend can show the message next to the matching form input.\n"
+                }
+              },
+              "schemas": {
+                "AvailabilityWindow": {
+                  "properties": {
+                    "end": {
+                      "example": "12/31/2026",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "start": {
+                      "example": "06/01/2026",
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Error": {
+                  "description": "Standard error response. Validation errors include `error.field` when\nthe error maps to a submitted form field. Use that dotted field path to\nhighlight the corresponding input.\n",
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "field": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": false,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "FilmCountryAvailability": {
+                  "description": "Country availability lists for external form display. Empty arrays mean no restriction from that list. Submit is still validated server-side.",
+                  "properties": {
+                    "blacklist": {
+                      "items": {
+                        "example": "CA",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "whitelist": {
+                      "items": {
+                        "example": "US",
+                        "type": "string"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "FilmScreeningRequestBaseInput": {
+                  "description": "Fields submitted by a custom Film Screening Request form. The endpoint\nvalidates required fields by scenario:\nTheatrical requests require `venue.venue_slug`; non-theatrical\nin-person requests require requester-supplied location fields; instant\nsubmissions require ticketing details; and Events On Demand™\nsubmissions require threshold data.\n`screening.start_date` plus `screening.start_time` must be in the\nfuture. Required threshold deadlines must also be in the future and\nbefore the Screening date.\nNon-instant submissions may omit `ticketing` because the Host adds or\nfinalizes ticket tier(s) on GATHR before publishing. Theatrical On\nDemand® submissions omit client-provided `threshold` because GATHR\nderives the Theatrical On Demand® deadline and threshold server-side\nfrom native Screening cost/deadline rules.\n",
+                  "properties": {
+                    "experience": {
+                      "description": "Screening experience. `tod` is Theatrical On Demand®, `buyout` is\ntheatrical buyout, `standard` is standard ticketing, and `eod` is\nEvents On Demand™.\n",
+                      "enum": [
+                        "tod",
+                        "buyout",
+                        "standard",
+                        "eod"
+                      ],
+                      "type": "string"
+                    },
+                    "preferred_subtitle_guid": {
+                      "description": "Optional subtitle choice for non-theatrical in-person Screening Requests. Use a subtitle `guid` returned by the config endpoint, or null/empty for no subtitles.",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "requester": {
+                      "$ref": "#/components/schemas/ScreeningRequester"
+                    },
+                    "screening": {
+                      "$ref": "#/components/schemas/ScreeningDetails"
+                    },
+                    "screening_type": {
+                      "$ref": "#/components/schemas/ScreeningType"
+                    },
+                    "threshold": {
+                      "$ref": "#/components/schemas/ScreeningThreshold"
+                    },
+                    "ticketing": {
+                      "$ref": "#/components/schemas/ScreeningTicketing"
+                    },
+                    "venue": {
+                      "$ref": "#/components/schemas/ScreeningVenueInput"
+                    }
+                  },
+                  "required": [
+                    "screening_type",
+                    "experience",
+                    "requester",
+                    "screening",
+                    "venue"
+                  ],
+                  "type": "object"
+                },
+                "FilmScreeningRequestConfig": {
+                  "properties": {
+                    "availability_windows": {
+                      "description": "Screening date windows by Screening type. There is no hybrid window:\nhybrid requests are validated against `non_theatrical`.\n",
+                      "properties": {
+                        "non_theatrical": {
+                          "$ref": "#/components/schemas/AvailabilityWindow"
+                        },
+                        "theatrical": {
+                          "$ref": "#/components/schemas/AvailabilityWindow"
+                        },
+                        "virtual": {
+                          "$ref": "#/components/schemas/AvailabilityWindow"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "country_availability": {
+                      "$ref": "#/components/schemas/FilmCountryAvailability"
+                    },
+                    "film": {
+                      "properties": {
+                        "poster_url": {
+                          "format": "uri",
+                          "type": "string"
+                        },
+                        "slug": {
+                          "type": "string"
+                        },
+                        "synopsis": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "host_types": {
+                      "items": {
+                        "$ref": "#/components/schemas/HostTypeOption"
+                      },
+                      "type": "array"
+                    },
+                    "legal": {
+                      "$ref": "#/components/schemas/FilmScreeningRequestLegal"
+                    },
+                    "screening_experiences": {
+                      "properties": {
+                        "hybrid": {
+                          "$ref": "#/components/schemas/ScreeningExperienceOptions"
+                        },
+                        "non_theatrical": {
+                          "$ref": "#/components/schemas/ScreeningExperienceOptions"
+                        },
+                        "theatrical": {
+                          "properties": {
+                            "buyout_allowed": {
+                              "type": "boolean"
+                            },
+                            "enabled": {
+                              "type": "boolean"
+                            },
+                            "tod_allowed": {
+                              "type": "boolean"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "virtual": {
+                          "$ref": "#/components/schemas/ScreeningExperienceOptions"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "screening_request": {
+                      "properties": {
+                        "fee_estimate_available": {
+                          "type": "boolean"
+                        },
+                        "non_theatrical_enabled": {
+                          "type": "boolean"
+                        },
+                        "non_theatrical_instant": {
+                          "type": "boolean"
+                        },
+                        "on_demand_enabled": {
+                          "type": "boolean"
+                        },
+                        "theatrical_enabled": {
+                          "type": "boolean"
+                        },
+                        "theatrical_instant": {
+                          "type": "boolean"
+                        },
+                        "virtual_enabled": {
+                          "type": "boolean"
+                        },
+                        "virtual_instant": {
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "visibility": {
+                      "properties": {
+                        "show_events_on_demand": {
+                          "type": "boolean"
+                        },
+                        "show_theatrical_on_demand": {
+                          "type": "boolean"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "FilmScreeningRequestEstimate": {
+                  "description": "Informational fee preview for external rendering. This payload includes\nstructured, non-HTML fee rows and guidance text derived server-side from\nnative fee messaging. Treat this as a preview, not final settlement.\n",
+                  "properties": {
+                    "currency": {
+                      "example": "USD",
+                      "type": "string"
+                    },
+                    "display": {
+                      "properties": {
+                        "completion_message": {
+                          "type": "string"
+                        },
+                        "total": {
+                          "example": "$1,250.00",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "estimated_total": {
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "experience": {
+                      "type": "string"
+                    },
+                    "fee_details": {
+                      "$ref": "#/components/schemas/FilmScreeningRequestEstimateFeeDetails"
+                    },
+                    "has_fee": {
+                      "type": "boolean"
+                    },
+                    "host_type_id": {
+                      "type": "integer"
+                    },
+                    "line_items": {
+                      "description": "Display-ready estimate rows. Render `label` and `amount` directly in\nyour UI response.\n",
+                      "items": {
+                        "properties": {
+                          "amount": {
+                            "format": "float",
+                            "type": "number"
+                          },
+                          "code": {
+                            "type": "string"
+                          },
+                          "label": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "next_steps": {
+                      "description": "Ordered instructional steps parsed from estimate messaging.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "notes": {
+                      "description": "Additional estimate notes safe for external display.",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "paid_event": {
+                      "type": "boolean"
+                    },
+                    "payment_required": {
+                      "description": "Indicates whether the GATHR-managed completion step may require payment.",
+                      "type": "boolean"
+                    },
+                    "screening_start_date": {
+                      "format": "date",
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "screening_start_time": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "screening_type": {
+                      "$ref": "#/components/schemas/ScreeningType"
+                    },
+                    "tickets_sold": {
+                      "type": "integer"
+                    },
+                    "venue_slug": {
+                      "nullable": true,
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "FilmScreeningRequestEstimateFeeDetails": {
+                  "description": "Structured fee-rule metadata for machine use and user-facing explanation.\nUse `fee_type` to determine which optional fields are relevant.\n",
+                  "properties": {
+                    "fee": {
+                      "description": "Fee value associated with `fee_type`:\n- `flat_fee`: flat amount\n- `per_person`: per-person amount\n- `share_of_ticket_sales`: percentage value\n",
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "fee_per_person_amount": {
+                      "description": "Returned only when `fee_type` is `per_person`.",
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "fee_share_tickets_percentage": {
+                      "description": "Returned only when `fee_type` is `share_of_ticket_sales`.",
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "fee_terms": {
+                      "description": "Human-readable fee explanation suitable for end users.",
+                      "type": "string"
+                    },
+                    "fee_type": {
+                      "description": "API-facing fee type.",
+                      "enum": [
+                        "flat_fee",
+                        "per_person",
+                        "share_of_ticket_sales"
+                      ],
+                      "type": "string"
+                    },
+                    "minimum_guarantee": {
+                      "description": "Estimate-time minimum guarantee value, if configured.",
+                      "format": "float",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "FilmScreeningRequestEstimateInput": {
+                  "description": "Optional pricing preview input. For theatrical estimates, include\n`venue_slug`, `screening_start_date`, and `screening_start_time` so the\nestimate can validate Venue availability before returning pricing.\n",
+                  "properties": {
+                    "experience": {
+                      "description": "Screening experience. `tod` is Theatrical On Demand®, `buyout` is\ntheatrical buyout, `standard` is standard ticketing, and `eod` is\nEvents On Demand™.\n",
+                      "enum": [
+                        "tod",
+                        "buyout",
+                        "standard",
+                        "eod"
+                      ],
+                      "type": "string"
+                    },
+                    "host_type_id": {
+                      "description": "A Host type ID returned by the config endpoint.",
+                      "type": "integer"
+                    },
+                    "paid_event": {
+                      "description": "Whether tickets are paid. On-demand experiences are treated as paid for estimates.",
+                      "type": "boolean"
+                    },
+                    "screening_start_date": {
+                      "description": "Required for theatrical estimates. Use YYYY-MM-DD.",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "screening_start_time": {
+                      "description": "Required for theatrical estimates. Use 24-hour HH:MM local Venue time.",
+                      "example": "19:00",
+                      "pattern": "^\\d{2}:\\d{2}$",
+                      "type": "string"
+                    },
+                    "screening_type": {
+                      "$ref": "#/components/schemas/ScreeningType"
+                    },
+                    "tickets_sold": {
+                      "description": "Current or expected tickets sold for estimate display.",
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "venue_slug": {
+                      "description": "Required for theatrical estimates.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "screening_type",
+                    "experience",
+                    "paid_event",
+                    "tickets_sold",
+                    "host_type_id"
+                  ],
+                  "type": "object"
+                },
+                "FilmScreeningRequestLegal": {
+                  "description": "Legal policy links and the required terms checkbox copy for external\nScreening Request forms. Integrations must display `terms_checkbox_html`\nnear the terms acceptance checkbox before submission.\n",
+                  "properties": {
+                    "privacy_url": {
+                      "example": "https://gathr.com/privacy",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "terms_checkbox_html": {
+                      "description": "Renderable HTML matching GATHR event and rental checkout terms\ncheckbox copy. Displaying this copy is required before collecting\nterms acceptance.\n",
+                      "example": "I agree to GATHR's <a href=\"https://gathr.com/terms-of-use\" target=\"_blank\" rel=\"noopener noreferrer\">Terms of Use</a> and have read and acknowledged GATHR's <a href=\"https://gathr.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Practices</a>.",
+                      "type": "string"
+                    },
+                    "terms_url": {
+                      "example": "https://gathr.com/terms-of-use",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "terms_url",
+                    "privacy_url",
+                    "terms_checkbox_html"
+                  ],
+                  "type": "object"
+                },
+                "FilmScreeningRequestSubmission": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/FilmScreeningRequestBaseInput"
+                    },
+                    {
+                      "properties": {
+                        "terms": {
+                          "properties": {
+                            "accepted": {
+                              "description": "Must be true. External forms must display the config endpoint's `legal.terms_checkbox_html` before collecting acceptance.",
+                              "type": "boolean"
+                            },
+                            "accepted_at": {
+                              "format": "date-time",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "accepted"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "terms"
+                      ],
+                      "type": "object"
+                    }
+                  ],
+                  "description": "Creates a GATHR Screening Request and sends the requester an email to\ncontinue in GATHR. Submit does not create Events or Bookings and does\nnot publish anything.\n"
+                },
+                "FilmScreeningRequestSubmissionResult": {
+                  "description": "Submit success response. `screening_request.next_step` is the frontend\ninstruction; show the returned `message` and direct the requester to\ncheck email. `status` is the Screening Request status after the\ncontinuation email is sent.\n",
+                  "properties": {
+                    "message": {
+                      "example": "Check your email to finish your request.",
+                      "type": "string"
+                    },
+                    "screening_request": {
+                      "properties": {
+                        "instant": {
+                          "description": "Whether this request follows the instant completion path.",
+                          "example": false,
+                          "type": "boolean"
+                        },
+                        "next_step": {
+                          "enum": [
+                            "check_email"
+                          ],
+                          "example": "check_email",
+                          "type": "string"
+                        },
+                        "status": {
+                          "description": "Current Screening Request status.",
+                          "enum": [
+                            "completion_email_sent"
+                          ],
+                          "example": "completion_email_sent",
+                          "type": "string"
+                        },
+                        "uid": {
+                          "description": "Screening Request UID.",
+                          "example": "sr_abc123",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "example": true,
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "HostProfile": {
+                  "properties": {
+                    "host_avatar": {
+                      "description": "The profile avatar URL.",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "host_description": {
+                      "description": "The description of the Host profile.",
+                      "type": "string"
+                    },
+                    "host_name": {
+                      "description": "The name of the Host profile.",
+                      "type": "string"
+                    },
+                    "host_url": {
+                      "description": "The URL for the Host profile.",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The slug for the Host profile.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "HostTypeFee": {
+                  "description": "Null when no applicable Film fee is configured.",
+                  "nullable": true,
+                  "properties": {
+                    "amount": {
+                      "description": "Fee amount. Share fees are percentage values.",
+                      "example": 100,
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "minimum_guarantee": {
+                      "description": "Minimum guarantee amount when configured, otherwise 0.",
+                      "example": 0,
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "type": {
+                      "description": "The Film fee type.",
+                      "enum": [
+                        "fixed",
+                        "share",
+                        "per_person",
+                        "minimum_guarantee"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "HostTypeOption": {
+                  "properties": {
+                    "asks_nonprofit_ein": {
+                      "description": "If true, ask the Host for their nonprofit EIN or tax ID. This is\nused for Host types where nonprofit status may affect Screening\nreview or pricing.\n",
+                      "type": "boolean"
+                    },
+                    "asks_organization": {
+                      "description": "If true, ask the Host for the name of the organization hosting the\nScreening, such as a school, company, nonprofit, faith group, or\ncommunity organization.\n",
+                      "type": "boolean"
+                    },
+                    "fees": {
+                      "$ref": "#/components/schemas/HostTypeScreeningFees"
+                    },
+                    "id": {
+                      "type": "integer"
+                    },
+                    "label": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "HostTypePaidFreeFees": {
+                  "properties": {
+                    "free": {
+                      "$ref": "#/components/schemas/HostTypeFee"
+                    },
+                    "paid": {
+                      "$ref": "#/components/schemas/HostTypeFee"
+                    }
+                  },
+                  "type": "object"
+                },
+                "HostTypeScreeningFees": {
+                  "description": "Display fee metadata for this Host type. Fee values reflect the Film's\ncurrent configured Film fees, including Host-type-specific fees and the\ngeneral Host-type fallback. Use the estimate endpoint for final pricing.\n",
+                  "properties": {
+                    "non_theatrical": {
+                      "$ref": "#/components/schemas/HostTypePaidFreeFees"
+                    },
+                    "theatrical": {
+                      "$ref": "#/components/schemas/HostTypePaidFreeFees"
+                    },
+                    "virtual": {
+                      "$ref": "#/components/schemas/HostTypePaidFreeFees"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Order": {
+                  "properties": {
+                    "donation_total": {
+                      "description": "The total amount donated to Event charities with the Order.",
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "id": {
+                      "description": "The unique ID for the Order.",
+                      "type": "string"
+                    },
+                    "order_date": {
+                      "description": "The date and time the Order was placed.",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "order_total": {
+                      "description": "The total amount paid by the person who placed the Order.",
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "ticket_face_value_total": {
+                      "description": "The amount paid by the person who placed the Order, without fees and taxes.",
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "user_email": {
+                      "description": "The email address of the person who placed the Order.",
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "user_first_name": {
+                      "description": "The first name of the person who placed the Order.",
+                      "type": "string"
+                    },
+                    "user_last_name": {
+                      "description": "The last name of the person who placed the Order.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Profile": {
+                  "properties": {
+                    "id": {
+                      "description": "The slug for the profile.",
+                      "type": "string"
+                    },
+                    "profile_avatar": {
+                      "description": "The profile avatar URL.",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "profile_description": {
+                      "description": "The description of the profile.",
+                      "type": "string"
+                    },
+                    "profile_name": {
+                      "description": "The name of the profile.",
+                      "type": "string"
+                    },
+                    "profile_type": {
+                      "description": "The profile type.",
+                      "enum": [
+                        "host",
+                        "talent"
+                      ],
+                      "type": "string"
+                    },
+                    "profile_url": {
+                      "description": "The URL for the profile.",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScreeningDetails": {
+                  "properties": {
+                    "dates_flexible": {
+                      "default": false,
+                      "description": "Optional flag indicating whether the requester is flexible on the selected date/time. Defaults to false when omitted.",
+                      "type": "boolean"
+                    },
+                    "end_date": {
+                      "description": "Required for non-theatrical in-person, virtual, and hybrid Screening Requests when the form collects an end date. Send `end_date` and `end_time` together or omit both.",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "end_time": {
+                      "description": "Required for non-theatrical in-person, virtual, and hybrid Screening\nRequests when the form collects an end time. Use 24-hour `HH:MM`,\nzero-padded. Send `end_date` and `end_time` together or omit both;\nwhen supplied, the end must be after the start.\n",
+                      "example": "21:30",
+                      "pattern": "^\\d{2}:\\d{2}$",
+                      "type": "string"
+                    },
+                    "estimated_attendance": {
+                      "default": 0,
+                      "description": "Optional expected attendance or selected capacity for validation and estimates. Defaults to 0 when omitted.",
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "paid_event": {
+                      "default": false,
+                      "description": "Optional paid/free signal. Defaults to false when omitted; TOD/EOD submissions are treated as paid server-side regardless of this value.",
+                      "type": "boolean"
+                    },
+                    "public_event": {
+                      "type": "boolean"
+                    },
+                    "start_date": {
+                      "description": "Screening start date. Combined with `start_time`, this must resolve to a future date/time.",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "start_time": {
+                      "description": "Screening start time in 24-hour `HH:MM` format, zero-padded\n(`09:00`, not `9:00`). This is the same format the Venue\navailability endpoints return. Combined with `start_date`, this must\nresolve to a future date/time.\n",
+                      "example": "19:00",
+                      "pattern": "^\\d{2}:\\d{2}$",
+                      "type": "string"
+                    },
+                    "timezone": {
+                      "description": "Required for non-theatrical in-person, virtual, and hybrid Screening Requests. Use an IANA timezone name.",
+                      "example": "America/New_York",
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "start_date",
+                    "start_time"
+                  ],
+                  "type": "object"
+                },
+                "ScreeningExperienceOptions": {
+                  "properties": {
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "eod_allowed": {
+                      "type": "boolean"
+                    },
+                    "standard_ticketing_allowed": {
+                      "type": "boolean"
+                    },
+                    "subtitles": {
+                      "$ref": "#/components/schemas/ScreeningSubtitleOptions"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScreeningRequester": {
+                  "properties": {
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "host_type_id": {
+                      "description": "A Host type ID returned by the config endpoint.",
+                      "type": "integer"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "nonprofit_ein": {
+                      "description": "Nonprofit EIN or tax ID for the Host, when requested by the selected Host type.",
+                      "type": "string"
+                    },
+                    "organization": {
+                      "description": "Organization name for the Host, when requested by the selected Host type.",
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "host_type_id"
+                  ],
+                  "type": "object"
+                },
+                "ScreeningSubtitleOption": {
+                  "properties": {
+                    "guid": {
+                      "description": "Submit this value as `preferred_subtitle_guid`.",
+                      "type": "string"
+                    },
+                    "label": {
+                      "example": "English",
+                      "type": "string"
+                    },
+                    "language": {
+                      "example": "en",
+                      "type": "string"
+                    },
+                    "selected_by_default": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScreeningSubtitleOptions": {
+                  "description": "Optional subtitle choices for non-theatrical in-person Screening\nRequests. Integrations should render their own \"No subtitles\" option;\nsubmit an empty or null `preferred_subtitle_guid` when no subtitles are\nselected.\n",
+                  "nullable": true,
+                  "properties": {
+                    "default_guid": {
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "enabled": {
+                      "type": "boolean"
+                    },
+                    "optional": {
+                      "example": true,
+                      "type": "boolean"
+                    },
+                    "options": {
+                      "items": {
+                        "$ref": "#/components/schemas/ScreeningSubtitleOption"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScreeningThreshold": {
+                  "description": "Threshold/deadline data for on-demand experiences. Required for Events\nOn Demand™ submissions. Theatrical On Demand® submissions omit\nclient-provided `threshold` because GATHR derives the Theatrical On\nDemand® deadline and threshold server-side from native Screening\ncost/deadline rules. Use `attendance` when `type` is `attendance`, or\n`revenue` when `type` is `revenue`. `deadline` must be before the\nScreening date and must be in the future.\n",
+                  "properties": {
+                    "attendance": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "deadline": {
+                      "description": "Required on-demand threshold deadline. Must be in the future and before the Screening date.",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "estimated_capacity": {
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "revenue": {
+                      "format": "float",
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    "type": {
+                      "enum": [
+                        "attendance",
+                        "revenue"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScreeningTicketing": {
+                  "description": "Ticketing details for instant Screening submissions. Non-instant\nsubmissions may omit `ticketing` because the Host adds or finalizes\nticket tier(s) on GATHR before publishing. Required nested fields depend\non `mode`: `free_quantity` for free Screenings, `single.title` and\n`single.price` for single-tier paid Screenings, or at least one tier\nwith `title`, `price`, and `quantity` for multi-tier paid Screenings.\n",
+                  "properties": {
+                    "free_quantity": {
+                      "description": "Required when `mode` is `free`.",
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "mode": {
+                      "enum": [
+                        "free",
+                        "single",
+                        "multiple"
+                      ],
+                      "type": "string"
+                    },
+                    "single": {
+                      "description": "Required when `mode` is `single`.",
+                      "properties": {
+                        "description": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "format": "float",
+                          "minimum": 0,
+                          "type": "number"
+                        },
+                        "title": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tiers": {
+                      "description": "Required when `mode` is `multiple`.",
+                      "items": {
+                        "properties": {
+                          "description": {
+                            "type": "string"
+                          },
+                          "price": {
+                            "format": "float",
+                            "minimum": 0,
+                            "type": "number"
+                          },
+                          "quantity": {
+                            "minimum": 1,
+                            "type": "integer"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "mode"
+                  ],
+                  "type": "object"
+                },
+                "ScreeningType": {
+                  "enum": [
+                    "theatrical",
+                    "non_theatrical",
+                    "virtual",
+                    "hybrid"
+                  ],
+                  "type": "string"
+                },
+                "ScreeningVenueAvailabilityDateInput": {
+                  "properties": {
+                    "date": {
+                      "description": "Date to check in YYYY-MM-DD format.",
+                      "example": "2026-08-19",
+                      "format": "date",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "date"
+                  ],
+                  "type": "object"
+                },
+                "ScreeningVenueDateAvailability": {
+                  "properties": {
+                    "availability": {
+                      "description": "Venue availability for the requested date. The same keys are always\nreturned, available or not. All times are 24-hour `HH:MM` in the\nVenue's local timezone, the same format `screening.start_time` uses\non submit.\n",
+                      "properties": {
+                        "available": {
+                          "description": "Whether the Venue can be booked on the requested date.",
+                          "type": "boolean"
+                        },
+                        "end": {
+                          "description": "Latest bookable time in 24-hour `HH:MM`, Venue-local. Null when\n`available` is false.\n",
+                          "example": "23:30",
+                          "nullable": true,
+                          "pattern": "^\\d{2}:\\d{2}$",
+                          "type": "string"
+                        },
+                        "exceptions": {
+                          "description": "Time-window overrides that apply to the requested date only.\nUpcoming date-level exceptions are returned by the weekly\navailability endpoint instead, not here.\n",
+                          "items": {
+                            "$ref": "#/components/schemas/ScreeningVenueDateTimeException"
+                          },
+                          "type": "array"
+                        },
+                        "start": {
+                          "description": "Earliest bookable time in 24-hour `HH:MM`, Venue-local. Null\nwhen `available` is false.\n",
+                          "example": "12:00",
+                          "nullable": true,
+                          "pattern": "^\\d{2}:\\d{2}$",
+                          "type": "string"
+                        },
+                        "timezone": {
+                          "description": "IANA timezone name for every time in this response.",
+                          "example": "America/New_York",
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "available",
+                        "start",
+                        "end",
+                        "timezone",
+                        "exceptions"
+                      ],
+                      "type": "object"
+                    },
+                    "date": {
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "venue": {
+                      "properties": {
+                        "name": {
+                          "description": "The Venue display name.",
+                          "type": "string"
+                        },
+                        "slug": {
+                          "description": "The public Venue slug.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScreeningVenueDateException": {
+                  "description": "A date-level availability override for the Venue, returned by the weekly\navailability endpoint.\n",
+                  "properties": {
+                    "available": {
+                      "description": "Whether the override makes the date available. An entry with\n`available: false` is a blackout — disable that date even when its\nweekday is open.\n",
+                      "example": false,
+                      "type": "boolean"
+                    },
+                    "date": {
+                      "example": "2026-09-05",
+                      "format": "date",
+                      "type": "string"
+                    },
+                    "deposit_percentage": {
+                      "description": "Venue deposit percentage for the date.",
+                      "example": "25"
+                    },
+                    "fee": {
+                      "description": "Venue rental fee for the date.",
+                      "example": "750.00"
+                    },
+                    "non_refundable": {
+                      "description": "Whether the Venue deposit for the date is non-refundable.",
+                      "example": "0"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScreeningVenueDateTimeException": {
+                  "description": "A time-window availability override for the requested date.\n",
+                  "properties": {
+                    "available": {
+                      "description": "Whether the override makes that time window available.",
+                      "type": "boolean"
+                    },
+                    "deposit_percentage": {
+                      "description": "Venue deposit percentage for the window.",
+                      "example": "25"
+                    },
+                    "end": {
+                      "description": "Window end in 24-hour `HH:MM`, Venue-local.",
+                      "example": "22:30",
+                      "pattern": "^\\d{2}:\\d{2}$",
+                      "type": "string"
+                    },
+                    "fee": {
+                      "description": "Venue rental fee for the window.",
+                      "example": "750.00"
+                    },
+                    "non_refundable": {
+                      "description": "Whether the Venue deposit for the window is non-refundable.",
+                      "example": "0"
+                    },
+                    "start": {
+                      "description": "Window start in 24-hour `HH:MM`, Venue-local.",
+                      "example": "19:00",
+                      "pattern": "^\\d{2}:\\d{2}$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "available",
+                    "start",
+                    "end"
+                  ],
+                  "type": "object"
+                },
+                "ScreeningVenueInput": {
+                  "description": "Location fields for the Screening. Which fields are required depends on\n`screening_type`: theatrical requests send `venue_slug`; non-theatrical\nin-person and hybrid requests send the requester-supplied location\nfields; virtual requests send an empty object (`{}`). The `venue` key\nitself is always required.\n",
+                  "properties": {
+                    "address": {
+                      "description": "Venue address for non-theatrical in-person and hybrid requests.",
+                      "type": "string"
+                    },
+                    "capacity": {
+                      "description": "Optional capacity for non-theatrical in-person and hybrid requests. When supplied, it must be a non-negative integer.",
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "city": {
+                      "description": "Venue city for non-theatrical in-person and hybrid requests.",
+                      "type": "string"
+                    },
+                    "latitude": {
+                      "description": "Venue latitude for non-theatrical in-person and hybrid requests.",
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "description": "Venue longitude for non-theatrical in-person and hybrid requests.",
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "name": {
+                      "description": "Venue name for non-theatrical in-person and hybrid requests.",
+                      "type": "string"
+                    },
+                    "venue_slug": {
+                      "description": "Required for theatrical requests using a selected GATHR Venue.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScreeningVenueSummary": {
+                  "properties": {
+                    "address": {
+                      "description": "The Venue address.",
+                      "type": "string"
+                    },
+                    "capacity": {
+                      "description": "Estimated Venue capacity.",
+                      "type": "integer"
+                    },
+                    "city": {
+                      "description": "The Venue city.",
+                      "type": "string"
+                    },
+                    "cost_tier": {
+                      "description": "Relative Venue cost tier.",
+                      "example": "$$",
+                      "type": "string"
+                    },
+                    "distance_km": {
+                      "description": "Distance from the requested latitude/longitude in kilometers.",
+                      "format": "float",
+                      "nullable": true,
+                      "type": "number"
+                    },
+                    "image_url": {
+                      "description": "Venue image URL.",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "instant_book": {
+                      "description": "Whether the Venue can be booked instantly.",
+                      "type": "boolean"
+                    },
+                    "latitude": {
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "longitude": {
+                      "format": "float",
+                      "type": "number"
+                    },
+                    "name": {
+                      "description": "The Venue display name.",
+                      "type": "string"
+                    },
+                    "response_time_days": {
+                      "description": "Estimated response time in days for non-instant Venue booking requests.",
+                      "type": "integer"
+                    },
+                    "slug": {
+                      "description": "The public Venue slug.",
+                      "type": "string"
+                    },
+                    "state": {
+                      "description": "The Venue state.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScreeningVenueWeekdayAvailability": {
+                  "description": "Availability for one weekday. Closed days return `available: false` and\nnothing else.\n",
+                  "properties": {
+                    "available": {
+                      "description": "Whether the Venue is open on this weekday.",
+                      "type": "boolean"
+                    },
+                    "end": {
+                      "description": "Window end in 24-hour `HH:MM`, Venue-local. Present only when\n`available` is true.\n",
+                      "example": "23:00",
+                      "pattern": "^\\d{2}:\\d{2}$",
+                      "type": "string"
+                    },
+                    "fee": {
+                      "description": "Venue rental fee configured for this weekday, as stored by the\nVenue. Present only when `available` is true. This is not the Film\nfee: use the estimate endpoint for Screening Request pricing.\n",
+                      "example": "450.00"
+                    },
+                    "start": {
+                      "description": "Window start in 24-hour `HH:MM`, Venue-local. Present only when\n`available` is true.\n",
+                      "example": "17:00",
+                      "pattern": "^\\d{2}:\\d{2}$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "available"
+                  ],
+                  "type": "object"
+                },
+                "ScreeningVenueWeeklyAvailability": {
+                  "properties": {
+                    "availability": {
+                      "description": "Venue weekly availability for date and time selection. Weekday keys\nare ISO-8601 day of week: `\"1\"` is Monday through `\"7\"` is Sunday.\nThere is no `\"0\"` key.\n",
+                      "properties": {
+                        "1": {
+                          "$ref": "#/components/schemas/ScreeningVenueWeekdayAvailability"
+                        },
+                        "2": {
+                          "$ref": "#/components/schemas/ScreeningVenueWeekdayAvailability"
+                        },
+                        "3": {
+                          "$ref": "#/components/schemas/ScreeningVenueWeekdayAvailability"
+                        },
+                        "4": {
+                          "$ref": "#/components/schemas/ScreeningVenueWeekdayAvailability"
+                        },
+                        "5": {
+                          "$ref": "#/components/schemas/ScreeningVenueWeekdayAvailability"
+                        },
+                        "6": {
+                          "$ref": "#/components/schemas/ScreeningVenueWeekdayAvailability"
+                        },
+                        "7": {
+                          "$ref": "#/components/schemas/ScreeningVenueWeekdayAvailability"
+                        },
+                        "exceptions": {
+                          "description": "Upcoming date-level availability exceptions for the Venue. Apply\nthem to those specific dates in the date picker.\n",
+                          "items": {
+                            "$ref": "#/components/schemas/ScreeningVenueDateException"
+                          },
+                          "type": "array"
+                        },
+                        "min_notice_days": {
+                          "description": "Minimum lead time in days. Disable dates sooner than this many\ndays from today.\n",
+                          "example": 14,
+                          "type": "integer"
+                        },
+                        "timezone": {
+                          "description": "IANA timezone name for every time in this response.",
+                          "example": "America/New_York",
+                          "nullable": true,
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7",
+                        "exceptions",
+                        "timezone",
+                        "min_notice_days"
+                      ],
+                      "type": "object"
+                    },
+                    "venue": {
+                      "properties": {
+                        "name": {
+                          "description": "The Venue display name.",
+                          "type": "string"
+                        },
+                        "slug": {
+                          "description": "The public Venue slug.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "TalentProfile": {
+                  "properties": {
+                    "id": {
+                      "description": "The slug for the Talent profile.",
+                      "type": "string"
+                    },
+                    "talent_avatar": {
+                      "description": "The profile avatar URL.",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "talent_description": {
+                      "description": "The description of the Talent profile.",
+                      "type": "string"
+                    },
+                    "talent_name": {
+                      "description": "The name of the Talent profile.",
+                      "type": "string"
+                    },
+                    "talent_url": {
+                      "description": "The URL for the Talent profile.",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "GathrAccountEmail": {
+                  "description": "Your GATHR account email address.",
+                  "in": "header",
+                  "name": "x-user-email",
+                  "type": "apiKey"
+                },
+                "GathrApiKey": {
+                  "description": "Your GATHR API key.",
+                  "in": "header",
+                  "name": "x-gathr-api-key",
+                  "type": "apiKey"
+                },
+                "GathrFilmApiKey": {
+                  "description": "A publishable Film API key from Film Management > Film API. The key must be used from a whitelisted domain.",
+                  "in": "header",
+                  "name": "x-gathr-film-api-key",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Use the GATHR API to access account, profile, order, and Film Screening\nrequest data.\n\nAPI requests must be made over HTTPS and include your GATHR API key and\naccount email address.\n\nFilm Screening Request API endpoints use a Film-specific publishable API key\nfrom Film Management. Publishable keys are intended for Filmmaker-owned web\nforms and must be used from whitelisted domains.\n\nFilm Screening Request API endpoints are intended to be called directly from\nbrowser-based Screening Request forms on whitelisted domains.\n\nEnable and configure API access for your Film in Film Management > Film API.\nFrom there, create a publishable Film API key and add the domains that are\nallowed to use it.\n",
+              "title": "GATHR API",
+              "version": "1.3.0"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/api/me": {
+                "post": {
+                  "description": "Verify that the provided API key and account email are valid.",
+                  "operationId": "verifyApiKey",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "success": {
+                              "value": {
+                                "success": true
+                              }
+                            }
+                          },
+                          "schema": {
+                            "additionalProperties": true,
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "API key verified."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrAccountEmail": [],
+                      "GathrApiKey": []
+                    }
+                  ],
+                  "summary": "Verify an API key",
+                  "tags": [
+                    "Authentication"
+                  ]
+                }
+              },
+              "/api/me/hosts": {
+                "get": {
+                  "description": "Get a user's Host profiles.",
+                  "operationId": "listHostProfiles",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/HostProfile"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Host profiles returned."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrAccountEmail": [],
+                      "GathrApiKey": []
+                    }
+                  ],
+                  "summary": "List Host profiles",
+                  "tags": [
+                    "Profiles"
+                  ]
+                }
+              },
+              "/api/me/orders": {
+                "post": {
+                  "description": "Get all Orders placed for Events created by or booked into one of the user's profiles.",
+                  "operationId": "listOrders",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "profile_slug": "my-host-profile",
+                          "profile_type": "host"
+                        },
+                        "schema": {
+                          "properties": {
+                            "profile_slug": {
+                              "description": "The profile slug.",
+                              "type": "string"
+                            },
+                            "profile_type": {
+                              "description": "The profile type.",
+                              "enum": [
+                                "host",
+                                "talent"
+                              ],
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "profile_type",
+                            "profile_slug"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Order"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Orders returned."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrAccountEmail": [],
+                      "GathrApiKey": []
+                    }
+                  ],
+                  "summary": "List orders",
+                  "tags": [
+                    "Orders"
+                  ]
+                }
+              },
+              "/api/me/profiles": {
+                "get": {
+                  "description": "Get all of a user's Host and Talent profiles.",
+                  "operationId": "listProfiles",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Profile"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Profiles returned."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrAccountEmail": [],
+                      "GathrApiKey": []
+                    }
+                  ],
+                  "summary": "List profiles",
+                  "tags": [
+                    "Profiles"
+                  ]
+                }
+              },
+              "/api/me/talent": {
+                "get": {
+                  "description": "Get a user's Talent profiles.",
+                  "operationId": "listTalentProfiles",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/TalentProfile"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Talent profiles returned."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrAccountEmail": [],
+                      "GathrApiKey": []
+                    }
+                  ],
+                  "summary": "List Talent profiles",
+                  "tags": [
+                    "Profiles"
+                  ]
+                }
+              },
+              "/api/v1/films/{film_slug}/screening-request/config": {
+                "get": {
+                  "description": "Get the public configuration needed to render a custom Screening Request\nform for a Film.\n\nUse this endpoint before displaying your form so your integration can\nshow the current request types, fields, limits, and options available for\nthe Film.\n\nThe response tells the frontend which Screening types and experiences\ncan be offered, which Host types can be selected, whether fee estimates\nare available, what display fees apply to each Host type, what\navailability windows apply, and what legal terms copy must be displayed\nbefore submission. Treat this response as the source of truth for form\nrendering. Submit and estimate are still validated against current\nserver state.\n\nHost type options include `asks_organization` and `asks_nonprofit_ein`\nso external forms know which extra Host details to collect, plus `fees`\nfor the Film fees that apply to that Host type.\n",
+                  "operationId": "getFilmScreeningRequestConfig",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/FilmSlug"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "availability_windows": {
+                              "non_theatrical": {
+                                "end": "12/31/2026",
+                                "start": "06/01/2026"
+                              },
+                              "theatrical": {
+                                "end": "12/31/2026",
+                                "start": "06/01/2026"
+                              },
+                              "virtual": {
+                                "end": "12/31/2026",
+                                "start": "06/01/2026"
+                              }
+                            },
+                            "country_availability": {
+                              "blacklist": [],
+                              "whitelist": []
+                            },
+                            "film": {
+                              "poster_url": "https://gathr.com/path/to/poster.jpg",
+                              "slug": "sample-film",
+                              "synopsis": "A short Film synopsis.",
+                              "title": "Sample Film"
+                            },
+                            "host_types": [
+                              {
+                                "asks_nonprofit_ein": false,
+                                "asks_organization": true,
+                                "fees": {
+                                  "non_theatrical": {
+                                    "free": {
+                                      "amount": 5,
+                                      "minimum_guarantee": 100,
+                                      "type": "per_person"
+                                    },
+                                    "paid": {
+                                      "amount": 250,
+                                      "minimum_guarantee": 0,
+                                      "type": "fixed"
+                                    }
+                                  },
+                                  "theatrical": {
+                                    "free": null,
+                                    "paid": null
+                                  },
+                                  "virtual": {
+                                    "free": null,
+                                    "paid": {
+                                      "amount": 35,
+                                      "minimum_guarantee": 150,
+                                      "type": "share"
+                                    }
+                                  }
+                                },
+                                "id": 1,
+                                "label": "Educational"
+                              }
+                            ],
+                            "legal": {
+                              "privacy_url": "https://gathr.com/privacy",
+                              "terms_checkbox_html": "I agree to GATHR's <a href=\"https://gathr.com/terms-of-use\" target=\"_blank\" rel=\"noopener noreferrer\">Terms of Use</a> and have read and acknowledged GATHR's <a href=\"https://gathr.com/privacy\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Practices</a>.",
+                              "terms_url": "https://gathr.com/terms-of-use"
+                            },
+                            "screening_experiences": {
+                              "hybrid": {
+                                "enabled": true,
+                                "eod_allowed": true,
+                                "standard_ticketing_allowed": true
+                              },
+                              "non_theatrical": {
+                                "enabled": true,
+                                "eod_allowed": true,
+                                "standard_ticketing_allowed": true
+                              },
+                              "theatrical": {
+                                "buyout_allowed": true,
+                                "enabled": true,
+                                "tod_allowed": true
+                              },
+                              "virtual": {
+                                "enabled": true,
+                                "eod_allowed": true,
+                                "standard_ticketing_allowed": true
+                              }
+                            },
+                            "screening_request": {
+                              "fee_estimate_available": true,
+                              "non_theatrical_enabled": true,
+                              "non_theatrical_instant": false,
+                              "on_demand_enabled": true,
+                              "theatrical_enabled": true,
+                              "theatrical_instant": false,
+                              "virtual_enabled": true,
+                              "virtual_instant": false
+                            },
+                            "visibility": {
+                              "show_events_on_demand": true,
+                              "show_theatrical_on_demand": true
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/FilmScreeningRequestConfig"
+                          }
+                        }
+                      },
+                      "description": "Screening Request configuration returned."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/FilmApiUnauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/OriginNotAllowed"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrFilmApiKey": []
+                    }
+                  ],
+                  "summary": "Get Screening Request configuration",
+                  "tags": [
+                    "Film Screening Requests"
+                  ]
+                }
+              },
+              "/api/v1/films/{film_slug}/screening-request/estimate": {
+                "post": {
+                  "description": "Preview current pricing and request details before submission.\n\nThis endpoint is optional and informational. Final pricing and\navailability are confirmed during GATHR completion.\n\nUse this endpoint after the requester has selected the fields needed for\nan estimate. The endpoint does not create users, Screening Requests,\nEvents, Bookings, payments, or abandoned attempts. The response can be\ndisplayed as a pricing preview and may be stored again by submit as the\nlatest estimate for the Screening Request.\n\nEstimate responses include structured, non-HTML fee presentation fields\nfor frontend rendering:\n- `line_items` for row-level display labels and amounts.\n- `fee_details` for fee-rule metadata and human-readable `fee_terms`.\n- `next_steps` and `notes` for guidance copy.\n\nThese fields are derived server-side from native fee messaging and are\nsafe to render directly. Integrations should not render native\n`film_fee_html` directly.\n\nIntegration guidance:\n- Treat estimate responses as non-binding previews.\n- Use `fee_details.fee_type` to decide which fee fields are relevant.\n- Do not infer absent fields.\n- Use `fee_terms` when explaining fee logic to end users.\n",
+                  "operationId": "estimateFilmScreeningRequest",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/FilmSlug"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/FilmScreeningRequestEstimateInput"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "flatFee": {
+                              "summary": "Flat fee estimate",
+                              "value": {
+                                "currency": "USD",
+                                "display": {
+                                  "completion_message": "After submitting, check your email to finish your Screening Request with GATHR.",
+                                  "total": "$615.00"
+                                },
+                                "estimated_total": 615,
+                                "experience": "standard",
+                                "fee_details": {
+                                  "fee": 500,
+                                  "fee_terms": "$500.00 flat fee",
+                                  "fee_type": "flat_fee",
+                                  "minimum_guarantee": 0
+                                },
+                                "has_fee": true,
+                                "host_type_id": 2,
+                                "line_items": [
+                                  {
+                                    "amount": 500,
+                                    "code": "film_booking_fee",
+                                    "label": "Film Booking Fee"
+                                  },
+                                  {
+                                    "amount": 115,
+                                    "code": "print_control_fee",
+                                    "label": "Print Control Fee"
+                                  }
+                                ],
+                                "next_steps": [],
+                                "notes": [],
+                                "paid_event": true,
+                                "payment_required": true,
+                                "screening_start_date": null,
+                                "screening_start_time": null,
+                                "screening_type": "non_theatrical",
+                                "tickets_sold": 120,
+                                "venue_slug": null
+                              }
+                            },
+                            "perPersonWithMinimum": {
+                              "summary": "Per-person fee with minimum guarantee",
+                              "value": {
+                                "currency": "USD",
+                                "display": {
+                                  "completion_message": "After submitting, check your email to finish your Screening Request with GATHR.",
+                                  "total": "$415.00"
+                                },
+                                "estimated_total": 415,
+                                "experience": "standard",
+                                "fee_details": {
+                                  "fee": 2.5,
+                                  "fee_per_person_amount": 2.5,
+                                  "fee_terms": "$2.50 per person (minimum $300.00)",
+                                  "fee_type": "per_person",
+                                  "minimum_guarantee": 300
+                                },
+                                "has_fee": true,
+                                "host_type_id": 5,
+                                "line_items": [
+                                  {
+                                    "amount": 0,
+                                    "code": "film_booking_fee_after_event",
+                                    "label": "Film Booking Fee (After Event)"
+                                  },
+                                  {
+                                    "amount": 300,
+                                    "code": "minimum_guarantee",
+                                    "label": "Minimum Guarantee"
+                                  },
+                                  {
+                                    "amount": 115,
+                                    "code": "print_control_fee",
+                                    "label": "Print Control Fee"
+                                  }
+                                ],
+                                "next_steps": [
+                                  "Add tickets for your expected attendance.",
+                                  {
+                                    "We'll preauthorize payment": "$2.50 × expected attendees."
+                                  },
+                                  "After your Event, the Film is paid out based on actual attendance."
+                                ],
+                                "notes": [],
+                                "paid_event": true,
+                                "payment_required": true,
+                                "screening_start_date": null,
+                                "screening_start_time": null,
+                                "screening_type": "non_theatrical",
+                                "tickets_sold": 120,
+                                "venue_slug": null
+                              }
+                            },
+                            "shareOfTicketSalesWithMinimum": {
+                              "summary": "Share of ticket sales with minimum guarantee",
+                              "value": {
+                                "currency": "USD",
+                                "display": {
+                                  "completion_message": "After submitting, check your email to finish your Screening Request with GATHR.",
+                                  "total": "$365.00"
+                                },
+                                "estimated_total": 365,
+                                "experience": "standard",
+                                "fee_details": {
+                                  "fee": 35,
+                                  "fee_share_tickets_percentage": 35,
+                                  "fee_terms": "35% of net ticket sales (minimum $250.00)",
+                                  "fee_type": "share_of_ticket_sales",
+                                  "minimum_guarantee": 250
+                                },
+                                "has_fee": true,
+                                "host_type_id": 4,
+                                "line_items": [
+                                  {
+                                    "amount": 0,
+                                    "code": "film_booking_fee_after_event",
+                                    "label": "Film Booking Fee (After Event)"
+                                  },
+                                  {
+                                    "amount": 250,
+                                    "code": "minimum_guarantee",
+                                    "label": "Minimum Guarantee"
+                                  },
+                                  {
+                                    "amount": 115,
+                                    "code": "print_control_fee",
+                                    "label": "Print Control Fee"
+                                  }
+                                ],
+                                "next_steps": [],
+                                "notes": [
+                                  "After your Event: The Film receives 35% of net revenue, and you keep the remaining revenue."
+                                ],
+                                "paid_event": true,
+                                "payment_required": true,
+                                "screening_start_date": null,
+                                "screening_start_time": null,
+                                "screening_type": "non_theatrical",
+                                "tickets_sold": 120,
+                                "venue_slug": null
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/FilmScreeningRequestEstimate"
+                          }
+                        }
+                      },
+                      "description": "Estimate returned."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/FilmApiUnauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/OriginNotAllowed"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrFilmApiKey": []
+                    }
+                  ],
+                  "summary": "Estimate Screening Request Fees",
+                  "tags": [
+                    "Film Screening Requests"
+                  ]
+                }
+              },
+              "/api/v1/films/{film_slug}/screening-request/venues/search": {
+                "get": {
+                  "description": "Search Venues for theatrical Screening Request forms.\n\nThis endpoint returns theatrical Venues near the provided latitude and\nlongitude, or near a server-geocoded `location` such as a city, state,\nZIP/postal code, or other location string.\n\nProvide either `latitude` plus `longitude`, or `location`. When both are\nsupplied, latitude and longitude are used.\n\nSearch results do not include weekly availability. After a requester\nselects a Venue, call the weekly availability endpoint to retrieve date\nand time selection data.\n\nThis endpoint is only part of the theatrical request flow. For\nnon-theatrical in-person requests, the form submits location details in\nthe `venue` object instead of selecting a GATHR Venue.\n",
+                  "operationId": "searchFilmScreeningRequestVenues",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/FilmSlug"
+                    },
+                    {
+                      "description": "City, state, ZIP/postal code, or other location string to geocode for location-based search.",
+                      "in": "query",
+                      "name": "location",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Latitude used for location-based search. Provide with longitude, or provide location instead.",
+                      "in": "query",
+                      "name": "latitude",
+                      "required": false,
+                      "schema": {
+                        "format": "float",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Longitude used for location-based search. Provide with latitude, or provide location instead.",
+                      "in": "query",
+                      "name": "longitude",
+                      "required": false,
+                      "schema": {
+                        "format": "float",
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Search radius in kilometers around the provided latitude/longitude.",
+                      "in": "query",
+                      "name": "radius",
+                      "required": false,
+                      "schema": {
+                        "format": "float",
+                        "type": "number"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "venue_request_form_url": {
+                                "description": "Only present when no Venues match. Form where the requester can suggest their theater to GATHR.",
+                                "format": "uri",
+                                "type": "string"
+                              },
+                              "venue_request_message_html": {
+                                "description": "Only present when no Venues match. Ready-to-render message linking to `venue_request_form_url`, e.g. `Not seeing your theater? <a href=\"...\" target=\"_blank\" rel=\"noopener\">Suggest it to GATHR®</a>.`",
+                                "type": "string"
+                              },
+                              "venues": {
+                                "items": {
+                                  "$ref": "#/components/schemas/ScreeningVenueSummary"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Matching Venues returned."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/FilmApiUnauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/OriginNotAllowed"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrFilmApiKey": []
+                    }
+                  ],
+                  "summary": "Search Venues",
+                  "tags": [
+                    "Film Screening Requests"
+                  ]
+                }
+              },
+              "/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/availability-on-date": {
+                "post": {
+                  "description": "Check availability for a selected theatrical Venue on a specific date.\n\nUse this endpoint after a requester selects a date so your form can\nrestrict available times using GATHR availability and exceptions.\n\n`availability` always returns the same keys: `available`, `start`,\n`end`, `timezone`, and `exceptions`. `start` and `end` are 24-hour\n`HH:MM` times in the Venue's local timezone and bound the time picker\nfor that date; they are `null` when `available` is false. `exceptions`\ncontains only the time-window overrides that apply to the requested\ndate. Upcoming date-level exceptions are returned by the weekly\navailability endpoint instead.\n\nSubmit `screening.start_time` in the same 24-hour `HH:MM` format.\n\nThis helps the frontend avoid invalid times before submit. The submit\nendpoint rechecks Venue availability server-side, so the frontend should\nstill handle `VALIDATION_ERROR` responses for `screening.start_date` or\n`screening.start_time`.\n",
+                  "operationId": "getFilmScreeningRequestVenueAvailabilityOnDate",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/FilmSlug"
+                    },
+                    {
+                      "description": "The Venue slug returned by Venue search.",
+                      "in": "path",
+                      "name": "venue_slug",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/ScreeningVenueAvailabilityDateInput"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "availableDate": {
+                              "description": "`start` and `end` bound the time picker. Entries in\n`exceptions` with `available: false` are blocked ranges\ninside that window — exclude those times; `available: true`\nentries are informational and never widen or narrow the\nwindow.\n",
+                              "summary": "Venue is open on the requested date",
+                              "value": {
+                                "availability": {
+                                  "available": true,
+                                  "end": "23:30",
+                                  "exceptions": [
+                                    {
+                                      "available": true,
+                                      "deposit_percentage": "25",
+                                      "end": "22:30",
+                                      "fee": "750.00",
+                                      "non_refundable": "0",
+                                      "start": "19:00"
+                                    }
+                                  ],
+                                  "start": "12:00",
+                                  "timezone": "America/New_York"
+                                },
+                                "date": "2026-09-05",
+                                "venue": {
+                                  "name": "Downtown Cinema",
+                                  "slug": "downtown-cinema"
+                                }
+                              }
+                            },
+                            "unavailableDate": {
+                              "description": "The response keeps its full shape when the Venue is closed.\nOffer no times for the date.\n",
+                              "summary": "Venue is closed on the requested date",
+                              "value": {
+                                "availability": {
+                                  "available": false,
+                                  "end": null,
+                                  "exceptions": [],
+                                  "start": null,
+                                  "timezone": "America/New_York"
+                                },
+                                "date": "2026-09-07",
+                                "venue": {
+                                  "name": "Downtown Cinema",
+                                  "slug": "downtown-cinema"
+                                }
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ScreeningVenueDateAvailability"
+                          }
+                        }
+                      },
+                      "description": "Venue availability for the date returned."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/FilmApiUnauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/OriginNotAllowed"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrFilmApiKey": []
+                    }
+                  ],
+                  "summary": "Get Venue availability on a date",
+                  "tags": [
+                    "Film Screening Requests"
+                  ]
+                }
+              },
+              "/api/v1/films/{film_slug}/screening-request/venues/{venue_slug}/weekly-availability": {
+                "get": {
+                  "description": "Get weekly availability for a selected theatrical Venue.\n\nUse this endpoint after a requester selects a Venue from search results\nso your form can render date and time selection using GATHR availability.\n\nThe response identifies the selected Venue and returns availability data\nused to constrain date/time UI. Call the date-specific availability\nendpoint after the requester picks a date.\n\n`availability` is keyed by ISO-8601 day of week: `\"1\"` is Monday through\n`\"7\"` is Sunday. There is no `\"0\"` key. Each day has `available`, plus\n`start` and `end` as 24-hour `HH:MM` times in the Venue's local\n`timezone` when the Venue is open that day. `exceptions` lists upcoming\ndate-level overrides, and `min_notice_days` is the minimum lead time in\ndays.\n",
+                  "operationId": "getFilmScreeningRequestVenueWeeklyAvailability",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/FilmSlug"
+                    },
+                    {
+                      "description": "The Venue slug returned by Venue search.",
+                      "in": "path",
+                      "name": "venue_slug",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "weeklyAvailability": {
+                              "description": "Day keys are ISO-8601 (`\"1\"` Monday through `\"7\"` Sunday).\nClosed days carry only `available: false`. All times are\n24-hour `HH:MM` in the Venue's local `timezone`.\n",
+                              "summary": "Weekday windows with an upcoming exception",
+                              "value": {
+                                "availability": {
+                                  "1": {
+                                    "available": false
+                                  },
+                                  "2": {
+                                    "available": false
+                                  },
+                                  "3": {
+                                    "available": true,
+                                    "end": "23:00",
+                                    "fee": "450.00",
+                                    "start": "17:00"
+                                  },
+                                  "4": {
+                                    "available": true,
+                                    "end": "23:00",
+                                    "fee": "450.00",
+                                    "start": "17:00"
+                                  },
+                                  "5": {
+                                    "available": true,
+                                    "end": "23:30",
+                                    "fee": "600.00",
+                                    "start": "16:00"
+                                  },
+                                  "6": {
+                                    "available": true,
+                                    "end": "23:30",
+                                    "fee": "600.00",
+                                    "start": "12:00"
+                                  },
+                                  "7": {
+                                    "available": true,
+                                    "end": "20:00",
+                                    "fee": "500.00",
+                                    "start": "12:00"
+                                  },
+                                  "exceptions": [
+                                    {
+                                      "available": true,
+                                      "date": "2026-09-05",
+                                      "deposit_percentage": "25",
+                                      "fee": "750.00",
+                                      "non_refundable": "0"
+                                    },
+                                    {
+                                      "available": false,
+                                      "date": "2026-11-26",
+                                      "deposit_percentage": "0",
+                                      "fee": "0.00",
+                                      "non_refundable": "0"
+                                    }
+                                  ],
+                                  "min_notice_days": 14,
+                                  "timezone": "America/New_York"
+                                },
+                                "venue": {
+                                  "name": "Downtown Cinema",
+                                  "slug": "downtown-cinema"
+                                }
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/ScreeningVenueWeeklyAvailability"
+                          }
+                        }
+                      },
+                      "description": "Venue weekly availability returned."
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/FilmApiUnauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/OriginNotAllowed"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrFilmApiKey": []
+                    }
+                  ],
+                  "summary": "Get Venue weekly availability",
+                  "tags": [
+                    "Film Screening Requests"
+                  ]
+                }
+              },
+              "/api/v1/films/{film_slug}/screening-requests": {
+                "post": {
+                  "description": "Submit a custom Film Screening Request form.\n\nThis endpoint creates or finds the requester user, ensures a Host\nprofile exists, creates a GATHR Screening Request, stores the submitted\npayload and latest estimate, creates an email continuation token, and\nsends the requester a GATHR email.\n\nThis endpoint does not create an Event or Booking, and it does not\npublish anything. Instant requests and any requests that require payment\ncontinue through the emailed GATHR status page. External forms do not\ncollect payment details and the Film API does not expose payment\nendpoints. Non-instant requests continue to GATHR confirmation before\noffer or approval workflows.\n\nAfter a successful submission, show the requester the returned `message`.\nThe next frontend action is always `screening_request.next_step` with a\nvalue of `check_email`. If payment is required, GATHR handles it on the\nemailed status page after submission. Unconfirmed Screening Requests may\nexpire if the requester does not continue within GATHR's configured\nsubmission window.\n\nGATHR validates the current Film API configuration, requester fields,\nemail deliverability, Host type, terms acceptance, Film availability,\ngeographic restrictions, selected Screening experience, Venue/location\nfields, theatrical Venue availability, instant ticketing/capacity fields,\nfuture start date/time, threshold/deadline fields, and subtitle selection\nserver-side.\n\nRequired field scenarios:\n- All submit requests require `screening_type`, `experience`,\n  `requester`, `screening`, `venue`, and `terms.accepted` with a value\n  of `true`.\n- `screening.start_date` and `screening.start_time` must resolve to a\n  future Screening start date/time.\n- Theatrical requests require `venue.venue_slug`. The selected Venue must\n  be a valid theatrical GATHR Venue and available for\n  `screening.start_date` and `screening.start_time`.\n- Non-theatrical in-person requests require `venue.name`,\n  `venue.address`, `venue.city`, `venue.latitude`, `venue.longitude`,\n  and `screening.timezone`. `venue.capacity` is optional; when supplied,\n  it must be a non-negative integer.\n- `screening.estimated_attendance` is optional and defaults to `0`.\n- `screening.dates_flexible` is optional and defaults to `false`.\n- `screening.paid_event` is optional and defaults to `false`; TOD/EOD\n  submissions are treated as paid server-side even when omitted.\n- Server-calculated instant submissions require `ticketing`.\n  Non-instant submissions may omit `ticketing` because the Host adds or\n  finalizes ticket tier(s) on GATHR before the Screening can publish.\n- When `ticketing.mode` is `free`, `ticketing.free_quantity` is required.\n- When `ticketing.mode` is `single`, `ticketing.single.title` and\n  `ticketing.single.price` are required.\n- When `ticketing.mode` is `multiple`, at least one tier with `title`,\n  `price`, and `quantity` is required.\n- Events On Demand™ submissions require `threshold.type`, `threshold.deadline`,\n  `threshold.estimated_capacity`, and either `threshold.attendance` or\n  `threshold.revenue` depending on `threshold.type`. Required\n  `threshold.deadline` values must be in the future and before the\n  Screening date.\n- Theatrical On Demand® submissions omit client-provided `threshold`;\n  GATHR derives the Theatrical On Demand® deadline and threshold\n  server-side from native Screening cost/deadline rules.\n- `preferred_subtitle_guid` is optional and only valid for\n  non-theatrical in-person requests when the config endpoint returns\n  subtitle options. Use null or an empty string for no subtitles.\n- Virtual submit does not require physical venue/location fields. Send\n  `venue` as an empty object (`{}`); the `venue` key itself is still\n  required. `screening.timezone` is required.\n- Hybrid submit requires non-theatrical in-person location fields\n  (`venue.name`, `venue.address`, `venue.city`, `venue.latitude`,\n  `venue.longitude`) and `screening.timezone`, and is available only\n  when the Film enables both non-theatrical in-person and virtual\n  Screening Requests.\n- Virtual and hybrid Screening date windows: virtual requests use the\n  config's `availability_windows.virtual`; hybrid requests use\n  `availability_windows.non_theatrical`. There is no separate hybrid\n  window.\n",
+                  "operationId": "submitFilmScreeningRequest",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/FilmSlug"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "hybridStandard": {
+                            "description": "A non-instant hybrid Screening: the audience attends in person\nand online at the same time. Hybrid submit uses the same\nin-person location fields as a non-theatrical in-person\nrequest plus `screening.timezone`, and requires the Film to\nenable both non-theatrical in-person and virtual Screening\nRequests. Hybrid Screening dates use the non-theatrical\navailability window. Ticketing details are omitted because the\nHost adds or finalizes ticket tier(s) on GATHR before\npublishing.\n",
+                            "summary": "Hybrid standard request",
+                            "value": {
+                              "experience": "standard",
+                              "preferred_subtitle_guid": null,
+                              "requester": {
+                                "email": "amara@example.org",
+                                "first_name": "Amara",
+                                "host_type_id": 4,
+                                "last_name": "Nolan",
+                                "organization": "Riverside Community Center"
+                              },
+                              "screening": {
+                                "end_date": "2026-11-14",
+                                "end_time": "21:30",
+                                "estimated_attendance": 120,
+                                "paid_event": true,
+                                "start_date": "2026-11-14",
+                                "start_time": "19:00",
+                                "timezone": "America/Chicago",
+                                "title": "In-Person + Online Screening"
+                              },
+                              "screening_type": "hybrid",
+                              "terms": {
+                                "accepted": true,
+                                "accepted_at": "2026-08-30T17:05:00Z"
+                              },
+                              "venue": {
+                                "address": "820 River Rd",
+                                "capacity": 200,
+                                "city": "Austin",
+                                "latitude": 30.2672,
+                                "longitude": -97.7431,
+                                "name": "Riverside Community Center"
+                              }
+                            }
+                          },
+                          "nonTheatricalFree": {
+                            "description": "A non-theatrical in-person Screening at a requester-supplied\nlocation with free admission. If the selected Film resolves as\ninstant, include `ticketing` details.\n",
+                            "summary": "Non-theatrical free request",
+                            "value": {
+                              "experience": "standard",
+                              "preferred_subtitle_guid": null,
+                              "requester": {
+                                "email": "priya@example.org",
+                                "first_name": "Priya",
+                                "host_type_id": 2,
+                                "last_name": "Shah",
+                                "organization": "Community Library",
+                                "phone": "555-0100"
+                              },
+                              "screening": {
+                                "end_date": "2026-10-03",
+                                "end_time": "17:15",
+                                "start_date": "2026-10-03",
+                                "start_time": "15:00",
+                                "timezone": "America/Los_Angeles"
+                              },
+                              "screening_type": "non_theatrical",
+                              "terms": {
+                                "accepted": true,
+                                "accepted_at": "2026-07-01T18:00:00Z"
+                              },
+                              "venue": {
+                                "address": "100 Main St",
+                                "city": "Pasadena",
+                                "latitude": 34.1478,
+                                "longitude": -118.1445,
+                                "name": "Community Library Auditorium"
+                              }
+                            }
+                          },
+                          "nonTheatricalPaidWithSubtitles": {
+                            "description": "A non-instant non-theatrical in-person EOD Screening using\nrequester location details and a subtitle GUID returned by the\nconfig endpoint. Ticketing details are omitted because the\nHost adds or finalizes ticket tier(s) on GATHR before\npublishing. EOD threshold/deadline details are supplied because\nEOD does not currently derive them server-side.\n",
+                            "summary": "Non-theatrical paid multi-tier request with subtitles",
+                            "value": {
+                              "experience": "eod",
+                              "preferred_subtitle_guid": "sub_en_abc123",
+                              "requester": {
+                                "email": "lina@example.net",
+                                "first_name": "Lina",
+                                "host_type_id": 5,
+                                "last_name": "Chen",
+                                "organization": "Regional Arts Center"
+                              },
+                              "screening": {
+                                "end_date": "2026-11-08",
+                                "end_time": "22:00",
+                                "start_date": "2026-11-08",
+                                "start_time": "19:30",
+                                "timezone": "America/Chicago"
+                              },
+                              "screening_type": "non_theatrical",
+                              "terms": {
+                                "accepted": true,
+                                "accepted_at": "2026-07-01T19:10:00Z"
+                              },
+                              "threshold": {
+                                "attendance": 75,
+                                "deadline": "2026-10-25",
+                                "estimated_capacity": 120,
+                                "type": "attendance"
+                              },
+                              "venue": {
+                                "address": "45 Lake Ave",
+                                "city": "Madison",
+                                "latitude": 43.0731,
+                                "longitude": -89.4012,
+                                "name": "Regional Arts Center"
+                              }
+                            }
+                          },
+                          "theatricalBuyout": {
+                            "description": "A theatrical buyout request. No threshold object is needed\nbecause buyout is not an on-demand threshold experience.\nIf the selected Film/Venue resolves as instant, include\n`ticketing` details.\n",
+                            "summary": "Theatrical buyout request",
+                            "value": {
+                              "experience": "buyout",
+                              "preferred_subtitle_guid": null,
+                              "requester": {
+                                "email": "marco@example.com",
+                                "first_name": "Marco",
+                                "host_type_id": 4,
+                                "last_name": "Rivera",
+                                "organization": "Downtown Film Club"
+                              },
+                              "screening": {
+                                "start_date": "2026-09-12",
+                                "start_time": "18:30"
+                              },
+                              "screening_type": "theatrical",
+                              "terms": {
+                                "accepted": true
+                              },
+                              "venue": {
+                                "venue_slug": "downtown-cinema"
+                              }
+                            }
+                          },
+                          "theatricalTodPaid": {
+                            "description": "A non-instant theatrical on-demand request using a selected\nGATHR Venue. Ticketing and threshold details are omitted\nbecause the Host adds or finalizes ticket tier(s) on GATHR\nbefore publishing, and GATHR derives the TOD deadline and\nthreshold server-side.\n",
+                            "summary": "Theatrical TOD paid request",
+                            "value": {
+                              "experience": "tod",
+                              "preferred_subtitle_guid": null,
+                              "requester": {
+                                "email": "jane@example.com",
+                                "first_name": "Jane",
+                                "host_type_id": 3,
+                                "last_name": "Host",
+                                "nonprofit_ein": "12-3456789",
+                                "organization": "Example Org",
+                                "phone": "555-555-5555"
+                              },
+                              "screening": {
+                                "start_date": "2026-08-19",
+                                "start_time": "19:00"
+                              },
+                              "screening_type": "theatrical",
+                              "terms": {
+                                "accepted": true,
+                                "accepted_at": "2026-06-30T22:00:00Z"
+                              },
+                              "venue": {
+                                "venue_slug": "example-theater"
+                              }
+                            }
+                          },
+                          "virtualStandard": {
+                            "description": "A non-instant virtual Screening streamed online. `venue` is\nrequired but stays an empty object because there is no\nphysical location, and `screening.timezone` is required.\nTicketing details are omitted because the Host adds or\nfinalizes ticket tier(s) on GATHR before publishing. Do not\ncollect streaming links, platforms, or credentials: GATHR\narranges virtual delivery with the Host after confirmation.\n",
+                            "summary": "Virtual standard request",
+                            "value": {
+                              "experience": "standard",
+                              "preferred_subtitle_guid": null,
+                              "requester": {
+                                "email": "dana@example.com",
+                                "first_name": "Dana",
+                                "host_type_id": 2,
+                                "last_name": "Okafor",
+                                "organization": "Riverside Film Society",
+                                "phone": "555-0142"
+                              },
+                              "screening": {
+                                "end_date": "2026-10-17",
+                                "end_time": "21:00",
+                                "estimated_attendance": 150,
+                                "paid_event": true,
+                                "start_date": "2026-10-17",
+                                "start_time": "19:00",
+                                "timezone": "America/Chicago",
+                                "title": "Virtual Screening Night"
+                              },
+                              "screening_type": "virtual",
+                              "terms": {
+                                "accepted": true,
+                                "accepted_at": "2026-08-30T16:20:00Z"
+                              },
+                              "venue": {}
+                            }
+                          }
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/FilmScreeningRequestSubmission"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "duplicateSuccess": {
+                              "value": {
+                                "message": "Check your email to confirm your request.",
+                                "screening_request": {
+                                  "instant": false,
+                                  "next_step": "check_email",
+                                  "status": "completion_email_sent",
+                                  "uid": "sr_existing123"
+                                },
+                                "success": true
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/FilmScreeningRequestSubmissionResult"
+                          }
+                        }
+                      },
+                      "description": "Matching recent Screening Request already exists. The frontend should\ntreat this as a successful submission and show the returned message.\n"
+                    },
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "instantSuccess": {
+                              "value": {
+                                "message": "Check your email to finish your request.",
+                                "screening_request": {
+                                  "instant": true,
+                                  "next_step": "check_email",
+                                  "status": "completion_email_sent",
+                                  "uid": "sr_abc123"
+                                },
+                                "success": true
+                              }
+                            },
+                            "nonInstantSuccess": {
+                              "value": {
+                                "message": "Check your email to confirm your request.",
+                                "screening_request": {
+                                  "instant": false,
+                                  "next_step": "check_email",
+                                  "status": "completion_email_sent",
+                                  "uid": "sr_def456"
+                                },
+                                "success": true
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/FilmScreeningRequestSubmissionResult"
+                          }
+                        }
+                      },
+                      "description": "Screening Request received.\n"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                      "$ref": "#/components/responses/FilmApiUnauthorized"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/OriginNotAllowed"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    },
+                    "422": {
+                      "$ref": "#/components/responses/ValidationError"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/ServerError"
+                    }
+                  },
+                  "security": [
+                    {
+                      "GathrFilmApiKey": []
+                    }
+                  ],
+                  "summary": "Submit a Screening Request",
+                  "tags": [
+                    "Film Screening Requests"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://gathr.com"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Authentication"
+              },
+              {
+                "name": "Profiles"
+              },
+              {
+                "name": "Orders"
+              },
+              {
+                "description": "Build custom Film Screening Request forms that continue through GATHR by email.\n\nEnable and configure API access for your Film in Film Management > Film API.\nUse the publishable Film API key for your custom Screening Request form.\nAdd the form website's domain to the Film API whitelist.\n\nRecommended frontend flow:\n1. Call the config endpoint before rendering the form.\n2. For theatrical requests, search Venues, load weekly availability for the\n   selected Venue, then check the selected date before allowing time\n   selection.\n3. Optionally call the estimate endpoint before submit to show current\n   pricing information.\n4. Submit the request.\n5. On success, show the returned message and tell the requester to check\n   email. GATHR manages the continuation step.\n\nTreat structured response fields as source of truth. Do not infer missing\nfee rules, and do not present estimate responses as final settlement\noutcomes.\n\nSubmitting the form creates a GATHR Screening Request. It does not create\nan Event or Booking, and it does not publish anything. Instant requests\nand any requests that require payment continue through the emailed GATHR\nstatus page. External forms do not collect payment details and the Film API\ndoes not expose payment endpoints. Non-instant requests continue to GATHR\nconfirmation by email before offer/approval workflows.\n\nValidation errors return `error.field` using the same dotted path as the\nsubmitted JSON field, so frontends can map errors back to inputs such as\n`requester.email`, `venue.venue_slug`, `ticketing.single.price`, or\n`threshold.deadline`.\n",
+                "name": "Film Screening Requests"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Gathr"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:25.925565+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://gathr.com/assets/downloads/gathr-openapi.yaml",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "a988603c31979f71cab2b9a4038d1af9fd4256460f2b45b2ecc90e58938026b7",
+    "source_id": "gathr",
+    "source_updated": null,
+    "url": "https://gathr.com/assets/downloads/gathr-openapi.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.3.0"
+}

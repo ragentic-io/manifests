@@ -1,0 +1,2645 @@
+{
+  "a2ui": {},
+  "app": "sendpulse-sms",
+  "graph": {
+    "edges": [
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:put:/addressbooks/{id}/phone"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:post:/addressbooks/{id}/phones/variable"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:get:/sms/black_list"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:post:/sms/black_list"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/sms/black_list"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:post:/sms/campaigns"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/sms/campaigns"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:put:/sms/campaigns/cancel/{id}"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:get:/sms/campaigns/cost"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:get:/sms/campaigns/info/{id}"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:get:/sms/campaigns/list"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:put:/sms/numbers"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:post:/sms/numbers"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/sms/numbers"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:get:/sms/numbers/info/{addressBookId}/{phoneNumber}"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:post:/sms/numbers/variables"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:post:/sms/send"
+      },
+      {
+        "from": "sendpulse-sms",
+        "kind": "EXPOSES",
+        "to": "operation:get:/sms/senders"
+      },
+      {
+        "from": "operation:post:/sms/black_list",
+        "kind": "RETURNS",
+        "to": "schema:BlacklistAddResultItem"
+      },
+      {
+        "from": "operation:delete:/sms/black_list",
+        "kind": "RETURNS",
+        "to": "schema:BlacklistRemoveResultItem"
+      },
+      {
+        "from": "operation:get:/sms/campaigns/info/{id}",
+        "kind": "RETURNS",
+        "to": "schema:CampaignInfoItem"
+      },
+      {
+        "from": "operation:put:/sms/numbers",
+        "kind": "RETURNS",
+        "to": "schema:VariablesUpdateResult"
+      },
+      {
+        "from": "operation:get:/sms/numbers/info/{addressBookId}/{phoneNumber}",
+        "kind": "RETURNS",
+        "to": "schema:NumberInfoResult"
+      },
+      {
+        "from": "operation:post:/sms/numbers/variables",
+        "kind": "RETURNS",
+        "to": "schema:NumberImportResult"
+      },
+      {
+        "from": "operation:get:/sms/senders",
+        "kind": "RETURNS",
+        "to": "schema:SmsSender"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "sendpulse-sms",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Maps an SMS identity to an existing email-based contact, enabling multi-channel communication for a single user entity.",
+        "id": "operation:put:/addressbooks/{id}/phone",
+        "kind": "operation",
+        "method": "put",
+        "name": "updateContactPhone",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "path": "/addressbooks/{id}/phone",
+        "pointer": "#/paths/~1addressbooks~1{id}~1phone/put",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Change a phone number for a contact",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Targeted update of metadata for a specific SMS contact within a list, useful for real-time variable updates.",
+        "id": "operation:post:/addressbooks/{id}/phones/variable",
+        "kind": "operation",
+        "method": "post",
+        "name": "updateSmsVariablesSingle",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "path": "/addressbooks/{id}/phones/variable",
+        "pointer": "#/paths/~1addressbooks~1{id}~1phones~1variable/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Change variables for a single phone contact",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieves the master suppression list of blacklisted numbers for auditing and external CRM synchronization.",
+        "id": "operation:get:/sms/black_list",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSmsBlacklist",
+        "path": "/sms/black_list",
+        "pointer": "#/paths/~1sms~1black_list/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Get a list of contacts in the blacklist",
+        "tags": [
+          "Compliance"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Globally suppresses phone numbers, preventing any future SMS from being sent to them across all address books.",
+        "id": "operation:post:/sms/black_list",
+        "kind": "operation",
+        "method": "post",
+        "name": "addSmsBlacklist",
+        "path": "/sms/black_list",
+        "pointer": "#/paths/~1sms~1black_list/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "BlacklistAddResultItem[]"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Add phone numbers to the blacklist",
+        "tags": [
+          "Compliance"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Lifts the global suppression for specific numbers, to be used only after the user has explicitly re-consented.",
+        "id": "operation:delete:/sms/black_list",
+        "kind": "operation",
+        "method": "delete",
+        "name": "removeSmsBlacklist",
+        "path": "/sms/black_list",
+        "pointer": "#/paths/~1sms~1black_list/delete",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "BlacklistRemoveResultItem[]"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Remove a phone number from the blacklist",
+        "tags": [
+          "Compliance"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Triggers a bulk SMS broadcast to an entire address book, with support for dynamic content, link tracking, and scheduled delivery.",
+        "id": "operation:post:/sms/campaigns",
+        "kind": "operation",
+        "method": "post",
+        "name": "createSmsCampaign",
+        "path": "/sms/campaigns",
+        "pointer": "#/paths/~1sms~1campaigns/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Create a campaign for a mailing list",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Permanently deletes a campaign record, available only for campaigns that have not yet started.",
+        "id": "operation:delete:/sms/campaigns",
+        "kind": "operation",
+        "method": "delete",
+        "name": "deleteSmsCampaign",
+        "path": "/sms/campaigns",
+        "pointer": "#/paths/~1sms~1campaigns/delete",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Delete a campaign",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Stops a scheduled campaign from being sent, an emergency override for erroneous scheduling.",
+        "id": "operation:put:/sms/campaigns/cancel/{id}",
+        "kind": "operation",
+        "method": "put",
+        "name": "cancelSmsCampaign",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "path": "/sms/campaigns/cancel/{id}",
+        "pointer": "#/paths/~1sms~1campaigns~1cancel~1{id}/put",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Cancel a campaign before sending has started",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Estimates the total credit expenditure for a proposed campaign, crucial for budget planning before an actual broadcast.",
+        "id": "operation:get:/sms/campaigns/cost",
+        "kind": "operation",
+        "method": "get",
+        "name": "calculateSmsCost",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "addressBookId",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "phones",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "in": "query",
+            "name": "body",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sender",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "route",
+            "required": false,
+            "type": "object"
+          }
+        ],
+        "path": "/sms/campaigns/cost",
+        "pointer": "#/paths/~1sms~1campaigns~1cost/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Calculate the cost of a campaign",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns granular status for a campaign, including per-phone delivery breakdowns and spend details.",
+        "id": "operation:get:/sms/campaigns/info/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSmsCampaignInfo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "path": "/sms/campaigns/info/{id}",
+        "pointer": "#/paths/~1sms~1campaigns~1info~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CampaignInfoItem[]"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Get campaign information",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieves campaign history within a specific time window, useful for building performance dashboards.",
+        "id": "operation:get:/sms/campaigns/list",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSmsCampaigns",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "dateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "dateTo",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/sms/campaigns/list",
+        "pointer": "#/paths/~1sms~1campaigns~1list/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Get a list of campaigns by date",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Batch updates variable values for a set of phone numbers, keeping contact data synchronized across an address book.",
+        "id": "operation:put:/sms/numbers",
+        "kind": "operation",
+        "method": "put",
+        "name": "updateSmsVariablesBatch",
+        "path": "/sms/numbers",
+        "pointer": "#/paths/~1sms~1numbers/put",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "VariablesUpdateResult[]"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Update variables for multiple phone numbers",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Imports a batch of phone numbers into a designated address book, the baseline operation for building a mobile audience.",
+        "id": "operation:post:/sms/numbers",
+        "kind": "operation",
+        "method": "post",
+        "name": "addSmsNumbers",
+        "path": "/sms/numbers",
+        "pointer": "#/paths/~1sms~1numbers/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Add phone numbers to a mailing list",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Removes specific mobile contacts from an address book without preventing their future re-subscription.",
+        "id": "operation:delete:/sms/numbers",
+        "kind": "operation",
+        "method": "delete",
+        "name": "removeSmsNumbers",
+        "path": "/sms/numbers",
+        "pointer": "#/paths/~1sms~1numbers/delete",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Remove phone numbers from a mailing list",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieves the profile of a mobile contact, including current variable values and the date they were added to the list.",
+        "id": "operation:get:/sms/numbers/info/{addressBookId}/{phoneNumber}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSmsNumberInfo",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "addressBookId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "path",
+            "name": "phoneNumber",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/sms/numbers/info/{addressBookId}/{phoneNumber}",
+        "pointer": "#/paths/~1sms~1numbers~1info~1{addressBookId}~1{phoneNumber}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "NumberInfoResult[]"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Get information for a specific phone number",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Advanced contact ingestion that maps specific variables to each phone number in a single payload, ideal for personalized onboarding.",
+        "id": "operation:post:/sms/numbers/variables",
+        "kind": "operation",
+        "method": "post",
+        "name": "addSmsNumbersWithVariables",
+        "path": "/sms/numbers/variables",
+        "pointer": "#/paths/~1sms~1numbers~1variables/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "NumberImportResult[]"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Add phone numbers with complex variables",
+        "tags": [
+          "Contacts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Fast-track broadcast to an ad-hoc list of numbers not stored in an address book, ideal for one-off alerts or external CRM triggers.",
+        "id": "operation:post:/sms/send",
+        "kind": "operation",
+        "method": "post",
+        "name": "sendSmsToNumbers",
+        "path": "/sms/send",
+        "pointer": "#/paths/~1sms~1send/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Create a campaign for a list of phone numbers",
+        "tags": [
+          "Campaigns"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieves all approved alphanumeric Sender IDs; only those with Active status can be used for campaigns.",
+        "id": "operation:get:/sms/senders",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSmsSenders",
+        "path": "/sms/senders",
+        "pointer": "#/paths/~1sms~1senders/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SmsSender[]"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKey": []
+          },
+          {
+            "oauth2": []
+          }
+        ],
+        "summary": "Get list of sender IDs",
+        "tags": [
+          "Configuration"
+        ]
+      },
+      {
+        "description": "Per-number blacklist result.",
+        "id": "schema:BlacklistAddResultItem",
+        "kind": "schema",
+        "name": "BlacklistAddResultItem",
+        "type": "object"
+      },
+      {
+        "description": "Per-number blacklist removal result.",
+        "id": "schema:BlacklistRemoveResultItem",
+        "kind": "schema",
+        "name": "BlacklistRemoveResultItem",
+        "type": "object"
+      },
+      {
+        "description": "Per-phone campaign delivery record.",
+        "id": "schema:CampaignInfoItem",
+        "kind": "schema",
+        "name": "CampaignInfoItem",
+        "type": "object"
+      },
+      {
+        "id": "schema:NumberImportResult",
+        "kind": "schema",
+        "name": "NumberImportResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:NumberInfoResult",
+        "kind": "schema",
+        "name": "NumberInfoResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:SmsSender",
+        "kind": "schema",
+        "name": "SmsSender",
+        "type": "object"
+      },
+      {
+        "id": "schema:VariablesUpdateResult",
+        "kind": "schema",
+        "name": "VariablesUpdateResult",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "sendpulse-sms"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.sendpulse.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "BlacklistAddResultItem": {
+                  "additionalProperties": true,
+                  "description": "Per-number blacklist result. The source does not strictly type this item; shape is returned as-is by the API.",
+                  "type": "object"
+                },
+                "BlacklistRemoveResultItem": {
+                  "additionalProperties": true,
+                  "description": "Per-number blacklist removal result. The source does not strictly type this item; shape is returned as-is by the API.",
+                  "type": "object"
+                },
+                "CampaignInfoItem": {
+                  "additionalProperties": true,
+                  "description": "Per-phone campaign delivery record. The source does not strictly type this item; shape is returned as-is by the API.",
+                  "type": "object"
+                },
+                "NumberImportResult": {
+                  "properties": {
+                    "counters": {
+                      "additionalProperties": true,
+                      "description": "Import counters keyed by phone number; keys are dynamic.",
+                      "type": "object"
+                    },
+                    "result": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "NumberInfoResult": {
+                  "properties": {
+                    "data": {
+                      "additionalProperties": true,
+                      "description": "Contact profile fields (variables, status, add date). Keys are account-defined and not strictly typed by the source.",
+                      "type": "object"
+                    },
+                    "result": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SmsSender": {
+                  "properties": {
+                    "country": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "integer"
+                    },
+                    "sender": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "integer"
+                    },
+                    "status_explain": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "VariablesUpdateResult": {
+                  "properties": {
+                    "counters": {
+                      "properties": {
+                        "updated": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "result": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "apiKey": {
+                  "description": "Static API Key authentication.  A long-lived token generated manually in the SendPulse account settings.\n",
+                  "in": "header",
+                  "name": "Authorization",
+                  "type": "apiKey",
+                  "x-ai-description": "Permanent authentication token. Ideal for simple integrations without token refresh logic.\n"
+                },
+                "oauth2": {
+                  "description": "OAuth 2.0 Client Credentials flow for temporary access tokens.",
+                  "flows": {
+                    "clientCredentials": {
+                      "scopes": {},
+                      "tokenUrl": "https://api.sendpulse.com/oauth/access_token"
+                    }
+                  },
+                  "type": "oauth2",
+                  "x-ai-description": "Standard OAuth 2.0 flow using Client ID and Client Secret.  Provides temporary tokens (valid for 1 hour) for enhanced security.\n"
+                }
+              }
+            },
+            "info": {
+              "description": "The SendPulse SMS API enables global mobile messaging, contact management,  and campaign orchestration. It supports alphanumeric sender IDs, bulk messaging,  and advanced segmentation through variables.\n",
+              "license": {
+                "identifier": "Apache-2.0",
+                "name": "Apache 2.0"
+              },
+              "title": "SendPulse SMS API",
+              "version": "1.0.0",
+              "x-ai-description": "Comprehensive SMS gateway for global mobile marketing and transactional notifications.  This API provides direct access to telecommunication routes with localized routing  intelligence and high-speed delivery capabilities.\n"
+            },
+            "openapi": "3.1.2",
+            "paths": {
+              "/addressbooks/{id}/phone": {
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "put": {
+                  "description": "Maps an SMS identity to an existing email-based contact, enabling multi-channel communication for a single user entity.",
+                  "operationId": "updateContactPhone",
+                  "parameters": [],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "email": {
+                              "type": "string"
+                            },
+                            "phone": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "email",
+                            "phone"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successfully updated"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Change a phone number for a contact",
+                  "tags": [
+                    "Contacts"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    },
+                    "security_info": {
+                      "data_handling": [
+                        "ResourceStateUpdate"
+                      ]
+                    }
+                  },
+                  "x-ai-description": "Maps an SMS identity to an existing email-based contact record.  Enables multi-channel communication (Email + SMS) for a single user entity.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Check if the contact exists by email first."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Confirm the user is now reachable via both Email and SMS."
+                  ],
+                  "x-ai-role": "customer_engagement_specialist",
+                  "x-ai-suggestions": [
+                    "Check if the phone number is already associated with another email to prevent duplication."
+                  ]
+                }
+              },
+              "/addressbooks/{id}/phones/variable": {
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "post": {
+                  "description": "Targeted update of metadata for a specific SMS contact within a list, useful for real-time variable updates.",
+                  "operationId": "updateSmsVariablesSingle",
+                  "parameters": [],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "phone": {
+                              "type": "string"
+                            },
+                            "variables": {
+                              "items": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "oneOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "required": [
+                            "phone",
+                            "variables"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Change variables for a single phone contact",
+                  "tags": [
+                    "Contacts"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    },
+                    "security_info": {
+                      "data_handling": [
+                        "ResourceStateUpdate"
+                      ]
+                    }
+                  },
+                  "x-ai-description": "Targeted update of metadata for a specific SMS contact within a list.  Useful for real-time updates (e.g., updating 'Last Visited' after a store visit).\n",
+                  "x-ai-reasoning-instructions": [
+                    "Strictly follow the `YYYY-MM-DD` format for date variables."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Confirm the variables have been updated for the contact."
+                  ],
+                  "x-ai-role": "customer_engagement_specialist",
+                  "x-ai-suggestions": [
+                    "Ensure the `id` corresponds to the correct address book."
+                  ]
+                }
+              },
+              "/sms/black_list": {
+                "delete": {
+                  "description": "Lifts the global suppression for specific numbers, to be used only after the user has explicitly re-consented.",
+                  "operationId": "removeSmsBlacklist",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "phones": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "required": [
+                            "phones"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/BlacklistRemoveResultItem"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Removal result"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Remove a phone number from the blacklist",
+                  "tags": [
+                    "Compliance"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "Required"
+                    },
+                    "security_info": {
+                      "data_handling": [
+                        "ResourceStateUpdate"
+                      ]
+                    }
+                  },
+                  "x-ai-description": "Lifts the global suppression for specific numbers.  Only perform this if the user has explicitly re-consented.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Ensure audit logs reflect why the suppression was lifted."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Confirm the numbers are no longer suppressed."
+                  ],
+                  "x-ai-role": "compliance_officer"
+                },
+                "get": {
+                  "description": "Retrieves the master suppression list of blacklisted numbers for auditing and external CRM synchronization.",
+                  "operationId": "getSmsBlacklist",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Blacklist data"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Get a list of contacts in the blacklist",
+                  "tags": [
+                    "Compliance"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    }
+                  },
+                  "x-ai-description": "Retrieves the master suppression list for auditing and external sync.\n",
+                  "x-ai-responding-instructions": [
+                    "Present the current list of suppressed numbers."
+                  ],
+                  "x-ai-role": "compliance_officer",
+                  "x-ai-suggestions": [
+                    "Export this list for internal CRM synchronization."
+                  ]
+                },
+                "post": {
+                  "description": "Globally suppresses phone numbers, preventing any future SMS from being sent to them across all address books.",
+                  "operationId": "addSmsBlacklist",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "description": {
+                              "type": "string"
+                            },
+                            "phones": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "required": [
+                            "phones",
+                            "description"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/BlacklistAddResultItem"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Blacklist result"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Add phone numbers to the blacklist",
+                  "tags": [
+                    "Compliance"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "Required"
+                    },
+                    "security_info": {
+                      "data_handling": [
+                        "ResourceStateUpdate"
+                      ]
+                    }
+                  },
+                  "x-ai-description": "Global suppression for SMS. Prevents any future messages from being  sent to these numbers across all address books.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Require a `description` to track the reason for blacklisting (e.g., 'Spam complaint')."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Confirm global suppression is active for these numbers."
+                  ],
+                  "x-ai-role": "compliance_officer",
+                  "x-ai-suggestions": [
+                    "Use this for 'Do Not Call' requests."
+                  ]
+                }
+              },
+              "/sms/campaigns": {
+                "delete": {
+                  "description": "Permanently deletes a campaign record, available only for campaigns that have not yet started.",
+                  "operationId": "deleteSmsCampaign",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "id"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Deleted successfully"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Delete a campaign",
+                  "tags": [
+                    "Campaigns"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "Required"
+                    }
+                  },
+                  "x-ai-description": "Permanently deletes a campaign record. Only available for campaigns that haven't started.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Check campaign status before attempting deletion."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Confirm deletion of the campaign."
+                  ],
+                  "x-ai-role": "sms_marketing_specialist"
+                },
+                "post": {
+                  "description": "Triggers a bulk SMS broadcast to an entire address book, with support for dynamic content, link tracking, and scheduled delivery.",
+                  "operationId": "createSmsCampaign",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "addressBookId": {
+                              "type": "integer"
+                            },
+                            "body": {
+                              "type": "string"
+                            },
+                            "date": {
+                              "format": "date-time",
+                              "type": "string"
+                            },
+                            "emulate": {
+                              "default": false,
+                              "type": "boolean"
+                            },
+                            "route": {
+                              "description": "e.g. {'UA':'national'}",
+                              "type": "object"
+                            },
+                            "sender": {
+                              "maxLength": 11,
+                              "type": "string"
+                            },
+                            "stat_link_need_protocol": {
+                              "default": false,
+                              "type": "boolean"
+                            },
+                            "stat_link_tracking": {
+                              "default": false,
+                              "type": "boolean"
+                            },
+                            "use_dynamic_list": {
+                              "default": false,
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "sender",
+                            "addressBookId",
+                            "body"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "campaign_id": {
+                                "type": "integer"
+                              },
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Campaign created"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Create a campaign for a mailing list",
+                  "tags": [
+                    "Campaigns"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "Required"
+                    },
+                    "security_info": {
+                      "data_handling": [
+                        "ResourceStateUpdate"
+                      ]
+                    }
+                  },
+                  "x-ai-description": "Triggers a bulk SMS broadcast to an entire address book.  Supports dynamic content, link tracking, and scheduled delivery.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Note: `sender` ID must be pre-registered (max 11 chars).",
+                    "Use `emulate: true` to test logic without burning credits.",
+                    "Consider `use_dynamic_list: true` for scheduled campaigns to include late subscribers."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Report the unique `campaign_id` generated.",
+                    "Remind the user that moderation may delay delivery by a few minutes."
+                  ],
+                  "x-ai-role": "sms_marketing_specialist",
+                  "x-ai-suggestions": [
+                    "Newsletter_Launch",
+                    "Flash_Sale_Promo"
+                  ]
+                }
+              },
+              "/sms/campaigns/cancel/{id}": {
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                      "type": "integer"
+                    }
+                  }
+                ],
+                "put": {
+                  "description": "Stops a scheduled campaign from being sent, an emergency override for erroneous scheduling.",
+                  "operationId": "cancelSmsCampaign",
+                  "parameters": [],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Cancellation result"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Cancel a campaign before sending has started",
+                  "tags": [
+                    "Campaigns"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "Required"
+                    }
+                  },
+                  "x-ai-description": "Stops a scheduled campaign from being sent.  Emergency override for erroneous scheduling.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Verify that sending has not already commenced."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Confirm the campaign has been successfully halted."
+                  ],
+                  "x-ai-role": "sms_marketing_specialist",
+                  "x-ai-suggestions": [
+                    "Check account balance to ensure credits are released."
+                  ]
+                }
+              },
+              "/sms/campaigns/cost": {
+                "get": {
+                  "description": "Estimates the total credit expenditure for a proposed campaign, crucial for budget planning before an actual broadcast.",
+                  "operationId": "calculateSmsCost",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "addressBookId",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "phones",
+                      "schema": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "body",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "sender",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "route",
+                      "schema": {
+                        "type": "object"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "currency": {
+                                    "type": "string"
+                                  },
+                                  "price": {
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Cost estimate"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Calculate the cost of a campaign",
+                  "tags": [
+                    "Campaigns"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    }
+                  },
+                  "x-ai-description": "Estimates the total credit expenditure for a proposed campaign.  Crucial for budget planning before actual broadcast.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Note that parameters must be URL-encoded.",
+                    "Provide either `addressBookId` or `phones` array."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Report the estimated price and currency."
+                  ],
+                  "x-ai-role": "compliance_officer",
+                  "x-ai-suggestions": [
+                    "Adjust the message `body` to fit within single SMS segments (160 chars) to save costs."
+                  ]
+                }
+              },
+              "/sms/campaigns/info/{id}": {
+                "get": {
+                  "description": "Returns granular status for a campaign, including per-phone delivery breakdowns and spend details.",
+                  "operationId": "getSmsCampaignInfo",
+                  "parameters": [],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/CampaignInfoItem"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Campaign stats"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Get campaign information",
+                  "tags": [
+                    "Campaigns"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    }
+                  },
+                  "x-ai-description": "Returns granular status for a campaign, including delivery breakdowns per phone.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Examine `status` (2 for Delivered, 12 for Not Delivered)."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Report delivery success rates and spend for this campaign."
+                  ],
+                  "x-ai-role": "sms_marketing_specialist",
+                  "x-ai-suggestions": [
+                    "Re-send to 'Not delivered' contacts if the failure was transient."
+                  ]
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "id",
+                    "required": true,
+                    "schema": {
+                      "type": "integer"
+                    }
+                  }
+                ]
+              },
+              "/sms/campaigns/list": {
+                "get": {
+                  "description": "Retrieves campaign history within a specific time window, useful for building performance dashboards.",
+                  "operationId": "getSmsCampaigns",
+                  "parameters": [
+                    {
+                      "in": "query",
+                      "name": "dateFrom",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "dateTo",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Campaign list"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Get a list of campaigns by date",
+                  "tags": [
+                    "Campaigns"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    }
+                  },
+                  "x-ai-description": "Retrieves campaign history within a specific time window.  Useful for building performance dashboards.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Use `dateFrom` and `dateTo` to avoid over-fetching."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Summarize the campaigns found in the requested period."
+                  ],
+                  "x-ai-role": "marketing_automation_specialist",
+                  "x-ai-suggestions": [
+                    "Track `company_price` to monitor spend trends."
+                  ]
+                }
+              },
+              "/sms/numbers": {
+                "delete": {
+                  "description": "Removes specific mobile contacts from an address book without preventing their future re-subscription.",
+                  "operationId": "removeSmsNumbers",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "addressBookId": {
+                              "type": "integer"
+                            },
+                            "phones": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "required": [
+                            "addressBookId",
+                            "phones"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "counters": {
+                                "properties": {
+                                  "deleted": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Deletion result"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Remove phone numbers from a mailing list",
+                  "tags": [
+                    "Contacts"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "Required"
+                    },
+                    "security_info": {
+                      "data_handling": [
+                        "ResourceStateUpdate"
+                      ]
+                    }
+                  },
+                  "x-ai-description": "Surgically removes specific mobile contacts from an address book.  Unlike the blacklist, this does not prevent future re-subscription.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Confirm the exact `addressBookId` to avoid cross-list deletions."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "State clearly how many numbers were removed."
+                  ],
+                  "x-ai-role": "compliance_officer",
+                  "x-ai-suggestions": [
+                    "Use this for list hygiene (e.g., removing unengaged users)."
+                  ]
+                },
+                "post": {
+                  "description": "Imports a batch of phone numbers into a designated address book, the baseline operation for building a mobile audience.",
+                  "operationId": "addSmsNumbers",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "addressBookId": {
+                              "type": "integer"
+                            },
+                            "phones": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "required": [
+                            "addressBookId",
+                            "phones"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "counters": {
+                                "properties": {
+                                  "added": {
+                                    "type": "integer"
+                                  },
+                                  "exceptions": {
+                                    "type": "integer"
+                                  },
+                                  "exists": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Import result"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Add phone numbers to a mailing list",
+                  "tags": [
+                    "Contacts"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    },
+                    "security_info": {
+                      "data_handling": [
+                        "ResourceStateUpdate"
+                      ]
+                    }
+                  },
+                  "x-ai-description": "Imports a batch of phone numbers into a designated address book.  This is the baseline operation for building a mobile audience.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Verify the `addressBookId` exists before attempting the import.",
+                    "Ensure phone numbers are in international E.164 format (e.g., 380...)."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Report the total number of successfully added contacts.",
+                    "Note if any numbers were skipped due to existing in the list."
+                  ],
+                  "x-ai-role": "sms_marketing_specialist",
+                  "x-ai-suggestions": [
+                    "Use `addSmsNumbersWithVariables` if you have metadata like names or dates."
+                  ]
+                },
+                "put": {
+                  "description": "Batch updates variable values for a set of phone numbers, keeping contact data synchronized across an address book.",
+                  "operationId": "updateSmsVariablesBatch",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "addressBookId": {
+                              "type": "integer"
+                            },
+                            "phones": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "variables": {
+                              "items": {
+                                "properties": {
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "type": {
+                                    "enum": [
+                                      "string",
+                                      "number",
+                                      "date"
+                                    ],
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "oneOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "name",
+                                  "type",
+                                  "value"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "required": [
+                            "addressBookId",
+                            "phones",
+                            "variables"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/VariablesUpdateResult"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Update result"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Update variables for multiple phone numbers",
+                  "tags": [
+                    "Contacts"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    },
+                    "security_info": {
+                      "data_handling": [
+                        "ResourceStateUpdate"
+                      ]
+                    }
+                  },
+                  "x-ai-description": "Batch updates variable values for a set of phone numbers.  Critical for keeping contact data like 'Last Purchase' or 'Loyalty Points' synchronized.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Validate that the `variables` array contains correctly structured objects (name, type, value)."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Confirm the number of contacts updated."
+                  ],
+                  "x-ai-role": "sms_marketing_specialist",
+                  "x-ai-suggestions": [
+                    "Use this to refresh campaign-specific variables before a blast."
+                  ]
+                }
+              },
+              "/sms/numbers/info/{addressBookId}/{phoneNumber}": {
+                "get": {
+                  "description": "Retrieves the profile of a mobile contact, including current variable values and the date they were added to the list.",
+                  "operationId": "getSmsNumberInfo",
+                  "parameters": [],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/NumberInfoResult"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Contact profile"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Get information for a specific phone number",
+                  "tags": [
+                    "Contacts"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    }
+                  },
+                  "x-ai-description": "Retrieves the profile of a mobile contact, including their current  variable values and the date they were added to the list.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Verify the status (e.g., 1 for active)."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Summarize the contact's current metadata."
+                  ],
+                  "x-ai-role": "customer_engagement_specialist",
+                  "x-ai-suggestions": [
+                    "If status is inactive, investigate if the user was blacklisted."
+                  ]
+                },
+                "parameters": [
+                  {
+                    "in": "path",
+                    "name": "addressBookId",
+                    "required": true,
+                    "schema": {
+                      "type": "integer"
+                    }
+                  },
+                  {
+                    "in": "path",
+                    "name": "phoneNumber",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/sms/numbers/variables": {
+                "post": {
+                  "description": "Advanced contact ingestion that maps specific variables to each phone number in a single payload, ideal for personalized onboarding.",
+                  "operationId": "addSmsNumbersWithVariables",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "addressBookId": {
+                              "type": "integer"
+                            },
+                            "phones": {
+                              "additionalProperties": {
+                                "items": {
+                                  "items": {
+                                    "properties": {
+                                      "name": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "name",
+                                      "type",
+                                      "value"
+                                    ],
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "type": "array"
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "addressBookId",
+                            "phones"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/NumberImportResult"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Batch result"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Add phone numbers with complex variables",
+                  "tags": [
+                    "Contacts"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    },
+                    "security_info": {
+                      "data_handling": [
+                        "ResourceStateUpdate"
+                      ]
+                    }
+                  },
+                  "x-ai-description": "Advanced contact ingestion endpoint that maps specific variables to  each phone number in a single payload. Ideal for personalized onboarding.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Note that `date` variable format must be `YYYY-MM-DD` (no time)."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Confirm successful ingestion and variable mapping."
+                  ],
+                  "x-ai-role": "sms_marketing_specialist",
+                  "x-ai-suggestions": [
+                    "Structure your CRM export to match this schema for seamless sync."
+                  ]
+                }
+              },
+              "/sms/send": {
+                "post": {
+                  "description": "Fast-track broadcast to an ad-hoc list of numbers not stored in an address book, ideal for one-off alerts or external CRM triggers.",
+                  "operationId": "sendSmsToNumbers",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "body": {
+                              "type": "string"
+                            },
+                            "date": {
+                              "type": "string"
+                            },
+                            "emulate": {
+                              "type": "boolean"
+                            },
+                            "phones": {
+                              "items": {
+                                "type": "string"
+                              },
+                              "type": "array"
+                            },
+                            "route": {
+                              "type": "object"
+                            },
+                            "sender": {
+                              "type": "string"
+                            },
+                            "stat_link_need_protocol": {
+                              "type": "boolean"
+                            },
+                            "stat_link_tracking": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "sender",
+                            "phones",
+                            "body"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "campaign_id": {
+                                "type": "integer"
+                              },
+                              "counters": {
+                                "type": "object"
+                              },
+                              "result": {
+                                "type": "boolean"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Send result"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Create a campaign for a list of phone numbers",
+                  "tags": [
+                    "Campaigns"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "Required"
+                    },
+                    "security_info": {
+                      "data_handling": [
+                        "ResourceStateUpdate"
+                      ]
+                    }
+                  },
+                  "x-ai-description": "Fast-track broadcast for ad-hoc lists not stored in an address book.  Perfect for one-off alerts or external CRM triggers.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Validate all numbers in the `phones` array are valid."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Report how many messages were successfully queued."
+                  ],
+                  "x-ai-role": "sms_marketing_specialist",
+                  "x-ai-suggestions": [
+                    "Use for 2FA codes or urgent system alerts."
+                  ]
+                }
+              },
+              "/sms/senders": {
+                "get": {
+                  "description": "Retrieves all approved alphanumeric Sender IDs; only those with Active status can be used for campaigns.",
+                  "operationId": "getSmsSenders",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/SmsSender"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Sender ID list"
+                    },
+                    "401": {
+                      "description": "Unauthorized"
+                    },
+                    "403": {
+                      "description": "Forbidden"
+                    }
+                  },
+                  "summary": "Get list of sender IDs",
+                  "tags": [
+                    "Configuration"
+                  ],
+                  "x-ai-capabilities": {
+                    "confirmation": {
+                      "type": "None"
+                    }
+                  },
+                  "x-ai-description": "Retrieves all approved Alphanumeric Sender IDs.  Only IDs with status 'Active' (1) can be used for campaigns.\n",
+                  "x-ai-reasoning-instructions": [
+                    "Check `status` (0: Moderation, 1: Active, 2: Rejected)."
+                  ],
+                  "x-ai-responding-instructions": [
+                    "Present the list of available sender identities."
+                  ],
+                  "x-ai-role": "sms_marketing_specialist",
+                  "x-ai-suggestions": [
+                    "If a sender is 'On moderation', wait before scheduling campaigns."
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "apiKey": []
+              },
+              {
+                "oauth2": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production server",
+                "url": "https://api.sendpulse.com"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Managing phone numbers and their variables within address books.",
+                "name": "Contacts"
+              },
+              {
+                "description": "Creating, sending, scheduling, and tracking SMS campaigns.",
+                "name": "Campaigns"
+              },
+              {
+                "description": "Global SMS suppression — blacklist management for opt-outs.",
+                "name": "Compliance"
+              },
+              {
+                "description": "Sender IDs and account-level SMS settings.",
+                "name": "Configuration"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "SendPulse SMS"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:29.323313+00:00",
+    "license": {
+      "identifier": "Apache-2.0",
+      "name": "Apache 2.0"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.sendpulse.com/.well-known/openapi/sms.yaml",
+        "version": "3.1.2"
+      }
+    ],
+    "sha256": "2363ac46f9bc19c8e13fa2665706d31b3ab123785dc817eb5f3238ff8af52e38",
+    "source_id": "sendpulse-sms",
+    "source_updated": null,
+    "url": "https://api.sendpulse.com/.well-known/openapi/sms.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

@@ -1,0 +1,2479 @@
+{
+  "a2ui": {},
+  "app": "webinargeek",
+  "graph": {
+    "edges": [
+      {
+        "from": "webinargeek",
+        "kind": "EXPOSES",
+        "to": "operation:get:/account"
+      },
+      {
+        "from": "webinargeek",
+        "kind": "EXPOSES",
+        "to": "operation:get:/broadcasts"
+      },
+      {
+        "from": "webinargeek",
+        "kind": "EXPOSES",
+        "to": "operation:post:/episodes/broadcasts"
+      },
+      {
+        "from": "webinargeek",
+        "kind": "EXPOSES",
+        "to": "operation:get:/messages"
+      },
+      {
+        "from": "webinargeek",
+        "kind": "EXPOSES",
+        "to": "operation:get:/questions"
+      },
+      {
+        "from": "webinargeek",
+        "kind": "EXPOSES",
+        "to": "operation:get:/subscription_payments"
+      },
+      {
+        "from": "webinargeek",
+        "kind": "EXPOSES",
+        "to": "operation:get:/subscriptions"
+      },
+      {
+        "from": "webinargeek",
+        "kind": "EXPOSES",
+        "to": "operation:get:/webinars"
+      },
+      {
+        "from": "webinargeek",
+        "kind": "EXPOSES",
+        "to": "operation:post:/webinars/series_subscribe"
+      },
+      {
+        "from": "operation:get:/account",
+        "kind": "RETURNS",
+        "to": "schema:Account"
+      },
+      {
+        "from": "operation:get:/broadcasts",
+        "kind": "RETURNS",
+        "to": "schema:BroadcastList"
+      },
+      {
+        "from": "operation:post:/episodes/broadcasts",
+        "kind": "ACCEPTS",
+        "to": "schema:CreateBroadcastRequest"
+      },
+      {
+        "from": "operation:post:/episodes/broadcasts",
+        "kind": "RETURNS",
+        "to": "schema:Broadcast"
+      },
+      {
+        "from": "operation:get:/messages",
+        "kind": "RETURNS",
+        "to": "schema:MessageList"
+      },
+      {
+        "from": "operation:get:/questions",
+        "kind": "RETURNS",
+        "to": "schema:QuestionList"
+      },
+      {
+        "from": "operation:get:/subscription_payments",
+        "kind": "RETURNS",
+        "to": "schema:PaymentList"
+      },
+      {
+        "from": "operation:get:/subscriptions",
+        "kind": "RETURNS",
+        "to": "schema:SubscriptionList"
+      },
+      {
+        "from": "operation:get:/webinars",
+        "kind": "RETURNS",
+        "to": "schema:WebinarList"
+      },
+      {
+        "from": "operation:post:/webinars/series_subscribe",
+        "kind": "ACCEPTS",
+        "to": "schema:SeriesRegistration"
+      },
+      {
+        "from": "operation:post:/webinars/series_subscribe",
+        "kind": "RETURNS",
+        "to": "schema:SeriesSubscriptionResult"
+      },
+      {
+        "from": "schema:Broadcast",
+        "kind": "REFERENCES",
+        "to": "schema:Resource"
+      },
+      {
+        "from": "schema:BroadcastList",
+        "kind": "REFERENCES",
+        "to": "schema:Broadcast"
+      },
+      {
+        "from": "schema:BroadcastList",
+        "kind": "REFERENCES",
+        "to": "schema:PageInfo"
+      },
+      {
+        "from": "schema:MessageList",
+        "kind": "REFERENCES",
+        "to": "schema:PageInfo"
+      },
+      {
+        "from": "schema:MessageList",
+        "kind": "REFERENCES",
+        "to": "schema:Subscription"
+      },
+      {
+        "from": "schema:PaymentList",
+        "kind": "REFERENCES",
+        "to": "schema:PageInfo"
+      },
+      {
+        "from": "schema:QuestionList",
+        "kind": "REFERENCES",
+        "to": "schema:PageInfo"
+      },
+      {
+        "from": "schema:SeriesRegistration",
+        "kind": "REFERENCES",
+        "to": "schema:Registration"
+      },
+      {
+        "from": "schema:SeriesSubscriptionResult",
+        "kind": "REFERENCES",
+        "to": "schema:Subscription"
+      },
+      {
+        "from": "schema:Subscription",
+        "kind": "REFERENCES",
+        "to": "schema:Resource"
+      },
+      {
+        "from": "schema:SubscriptionList",
+        "kind": "REFERENCES",
+        "to": "schema:PageInfo"
+      },
+      {
+        "from": "schema:SubscriptionList",
+        "kind": "REFERENCES",
+        "to": "schema:Subscription"
+      },
+      {
+        "from": "schema:Webinar",
+        "kind": "REFERENCES",
+        "to": "schema:Resource"
+      },
+      {
+        "from": "schema:WebinarList",
+        "kind": "REFERENCES",
+        "to": "schema:PageInfo"
+      },
+      {
+        "from": "schema:WebinarList",
+        "kind": "REFERENCES",
+        "to": "schema:Webinar"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "webinargeek",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/account",
+        "kind": "operation",
+        "method": "get",
+        "name": "getAccountMetadata",
+        "path": "/account",
+        "pointer": "#/paths/~1account/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Account"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiToken": []
+          }
+        ],
+        "summary": "Retrieve account metadata",
+        "tags": [
+          "Account"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/broadcasts",
+        "kind": "operation",
+        "method": "get",
+        "name": "listBroadcasts",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Number of resources per page; maximum 1000.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Optional nested resources; multiple values are comma-separated.",
+            "enum": [
+              "episode",
+              "webinar"
+            ],
+            "in": "query",
+            "name": "nested_resources",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "date",
+            "enum": [
+              "created_at",
+              "date"
+            ],
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "desc",
+            "description": "Sort direction.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/broadcasts",
+        "pointer": "#/paths/~1broadcasts/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "BroadcastList"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiToken": []
+          }
+        ],
+        "summary": "List broadcasts",
+        "tags": [
+          "Broadcasts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The episode must belong to a live or automated webinar, and the date must be in the future.",
+        "id": "operation:post:/episodes/broadcasts",
+        "kind": "operation",
+        "method": "post",
+        "name": "createEpisodeBroadcast",
+        "path": "/episodes/broadcasts",
+        "pointer": "#/paths/~1episodes~1broadcasts/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "CreateBroadcastRequest"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "Broadcast"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiToken": []
+          }
+        ],
+        "summary": "Create a broadcast for an episode",
+        "tags": [
+          "Broadcasts"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/messages",
+        "kind": "operation",
+        "method": "get",
+        "name": "listMessages",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Number of resources per page; maximum 1000.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "episode_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "broadcast_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "webinar_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "enum": [
+              "public",
+              "private",
+              "question"
+            ],
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "created_at",
+            "enum": [
+              "created_at",
+              "recipient_id"
+            ],
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "desc",
+            "description": "Sort direction.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/messages",
+        "pointer": "#/paths/~1messages/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "MessageList"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiToken": []
+          }
+        ],
+        "summary": "List webinar messages",
+        "tags": [
+          "Messages"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The API returns text answers; live answers are not included.",
+        "id": "operation:get:/questions",
+        "kind": "operation",
+        "method": "get",
+        "name": "listQuestions",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Number of resources per page; maximum 1000.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "episode_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "broadcast_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "webinar_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": "created_at",
+            "enum": [
+              "created_at"
+            ],
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "desc",
+            "description": "Sort direction.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/questions",
+        "pointer": "#/paths/~1questions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "QuestionList"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiToken": []
+          }
+        ],
+        "summary": "List webinar questions",
+        "tags": [
+          "Questions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/subscription_payments",
+        "kind": "operation",
+        "method": "get",
+        "name": "listSubscriptionPayments",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Number of resources per page; maximum 1000.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "episode_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "broadcast_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "webinar_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Optional nested resources; multiple values are comma-separated.",
+            "enum": [
+              "broadcast",
+              "episode",
+              "webinar"
+            ],
+            "in": "query",
+            "name": "nested_resources",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "created_at",
+            "enum": [
+              "created_at"
+            ],
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "desc",
+            "description": "Sort direction.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/subscription_payments",
+        "pointer": "#/paths/~1subscription_payments/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "PaymentList"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiToken": []
+          }
+        ],
+        "summary": "List subscription payments",
+        "tags": [
+          "Payments"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Lists subscribers for a broadcast, episode, webinar, or account.",
+        "id": "operation:get:/subscriptions",
+        "kind": "operation",
+        "method": "get",
+        "name": "listSubscriptions",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Number of resources per page; maximum 1000.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string:email"
+          },
+          {
+            "in": "query",
+            "name": "external_id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "watched_webinar",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "watched_replay",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "watched_live",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "viewer_started_watching",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "broadcast_ended",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "unsubscribed",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "assessment_passed",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "episode_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "broadcast_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "webinar_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Must be used together with watch_end_to; only subscriptions with a non-null watch_end are returned.",
+            "in": "query",
+            "name": "watch_end_from",
+            "required": false,
+            "type": "string:date-time"
+          },
+          {
+            "description": "Must be used together with watch_end_from; only subscriptions with a non-null watch_end are returned.",
+            "in": "query",
+            "name": "watch_end_to",
+            "required": false,
+            "type": "string:date-time"
+          },
+          {
+            "description": "Optional nested resources; multiple values are comma-separated.",
+            "enum": [
+              "broadcast",
+              "episode",
+              "webinar"
+            ],
+            "in": "query",
+            "name": "nested_resources",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "created_at",
+            "enum": [
+              "created_at",
+              "unsubscribed_at",
+              "watched_true_set_at",
+              "watch_end"
+            ],
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "desc",
+            "description": "Sort direction.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/subscriptions",
+        "pointer": "#/paths/~1subscriptions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SubscriptionList"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiToken": []
+          }
+        ],
+        "summary": "List subscriptions",
+        "tags": [
+          "Subscriptions"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns webinars with their documented nested episode and broadcast data.",
+        "id": "operation:get:/webinars",
+        "kind": "operation",
+        "method": "get",
+        "name": "listWebinars",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "Page number, starting at 1.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 50,
+            "description": "Number of resources per page; maximum 1000.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": false,
+            "description": "Include broadcasts from the past.",
+            "in": "query",
+            "name": "include_past",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": false,
+            "description": "Return only webinars with at least two episodes.",
+            "in": "query",
+            "name": "series_only",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "enum": [
+              "nl",
+              "en",
+              "de",
+              "fi",
+              "fr",
+              "it",
+              "es",
+              "pl",
+              "sv",
+              "da",
+              false
+            ],
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter on one episode type.",
+            "enum": [
+              "live",
+              "automated",
+              "ondemand"
+            ],
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "user_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "department_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Optional nested resources; multiple values are comma-separated.",
+            "enum": [
+              "team_member"
+            ],
+            "in": "query",
+            "name": "nested_resources",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "created_at",
+            "enum": [
+              "created_at"
+            ],
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "desc",
+            "description": "Sort direction.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/webinars",
+        "pointer": "#/paths/~1webinars/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "WebinarList"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiToken": []
+          }
+        ],
+        "summary": "List webinars",
+        "tags": [
+          "Webinars"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Creates one subscription for a broadcast in each episode of the series.",
+        "id": "operation:post:/webinars/series_subscribe",
+        "kind": "operation",
+        "method": "post",
+        "name": "subscribeToWebinarSeries",
+        "path": "/webinars/series_subscribe",
+        "pointer": "#/paths/~1webinars~1series_subscribe/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "SeriesRegistration"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "SeriesSubscriptionResult"
+          },
+          {
+            "status": "default",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "ApiToken": []
+          }
+        ],
+        "summary": "Subscribe a contact to a webinar series",
+        "tags": [
+          "Subscriptions"
+        ]
+      },
+      {
+        "id": "schema:Account",
+        "kind": "schema",
+        "name": "Account",
+        "type": "object"
+      },
+      {
+        "id": "schema:ApiError",
+        "kind": "schema",
+        "name": "ApiError",
+        "type": "object"
+      },
+      {
+        "id": "schema:Broadcast",
+        "kind": "schema",
+        "name": "Broadcast",
+        "type": "object"
+      },
+      {
+        "id": "schema:BroadcastList",
+        "kind": "schema",
+        "name": "BroadcastList",
+        "type": "object"
+      },
+      {
+        "id": "schema:CreateBroadcastRequest",
+        "kind": "schema",
+        "name": "CreateBroadcastRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:MessageList",
+        "kind": "schema",
+        "name": "MessageList",
+        "type": "object"
+      },
+      {
+        "id": "schema:PageInfo",
+        "kind": "schema",
+        "name": "PageInfo",
+        "type": "object"
+      },
+      {
+        "id": "schema:PaymentList",
+        "kind": "schema",
+        "name": "PaymentList",
+        "type": "object"
+      },
+      {
+        "id": "schema:QuestionList",
+        "kind": "schema",
+        "name": "QuestionList",
+        "type": "object"
+      },
+      {
+        "id": "schema:Registration",
+        "kind": "schema",
+        "name": "Registration",
+        "type": "object"
+      },
+      {
+        "id": "schema:Resource",
+        "kind": "schema",
+        "name": "Resource",
+        "type": "object"
+      },
+      {
+        "id": "schema:SeriesRegistration",
+        "kind": "schema",
+        "name": "SeriesRegistration",
+        "type": "Registration|object"
+      },
+      {
+        "id": "schema:SeriesSubscriptionResult",
+        "kind": "schema",
+        "name": "SeriesSubscriptionResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:Subscription",
+        "kind": "schema",
+        "name": "Subscription",
+        "type": "object"
+      },
+      {
+        "id": "schema:SubscriptionList",
+        "kind": "schema",
+        "name": "SubscriptionList",
+        "type": "object"
+      },
+      {
+        "id": "schema:Webinar",
+        "kind": "schema",
+        "name": "Webinar",
+        "type": "object"
+      },
+      {
+        "id": "schema:WebinarList",
+        "kind": "schema",
+        "name": "WebinarList",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "webinargeek"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://app.webinargeek.com/api/v2",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "Page": {
+                  "description": "Page number, starting at 1.",
+                  "in": "query",
+                  "name": "page",
+                  "schema": {
+                    "default": 1,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "PerPage": {
+                  "description": "Number of resources per page; maximum 1000.",
+                  "in": "query",
+                  "name": "per_page",
+                  "schema": {
+                    "default": 50,
+                    "maximum": 1000,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "Sort": {
+                  "description": "Sort direction.",
+                  "in": "query",
+                  "name": "sort",
+                  "schema": {
+                    "default": "desc",
+                    "enum": [
+                      "asc",
+                      "desc"
+                    ],
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "ApiError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "API error response."
+                }
+              },
+              "schemas": {
+                "Account": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "company": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ApiError": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ],
+                  "type": "object"
+                },
+                "Broadcast": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "active_jit": {
+                      "type": "boolean"
+                    },
+                    "cancelled": {
+                      "type": "boolean"
+                    },
+                    "date": {
+                      "description": "Unix timestamp in UTC.",
+                      "type": "integer"
+                    },
+                    "duration": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "ended_at": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "episode": {
+                      "$ref": "#/components/schemas/Resource"
+                    },
+                    "has_ended": {
+                      "type": "boolean"
+                    },
+                    "id": {
+                      "type": "integer"
+                    },
+                    "live_viewers_count": {
+                      "type": "integer"
+                    },
+                    "public_replay_link": {
+                      "format": "uri",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "replay_available": {
+                      "type": "boolean"
+                    },
+                    "replay_available_until": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "started_at": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "subscriptions_count": {
+                      "type": "integer"
+                    },
+                    "viewers_count": {
+                      "type": "integer"
+                    },
+                    "webinar": {
+                      "$ref": "#/components/schemas/Resource"
+                    }
+                  },
+                  "type": "object"
+                },
+                "BroadcastList": {
+                  "properties": {
+                    "broadcasts": {
+                      "items": {
+                        "$ref": "#/components/schemas/Broadcast"
+                      },
+                      "type": "array"
+                    },
+                    "pages": {
+                      "$ref": "#/components/schemas/PageInfo"
+                    },
+                    "total_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CreateBroadcastRequest": {
+                  "properties": {
+                    "date": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "episode_id": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "episode_id",
+                    "date"
+                  ],
+                  "type": "object"
+                },
+                "MessageList": {
+                  "properties": {
+                    "messages": {
+                      "items": {
+                        "additionalProperties": true,
+                        "properties": {
+                          "created_at": {
+                            "description": "Unix timestamp in UTC.",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "type": "integer"
+                          },
+                          "is_reply": {
+                            "type": "boolean"
+                          },
+                          "is_viewer": {
+                            "type": "boolean"
+                          },
+                          "message": {
+                            "type": "string"
+                          },
+                          "recipient_id": {
+                            "type": "integer"
+                          },
+                          "reply_to_id": {
+                            "type": "integer"
+                          },
+                          "reply_to_message": {
+                            "type": "string"
+                          },
+                          "reply_to_name": {
+                            "type": "string"
+                          },
+                          "subscription": {
+                            "$ref": "#/components/schemas/Subscription"
+                          },
+                          "type": {
+                            "enum": [
+                              "public",
+                              "private",
+                              "question"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "pages": {
+                      "$ref": "#/components/schemas/PageInfo"
+                    },
+                    "total_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PageInfo": {
+                  "properties": {
+                    "next": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "per_page": {
+                      "type": "integer"
+                    },
+                    "total_pages": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PaymentList": {
+                  "properties": {
+                    "pages": {
+                      "$ref": "#/components/schemas/PageInfo"
+                    },
+                    "subscription_payments": {
+                      "items": {
+                        "additionalProperties": true,
+                        "properties": {
+                          "amount": {
+                            "type": "string"
+                          },
+                          "amount_paid": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "description": "Unix timestamp in UTC.",
+                            "type": "integer"
+                          },
+                          "currency": {
+                            "type": "string"
+                          },
+                          "payment_key": {
+                            "type": "string"
+                          },
+                          "payment_method": {
+                            "type": "string"
+                          },
+                          "provider_payment_id": {
+                            "type": "string"
+                          },
+                          "provider_payment_state": {
+                            "enum": [
+                              "paid",
+                              "refunded"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "QuestionList": {
+                  "properties": {
+                    "pages": {
+                      "$ref": "#/components/schemas/PageInfo"
+                    },
+                    "questions": {
+                      "items": {
+                        "additionalProperties": true,
+                        "properties": {
+                          "answers": {
+                            "items": {
+                              "additionalProperties": true,
+                              "properties": {
+                                "answer": {
+                                  "type": "string"
+                                },
+                                "created_at": {
+                                  "description": "Unix timestamp in UTC.",
+                                  "type": "integer"
+                                },
+                                "id": {
+                                  "type": "integer"
+                                },
+                                "subscription_email": {
+                                  "format": "email",
+                                  "type": "string"
+                                },
+                                "subscription_level": {
+                                  "type": "string"
+                                },
+                                "subscription_name": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "broadcast_id": {
+                            "type": "integer"
+                          },
+                          "created_at": {
+                            "description": "Unix timestamp in UTC.",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "type": "integer"
+                          },
+                          "question": {
+                            "type": "string"
+                          },
+                          "subscription_email": {
+                            "format": "email",
+                            "type": "string"
+                          },
+                          "subscription_level": {
+                            "type": "string"
+                          },
+                          "subscription_name": {
+                            "type": "string"
+                          },
+                          "upvotes_count": {
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "total_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Registration": {
+                  "properties": {
+                    "city": {
+                      "type": "string"
+                    },
+                    "company": {
+                      "type": "string"
+                    },
+                    "consent_fields": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "custom_field": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "external_id": {
+                      "type": "string"
+                    },
+                    "extra_fields": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "firstname": {
+                      "type": "string"
+                    },
+                    "house_number": {
+                      "type": "string"
+                    },
+                    "job_title": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "postcode": {
+                      "type": "string"
+                    },
+                    "province": {
+                      "type": "string"
+                    },
+                    "registration_ip": {
+                      "type": "string"
+                    },
+                    "skip_confirmation_mail": {
+                      "type": "boolean"
+                    },
+                    "street": {
+                      "type": "string"
+                    },
+                    "surname": {
+                      "type": "string"
+                    },
+                    "time_zone": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "firstname",
+                    "email"
+                  ],
+                  "type": "object"
+                },
+                "Resource": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "SeriesRegistration": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Registration"
+                    },
+                    {
+                      "properties": {
+                        "broadcasts": {
+                          "description": "Optional unique broadcast identifiers, exactly one per episode when supplied.",
+                          "items": {
+                            "type": "integer"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "SeriesSubscriptionResult": {
+                  "properties": {
+                    "subscriptions": {
+                      "items": {
+                        "$ref": "#/components/schemas/Subscription"
+                      },
+                      "type": "array"
+                    },
+                    "total_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Subscription": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "broadcast": {
+                      "$ref": "#/components/schemas/Resource"
+                    },
+                    "created_at": {
+                      "description": "Unix timestamp in UTC.",
+                      "type": "integer"
+                    },
+                    "email": {
+                      "format": "email",
+                      "type": "string"
+                    },
+                    "episode": {
+                      "$ref": "#/components/schemas/Resource"
+                    },
+                    "external_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "firstname": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "integer"
+                    },
+                    "surname": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "unsubscribed": {
+                      "type": "boolean"
+                    },
+                    "watched": {
+                      "type": "boolean"
+                    },
+                    "watched_live": {
+                      "type": "boolean"
+                    },
+                    "watched_replay": {
+                      "type": "boolean"
+                    },
+                    "webinar": {
+                      "$ref": "#/components/schemas/Resource"
+                    }
+                  },
+                  "type": "object"
+                },
+                "SubscriptionList": {
+                  "properties": {
+                    "pages": {
+                      "$ref": "#/components/schemas/PageInfo"
+                    },
+                    "subscriptions": {
+                      "items": {
+                        "$ref": "#/components/schemas/Subscription"
+                      },
+                      "type": "array"
+                    },
+                    "total_count": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Webinar": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "archived": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "description": "Unix timestamp in UTC.",
+                      "type": "integer"
+                    },
+                    "episodes": {
+                      "items": {
+                        "$ref": "#/components/schemas/Resource"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "type": "integer"
+                    },
+                    "internal_title": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "language": {
+                      "type": "string"
+                    },
+                    "ondemand": {
+                      "type": "boolean"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "WebinarList": {
+                  "properties": {
+                    "pages": {
+                      "$ref": "#/components/schemas/PageInfo"
+                    },
+                    "total_count": {
+                      "type": "integer"
+                    },
+                    "webinars": {
+                      "items": {
+                        "$ref": "#/components/schemas/Webinar"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "ApiToken": {
+                  "in": "header",
+                  "name": "Api-Token",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Official WebinarGeek API v2 reference",
+              "url": "https://static.webinargeek.com/api-documentation.html"
+            },
+            "info": {
+              "contact": {
+                "url": "https://www.webinargeek.com/contact"
+              },
+              "description": "Community-maintained subset of the documented WebinarGeek API v2.",
+              "license": {
+                "name": "CC0-1.0",
+                "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+              },
+              "title": "WebinarGeek API",
+              "version": "2.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/account": {
+                "get": {
+                  "operationId": "getAccountMetadata",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Account"
+                          }
+                        }
+                      },
+                      "description": "Account associated with the API token."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Retrieve account metadata",
+                  "tags": [
+                    "Account"
+                  ]
+                }
+              },
+              "/broadcasts": {
+                "get": {
+                  "operationId": "listBroadcasts",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PerPage"
+                    },
+                    {
+                      "description": "Optional nested resources; multiple values are comma-separated.",
+                      "in": "query",
+                      "name": "nested_resources",
+                      "schema": {
+                        "enum": [
+                          "episode",
+                          "webinar"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "order",
+                      "schema": {
+                        "default": "date",
+                        "enum": [
+                          "created_at",
+                          "date"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/BroadcastList"
+                          }
+                        }
+                      },
+                      "description": "Broadcast collection."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "List broadcasts",
+                  "tags": [
+                    "Broadcasts"
+                  ]
+                }
+              },
+              "/episodes/broadcasts": {
+                "post": {
+                  "description": "The episode must belong to a live or automated webinar, and the date must be in the future.",
+                  "operationId": "createEpisodeBroadcast",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/CreateBroadcastRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Broadcast"
+                          }
+                        }
+                      },
+                      "description": "Created broadcast, or the existing broadcast at that date and time."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Create a broadcast for an episode",
+                  "tags": [
+                    "Broadcasts"
+                  ]
+                }
+              },
+              "/messages": {
+                "get": {
+                  "operationId": "listMessages",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PerPage"
+                    },
+                    {
+                      "in": "query",
+                      "name": "episode_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "broadcast_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "webinar_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "type",
+                      "schema": {
+                        "enum": [
+                          "public",
+                          "private",
+                          "question"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "order",
+                      "schema": {
+                        "default": "created_at",
+                        "enum": [
+                          "created_at",
+                          "recipient_id"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/MessageList"
+                          }
+                        }
+                      },
+                      "description": "Message collection."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "List webinar messages",
+                  "tags": [
+                    "Messages"
+                  ]
+                }
+              },
+              "/questions": {
+                "get": {
+                  "description": "The API returns text answers; live answers are not included.",
+                  "operationId": "listQuestions",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PerPage"
+                    },
+                    {
+                      "in": "query",
+                      "name": "episode_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "broadcast_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "webinar_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "order",
+                      "schema": {
+                        "default": "created_at",
+                        "enum": [
+                          "created_at"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/QuestionList"
+                          }
+                        }
+                      },
+                      "description": "Question collection."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "List webinar questions",
+                  "tags": [
+                    "Questions"
+                  ]
+                }
+              },
+              "/subscription_payments": {
+                "get": {
+                  "operationId": "listSubscriptionPayments",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PerPage"
+                    },
+                    {
+                      "in": "query",
+                      "name": "episode_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "broadcast_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "webinar_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Optional nested resources; multiple values are comma-separated.",
+                      "in": "query",
+                      "name": "nested_resources",
+                      "schema": {
+                        "enum": [
+                          "broadcast",
+                          "episode",
+                          "webinar"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "order",
+                      "schema": {
+                        "default": "created_at",
+                        "enum": [
+                          "created_at"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PaymentList"
+                          }
+                        }
+                      },
+                      "description": "Subscription payment collection."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "List subscription payments",
+                  "tags": [
+                    "Payments"
+                  ]
+                }
+              },
+              "/subscriptions": {
+                "get": {
+                  "description": "Lists subscribers for a broadcast, episode, webinar, or account. Subscribers awaiting email verification are excluded.",
+                  "operationId": "listSubscriptions",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PerPage"
+                    },
+                    {
+                      "in": "query",
+                      "name": "email",
+                      "schema": {
+                        "format": "email",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "external_id",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "watched_webinar",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "watched_replay",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "watched_live",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "viewer_started_watching",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "broadcast_ended",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "unsubscribed",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "assessment_passed",
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "episode_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "broadcast_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "webinar_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Must be used together with watch_end_to; only subscriptions with a non-null watch_end are returned.",
+                      "in": "query",
+                      "name": "watch_end_from",
+                      "schema": {
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Must be used together with watch_end_from; only subscriptions with a non-null watch_end are returned.",
+                      "in": "query",
+                      "name": "watch_end_to",
+                      "schema": {
+                        "format": "date-time",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Optional nested resources; multiple values are comma-separated.",
+                      "in": "query",
+                      "name": "nested_resources",
+                      "schema": {
+                        "enum": [
+                          "broadcast",
+                          "episode",
+                          "webinar"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "order",
+                      "schema": {
+                        "default": "created_at",
+                        "enum": [
+                          "created_at",
+                          "unsubscribed_at",
+                          "watched_true_set_at",
+                          "watch_end"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SubscriptionList"
+                          }
+                        }
+                      },
+                      "description": "Subscription collection."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "List subscriptions",
+                  "tags": [
+                    "Subscriptions"
+                  ]
+                }
+              },
+              "/webinars": {
+                "get": {
+                  "description": "Returns webinars with their documented nested episode and broadcast data.",
+                  "operationId": "listWebinars",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PerPage"
+                    },
+                    {
+                      "description": "Include broadcasts from the past.",
+                      "in": "query",
+                      "name": "include_past",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Return only webinars with at least two episodes.",
+                      "in": "query",
+                      "name": "series_only",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "language",
+                      "schema": {
+                        "enum": [
+                          "nl",
+                          "en",
+                          "de",
+                          "fi",
+                          "fr",
+                          "it",
+                          "es",
+                          "pl",
+                          "sv",
+                          "da",
+                          false
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter on one episode type.",
+                      "in": "query",
+                      "name": "type",
+                      "schema": {
+                        "enum": [
+                          "live",
+                          "automated",
+                          "ondemand"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "user_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "department_id",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Optional nested resources; multiple values are comma-separated.",
+                      "in": "query",
+                      "name": "nested_resources",
+                      "schema": {
+                        "enum": [
+                          "team_member"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "order",
+                      "schema": {
+                        "default": "created_at",
+                        "enum": [
+                          "created_at"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/parameters/Sort"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/WebinarList"
+                          }
+                        }
+                      },
+                      "description": "Webinar collection."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "List webinars",
+                  "tags": [
+                    "Webinars"
+                  ]
+                }
+              },
+              "/webinars/series_subscribe": {
+                "post": {
+                  "description": "Creates one subscription for a broadcast in each episode of the series. The API requires a first name and email address; API subscriptions do not validate extra or consent fields.",
+                  "operationId": "subscribeToWebinarSeries",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/SeriesRegistration"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SeriesSubscriptionResult"
+                          }
+                        }
+                      },
+                      "description": "Created subscription records."
+                    },
+                    "default": {
+                      "$ref": "#/components/responses/ApiError"
+                    }
+                  },
+                  "summary": "Subscribe a contact to a webinar series",
+                  "tags": [
+                    "Subscriptions"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "ApiToken": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "WebinarGeek API v2",
+                "url": "https://app.webinargeek.com/api/v2"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Webinars"
+              },
+              {
+                "name": "Broadcasts"
+              },
+              {
+                "name": "Subscriptions"
+              },
+              {
+                "name": "Payments"
+              },
+              {
+                "name": "Messages"
+              },
+              {
+                "name": "Questions"
+              },
+              {
+                "name": "Account"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "WebinarGeek"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:34.643744+00:00",
+    "license": {
+      "name": "CC0-1.0",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/webinargeek/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "765c8feacdf3603b564d6551168b58684be352c2bd55a8b753ce2f9719bdfaf1",
+    "source_id": "webinargeek",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/webinargeek/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "2.0"
+}

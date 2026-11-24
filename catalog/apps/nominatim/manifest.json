@@ -1,0 +1,977 @@
+{
+  "a2ui": {},
+  "app": "nominatim",
+  "graph": {
+    "edges": [
+      {
+        "from": "nominatim",
+        "kind": "EXPOSES",
+        "to": "operation:get:/lookup"
+      },
+      {
+        "from": "nominatim",
+        "kind": "EXPOSES",
+        "to": "operation:get:/reverse"
+      },
+      {
+        "from": "nominatim",
+        "kind": "EXPOSES",
+        "to": "operation:get:/search"
+      },
+      {
+        "from": "operation:get:/lookup",
+        "kind": "RETURNS",
+        "to": "schema:Place"
+      },
+      {
+        "from": "operation:get:/reverse",
+        "kind": "RETURNS",
+        "to": "schema:Place"
+      },
+      {
+        "from": "operation:get:/search",
+        "kind": "RETURNS",
+        "to": "schema:Place"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "nominatim",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Look up as many as 50 nodes, ways, or relations by their prefixed OpenStreetMap IDs.",
+        "id": "operation:get:/lookup",
+        "kind": "operation",
+        "method": "get",
+        "name": "lookupPlacesByOsmId",
+        "parameters": [
+          {
+            "description": "Comma-separated object IDs prefixed with N, W, or R (for example, N240109189).",
+            "in": "query",
+            "name": "osm_ids",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "jsonv2"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 1,
+            "description": "Include address breakdown when set to 1.",
+            "enum": [
+              0,
+              1
+            ],
+            "in": "query",
+            "name": "addressdetails",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Include available additional OSM tags when set to 1.",
+            "enum": [
+              0,
+              1
+            ],
+            "in": "query",
+            "name": "extratags",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Include available name variants when set to 1.",
+            "enum": [
+              0,
+              1
+            ],
+            "in": "query",
+            "name": "namedetails",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Preferred result languages, using Accept-Language syntax.",
+            "in": "query",
+            "name": "accept-language",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/lookup",
+        "pointer": "#/paths/~1lookup/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Place[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Look up places by OpenStreetMap object IDs",
+        "tags": [
+          "Geocoding"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the nearest suitable indexed OpenStreetMap object.",
+        "id": "operation:get:/reverse",
+        "kind": "operation",
+        "method": "get",
+        "name": "reverseGeocode",
+        "parameters": [
+          {
+            "description": "Latitude in WGS84.",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "description": "Longitude in WGS84.",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number:double"
+          },
+          {
+            "enum": [
+              "jsonv2"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 18,
+            "description": "Requested address detail level.",
+            "in": "query",
+            "name": "zoom",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1,
+            "description": "Include address breakdown when set to 1.",
+            "enum": [
+              0,
+              1
+            ],
+            "in": "query",
+            "name": "addressdetails",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Include available additional OSM tags when set to 1.",
+            "enum": [
+              0,
+              1
+            ],
+            "in": "query",
+            "name": "extratags",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Include available name variants when set to 1.",
+            "enum": [
+              0,
+              1
+            ],
+            "in": "query",
+            "name": "namedetails",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Preferred result languages, using Accept-Language syntax.",
+            "in": "query",
+            "name": "accept-language",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/reverse",
+        "pointer": "#/paths/~1reverse/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Place"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Reverse geocode a coordinate",
+        "tags": [
+          "Geocoding"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Search with either the free-form `q` parameter or structured address parameters.",
+        "id": "operation:get:/search",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchPlaces",
+        "parameters": [
+          {
+            "description": "Free-form query.",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Name or type of point of interest; structured query parameter.",
+            "in": "query",
+            "name": "amenity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "House number and street name; structured query parameter.",
+            "in": "query",
+            "name": "street",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "City; structured query parameter.",
+            "in": "query",
+            "name": "city",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "County; structured query parameter.",
+            "in": "query",
+            "name": "county",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "State; structured query parameter.",
+            "in": "query",
+            "name": "state",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Country; structured query parameter.",
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Postal code; structured query parameter.",
+            "in": "query",
+            "name": "postalcode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Set explicitly because the public server handles an omitted format differently.",
+            "enum": [
+              "jsonv2"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Maximum number of results; the service may return fewer.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Comma-separated ISO 3166-1 alpha-2 country-code filter.",
+            "in": "query",
+            "name": "countrycodes",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Include address breakdown when set to 1.",
+            "enum": [
+              0,
+              1
+            ],
+            "in": "query",
+            "name": "addressdetails",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Include available additional OSM tags when set to 1.",
+            "enum": [
+              0,
+              1
+            ],
+            "in": "query",
+            "name": "extratags",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Include available name variants when set to 1.",
+            "enum": [
+              0,
+              1
+            ],
+            "in": "query",
+            "name": "namedetails",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Preferred result languages, using Accept-Language syntax.",
+            "in": "query",
+            "name": "accept-language",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Comma-separated coordinates of two viewbox corners; boosts results in the area.",
+            "in": "query",
+            "name": "viewbox",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "When set to 1, restrict results to the supplied viewbox.",
+            "enum": [
+              0,
+              1
+            ],
+            "in": "query",
+            "name": "bounded",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/search",
+        "pointer": "#/paths/~1search/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Place[]"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Search for places",
+        "tags": [
+          "Geocoding"
+        ]
+      },
+      {
+        "description": "Place result.",
+        "id": "schema:Place",
+        "kind": "schema",
+        "name": "Place",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "nominatim"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://nominatim.openstreetmap.org",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "Place": {
+                  "additionalProperties": true,
+                  "description": "Place result. Address fields and optional metadata vary with the indexed OpenStreetMap data and requested output details.",
+                  "properties": {
+                    "address": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "boundingbox": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "maxItems": 4,
+                      "minItems": 4,
+                      "type": "array"
+                    },
+                    "category": {
+                      "type": "string"
+                    },
+                    "display_name": {
+                      "type": "string"
+                    },
+                    "extratags": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "importance": {
+                      "oneOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "lat": {
+                      "type": "string"
+                    },
+                    "licence": {
+                      "type": "string"
+                    },
+                    "lon": {
+                      "type": "string"
+                    },
+                    "namedetails": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "type": "object"
+                    },
+                    "osm_id": {
+                      "oneOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "osm_type": {
+                      "enum": [
+                        "node",
+                        "way",
+                        "relation"
+                      ],
+                      "type": "string"
+                    },
+                    "place_id": {
+                      "oneOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "place_rank": {
+                      "oneOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained description of Nominatim API v1 search, reverse geocoding, and address lookup using JSONv2 responses. Set `format=jsonv2` explicitly. The usage policy at the public OpenStreetMap Foundation server applies only to `nominatim.openstreetmap.org`: identify the application with a valid User-Agent or Referer, stay at or below one request per second, show OpenStreetMap attribution, honor ODbL obligations for the data, and do not use the service for autocomplete, systematic queries, or resale. Apps must be able to switch service at the Foundation's request. Self-hosted and other Nominatim instances have their own policies.",
+              "externalDocs": {
+                "description": "Nominatim API v1 documentation",
+                "url": "https://nominatim.org/release-docs/develop/api/Overview/"
+              },
+              "title": "Nominatim Geocoding API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/lookup": {
+                "get": {
+                  "description": "Look up as many as 50 nodes, ways, or relations by their prefixed OpenStreetMap IDs.",
+                  "operationId": "lookupPlacesByOsmId",
+                  "parameters": [
+                    {
+                      "description": "Comma-separated object IDs prefixed with N, W, or R (for example, N240109189).",
+                      "in": "query",
+                      "name": "osm_ids",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "format",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "jsonv2"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Include address breakdown when set to 1.",
+                      "in": "query",
+                      "name": "addressdetails",
+                      "schema": {
+                        "default": 1,
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Include available additional OSM tags when set to 1.",
+                      "in": "query",
+                      "name": "extratags",
+                      "schema": {
+                        "default": 0,
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Include available name variants when set to 1.",
+                      "in": "query",
+                      "name": "namedetails",
+                      "schema": {
+                        "default": 0,
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Preferred result languages, using Accept-Language syntax.",
+                      "in": "query",
+                      "name": "accept-language",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Place"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Matching places in JSONv2 format."
+                    }
+                  },
+                  "summary": "Look up places by OpenStreetMap object IDs",
+                  "tags": [
+                    "Geocoding"
+                  ]
+                }
+              },
+              "/reverse": {
+                "get": {
+                  "description": "Returns the nearest suitable indexed OpenStreetMap object. Its address may not exactly match the supplied coordinate, and a result is not available for every coordinate.",
+                  "operationId": "reverseGeocode",
+                  "parameters": [
+                    {
+                      "description": "Latitude in WGS84.",
+                      "in": "query",
+                      "name": "lat",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "maximum": 90,
+                        "minimum": -90,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Longitude in WGS84.",
+                      "in": "query",
+                      "name": "lon",
+                      "required": true,
+                      "schema": {
+                        "format": "double",
+                        "maximum": 180,
+                        "minimum": -180,
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "in": "query",
+                      "name": "format",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "jsonv2"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Requested address detail level.",
+                      "in": "query",
+                      "name": "zoom",
+                      "schema": {
+                        "default": 18,
+                        "maximum": 18,
+                        "minimum": 0,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Include address breakdown when set to 1.",
+                      "in": "query",
+                      "name": "addressdetails",
+                      "schema": {
+                        "default": 1,
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Include available additional OSM tags when set to 1.",
+                      "in": "query",
+                      "name": "extratags",
+                      "schema": {
+                        "default": 0,
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Include available name variants when set to 1.",
+                      "in": "query",
+                      "name": "namedetails",
+                      "schema": {
+                        "default": 0,
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Preferred result languages, using Accept-Language syntax.",
+                      "in": "query",
+                      "name": "accept-language",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Place"
+                          }
+                        }
+                      },
+                      "description": "One place in JSONv2 format."
+                    }
+                  },
+                  "summary": "Reverse geocode a coordinate",
+                  "tags": [
+                    "Geocoding"
+                  ]
+                }
+              },
+              "/search": {
+                "get": {
+                  "description": "Search with either the free-form `q` parameter or structured address parameters. Do not combine `q` with structured parameters. Results contain the best matches, not a complete list of objects in an area.",
+                  "operationId": "searchPlaces",
+                  "parameters": [
+                    {
+                      "description": "Free-form query. Do not combine with structured query parameters.",
+                      "in": "query",
+                      "name": "q",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Name or type of point of interest; structured query parameter.",
+                      "in": "query",
+                      "name": "amenity",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "House number and street name; structured query parameter.",
+                      "in": "query",
+                      "name": "street",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "City; structured query parameter.",
+                      "in": "query",
+                      "name": "city",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "County; structured query parameter.",
+                      "in": "query",
+                      "name": "county",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "State; structured query parameter.",
+                      "in": "query",
+                      "name": "state",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Country; structured query parameter.",
+                      "in": "query",
+                      "name": "country",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Postal code; structured query parameter.",
+                      "in": "query",
+                      "name": "postalcode",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Set explicitly because the public server handles an omitted format differently.",
+                      "in": "query",
+                      "name": "format",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "jsonv2"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of results; the service may return fewer.",
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": 10,
+                        "maximum": 40,
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Comma-separated ISO 3166-1 alpha-2 country-code filter.",
+                      "in": "query",
+                      "name": "countrycodes",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Include address breakdown when set to 1.",
+                      "in": "query",
+                      "name": "addressdetails",
+                      "schema": {
+                        "default": 0,
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Include available additional OSM tags when set to 1.",
+                      "in": "query",
+                      "name": "extratags",
+                      "schema": {
+                        "default": 0,
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Include available name variants when set to 1.",
+                      "in": "query",
+                      "name": "namedetails",
+                      "schema": {
+                        "default": 0,
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Preferred result languages, using Accept-Language syntax.",
+                      "in": "query",
+                      "name": "accept-language",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Comma-separated coordinates of two viewbox corners; boosts results in the area.",
+                      "in": "query",
+                      "name": "viewbox",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "When set to 1, restrict results to the supplied viewbox.",
+                      "in": "query",
+                      "name": "bounded",
+                      "schema": {
+                        "default": 0,
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Place"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Matching places in JSONv2 format."
+                    }
+                  },
+                  "summary": "Search for places",
+                  "tags": [
+                    "Geocoding"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Public Nominatim instance; see its usage policy before use.",
+                "url": "https://nominatim.openstreetmap.org"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Forward and reverse geocoding.",
+                "name": "Geocoding"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Nominatim"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:56.401779+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/nominatim/openapi.yml",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "98e21f4d15e31efe59361e3888c7466db8337a4e7055673eed70f82269f47b7d",
+    "source_id": "nominatim",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/nominatim/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

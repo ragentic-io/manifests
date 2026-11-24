@@ -1,0 +1,518 @@
+{
+  "a2ui": {},
+  "app": "lazada",
+  "graph": {
+    "edges": [
+      {
+        "from": "lazada",
+        "kind": "EXPOSES",
+        "to": "operation:get:/order/get"
+      },
+      {
+        "from": "lazada",
+        "kind": "EXPOSES",
+        "to": "operation:get:/orders/get"
+      },
+      {
+        "from": "operation:get:/order/get",
+        "kind": "RETURNS",
+        "to": "schema:OrderResponse"
+      },
+      {
+        "from": "operation:get:/orders/get",
+        "kind": "RETURNS",
+        "to": "schema:OrderListResponse"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "lazada",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns order information for an order in the authorized store.",
+        "id": "operation:get:/order/get",
+        "kind": "operation",
+        "method": "get",
+        "name": "getOrder",
+        "parameters": [
+          {
+            "description": "Application key issued by the Lazada Open Platform.",
+            "in": "query",
+            "name": "app_key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Access token granted by an authorized seller.",
+            "in": "query",
+            "name": "access_token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Millisecond timestamp; requests must be within 7200 seconds of UTC.",
+            "in": "query",
+            "name": "timestamp",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "HMAC signature algorithm used for the request.",
+            "in": "query",
+            "name": "sign_method",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Signature generated using the application secret and request parameters.",
+            "in": "query",
+            "name": "sign",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Order identifier within the authorized store.",
+            "in": "query",
+            "name": "order_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/order/get",
+        "pointer": "#/paths/~1order~1get/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "OrderResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Retrieve an order",
+        "tags": [
+          "Orders"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns orders for the authorized store.",
+        "id": "operation:get:/orders/get",
+        "kind": "operation",
+        "method": "get",
+        "name": "getOrders",
+        "parameters": [
+          {
+            "description": "Application key issued by the Lazada Open Platform.",
+            "in": "query",
+            "name": "app_key",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Access token granted by an authorized seller.",
+            "in": "query",
+            "name": "access_token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Millisecond timestamp; requests must be within 7200 seconds of UTC.",
+            "in": "query",
+            "name": "timestamp",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "HMAC signature algorithm used for the request.",
+            "in": "query",
+            "name": "sign_method",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Signature generated using the application secret and request parameters.",
+            "in": "query",
+            "name": "sign",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Lower creation-time bound used to search orders.",
+            "in": "query",
+            "name": "created_after",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Order status filter; use `all` to include all statuses.",
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Maximum orders to return; the documented maximum is 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Number of orders to skip; the documented maximum is 5000.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/orders/get",
+        "pointer": "#/paths/~1orders~1get/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "OrderListResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List a seller's orders",
+        "tags": [
+          "Orders"
+        ]
+      },
+      {
+        "id": "schema:OrderListResponse",
+        "kind": "schema",
+        "name": "OrderListResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:OrderResponse",
+        "kind": "schema",
+        "name": "OrderResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "lazada"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.lazada.sg/rest",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "accessToken": {
+                  "description": "Access token granted by an authorized seller.",
+                  "in": "query",
+                  "name": "access_token",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "appKey": {
+                  "description": "Application key issued by the Lazada Open Platform.",
+                  "in": "query",
+                  "name": "app_key",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "signMethod": {
+                  "description": "HMAC signature algorithm used for the request.",
+                  "in": "query",
+                  "name": "sign_method",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "signature": {
+                  "description": "Signature generated using the application secret and request parameters.",
+                  "in": "query",
+                  "name": "sign",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "timestamp": {
+                  "description": "Millisecond timestamp; requests must be within 7200 seconds of UTC.",
+                  "in": "query",
+                  "name": "timestamp",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "schemas": {
+                "OrderListResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "additionalProperties": true,
+                      "description": "Includes the documented `countTotal` field and returned orders; the public guide does not fully define the nested response types.",
+                      "type": "object"
+                    },
+                    "request_id": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "OrderResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "additionalProperties": true,
+                      "description": "Order data; see the provider's field guide.",
+                      "type": "object"
+                    },
+                    "request_id": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Lazada's public order API guide",
+              "url": "https://open.lazada.com/apps/doc/doc?docId=121327&nodeId=29616"
+            },
+            "info": {
+              "description": "Community-maintained, read-only subset for listing orders and retrieving a single order. Lazada requires a developer account, application and API category approval, seller authorization, and signed requests. Fields not fully described in the public order guide remain open in the response schemas. API access and available data depend on the seller's region and granted permissions.",
+              "termsOfService": "https://open.lazada.com/apps/doc/doc?docId=120731&nodeId=30412",
+              "title": "Lazada Open Platform Order API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/order/get": {
+                "get": {
+                  "description": "Returns order information for an order in the authorized store.",
+                  "externalDocs": {
+                    "description": "Lazada's signed HTTP request example for GetOrder",
+                    "url": "https://open.lazada.com/apps/doc/doc?docId=108069&nodeId=10400"
+                  },
+                  "operationId": "getOrder",
+                  "parameters": [
+                    {
+                      "description": "Order identifier within the authorized store.",
+                      "in": "query",
+                      "name": "order_id",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OrderResponse"
+                          }
+                        }
+                      },
+                      "description": "Order response; the provider's order fields are left open here."
+                    }
+                  },
+                  "summary": "Retrieve an order",
+                  "tags": [
+                    "Orders"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/appKey"
+                  },
+                  {
+                    "$ref": "#/components/parameters/accessToken"
+                  },
+                  {
+                    "$ref": "#/components/parameters/timestamp"
+                  },
+                  {
+                    "$ref": "#/components/parameters/signMethod"
+                  },
+                  {
+                    "$ref": "#/components/parameters/signature"
+                  }
+                ]
+              },
+              "/orders/get": {
+                "get": {
+                  "description": "Returns orders for the authorized store. The provider recommends using order notifications for new orders instead of repeatedly polling this operation. `offset` is limited to 5000; continue older pagination by advancing the creation-time filter.",
+                  "externalDocs": {
+                    "description": "Lazada's GetOrders guide and field notes",
+                    "url": "https://open.lazada.com/apps/doc/doc?docId=121327&nodeId=29616"
+                  },
+                  "operationId": "getOrders",
+                  "parameters": [
+                    {
+                      "description": "Lower creation-time bound used to search orders.",
+                      "in": "query",
+                      "name": "created_after",
+                      "required": false,
+                      "schema": {
+                        "example": "2018-02-10T16:00:00+08:00",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Order status filter; use `all` to include all statuses.",
+                      "in": "query",
+                      "name": "status",
+                      "required": false,
+                      "schema": {
+                        "example": "all",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum orders to return; the documented maximum is 100.",
+                      "in": "query",
+                      "name": "limit",
+                      "required": false,
+                      "schema": {
+                        "example": "100",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Number of orders to skip; the documented maximum is 5000.",
+                      "in": "query",
+                      "name": "offset",
+                      "required": false,
+                      "schema": {
+                        "example": "0",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OrderListResponse"
+                          }
+                        }
+                      },
+                      "description": "Order list response. The provider documents a total count and order fields."
+                    }
+                  },
+                  "summary": "List a seller's orders",
+                  "tags": [
+                    "Orders"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/appKey"
+                  },
+                  {
+                    "$ref": "#/components/parameters/accessToken"
+                  },
+                  {
+                    "$ref": "#/components/parameters/timestamp"
+                  },
+                  {
+                    "$ref": "#/components/parameters/signMethod"
+                  },
+                  {
+                    "$ref": "#/components/parameters/signature"
+                  }
+                ]
+              }
+            },
+            "servers": [
+              {
+                "description": "Singapore",
+                "url": "https://api.lazada.sg/rest"
+              },
+              {
+                "description": "Thailand",
+                "url": "https://api.lazada.co.th/rest"
+              },
+              {
+                "description": "Malaysia",
+                "url": "https://api.lazada.com.my/rest"
+              },
+              {
+                "description": "Vietnam",
+                "url": "https://api.lazada.vn/rest"
+              },
+              {
+                "description": "Philippines",
+                "url": "https://api.lazada.com.ph/rest"
+              },
+              {
+                "description": "Indonesia",
+                "url": "https://api.lazada.co.id/rest"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Read orders belonging to a seller-authorized store.",
+                "name": "Orders"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Lazada"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:51.581417+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/lazada/openapi.yml",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "1e3de1c2aa64e0d138b99b18e27499b740db67bab14dad29ee8622d496bea2a3",
+    "source_id": "lazada",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/lazada/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

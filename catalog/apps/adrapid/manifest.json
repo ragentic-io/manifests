@@ -1,0 +1,164 @@
+{
+  "a2ui": {},
+  "app": "adrapid",
+  "graph": {
+    "edges": [
+      {
+        "from": "adrapid",
+        "kind": "EXPOSES",
+        "to": "operation:get:/"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "adrapid",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /",
+        "path": "/",
+        "pointer": "#/paths/~1/get",
+        "responses": [
+          {
+            "status": "200"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "returns info about the API.",
+        "tags": [
+          "system"
+        ]
+      },
+      {
+        "id": "schema:Banner",
+        "kind": "schema",
+        "name": "Banner"
+      },
+      {
+        "id": "schema:BannerFile",
+        "kind": "schema",
+        "name": "BannerFile"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "adrapid"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.adrapid.com/v1/api",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "Banner": {
+                  "$ref": "api.yaml#/components/schemas/Banner"
+                },
+                "BannerFile": {
+                  "$ref": "api.yaml#/components/schemas/BannerFile"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "bearerFormat": "JWT",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "description": "Adrapid's API for users. This API support the creation of optimized banners in HTML5, images, PDF files and videos. Authentication is made with a JWT bearer provided by Adrapid in your user account.",
+              "title": "Adrapid User API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/": {
+                "get": {
+                  "responses": {
+                    "200": {
+                      "$ref": "api.yaml#/components/responses/Info"
+                    },
+                    "401": {
+                      "$ref": "api.yaml#/components/responses/UnauthorizedError"
+                    }
+                  },
+                  "summary": "returns info about the API.",
+                  "tags": [
+                    "system"
+                  ]
+                }
+              },
+              "/banners": {
+                "$ref": "api.yaml#/components/paths/banners"
+              },
+              "/banners/{id}": {
+                "$ref": "api.yaml#/components/paths/banner"
+              },
+              "/me": {
+                "$ref": "api.yaml#/components/paths/me"
+              }
+            },
+            "servers": [
+              {
+                "description": "API endpoint",
+                "url": "https://api.adrapid.com/v1/api"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Banner operations.",
+                "name": "banners"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Adrapid"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:26.080691+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://api.adrapid.com/spec/v1/client-api.yaml",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "6b2802bb189354b32029e1adb5624902a20d93944a85eb18eefdf9b70c5c6c03",
+    "source_id": "adrapid",
+    "source_updated": null,
+    "url": "https://api.adrapid.com/spec/v1/client-api.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

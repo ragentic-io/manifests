@@ -1,0 +1,1133 @@
+{
+  "a2ui": {},
+  "app": "open-payments",
+  "graph": {
+    "edges": [
+      {
+        "from": "open-payments",
+        "kind": "EXPOSES",
+        "to": "operation:post:/psd2/paymentinitiation/v1/payments/domestic"
+      },
+      {
+        "from": "open-payments",
+        "kind": "EXPOSES",
+        "to": "operation:post:/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations"
+      },
+      {
+        "from": "open-payments",
+        "kind": "EXPOSES",
+        "to": "operation:get:/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations/{authorisationId}"
+      },
+      {
+        "from": "open-payments",
+        "kind": "EXPOSES",
+        "to": "operation:put:/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations/{authorisationId}"
+      },
+      {
+        "from": "open-payments",
+        "kind": "EXPOSES",
+        "to": "operation:get:/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/status"
+      },
+      {
+        "from": "operation:post:/psd2/paymentinitiation/v1/payments/domestic",
+        "kind": "ACCEPTS",
+        "to": "schema:DomesticPaymentRequest"
+      },
+      {
+        "from": "schema:AuthorisationCreated",
+        "kind": "REFERENCES",
+        "to": "schema:Link"
+      },
+      {
+        "from": "schema:AuthorisationCreated",
+        "kind": "REFERENCES",
+        "to": "schema:ScaMethod"
+      },
+      {
+        "from": "schema:AuthorisationStarted",
+        "kind": "REFERENCES",
+        "to": "schema:Link"
+      },
+      {
+        "from": "schema:AuthorisationStarted",
+        "kind": "REFERENCES",
+        "to": "schema:ScaMethod"
+      },
+      {
+        "from": "schema:DomesticPaymentRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Account"
+      },
+      {
+        "from": "schema:DomesticPaymentRequest",
+        "kind": "REFERENCES",
+        "to": "schema:Amount"
+      },
+      {
+        "from": "schema:PaymentCreated",
+        "kind": "REFERENCES",
+        "to": "schema:Link"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "open-payments",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Requires an access token with the paymentinitiation scope and PSU context.",
+        "id": "operation:post:/psd2/paymentinitiation/v1/payments/domestic",
+        "kind": "operation",
+        "method": "post",
+        "name": "createDomesticPayment",
+        "parameters": [
+          {
+            "description": "Unique request identifier.",
+            "in": "header",
+            "name": "X-Request-ID",
+            "required": false,
+            "type": "string:uuid"
+          },
+          {
+            "description": "BIC of the bank receiving the request.",
+            "in": "header",
+            "name": "X-BicFi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Identifier of the payment service user at the bank.",
+            "in": "header",
+            "name": "PSU-ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Corporate identifier when acting for an organisation.",
+            "in": "header",
+            "name": "PSU-Corporate-ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Indicates a preference for redirect-based SCA.",
+            "in": "header",
+            "name": "TPP-Redirect-Preferred",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "PSU IP address forwarded to the bank.",
+            "in": "header",
+            "name": "PSU-IP-Address",
+            "required": false,
+            "type": "string:ipv4"
+          },
+          {
+            "description": "User agent forwarded from the PSU's request.",
+            "in": "header",
+            "name": "PSU-User-Agent",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/psd2/paymentinitiation/v1/payments/domestic",
+        "pointer": "#/paths/~1psd2~1paymentinitiation~1v1~1payments~1domestic/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "DomesticPaymentRequest"
+        },
+        "responses": [
+          {
+            "status": "default",
+            "type": "PaymentCreated"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a domestic payment"
+      },
+      {
+        "deprecated": false,
+        "description": "Creates an SCA authorisation process for a domestic payment.",
+        "id": "operation:post:/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations",
+        "kind": "operation",
+        "method": "post",
+        "name": "createDomesticPaymentAuthorisation",
+        "parameters": [
+          {
+            "description": "Identifier of the created payment.",
+            "in": "path",
+            "name": "paymentId",
+            "required": true,
+            "type": "string:uuid"
+          },
+          {
+            "description": "Unique request identifier.",
+            "in": "header",
+            "name": "X-Request-ID",
+            "required": false,
+            "type": "string:uuid"
+          },
+          {
+            "description": "BIC of the bank receiving the request.",
+            "in": "header",
+            "name": "X-BicFi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Identifier of the payment service user at the bank.",
+            "in": "header",
+            "name": "PSU-ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Corporate identifier when acting for an organisation.",
+            "in": "header",
+            "name": "PSU-Corporate-ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Indicates a preference for redirect-based SCA.",
+            "in": "header",
+            "name": "TPP-Redirect-Preferred",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "PSU IP address forwarded to the bank.",
+            "in": "header",
+            "name": "PSU-IP-Address",
+            "required": false,
+            "type": "string:ipv4"
+          },
+          {
+            "description": "User agent forwarded from the PSU's request.",
+            "in": "header",
+            "name": "PSU-User-Agent",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations",
+        "pointer": "#/paths/~1psd2~1paymentinitiation~1v1~1payments~1domestic~1{paymentId}~1authorisations/post",
+        "responses": [
+          {
+            "status": "default",
+            "type": "AuthorisationCreated"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Start payment authorisation"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations/{authorisationId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDomesticPaymentAuthorisationStatus",
+        "parameters": [
+          {
+            "description": "Identifier of the created payment.",
+            "in": "path",
+            "name": "paymentId",
+            "required": true,
+            "type": "string:uuid"
+          },
+          {
+            "description": "Identifier of the authorisation process.",
+            "in": "path",
+            "name": "authorisationId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique request identifier.",
+            "in": "header",
+            "name": "X-Request-ID",
+            "required": false,
+            "type": "string:uuid"
+          },
+          {
+            "description": "BIC of the bank receiving the request.",
+            "in": "header",
+            "name": "X-BicFi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Identifier of the payment service user at the bank.",
+            "in": "header",
+            "name": "PSU-ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Corporate identifier when acting for an organisation.",
+            "in": "header",
+            "name": "PSU-Corporate-ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Indicates a preference for redirect-based SCA.",
+            "in": "header",
+            "name": "TPP-Redirect-Preferred",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "PSU IP address forwarded to the bank.",
+            "in": "header",
+            "name": "PSU-IP-Address",
+            "required": false,
+            "type": "string:ipv4"
+          },
+          {
+            "description": "User agent forwarded from the PSU's request.",
+            "in": "header",
+            "name": "PSU-User-Agent",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations/{authorisationId}",
+        "pointer": "#/paths/~1psd2~1paymentinitiation~1v1~1payments~1domestic~1{paymentId}~1authorisations~1{authorisationId}/get",
+        "responses": [
+          {
+            "status": "default",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get authorisation status"
+      },
+      {
+        "deprecated": false,
+        "description": "Starts the bank's authorisation flow using a returned SCA method.",
+        "id": "operation:put:/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations/{authorisationId}",
+        "kind": "operation",
+        "method": "put",
+        "name": "startDomesticPaymentAuthorisation",
+        "parameters": [
+          {
+            "description": "Identifier of the created payment.",
+            "in": "path",
+            "name": "paymentId",
+            "required": true,
+            "type": "string:uuid"
+          },
+          {
+            "description": "Identifier of the authorisation process.",
+            "in": "path",
+            "name": "authorisationId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Unique request identifier.",
+            "in": "header",
+            "name": "X-Request-ID",
+            "required": false,
+            "type": "string:uuid"
+          },
+          {
+            "description": "BIC of the bank receiving the request.",
+            "in": "header",
+            "name": "X-BicFi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Identifier of the payment service user at the bank.",
+            "in": "header",
+            "name": "PSU-ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Corporate identifier when acting for an organisation.",
+            "in": "header",
+            "name": "PSU-Corporate-ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Indicates a preference for redirect-based SCA.",
+            "in": "header",
+            "name": "TPP-Redirect-Preferred",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "PSU IP address forwarded to the bank.",
+            "in": "header",
+            "name": "PSU-IP-Address",
+            "required": false,
+            "type": "string:ipv4"
+          },
+          {
+            "description": "User agent forwarded from the PSU's request.",
+            "in": "header",
+            "name": "PSU-User-Agent",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations/{authorisationId}",
+        "pointer": "#/paths/~1psd2~1paymentinitiation~1v1~1payments~1domestic~1{paymentId}~1authorisations~1{authorisationId}/put",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "default",
+            "type": "AuthorisationStarted"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Select an authentication method"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/status",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDomesticPaymentStatus",
+        "parameters": [
+          {
+            "description": "Identifier of the created payment.",
+            "in": "path",
+            "name": "paymentId",
+            "required": true,
+            "type": "string:uuid"
+          },
+          {
+            "description": "Unique request identifier.",
+            "in": "header",
+            "name": "X-Request-ID",
+            "required": false,
+            "type": "string:uuid"
+          },
+          {
+            "description": "BIC of the bank receiving the request.",
+            "in": "header",
+            "name": "X-BicFi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Identifier of the payment service user at the bank.",
+            "in": "header",
+            "name": "PSU-ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Corporate identifier when acting for an organisation.",
+            "in": "header",
+            "name": "PSU-Corporate-ID",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Indicates a preference for redirect-based SCA.",
+            "in": "header",
+            "name": "TPP-Redirect-Preferred",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "PSU IP address forwarded to the bank.",
+            "in": "header",
+            "name": "PSU-IP-Address",
+            "required": false,
+            "type": "string:ipv4"
+          },
+          {
+            "description": "User agent forwarded from the PSU's request.",
+            "in": "header",
+            "name": "PSU-User-Agent",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/status",
+        "pointer": "#/paths/~1psd2~1paymentinitiation~1v1~1payments~1domestic~1{paymentId}~1status/get",
+        "responses": [
+          {
+            "status": "default",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get domestic payment status"
+      },
+      {
+        "id": "schema:Account",
+        "kind": "schema",
+        "name": "Account",
+        "type": "object"
+      },
+      {
+        "id": "schema:Amount",
+        "kind": "schema",
+        "name": "Amount",
+        "type": "object"
+      },
+      {
+        "id": "schema:AuthorisationCreated",
+        "kind": "schema",
+        "name": "AuthorisationCreated",
+        "type": "object"
+      },
+      {
+        "id": "schema:AuthorisationStarted",
+        "kind": "schema",
+        "name": "AuthorisationStarted",
+        "type": "object"
+      },
+      {
+        "id": "schema:DomesticPaymentRequest",
+        "kind": "schema",
+        "name": "DomesticPaymentRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:Link",
+        "kind": "schema",
+        "name": "Link",
+        "type": "object"
+      },
+      {
+        "id": "schema:PaymentCreated",
+        "kind": "schema",
+        "name": "PaymentCreated",
+        "type": "object"
+      },
+      {
+        "id": "schema:ScaMethod",
+        "kind": "schema",
+        "name": "ScaMethod",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "open-payments"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.openbankingplatform.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "AuthorisationId": {
+                  "description": "Identifier of the authorisation process.",
+                  "in": "path",
+                  "name": "authorisationId",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "PaymentId": {
+                  "description": "Identifier of the created payment.",
+                  "in": "path",
+                  "name": "paymentId",
+                  "required": true,
+                  "schema": {
+                    "format": "uuid",
+                    "type": "string"
+                  }
+                },
+                "PsuCorporateId": {
+                  "description": "Corporate identifier when acting for an organisation.",
+                  "in": "header",
+                  "name": "PSU-Corporate-ID",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "PsuId": {
+                  "description": "Identifier of the payment service user at the bank.",
+                  "in": "header",
+                  "name": "PSU-ID",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "PsuIpAddress": {
+                  "description": "PSU IP address forwarded to the bank.",
+                  "in": "header",
+                  "name": "PSU-IP-Address",
+                  "schema": {
+                    "format": "ipv4",
+                    "type": "string"
+                  }
+                },
+                "PsuUserAgent": {
+                  "description": "User agent forwarded from the PSU's request.",
+                  "in": "header",
+                  "name": "PSU-User-Agent",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "TppRedirectPreferred": {
+                  "description": "Indicates a preference for redirect-based SCA.",
+                  "in": "header",
+                  "name": "TPP-Redirect-Preferred",
+                  "schema": {
+                    "type": "boolean"
+                  }
+                },
+                "XBicFi": {
+                  "description": "BIC of the bank receiving the request.",
+                  "in": "header",
+                  "name": "X-BicFi",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "XRequestId": {
+                  "description": "Unique request identifier.",
+                  "in": "header",
+                  "name": "X-Request-ID",
+                  "schema": {
+                    "format": "uuid",
+                    "type": "string"
+                  }
+                }
+              },
+              "schemas": {
+                "Account": {
+                  "properties": {
+                    "currency": {
+                      "type": "string"
+                    },
+                    "iban": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Amount": {
+                  "properties": {
+                    "amount": {
+                      "type": "string"
+                    },
+                    "currency": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "AuthorisationCreated": {
+                  "properties": {
+                    "_links": {
+                      "properties": {
+                        "authoriseTransaction": {
+                          "$ref": "#/components/schemas/Link"
+                        },
+                        "scaStatus": {
+                          "$ref": "#/components/schemas/Link"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "authorisationId": {
+                      "type": "string"
+                    },
+                    "scaMethods": {
+                      "items": {
+                        "$ref": "#/components/schemas/ScaMethod"
+                      },
+                      "type": "array"
+                    },
+                    "scaStatus": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "AuthorisationStarted": {
+                  "properties": {
+                    "_links": {
+                      "properties": {
+                        "scaOAuth": {
+                          "$ref": "#/components/schemas/Link"
+                        },
+                        "scaStatus": {
+                          "$ref": "#/components/schemas/Link"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "chosenScaMethod": {
+                      "$ref": "#/components/schemas/ScaMethod"
+                    },
+                    "scaStatus": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "DomesticPaymentRequest": {
+                  "properties": {
+                    "creditorAccount": {
+                      "$ref": "#/components/schemas/Account"
+                    },
+                    "creditorName": {
+                      "type": "string"
+                    },
+                    "debtorAccount": {
+                      "$ref": "#/components/schemas/Account"
+                    },
+                    "instructedAmount": {
+                      "$ref": "#/components/schemas/Amount"
+                    },
+                    "remittanceInformationUnstructured": {
+                      "type": "string"
+                    },
+                    "requestedExecutionDate": {
+                      "format": "date",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Link": {
+                  "properties": {
+                    "href": {
+                      "format": "uri-reference",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PaymentCreated": {
+                  "properties": {
+                    "_links": {
+                      "properties": {
+                        "self": {
+                          "$ref": "#/components/schemas/Link"
+                        },
+                        "startAuthorisationWithTransactionAuthorisation": {
+                          "$ref": "#/components/schemas/Link"
+                        },
+                        "status": {
+                          "$ref": "#/components/schemas/Link"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "paymentId": {
+                      "format": "uuid",
+                      "type": "string"
+                    },
+                    "transactionStatus": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ScaMethod": {
+                  "properties": {
+                    "authenticationMethodId": {
+                      "type": "string"
+                    },
+                    "authenticationType": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "description": "OAuth 2.0 access token with paymentinitiation and PSU-context scopes.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Open Payments payment initiation documentation",
+              "url": "https://docs.openpayments.io/docs/quickstart_pis"
+            },
+            "info": {
+              "description": "Community-maintained, focused specification for the documented domestic payment initiation and single-payment authorisation flow. The provider does not publish a version for this endpoint set. Access tokens require the paymentinitiation scope and a private or corporate context; production access requires provider approval and a client certificate.",
+              "title": "Open Payments Domestic Payment Initiation API",
+              "version": "2026-10-02"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/psd2/paymentinitiation/v1/payments/domestic": {
+                "post": {
+                  "description": "Requires an access token with the paymentinitiation scope and PSU context.",
+                  "operationId": "createDomesticPayment",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/XRequestId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/XBicFi"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuCorporateId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/TppRedirectPreferred"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuIpAddress"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuUserAgent"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/DomesticPaymentRequest"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PaymentCreated"
+                          }
+                        }
+                      },
+                      "description": "Provider response example; the documentation does not specify the HTTP status code."
+                    }
+                  },
+                  "summary": "Create a domestic payment"
+                }
+              },
+              "/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations": {
+                "post": {
+                  "description": "Creates an SCA authorisation process for a domestic payment.",
+                  "operationId": "createDomesticPaymentAuthorisation",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/PaymentId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/XRequestId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/XBicFi"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuCorporateId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/TppRedirectPreferred"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuIpAddress"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuUserAgent"
+                    }
+                  ],
+                  "responses": {
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AuthorisationCreated"
+                          }
+                        }
+                      },
+                      "description": "Provider response example; the documentation does not specify the HTTP status code."
+                    }
+                  },
+                  "summary": "Start payment authorisation"
+                }
+              },
+              "/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/authorisations/{authorisationId}": {
+                "get": {
+                  "operationId": "getDomesticPaymentAuthorisationStatus",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/PaymentId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/AuthorisationId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/XRequestId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/XBicFi"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuCorporateId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/TppRedirectPreferred"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuIpAddress"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuUserAgent"
+                    }
+                  ],
+                  "responses": {
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "scaStatus": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Provider response example; the documentation does not specify the HTTP status code."
+                    }
+                  },
+                  "summary": "Get authorisation status"
+                },
+                "put": {
+                  "description": "Starts the bank's authorisation flow using a returned SCA method.",
+                  "operationId": "startDomesticPaymentAuthorisation",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/PaymentId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/AuthorisationId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/XRequestId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/XBicFi"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuCorporateId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/TppRedirectPreferred"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuIpAddress"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuUserAgent"
+                    }
+                  ],
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "authenticationMethodId": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "authenticationMethodId"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/AuthorisationStarted"
+                          }
+                        }
+                      },
+                      "description": "Provider response example; the documentation does not specify the HTTP status code.",
+                      "headers": {
+                        "aspsp-sca-approach": {
+                          "description": "Indicates whether the bank uses a redirect SCA flow.",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "summary": "Select an authentication method"
+                }
+              },
+              "/psd2/paymentinitiation/v1/payments/domestic/{paymentId}/status": {
+                "get": {
+                  "operationId": "getDomesticPaymentStatus",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/PaymentId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/XRequestId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/XBicFi"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuCorporateId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/TppRedirectPreferred"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuIpAddress"
+                    },
+                    {
+                      "$ref": "#/components/parameters/PsuUserAgent"
+                    }
+                  ],
+                  "responses": {
+                    "default": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "transactionStatus": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Provider response example; the documentation does not specify the HTTP status code."
+                    }
+                  },
+                  "summary": "Get domestic payment status"
+                }
+              }
+            },
+            "security": [
+              {
+                "bearerAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production; requires approved production access and a client certificate.",
+                "url": "https://api.openbankingplatform.com"
+              },
+              {
+                "description": "Sandbox; use sandbox credentials and simulated data.",
+                "url": "https://api.sandbox.openbankingplatform.com"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Open Payments"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:37:40.561985+00:00",
+    "license": null,
+    "normalization": "YAML timestamps and non-string mapping keys converted to strings",
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openpayments/openapi.yml",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "d1c07ccf9c39cc8572ce454aac15c6a5b60408949054f345a26710bacf79f7ee",
+    "source_id": "open-payments",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openpayments/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "2026-10-02"
+}

@@ -1,0 +1,897 @@
+{
+  "a2ui": {},
+  "app": "okx",
+  "graph": {
+    "edges": [
+      {
+        "from": "okx",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v5/market/books"
+      },
+      {
+        "from": "okx",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v5/market/candles"
+      },
+      {
+        "from": "okx",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v5/market/ticker"
+      },
+      {
+        "from": "okx",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v5/market/tickers"
+      },
+      {
+        "from": "okx",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/v5/public/time"
+      },
+      {
+        "from": "operation:get:/api/v5/market/books",
+        "kind": "RETURNS",
+        "to": "schema:OrderBookResponse"
+      },
+      {
+        "from": "operation:get:/api/v5/market/candles",
+        "kind": "RETURNS",
+        "to": "schema:CandlesResponse"
+      },
+      {
+        "from": "operation:get:/api/v5/market/ticker",
+        "kind": "RETURNS",
+        "to": "schema:TickerResponse"
+      },
+      {
+        "from": "operation:get:/api/v5/market/tickers",
+        "kind": "RETURNS",
+        "to": "schema:TickersResponse"
+      },
+      {
+        "from": "operation:get:/api/v5/public/time",
+        "kind": "RETURNS",
+        "to": "schema:ServerTimeResponse"
+      },
+      {
+        "from": "schema:CandlesResponse",
+        "kind": "REFERENCES",
+        "to": "schema:Candle"
+      },
+      {
+        "from": "schema:CandlesResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ResponseEnvelope"
+      },
+      {
+        "from": "schema:OrderBook",
+        "kind": "REFERENCES",
+        "to": "schema:BookLevels"
+      },
+      {
+        "from": "schema:OrderBookResponse",
+        "kind": "REFERENCES",
+        "to": "schema:OrderBook"
+      },
+      {
+        "from": "schema:OrderBookResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ResponseEnvelope"
+      },
+      {
+        "from": "schema:ServerTimeResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ResponseEnvelope"
+      },
+      {
+        "from": "schema:TickerResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ResponseEnvelope"
+      },
+      {
+        "from": "schema:TickerResponse",
+        "kind": "REFERENCES",
+        "to": "schema:Ticker"
+      },
+      {
+        "from": "schema:TickersResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ResponseEnvelope"
+      },
+      {
+        "from": "schema:TickersResponse",
+        "kind": "REFERENCES",
+        "to": "schema:Ticker"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "okx",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieve order-book depth for one instrument.",
+        "id": "operation:get:/api/v5/market/books",
+        "kind": "operation",
+        "method": "get",
+        "name": "getOrderBook",
+        "parameters": [
+          {
+            "description": "Instrument ID, for example `BTC-USDT`.",
+            "in": "query",
+            "name": "instId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Order-book depth per side; the documented maximum is 5000.",
+            "in": "query",
+            "name": "sz",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v5/market/books",
+        "pointer": "#/paths/~1api~1v5~1market~1books/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "OrderBookResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get an instrument order book",
+        "tags": [
+          "Market data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieve up to 1440 recent candle entries for an instrument.",
+        "id": "operation:get:/api/v5/market/candles",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCandles",
+        "parameters": [
+          {
+            "description": "Instrument ID, for example `BTC-USDT`.",
+            "in": "query",
+            "name": "instId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": "1m",
+            "description": "Candle interval; defaults to `1m`.",
+            "in": "query",
+            "name": "bar",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Return records earlier than this timestamp.",
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Return records newer than this timestamp.",
+            "in": "query",
+            "name": "before",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "100",
+            "description": "Maximum 300 records; defaults to 100.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Set `forward` to request forward-adjusted prices for equity perpetual contracts.",
+            "enum": [
+              "forward"
+            ],
+            "in": "query",
+            "name": "adjust",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v5/market/candles",
+        "pointer": "#/paths/~1api~1v5~1market~1candles/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CandlesResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get recent candlesticks",
+        "tags": [
+          "Market data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieve the latest price snapshot and 24-hour trading summary.",
+        "id": "operation:get:/api/v5/market/ticker",
+        "kind": "operation",
+        "method": "get",
+        "name": "getTicker",
+        "parameters": [
+          {
+            "description": "Instrument ID, for example `BTC-USD-SWAP`.",
+            "in": "query",
+            "name": "instId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v5/market/ticker",
+        "pointer": "#/paths/~1api~1v5~1market~1ticker/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "TickerResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get one instrument ticker",
+        "tags": [
+          "Market data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieve price and 24-hour volume snapshots for an instrument type.",
+        "id": "operation:get:/api/v5/market/tickers",
+        "kind": "operation",
+        "method": "get",
+        "name": "getTickers",
+        "parameters": [
+          {
+            "description": "Instrument type.",
+            "enum": [
+              "SPOT",
+              "SWAP",
+              "FUTURES",
+              "OPTION",
+              "EVENTS"
+            ],
+            "in": "query",
+            "name": "instType",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Instrument family; applicable to futures, swaps, and options.",
+            "in": "query",
+            "name": "instFamily",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/v5/market/tickers",
+        "pointer": "#/paths/~1api~1v5~1market~1tickers/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "TickersResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get tickers by instrument type",
+        "tags": [
+          "Market data"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieve the current API server time.",
+        "id": "operation:get:/api/v5/public/time",
+        "kind": "operation",
+        "method": "get",
+        "name": "getServerTime",
+        "path": "/api/v5/public/time",
+        "pointer": "#/paths/~1api~1v5~1public~1time/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ServerTimeResponse"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get API server time",
+        "tags": [
+          "Market data"
+        ]
+      },
+      {
+        "description": "Price, quantity, and order count for each level, as documented by OKX.",
+        "id": "schema:BookLevels",
+        "kind": "schema",
+        "name": "BookLevels",
+        "type": "string[]"
+      },
+      {
+        "description": "Values are ordered as ts, open, high, low, close, vol, volCcy, volCcyQuote, confirm.",
+        "id": "schema:Candle",
+        "kind": "schema",
+        "name": "Candle",
+        "type": "string[]"
+      },
+      {
+        "id": "schema:CandlesResponse",
+        "kind": "schema",
+        "name": "CandlesResponse",
+        "type": "ResponseEnvelope|object"
+      },
+      {
+        "id": "schema:OrderBook",
+        "kind": "schema",
+        "name": "OrderBook",
+        "type": "object"
+      },
+      {
+        "id": "schema:OrderBookResponse",
+        "kind": "schema",
+        "name": "OrderBookResponse",
+        "type": "ResponseEnvelope|object"
+      },
+      {
+        "id": "schema:ResponseEnvelope",
+        "kind": "schema",
+        "name": "ResponseEnvelope",
+        "type": "object"
+      },
+      {
+        "id": "schema:ServerTimeResponse",
+        "kind": "schema",
+        "name": "ServerTimeResponse",
+        "type": "ResponseEnvelope|object"
+      },
+      {
+        "id": "schema:Ticker",
+        "kind": "schema",
+        "name": "Ticker",
+        "type": "object"
+      },
+      {
+        "id": "schema:TickerResponse",
+        "kind": "schema",
+        "name": "TickerResponse",
+        "type": "ResponseEnvelope|object"
+      },
+      {
+        "id": "schema:TickersResponse",
+        "kind": "schema",
+        "name": "TickersResponse",
+        "type": "ResponseEnvelope|object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "okx"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://openapi.okx.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "BookLevels": {
+                  "description": "Price, quantity, and order count for each level, as documented by OKX.",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "Candle": {
+                  "description": "Values are ordered as ts, open, high, low, close, vol, volCcy, volCcyQuote, confirm.",
+                  "items": {
+                    "type": "string"
+                  },
+                  "maxItems": 9,
+                  "minItems": 9,
+                  "type": "array"
+                },
+                "CandlesResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "items": {
+                            "$ref": "#/components/schemas/Candle"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "OrderBook": {
+                  "properties": {
+                    "asks": {
+                      "items": {
+                        "$ref": "#/components/schemas/BookLevels"
+                      },
+                      "type": "array"
+                    },
+                    "bids": {
+                      "items": {
+                        "$ref": "#/components/schemas/BookLevels"
+                      },
+                      "type": "array"
+                    },
+                    "ts": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "OrderBookResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "items": {
+                            "$ref": "#/components/schemas/OrderBook"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "ResponseEnvelope": {
+                  "properties": {
+                    "code": {
+                      "description": "API response code.",
+                      "type": "string"
+                    },
+                    "msg": {
+                      "description": "API response message.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "msg",
+                    "data"
+                  ],
+                  "type": "object"
+                },
+                "ServerTimeResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "items": {
+                            "properties": {
+                              "ts": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "Ticker": {
+                  "properties": {
+                    "askPx": {
+                      "type": "string"
+                    },
+                    "askSz": {
+                      "type": "string"
+                    },
+                    "bidPx": {
+                      "type": "string"
+                    },
+                    "bidSz": {
+                      "type": "string"
+                    },
+                    "high24h": {
+                      "type": "string"
+                    },
+                    "instId": {
+                      "type": "string"
+                    },
+                    "instType": {
+                      "type": "string"
+                    },
+                    "last": {
+                      "type": "string"
+                    },
+                    "lastSz": {
+                      "type": "string"
+                    },
+                    "low24h": {
+                      "type": "string"
+                    },
+                    "open24h": {
+                      "type": "string"
+                    },
+                    "sodUtc0": {
+                      "type": "string"
+                    },
+                    "sodUtc8": {
+                      "type": "string"
+                    },
+                    "ts": {
+                      "type": "string"
+                    },
+                    "vol24h": {
+                      "type": "string"
+                    },
+                    "volCcy24h": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "TickerResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "items": {
+                            "$ref": "#/components/schemas/Ticker"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                },
+                "TickersResponse": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ResponseEnvelope"
+                    },
+                    {
+                      "properties": {
+                        "data": {
+                          "items": {
+                            "$ref": "#/components/schemas/Ticker"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "info": {
+              "description": "A focused description of unauthenticated OKX REST market-data operations. The provider documents these public endpoints as not requiring authentication. Private account and trading operations are not included.",
+              "externalDocs": {
+                "description": "OKX API documentation",
+                "url": "https://www.okx.com/docs-v5/en/"
+              },
+              "title": "OKX Public Market Data REST API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.2.1",
+            "paths": {
+              "/api/v5/market/books": {
+                "get": {
+                  "description": "Retrieve order-book depth for one instrument.",
+                  "operationId": "getOrderBook",
+                  "parameters": [
+                    {
+                      "description": "Instrument ID, for example `BTC-USDT`.",
+                      "in": "query",
+                      "name": "instId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Order-book depth per side; the documented maximum is 5000.",
+                      "in": "query",
+                      "name": "sz",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OrderBookResponse"
+                          }
+                        }
+                      },
+                      "description": "API response envelope with the order book in `data`."
+                    }
+                  },
+                  "summary": "Get an instrument order book",
+                  "tags": [
+                    "Market data"
+                  ]
+                }
+              },
+              "/api/v5/market/candles": {
+                "get": {
+                  "description": "Retrieve up to 1440 recent candle entries for an instrument.",
+                  "operationId": "getCandles",
+                  "parameters": [
+                    {
+                      "description": "Instrument ID, for example `BTC-USDT`.",
+                      "in": "query",
+                      "name": "instId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Candle interval; defaults to `1m`.",
+                      "in": "query",
+                      "name": "bar",
+                      "schema": {
+                        "default": "1m",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Return records earlier than this timestamp.",
+                      "in": "query",
+                      "name": "after",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Return records newer than this timestamp.",
+                      "in": "query",
+                      "name": "before",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum 300 records; defaults to 100.",
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "default": "100",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Set `forward` to request forward-adjusted prices for equity perpetual contracts.",
+                      "in": "query",
+                      "name": "adjust",
+                      "schema": {
+                        "enum": [
+                          "forward"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CandlesResponse"
+                          }
+                        }
+                      },
+                      "description": "API response envelope with candle rows in `data`."
+                    }
+                  },
+                  "summary": "Get recent candlesticks",
+                  "tags": [
+                    "Market data"
+                  ]
+                }
+              },
+              "/api/v5/market/ticker": {
+                "get": {
+                  "description": "Retrieve the latest price snapshot and 24-hour trading summary.",
+                  "operationId": "getTicker",
+                  "parameters": [
+                    {
+                      "description": "Instrument ID, for example `BTC-USD-SWAP`.",
+                      "in": "query",
+                      "name": "instId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TickerResponse"
+                          }
+                        }
+                      },
+                      "description": "API response envelope with the ticker in `data`."
+                    }
+                  },
+                  "summary": "Get one instrument ticker",
+                  "tags": [
+                    "Market data"
+                  ]
+                }
+              },
+              "/api/v5/market/tickers": {
+                "get": {
+                  "description": "Retrieve price and 24-hour volume snapshots for an instrument type.",
+                  "operationId": "getTickers",
+                  "parameters": [
+                    {
+                      "description": "Instrument type.",
+                      "in": "query",
+                      "name": "instType",
+                      "required": true,
+                      "schema": {
+                        "enum": [
+                          "SPOT",
+                          "SWAP",
+                          "FUTURES",
+                          "OPTION",
+                          "EVENTS"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Instrument family; applicable to futures, swaps, and options.",
+                      "in": "query",
+                      "name": "instFamily",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TickersResponse"
+                          }
+                        }
+                      },
+                      "description": "API response envelope with ticker records in `data`."
+                    }
+                  },
+                  "summary": "Get tickers by instrument type",
+                  "tags": [
+                    "Market data"
+                  ]
+                }
+              },
+              "/api/v5/public/time": {
+                "get": {
+                  "description": "Retrieve the current API server time.",
+                  "operationId": "getServerTime",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ServerTimeResponse"
+                          }
+                        }
+                      },
+                      "description": "API response envelope with the server timestamp in `data`."
+                    }
+                  },
+                  "summary": "Get API server time",
+                  "tags": [
+                    "Market data"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Global production API",
+                "url": "https://openapi.okx.com"
+              },
+              {
+                "description": "US and Australia API",
+                "url": "https://us.okx.com"
+              },
+              {
+                "description": "EEA API",
+                "url": "https://eea.okx.com"
+              },
+              {
+                "description": "Turkey API",
+                "url": "https://tr.okx.com"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Public, unauthenticated market-data operations.",
+                "name": "Market data"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OKX"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:37.334562+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/okx/openapi.yml",
+        "version": "3.2.1"
+      }
+    ],
+    "sha256": "13c11b65dddfb22090bfb76744bfe11d2501bdca7b5031e0af48d155264f4bff",
+    "source_id": "okx",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/okx/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

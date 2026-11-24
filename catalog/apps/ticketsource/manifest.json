@@ -1,0 +1,3545 @@
+{
+  "a2ui": {},
+  "app": "ticketsource",
+  "graph": {
+    "edges": [
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/bookings/{BookingId}"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/bookings/{BookingId}/seats"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/customers"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:post:/customers"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/customers/{CustomerId}"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/customers/{CustomerId}"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:patch:/customers/{CustomerId}"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/customers/{CustomerId}/bookings"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/customers/{CustomerId}/notes"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:post:/customers/{CustomerId}/notes"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/customers/{CustomerId}/notes/{CustomerNoteId}"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:delete:/customers/{CustomerId}/notes/{CustomerNoteId}"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/dates/{DateId}"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/dates/{DateId}/bookings"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/events"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/events/{EventId}"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/events/{EventId}/dates"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/events/{EventId}/venues"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/seats/{SeatId}"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/venues/{VenueId}"
+      },
+      {
+        "from": "ticketsource",
+        "kind": "EXPOSES",
+        "to": "operation:get:/venues/{VenueId}/dates"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "ticketsource",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Get an individual Booking record",
+        "id": "operation:get:/bookings/{BookingId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-booking",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Booking record",
+            "in": "path",
+            "name": "BookingId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/bookings/{BookingId}",
+        "pointer": "#/paths/~1bookings~1{BookingId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Get a Booking",
+        "tags": [
+          "Bookings",
+          "Tickets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List paginated Seats for a given Booking",
+        "id": "operation:get:/bookings/{BookingId}/seats",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-booking-seats",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Booking record",
+            "in": "path",
+            "name": "BookingId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Number of results to return in each paginated list response",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer:int32"
+          },
+          {
+            "default": 1,
+            "description": "The page requested in a paginated list request",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/bookings/{BookingId}/seats",
+        "pointer": "#/paths/~1bookings~1{BookingId}~1seats/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "List all Seats for a Booking",
+        "tags": [
+          "Bookings",
+          "Tickets",
+          "Seats"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List paginated Customers.",
+        "id": "operation:get:/customers",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-customers",
+        "parameters": [
+          {
+            "default": 10,
+            "description": "Number of results to return in each paginated list response",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer:int32"
+          },
+          {
+            "default": 1,
+            "description": "The page requested in a paginated list request",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/customers",
+        "pointer": "#/paths/~1customers/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "List all Customers",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Create a Customer record",
+        "id": "operation:post:/customers",
+        "kind": "operation",
+        "method": "post",
+        "name": "post-customer",
+        "path": "/customers",
+        "pointer": "#/paths/~1customers/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Create Customer",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get an individual Customer record",
+        "id": "operation:get:/customers/{CustomerId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-customer",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Customer record",
+            "in": "path",
+            "name": "CustomerId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/customers/{CustomerId}",
+        "pointer": "#/paths/~1customers~1{CustomerId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Get a Customer",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Delete an existing Customer record",
+        "id": "operation:delete:/customers/{CustomerId}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete-customer",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Customer record",
+            "in": "path",
+            "name": "CustomerId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/customers/{CustomerId}",
+        "pointer": "#/paths/~1customers~1{CustomerId}/delete",
+        "responses": [
+          {
+            "status": "204",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Delete Customer",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Update an existing Customer record",
+        "id": "operation:patch:/customers/{CustomerId}",
+        "kind": "operation",
+        "method": "patch",
+        "name": "patch-customer",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Customer record",
+            "in": "path",
+            "name": "CustomerId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/customers/{CustomerId}",
+        "pointer": "#/paths/~1customers~1{CustomerId}/patch",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Update Customer",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List paginated Bookings for a given Customer",
+        "id": "operation:get:/customers/{CustomerId}/bookings",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-customer-bookings",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Customer record",
+            "in": "path",
+            "name": "CustomerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Number of results to return in each paginated list response",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer:int32"
+          },
+          {
+            "default": 1,
+            "description": "The page requested in a paginated list request",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/customers/{CustomerId}/bookings",
+        "pointer": "#/paths/~1customers~1{CustomerId}~1bookings/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "List all Bookings for a Customer",
+        "tags": [
+          "Bookings",
+          "Tickets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List paginated Notes for a given Customer record",
+        "id": "operation:get:/customers/{CustomerId}/notes",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-customer-notes",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Customer record",
+            "in": "path",
+            "name": "CustomerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Number of results to return in each paginated list response",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer:int32"
+          },
+          {
+            "default": 1,
+            "description": "The page requested in a paginated list request",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/customers/{CustomerId}/notes",
+        "pointer": "#/paths/~1customers~1{CustomerId}~1notes/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "List all Notes for a Customer",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Create a Customer Note record for a given Customer",
+        "id": "operation:post:/customers/{CustomerId}/notes",
+        "kind": "operation",
+        "method": "post",
+        "name": "post-customer-note",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Customer record",
+            "in": "path",
+            "name": "CustomerId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/customers/{CustomerId}/notes",
+        "pointer": "#/paths/~1customers~1{CustomerId}~1notes/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": false,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Create Customer Note",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get an individual Customer record",
+        "id": "operation:get:/customers/{CustomerId}/notes/{CustomerNoteId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-customer-note",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Customer record",
+            "in": "path",
+            "name": "CustomerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The unique identifier for a Customer Note record",
+            "in": "path",
+            "name": "CustomerNoteId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/customers/{CustomerId}/notes/{CustomerNoteId}",
+        "pointer": "#/paths/~1customers~1{CustomerId}~1notes~1{CustomerNoteId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Get a Customer Note",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Delete an existing Customer Note record",
+        "id": "operation:delete:/customers/{CustomerId}/notes/{CustomerNoteId}",
+        "kind": "operation",
+        "method": "delete",
+        "name": "delete-customer-note",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Customer record",
+            "in": "path",
+            "name": "CustomerId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The unique identifier for a Customer Note record",
+            "in": "path",
+            "name": "CustomerNoteId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/customers/{CustomerId}/notes/{CustomerNoteId}",
+        "pointer": "#/paths/~1customers~1{CustomerId}~1notes~1{CustomerNoteId}/delete",
+        "responses": [
+          {
+            "status": "204",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Delete Customer",
+        "tags": [
+          "Customers"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get an individual Date record",
+        "id": "operation:get:/dates/{DateId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-date",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Date record",
+            "in": "path",
+            "name": "DateId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/dates/{DateId}",
+        "pointer": "#/paths/~1dates~1{DateId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Get a Date",
+        "tags": [
+          "Events",
+          "Performances"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List paginated Bookings for a given Date",
+        "id": "operation:get:/dates/{DateId}/bookings",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-date-bookings",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Date record",
+            "in": "path",
+            "name": "DateId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Number of results to return in each paginated list response",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer:int32"
+          },
+          {
+            "default": 1,
+            "description": "The page requested in a paginated list request",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/dates/{DateId}/bookings",
+        "pointer": "#/paths/~1dates~1{DateId}~1bookings/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "List all Bookings for a Date",
+        "tags": [
+          "Bookings",
+          "Tickets"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List paginated Events.",
+        "id": "operation:get:/events",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-events",
+        "parameters": [
+          {
+            "default": 10,
+            "description": "Number of results to return in each paginated list response",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer:int32"
+          },
+          {
+            "default": 1,
+            "description": "The page requested in a paginated list request",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/events",
+        "pointer": "#/paths/~1events/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "List all Events",
+        "tags": [
+          "Events"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get an individual Event record",
+        "id": "operation:get:/events/{EventId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-event",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Event record",
+            "in": "path",
+            "name": "EventId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/events/{EventId}",
+        "pointer": "#/paths/~1events~1{EventId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Get an Event",
+        "tags": [
+          "Events"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List paginated Dates for a given Event",
+        "id": "operation:get:/events/{EventId}/dates",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-event-dates",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Event record",
+            "in": "path",
+            "name": "EventId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Number of results to return in each paginated list response",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer:int32"
+          },
+          {
+            "default": 1,
+            "description": "The page requested in a paginated list request",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/events/{EventId}/dates",
+        "pointer": "#/paths/~1events~1{EventId}~1dates/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "List all Dates for an Event",
+        "tags": [
+          "Events",
+          "Performances"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List paginated Venues for a given Event",
+        "id": "operation:get:/events/{EventId}/venues",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-event-venues",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Event record",
+            "in": "path",
+            "name": "EventId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Number of results to return in each paginated list response",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer:int32"
+          },
+          {
+            "default": 1,
+            "description": "The page requested in a paginated list request",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/events/{EventId}/venues",
+        "pointer": "#/paths/~1events~1{EventId}~1venues/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "List all Venues for an Event",
+        "tags": [
+          "Events",
+          "Venues"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get an individual Seat record",
+        "id": "operation:get:/seats/{SeatId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-seat",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Seat record",
+            "in": "path",
+            "name": "SeatId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/seats/{SeatId}",
+        "pointer": "#/paths/~1seats~1{SeatId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Get a Seat",
+        "tags": [
+          "Bookings",
+          "Tickets",
+          "Seats"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Get an individual Venue record",
+        "id": "operation:get:/venues/{VenueId}",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-venue",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Venue record",
+            "in": "path",
+            "name": "VenueId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/venues/{VenueId}",
+        "pointer": "#/paths/~1venues~1{VenueId}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "Get a Venue",
+        "tags": [
+          "Events",
+          "Venues"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "List paginated Dates for a given Venue",
+        "id": "operation:get:/venues/{VenueId}/dates",
+        "kind": "operation",
+        "method": "get",
+        "name": "get-venue-dates",
+        "parameters": [
+          {
+            "description": "The unique identifier for a Venue record",
+            "in": "path",
+            "name": "VenueId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Number of results to return in each paginated list response",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer:int32"
+          },
+          {
+            "default": 1,
+            "description": "The page requested in a paginated list request",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer:int32"
+          }
+        ],
+        "path": "/venues/{VenueId}/dates",
+        "pointer": "#/paths/~1venues~1{VenueId}~1dates/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "404",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "summary": "List all Dates for a Venue",
+        "tags": [
+          "Events",
+          "Performances"
+        ]
+      },
+      {
+        "description": "A Booking including cost, discount and donation details.",
+        "id": "schema:Booking",
+        "kind": "schema",
+        "name": "Booking",
+        "type": "object"
+      },
+      {
+        "description": "A Customer including contact details, membership information and marketing consent.",
+        "id": "schema:Customer",
+        "kind": "schema",
+        "name": "Customer",
+        "type": "object"
+      },
+      {
+        "description": "A Customer Note against a specific Customer record.",
+        "id": "schema:CustomerNote",
+        "kind": "schema",
+        "name": "CustomerNote",
+        "type": "object"
+      },
+      {
+        "description": "A Date representing a single datetime performance of an Event at a Venue",
+        "id": "schema:Date",
+        "kind": "schema",
+        "name": "Date",
+        "type": "object"
+      },
+      {
+        "description": "An Event which can have multiple Venues and Dates associated with it.",
+        "id": "schema:Event",
+        "kind": "schema",
+        "name": "Event",
+        "type": "object"
+      },
+      {
+        "description": "A Seat representing a seat or place in a booking with or without reference.",
+        "id": "schema:Seat",
+        "kind": "schema",
+        "name": "Seat",
+        "type": "object"
+      },
+      {
+        "description": "A Venue belonging to an Event that can have multiple Dates associated with it.",
+        "id": "schema:Venue",
+        "kind": "schema",
+        "name": "Venue",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "ticketsource"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.ticketsource.io",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "examples": {},
+              "parameters": {
+                "BookingId": {
+                  "description": "The unique identifier for a Booking record",
+                  "in": "path",
+                  "name": "BookingId",
+                  "required": true,
+                  "schema": {
+                    "example": "bkg-xZVrM6valQGb3gPq",
+                    "pattern": "bkg-[a-zA-Z0-9]+",
+                    "type": "string"
+                  }
+                },
+                "CustomerId": {
+                  "description": "The unique identifier for a Customer record",
+                  "in": "path",
+                  "name": "CustomerId",
+                  "required": true,
+                  "schema": {
+                    "example": "cst-dQyWKER4Orw5glVX",
+                    "pattern": "cst-[a-zA-Z0-9]+",
+                    "type": "string"
+                  }
+                },
+                "CustomerNoteId": {
+                  "description": "The unique identifier for a Customer Note record",
+                  "in": "path",
+                  "name": "CustomerNoteId",
+                  "required": true,
+                  "schema": {
+                    "example": "csn-47azjpMWXREgVQN8",
+                    "pattern": "csn-[a-zA-Z0-9]+",
+                    "type": "string"
+                  }
+                },
+                "DateId": {
+                  "description": "The unique identifier for a Date record",
+                  "in": "path",
+                  "name": "DateId",
+                  "required": true,
+                  "schema": {
+                    "example": "dat-7QKrj94mdZXO5qJ8",
+                    "pattern": "dat-[a-zA-Z0-9]+",
+                    "type": "string"
+                  }
+                },
+                "EventId": {
+                  "description": "The unique identifier for a Event record",
+                  "in": "path",
+                  "name": "EventId",
+                  "required": true,
+                  "schema": {
+                    "example": "evt-v4ExP8k8N1AQ5NgB",
+                    "pattern": "evt-[a-zA-Z0-9]+",
+                    "type": "string"
+                  }
+                },
+                "SeatId": {
+                  "description": "The unique identifier for a Seat record",
+                  "in": "path",
+                  "name": "SeatId",
+                  "required": true,
+                  "schema": {
+                    "example": "sea-ALd2DZ1AWyrBlz5o",
+                    "pattern": "sea-[a-zA-Z0-9]+",
+                    "type": "string"
+                  }
+                },
+                "VenueId": {
+                  "description": "The unique identifier for a Venue record",
+                  "in": "path",
+                  "name": "VenueId",
+                  "required": true,
+                  "schema": {
+                    "example": "ven-v3y0OG7oml9QRjZ5",
+                    "pattern": "ven-[a-zA-Z0-9]+",
+                    "type": "string"
+                  }
+                },
+                "page": {
+                  "description": "The page requested in a paginated list request",
+                  "in": "query",
+                  "name": "page",
+                  "required": false,
+                  "schema": {
+                    "default": 1,
+                    "example": 2,
+                    "format": "int32",
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "style": "form"
+                },
+                "per_page": {
+                  "description": "Number of results to return in each paginated list response",
+                  "in": "query",
+                  "name": "per_page",
+                  "required": false,
+                  "schema": {
+                    "default": 10,
+                    "example": 15,
+                    "format": "int32",
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "style": "form"
+                }
+              },
+              "responses": {
+                "BadRequest": {
+                  "content": {
+                    "application/json": {
+                      "examples": {},
+                      "schema": {
+                        "properties": {
+                          "errors": {
+                            "items": {
+                              "properties": {
+                                "code": {
+                                  "default": "validation_failed",
+                                  "readOnly": true,
+                                  "type": "string"
+                                },
+                                "detail": {
+                                  "readOnly": true,
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "links": {
+                                  "properties": {
+                                    "about": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "status": {
+                                  "default": 400,
+                                  "readOnly": true,
+                                  "type": "integer"
+                                },
+                                "title": {
+                                  "default": "Bad Request",
+                                  "readOnly": true,
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "400 Bad Request",
+                  "headers": {}
+                },
+                "NoContent": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "description": "Example response"
+                },
+                "NotFound": {
+                  "content": {
+                    "application/json": {
+                      "examples": {},
+                      "schema": {
+                        "properties": {
+                          "errors": {
+                            "items": {
+                              "properties": {
+                                "code": {
+                                  "default": "not_found",
+                                  "readOnly": true,
+                                  "type": "string"
+                                },
+                                "detail": {
+                                  "default": "The item you are looking for can't be found.",
+                                  "readOnly": true,
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "links": {
+                                  "properties": {
+                                    "about": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "status": {
+                                  "default": 404,
+                                  "readOnly": true,
+                                  "type": "integer"
+                                },
+                                "title": {
+                                  "default": "Not Found",
+                                  "readOnly": true,
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "404 Not Found",
+                  "headers": {}
+                },
+                "TooManyRequests": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "properties": {
+                          "errors": {
+                            "items": {
+                              "properties": {
+                                "code": {
+                                  "default": "rate_limit",
+                                  "readOnly": true,
+                                  "type": "string"
+                                },
+                                "detail": {
+                                  "default": "You have made too many requests, check the response headers for more details.",
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "links": {
+                                  "properties": {
+                                    "about": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "status": {
+                                  "default": 429,
+                                  "readOnly": true,
+                                  "type": "integer"
+                                },
+                                "title": {
+                                  "default": "Too Many Requests",
+                                  "readOnly": true,
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "429 Too Many Requests",
+                  "headers": {}
+                }
+              },
+              "schemas": {
+                "Booking": {
+                  "description": "A Booking including cost, discount and donation details.",
+                  "examples": [],
+                  "properties": {
+                    "attributes": {
+                      "properties": {
+                        "consent": {
+                          "properties": {
+                            "email": {
+                              "type": "boolean"
+                            },
+                            "post": {
+                              "type": "boolean"
+                            },
+                            "sms": {
+                              "type": "boolean"
+                            },
+                            "third_party": {
+                              "example": "Visiting Company",
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "created_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "lines": {
+                          "items": {
+                            "properties": {
+                              "amount": {
+                                "properties": {
+                                  "discounts": {
+                                    "properties": {
+                                      "automatic": {
+                                        "readOnly": true,
+                                        "type": "number"
+                                      },
+                                      "code": {
+                                        "properties": {
+                                          "amount": {
+                                            "example": 0,
+                                            "format": "double",
+                                            "readOnly": true,
+                                            "type": "number"
+                                          },
+                                          "description": {
+                                            "readOnly": true,
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "fee": {
+                                    "example": 0.65,
+                                    "format": "double",
+                                    "readOnly": true,
+                                    "type": "number"
+                                  },
+                                  "fee_vat": {
+                                    "example": 0.65,
+                                    "format": "double",
+                                    "readOnly": true,
+                                    "type": "number"
+                                  },
+                                  "gross": {
+                                    "example": 10,
+                                    "format": "double",
+                                    "readOnly": true,
+                                    "type": "number"
+                                  },
+                                  "net": {
+                                    "example": 9.22,
+                                    "format": "double",
+                                    "readOnly": true,
+                                    "type": "number"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "created_at": {
+                                "example": "2022-09-26T09:00:00+00:00",
+                                "format": "date-time",
+                                "readOnly": true,
+                                "type": "string"
+                              },
+                              "donation": {
+                                "additionalProperties": false,
+                                "minProperties": 1,
+                                "properties": {
+                                  "gift_aid": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "is_refund": {
+                                "default": false,
+                                "readOnly": true,
+                                "type": "boolean"
+                              },
+                              "line_type": {
+                                "enum": [
+                                  "TICKETS",
+                                  "DONATION",
+                                  "SUNDRY"
+                                ],
+                                "example": "TICKETS",
+                                "readOnly": true,
+                                "type": "string"
+                              },
+                              "payment_method": {
+                                "example": "TS",
+                                "readOnly": true,
+                                "type": "string"
+                              },
+                              "updated_at": {
+                                "example": "2022-09-27T09:00:00+00:00",
+                                "format": "date-time",
+                                "readOnly": true,
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "ref": {
+                          "example": "A12BCD",
+                          "pattern": "[a-zA-Z0-9]{6}",
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "example": "2022-09-27T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "user_booked_by": {
+                          "example": "Staff Member",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "example": "bkg-xZVrM6valQGb3gPq",
+                      "pattern": "bkg-[a-zA-Z0-9]+",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "links": {
+                      "properties": {
+                        "customer": {
+                          "example": "https://api.ticketsource.io/customers/cst-dQyWKER4Orw5glVX",
+                          "format": "uri",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "date": {
+                          "example": "https://api.ticketsource.io/dates/dat-41wq7kmW7YxRp2ov",
+                          "format": "uri",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "seats": {
+                          "example": "https://api.ticketsource.io/bookings/bkg-xZVrM6valQGb3gPq/seats",
+                          "format": "uri",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "self": {
+                          "example": "https://api.ticketsource.io/bookings/bkg-xZVrM6valQGb3gPq",
+                          "format": "uri",
+                          "readOnly": true,
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": {
+                      "default": "booking",
+                      "enum": [
+                        "booking"
+                      ],
+                      "example": "booking",
+                      "readOnly": true,
+                      "type": "string"
+                    }
+                  },
+                  "title": "Booking",
+                  "type": "object"
+                },
+                "Customer": {
+                  "description": "A Customer including contact details, membership information and marketing consent.",
+                  "properties": {
+                    "attributes": {
+                      "properties": {
+                        "address": {
+                          "properties": {
+                            "line_1": {
+                              "example": "TicketSource",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "line_2": {
+                              "example": "Off Edge",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "line_3": {
+                              "example": "Station Approach",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "line_4": {
+                              "example": "Penarth",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "postcode": {
+                              "example": "CF64 3EE",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        },
+                        "consent": {
+                          "properties": {
+                            "email": {
+                              "default": false,
+                              "type": "boolean"
+                            },
+                            "post": {
+                              "default": false,
+                              "type": "boolean"
+                            },
+                            "sms": {
+                              "default": false,
+                              "type": "boolean"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "created_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "email": {
+                          "example": "support@ticketsource.co.uk",
+                          "format": "email",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "first_name": {
+                          "example": "Ticket",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "last_name": {
+                          "example": "Purchaser",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "membership": {
+                          "properties": {
+                            "end_date": {
+                              "example": "2023-09-26T09:00:00+00:00",
+                              "format": "date-time",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "identifier": {
+                              "example": "AMEMBER042",
+                              "maxLength": 20,
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "start_date": {
+                              "example": "2022-09-26T09:00:00+00:00",
+                              "format": "date-time",
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "type": [
+                            "object",
+                            "null"
+                          ]
+                        },
+                        "phone": {
+                          "deprecated": true,
+                          "description": "See 'telephone'",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "telephone": {
+                          "example": "+443336664466",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "title": {
+                          "deprecated": true,
+                          "description": "No longer in use in the TicketSource system.",
+                          "example": null,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "updated_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "example": "cst-dQyWKER4Orw5glVX",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "links": {
+                      "properties": {
+                        "bookings": {
+                          "example": "https://api.ticketsource.io/customers/cst-dQyWKER4Orw5glVX/bookings",
+                          "format": "uri",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "notes": {
+                          "example": "https://api.ticketsource.io/customers/cst-dQyWKER4Orw5glVX/notes",
+                          "format": "uri",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "self": {
+                          "example": "https://api.ticketsource.io/customers/cst-dQyWKER4Orw5glVX",
+                          "format": "uri",
+                          "readOnly": true,
+                          "type": "string"
+                        }
+                      },
+                      "readOnly": true,
+                      "type": "object"
+                    },
+                    "type": {
+                      "default": "customer",
+                      "enum": [
+                        "customer"
+                      ],
+                      "example": "customer",
+                      "pattern": "^customer$",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Customer",
+                  "type": "object"
+                },
+                "CustomerNote": {
+                  "description": "A Customer Note against a specific Customer record.",
+                  "properties": {
+                    "attributes": {
+                      "properties": {
+                        "created_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "created_by": {
+                          "example": "Staff Member",
+                          "type": "string"
+                        },
+                        "description": {
+                          "example": "Customer requires extra leg room",
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "default": null,
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "example": "csn-47azjpMWXREgVQN8",
+                      "pattern": "csn-[a-zA-Z0-9]+",
+                      "readOnly": true,
+                      "type": "string"
+                    },
+                    "links": {
+                      "properties": {
+                        "customer": {
+                          "example": "https://api.ticketsource.io/customers/cst-dQyWKER4Orw5glVX",
+                          "format": "uri",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "self": {
+                          "example": "https://api.ticketsource.io/customers/cst-dQyWKER4Orw5glVX/notes/csn-47azjpMWXREgVQN8",
+                          "format": "uri",
+                          "readOnly": true,
+                          "type": "string"
+                        }
+                      },
+                      "readOnly": true,
+                      "type": "object"
+                    },
+                    "type": {
+                      "default": "customer_note",
+                      "enum": [
+                        "customer_note"
+                      ],
+                      "example": "customer_note",
+                      "pattern": "^customer_note$",
+                      "type": "string"
+                    }
+                  },
+                  "title": "CustomerNote",
+                  "type": "object"
+                },
+                "Date": {
+                  "description": "A Date representing a single datetime performance of an Event at a Venue",
+                  "properties": {
+                    "attributes": {
+                      "properties": {
+                        "cancelled": {
+                          "type": "boolean"
+                        },
+                        "created_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "doors_open": {
+                          "type": "string"
+                        },
+                        "end": {
+                          "type": "string"
+                        },
+                        "on_sale": {
+                          "type": "boolean"
+                        },
+                        "on_sale_end": {
+                          "type": "string"
+                        },
+                        "on_sale_start": {
+                          "type": "string"
+                        },
+                        "public": {
+                          "type": "boolean"
+                        },
+                        "start": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "links": {
+                      "properties": {
+                        "book_now": {
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "bookings": {
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "event": {
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "self": {
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "venue": {
+                          "readOnly": true,
+                          "type": "string"
+                        }
+                      },
+                      "readOnly": true,
+                      "type": "object"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "title": "Date",
+                  "type": "object"
+                },
+                "Event": {
+                  "description": "An Event which can have multiple Venues and Dates associated with it.",
+                  "properties": {
+                    "attributes": {
+                      "properties": {
+                        "activated": {
+                          "type": "boolean"
+                        },
+                        "archived": {
+                          "type": "boolean"
+                        },
+                        "category": {
+                          "type": "string"
+                        },
+                        "comment": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "genre": {
+                          "type": "string"
+                        },
+                        "images": {
+                          "items": {
+                            "properties": {
+                              "src": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "keywords": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "public": {
+                          "type": "boolean"
+                        },
+                        "reference": {
+                          "type": "string"
+                        },
+                        "terms": {
+                          "type": "string"
+                        },
+                        "third_party_consent": {
+                          "properties": {
+                            "capture": {
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "show_consent": {
+                              "properties": {
+                                "email": {
+                                  "type": "boolean"
+                                },
+                                "post": {
+                                  "type": "boolean"
+                                },
+                                "sms": {
+                                  "type": "boolean"
+                                }
+                              },
+                              "type": "object"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "updated_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "links": {
+                      "properties": {
+                        "dates": {
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "self": {
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "venues": {
+                          "readOnly": true,
+                          "type": "string"
+                        }
+                      },
+                      "readOnly": true,
+                      "type": "object"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "title": "Event",
+                  "type": "object"
+                },
+                "Seat": {
+                  "description": "A Seat representing a seat or place in a booking with or without reference.",
+                  "properties": {
+                    "attributes": {
+                      "properties": {
+                        "attendee": {
+                          "properties": {
+                            "company": {
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "email": {
+                              "type": "string"
+                            },
+                            "first_name": {
+                              "type": "string"
+                            },
+                            "last_name": {
+                              "type": "string"
+                            },
+                            "telephone": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "created_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "is_booked": {
+                          "type": "boolean"
+                        },
+                        "is_cancelled": {
+                          "type": "boolean"
+                        },
+                        "price_category": {
+                          "type": "string"
+                        },
+                        "reference": {
+                          "properties": {
+                            "row": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            },
+                            "seat": {
+                              "type": [
+                                "string",
+                                "null"
+                              ]
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "updated_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "example": "sea-ALd2DZ1AWyrBlz5o",
+                      "pattern": "sea-[a-zA-Z0-9]+",
+                      "type": "string"
+                    },
+                    "links": {
+                      "properties": {
+                        "booking": {
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "self": {
+                          "readOnly": true,
+                          "type": "string"
+                        }
+                      },
+                      "readOnly": true,
+                      "type": "object"
+                    },
+                    "type": {
+                      "default": "seat",
+                      "enum": [
+                        "seat"
+                      ],
+                      "example": "seat",
+                      "pattern": "^seat$",
+                      "type": "string"
+                    }
+                  },
+                  "title": "Seat",
+                  "type": "object"
+                },
+                "Venue": {
+                  "description": "A Venue belonging to an Event that can have multiple Dates associated with it.",
+                  "properties": {
+                    "attributes": {
+                      "properties": {
+                        "address": {
+                          "properties": {
+                            "line_1": {
+                              "type": "string"
+                            },
+                            "line_2": {
+                              "type": "string"
+                            },
+                            "line_3": {
+                              "type": "string"
+                            },
+                            "line_4": {
+                              "type": "string"
+                            },
+                            "postcode": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "boxoffice": {
+                          "properties": {
+                            "email": {
+                              "type": "string"
+                            },
+                            "telephone": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "created_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "example": "2022-09-26T09:00:00+00:00",
+                          "format": "date-time",
+                          "readOnly": true,
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "links": {
+                      "properties": {
+                        "dates": {
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "event": {
+                          "readOnly": true,
+                          "type": "string"
+                        },
+                        "self": {
+                          "readOnly": true,
+                          "type": "string"
+                        }
+                      },
+                      "readOnly": true,
+                      "type": "object"
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "title": "Venue",
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "BearerToken": {
+                  "description": "Your TicketSource API key can be used as a bearer token.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "email": "support@ticketsource.co.uk",
+                "name": "TicketSource Support",
+                "url": "https://www.ticketsource.co.uk/help"
+              },
+              "description": "The OpenAPI specification for the TicketSource API",
+              "termsOfService": "https://www.ticketsource.co.uk/kb/terms-of-use/terms-and-conditions",
+              "title": "TicketSource API",
+              "version": "1.1"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/bookings/{BookingId}": {
+                "get": {
+                  "description": "Get an individual Booking record",
+                  "operationId": "get-booking",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Booking"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Get a Booking",
+                  "tags": [
+                    "Bookings",
+                    "Tickets"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/BookingId"
+                  }
+                ]
+              },
+              "/bookings/{BookingId}/seats": {
+                "get": {
+                  "description": "List paginated Seats for a given Booking",
+                  "operationId": "get-booking-seats",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/page"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Seat"
+                                },
+                                "type": "array"
+                              },
+                              "links": {
+                                "properties": {
+                                  "first": {
+                                    "type": "string"
+                                  },
+                                  "last": {
+                                    "type": "string"
+                                  },
+                                  "next": {
+                                    "type": "string"
+                                  },
+                                  "prev": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "meta": {
+                                "properties": {
+                                  "current_page": {
+                                    "type": "integer"
+                                  },
+                                  "from": {
+                                    "type": "integer"
+                                  },
+                                  "path": {
+                                    "type": "string"
+                                  },
+                                  "per_page": {
+                                    "type": "integer"
+                                  },
+                                  "to": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "List all Seats for a Booking",
+                  "tags": [
+                    "Bookings",
+                    "Tickets",
+                    "Seats"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/BookingId"
+                  }
+                ]
+              },
+              "/customers": {
+                "get": {
+                  "description": "List paginated Customers.",
+                  "operationId": "get-customers",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/page"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Customer"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "List all Customers",
+                  "tags": [
+                    "Customers"
+                  ]
+                },
+                "parameters": [],
+                "post": {
+                  "description": "Create a Customer record",
+                  "operationId": "post-customer",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "data": {
+                              "$ref": "#/components/schemas/Customer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "description": ""
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "description": "The created Customer record",
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Customer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Created"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Create Customer",
+                  "tags": [
+                    "Customers"
+                  ]
+                }
+              },
+              "/customers/{CustomerId}": {
+                "delete": {
+                  "description": "Delete an existing Customer record",
+                  "operationId": "delete-customer",
+                  "responses": {
+                    "204": {
+                      "$ref": "#/components/responses/NoContent"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Delete Customer",
+                  "tags": [
+                    "Customers"
+                  ]
+                },
+                "get": {
+                  "description": "Get an individual Customer record",
+                  "operationId": "get-customer",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Customer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Get a Customer",
+                  "tags": [
+                    "Customers"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/CustomerId"
+                  }
+                ],
+                "patch": {
+                  "description": "Update an existing Customer record",
+                  "operationId": "patch-customer",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "data": {
+                              "allOf": [
+                                {
+                                  "$ref": "#/components/schemas/Customer"
+                                },
+                                {
+                                  "properties": {
+                                    "id": {
+                                      "type": "string",
+                                      "writeOnly": true
+                                    }
+                                  },
+                                  "type": "object"
+                                }
+                              ]
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Customer"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Update Customer",
+                  "tags": [
+                    "Customers"
+                  ]
+                }
+              },
+              "/customers/{CustomerId}/bookings": {
+                "get": {
+                  "description": "List paginated Bookings for a given Customer",
+                  "operationId": "get-customer-bookings",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/page"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Booking"
+                                },
+                                "type": "array"
+                              },
+                              "links": {
+                                "properties": {
+                                  "first": {
+                                    "type": "string"
+                                  },
+                                  "last": {
+                                    "type": "string"
+                                  },
+                                  "next": {
+                                    "type": "string"
+                                  },
+                                  "prev": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "meta": {
+                                "properties": {
+                                  "current_page": {
+                                    "type": "integer"
+                                  },
+                                  "from": {
+                                    "type": "integer"
+                                  },
+                                  "path": {
+                                    "type": "string"
+                                  },
+                                  "per_page": {
+                                    "type": "integer"
+                                  },
+                                  "to": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "List all Bookings for a Customer",
+                  "tags": [
+                    "Bookings",
+                    "Tickets"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/CustomerId"
+                  }
+                ]
+              },
+              "/customers/{CustomerId}/notes": {
+                "get": {
+                  "description": "List paginated Notes for a given Customer record",
+                  "operationId": "get-customer-notes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/page"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/CustomerNote"
+                                },
+                                "type": "array"
+                              },
+                              "links": {
+                                "properties": {
+                                  "first": {
+                                    "type": "string"
+                                  },
+                                  "last": {
+                                    "type": "string"
+                                  },
+                                  "next": {
+                                    "type": "string"
+                                  },
+                                  "prev": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "meta": {
+                                "properties": {
+                                  "current_page": {
+                                    "type": "integer"
+                                  },
+                                  "from": {
+                                    "type": "integer"
+                                  },
+                                  "path": {
+                                    "type": "string"
+                                  },
+                                  "per_page": {
+                                    "type": "integer"
+                                  },
+                                  "to": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "List all Notes for a Customer",
+                  "tags": [
+                    "Customers"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/CustomerId"
+                  }
+                ],
+                "post": {
+                  "description": "Create a Customer Note record for a given Customer",
+                  "operationId": "post-customer-note",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "properties": {
+                            "data": {
+                              "$ref": "#/components/schemas/CustomerNote"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/CustomerNote"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Created"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Create Customer Note",
+                  "tags": [
+                    "Customers"
+                  ]
+                }
+              },
+              "/customers/{CustomerId}/notes/{CustomerNoteId}": {
+                "delete": {
+                  "description": "Delete an existing Customer Note record",
+                  "operationId": "delete-customer-note",
+                  "responses": {
+                    "204": {
+                      "$ref": "#/components/responses/NoContent"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Delete Customer",
+                  "tags": [
+                    "Customers"
+                  ]
+                },
+                "get": {
+                  "description": "Get an individual Customer record",
+                  "operationId": "get-customer-note",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/CustomerNote"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Get a Customer Note",
+                  "tags": [
+                    "Customers"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/CustomerId"
+                  },
+                  {
+                    "$ref": "#/components/parameters/CustomerNoteId"
+                  }
+                ]
+              },
+              "/dates/{DateId}": {
+                "get": {
+                  "description": "Get an individual Date record",
+                  "operationId": "get-date",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Date"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Get a Date",
+                  "tags": [
+                    "Events",
+                    "Performances"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/DateId"
+                  }
+                ]
+              },
+              "/dates/{DateId}/bookings": {
+                "get": {
+                  "description": "List paginated Bookings for a given Date",
+                  "operationId": "get-date-bookings",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/page"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Booking"
+                                },
+                                "type": "array"
+                              },
+                              "links": {
+                                "properties": {
+                                  "first": {
+                                    "type": "string"
+                                  },
+                                  "last": {
+                                    "type": "string"
+                                  },
+                                  "next": {
+                                    "type": "string"
+                                  },
+                                  "prev": {
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "meta": {
+                                "properties": {
+                                  "current_page": {
+                                    "type": "integer"
+                                  },
+                                  "from": {
+                                    "type": "integer"
+                                  },
+                                  "path": {
+                                    "type": "string"
+                                  },
+                                  "per_page": {
+                                    "type": "integer"
+                                  },
+                                  "to": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "List all Bookings for a Date",
+                  "tags": [
+                    "Bookings",
+                    "Tickets"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/DateId"
+                  }
+                ]
+              },
+              "/events": {
+                "get": {
+                  "description": "List paginated Events.",
+                  "operationId": "get-events",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/page"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Event"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "List all Events",
+                  "tags": [
+                    "Events"
+                  ]
+                }
+              },
+              "/events/{EventId}": {
+                "get": {
+                  "description": "Get an individual Event record",
+                  "operationId": "get-event",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Event"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Get an Event",
+                  "tags": [
+                    "Events"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/EventId"
+                  }
+                ]
+              },
+              "/events/{EventId}/dates": {
+                "get": {
+                  "description": "List paginated Dates for a given Event",
+                  "operationId": "get-event-dates",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/page"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Date"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "List all Dates for an Event",
+                  "tags": [
+                    "Events",
+                    "Performances"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "description": "The unique identifier for a Event record",
+                    "in": "path",
+                    "name": "EventId",
+                    "required": true,
+                    "schema": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "/events/{EventId}/venues": {
+                "get": {
+                  "description": "List paginated Venues for a given Event",
+                  "operationId": "get-event-venues",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/page"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Venue"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "List all Venues for an Event",
+                  "tags": [
+                    "Events",
+                    "Venues"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/EventId"
+                  }
+                ]
+              },
+              "/seats/{SeatId}": {
+                "get": {
+                  "description": "Get an individual Seat record",
+                  "operationId": "get-seat",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Seat"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Get a Seat",
+                  "tags": [
+                    "Bookings",
+                    "Tickets",
+                    "Seats"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/SeatId"
+                  }
+                ]
+              },
+              "/venues/{VenueId}": {
+                "get": {
+                  "description": "Get an individual Venue record",
+                  "operationId": "get-venue",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "$ref": "#/components/schemas/Venue"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "Get a Venue",
+                  "tags": [
+                    "Events",
+                    "Venues"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/VenueId"
+                  }
+                ]
+              },
+              "/venues/{VenueId}/dates": {
+                "get": {
+                  "description": "List paginated Dates for a given Venue",
+                  "operationId": "get-venue-dates",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/per_page"
+                    },
+                    {
+                      "$ref": "#/components/parameters/page"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "$ref": "#/components/schemas/Date"
+                                },
+                                "type": "array"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "OK"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerToken": []
+                    }
+                  ],
+                  "summary": "List all Dates for a Venue",
+                  "tags": [
+                    "Events",
+                    "Performances"
+                  ]
+                },
+                "parameters": [
+                  {
+                    "$ref": "#/components/parameters/VenueId"
+                  }
+                ]
+              }
+            },
+            "security": [
+              {
+                "BearerToken": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Live Server",
+                "url": "https://api.ticketsource.io"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Booking"
+              },
+              {
+                "name": "Bookings"
+              },
+              {
+                "name": "Customer"
+              },
+              {
+                "name": "Customers"
+              },
+              {
+                "name": "Date"
+              },
+              {
+                "name": "Dates"
+              },
+              {
+                "name": "Event"
+              },
+              {
+                "name": "Events"
+              },
+              {
+                "name": "Performance"
+              },
+              {
+                "name": "Performances"
+              },
+              {
+                "name": "Seat"
+              },
+              {
+                "name": "Seats"
+              },
+              {
+                "name": "Ticket"
+              },
+              {
+                "name": "Tickets"
+              },
+              {
+                "name": "Venue"
+              },
+              {
+                "name": "Venues"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "TicketSource"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:29.188242+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/ticketsource/openapi-spec/main/reference/TicketSource-API.json",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "1507d7cfe403b7bd97e864f859f23c304a438d3cb01202549fc532eee6b66300",
+    "source_id": "ticketsource",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/ticketsource/openapi-spec/main/reference/TicketSource-API.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.1"
+}

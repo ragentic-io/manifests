@@ -1,0 +1,1378 @@
+{
+  "a2ui": {},
+  "app": "graphjson",
+  "graph": {
+    "edges": [
+      {
+        "from": "graphjson",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/bulk-log"
+      },
+      {
+        "from": "graphjson",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/log"
+      },
+      {
+        "from": "graphjson",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/visualize/data"
+      },
+      {
+        "from": "graphjson",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/visualize/embed"
+      },
+      {
+        "from": "graphjson",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/visualize/iframe"
+      },
+      {
+        "from": "operation:post:/api/bulk-log",
+        "kind": "ACCEPTS",
+        "to": "schema:BulkLogRequest"
+      },
+      {
+        "from": "operation:post:/api/log",
+        "kind": "ACCEPTS",
+        "to": "schema:LogEventRequest"
+      },
+      {
+        "from": "operation:post:/api/visualize/data",
+        "kind": "ACCEPTS",
+        "to": "schema:VisualizationRequest"
+      },
+      {
+        "from": "operation:post:/api/visualize/data",
+        "kind": "RETURNS",
+        "to": "schema:DataResponse"
+      },
+      {
+        "from": "operation:post:/api/visualize/embed",
+        "kind": "ACCEPTS",
+        "to": "schema:VisualizationRequest"
+      },
+      {
+        "from": "operation:post:/api/visualize/embed",
+        "kind": "RETURNS",
+        "to": "schema:EmbedResponse"
+      },
+      {
+        "from": "operation:post:/api/visualize/iframe",
+        "kind": "ACCEPTS",
+        "to": "schema:VisualizationRequest"
+      },
+      {
+        "from": "operation:post:/api/visualize/iframe",
+        "kind": "RETURNS",
+        "to": "schema:IframeResponse"
+      },
+      {
+        "from": "schema:BulkLogRequest",
+        "kind": "REFERENCES",
+        "to": "schema:ApiKey"
+      },
+      {
+        "from": "schema:BulkLogRequest",
+        "kind": "REFERENCES",
+        "to": "schema:CollectionName"
+      },
+      {
+        "from": "schema:BulkLogRequest",
+        "kind": "REFERENCES",
+        "to": "schema:SerializedEvent"
+      },
+      {
+        "from": "schema:BulkLogRequest",
+        "kind": "REFERENCES",
+        "to": "schema:UnixTimestamp"
+      },
+      {
+        "from": "schema:DataResponse",
+        "kind": "REFERENCES",
+        "to": "schema:LabelValueRow"
+      },
+      {
+        "from": "schema:DataResponse",
+        "kind": "REFERENCES",
+        "to": "schema:SampleRow"
+      },
+      {
+        "from": "schema:DataResponse",
+        "kind": "REFERENCES",
+        "to": "schema:TableRow"
+      },
+      {
+        "from": "schema:DataResponse",
+        "kind": "REFERENCES",
+        "to": "schema:TimeSeriesRow"
+      },
+      {
+        "from": "schema:FilterList",
+        "kind": "REFERENCES",
+        "to": "schema:FilterCondition"
+      },
+      {
+        "from": "schema:LogEventRequest",
+        "kind": "REFERENCES",
+        "to": "schema:ApiKey"
+      },
+      {
+        "from": "schema:LogEventRequest",
+        "kind": "REFERENCES",
+        "to": "schema:CollectionName"
+      },
+      {
+        "from": "schema:LogEventRequest",
+        "kind": "REFERENCES",
+        "to": "schema:SerializedEvent"
+      },
+      {
+        "from": "schema:LogEventRequest",
+        "kind": "REFERENCES",
+        "to": "schema:UnixTimestamp"
+      },
+      {
+        "from": "schema:VisualizationRequest",
+        "kind": "REFERENCES",
+        "to": "schema:ApiKey"
+      },
+      {
+        "from": "schema:VisualizationRequest",
+        "kind": "REFERENCES",
+        "to": "schema:CollectionName"
+      },
+      {
+        "from": "schema:VisualizationRequest",
+        "kind": "REFERENCES",
+        "to": "schema:FilterList"
+      },
+      {
+        "from": "schema:VisualizationRequest",
+        "kind": "REFERENCES",
+        "to": "schema:UnixTimestamp"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "graphjson",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Appends arrays of serialized JSON objects and corresponding Unix-second timestamps to one collection.",
+        "id": "operation:post:/api/bulk-log",
+        "kind": "operation",
+        "method": "post",
+        "name": "bulkLogEvents",
+        "path": "/api/bulk-log",
+        "pointer": "#/paths/~1api~1bulk-log/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "BulkLogRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "500",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Log up to 50 events",
+        "tags": [
+          "Ingestion"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Appends one serialized JSON object to a collection.",
+        "id": "operation:post:/api/log",
+        "kind": "operation",
+        "method": "post",
+        "name": "logEvent",
+        "path": "/api/log",
+        "pointer": "#/paths/~1api~1log/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "LogEventRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "429",
+            "type": "ErrorResponse"
+          },
+          {
+            "status": "500",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Log one event",
+        "tags": [
+          "Ingestion"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns Samples, time-series, aggregate, comparison, or SQL visualization data.",
+        "id": "operation:post:/api/visualize/data",
+        "kind": "operation",
+        "method": "post",
+        "name": "getVisualizationData",
+        "path": "/api/visualize/data",
+        "pointer": "#/paths/~1api~1visualize~1data/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "VisualizationRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "DataResponse"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Get visualization data",
+        "tags": [
+          "Visualization"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns opaque bearer URLs for an iframe and raster image representation.",
+        "id": "operation:post:/api/visualize/embed",
+        "kind": "operation",
+        "method": "post",
+        "name": "generateEmbedUrls",
+        "path": "/api/visualize/embed",
+        "pointer": "#/paths/~1api~1visualize~1embed/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "VisualizationRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "EmbedResponse"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Generate iframe and image URLs",
+        "tags": [
+          "Visualization"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns an opaque bearer URL for the requested visualization configuration.",
+        "id": "operation:post:/api/visualize/iframe",
+        "kind": "operation",
+        "method": "post",
+        "name": "generateIframeUrl",
+        "path": "/api/visualize/iframe",
+        "pointer": "#/paths/~1api~1visualize~1iframe/post",
+        "request": {
+          "content_types": [
+            "application/json"
+          ],
+          "required": true,
+          "type": "VisualizationRequest"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "IframeResponse"
+          },
+          {
+            "status": "400",
+            "type": "ErrorResponse"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Generate an iframe URL",
+        "tags": [
+          "Visualization"
+        ]
+      },
+      {
+        "description": "Secret workspace API key.",
+        "id": "schema:ApiKey",
+        "kind": "schema",
+        "name": "ApiKey",
+        "type": "string"
+      },
+      {
+        "id": "schema:BulkLogRequest",
+        "kind": "schema",
+        "name": "BulkLogRequest",
+        "type": "object"
+      },
+      {
+        "id": "schema:CollectionName",
+        "kind": "schema",
+        "name": "CollectionName",
+        "type": "string"
+      },
+      {
+        "description": "Stable Data API envelope.",
+        "id": "schema:DataResponse",
+        "kind": "schema",
+        "name": "DataResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:EmbedResponse",
+        "kind": "schema",
+        "name": "EmbedResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:ErrorResponse",
+        "kind": "schema",
+        "name": "ErrorResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:FilterCondition",
+        "kind": "schema",
+        "name": "FilterCondition",
+        "type": "array"
+      },
+      {
+        "description": "A flat AND list of conditions or nested OR groups of AND conditions.",
+        "id": "schema:FilterList",
+        "kind": "schema",
+        "name": "FilterList",
+        "type": "FilterCondition|FilterCondition[][]"
+      },
+      {
+        "id": "schema:IframeResponse",
+        "kind": "schema",
+        "name": "IframeResponse",
+        "type": "object"
+      },
+      {
+        "description": "One label/value aggregate used by categorical and mapped SQL visualizations.",
+        "id": "schema:LabelValueRow",
+        "kind": "schema",
+        "name": "LabelValueRow",
+        "type": "object"
+      },
+      {
+        "id": "schema:LogEventRequest",
+        "kind": "schema",
+        "name": "LogEventRequest",
+        "type": "object"
+      },
+      {
+        "description": "One Samples result with the original event time and parsed JSON payload.",
+        "id": "schema:SampleRow",
+        "kind": "schema",
+        "name": "SampleRow",
+        "type": "object"
+      },
+      {
+        "description": "A serialized JSON object.",
+        "id": "schema:SerializedEvent",
+        "kind": "schema",
+        "name": "SerializedEvent",
+        "type": "string"
+      },
+      {
+        "description": "A table or SQL row whose keys come from the selected fields or query aliases.",
+        "id": "schema:TableRow",
+        "kind": "schema",
+        "name": "TableRow",
+        "type": "object"
+      },
+      {
+        "description": "One resolved time bucket.",
+        "id": "schema:TimeSeriesRow",
+        "kind": "schema",
+        "name": "TimeSeriesRow",
+        "type": "object"
+      },
+      {
+        "description": "Whole Unix seconds.",
+        "id": "schema:UnixTimestamp",
+        "kind": "schema",
+        "name": "UnixTimestamp",
+        "type": "integer"
+      },
+      {
+        "id": "schema:VisualizationRequest",
+        "kind": "schema",
+        "name": "VisualizationRequest"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "graphjson"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.graphjson.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "BadRequest": {
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "error": "Invalid API KEY"
+                      },
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    },
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "description": "Invalid method, key, payload, timestamp, range, filter, or query."
+                },
+                "IngestionAccepted": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "description": "Request accepted. Do not depend on undocumented success-body fields."
+                },
+                "InternalError": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    },
+                    "text/plain": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "description": "Internal ingestion failure. Retry a bounded number of times."
+                },
+                "TooManyRequests": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse"
+                      }
+                    },
+                    "text/plain": {
+                      "example": "Too Many Requests",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "description": "Ingestion request guardrail exceeded. Retry with exponential backoff and jitter."
+                }
+              },
+              "schemas": {
+                "ApiKey": {
+                  "description": "Secret workspace API key. Keep server-side.",
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "BulkLogRequest": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "api_key": {
+                      "$ref": "#/components/schemas/ApiKey"
+                    },
+                    "collection": {
+                      "$ref": "#/components/schemas/CollectionName"
+                    },
+                    "jsons": {
+                      "description": "Must contain one entry for every item in timestamps.",
+                      "items": {
+                        "$ref": "#/components/schemas/SerializedEvent"
+                      },
+                      "maxItems": 50,
+                      "minItems": 1,
+                      "type": "array"
+                    },
+                    "no_flatten": {
+                      "default": false,
+                      "description": "Preserve nested JSON when true.",
+                      "type": "boolean"
+                    },
+                    "timestamps": {
+                      "description": "Must contain one entry for every item in jsons.",
+                      "items": {
+                        "$ref": "#/components/schemas/UnixTimestamp"
+                      },
+                      "maxItems": 50,
+                      "minItems": 1,
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "api_key",
+                    "timestamps",
+                    "jsons"
+                  ],
+                  "type": "object"
+                },
+                "CollectionName": {
+                  "examples": [
+                    "product_events"
+                  ],
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "DataResponse": {
+                  "additionalProperties": true,
+                  "description": "Stable Data API envelope. The row shape depends on the requested graph type and SQL column mapping; see the named row schemas and the Data API response-contract guide.",
+                  "properties": {
+                    "compare_result": {
+                      "description": "Comparison rows when the request uses a comparison graph or comparison window.",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/TimeSeriesRow"
+                          },
+                          {
+                            "$ref": "#/components/schemas/LabelValueRow"
+                          },
+                          {
+                            "$ref": "#/components/schemas/TableRow"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "additionalProperties": true,
+                      "description": "Query-derived totals, resolved granularity, and other shape-specific metadata.",
+                      "type": "object"
+                    },
+                    "result": {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "$ref": "#/components/schemas/SampleRow"
+                          },
+                          {
+                            "$ref": "#/components/schemas/TimeSeriesRow"
+                          },
+                          {
+                            "$ref": "#/components/schemas/LabelValueRow"
+                          },
+                          {
+                            "$ref": "#/components/schemas/TableRow"
+                          }
+                        ]
+                      },
+                      "type": "array"
+                    },
+                    "telemetry": {
+                      "additionalProperties": true,
+                      "description": "Optional query execution telemetry. Treat additional telemetry fields as additive.",
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "result"
+                  ],
+                  "type": "object"
+                },
+                "EmbedResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "iframe_url": {
+                      "description": "Opaque bearer URL for the generated iframe.",
+                      "format": "uri",
+                      "type": "string"
+                    },
+                    "image_url": {
+                      "description": "Opaque bearer URL for the generated image.",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "iframe_url",
+                    "image_url"
+                  ],
+                  "type": "object"
+                },
+                "ErrorResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "error": {
+                      "description": "Human-readable error. Wording can evolve.",
+                      "type": [
+                        "string",
+                        "object",
+                        "array",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "FilterCondition": {
+                  "maxItems": 3,
+                  "minItems": 3,
+                  "prefixItems": [
+                    {
+                      "description": "Field name.",
+                      "type": "string"
+                    },
+                    {
+                      "enum": [
+                        "=",
+                        "≠",
+                        "includes",
+                        "excludes",
+                        ">",
+                        "<"
+                      ],
+                      "type": "string"
+                    },
+                    {
+                      "description": "Comparison value.",
+                      "type": [
+                        "string",
+                        "number",
+                        "boolean"
+                      ]
+                    }
+                  ],
+                  "type": "array"
+                },
+                "FilterList": {
+                  "description": "A flat AND list of conditions or nested OR groups of AND conditions.",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/FilterCondition"
+                      },
+                      {
+                        "items": {
+                          "$ref": "#/components/schemas/FilterCondition"
+                        },
+                        "type": "array"
+                      }
+                    ]
+                  },
+                  "type": "array"
+                },
+                "IframeResponse": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "url": {
+                      "description": "Opaque bearer URL for the generated iframe.",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "url"
+                  ],
+                  "type": "object"
+                },
+                "LabelValueRow": {
+                  "additionalProperties": true,
+                  "description": "One label/value aggregate used by categorical and mapped SQL visualizations.",
+                  "properties": {
+                    "label": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "value"
+                  ],
+                  "type": "object"
+                },
+                "LogEventRequest": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "api_key": {
+                      "$ref": "#/components/schemas/ApiKey"
+                    },
+                    "collection": {
+                      "$ref": "#/components/schemas/CollectionName"
+                    },
+                    "json": {
+                      "$ref": "#/components/schemas/SerializedEvent"
+                    },
+                    "no_flatten": {
+                      "default": false,
+                      "description": "Preserve nested JSON when true.",
+                      "type": "boolean"
+                    },
+                    "timestamp": {
+                      "$ref": "#/components/schemas/UnixTimestamp"
+                    }
+                  },
+                  "required": [
+                    "api_key",
+                    "json"
+                  ],
+                  "type": "object"
+                },
+                "SampleRow": {
+                  "additionalProperties": true,
+                  "description": "One Samples result with the original event time and parsed JSON payload.",
+                  "properties": {
+                    "json": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "timestamp": {
+                      "description": "Event time as a Unix second.",
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "timestamp",
+                    "json"
+                  ],
+                  "type": "object"
+                },
+                "SerializedEvent": {
+                  "description": "A serialized JSON object. Top-level arrays are not accepted.",
+                  "examples": [
+                    "{\"event\":\"signup_completed\",\"event_id\":\"evt_01J...\"}"
+                  ],
+                  "maxLength": 10000,
+                  "minLength": 2,
+                  "type": "string"
+                },
+                "TableRow": {
+                  "additionalProperties": true,
+                  "description": "A table or SQL row whose keys come from the selected fields or query aliases.",
+                  "type": "object"
+                },
+                "TimeSeriesRow": {
+                  "additionalProperties": true,
+                  "description": "One resolved time bucket. Numeric value keys depend on the aggregation, metric, and split.",
+                  "properties": {
+                    "timestamp": {
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "timestamp"
+                  ],
+                  "type": "object"
+                },
+                "UnixTimestamp": {
+                  "description": "Whole Unix seconds.",
+                  "examples": [
+                    1785081600
+                  ],
+                  "type": "integer"
+                },
+                "VisualizationRequest": {
+                  "additionalProperties": true,
+                  "anyOf": [
+                    {
+                      "required": [
+                        "start",
+                        "end"
+                      ],
+                      "title": "Collection visualizer request"
+                    },
+                    {
+                      "required": [
+                        "sql_query"
+                      ],
+                      "title": "SQL visualization request"
+                    }
+                  ],
+                  "properties": {
+                    "IANA_time_zone": {
+                      "default": "America/Los_Angeles",
+                      "examples": [
+                        "UTC",
+                        "America/Los_Angeles"
+                      ],
+                      "type": "string"
+                    },
+                    "aggregation": {
+                      "examples": [
+                        "Count",
+                        "Sum",
+                        "Avg"
+                      ],
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "api_key": {
+                      "$ref": "#/components/schemas/ApiKey"
+                    },
+                    "collection": {
+                      "$ref": "#/components/schemas/CollectionName"
+                    },
+                    "compare": {
+                      "examples": [
+                        "30 days ago"
+                      ],
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "compare_filters": {
+                      "$ref": "#/components/schemas/FilterList"
+                    },
+                    "customizations": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "denominator_filters": {
+                      "$ref": "#/components/schemas/FilterList"
+                    },
+                    "end": {
+                      "oneOf": [
+                        {
+                          "examples": [
+                            "now"
+                          ],
+                          "type": "string"
+                        },
+                        {
+                          "$ref": "#/components/schemas/UnixTimestamp"
+                        }
+                      ]
+                    },
+                    "filters": {
+                      "$ref": "#/components/schemas/FilterList"
+                    },
+                    "granularity": {
+                      "enum": [
+                        "Auto",
+                        "Minute",
+                        "Hour",
+                        "Day",
+                        "Week",
+                        "Month"
+                      ],
+                      "type": "string"
+                    },
+                    "graph_type": {
+                      "enum": [
+                        "Samples",
+                        "Single Line",
+                        "Multi Line",
+                        "Stacked Line",
+                        "Cumulative Line",
+                        "Ratio Line",
+                        "Compare Line",
+                        "Single Value",
+                        "Table",
+                        "Bar Chart",
+                        "Pie Chart",
+                        "Funnel"
+                      ],
+                      "type": "string"
+                    },
+                    "label_column": {
+                      "type": "string"
+                    },
+                    "metric": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "numerator_filters": {
+                      "$ref": "#/components/schemas/FilterList"
+                    },
+                    "order": {
+                      "enum": [
+                        "Ascending",
+                        "Descending"
+                      ],
+                      "type": "string"
+                    },
+                    "split": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "split_column": {
+                      "type": "string"
+                    },
+                    "sql_query": {
+                      "description": "Read-only saved-style SQL query.",
+                      "type": "string"
+                    },
+                    "start": {
+                      "oneOf": [
+                        {
+                          "examples": [
+                            "30 days ago"
+                          ],
+                          "type": "string"
+                        },
+                        {
+                          "$ref": "#/components/schemas/UnixTimestamp"
+                        }
+                      ]
+                    },
+                    "timestamp_column": {
+                      "type": "string"
+                    },
+                    "value_column": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "api_key",
+                    "graph_type"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "Machine-readable contract for the documented public GraphJSON HTTP API. Authentication uses the api_key property in each JSON request body. See https://graphjson.com/docs/API/versioning-and-changelog for compatibility policy.",
+              "license": {
+                "name": "Proprietary",
+                "url": "https://graphjson.com/terms"
+              },
+              "summary": "Ingest JSON events and request GraphJSON visualization data or embed URLs.",
+              "title": "GraphJSON API",
+              "version": "2026-07-26"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/api/bulk-log": {
+                "post": {
+                  "description": "Appends arrays of serialized JSON objects and corresponding Unix-second timestamps to one collection.",
+                  "operationId": "bulkLogEvents",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "orders": {
+                            "value": {
+                              "api_key": "your_api_key",
+                              "collection": "orders",
+                              "jsons": [
+                                "{\"event\":\"order_completed\",\"event_id\":\"evt_1\",\"amount\":4900}",
+                                "{\"event\":\"order_completed\",\"event_id\":\"evt_2\",\"amount\":7900}"
+                              ],
+                              "timestamps": [
+                                1785081600,
+                                1785081612
+                              ]
+                            }
+                          }
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/BulkLogRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/IngestionAccepted"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/TooManyRequests"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    }
+                  },
+                  "summary": "Log up to 50 events",
+                  "tags": [
+                    "Ingestion"
+                  ]
+                }
+              },
+              "/api/log": {
+                "post": {
+                  "description": "Appends one serialized JSON object to a collection.",
+                  "operationId": "logEvent",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "signup": {
+                            "value": {
+                              "api_key": "your_api_key",
+                              "collection": "product_events",
+                              "json": "{\"event\":\"signup_completed\",\"event_id\":\"evt_01J...\",\"user_id\":\"usr_42\"}",
+                              "timestamp": 1785081600
+                            }
+                          }
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/LogEventRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/IngestionAccepted"
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/TooManyRequests"
+                    },
+                    "500": {
+                      "$ref": "#/components/responses/InternalError"
+                    }
+                  },
+                  "summary": "Log one event",
+                  "tags": [
+                    "Ingestion"
+                  ]
+                }
+              },
+              "/api/visualize/data": {
+                "post": {
+                  "description": "Returns Samples, time-series, aggregate, comparison, or SQL visualization data.",
+                  "operationId": "getVisualizationData",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "examples": {
+                          "dailySignups": {
+                            "value": {
+                              "IANA_time_zone": "UTC",
+                              "aggregation": "Count",
+                              "api_key": "your_api_key",
+                              "collection": "product_events",
+                              "customizations": {},
+                              "end": "now",
+                              "filters": [
+                                [
+                                  "event",
+                                  "=",
+                                  "signup_completed"
+                                ]
+                              ],
+                              "granularity": "Day",
+                              "graph_type": "Single Line",
+                              "metric": null,
+                              "split": null,
+                              "start": "30 days ago"
+                            }
+                          }
+                        },
+                        "schema": {
+                          "$ref": "#/components/schemas/VisualizationRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "categories": {
+                              "summary": "Categorical aggregate",
+                              "value": {
+                                "metadata": {},
+                                "result": [
+                                  {
+                                    "label": "pro",
+                                    "value": 184
+                                  },
+                                  {
+                                    "label": "starter",
+                                    "value": 96
+                                  }
+                                ]
+                              }
+                            },
+                            "samples": {
+                              "summary": "Raw sample events",
+                              "value": {
+                                "result": [
+                                  {
+                                    "json": {
+                                      "event": "signup_completed",
+                                      "user_id": "usr_42"
+                                    },
+                                    "timestamp": 1785081600
+                                  }
+                                ]
+                              }
+                            },
+                            "timeSeries": {
+                              "summary": "Daily count with comparison",
+                              "value": {
+                                "compare_result": [
+                                  {
+                                    "Count": 72,
+                                    "timestamp": "2026-07-24"
+                                  },
+                                  {
+                                    "Count": 80,
+                                    "timestamp": "2026-07-25"
+                                  }
+                                ],
+                                "metadata": {
+                                  "combined": 174,
+                                  "compare_combined": 152,
+                                  "granularity": "Day"
+                                },
+                                "result": [
+                                  {
+                                    "Count": 83,
+                                    "timestamp": "2026-07-24"
+                                  },
+                                  {
+                                    "Count": 91,
+                                    "timestamp": "2026-07-25"
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/DataResponse"
+                          }
+                        }
+                      },
+                      "description": "Visualization result."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    }
+                  },
+                  "summary": "Get visualization data",
+                  "tags": [
+                    "Visualization"
+                  ]
+                }
+              },
+              "/api/visualize/embed": {
+                "post": {
+                  "description": "Returns opaque bearer URLs for an iframe and raster image representation.",
+                  "operationId": "generateEmbedUrls",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/VisualizationRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "iframe_url": "https://graphjson.com/embed?p=...",
+                            "image_url": "https://graphjson.com/api/image?p=..."
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/EmbedResponse"
+                          }
+                        }
+                      },
+                      "description": "Generated embed URLs."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    }
+                  },
+                  "summary": "Generate iframe and image URLs",
+                  "tags": [
+                    "Visualization"
+                  ]
+                }
+              },
+              "/api/visualize/iframe": {
+                "post": {
+                  "description": "Returns an opaque bearer URL for the requested visualization configuration.",
+                  "operationId": "generateIframeUrl",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/VisualizationRequest"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "example": {
+                            "url": "https://graphjson.com/embed?p=..."
+                          },
+                          "schema": {
+                            "$ref": "#/components/schemas/IframeResponse"
+                          }
+                        }
+                      },
+                      "description": "Generated iframe URL."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    }
+                  },
+                  "summary": "Generate an iframe URL",
+                  "tags": [
+                    "Visualization"
+                  ]
+                }
+              }
+            },
+            "security": [],
+            "servers": [
+              {
+                "description": "Production API",
+                "url": "https://api.graphjson.com"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Append timestamped JSON events to a collection.",
+                "name": "Ingestion"
+              },
+              {
+                "description": "Return visualization data or generated embed URLs.",
+                "name": "Visualization"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "GraphJSON"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:43.633725+00:00",
+    "license": {
+      "name": "Proprietary",
+      "url": "https://graphjson.com/terms"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://www.graphjson.com/graphjson-openapi.json",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "fdcf090cae9ae155b4ffbdf479b81243a271683e6d7c68091b0fe0ddbee1f0de",
+    "source_id": "graphjson",
+    "source_updated": null,
+    "url": "https://www.graphjson.com/graphjson-openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "2026-07-26"
+}

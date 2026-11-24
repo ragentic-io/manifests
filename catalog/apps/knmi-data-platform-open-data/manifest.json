@@ -1,0 +1,611 @@
+{
+  "a2ui": {},
+  "app": "knmi-data-platform-open-data",
+  "graph": {
+    "edges": [
+      {
+        "from": "knmi-data-platform-open-data",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/datasets/{datasetName}/versions/{versionId}/files"
+      },
+      {
+        "from": "knmi-data-platform-open-data",
+        "kind": "EXPOSES",
+        "to": "operation:get:/v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url"
+      },
+      {
+        "from": "operation:get:/v1/datasets/{datasetName}/versions/{versionId}/files",
+        "kind": "RETURNS",
+        "to": "schema:ListFilesResponse"
+      },
+      {
+        "from": "operation:get:/v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url",
+        "kind": "RETURNS",
+        "to": "schema:FileDownload"
+      },
+      {
+        "from": "schema:ListFilesResponse",
+        "kind": "REFERENCES",
+        "to": "schema:FileSummary"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "knmi-data-platform-open-data",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/v1/datasets/{datasetName}/versions/{versionId}/files",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /v1/datasets/{datasetName}/versions/{versionId}/files",
+        "parameters": [
+          {
+            "description": "Name of the dataset",
+            "in": "path",
+            "name": "datasetName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Version of the dataset",
+            "in": "path",
+            "name": "versionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 10,
+            "description": "Maximum number of files to return",
+            "in": "query",
+            "name": "maxKeys",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": "asc",
+            "description": "Sort the files in ascending or descending order",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "filename",
+            "description": "Order the files by filename, timestamp of creation or timestamp of last modification",
+            "enum": [
+              "filename",
+              "lastModified",
+              "created"
+            ],
+            "in": "query",
+            "name": "orderBy",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "This parameter controls filtering (together with end).",
+            "in": "query",
+            "name": "begin",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "This parameter controls filtering (together with begin).",
+            "in": "query",
+            "name": "end",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Token to retrieve the next page of results.",
+            "in": "query",
+            "name": "nextPageToken",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Provide a filename to start listing after.",
+            "in": "query",
+            "name": "startAfterFilename",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/datasets/{datasetName}/versions/{versionId}/files",
+        "pointer": "#/paths/~1v1~1datasets~1{datasetName}~1versions~1{versionId}~1files/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ListFilesResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Get paginated list of files for dataset"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url",
+        "parameters": [
+          {
+            "description": "Name of the dataset",
+            "in": "path",
+            "name": "datasetName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Version of the dataset",
+            "in": "path",
+            "name": "versionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Name of the file",
+            "in": "path",
+            "name": "filename",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url",
+        "pointer": "#/paths/~1v1~1datasets~1{datasetName}~1versions~1{versionId}~1files~1{filename}~1url/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "FileDownload"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "APIKeyHeader": []
+          }
+        ],
+        "summary": "Get a temporary download URL for a dataset file"
+      },
+      {
+        "id": "schema:FileDownload",
+        "kind": "schema",
+        "name": "FileDownload",
+        "type": "object"
+      },
+      {
+        "id": "schema:FileSummary",
+        "kind": "schema",
+        "name": "FileSummary",
+        "type": "object"
+      },
+      {
+        "id": "schema:ListFilesResponse",
+        "kind": "schema",
+        "name": "ListFilesResponse",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "knmi-data-platform-open-data"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.dataplatform.knmi.nl/open-data",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "FileDownload": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "contentType": {
+                      "type": "string"
+                    },
+                    "lastModified": {
+                      "type": "string"
+                    },
+                    "size": {
+                      "type": "string"
+                    },
+                    "temporaryDownloadUrl": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "contentType",
+                    "size",
+                    "lastModified",
+                    "temporaryDownloadUrl"
+                  ],
+                  "title": "FileDownload",
+                  "type": "object"
+                },
+                "FileSummary": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "created": {
+                      "type": "string"
+                    },
+                    "filename": {
+                      "type": "string"
+                    },
+                    "lastModified": {
+                      "type": "string"
+                    },
+                    "size": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "filename",
+                    "lastModified",
+                    "size",
+                    "created"
+                  ],
+                  "title": "FileSummary",
+                  "type": "object"
+                },
+                "ListFilesResponse": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "files": {
+                      "items": {
+                        "$ref": "#/components/schemas/FileSummary"
+                      },
+                      "type": "array"
+                    },
+                    "isTruncated": {
+                      "type": "boolean"
+                    },
+                    "maxResults": {
+                      "type": "integer"
+                    },
+                    "nextPageToken": {
+                      "type": "string"
+                    },
+                    "resultCount": {
+                      "type": "integer"
+                    },
+                    "startAfterFilename": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "isTruncated",
+                    "files",
+                    "resultCount",
+                    "maxResults",
+                    "startAfterFilename",
+                    "nextPageToken"
+                  ],
+                  "title": "ListFilesResponse",
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "APIKeyHeader": {
+                  "description": "",
+                  "in": "header",
+                  "name": "Authorization",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "For more information on the Open Data API and how to use it, visit the [Open Data API Documentation Page](https://developer.dataplatform.knmi.nl/open-data-api).",
+              "title": "KNMI Data Platform - Open Data API",
+              "version": "v1"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/v1/datasets/{datasetName}/versions/{versionId}/files": {
+                "get": {
+                  "description": "Get paginated list of files for dataset",
+                  "parameters": [
+                    {
+                      "description": "Name of the dataset",
+                      "examples": {
+                        "10-minute-in-situ-meteorological-observations": {
+                          "value": "10-minute-in-situ-meteorological-observations"
+                        }
+                      },
+                      "in": "path",
+                      "name": "datasetName",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Version of the dataset",
+                      "examples": {
+                        "1.0": {
+                          "value": "1.0"
+                        }
+                      },
+                      "in": "path",
+                      "name": "versionId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of files to return",
+                      "in": "query",
+                      "name": "maxKeys",
+                      "required": false,
+                      "schema": {
+                        "default": 10,
+                        "maximum": 1000,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Sort the files in ascending or descending order",
+                      "in": "query",
+                      "name": "sorting",
+                      "required": false,
+                      "schema": {
+                        "default": "asc",
+                        "enum": [
+                          "asc",
+                          "desc"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Order the files by filename, timestamp of creation or timestamp of last modification",
+                      "in": "query",
+                      "name": "orderBy",
+                      "required": false,
+                      "schema": {
+                        "default": "filename",
+                        "enum": [
+                          "filename",
+                          "lastModified",
+                          "created"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "This parameter controls filtering (together with end). It defines the lower limit of the requested data. If ordering by filename, provide a string. If ordering by lastModified or created, provide a timestamp in ISO8601 format with a timezone (e.g. 2022-01-01T00:00:00Z).",
+                      "examples": {
+                        "From 2022 (order by created)": {
+                          "value": "2022-01-01T00:00:00Z"
+                        },
+                        "From 2022 (order by filename)": {
+                          "value": "KMDS__OPER_P___10M_OBS_L2_2022"
+                        },
+                        "From 2023, including timezone (order by created)": {
+                          "value": "2022-01-11T02:00:00-02:00"
+                        },
+                        "Start from the first file": {}
+                      },
+                      "in": "query",
+                      "name": "begin",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "This parameter controls filtering (together with begin). It defines the upper limit of the requested data. If ordering by filename, provide a string. If ordering by lastModified or created, provide a timestamp in ISO8601 format with a timezone (e.g. 2022-01-01T00:00:00Z).",
+                      "examples": {
+                        "Before 2023 (order by created)": {
+                          "value": "2022-12-31T23:59:59Z"
+                        },
+                        "Before 2023 (order by filename)": {
+                          "value": "KMDS__OPER_P___10M_OBS_L2_2023"
+                        },
+                        "Before 2023, including timezone (order by created)": {
+                          "value": "2022-12-31T21:59:59+02:00"
+                        },
+                        "Until the last file": {}
+                      },
+                      "in": "query",
+                      "name": "end",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Token to retrieve the next page of results. This token is returned by the API if the result set is larger than the maximum number of files to return.",
+                      "in": "query",
+                      "name": "nextPageToken",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "deprecated": true,
+                      "description": "Provide a filename to start listing after. Note: This deprecated parameter cannot be combined with orderBy, begin, end or sorting. Instead, use `nextPageToken`.",
+                      "in": "query",
+                      "name": "startAfterFilename",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ListFilesResponse"
+                          }
+                        }
+                      },
+                      "description": "OK",
+                      "headers": {
+                        "Access-Control-Allow-Origin": {
+                          "description": "The Access-Control-Allow-Origin response header indicates whether the response can be shared with requesting code from the given origin.",
+                          "schema": {
+                            "type": "string"
+                          }
+                        },
+                        "X-KNMI-Deprecation": {
+                          "description": "Specifies if the dataset is deprecated.",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "security": [
+                    {
+                      "APIKeyHeader": []
+                    }
+                  ],
+                  "summary": "Get paginated list of files for dataset"
+                }
+              },
+              "/v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url": {
+                "get": {
+                  "description": "Get a temporary download URL for a dataset file",
+                  "parameters": [
+                    {
+                      "description": "Name of the dataset",
+                      "examples": {
+                        "10-minute-in-situ-meteorological-observations": {
+                          "value": "10-minute-in-situ-meteorological-observations"
+                        }
+                      },
+                      "in": "path",
+                      "name": "datasetName",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Version of the dataset",
+                      "examples": {
+                        "1.0": {
+                          "value": "1.0"
+                        }
+                      },
+                      "in": "path",
+                      "name": "versionId",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Name of the file",
+                      "examples": {
+                        "KMDS__OPER_P___10M_OBS_L2_202212102330.nc": {
+                          "value": "KMDS__OPER_P___10M_OBS_L2_202212102330.nc"
+                        }
+                      },
+                      "in": "path",
+                      "name": "filename",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/FileDownload"
+                          }
+                        }
+                      },
+                      "description": "OK",
+                      "headers": {
+                        "Access-Control-Allow-Origin": {
+                          "description": "The Access-Control-Allow-Origin response header indicates whether the response can be shared with requesting code from the given origin.",
+                          "schema": {
+                            "type": "string"
+                          }
+                        },
+                        "X-KNMI-Deprecation": {
+                          "description": "Specifies if the dataset is deprecated.",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "security": [
+                    {
+                      "APIKeyHeader": []
+                    }
+                  ],
+                  "summary": "Get a temporary download URL for a dataset file"
+                }
+              }
+            },
+            "servers": [
+              {
+                "url": "https://api.dataplatform.knmi.nl/open-data"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "KNMI Data Platform Open Data"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.483051+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://tyk-cdn.dataplatform.knmi.nl/open-data/openapi.json",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "be0935ff59d43c8a19d1b97aed804103d4004935c5dc3aa21deb2bd08e2436c3",
+    "source_id": "knmi-data-platform-open-data",
+    "source_updated": null,
+    "url": "https://tyk-cdn.dataplatform.knmi.nl/open-data/openapi.json"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "v1"
+}

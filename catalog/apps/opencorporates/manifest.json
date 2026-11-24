@@ -1,0 +1,666 @@
+{
+  "a2ui": {},
+  "app": "opencorporates",
+  "graph": {
+    "edges": [
+      {
+        "from": "opencorporates",
+        "kind": "EXPOSES",
+        "to": "operation:get:/companies/search"
+      },
+      {
+        "from": "opencorporates",
+        "kind": "EXPOSES",
+        "to": "operation:get:/companies/{jurisdiction_code}/{company_number}"
+      },
+      {
+        "from": "operation:get:/companies/search",
+        "kind": "RETURNS",
+        "to": "schema:CompanySearchResponse"
+      },
+      {
+        "from": "operation:get:/companies/{jurisdiction_code}/{company_number}",
+        "kind": "RETURNS",
+        "to": "schema:CompanyResponse"
+      },
+      {
+        "from": "schema:CompanyResponse",
+        "kind": "REFERENCES",
+        "to": "schema:Company"
+      },
+      {
+        "from": "schema:CompanySearchItem",
+        "kind": "REFERENCES",
+        "to": "schema:Company"
+      },
+      {
+        "from": "schema:CompanySearchResponse",
+        "kind": "REFERENCES",
+        "to": "schema:CompanySearchResults"
+      },
+      {
+        "from": "schema:CompanySearchResults",
+        "kind": "REFERENCES",
+        "to": "schema:CompanySearchItem"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "opencorporates",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Searches company names and supports documented pagination, sorting, and filters.",
+        "id": "operation:get:/companies/search",
+        "kind": "operation",
+        "method": "get",
+        "name": "searchCompanies",
+        "parameters": [
+          {
+            "description": "Company name search term.",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Page number for paginated results.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Number of results per page.",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Restrict results to a jurisdiction code.",
+            "in": "query",
+            "name": "jurisdiction_code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Restrict results to a country code.",
+            "in": "query",
+            "name": "country_code",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Restrict results to a company type.",
+            "in": "query",
+            "name": "company_type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Restrict results to a company status.",
+            "in": "query",
+            "name": "current_status",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter for inactive companies; false excludes inactive companies.",
+            "in": "query",
+            "name": "inactive",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Sort order.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/companies/search",
+        "pointer": "#/paths/~1companies~1search/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CompanySearchResponse"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiToken": []
+          }
+        ],
+        "summary": "Search companies by name",
+        "tags": [
+          "Companies"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the core data for a company registration.",
+        "id": "operation:get:/companies/{jurisdiction_code}/{company_number}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCompany",
+        "parameters": [
+          {
+            "description": "Jurisdiction code, such as a country or subnational code.",
+            "in": "path",
+            "name": "jurisdiction_code",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Company identifier assigned by the company register.",
+            "in": "path",
+            "name": "company_number",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "When true, requests a smaller response without filings and related data.",
+            "in": "query",
+            "name": "sparse",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/companies/{jurisdiction_code}/{company_number}",
+        "pointer": "#/paths/~1companies~1{jurisdiction_code}~1{company_number}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CompanyResponse"
+          },
+          {
+            "status": "401"
+          },
+          {
+            "status": "403"
+          },
+          {
+            "status": "404"
+          },
+          {
+            "status": "503"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiToken": []
+          }
+        ],
+        "summary": "Get a company by jurisdiction and number",
+        "tags": [
+          "Companies"
+        ]
+      },
+      {
+        "description": "Fields can vary by jurisdiction and available registry data.",
+        "id": "schema:Company",
+        "kind": "schema",
+        "name": "Company",
+        "type": "object"
+      },
+      {
+        "id": "schema:CompanyResponse",
+        "kind": "schema",
+        "name": "CompanyResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:CompanySearchItem",
+        "kind": "schema",
+        "name": "CompanySearchItem",
+        "type": "object"
+      },
+      {
+        "id": "schema:CompanySearchResponse",
+        "kind": "schema",
+        "name": "CompanySearchResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:CompanySearchResults",
+        "kind": "schema",
+        "name": "CompanySearchResults",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "opencorporates"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.opencorporates.com/v0.4",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "Company": {
+                  "additionalProperties": true,
+                  "description": "Fields can vary by jurisdiction and available registry data.",
+                  "properties": {
+                    "company_number": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "company_type": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "current_status": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "dissolution_date": {
+                      "format": "date",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "inactive": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "incorporation_date": {
+                      "format": "date",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "jurisdiction_code": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "opencorporates_url": {
+                      "format": "uri",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "registered_address_in_full": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "registry_url": {
+                      "format": "uri",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "CompanyResponse": {
+                  "properties": {
+                    "api_version": {
+                      "type": "string"
+                    },
+                    "results": {
+                      "properties": {
+                        "company": {
+                          "$ref": "#/components/schemas/Company"
+                        }
+                      },
+                      "required": [
+                        "company"
+                      ],
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "results"
+                  ],
+                  "type": "object"
+                },
+                "CompanySearchItem": {
+                  "properties": {
+                    "company": {
+                      "$ref": "#/components/schemas/Company"
+                    }
+                  },
+                  "required": [
+                    "company"
+                  ],
+                  "type": "object"
+                },
+                "CompanySearchResponse": {
+                  "properties": {
+                    "api_version": {
+                      "type": "string"
+                    },
+                    "results": {
+                      "$ref": "#/components/schemas/CompanySearchResults"
+                    }
+                  },
+                  "required": [
+                    "results"
+                  ],
+                  "type": "object"
+                },
+                "CompanySearchResults": {
+                  "additionalProperties": true,
+                  "properties": {
+                    "companies": {
+                      "items": {
+                        "$ref": "#/components/schemas/CompanySearchItem"
+                      },
+                      "type": "array"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "per_page": {
+                      "type": "integer"
+                    },
+                    "total_count": {
+                      "type": "integer"
+                    },
+                    "total_pages": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "apiToken": {
+                  "description": "API token supplied with every request.",
+                  "in": "query",
+                  "name": "api_token",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Focused community-maintained specification for company name search and company lookup. An API token is required. OpenCorporates documents free API accounts for open-data projects whose products or databases use an open share-alike licence with attribution. Commercial use outside those terms requires a paid plan; at-scale public-benefit access may be requested from OpenCorporates. Limits depend on the account plan.",
+              "externalDocs": {
+                "description": "OpenCorporates API Reference",
+                "url": "https://api.opencorporates.com/documentation/API-Reference"
+              },
+              "title": "OpenCorporates Company Search API",
+              "version": "0.4.8"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/companies/search": {
+                "get": {
+                  "description": "Searches company names and supports documented pagination, sorting, and filters. Results can vary by jurisdiction and data coverage.",
+                  "externalDocs": {
+                    "description": "Company search documentation and examples",
+                    "url": "https://api.opencorporates.com/documentation/API-Reference"
+                  },
+                  "operationId": "searchCompanies",
+                  "parameters": [
+                    {
+                      "description": "Company name search term. A trailing asterisk enables prefix matching.",
+                      "in": "query",
+                      "name": "q",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Page number for paginated results.",
+                      "in": "query",
+                      "name": "page",
+                      "required": false,
+                      "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Number of results per page.",
+                      "in": "query",
+                      "name": "per_page",
+                      "required": false,
+                      "schema": {
+                        "minimum": 1,
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Restrict results to a jurisdiction code.",
+                      "in": "query",
+                      "name": "jurisdiction_code",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Restrict results to a country code.",
+                      "in": "query",
+                      "name": "country_code",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Restrict results to a company type.",
+                      "in": "query",
+                      "name": "company_type",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Restrict results to a company status.",
+                      "in": "query",
+                      "name": "current_status",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Filter for inactive companies; false excludes inactive companies.",
+                      "in": "query",
+                      "name": "inactive",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    },
+                    {
+                      "description": "Sort order. Documented options include score and date fields.",
+                      "in": "query",
+                      "name": "order",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CompanySearchResponse"
+                          }
+                        }
+                      },
+                      "description": "Matching company records and pagination metadata."
+                    },
+                    "401": {
+                      "description": "The API token is invalid."
+                    },
+                    "403": {
+                      "description": "The request has been refused, including during rate limiting."
+                    }
+                  },
+                  "summary": "Search companies by name",
+                  "tags": [
+                    "Companies"
+                  ]
+                }
+              },
+              "/companies/{jurisdiction_code}/{company_number}": {
+                "get": {
+                  "description": "Returns the core data for a company registration.",
+                  "externalDocs": {
+                    "description": "Company lookup documentation and examples",
+                    "url": "https://api.opencorporates.com/documentation/API-Reference"
+                  },
+                  "operationId": "getCompany",
+                  "parameters": [
+                    {
+                      "description": "Jurisdiction code, such as a country or subnational code.",
+                      "in": "path",
+                      "name": "jurisdiction_code",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Company identifier assigned by the company register.",
+                      "in": "path",
+                      "name": "company_number",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "When true, requests a smaller response without filings and related data.",
+                      "in": "query",
+                      "name": "sparse",
+                      "required": false,
+                      "schema": {
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CompanyResponse"
+                          }
+                        }
+                      },
+                      "description": "Company record."
+                    },
+                    "401": {
+                      "description": "The API token is invalid."
+                    },
+                    "403": {
+                      "description": "The request has been refused, including during rate limiting."
+                    },
+                    "404": {
+                      "description": "The URI or company resource does not exist."
+                    },
+                    "503": {
+                      "description": "The service is unavailable or the company record is temporarily redacted."
+                    }
+                  },
+                  "summary": "Get a company by jurisdiction and number",
+                  "tags": [
+                    "Companies"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "apiToken": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "OpenCorporates API version 0.4",
+                "url": "https://api.opencorporates.com/v0.4"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Search and retrieve company records.",
+                "name": "Companies"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OpenCorporates"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:41.898923+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/opencorporates/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "e6016050f2f014e27d38c786e7f07a182f7e39fe1da188f7ea5d1bc4ae8ef002",
+    "source_id": "opencorporates",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/opencorporates/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "0.4.8"
+}

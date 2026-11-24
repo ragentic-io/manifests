@@ -1,0 +1,1839 @@
+{
+  "a2ui": {},
+  "app": "ncei-climate-data-online-cdo",
+  "graph": {
+    "edges": [
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/data"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/datacategories"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/datacategories/{id}"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/datasets"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/datasets/{id}"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/datatypes"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/datatypes/{id}"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/locationcategories"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/locationcategories/{id}"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/locations"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/locations/{id}"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/stations"
+      },
+      {
+        "from": "ncei-climate-data-online-cdo",
+        "kind": "EXPOSES",
+        "to": "operation:get:/stations/{id}"
+      },
+      {
+        "from": "operation:get:/data",
+        "kind": "RETURNS",
+        "to": "schema:Collection"
+      },
+      {
+        "from": "operation:get:/datacategories",
+        "kind": "RETURNS",
+        "to": "schema:Collection"
+      },
+      {
+        "from": "operation:get:/datacategories/{id}",
+        "kind": "RETURNS",
+        "to": "schema:Record"
+      },
+      {
+        "from": "operation:get:/datasets",
+        "kind": "RETURNS",
+        "to": "schema:Collection"
+      },
+      {
+        "from": "operation:get:/datasets/{id}",
+        "kind": "RETURNS",
+        "to": "schema:Record"
+      },
+      {
+        "from": "operation:get:/datatypes",
+        "kind": "RETURNS",
+        "to": "schema:Collection"
+      },
+      {
+        "from": "operation:get:/datatypes/{id}",
+        "kind": "RETURNS",
+        "to": "schema:Record"
+      },
+      {
+        "from": "operation:get:/locationcategories",
+        "kind": "RETURNS",
+        "to": "schema:Collection"
+      },
+      {
+        "from": "operation:get:/locationcategories/{id}",
+        "kind": "RETURNS",
+        "to": "schema:Record"
+      },
+      {
+        "from": "operation:get:/locations",
+        "kind": "RETURNS",
+        "to": "schema:Collection"
+      },
+      {
+        "from": "operation:get:/locations/{id}",
+        "kind": "RETURNS",
+        "to": "schema:Record"
+      },
+      {
+        "from": "operation:get:/stations",
+        "kind": "RETURNS",
+        "to": "schema:Collection"
+      },
+      {
+        "from": "operation:get:/stations/{id}",
+        "kind": "RETURNS",
+        "to": "schema:Record"
+      },
+      {
+        "from": "schema:Collection",
+        "kind": "REFERENCES",
+        "to": "schema:Record"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "ncei-climate-data-online-cdo",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "A single dataset ID and both date bounds are required.",
+        "id": "operation:get:/data",
+        "kind": "operation",
+        "method": "get",
+        "name": "listData",
+        "parameters": [
+          {
+            "description": "A single dataset ID; exactly one is required.",
+            "in": "query",
+            "name": "datasetid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Filter by one or more data type IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datatypeid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more location IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "locationid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more station IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "stationid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Required start date as YYYY-MM-DD or an ISO 8601 date-time.",
+            "in": "query",
+            "name": "startdate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Required end date as YYYY-MM-DD or an ISO 8601 date-time.",
+            "in": "query",
+            "name": "enddate",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Convert supported data values to the requested units.",
+            "enum": [
+              "standard",
+              "metric"
+            ],
+            "in": "query",
+            "name": "units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Field used to sort results.",
+            "enum": [
+              "id",
+              "name",
+              "mindate",
+              "maxdate",
+              "datacoverage"
+            ],
+            "in": "query",
+            "name": "sortfield",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "asc",
+            "description": "Sort direction; defaults to ascending.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortorder",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "Maximum number of results; defaults to 25 and cannot exceed 1000.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based result offset; defaults to 0.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": true,
+            "description": "Include calculated result metadata; defaults to true.",
+            "in": "query",
+            "name": "includemetadata",
+            "required": false,
+            "type": "boolean|integer"
+          }
+        ],
+        "path": "/data",
+        "pointer": "#/paths/~1data/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Collection"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Fetch data records"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/datacategories",
+        "kind": "operation",
+        "method": "get",
+        "name": "listDataCategories",
+        "parameters": [
+          {
+            "description": "Filter by one or more dataset IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datasetid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more location IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "locationid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more station IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "stationid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter records with data after this ISO 8601 date.",
+            "in": "query",
+            "name": "startdate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter records with data before this ISO 8601 date.",
+            "in": "query",
+            "name": "enddate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Field used to sort results.",
+            "enum": [
+              "id",
+              "name",
+              "mindate",
+              "maxdate",
+              "datacoverage"
+            ],
+            "in": "query",
+            "name": "sortfield",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "asc",
+            "description": "Sort direction; defaults to ascending.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortorder",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "Maximum number of results; defaults to 25 and cannot exceed 1000.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based result offset; defaults to 0.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/datacategories",
+        "pointer": "#/paths/~1datacategories/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Collection"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "List data categories"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/datacategories/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDataCategory",
+        "parameters": [
+          {
+            "description": "Dataset, category, type, location, or station identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/datacategories/{id}",
+        "pointer": "#/paths/~1datacategories~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Record"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Get a data category by ID"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/datasets",
+        "kind": "operation",
+        "method": "get",
+        "name": "listDatasets",
+        "parameters": [
+          {
+            "description": "Filter by one or more data type IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datatypeid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more location IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "locationid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more station IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "stationid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter records with data after this ISO 8601 date.",
+            "in": "query",
+            "name": "startdate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter records with data before this ISO 8601 date.",
+            "in": "query",
+            "name": "enddate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Field used to sort results.",
+            "enum": [
+              "id",
+              "name",
+              "mindate",
+              "maxdate",
+              "datacoverage"
+            ],
+            "in": "query",
+            "name": "sortfield",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "asc",
+            "description": "Sort direction; defaults to ascending.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortorder",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "Maximum number of results; defaults to 25 and cannot exceed 1000.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based result offset; defaults to 0.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/datasets",
+        "pointer": "#/paths/~1datasets/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Collection"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "List datasets"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/datasets/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDataset",
+        "parameters": [
+          {
+            "description": "Dataset, category, type, location, or station identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/datasets/{id}",
+        "pointer": "#/paths/~1datasets~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Record"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Get a dataset by ID"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/datatypes",
+        "kind": "operation",
+        "method": "get",
+        "name": "listDataTypes",
+        "parameters": [
+          {
+            "description": "Filter by one or more dataset IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datasetid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more location IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "locationid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more station IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "stationid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more data category IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datacategoryid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter records with data after this ISO 8601 date.",
+            "in": "query",
+            "name": "startdate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter records with data before this ISO 8601 date.",
+            "in": "query",
+            "name": "enddate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Field used to sort results.",
+            "enum": [
+              "id",
+              "name",
+              "mindate",
+              "maxdate",
+              "datacoverage"
+            ],
+            "in": "query",
+            "name": "sortfield",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "asc",
+            "description": "Sort direction; defaults to ascending.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortorder",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "Maximum number of results; defaults to 25 and cannot exceed 1000.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based result offset; defaults to 0.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/datatypes",
+        "pointer": "#/paths/~1datatypes/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Collection"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "List data types"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/datatypes/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getDataType",
+        "parameters": [
+          {
+            "description": "Dataset, category, type, location, or station identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/datatypes/{id}",
+        "pointer": "#/paths/~1datatypes~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Record"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Get a data type by ID"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/locationcategories",
+        "kind": "operation",
+        "method": "get",
+        "name": "listLocationCategories",
+        "parameters": [
+          {
+            "description": "Filter by one or more dataset IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datasetid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter records with data after this ISO 8601 date.",
+            "in": "query",
+            "name": "startdate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter records with data before this ISO 8601 date.",
+            "in": "query",
+            "name": "enddate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Field used to sort results.",
+            "enum": [
+              "id",
+              "name",
+              "mindate",
+              "maxdate",
+              "datacoverage"
+            ],
+            "in": "query",
+            "name": "sortfield",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "asc",
+            "description": "Sort direction; defaults to ascending.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortorder",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "Maximum number of results; defaults to 25 and cannot exceed 1000.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based result offset; defaults to 0.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/locationcategories",
+        "pointer": "#/paths/~1locationcategories/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Collection"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "List location categories"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/locationcategories/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getLocationCategory",
+        "parameters": [
+          {
+            "description": "Dataset, category, type, location, or station identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/locationcategories/{id}",
+        "pointer": "#/paths/~1locationcategories~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Record"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Get a location category by ID"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/locations",
+        "kind": "operation",
+        "method": "get",
+        "name": "listLocations",
+        "parameters": [
+          {
+            "description": "Filter by one or more dataset IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datasetid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more location category IDs.",
+            "in": "query",
+            "name": "locationcategoryid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more data category IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datacategoryid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter records with data after this ISO 8601 date.",
+            "in": "query",
+            "name": "startdate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter records with data before this ISO 8601 date.",
+            "in": "query",
+            "name": "enddate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Field used to sort results.",
+            "enum": [
+              "id",
+              "name",
+              "mindate",
+              "maxdate",
+              "datacoverage"
+            ],
+            "in": "query",
+            "name": "sortfield",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "asc",
+            "description": "Sort direction; defaults to ascending.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortorder",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "Maximum number of results; defaults to 25 and cannot exceed 1000.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based result offset; defaults to 0.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/locations",
+        "pointer": "#/paths/~1locations/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Collection"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "List locations"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/locations/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getLocation",
+        "parameters": [
+          {
+            "description": "Dataset, category, type, location, or station identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/locations/{id}",
+        "pointer": "#/paths/~1locations~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Record"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Get a location by ID"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/stations",
+        "kind": "operation",
+        "method": "get",
+        "name": "listStations",
+        "parameters": [
+          {
+            "description": "Filter by one or more dataset IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datasetid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more location IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "locationid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more data category IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datacategoryid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Filter by one or more data type IDs; the API accepts repeated values or a comma-separated list.",
+            "in": "query",
+            "name": "datatypeid",
+            "required": false,
+            "type": "string[]"
+          },
+          {
+            "description": "Comma-separated geographic bounds as north,west,south,east.",
+            "in": "query",
+            "name": "extent",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Filter records with data after this ISO 8601 date.",
+            "in": "query",
+            "name": "startdate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Filter records with data before this ISO 8601 date.",
+            "in": "query",
+            "name": "enddate",
+            "required": false,
+            "type": "string:date"
+          },
+          {
+            "description": "Field used to sort results.",
+            "enum": [
+              "id",
+              "name",
+              "mindate",
+              "maxdate",
+              "datacoverage"
+            ],
+            "in": "query",
+            "name": "sortfield",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "asc",
+            "description": "Sort direction; defaults to ascending.",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortorder",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 25,
+            "description": "Maximum number of results; defaults to 25 and cannot exceed 1000.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "Zero-based result offset; defaults to 0.",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/stations",
+        "pointer": "#/paths/~1stations/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Collection"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "List stations"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/stations/{id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getStation",
+        "parameters": [
+          {
+            "description": "Dataset, category, type, location, or station identifier.",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/stations/{id}",
+        "pointer": "#/paths/~1stations~1{id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Record"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "tokenAuth": []
+          }
+        ],
+        "summary": "Get a station by ID"
+      },
+      {
+        "id": "schema:Collection",
+        "kind": "schema",
+        "name": "Collection",
+        "type": "object"
+      },
+      {
+        "id": "schema:Record",
+        "kind": "schema",
+        "name": "Record",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "ncei-climate-data-online-cdo"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://www.ncei.noaa.gov/cdo-web/api/v2",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "dataDatasetid": {
+                  "description": "A single dataset ID; exactly one is required.",
+                  "in": "query",
+                  "name": "datasetid",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "dataEnddate": {
+                  "description": "Required end date as YYYY-MM-DD or an ISO 8601 date-time.",
+                  "in": "query",
+                  "name": "enddate",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "dataStartdate": {
+                  "description": "Required start date as YYYY-MM-DD or an ISO 8601 date-time.",
+                  "in": "query",
+                  "name": "startdate",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "datacategoryid": {
+                  "description": "Filter by one or more data category IDs; the API accepts repeated values or a comma-separated list.",
+                  "explode": true,
+                  "in": "query",
+                  "name": "datacategoryid",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "style": "form"
+                },
+                "datasetid": {
+                  "description": "Filter by one or more dataset IDs; the API accepts repeated values or a comma-separated list.",
+                  "explode": true,
+                  "in": "query",
+                  "name": "datasetid",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "style": "form"
+                },
+                "datatypeid": {
+                  "description": "Filter by one or more data type IDs; the API accepts repeated values or a comma-separated list.",
+                  "explode": true,
+                  "in": "query",
+                  "name": "datatypeid",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "style": "form"
+                },
+                "enddate": {
+                  "description": "Filter records with data before this ISO 8601 date.",
+                  "in": "query",
+                  "name": "enddate",
+                  "schema": {
+                    "format": "date",
+                    "type": "string"
+                  }
+                },
+                "extent": {
+                  "description": "Comma-separated geographic bounds as north,west,south,east.",
+                  "in": "query",
+                  "name": "extent",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "id": {
+                  "description": "Dataset, category, type, location, or station identifier.",
+                  "in": "path",
+                  "name": "id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "includemetadata": {
+                  "description": "Include calculated result metadata; defaults to true.",
+                  "in": "query",
+                  "name": "includemetadata",
+                  "schema": {
+                    "default": true,
+                    "oneOf": [
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "enum": [
+                          0,
+                          1
+                        ],
+                        "type": "integer"
+                      }
+                    ]
+                  }
+                },
+                "limit": {
+                  "description": "Maximum number of results; defaults to 25 and cannot exceed 1000.",
+                  "in": "query",
+                  "name": "limit",
+                  "schema": {
+                    "default": 25,
+                    "maximum": 1000,
+                    "type": "integer"
+                  }
+                },
+                "locationcategoryid": {
+                  "description": "Filter by one or more location category IDs.",
+                  "explode": true,
+                  "in": "query",
+                  "name": "locationcategoryid",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "style": "form"
+                },
+                "locationid": {
+                  "description": "Filter by one or more location IDs; the API accepts repeated values or a comma-separated list.",
+                  "explode": true,
+                  "in": "query",
+                  "name": "locationid",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "style": "form"
+                },
+                "offset": {
+                  "description": "Zero-based result offset; defaults to 0.",
+                  "in": "query",
+                  "name": "offset",
+                  "schema": {
+                    "default": 0,
+                    "type": "integer"
+                  }
+                },
+                "sortfield": {
+                  "description": "Field used to sort results.",
+                  "in": "query",
+                  "name": "sortfield",
+                  "schema": {
+                    "enum": [
+                      "id",
+                      "name",
+                      "mindate",
+                      "maxdate",
+                      "datacoverage"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "sortorder": {
+                  "description": "Sort direction; defaults to ascending.",
+                  "in": "query",
+                  "name": "sortorder",
+                  "schema": {
+                    "default": "asc",
+                    "enum": [
+                      "asc",
+                      "desc"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "startdate": {
+                  "description": "Filter records with data after this ISO 8601 date.",
+                  "in": "query",
+                  "name": "startdate",
+                  "schema": {
+                    "format": "date",
+                    "type": "string"
+                  }
+                },
+                "stationid": {
+                  "description": "Filter by one or more station IDs; the API accepts repeated values or a comma-separated list.",
+                  "explode": true,
+                  "in": "query",
+                  "name": "stationid",
+                  "schema": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "style": "form"
+                },
+                "units": {
+                  "description": "Convert supported data values to the requested units.",
+                  "in": "query",
+                  "name": "units",
+                  "schema": {
+                    "enum": [
+                      "standard",
+                      "metric"
+                    ],
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "Collection": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Collection"
+                      }
+                    }
+                  },
+                  "description": "A paginated collection of JSON records."
+                },
+                "Item": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/Record"
+                      }
+                    }
+                  },
+                  "description": "A single JSON record."
+                }
+              },
+              "schemas": {
+                "Collection": {
+                  "properties": {
+                    "metadata": {
+                      "properties": {
+                        "resultset": {
+                          "properties": {
+                            "count": {
+                              "type": "integer"
+                            },
+                            "limit": {
+                              "type": "integer"
+                            },
+                            "offset": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "results": {
+                      "items": {
+                        "$ref": "#/components/schemas/Record"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Record": {
+                  "additionalProperties": true,
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "tokenAuth": {
+                  "description": "Obtain an access token by email through the [CDO token request page](https://www.ncei.noaa.gov/cdo-web/token).",
+                  "in": "header",
+                  "name": "token",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Community-maintained specification for the documented Climate Data Online web services API v2. Response records are left extensible because the provider documentation does not define fixed schemas for every resource and dataset.",
+              "externalDocs": {
+                "description": "Official NCEI Climate Data Online web services documentation",
+                "url": "https://www.ncei.noaa.gov/cdo-web/webservices/v2"
+              },
+              "title": "NCEI Climate Data Online API",
+              "version": "2"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/data": {
+                "get": {
+                  "description": "A single dataset ID and both date bounds are required. The documented maximum date range is ten years for annual and monthly datasets and one year for other datasets.",
+                  "operationId": "listData",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/dataDatasetid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/datatypeid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/locationid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/stationid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/dataStartdate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/dataEnddate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/units"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortfield"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortorder"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    },
+                    {
+                      "$ref": "#/components/parameters/includemetadata"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Collection"
+                    }
+                  },
+                  "summary": "Fetch data records"
+                }
+              },
+              "/datacategories": {
+                "get": {
+                  "operationId": "listDataCategories",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/datasetid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/locationid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/stationid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/startdate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/enddate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortfield"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortorder"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Collection"
+                    }
+                  },
+                  "summary": "List data categories"
+                }
+              },
+              "/datacategories/{id}": {
+                "get": {
+                  "operationId": "getDataCategory",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/id"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Item"
+                    }
+                  },
+                  "summary": "Get a data category by ID"
+                }
+              },
+              "/datasets": {
+                "get": {
+                  "operationId": "listDatasets",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/datatypeid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/locationid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/stationid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/startdate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/enddate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortfield"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortorder"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Collection"
+                    }
+                  },
+                  "summary": "List datasets"
+                }
+              },
+              "/datasets/{id}": {
+                "get": {
+                  "operationId": "getDataset",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/id"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Item"
+                    }
+                  },
+                  "summary": "Get a dataset by ID"
+                }
+              },
+              "/datatypes": {
+                "get": {
+                  "operationId": "listDataTypes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/datasetid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/locationid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/stationid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/datacategoryid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/startdate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/enddate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortfield"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortorder"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Collection"
+                    }
+                  },
+                  "summary": "List data types"
+                }
+              },
+              "/datatypes/{id}": {
+                "get": {
+                  "operationId": "getDataType",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/id"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Item"
+                    }
+                  },
+                  "summary": "Get a data type by ID"
+                }
+              },
+              "/locationcategories": {
+                "get": {
+                  "operationId": "listLocationCategories",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/datasetid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/startdate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/enddate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortfield"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortorder"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Collection"
+                    }
+                  },
+                  "summary": "List location categories"
+                }
+              },
+              "/locationcategories/{id}": {
+                "get": {
+                  "operationId": "getLocationCategory",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/id"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Item"
+                    }
+                  },
+                  "summary": "Get a location category by ID"
+                }
+              },
+              "/locations": {
+                "get": {
+                  "operationId": "listLocations",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/datasetid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/locationcategoryid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/datacategoryid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/startdate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/enddate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortfield"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortorder"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Collection"
+                    }
+                  },
+                  "summary": "List locations"
+                }
+              },
+              "/locations/{id}": {
+                "get": {
+                  "operationId": "getLocation",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/id"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Item"
+                    }
+                  },
+                  "summary": "Get a location by ID"
+                }
+              },
+              "/stations": {
+                "get": {
+                  "operationId": "listStations",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/datasetid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/locationid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/datacategoryid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/datatypeid"
+                    },
+                    {
+                      "$ref": "#/components/parameters/extent"
+                    },
+                    {
+                      "$ref": "#/components/parameters/startdate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/enddate"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortfield"
+                    },
+                    {
+                      "$ref": "#/components/parameters/sortorder"
+                    },
+                    {
+                      "$ref": "#/components/parameters/limit"
+                    },
+                    {
+                      "$ref": "#/components/parameters/offset"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Collection"
+                    }
+                  },
+                  "summary": "List stations"
+                }
+              },
+              "/stations/{id}": {
+                "get": {
+                  "operationId": "getStation",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/id"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "$ref": "#/components/responses/Item"
+                    }
+                  },
+                  "summary": "Get a station by ID"
+                }
+              }
+            },
+            "security": [
+              {
+                "tokenAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "NCEI Climate Data Online API v2",
+                "url": "https://www.ncei.noaa.gov/cdo-web/api/v2"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "NCEI Climate Data Online (CDO)"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.640366+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/ncei-climate-data-online/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "f0a21c7fe2618ab325198b11a8209b873ebb3ab55989c8e5b4843dbf74b2bbaf",
+    "source_id": "ncei-climate-data-online-cdo",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/ncei-climate-data-online/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "2"
+}

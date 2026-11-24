@@ -1,0 +1,358 @@
+{
+  "a2ui": {},
+  "app": "collectform",
+  "graph": {
+    "edges": [
+      {
+        "from": "collectform",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/zapier/me"
+      },
+      {
+        "from": "collectform",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/zapier/submissions"
+      },
+      {
+        "from": "operation:get:/api/zapier/me",
+        "kind": "RETURNS",
+        "to": "schema:Connection"
+      },
+      {
+        "from": "operation:get:/api/zapier/submissions",
+        "kind": "RETURNS",
+        "to": "schema:Submission"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "collectform",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Called by Zapier when a user connects their account.",
+        "id": "operation:get:/api/zapier/me",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMe",
+        "path": "/api/zapier/me",
+        "pointer": "#/paths/~1api~1zapier~1me/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Connection"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Test authentication and return the connected form"
+      },
+      {
+        "deprecated": false,
+        "description": "Returns up to the 50 newest completed submissions for the form bound to the API key, ordered newest first.",
+        "id": "operation:get:/api/zapier/submissions",
+        "kind": "operation",
+        "method": "get",
+        "name": "listSubmissions",
+        "path": "/api/zapier/submissions",
+        "pointer": "#/paths/~1api~1zapier~1submissions/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Submission[]"
+          },
+          {
+            "status": "401",
+            "type": "Error"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Poll for new completed submissions (New Submission trigger)"
+      },
+      {
+        "id": "schema:Connection",
+        "kind": "schema",
+        "name": "Connection",
+        "type": "object"
+      },
+      {
+        "id": "schema:Error",
+        "kind": "schema",
+        "name": "Error",
+        "type": "object"
+      },
+      {
+        "id": "schema:Submission",
+        "kind": "schema",
+        "name": "Submission",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "collectform"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.collectform.com",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "Connection": {
+                  "properties": {
+                    "formId": {
+                      "example": "a1b2c3d4e5f6g7h",
+                      "type": "string"
+                    },
+                    "formName": {
+                      "example": "Homepage demo request",
+                      "type": "string"
+                    },
+                    "label": {
+                      "description": "The connection name set in Collectform, may be empty.",
+                      "example": "Sheets, homepage demo form",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "formId",
+                    "formName",
+                    "label"
+                  ],
+                  "type": "object"
+                },
+                "Error": {
+                  "properties": {
+                    "error": {
+                      "example": "Invalid or missing API key.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object"
+                },
+                "Submission": {
+                  "properties": {
+                    "fields": {
+                      "additionalProperties": true,
+                      "description": "Answers keyed by question text. Values vary by field type: string, number, array, or object. A blank or duplicate question title falls back to the block id or a numbered suffix so no answer is overwritten.\n",
+                      "example": {
+                        "Full name": "Jane Doe",
+                        "What's your email?": "jane@example.com",
+                        "Which plans interest you?": [
+                          "Pro",
+                          "Scale"
+                        ]
+                      },
+                      "type": "object"
+                    },
+                    "formId": {
+                      "example": "a1b2c3d4e5f6g7h",
+                      "type": "string"
+                    },
+                    "formName": {
+                      "example": "Homepage demo request",
+                      "type": "string"
+                    },
+                    "hiddenFields": {
+                      "additionalProperties": true,
+                      "description": "URL query params captured on load, limited to the form's allowed hidden-field list (for example utm_source). Empty object when none were passed.\n",
+                      "example": {
+                        "utm_source": "google"
+                      },
+                      "type": "object"
+                    },
+                    "id": {
+                      "description": "Unique, stable submission id. Zapier's deduplication key.",
+                      "example": "r1a2b3c4d5e6f7g",
+                      "type": "string"
+                    },
+                    "submittedAt": {
+                      "example": "2026-07-18T14:32:05.123Z",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "userData": {
+                      "additionalProperties": true,
+                      "description": "Ad click identifiers captured for conversion matching (fbp, fbc, ttp). Present only when the form has a Meta or TikTok integration, and may be empty.\n",
+                      "example": {
+                        "fbc": "fb.1.1718900000000.AbCdEf",
+                        "fbp": "fb.1.1718900000000.1234567890"
+                      },
+                      "type": "object"
+                    },
+                    "variables": {
+                      "additionalProperties": true,
+                      "description": "Computed logic variables keyed by variable name (for example a lead score from calculate actions). Empty object when the form has none.\n",
+                      "example": {
+                        "score": 42
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "submittedAt",
+                    "formId",
+                    "formName",
+                    "fields",
+                    "variables",
+                    "hiddenFields",
+                    "userData"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "ApiKeyAuth": {
+                  "description": "Per-form key (prefixed cf_live_) generated in the Collectform Zapier integration dialog. Treat it like a password.\n",
+                  "in": "header",
+                  "name": "X-API-Key",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "contact": {
+                "name": "Collectform",
+                "url": "https://collectform.com"
+              },
+              "description": "Endpoints the Collectform Zapier integration calls. Authentication is a per-form API key sent in the X-API-Key header, generated in the Collectform form builder under Integrations, Zapier. Each key is bound to a single form, so it both authenticates the request and selects which form's data is returned. See the full guide at https://collectform.com/blog/connect-collectform-to-zapier\n",
+              "title": "Collectform Zapier API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/api/zapier/me": {
+                "get": {
+                  "description": "Called by Zapier when a user connects their account. Validates the API key and returns the form the key is bound to. formName is used as the Zapier connection label.\n",
+                  "operationId": "getMe",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Connection"
+                          }
+                        }
+                      },
+                      "description": "The key is valid."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Missing or invalid API key."
+                    }
+                  },
+                  "summary": "Test authentication and return the connected form"
+                }
+              },
+              "/api/zapier/submissions": {
+                "get": {
+                  "description": "Returns up to the 50 newest completed submissions for the form bound to the API key, ordered newest first. Zapier deduplicates across polls using each item's id, so no cursor or since parameter is required. Submissions that were started but never completed are not returned.\n",
+                  "operationId": "listSubmissions",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Submission"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "A list of submissions, newest first."
+                    },
+                    "401": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Error"
+                          }
+                        }
+                      },
+                      "description": "Missing or invalid API key."
+                    }
+                  },
+                  "summary": "Poll for new completed submissions (New Submission trigger)"
+                }
+              }
+            },
+            "security": [
+              {
+                "ApiKeyAuth": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "Production",
+                "url": "https://api.collectform.com"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Collectform"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:29.608285+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://collectform.com/zapier-openapi.yaml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "1d4b46970c4898dd22795dd45b3a4736a53960375e5d457494bdfb77d8c65744",
+    "source_id": "collectform",
+    "source_updated": null,
+    "url": "https://collectform.com/zapier-openapi.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

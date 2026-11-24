@@ -1,0 +1,1164 @@
+{
+  "a2ui": {},
+  "app": "openweathermap",
+  "graph": {
+    "edges": [
+      {
+        "from": "openweathermap",
+        "kind": "EXPOSES",
+        "to": "operation:get:/data/2.5/forecast"
+      },
+      {
+        "from": "openweathermap",
+        "kind": "EXPOSES",
+        "to": "operation:get:/data/2.5/weather"
+      },
+      {
+        "from": "openweathermap",
+        "kind": "EXPOSES",
+        "to": "operation:get:/geo/1.0/direct"
+      },
+      {
+        "from": "openweathermap",
+        "kind": "EXPOSES",
+        "to": "operation:get:/geo/1.0/reverse"
+      },
+      {
+        "from": "openweathermap",
+        "kind": "EXPOSES",
+        "to": "operation:get:/geo/1.0/zip"
+      },
+      {
+        "from": "operation:get:/data/2.5/forecast",
+        "kind": "RETURNS",
+        "to": "schema:Forecast"
+      },
+      {
+        "from": "operation:get:/data/2.5/weather",
+        "kind": "RETURNS",
+        "to": "schema:CurrentWeather"
+      },
+      {
+        "from": "operation:get:/geo/1.0/direct",
+        "kind": "RETURNS",
+        "to": "schema:Location"
+      },
+      {
+        "from": "operation:get:/geo/1.0/reverse",
+        "kind": "RETURNS",
+        "to": "schema:Location"
+      },
+      {
+        "from": "operation:get:/geo/1.0/zip",
+        "kind": "RETURNS",
+        "to": "schema:PostalLocation"
+      },
+      {
+        "from": "schema:CurrentWeather",
+        "kind": "REFERENCES",
+        "to": "schema:Clouds"
+      },
+      {
+        "from": "schema:CurrentWeather",
+        "kind": "REFERENCES",
+        "to": "schema:Coordinates"
+      },
+      {
+        "from": "schema:CurrentWeather",
+        "kind": "REFERENCES",
+        "to": "schema:Measurements"
+      },
+      {
+        "from": "schema:CurrentWeather",
+        "kind": "REFERENCES",
+        "to": "schema:Precipitation"
+      },
+      {
+        "from": "schema:CurrentWeather",
+        "kind": "REFERENCES",
+        "to": "schema:WeatherCondition"
+      },
+      {
+        "from": "schema:CurrentWeather",
+        "kind": "REFERENCES",
+        "to": "schema:Wind"
+      },
+      {
+        "from": "schema:Forecast",
+        "kind": "REFERENCES",
+        "to": "schema:Coordinates"
+      },
+      {
+        "from": "schema:Forecast",
+        "kind": "REFERENCES",
+        "to": "schema:ForecastPeriod"
+      },
+      {
+        "from": "schema:ForecastPeriod",
+        "kind": "REFERENCES",
+        "to": "schema:Clouds"
+      },
+      {
+        "from": "schema:ForecastPeriod",
+        "kind": "REFERENCES",
+        "to": "schema:Measurements"
+      },
+      {
+        "from": "schema:ForecastPeriod",
+        "kind": "REFERENCES",
+        "to": "schema:Precipitation"
+      },
+      {
+        "from": "schema:ForecastPeriod",
+        "kind": "REFERENCES",
+        "to": "schema:WeatherCondition"
+      },
+      {
+        "from": "schema:ForecastPeriod",
+        "kind": "REFERENCES",
+        "to": "schema:Wind"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "openweathermap",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/data/2.5/forecast",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /data/2.5/forecast",
+        "parameters": [
+          {
+            "description": "Latitude of the location.",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Longitude of the location.",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Units of measurement; defaults to standard units.",
+            "enum": [
+              "standard",
+              "metric",
+              "imperial"
+            ],
+            "in": "query",
+            "name": "units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Number of forecast timestamps to return.",
+            "in": "query",
+            "name": "cnt",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Language for city names and weather descriptions.",
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/data/2.5/forecast",
+        "pointer": "#/paths/~1data~12.5~1forecast/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Forecast"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "AppId": []
+          }
+        ],
+        "summary": "Get a five-day forecast in three-hour steps by coordinates",
+        "tags": [
+          "Forecast"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/data/2.5/weather",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /data/2.5/weather",
+        "parameters": [
+          {
+            "description": "Latitude of the location.",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Longitude of the location.",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Units of measurement; defaults to standard units.",
+            "enum": [
+              "standard",
+              "metric",
+              "imperial"
+            ],
+            "in": "query",
+            "name": "units",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Language for the city name and weather description.",
+            "in": "query",
+            "name": "lang",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/data/2.5/weather",
+        "pointer": "#/paths/~1data~12.5~1weather/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CurrentWeather"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "AppId": []
+          }
+        ],
+        "summary": "Get current weather by coordinates",
+        "tags": [
+          "Current weather"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/geo/1.0/direct",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /geo/1.0/direct",
+        "parameters": [
+          {
+            "description": "Location name, optionally followed by US state and country codes.",
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of matching locations to return (up to five).",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/geo/1.0/direct",
+        "pointer": "#/paths/~1geo~11.0~1direct/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Location[]"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "AppId": []
+          }
+        ],
+        "summary": "Convert a location name to coordinates",
+        "tags": [
+          "Geocoding"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/geo/1.0/reverse",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /geo/1.0/reverse",
+        "parameters": [
+          {
+            "description": "Latitude of the location.",
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Longitude of the location.",
+            "in": "query",
+            "name": "lon",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "description": "Maximum number of nearby location names to return.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "path": "/geo/1.0/reverse",
+        "pointer": "#/paths/~1geo~11.0~1reverse/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Location[]"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "AppId": []
+          }
+        ],
+        "summary": "Find location names near coordinates",
+        "tags": [
+          "Geocoding"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/geo/1.0/zip",
+        "kind": "operation",
+        "method": "get",
+        "name": "get /geo/1.0/zip",
+        "parameters": [
+          {
+            "description": "Postal code followed by an ISO 3166 country code, separated by a comma.",
+            "in": "query",
+            "name": "zip",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/geo/1.0/zip",
+        "pointer": "#/paths/~1geo~11.0~1zip/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "PostalLocation"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "AppId": []
+          }
+        ],
+        "summary": "Convert a postal code to coordinates",
+        "tags": [
+          "Geocoding"
+        ]
+      },
+      {
+        "id": "schema:Clouds",
+        "kind": "schema",
+        "name": "Clouds",
+        "type": "object"
+      },
+      {
+        "id": "schema:Coordinates",
+        "kind": "schema",
+        "name": "Coordinates",
+        "type": "object"
+      },
+      {
+        "id": "schema:CurrentWeather",
+        "kind": "schema",
+        "name": "CurrentWeather",
+        "type": "object"
+      },
+      {
+        "id": "schema:Forecast",
+        "kind": "schema",
+        "name": "Forecast",
+        "type": "object"
+      },
+      {
+        "id": "schema:ForecastPeriod",
+        "kind": "schema",
+        "name": "ForecastPeriod",
+        "type": "object"
+      },
+      {
+        "id": "schema:Location",
+        "kind": "schema",
+        "name": "Location",
+        "type": "object"
+      },
+      {
+        "description": "Temperature units follow the units query parameter.",
+        "id": "schema:Measurements",
+        "kind": "schema",
+        "name": "Measurements",
+        "type": "object"
+      },
+      {
+        "id": "schema:PostalLocation",
+        "kind": "schema",
+        "name": "PostalLocation",
+        "type": "object"
+      },
+      {
+        "id": "schema:Precipitation",
+        "kind": "schema",
+        "name": "Precipitation",
+        "type": "object"
+      },
+      {
+        "id": "schema:WeatherCondition",
+        "kind": "schema",
+        "name": "WeatherCondition",
+        "type": "object"
+      },
+      {
+        "description": "Speed units follow the units query parameter.",
+        "id": "schema:Wind",
+        "kind": "schema",
+        "name": "Wind",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "openweathermap"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.openweathermap.org",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "Clouds": {
+                  "properties": {
+                    "all": {
+                      "description": "Cloudiness percentage.",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Coordinates": {
+                  "properties": {
+                    "lat": {
+                      "description": "Latitude.",
+                      "type": "number"
+                    },
+                    "lon": {
+                      "description": "Longitude.",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CurrentWeather": {
+                  "properties": {
+                    "base": {
+                      "type": "string"
+                    },
+                    "clouds": {
+                      "$ref": "#/components/schemas/Clouds"
+                    },
+                    "cod": {
+                      "oneOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "coord": {
+                      "$ref": "#/components/schemas/Coordinates"
+                    },
+                    "dt": {
+                      "description": "Data calculation time in Unix UTC seconds.",
+                      "type": "integer"
+                    },
+                    "id": {
+                      "description": "City identifier; built-in city lookup is deprecated.",
+                      "type": "integer"
+                    },
+                    "main": {
+                      "$ref": "#/components/schemas/Measurements"
+                    },
+                    "name": {
+                      "description": "City name; built-in city lookup is deprecated.",
+                      "type": "string"
+                    },
+                    "rain": {
+                      "$ref": "#/components/schemas/Precipitation"
+                    },
+                    "snow": {
+                      "$ref": "#/components/schemas/Precipitation"
+                    },
+                    "sys": {
+                      "properties": {
+                        "country": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "integer"
+                        },
+                        "sunrise": {
+                          "type": "integer"
+                        },
+                        "sunset": {
+                          "type": "integer"
+                        },
+                        "type": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "timezone": {
+                      "description": "Shift in seconds from UTC.",
+                      "type": "integer"
+                    },
+                    "visibility": {
+                      "type": "integer"
+                    },
+                    "weather": {
+                      "items": {
+                        "$ref": "#/components/schemas/WeatherCondition"
+                      },
+                      "type": "array"
+                    },
+                    "wind": {
+                      "$ref": "#/components/schemas/Wind"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Forecast": {
+                  "properties": {
+                    "city": {
+                      "properties": {
+                        "coord": {
+                          "$ref": "#/components/schemas/Coordinates"
+                        },
+                        "country": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "population": {
+                          "type": "integer"
+                        },
+                        "sunrise": {
+                          "type": "integer"
+                        },
+                        "sunset": {
+                          "type": "integer"
+                        },
+                        "timezone": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "cnt": {
+                      "type": "integer"
+                    },
+                    "cod": {
+                      "oneOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "list": {
+                      "items": {
+                        "$ref": "#/components/schemas/ForecastPeriod"
+                      },
+                      "type": "array"
+                    },
+                    "message": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ForecastPeriod": {
+                  "properties": {
+                    "clouds": {
+                      "$ref": "#/components/schemas/Clouds"
+                    },
+                    "dt": {
+                      "description": "Forecast time in Unix UTC seconds.",
+                      "type": "integer"
+                    },
+                    "dt_txt": {
+                      "description": "Forecast time in UTC ISO format.",
+                      "type": "string"
+                    },
+                    "main": {
+                      "$ref": "#/components/schemas/Measurements"
+                    },
+                    "pop": {
+                      "description": "Probability of precipitation from zero to one.",
+                      "maximum": 1,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    "rain": {
+                      "$ref": "#/components/schemas/Precipitation"
+                    },
+                    "snow": {
+                      "$ref": "#/components/schemas/Precipitation"
+                    },
+                    "sys": {
+                      "properties": {
+                        "pod": {
+                          "description": "Part of day, n for night or d for day.",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "visibility": {
+                      "type": "integer"
+                    },
+                    "weather": {
+                      "items": {
+                        "$ref": "#/components/schemas/WeatherCondition"
+                      },
+                      "type": "array"
+                    },
+                    "wind": {
+                      "$ref": "#/components/schemas/Wind"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Location": {
+                  "properties": {
+                    "country": {
+                      "type": "string"
+                    },
+                    "lat": {
+                      "type": "number"
+                    },
+                    "local_names": {
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Names by language code; may include ascii and feature_name fields.",
+                      "type": "object"
+                    },
+                    "lon": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "state": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Measurements": {
+                  "description": "Temperature units follow the units query parameter.",
+                  "properties": {
+                    "feels_like": {
+                      "type": "number"
+                    },
+                    "grnd_level": {
+                      "description": "Ground-level atmospheric pressure in hPa.",
+                      "type": "number"
+                    },
+                    "humidity": {
+                      "description": "Humidity percentage.",
+                      "type": "number"
+                    },
+                    "pressure": {
+                      "description": "Atmospheric pressure in hPa.",
+                      "type": "number"
+                    },
+                    "sea_level": {
+                      "description": "Sea-level atmospheric pressure in hPa.",
+                      "type": "number"
+                    },
+                    "temp": {
+                      "type": "number"
+                    },
+                    "temp_max": {
+                      "type": "number"
+                    },
+                    "temp_min": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PostalLocation": {
+                  "properties": {
+                    "country": {
+                      "type": "string"
+                    },
+                    "lat": {
+                      "type": "number"
+                    },
+                    "lon": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "zip": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Precipitation": {
+                  "properties": {
+                    "1h": {
+                      "description": "Precipitation volume for the last hour in millimeters.",
+                      "type": "number"
+                    },
+                    "3h": {
+                      "description": "Precipitation volume for the last three hours in millimeters.",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "WeatherCondition": {
+                  "properties": {
+                    "description": {
+                      "description": "Weather condition description.",
+                      "type": "string"
+                    },
+                    "icon": {
+                      "description": "Weather icon identifier.",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "Weather condition identifier.",
+                      "type": "integer"
+                    },
+                    "main": {
+                      "description": "Weather condition group.",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Wind": {
+                  "description": "Speed units follow the units query parameter.",
+                  "properties": {
+                    "deg": {
+                      "description": "Wind direction in meteorological degrees.",
+                      "type": "number"
+                    },
+                    "gust": {
+                      "type": "number"
+                    },
+                    "speed": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "AppId": {
+                  "description": "OpenWeather API key issued to a free account.",
+                  "in": "query",
+                  "name": "appid",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "OpenWeather current weather API documentation",
+              "url": "https://openweathermap.org/api/current"
+            },
+            "info": {
+              "contact": {
+                "name": "OpenWeather Support",
+                "url": "https://openweathermap.org/faq"
+              },
+              "description": "Community-maintained specification for OpenWeather's documented JSON current-weather, five-day forecast, and geocoding endpoints. An API key and free account are required. Deprecated city-name, city-ID, and postal code lookups on the weather endpoints and non-free products are omitted.",
+              "title": "OpenWeather Current Weather, Forecast, and Geocoding API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/data/2.5/forecast": {
+                "get": {
+                  "externalDocs": {
+                    "description": "Five-day forecast API documentation",
+                    "url": "https://openweathermap.org/api/forecast5"
+                  },
+                  "parameters": [
+                    {
+                      "description": "Latitude of the location.",
+                      "in": "query",
+                      "name": "lat",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Longitude of the location.",
+                      "in": "query",
+                      "name": "lon",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Units of measurement; defaults to standard units.",
+                      "in": "query",
+                      "name": "units",
+                      "schema": {
+                        "enum": [
+                          "standard",
+                          "metric",
+                          "imperial"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Number of forecast timestamps to return.",
+                      "in": "query",
+                      "name": "cnt",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Language for city names and weather descriptions.",
+                      "in": "query",
+                      "name": "lang",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Forecast"
+                          }
+                        }
+                      },
+                      "description": "Five-day forecast data in JSON format."
+                    }
+                  },
+                  "summary": "Get a five-day forecast in three-hour steps by coordinates",
+                  "tags": [
+                    "Forecast"
+                  ]
+                }
+              },
+              "/data/2.5/weather": {
+                "get": {
+                  "externalDocs": {
+                    "description": "Current weather API documentation",
+                    "url": "https://openweathermap.org/api/current"
+                  },
+                  "parameters": [
+                    {
+                      "description": "Latitude of the location.",
+                      "in": "query",
+                      "name": "lat",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Longitude of the location.",
+                      "in": "query",
+                      "name": "lon",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Units of measurement; defaults to standard units.",
+                      "in": "query",
+                      "name": "units",
+                      "schema": {
+                        "enum": [
+                          "standard",
+                          "metric",
+                          "imperial"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Language for the city name and weather description.",
+                      "in": "query",
+                      "name": "lang",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CurrentWeather"
+                          }
+                        }
+                      },
+                      "description": "Current weather data in JSON format."
+                    }
+                  },
+                  "summary": "Get current weather by coordinates",
+                  "tags": [
+                    "Current weather"
+                  ]
+                }
+              },
+              "/geo/1.0/direct": {
+                "get": {
+                  "externalDocs": {
+                    "description": "Geocoding API documentation",
+                    "url": "https://openweathermap.org/api/geocoding-api"
+                  },
+                  "parameters": [
+                    {
+                      "description": "Location name, optionally followed by US state and country codes.",
+                      "in": "query",
+                      "name": "q",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of matching locations to return (up to five).",
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "maximum": 5,
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Location"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Matching locations, which may be an empty array."
+                    }
+                  },
+                  "summary": "Convert a location name to coordinates",
+                  "tags": [
+                    "Geocoding"
+                  ]
+                }
+              },
+              "/geo/1.0/reverse": {
+                "get": {
+                  "externalDocs": {
+                    "description": "Geocoding API documentation",
+                    "url": "https://openweathermap.org/api/geocoding-api"
+                  },
+                  "parameters": [
+                    {
+                      "description": "Latitude of the location.",
+                      "in": "query",
+                      "name": "lat",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Longitude of the location.",
+                      "in": "query",
+                      "name": "lon",
+                      "required": true,
+                      "schema": {
+                        "type": "number"
+                      }
+                    },
+                    {
+                      "description": "Maximum number of nearby location names to return.",
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/Location"
+                            },
+                            "type": "array"
+                          }
+                        }
+                      },
+                      "description": "Nearby locations, which may be an empty array."
+                    }
+                  },
+                  "summary": "Find location names near coordinates",
+                  "tags": [
+                    "Geocoding"
+                  ]
+                }
+              },
+              "/geo/1.0/zip": {
+                "get": {
+                  "externalDocs": {
+                    "description": "Geocoding API documentation",
+                    "url": "https://openweathermap.org/api/geocoding-api"
+                  },
+                  "parameters": [
+                    {
+                      "description": "Postal code followed by an ISO 3166 country code, separated by a comma.",
+                      "in": "query",
+                      "name": "zip",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/PostalLocation"
+                          }
+                        }
+                      },
+                      "description": "Resolved postal-code location."
+                    }
+                  },
+                  "summary": "Convert a postal code to coordinates",
+                  "tags": [
+                    "Geocoding"
+                  ]
+                }
+              }
+            },
+            "security": [
+              {
+                "AppId": []
+              }
+            ],
+            "servers": [
+              {
+                "description": "OpenWeather API",
+                "url": "https://api.openweathermap.org"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Current weather"
+              },
+              {
+                "name": "Forecast"
+              },
+              {
+                "name": "Geocoding"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OpenWeatherMap"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:41.933801+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openweathermap/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "cc13c8998b5e70d8c8b6018615c8c8e583615f685bbb03238c35580272713ead",
+    "source_id": "openweathermap",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/openweathermap/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

@@ -1,0 +1,258 @@
+{
+  "a2ui": {},
+  "app": "universe-ticketmanager",
+  "graph": {
+    "edges": [
+      {
+        "from": "universe-ticketmanager",
+        "kind": "EXPOSES",
+        "to": "operation:post:/add"
+      },
+      {
+        "from": "universe-ticketmanager",
+        "kind": "EXPOSES",
+        "to": "operation:post:/join/:token"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "universe-ticketmanager",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/add",
+        "kind": "operation",
+        "method": "post",
+        "name": "add-to-team",
+        "parameters": [
+          {
+            "default": "image/png",
+            "in": "header",
+            "name": "Content-Type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/add",
+        "pointer": "#/paths/~1add/post",
+        "responses": [
+          {
+            "status": "201"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "sec0": []
+          }
+        ],
+        "summary": "Add to Team"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:post:/join/:token",
+        "kind": "operation",
+        "method": "post",
+        "name": "join-team",
+        "path": "/join/:token",
+        "pointer": "#/paths/~1join~1:token/post",
+        "responses": [
+          {
+            "status": "201",
+            "type": "object"
+          },
+          {
+            "status": "401"
+          }
+        ],
+        "safe": false,
+        "security": [],
+        "summary": "Join Team"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "universe-ticketmanager"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://www.universe.com/tm",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "securitySchemes": {
+                "sec0": {
+                  "flows": {
+                    "clientCredentials": {
+                      "scopes": {},
+                      "tokenUrl": "https://example.com/oauth2/token"
+                    }
+                  },
+                  "type": "oauth2"
+                }
+              }
+            },
+            "info": {
+              "title": "Ticketmanager",
+              "version": "unknown"
+            },
+            "openapi": "3.0.3",
+            "paths": {
+              "/add": {
+                "post": {
+                  "deprecated": false,
+                  "description": "",
+                  "operationId": "add-to-team",
+                  "parameters": [
+                    {
+                      "in": "header",
+                      "name": "Content-Type",
+                      "required": true,
+                      "schema": {
+                        "default": "image/png",
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "text/plain": {
+                          "examples": {
+                            "Result": {
+                              "value": "bin/png"
+                            }
+                          }
+                        }
+                      },
+                      "description": "201"
+                    }
+                  },
+                  "summary": "Add to Team"
+                }
+              },
+              "/join/:token": {
+                "post": {
+                  "deprecated": false,
+                  "description": "",
+                  "operationId": "join-team",
+                  "responses": {
+                    "201": {
+                      "content": {
+                        "application/json": {
+                          "examples": {
+                            "JSON": {
+                              "value": "{\n    \"access_token\": \"844...bbb\",\n    \"token_type\":\"bearer\",\n    \"expires_in\": 2592000,\n    \"refresh_token\": \"006...686\",\n    \"scope\": \"check_in\", \n    \"created_at\": 1494964915\n}"
+                            }
+                          },
+                          "schema": {
+                            "properties": {
+                              "access_token": {
+                                "example": "844...bbb",
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "default": 0,
+                                "example": 1494964915,
+                                "type": "integer"
+                              },
+                              "expires_in": {
+                                "default": 0,
+                                "example": 2592000,
+                                "type": "integer"
+                              },
+                              "refresh_token": {
+                                "example": "006...686",
+                                "type": "string"
+                              },
+                              "scope": {
+                                "example": "check_in",
+                                "type": "string"
+                              },
+                              "token_type": {
+                                "example": "bearer",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "201"
+                    },
+                    "401": {
+                      "content": {
+                        "text/plain": {
+                          "examples": {
+                            "Result": {
+                              "value": "{\n   error: \"invalid_token\",\n   error_description: \"The Join Team challenge token was invalid or does not exist\"\n}"
+                            }
+                          }
+                        }
+                      },
+                      "description": "401"
+                    }
+                  },
+                  "security": [],
+                  "summary": "Join Team"
+                }
+              }
+            },
+            "security": [
+              {
+                "sec0": []
+              }
+            ],
+            "servers": [
+              {
+                "url": "https://www.universe.com/tm"
+              }
+            ],
+            "x-readme": {
+              "headers": []
+            },
+            "x-readme-fauxas": true
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Universe Ticketmanager"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.059355+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://dash.readme.com/api/v1/api-registry/1mld74kq6vjc4y",
+        "version": "3.0.3"
+      }
+    ],
+    "sha256": "03927034f7efc8554f40dae44abb3df4c100c19f75566f11b48aa08930e1ed14",
+    "source_id": "universe-ticketmanager",
+    "source_updated": null,
+    "url": "https://dash.readme.com/api/v1/api-registry/1mld74kq6vjc4y"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "unknown"
+}

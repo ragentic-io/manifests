@@ -1,0 +1,2231 @@
+{
+  "a2ui": {},
+  "app": "ncei-space-weather-portal",
+  "graph": {
+    "edges": [
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/files"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/hapi/about"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/hapi/capabilities"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/hapi/catalog"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/hapi/data"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/hapi/info"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/instruments"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/media"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/media/names"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/parameters"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/product_check"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/products"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/satellites"
+      },
+      {
+        "from": "ncei-space-weather-portal",
+        "kind": "EXPOSES",
+        "to": "operation:get:/values"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "ncei-space-weather-portal",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Retrieves a list of individual data files and their direct download links based on a required time range.",
+        "id": "operation:get:/files",
+        "kind": "operation",
+        "method": "get",
+        "name": "getFiles",
+        "parameters": [
+          {
+            "description": "UTC Start time to query against",
+            "in": "query",
+            "name": "start_time",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "UTC End time to query against",
+            "in": "query",
+            "name": "end_time",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Satellite name (optional)",
+            "in": "query",
+            "name": "sat",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Instrument name (optional)",
+            "in": "query",
+            "name": "inst",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Product name or comma-separated list of product names (optional)",
+            "in": "query",
+            "name": "prod",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Limit number of query results (optional)",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Results order direction.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/files",
+        "pointer": "#/paths/~1files/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Find data files by date range."
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/hapi/about",
+        "kind": "operation",
+        "method": "get",
+        "name": "getHapiAbout",
+        "path": "/hapi/about",
+        "pointer": "#/paths/~1hapi~1about/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Returns server identifier, contact information, and a brief description of the datasets served"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/hapi/capabilities",
+        "kind": "operation",
+        "method": "get",
+        "name": "getHapiCapabilities",
+        "path": "/hapi/capabilities",
+        "pointer": "#/paths/~1hapi~1capabilities/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Describes relevant implementation capabilities for this server"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/hapi/catalog",
+        "kind": "operation",
+        "method": "get",
+        "name": "getHapiCatalog",
+        "path": "/hapi/catalog",
+        "pointer": "#/paths/~1hapi~1catalog/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Return list of datasets"
+      },
+      {
+        "deprecated": false,
+        "description": "Time column is always returned.",
+        "id": "operation:get:/hapi/data",
+        "kind": "operation",
+        "method": "get",
+        "name": "getHapiData",
+        "parameters": [
+          {
+            "description": "Product dataset name",
+            "in": "query",
+            "name": "dataset",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "UTC Start time to query against",
+            "in": "query",
+            "name": "start",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "UTC End time to query against",
+            "in": "query",
+            "name": "stop",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "A comma-separated list of parameters to include in the response.",
+            "in": "query",
+            "name": "parameters",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "csv",
+            "description": "Data return format",
+            "enum": [
+              "json",
+              "csv"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/hapi/data",
+        "pointer": "#/paths/~1hapi~1data/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Returns table of requested parameter values based on provided conditions"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/hapi/info",
+        "kind": "operation",
+        "method": "get",
+        "name": "getHapiSummary",
+        "parameters": [
+          {
+            "description": "Product dataset name",
+            "in": "query",
+            "name": "dataset",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "A comma-separated list of parameters to include in the response (optional)",
+            "in": "query",
+            "name": "parameters",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/hapi/info",
+        "pointer": "#/paths/~1hapi~1info/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Return list of all parameters for a given dataset"
+      },
+      {
+        "deprecated": false,
+        "description": "## Notes: - An instrument produces one or more data products.",
+        "id": "operation:get:/instruments",
+        "kind": "operation",
+        "method": "get",
+        "name": "getInstruments",
+        "parameters": [
+          {
+            "description": "Satellite name (optional)",
+            "in": "query",
+            "name": "sat",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/instruments",
+        "pointer": "#/paths/~1instruments/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List unique instruments."
+      },
+      {
+        "deprecated": false,
+        "description": "## Notes - Media records represent generated artifacts such as images, movies, and plots.",
+        "id": "operation:get:/media",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMedia",
+        "parameters": [
+          {
+            "description": "UTC start date to query against.",
+            "in": "query",
+            "name": "start_date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "UTC end date to query against.",
+            "in": "query",
+            "name": "end_date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Period the media covers (\"1day\", \"1week\" or \"1month\")",
+            "in": "query",
+            "name": "period",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Satellite name",
+            "in": "query",
+            "name": "sat",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Instrument name (optional)",
+            "in": "query",
+            "name": "inst",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Media type (optional)",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Media name or comma-separated list of media names (optional)",
+            "in": "query",
+            "name": "names",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Alternate query option using an encoded string defining groups of media.",
+            "in": "query",
+            "name": "items",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Limit number of query results (optional)",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Results order direction.",
+            "in": "query",
+            "name": "order",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/media",
+        "pointer": "#/paths/~1media/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Find media files by date."
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/media/names",
+        "kind": "operation",
+        "method": "get",
+        "name": "getMediaNames",
+        "parameters": [
+          {
+            "description": "Satellite name",
+            "in": "query",
+            "name": "sat",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Instrument name (optional)",
+            "in": "query",
+            "name": "inst",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/media/names",
+        "pointer": "#/paths/~1media~1names/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Return distinct list of available media names"
+      },
+      {
+        "deprecated": false,
+        "description": "## Notes: - A parameter represents a named value or set of values for a given data product.",
+        "id": "operation:get:/parameters",
+        "kind": "operation",
+        "method": "get",
+        "name": "getParameters",
+        "parameters": [
+          {
+            "description": "Satellite name (optional)",
+            "in": "query",
+            "name": "sat",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Instrument name (optional)",
+            "in": "query",
+            "name": "inst",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Product name (optional)",
+            "in": "query",
+            "name": "prod",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/parameters",
+        "pointer": "#/paths/~1parameters/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List discoverable data parameters for products."
+      },
+      {
+        "deprecated": false,
+        "description": "Returns a data availability report for products within a given date range.",
+        "id": "operation:get:/product_check",
+        "kind": "operation",
+        "method": "get",
+        "name": "getProductCheck",
+        "parameters": [
+          {
+            "description": "YYYY-MM-DD of range start date",
+            "in": "query",
+            "name": "start_date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "YYYY-MM-DD of range end date",
+            "in": "query",
+            "name": "end_date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Satellite name or comma-separated list of satellite names (optional)",
+            "in": "query",
+            "name": "sat",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Instrument name or comma-separated list of instrument names (optional).",
+            "in": "query",
+            "name": "inst",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Product name or comma-separated list of product names (optional)",
+            "in": "query",
+            "name": "names",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Alternate query option using an encoded string defining groups of products.",
+            "in": "query",
+            "name": "items",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/product_check",
+        "pointer": "#/paths/~1product_check/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get data product availability reports."
+      },
+      {
+        "deprecated": false,
+        "description": "## Notes: - Retrieves a list of available data products, which can be filtered by a specific satellite and/or instrument.",
+        "id": "operation:get:/products",
+        "kind": "operation",
+        "method": "get",
+        "name": "getProducts",
+        "parameters": [
+          {
+            "description": "Satellite name (optional)",
+            "in": "query",
+            "name": "sat",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Instrument name (optional)",
+            "in": "query",
+            "name": "inst",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/products",
+        "pointer": "#/paths/~1products/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List available data products."
+      },
+      {
+        "deprecated": false,
+        "description": "## Notes: - A satellite represents a unique spacecraft name that contains one or more instruments.",
+        "id": "operation:get:/satellites",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSatellites",
+        "path": "/satellites",
+        "pointer": "#/paths/~1satellites/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List unique satellites."
+      },
+      {
+        "deprecated": false,
+        "description": "## Notes - Time column is always returned.",
+        "id": "operation:get:/values",
+        "kind": "operation",
+        "method": "get",
+        "name": "getValues",
+        "parameters": [
+          {
+            "description": "UTC Start time to query against.",
+            "in": "query",
+            "name": "start_time",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "UTC End time to query against.",
+            "in": "query",
+            "name": "end_time",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Encoded string defining which parameter columns to return.",
+            "in": "query",
+            "name": "parameters",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Encoded string defining criteria to query against.",
+            "in": "query",
+            "name": "criteria",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Convert flag-type values into an array of actual flag indices.",
+            "in": "query",
+            "name": "map_flag",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": "json",
+            "description": "Data return format.",
+            "enum": [
+              "json",
+              "csv"
+            ],
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "iso",
+            "description": "Time column return format.",
+            "enum": [
+              "iso",
+              "ts"
+            ],
+            "in": "query",
+            "name": "time_format",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/values",
+        "pointer": "#/paths/~1values/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get time-series data for data product parameters."
+      },
+      {
+        "id": "schema:HapiStatus",
+        "kind": "schema",
+        "name": "HapiStatus",
+        "type": "object"
+      },
+      {
+        "id": "schema:Status",
+        "kind": "schema",
+        "name": "Status",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "ncei-space-weather-portal"
+    },
+    "spec": {
+      "base": {
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "HapiStatus": {
+                  "properties": {
+                    "code": {
+                      "example": 1200,
+                      "type": "integer"
+                    },
+                    "message": {
+                      "example": "OK",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Status": {
+                  "properties": {
+                    "code": {
+                      "example": 200,
+                      "type": "integer"
+                    },
+                    "message": {
+                      "example": "OK",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "info": {
+              "description": "### API for accessing information and rich metadata for NCEI Space Weather data\n\n### Notes\n- Information on each satellite and their products can be found on the associated [Web Portal](/cloud-access/space-weather-portal/).\n- All requests need the major version prefix (eg \"v1\"). Major, non-compatible changes to the API may occur that will increment the major version number.  Minor changes, fixes, and enhancements to the API will increment the minor build version only and not require a URL update.\n- See example python plotting code using this API at the associated [Web Portal](/cloud-access/space-weather-portal/) help page.\n- This server supports the <b>HAPI v3.2.0</b> specification for delivery of time series data.  See the /hapi routes below. For more information, see the [HAPI github site](https://github.com/hapi-server/data-specification)\n",
+              "license": {
+                "name": "Public Domain",
+                "url": "https://www.usa.gov/government-works"
+              },
+              "title": "NCEI Space Weather Portal API",
+              "version": "v1 (build v20261030a)"
+            },
+            "openapi": "3.0.0",
+            "paths": {
+              "/files": {
+                "get": {
+                  "description": "Retrieves a list of individual data files and their direct download links based on a required time range. This is the primary endpoint for accessing the raw data files.",
+                  "operationId": "getFiles",
+                  "parameters": [
+                    {
+                      "description": "UTC Start time to query against",
+                      "example": "2025-08-01T00:00:00",
+                      "in": "query",
+                      "name": "start_time",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "UTC End time to query against",
+                      "example": "2025-08-02T00:00:00",
+                      "in": "query",
+                      "name": "end_time",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Satellite name (optional)",
+                      "example": "GOES-19",
+                      "in": "query",
+                      "name": "sat",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Instrument name (optional)",
+                      "example": "CCOR-1",
+                      "in": "query",
+                      "name": "inst",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Product name or comma-separated list of product names (optional)",
+                      "example": "CCOR1_0B",
+                      "in": "query",
+                      "name": "prod",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Limit number of query results (optional)",
+                      "example": 10,
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Results order direction.  Valid values are 'asc', 'desc'.",
+                      "example": "desc",
+                      "in": "query",
+                      "name": "order",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "file_link": {
+                                      "example": "https://archive.data.noaa.gov/satellite-spaceweather/SWFO/GOES-19/CCOR-1/ccor1-l0b/2025/08/01/CCOR1_0B_20250801T234525_V00_NC.fits",
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "example": "CCOR1_0B_20250801T234525_V00_NC.fits",
+                                      "type": "string"
+                                    },
+                                    "instrument": {
+                                      "example": "CCOR-1",
+                                      "type": "string"
+                                    },
+                                    "product": {
+                                      "example": "CCOR1_0B",
+                                      "type": "string"
+                                    },
+                                    "satellite": {
+                                      "example": "GOES-19",
+                                      "type": "string"
+                                    },
+                                    "size_bytes": {
+                                      "example": 4576320,
+                                      "type": "number"
+                                    },
+                                    "time_coverage_end": {
+                                      "example": "2025-08-01T23:45:25.787Z",
+                                      "format": "date-time",
+                                      "type": "string"
+                                    },
+                                    "time_coverage_start": {
+                                      "example": "2025-08-01T23:45:25.787Z",
+                                      "format": "date-time",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/Status"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "Find data files by date range."
+                }
+              },
+              "/hapi/about": {
+                "get": {
+                  "operationId": "getHapiAbout",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "HAPI": {
+                                "example": "3.2.0",
+                                "type": "string"
+                              },
+                              "contact": {
+                                "description": "Contact information or email address for server issues.",
+                                "example": "ncei.info@noaa.gov",
+                                "type": "string"
+                              },
+                              "description": {
+                                "description": "A brief description of the type of data the server provides.",
+                                "example": "Space weather data from NOAA platforms.",
+                                "type": "string"
+                              },
+                              "id": {
+                                "description": "A unique ID for the server.",
+                                "example": "NESDIS_SPACE_WEATHER_PORTAL",
+                                "type": "string"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/HapiStatus"
+                              },
+                              "title": {
+                                "description": "A short human-readable name for the server.",
+                                "example": "NESDIS Space Weather Portal",
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "HAPI",
+                              "status",
+                              "id",
+                              "title",
+                              "contact"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "Returns server identifier, contact information, and a brief description of the datasets served"
+                }
+              },
+              "/hapi/capabilities": {
+                "get": {
+                  "operationId": "getHapiCapabilities",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "HAPI": {
+                                "example": "3.2.0",
+                                "type": "string"
+                              },
+                              "outputFormats": {
+                                "example": [
+                                  "csv",
+                                  "json"
+                                ],
+                                "items": {
+                                  "type": "string"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/HapiStatus"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "Describes relevant implementation capabilities for this server"
+                }
+              },
+              "/hapi/catalog": {
+                "get": {
+                  "operationId": "getHapiCatalog",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "HAPI": {
+                                "example": "3.2.0",
+                                "type": "string"
+                              },
+                              "catalog": {
+                                "items": {
+                                  "properties": {
+                                    "id": {
+                                      "example": "CCOR1_0B",
+                                      "type": "string"
+                                    },
+                                    "title": {
+                                      "example": "CCOR-1 Level 0B",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/HapiStatus"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "Return list of datasets"
+                }
+              },
+              "/hapi/data": {
+                "get": {
+                  "description": "Time column is always returned.",
+                  "operationId": "getHapiData",
+                  "parameters": [
+                    {
+                      "description": "Product dataset name",
+                      "example": "CCOR1_0B",
+                      "in": "query",
+                      "name": "dataset",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "UTC Start time to query against",
+                      "example": "2025-08-01T00:00:00Z",
+                      "in": "query",
+                      "name": "start",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "UTC End time to query against",
+                      "example": "2025-08-01T01:00:00Z",
+                      "in": "query",
+                      "name": "stop",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "A comma-separated list of parameters to include in the response. Default is all.",
+                      "example": "COSMICS,DETTEMP",
+                      "in": "query",
+                      "name": "parameters",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Data return format",
+                      "in": "query",
+                      "name": "format",
+                      "schema": {
+                        "default": "csv",
+                        "enum": [
+                          "json",
+                          "csv"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "HAPI": {
+                                "example": "3.2.0",
+                                "type": "string"
+                              },
+                              "additionalMetadata": {
+                                "example": [
+                                  {
+                                    "content": {
+                                      "COSMICS": {
+                                        "instrument": "CCOR-1",
+                                        "long_name": "Cosmic Ray Counter",
+                                        "product": "CCOR1_0B",
+                                        "satellite": "GOES-19"
+                                      }
+                                    },
+                                    "name": "Parameter Extended Metadata"
+                                  }
+                                ],
+                                "items": {
+                                  "properties": {
+                                    "content": {
+                                      "additionalProperties": {
+                                        "properties": {
+                                          "flag_masks": {
+                                            "type": "string"
+                                          },
+                                          "flag_meanings": {
+                                            "type": "string"
+                                          },
+                                          "flag_values": {
+                                            "type": "string"
+                                          },
+                                          "instrument": {
+                                            "type": "string"
+                                          },
+                                          "long_name": {
+                                            "type": "string"
+                                          },
+                                          "product": {
+                                            "type": "string"
+                                          },
+                                          "satellite": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "type": "object"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "data": {
+                                "example": [
+                                  [
+                                    "2025-08-01T00:00:25.782Z",
+                                    5926,
+                                    -47.0063
+                                  ],
+                                  [
+                                    "2025-08-01T00:15:25.706Z",
+                                    5485,
+                                    -47.0063
+                                  ],
+                                  [
+                                    "2025-08-01T00:30:25.745Z",
+                                    5780,
+                                    -47.0286
+                                  ]
+                                ],
+                                "items": {
+                                  "items": {
+                                    "oneOf": [
+                                      {
+                                        "type": "string"
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ]
+                                  },
+                                  "type": "array"
+                                },
+                                "type": "array"
+                              },
+                              "format": {
+                                "example": "json",
+                                "type": "string"
+                              },
+                              "parameters": {
+                                "example": [
+                                  {
+                                    "fill": null,
+                                    "length": 24,
+                                    "name": "time",
+                                    "type": "isotime",
+                                    "units": "UTC"
+                                  },
+                                  {
+                                    "description": "",
+                                    "fill": "-99999",
+                                    "name": "COSMICS",
+                                    "type": "integer",
+                                    "units": null
+                                  }
+                                ],
+                                "items": {
+                                  "properties": {
+                                    "description": {
+                                      "type": "string"
+                                    },
+                                    "fill": {
+                                      "type": "string"
+                                    },
+                                    "length": {
+                                      "type": "integer"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "units": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/HapiStatus"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "text/csv": {
+                          "example": "2025-08-01T00:00:25.782Z,5926,-47.0063\n2025-08-01T00:15:25.706Z,5485,-47.0063\n2025-08-01T00:30:25.745Z,5780,-47.0286\n",
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "Returns table of requested parameter values based on provided conditions"
+                }
+              },
+              "/hapi/info": {
+                "get": {
+                  "operationId": "getHapiSummary",
+                  "parameters": [
+                    {
+                      "description": "Product dataset name",
+                      "example": "CCOR1_0B",
+                      "in": "query",
+                      "name": "dataset",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "A comma-separated list of parameters to include in the response (optional)",
+                      "example": "COSMICS,DETTEMP",
+                      "in": "query",
+                      "name": "parameters",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "HAPI": {
+                                "example": "3.2.0",
+                                "type": "string"
+                              },
+                              "additionalMetadata": {
+                                "example": [
+                                  {
+                                    "content": {
+                                      "COSMICS": {
+                                        "instrument": "CCOR-1",
+                                        "long_name": "Cosmic Ray Counter",
+                                        "product": "CCOR1_0B",
+                                        "satellite": "GOES-19"
+                                      }
+                                    },
+                                    "name": "Parameter Extended Metadata"
+                                  }
+                                ],
+                                "items": {
+                                  "properties": {
+                                    "content": {
+                                      "additionalProperties": {
+                                        "properties": {
+                                          "flag_masks": {
+                                            "type": "string"
+                                          },
+                                          "flag_meanings": {
+                                            "type": "string"
+                                          },
+                                          "flag_values": {
+                                            "type": "string"
+                                          },
+                                          "instrument": {
+                                            "type": "string"
+                                          },
+                                          "long_name": {
+                                            "type": "string"
+                                          },
+                                          "product": {
+                                            "type": "string"
+                                          },
+                                          "satellite": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "type": "object"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "parameters": {
+                                "example": [
+                                  {
+                                    "fill": null,
+                                    "length": 24,
+                                    "name": "time",
+                                    "type": "isotime",
+                                    "units": "UTC"
+                                  },
+                                  {
+                                    "description": "",
+                                    "fill": "-99999",
+                                    "name": "COSMICS",
+                                    "type": "integer",
+                                    "units": null
+                                  }
+                                ],
+                                "items": {
+                                  "properties": {
+                                    "description": {
+                                      "type": "string"
+                                    },
+                                    "fill": {
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "type": "string"
+                                    },
+                                    "units": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "startDate": {
+                                "example": "2024-11-09T05:45:18.000Z",
+                                "type": "string"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/HapiStatus"
+                              },
+                              "stopDate": {
+                                "example": "2025-08-11T23:45:25.727Z",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "Return list of all parameters for a given dataset"
+                }
+              },
+              "/instruments": {
+                "get": {
+                  "description": "## Notes:\n- An instrument produces one or more data products.\n- Some instrument names are reused for different satellites (example: MAG), so instruments are always linked to their satellite.\n",
+                  "operationId": "getInstruments",
+                  "parameters": [
+                    {
+                      "description": "Satellite name (optional)",
+                      "example": "GOES-19",
+                      "in": "query",
+                      "name": "sat",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "instrument": {
+                                      "example": "CCOR-1",
+                                      "type": "string"
+                                    },
+                                    "satellite": {
+                                      "example": "GOES-19",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/Status"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "List unique instruments."
+                }
+              },
+              "/media": {
+                "get": {
+                  "description": "## Notes\n- Media records represent generated artifacts such as images, movies, and plots.\n",
+                  "operationId": "getMedia",
+                  "parameters": [
+                    {
+                      "description": "UTC start date to query against. Valid format is YYY-MM-DD.",
+                      "example": "2025-08-01",
+                      "in": "query",
+                      "name": "start_date",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "UTC end date to query against.  Valid format is YYY-MM-DD.",
+                      "example": "2025-08-01",
+                      "in": "query",
+                      "name": "end_date",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Period the media covers (\"1day\", \"1week\" or \"1month\")",
+                      "example": "1day",
+                      "in": "query",
+                      "name": "period",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Satellite name",
+                      "example": "GOES-19",
+                      "in": "query",
+                      "name": "sat",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Instrument name (optional)",
+                      "example": "CCOR-1",
+                      "in": "query",
+                      "name": "inst",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Media type (optional)",
+                      "example": "movie",
+                      "in": "query",
+                      "name": "type",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Media name or comma-separated list of media names (optional)",
+                      "example": "CCOR1_3_movie",
+                      "in": "query",
+                      "name": "names",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Alternate query option using an encoded string defining groups of media. Format is a semicolon-separated list of colon-separated tuples where the tuple list can be length one, two, or three depending on how specific the query is.  The tuple fields are [SATELLITE]:[INSTRUMENT]:[MEDIA NAME].  Example shows three items of increasing specificity.",
+                      "example": "GOES-18;GOES-16:MAG;GOES-19:CCOR-1:CCOR1_3_movie",
+                      "in": "query",
+                      "name": "items",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Limit number of query results (optional)",
+                      "example": 10,
+                      "in": "query",
+                      "name": "limit",
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Results order direction.  Valid values are 'asc', 'desc'.",
+                      "example": "desc",
+                      "in": "query",
+                      "name": "order",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "date": {
+                                      "example": "2025-08-01",
+                                      "type": "string"
+                                    },
+                                    "filepath": {
+                                      "example": "GOES-19/CCOR-1/1day/2025/08/CCOR1_3_movie_20250801_1day.mp4",
+                                      "type": "string"
+                                    },
+                                    "format": {
+                                      "example": "mp4",
+                                      "type": "string"
+                                    },
+                                    "height": {
+                                      "example": 1817,
+                                      "type": "integer"
+                                    },
+                                    "instrument": {
+                                      "example": "CCOR-1",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "example": "CCOR1_3_movie",
+                                      "type": "string"
+                                    },
+                                    "period": {
+                                      "example": "1day",
+                                      "type": "string"
+                                    },
+                                    "s3_base": {
+                                      "example": "s3://archive.data.noaa.gov/satellite-spaceweather/",
+                                      "type": "string"
+                                    },
+                                    "satellite": {
+                                      "example": "GOES-19",
+                                      "type": "string"
+                                    },
+                                    "time_coverage_end": {
+                                      "example": "2025-08-01T00:00:00.000Z",
+                                      "type": "string"
+                                    },
+                                    "time_coverage_start": {
+                                      "example": "2025-08-01T23:59:59.000Z",
+                                      "type": "string"
+                                    },
+                                    "type": {
+                                      "example": "movie",
+                                      "type": "string"
+                                    },
+                                    "width": {
+                                      "example": 1794,
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/Status"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "Find media files by date."
+                }
+              },
+              "/media/names": {
+                "get": {
+                  "operationId": "getMediaNames",
+                  "parameters": [
+                    {
+                      "description": "Satellite name",
+                      "example": "GOES-19",
+                      "in": "query",
+                      "name": "sat",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Instrument name (optional)",
+                      "example": "CCOR-1",
+                      "in": "query",
+                      "name": "inst",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "instrument": {
+                                      "example": "CCOR-1",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "example": "CCOR1_3_movie",
+                                      "type": "string"
+                                    },
+                                    "satellite": {
+                                      "example": "GOES-19",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/Status"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "Return distinct list of available media names"
+                }
+              },
+              "/parameters": {
+                "get": {
+                  "description": "## Notes:\n- A parameter represents a named value or set of values for a given data product.\n- This endpoint is used to discover the available parameters that can then be retrieved as time-series data using the /values endpoint.\n",
+                  "operationId": "getParameters",
+                  "parameters": [
+                    {
+                      "description": "Satellite name (optional)",
+                      "example": "GOES-19",
+                      "in": "query",
+                      "name": "sat",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Instrument name (optional)",
+                      "example": "CCOR-1",
+                      "in": "query",
+                      "name": "inst",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Product name (optional)",
+                      "example": "CCOR1_0B",
+                      "in": "query",
+                      "name": "prod",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "fill_value": {
+                                      "example": "-99999",
+                                      "type": "string"
+                                    },
+                                    "flag_masks": {
+                                      "type": "string"
+                                    },
+                                    "flag_meanings": {
+                                      "type": "string"
+                                    },
+                                    "flag_values": {
+                                      "type": "string"
+                                    },
+                                    "instrument": {
+                                      "example": "CCOR-1",
+                                      "type": "string"
+                                    },
+                                    "long_name": {
+                                      "example": "Orbital position Y in EME2000",
+                                      "type": "string"
+                                    },
+                                    "parameter": {
+                                      "example": "EPHVEC_Y",
+                                      "type": "string"
+                                    },
+                                    "product": {
+                                      "example": "CCOR1_0B",
+                                      "type": "string"
+                                    },
+                                    "satellite": {
+                                      "example": "GOES-19",
+                                      "type": "string"
+                                    },
+                                    "units": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/Status"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "List discoverable data parameters for products."
+                }
+              },
+              "/product_check": {
+                "get": {
+                  "description": "Returns a data availability report for products within a given date range. This can be used to verify data completeness by comparing the number of expected files (num_exp) against the number of missing files (num_missing).",
+                  "operationId": "getProductCheck",
+                  "parameters": [
+                    {
+                      "description": "YYYY-MM-DD of range start date",
+                      "example": "2025-08-01",
+                      "in": "query",
+                      "name": "start_date",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "YYYY-MM-DD of range end date",
+                      "example": "2025-08-02",
+                      "in": "query",
+                      "name": "end_date",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Satellite name or comma-separated list of satellite names (optional)",
+                      "example": "GOES-19",
+                      "in": "query",
+                      "name": "sat",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Instrument name or comma-separated list of instrument names (optional).  NOTE that instrument names are not unique across satellites, so the sat parameter may be needed as well.",
+                      "example": "CCOR-1,spacecraft",
+                      "in": "query",
+                      "name": "inst",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Product name or comma-separated list of product names (optional)",
+                      "example": "CCOR1_0A,CCOR1_0B",
+                      "in": "query",
+                      "name": "names",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Alternate query option using an encoded string defining groups of products. Format is a semicolon-separated list of colon-separated tuples where the tuple list can be length one, two, or three depending on how specific the query is.  The tuple fields are [SATELLITE]:[INSTRUMENT]:[PRODUCT].  Example shows three items of increasing specificity.",
+                      "example": "GOES-18;GOES-16:MAG;GOES-19:CCOR-1:CCOR1_0A",
+                      "in": "query",
+                      "name": "items",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "date": {
+                                      "example": "2025-08-01",
+                                      "type": "string"
+                                    },
+                                    "instrument": {
+                                      "example": "CCOR-1",
+                                      "type": "string"
+                                    },
+                                    "missing_perc": {
+                                      "example": 0,
+                                      "format": "float",
+                                      "type": "number"
+                                    },
+                                    "missing_status": {
+                                      "example": "OK",
+                                      "type": "string"
+                                    },
+                                    "num_exp": {
+                                      "example": 192,
+                                      "type": "number"
+                                    },
+                                    "num_missing": {
+                                      "example": 0,
+                                      "type": "number"
+                                    },
+                                    "product": {
+                                      "example": "CCOR1_0A",
+                                      "type": "string"
+                                    },
+                                    "product_name": {
+                                      "example": "CCOR1_0A",
+                                      "type": "string"
+                                    },
+                                    "runtime": {
+                                      "example": "2025-08-08 15:21:16",
+                                      "type": "string"
+                                    },
+                                    "satellite": {
+                                      "example": "GOES-19",
+                                      "type": "string"
+                                    },
+                                    "small_perc": {
+                                      "example": 0.0,
+                                      "format": "float",
+                                      "type": "number"
+                                    },
+                                    "small_status": {
+                                      "example": "OK",
+                                      "type": "string"
+                                    },
+                                    "status": {
+                                      "example": "OK",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/Status"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "Get data product availability reports."
+                }
+              },
+              "/products": {
+                "get": {
+                  "description": "## Notes:\n- Retrieves a list of available data products, which can be filtered by a specific satellite and/or instrument.\n- A product name is unique and represents a type of data file produced by an instrument.\n- A product has many parameters whose values are captured in this database as time-series data accessible via the /values API route.\n- Products are typically represented by data files produced at some cadence (examples: daily aggregation file, single granular file).  These files are available via the /files API route.\n",
+                  "operationId": "getProducts",
+                  "parameters": [
+                    {
+                      "description": "Satellite name (optional)",
+                      "example": "GOES-19",
+                      "in": "query",
+                      "name": "sat",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Instrument name (optional)",
+                      "example": "CCOR-1",
+                      "in": "query",
+                      "name": "inst",
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "chunk": {
+                                      "example": "granule",
+                                      "type": "string"
+                                    },
+                                    "instrument": {
+                                      "example": "CCOR-1",
+                                      "type": "string"
+                                    },
+                                    "level": {
+                                      "example": "l0b",
+                                      "type": "string"
+                                    },
+                                    "product": {
+                                      "example": "CCOR1_0B",
+                                      "type": "string"
+                                    },
+                                    "quality": {
+                                      "example": "ops",
+                                      "type": "string"
+                                    },
+                                    "satellite": {
+                                      "example": "GOES-19",
+                                      "type": "string"
+                                    },
+                                    "title": {
+                                      "example": "CCOR-1 Level 0B",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/Status"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "List available data products."
+                }
+              },
+              "/satellites": {
+                "get": {
+                  "description": "## Notes:\n- A satellite represents a unique spacecraft name that contains one or more instruments.\n",
+                  "operationId": "getSatellites",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "data": {
+                                "items": {
+                                  "properties": {
+                                    "satellite": {
+                                      "example": "GOES-19",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/Status"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "List unique satellites."
+                }
+              },
+              "/values": {
+                "get": {
+                  "description": "## Notes\n- Time column is always returned.\n- Valid time formats:\n  - \"yyyy-mm-ddThh:mm:ssZ\" (Z is optional but GMT always assumed)\n  - \"yyyy-mm-ddThh:mm:ss.sssZ\" (Z is optional but GMT always assumed)\n  - UNIX timestamp in milliseconds (e.g., 1643698800000)\n- The `parameters` input uses a specific encoding format\n- The `criteria` input allows for complex query conditions\n- Since two products can have the same parameter name, the parameter name returned has the product name appended to the front with a dot delimiter:\n  - eg: CCOR1_0B.DETTEMP\n",
+                  "operationId": "getValues",
+                  "parameters": [
+                    {
+                      "description": "UTC Start time to query against. Valid formats are ISO 8601 or UNIX timestamp in milliseconds.",
+                      "example": "2025-08-01T00:00:00",
+                      "in": "query",
+                      "name": "start_time",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "UTC End time to query against. Valid formats are ISO 8601 or UNIX timestamp in milliseconds.",
+                      "example": "2025-08-02T02:00:00",
+                      "in": "query",
+                      "name": "end_time",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Encoded string defining which parameter columns to return. Format is a semicolon-separated list of colon-separated 3-tuples ([SATELLITE]:[PRODUCT]:[PARAMETER]).",
+                      "example": "GOES-19:CCOR1_0B:COSMICS;GOES-19:CCOR1_0B:DETTEMP",
+                      "in": "query",
+                      "name": "parameters",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Encoded string defining criteria to query against. Format is a semicolon-separated list of colon-separated tuples.",
+                      "example": "GOES-19:CCOR1_0B:COSMICS:ge:6000;GOES-19:CCOR1_0B:DETTEMP:ge:-62.0",
+                      "in": "query",
+                      "name": "criteria",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Convert flag-type values into an array of actual flag indices.",
+                      "in": "query",
+                      "name": "map_flag",
+                      "required": false,
+                      "schema": {
+                        "type": "integer"
+                      }
+                    },
+                    {
+                      "description": "Data return format.",
+                      "in": "query",
+                      "name": "format",
+                      "required": false,
+                      "schema": {
+                        "default": "json",
+                        "enum": [
+                          "json",
+                          "csv"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Time column return format. Use 'ts' for UNIX timestamp in milliseconds or 'iso' for ISO 8601.  Time is converted as milliseconds since 1970-01-01T00:00:00Z and does not always reflect the native format from the associated data files.",
+                      "in": "query",
+                      "name": "time_format",
+                      "required": false,
+                      "schema": {
+                        "default": "iso",
+                        "enum": [
+                          "iso",
+                          "ts"
+                        ],
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "example": {
+                              "data": {
+                                "CCOR1_0B.COSMICS": [
+                                  6128,
+                                  6234
+                                ],
+                                "CCOR1_0B.DETTEMP": [
+                                  -46.9839,
+                                  -47.0063
+                                ],
+                                "time": [
+                                  "2025-08-01T11:15:25.780Z",
+                                  "2025-08-01T11:45:25.752Z"
+                                ]
+                              },
+                              "status": {
+                                "code": 200,
+                                "message": "OK"
+                              }
+                            },
+                            "properties": {
+                              "data": {
+                                "properties": {
+                                  "PRODUCT.PARAMETER": {
+                                    "items": {
+                                      "type": "number"
+                                    },
+                                    "type": "array"
+                                  },
+                                  "time": {
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "type": "array"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "status": {
+                                "$ref": "#/components/schemas/Status"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Successful response"
+                    }
+                  },
+                  "summary": "Get time-series data for data product parameters."
+                }
+              }
+            },
+            "security": [],
+            "servers": [
+              {
+                "url": "/cloud-access/space-weather-portal/api/v1"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "NCEI Space Weather Portal"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.648011+00:00",
+    "license": {
+      "name": "Public Domain",
+      "url": "https://www.usa.gov/government-works"
+    },
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://www.ncei.noaa.gov/cloud-access/space-weather-portal/api/v1/static/openapi/openapi-spot.yaml",
+        "version": "3.0.0"
+      }
+    ],
+    "sha256": "1381b52c0e7d1bece98f2561202132afc9a48b5b821f054f8ae030a090222cc6",
+    "source_id": "ncei-space-weather-portal",
+    "source_updated": null,
+    "url": "https://www.ncei.noaa.gov/cloud-access/space-weather-portal/api/v1/static/openapi/openapi-spot.yaml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "v1 (build v20261030a)"
+}

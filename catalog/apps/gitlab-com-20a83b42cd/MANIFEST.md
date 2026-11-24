@@ -14,7 +14,7 @@ Connect GitLab.com's REST API v4 with a personal access token. Lists your reposi
 | | |
 | --- | --- |
 | Categories | Software development, Productivity & collaboration |
-| Signed bundle | `b37bcdcf03c6231b82f39f431fbd13d0efa4b1c70b1f5fd67956dd68433db772` in `bundles/`, expires 2027-01-31 17:16 UTC |
+| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
 | Endpoint | `https://gitlab.com` |
 | Credential | static_bearer |
 | Connection test | GET `https://gitlab.com/api/v4/user` |

@@ -1,0 +1,1194 @@
+{
+  "a2ui": {},
+  "app": "neocities",
+  "graph": {
+    "edges": [
+      {
+        "from": "neocities",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/create_directory"
+      },
+      {
+        "from": "neocities",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/delete"
+      },
+      {
+        "from": "neocities",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/download"
+      },
+      {
+        "from": "neocities",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/info"
+      },
+      {
+        "from": "neocities",
+        "kind": "EXPOSES",
+        "to": "operation:get:/api/list"
+      },
+      {
+        "from": "neocities",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/rename"
+      },
+      {
+        "from": "neocities",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/upload"
+      },
+      {
+        "from": "neocities",
+        "kind": "EXPOSES",
+        "to": "operation:post:/api/upload_hash"
+      },
+      {
+        "from": "operation:post:/api/create_directory",
+        "kind": "RETURNS",
+        "to": "schema:MessageResponse"
+      },
+      {
+        "from": "operation:post:/api/delete",
+        "kind": "RETURNS",
+        "to": "schema:MessageResponse"
+      },
+      {
+        "from": "operation:post:/api/rename",
+        "kind": "RETURNS",
+        "to": "schema:MessageResponse"
+      },
+      {
+        "from": "operation:post:/api/upload",
+        "kind": "RETURNS",
+        "to": "schema:MessageResponse"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "neocities",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Missing parent directories are created automatically.",
+        "id": "operation:post:/api/create_directory",
+        "kind": "operation",
+        "method": "post",
+        "name": "createDirectory",
+        "path": "/api/create_directory",
+        "pointer": "#/paths/~1api~1create_directory/post",
+        "request": {
+          "content_types": [
+            "application/x-www-form-urlencoded"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "MessageResponse"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "403",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a directory",
+        "tags": [
+          "Sites"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Deleting a directory also removes its contents.",
+        "id": "operation:post:/api/delete",
+        "kind": "operation",
+        "method": "post",
+        "name": "deletePaths",
+        "path": "/api/delete",
+        "pointer": "#/paths/~1api~1delete/post",
+        "request": {
+          "content_types": [
+            "application/x-www-form-urlencoded"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "MessageResponse"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "403",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Delete files or directories",
+        "tags": [
+          "Sites"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Returns the raw file body, not JSON.",
+        "id": "operation:get:/api/download",
+        "kind": "operation",
+        "method": "get",
+        "name": "downloadFile",
+        "parameters": [
+          {
+            "description": "Site-relative file path.",
+            "in": "query",
+            "name": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/api/download",
+        "pointer": "#/paths/~1api~1download/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "string:binary"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "403",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Download a file",
+        "tags": [
+          "Sites"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Supplying sitename returns public information without authentication.",
+        "id": "operation:get:/api/info",
+        "kind": "operation",
+        "method": "get",
+        "name": "getSiteInfo",
+        "parameters": [
+          {
+            "description": "Public site name.",
+            "in": "query",
+            "name": "sitename",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/info",
+        "pointer": "#/paths/~1api~1info/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "403",
+            "type": "ApiError"
+          },
+          {
+            "status": "404",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {}
+        ],
+        "summary": "Get site information",
+        "tags": [
+          "Sites"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Without path, lists the entire site recursively.",
+        "id": "operation:get:/api/list",
+        "kind": "operation",
+        "method": "get",
+        "name": "listFiles",
+        "parameters": [
+          {
+            "description": "Directory to list.",
+            "in": "query",
+            "name": "path",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/api/list",
+        "pointer": "#/paths/~1api~1list/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "403",
+            "type": "ApiError"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List files and directories",
+        "tags": [
+          "Sites"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The destination parent directory must already exist, and an existing destination cannot be overwritten.",
+        "id": "operation:post:/api/rename",
+        "kind": "operation",
+        "method": "post",
+        "name": "renamePath",
+        "path": "/api/rename",
+        "pointer": "#/paths/~1api~1rename/post",
+        "request": {
+          "content_types": [
+            "application/x-www-form-urlencoded"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "MessageResponse"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "403",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Rename or move a file or directory",
+        "tags": [
+          "Sites"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Each multipart field name is the destination path on the site.",
+        "id": "operation:post:/api/upload",
+        "kind": "operation",
+        "method": "post",
+        "name": "uploadFiles",
+        "path": "/api/upload",
+        "pointer": "#/paths/~1api~1upload/post",
+        "request": {
+          "content_types": [
+            "multipart/form-data"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "MessageResponse"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "403",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Upload files",
+        "tags": [
+          "Sites"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Each form field name is a site-relative path and its value is the local file's SHA-1 hash.",
+        "id": "operation:post:/api/upload_hash",
+        "kind": "operation",
+        "method": "post",
+        "name": "checkFileHashes",
+        "path": "/api/upload_hash",
+        "pointer": "#/paths/~1api~1upload_hash/post",
+        "request": {
+          "content_types": [
+            "application/x-www-form-urlencoded"
+          ],
+          "required": true,
+          "type": "object"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "400",
+            "type": "ApiError"
+          },
+          {
+            "status": "403",
+            "type": "ApiError"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Check remote file hashes",
+        "tags": [
+          "Sites"
+        ]
+      },
+      {
+        "id": "schema:ApiError",
+        "kind": "schema",
+        "name": "ApiError",
+        "type": "object"
+      },
+      {
+        "id": "schema:DirectoryEntry",
+        "kind": "schema",
+        "name": "DirectoryEntry",
+        "type": "object"
+      },
+      {
+        "id": "schema:FileEntry",
+        "kind": "schema",
+        "name": "FileEntry",
+        "type": "object"
+      },
+      {
+        "id": "schema:MessageResponse",
+        "kind": "schema",
+        "name": "MessageResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:SiteInfo",
+        "kind": "schema",
+        "name": "SiteInfo",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "neocities"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://neocities.org",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "responses": {
+                "BadRequest": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "Invalid request."
+                },
+                "Forbidden": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "Invalid credentials."
+                },
+                "NotFound": {
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ApiError"
+                      }
+                    }
+                  },
+                  "description": "Unknown endpoint or site resource."
+                }
+              },
+              "schemas": {
+                "ApiError": {
+                  "properties": {
+                    "error_type": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "const": "error"
+                    }
+                  },
+                  "required": [
+                    "result",
+                    "error_type",
+                    "message"
+                  ],
+                  "type": "object"
+                },
+                "DirectoryEntry": {
+                  "properties": {
+                    "created_at": {
+                      "description": "Creation date in RFC 2822 format.",
+                      "type": "string"
+                    },
+                    "is_directory": {
+                      "const": true
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "description": "Modification date in RFC 2822 format.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "is_directory",
+                    "created_at",
+                    "updated_at"
+                  ],
+                  "type": "object"
+                },
+                "FileEntry": {
+                  "properties": {
+                    "created_at": {
+                      "description": "Creation date in RFC 2822 format.",
+                      "type": "string"
+                    },
+                    "is_directory": {
+                      "const": false
+                    },
+                    "path": {
+                      "type": "string"
+                    },
+                    "sha1_hash": {
+                      "description": "SHA-1 hash of the file.",
+                      "type": "string"
+                    },
+                    "size": {
+                      "description": "File size in bytes.",
+                      "minimum": 0,
+                      "type": "integer"
+                    },
+                    "updated_at": {
+                      "description": "Modification date in RFC 2822 format.",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "is_directory",
+                    "created_at",
+                    "updated_at",
+                    "size",
+                    "sha1_hash"
+                  ],
+                  "type": "object"
+                },
+                "MessageResponse": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "const": "success"
+                    }
+                  },
+                  "required": [
+                    "result",
+                    "message"
+                  ],
+                  "type": "object"
+                },
+                "SiteInfo": {
+                  "properties": {
+                    "created_at": {
+                      "description": "Creation date in RFC 2822 format.",
+                      "type": "string"
+                    },
+                    "domain": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "hits": {
+                      "type": "integer"
+                    },
+                    "last_updated": {
+                      "description": "Last update date in RFC 2822 format.",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "sitename": {
+                      "type": "string"
+                    },
+                    "supporter": {
+                      "type": "boolean"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "views": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "sitename",
+                    "views",
+                    "hits",
+                    "created_at",
+                    "last_updated",
+                    "domain",
+                    "supporter",
+                    "tags"
+                  ],
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "bearerAuth": {
+                  "description": "API key from the site's settings.",
+                  "scheme": "bearer",
+                  "type": "http"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Neocities Developer API documentation",
+              "url": "https://neocities.org/api"
+            },
+            "info": {
+              "description": "Manage files and retrieve site information on Neocities.",
+              "externalDocs": {
+                "description": "Neocities API documentation",
+                "url": "https://neocities.org/api"
+              },
+              "title": "Neocities Developer API",
+              "version": "2026-10-01"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/api/create_directory": {
+                "post": {
+                  "description": "Missing parent directories are created automatically. The request fails if a file or directory already exists at the destination.",
+                  "operationId": "createDirectory",
+                  "requestBody": {
+                    "content": {
+                      "application/x-www-form-urlencoded": {
+                        "schema": {
+                          "properties": {
+                            "path": {
+                              "description": "Site-relative directory path.",
+                              "example": "images/cats",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "path"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/MessageResponse"
+                          }
+                        }
+                      },
+                      "description": "Directory created."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Create a directory",
+                  "tags": [
+                    "Sites"
+                  ]
+                }
+              },
+              "/api/delete": {
+                "post": {
+                  "description": "Deleting a directory also removes its contents. Deletion cannot be undone. The root directory and root index.html are protected.",
+                  "operationId": "deletePaths",
+                  "requestBody": {
+                    "content": {
+                      "application/x-www-form-urlencoded": {
+                        "encoding": {
+                          "filenames[]": {
+                            "explode": true,
+                            "style": "form"
+                          }
+                        },
+                        "schema": {
+                          "properties": {
+                            "filenames[]": {
+                              "description": "Repeat this field for each site-relative path to delete.",
+                              "items": {
+                                "type": "string"
+                              },
+                              "minItems": 1,
+                              "type": "array"
+                            }
+                          },
+                          "required": [
+                            "filenames[]"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/MessageResponse"
+                          }
+                        }
+                      },
+                      "description": "Paths deleted."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Delete files or directories",
+                  "tags": [
+                    "Sites"
+                  ]
+                }
+              },
+              "/api/download": {
+                "get": {
+                  "description": "Returns the raw file body, not JSON. Directories cannot be downloaded.",
+                  "operationId": "downloadFile",
+                  "parameters": [
+                    {
+                      "description": "Site-relative file path.",
+                      "in": "query",
+                      "name": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "*/*": {
+                          "schema": {
+                            "format": "binary",
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "description": "Raw file content. Content type is inferred from the filename.",
+                      "headers": {
+                        "Cache-Control": {
+                          "example": "private, no-store",
+                          "schema": {
+                            "type": "string"
+                          }
+                        },
+                        "Content-Length": {
+                          "description": "Download size in bytes.",
+                          "schema": {
+                            "type": "integer"
+                          }
+                        },
+                        "ETag": {
+                          "description": "SHA-1 hash of the file.",
+                          "schema": {
+                            "type": "string"
+                          }
+                        },
+                        "Last-Modified": {
+                          "schema": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Download a file",
+                  "tags": [
+                    "Sites"
+                  ]
+                }
+              },
+              "/api/info": {
+                "get": {
+                  "description": "Supplying sitename returns public information without authentication. Omit sitename to retrieve information about the authenticated site.",
+                  "operationId": "getSiteInfo",
+                  "parameters": [
+                    {
+                      "description": "Public site name. Without this parameter, bearer credentials identify the site.",
+                      "in": "query",
+                      "name": "sitename",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "info": {
+                                "$ref": "#/components/schemas/SiteInfo"
+                              },
+                              "result": {
+                                "const": "success"
+                              }
+                            },
+                            "required": [
+                              "result",
+                              "info"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Site information."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                      "$ref": "#/components/responses/NotFound"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    },
+                    {}
+                  ],
+                  "summary": "Get site information",
+                  "tags": [
+                    "Sites"
+                  ]
+                }
+              },
+              "/api/list": {
+                "get": {
+                  "description": "Without path, lists the entire site recursively. With path, lists that directory's immediate children.",
+                  "operationId": "listFiles",
+                  "parameters": [
+                    {
+                      "description": "Directory to list. Omit, leave blank, or use / to list the entire site.",
+                      "in": "query",
+                      "name": "path",
+                      "required": false,
+                      "schema": {
+                        "type": "string"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "files": {
+                                "items": {
+                                  "oneOf": [
+                                    {
+                                      "$ref": "#/components/schemas/DirectoryEntry"
+                                    },
+                                    {
+                                      "$ref": "#/components/schemas/FileEntry"
+                                    }
+                                  ]
+                                },
+                                "type": "array"
+                              },
+                              "result": {
+                                "const": "success"
+                              }
+                            },
+                            "required": [
+                              "result",
+                              "files"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Site entries."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "List files and directories",
+                  "tags": [
+                    "Sites"
+                  ]
+                }
+              },
+              "/api/rename": {
+                "post": {
+                  "description": "The destination parent directory must already exist, and an existing destination cannot be overwritten.",
+                  "operationId": "renamePath",
+                  "requestBody": {
+                    "content": {
+                      "application/x-www-form-urlencoded": {
+                        "schema": {
+                          "properties": {
+                            "new_path": {
+                              "description": "New site-relative path.",
+                              "type": "string"
+                            },
+                            "path": {
+                              "description": "Current site-relative path.",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "path",
+                            "new_path"
+                          ],
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/MessageResponse"
+                          }
+                        }
+                      },
+                      "description": "Path renamed or moved."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Rename or move a file or directory",
+                  "tags": [
+                    "Sites"
+                  ]
+                }
+              },
+              "/api/upload": {
+                "post": {
+                  "description": "Each multipart field name is the destination path on the site. Each file and the combined request are limited to 100 MB and must fit the site's remaining storage.",
+                  "operationId": "uploadFiles",
+                  "requestBody": {
+                    "content": {
+                      "multipart/form-data": {
+                        "description": "One or more parts whose field names are destination paths.",
+                        "schema": {
+                          "additionalProperties": {
+                            "format": "binary",
+                            "type": "string"
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/MessageResponse"
+                          }
+                        }
+                      },
+                      "description": "Files uploaded."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Upload files",
+                  "tags": [
+                    "Sites"
+                  ]
+                }
+              },
+              "/api/upload_hash": {
+                "post": {
+                  "description": "Each form field name is a site-relative path and its value is the local file's SHA-1 hash.",
+                  "operationId": "checkFileHashes",
+                  "requestBody": {
+                    "content": {
+                      "application/x-www-form-urlencoded": {
+                        "schema": {
+                          "additionalProperties": {
+                            "description": "SHA-1 hash for the file path named by this form field.",
+                            "type": "string"
+                          },
+                          "type": "object"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "files": {
+                                "additionalProperties": {
+                                  "type": "boolean"
+                                },
+                                "type": "object"
+                              },
+                              "result": {
+                                "const": "success"
+                              }
+                            },
+                            "required": [
+                              "result",
+                              "files"
+                            ],
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Hash comparison by path; true means the remote file has the same hash."
+                    },
+                    "400": {
+                      "$ref": "#/components/responses/BadRequest"
+                    },
+                    "403": {
+                      "$ref": "#/components/responses/Forbidden"
+                    }
+                  },
+                  "security": [
+                    {
+                      "bearerAuth": []
+                    }
+                  ],
+                  "summary": "Check remote file hashes",
+                  "tags": [
+                    "Sites"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Neocities API",
+                "url": "https://neocities.org"
+              }
+            ],
+            "tags": [
+              {
+                "description": "Manage a Neocities site and its files.",
+                "name": "Sites"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Neocities"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:47.241374+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/neocities/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "093b505beb8357915c2c3618ab23bd8f08568f73daa8b43cf826e2dee3ccd944",
+    "source_id": "neocities",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/neocities/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "2026-10-01"
+}

@@ -1,0 +1,1740 @@
+{
+  "a2ui": {},
+  "app": "police-api-data-police-uk",
+  "graph": {
+    "edges": [
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/crime-categories"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/crime-last-updated"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/crimes-at-location"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/crimes-street/{crime_category}"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/forces"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/forces/{force_id}"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/forces/{force_id}/people"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/outcomes-for-crime/{crime_id}"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/stops-force"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/stops-street"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/{force_id}/neighbourhoods"
+      },
+      {
+        "from": "police-api-data-police-uk",
+        "kind": "EXPOSES",
+        "to": "operation:get:/{force_id}/{neighbourhood_id}"
+      },
+      {
+        "from": "operation:get:/crime-categories",
+        "kind": "RETURNS",
+        "to": "schema:CrimeCategoryList"
+      },
+      {
+        "from": "operation:get:/crimes-at-location",
+        "kind": "RETURNS",
+        "to": "schema:CrimeList"
+      },
+      {
+        "from": "operation:get:/crimes-street/{crime_category}",
+        "kind": "RETURNS",
+        "to": "schema:CrimeList"
+      },
+      {
+        "from": "operation:get:/forces",
+        "kind": "RETURNS",
+        "to": "schema:ForceList"
+      },
+      {
+        "from": "operation:get:/forces/{force_id}",
+        "kind": "RETURNS",
+        "to": "schema:Force"
+      },
+      {
+        "from": "operation:get:/forces/{force_id}/people",
+        "kind": "RETURNS",
+        "to": "schema:SeniorOfficerList"
+      },
+      {
+        "from": "operation:get:/outcomes-for-crime/{crime_id}",
+        "kind": "RETURNS",
+        "to": "schema:CrimeOutcomes"
+      },
+      {
+        "from": "operation:get:/stops-force",
+        "kind": "RETURNS",
+        "to": "schema:StopSearchList"
+      },
+      {
+        "from": "operation:get:/stops-street",
+        "kind": "RETURNS",
+        "to": "schema:StopSearchList"
+      },
+      {
+        "from": "operation:get:/{force_id}/neighbourhoods",
+        "kind": "RETURNS",
+        "to": "schema:NeighbourhoodList"
+      },
+      {
+        "from": "operation:get:/{force_id}/{neighbourhood_id}",
+        "kind": "RETURNS",
+        "to": "schema:Neighbourhood"
+      },
+      {
+        "from": "schema:CrimeCategoryList",
+        "kind": "REFERENCES",
+        "to": "schema:CrimeCategory"
+      },
+      {
+        "from": "schema:CrimeList",
+        "kind": "REFERENCES",
+        "to": "schema:CrimeRecord"
+      },
+      {
+        "from": "schema:CrimeOutcomes",
+        "kind": "REFERENCES",
+        "to": "schema:CrimeOutcome"
+      },
+      {
+        "from": "schema:CrimeOutcomes",
+        "kind": "REFERENCES",
+        "to": "schema:CrimeRecord"
+      },
+      {
+        "from": "schema:CrimeRecord",
+        "kind": "REFERENCES",
+        "to": "schema:CrimeLocation"
+      },
+      {
+        "from": "schema:CrimeRecord",
+        "kind": "REFERENCES",
+        "to": "schema:OutcomeStatus"
+      },
+      {
+        "from": "schema:StopSearchList",
+        "kind": "REFERENCES",
+        "to": "schema:StopSearchRecord"
+      },
+      {
+        "from": "schema:StopSearchRecord",
+        "kind": "REFERENCES",
+        "to": "schema:CrimeLocation"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "police-api-data-police-uk",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/crime-categories",
+        "kind": "operation",
+        "method": "get",
+        "name": "listCrimeCategories",
+        "parameters": [
+          {
+            "description": "Data month in YYYY-MM format.",
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/crime-categories",
+        "pointer": "#/paths/~1crime-categories/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CrimeCategoryList"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List crime categories",
+        "tags": [
+          "Crime"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/crime-last-updated",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCrimeLastUpdated",
+        "path": "/crime-last-updated",
+        "pointer": "#/paths/~1crime-last-updated/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "object"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get the latest crime data date",
+        "tags": [
+          "Crime"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Supply location_id or both lat and lng.",
+        "id": "operation:get:/crimes-at-location",
+        "kind": "operation",
+        "method": "get",
+        "name": "getCrimesAtLocation",
+        "parameters": [
+          {
+            "description": "Data month in YYYY-MM format.",
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Location identifier returned by another API method.",
+            "in": "query",
+            "name": "location_id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Latitude of the requested area or location.",
+            "in": "query",
+            "name": "lat",
+            "required": false,
+            "type": "number:double"
+          },
+          {
+            "description": "Longitude of the requested area or location.",
+            "in": "query",
+            "name": "lng",
+            "required": false,
+            "type": "number:double"
+          }
+        ],
+        "path": "/crimes-at-location",
+        "pointer": "#/paths/~1crimes-at-location/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CrimeList"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get crimes at a location",
+        "tags": [
+          "Crime"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Searches within one mile of a point or inside a custom polygon.",
+        "id": "operation:get:/crimes-street/{crime_category}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getStreetCrimes",
+        "parameters": [
+          {
+            "description": "Category identifier returned by the crime-categories method.",
+            "in": "path",
+            "name": "crime_category",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Data month in YYYY-MM format.",
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Latitude of the requested area or location.",
+            "in": "query",
+            "name": "lat",
+            "required": false,
+            "type": "number:double"
+          },
+          {
+            "description": "Longitude of the requested area or location.",
+            "in": "query",
+            "name": "lng",
+            "required": false,
+            "type": "number:double"
+          },
+          {
+            "description": "Polygon as colon-separated latitude,longitude pairs.",
+            "in": "query",
+            "name": "poly",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/crimes-street/{crime_category}",
+        "pointer": "#/paths/~1crimes-street~1{crime_category}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CrimeList"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "429"
+          },
+          {
+            "status": "503"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get street-level crimes",
+        "tags": [
+          "Crime"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/forces",
+        "kind": "operation",
+        "method": "get",
+        "name": "listForces",
+        "path": "/forces",
+        "pointer": "#/paths/~1forces/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "ForceList"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List police forces",
+        "tags": [
+          "Forces"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/forces/{force_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getForce",
+        "parameters": [
+          {
+            "description": "Force identifier returned by the forces method.",
+            "in": "path",
+            "name": "force_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/forces/{force_id}",
+        "pointer": "#/paths/~1forces~1{force_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Force"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a police force",
+        "tags": [
+          "Forces"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "The provider documentation uses the path suffix people.",
+        "id": "operation:get:/forces/{force_id}/people",
+        "kind": "operation",
+        "method": "get",
+        "name": "listSeniorOfficers",
+        "parameters": [
+          {
+            "description": "Force identifier returned by the forces method.",
+            "in": "path",
+            "name": "force_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/forces/{force_id}/people",
+        "pointer": "#/paths/~1forces~1{force_id}~1people/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "SeniorOfficerList"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List senior officers for a force",
+        "tags": [
+          "Forces"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/outcomes-for-crime/{crime_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getOutcomesForCrime",
+        "parameters": [
+          {
+            "description": "64-character crime identifier returned by another API method.",
+            "in": "path",
+            "name": "crime_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/outcomes-for-crime/{crime_id}",
+        "pointer": "#/paths/~1outcomes-for-crime~1{crime_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "CrimeOutcomes"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get outcomes for a crime",
+        "tags": [
+          "Crime"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/stops-force",
+        "kind": "operation",
+        "method": "get",
+        "name": "getForceStops",
+        "parameters": [
+          {
+            "description": "Force identifier returned by the forces method.",
+            "in": "query",
+            "name": "force",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Data month in YYYY-MM format.",
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/stops-force",
+        "pointer": "#/paths/~1stops-force/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "StopSearchList"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get stop and searches reported by a force",
+        "tags": [
+          "Stop and search"
+        ]
+      },
+      {
+        "deprecated": false,
+        "description": "Supply either lat and lng together or a custom poly value.",
+        "id": "operation:get:/stops-street",
+        "kind": "operation",
+        "method": "get",
+        "name": "getStreetStops",
+        "parameters": [
+          {
+            "description": "Data month in YYYY-MM format.",
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Latitude of the requested area or location.",
+            "in": "query",
+            "name": "lat",
+            "required": false,
+            "type": "number:double"
+          },
+          {
+            "description": "Longitude of the requested area or location.",
+            "in": "query",
+            "name": "lng",
+            "required": false,
+            "type": "number:double"
+          },
+          {
+            "description": "Polygon as colon-separated latitude,longitude pairs.",
+            "in": "query",
+            "name": "poly",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "path": "/stops-street",
+        "pointer": "#/paths/~1stops-street/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "StopSearchList"
+          },
+          {
+            "status": "400"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get stop and searches by area",
+        "tags": [
+          "Stop and search"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/{force_id}/neighbourhoods",
+        "kind": "operation",
+        "method": "get",
+        "name": "listNeighbourhoods",
+        "parameters": [
+          {
+            "description": "Force identifier returned by the forces method.",
+            "in": "path",
+            "name": "force_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/{force_id}/neighbourhoods",
+        "pointer": "#/paths/~1{force_id}~1neighbourhoods/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "NeighbourhoodList"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "List neighbourhoods for a force",
+        "tags": [
+          "Neighbourhoods"
+        ]
+      },
+      {
+        "deprecated": false,
+        "id": "operation:get:/{force_id}/{neighbourhood_id}",
+        "kind": "operation",
+        "method": "get",
+        "name": "getNeighbourhood",
+        "parameters": [
+          {
+            "description": "Force identifier returned by the forces method.",
+            "in": "path",
+            "name": "force_id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Force-specific neighbourhood identifier.",
+            "in": "path",
+            "name": "neighbourhood_id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "path": "/{force_id}/{neighbourhood_id}",
+        "pointer": "#/paths/~1{force_id}~1{neighbourhood_id}/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "Neighbourhood"
+          },
+          {
+            "status": "429"
+          }
+        ],
+        "safe": true,
+        "security": [],
+        "summary": "Get a neighbourhood",
+        "tags": [
+          "Neighbourhoods"
+        ]
+      },
+      {
+        "id": "schema:CrimeCategory",
+        "kind": "schema",
+        "name": "CrimeCategory",
+        "type": "object"
+      },
+      {
+        "id": "schema:CrimeCategoryList",
+        "kind": "schema",
+        "name": "CrimeCategoryList",
+        "type": "CrimeCategory[]"
+      },
+      {
+        "id": "schema:CrimeList",
+        "kind": "schema",
+        "name": "CrimeList",
+        "type": "CrimeRecord[]"
+      },
+      {
+        "id": "schema:CrimeLocation",
+        "kind": "schema",
+        "name": "CrimeLocation",
+        "type": "object"
+      },
+      {
+        "id": "schema:CrimeOutcome",
+        "kind": "schema",
+        "name": "CrimeOutcome",
+        "type": "object"
+      },
+      {
+        "id": "schema:CrimeOutcomes",
+        "kind": "schema",
+        "name": "CrimeOutcomes",
+        "type": "object"
+      },
+      {
+        "id": "schema:CrimeRecord",
+        "kind": "schema",
+        "name": "CrimeRecord",
+        "type": "object"
+      },
+      {
+        "id": "schema:Force",
+        "kind": "schema",
+        "name": "Force",
+        "type": "object"
+      },
+      {
+        "id": "schema:ForceList",
+        "kind": "schema",
+        "name": "ForceList",
+        "type": "object[]"
+      },
+      {
+        "id": "schema:Neighbourhood",
+        "kind": "schema",
+        "name": "Neighbourhood",
+        "type": "object"
+      },
+      {
+        "id": "schema:NeighbourhoodList",
+        "kind": "schema",
+        "name": "NeighbourhoodList",
+        "type": "object[]"
+      },
+      {
+        "id": "schema:OutcomeStatus",
+        "kind": "schema",
+        "name": "OutcomeStatus",
+        "type": "object"
+      },
+      {
+        "id": "schema:SeniorOfficerList",
+        "kind": "schema",
+        "name": "SeniorOfficerList",
+        "type": "object[]"
+      },
+      {
+        "id": "schema:StopSearchList",
+        "kind": "schema",
+        "name": "StopSearchList",
+        "type": "StopSearchRecord[]"
+      },
+      {
+        "id": "schema:StopSearchRecord",
+        "kind": "schema",
+        "name": "StopSearchRecord",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "police-api-data-police-uk"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://data.police.uk/api",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "parameters": {
+                "CrimeCategory": {
+                  "description": "Category identifier returned by the crime-categories method.",
+                  "in": "path",
+                  "name": "crime_category",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "CrimeId": {
+                  "description": "64-character crime identifier returned by another API method.",
+                  "in": "path",
+                  "name": "crime_id",
+                  "required": true,
+                  "schema": {
+                    "maxLength": 64,
+                    "minLength": 64,
+                    "type": "string"
+                  }
+                },
+                "ForceId": {
+                  "description": "Force identifier returned by the forces method.",
+                  "in": "path",
+                  "name": "force_id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "ForceQuery": {
+                  "description": "Force identifier returned by the forces method.",
+                  "in": "query",
+                  "name": "force",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Latitude": {
+                  "description": "Latitude of the requested area or location.",
+                  "in": "query",
+                  "name": "lat",
+                  "required": false,
+                  "schema": {
+                    "format": "double",
+                    "type": "number"
+                  }
+                },
+                "LocationId": {
+                  "description": "Location identifier returned by another API method.",
+                  "in": "query",
+                  "name": "location_id",
+                  "required": false,
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Longitude": {
+                  "description": "Longitude of the requested area or location.",
+                  "in": "query",
+                  "name": "lng",
+                  "required": false,
+                  "schema": {
+                    "format": "double",
+                    "type": "number"
+                  }
+                },
+                "Month": {
+                  "description": "Data month in YYYY-MM format. If omitted, the latest month is used where documented.",
+                  "in": "query",
+                  "name": "date",
+                  "required": false,
+                  "schema": {
+                    "pattern": "^\\d{4}-\\d{2}$",
+                    "type": "string"
+                  }
+                },
+                "NeighbourhoodId": {
+                  "description": "Force-specific neighbourhood identifier.",
+                  "in": "path",
+                  "name": "neighbourhood_id",
+                  "required": true,
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Polygon": {
+                  "description": "Polygon as colon-separated latitude,longitude pairs.",
+                  "in": "query",
+                  "name": "poly",
+                  "required": false,
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "responses": {
+                "RateLimited": {
+                  "description": "The API rate limit was exceeded."
+                }
+              },
+              "schemas": {
+                "CrimeCategory": {
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CrimeCategoryList": {
+                  "items": {
+                    "$ref": "#/components/schemas/CrimeCategory"
+                  },
+                  "type": "array"
+                },
+                "CrimeList": {
+                  "items": {
+                    "$ref": "#/components/schemas/CrimeRecord"
+                  },
+                  "type": "array"
+                },
+                "CrimeLocation": {
+                  "properties": {
+                    "latitude": {
+                      "type": "string"
+                    },
+                    "longitude": {
+                      "type": "string"
+                    },
+                    "street": {
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CrimeOutcome": {
+                  "properties": {
+                    "category": {
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "person_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "CrimeOutcomes": {
+                  "properties": {
+                    "crime": {
+                      "$ref": "#/components/schemas/CrimeRecord"
+                    },
+                    "outcomes": {
+                      "items": {
+                        "$ref": "#/components/schemas/CrimeOutcome"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "CrimeRecord": {
+                  "properties": {
+                    "category": {
+                      "type": "string"
+                    },
+                    "context": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "integer"
+                    },
+                    "location": {
+                      "$ref": "#/components/schemas/CrimeLocation"
+                    },
+                    "location_subtype": {
+                      "type": "string"
+                    },
+                    "location_type": {
+                      "type": "string"
+                    },
+                    "month": {
+                      "type": "string"
+                    },
+                    "outcome_status": {
+                      "$ref": "#/components/schemas/OutcomeStatus"
+                    },
+                    "persistent_id": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "Force": {
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "engagement_methods": {
+                      "items": {
+                        "properties": {
+                          "description": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "telephone": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ForceList": {
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "Neighbourhood": {
+                  "properties": {
+                    "centre": {
+                      "properties": {
+                        "latitude": {
+                          "type": "string"
+                        },
+                        "longitude": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "contact_details": {
+                      "additionalProperties": true,
+                      "type": "object"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "links": {
+                      "items": {
+                        "properties": {
+                          "description": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "locations": {
+                      "items": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "population": {
+                      "type": "string"
+                    },
+                    "url_force": {
+                      "type": "string"
+                    },
+                    "welcome_message": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "NeighbourhoodList": {
+                  "items": {
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "OutcomeStatus": {
+                  "properties": {
+                    "category": {
+                      "type": "string"
+                    },
+                    "date": {
+                      "type": "string"
+                    }
+                  },
+                  "type": [
+                    "object",
+                    "null"
+                  ]
+                },
+                "SeniorOfficerList": {
+                  "items": {
+                    "properties": {
+                      "bio": {
+                        "type": "string"
+                      },
+                      "contact_details": {
+                        "additionalProperties": true,
+                        "type": "object"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "rank": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "StopSearchList": {
+                  "items": {
+                    "$ref": "#/components/schemas/StopSearchRecord"
+                  },
+                  "type": "array"
+                },
+                "StopSearchRecord": {
+                  "properties": {
+                    "age_range": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "datetime": {
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "gender": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "involved_person": {
+                      "type": "boolean"
+                    },
+                    "legislation": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "location": {
+                      "$ref": "#/components/schemas/CrimeLocation"
+                    },
+                    "object_of_search": {
+                      "type": "string"
+                    },
+                    "officer_defined_ethnicity": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "operation": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "operation_name": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "outcome": {
+                      "type": [
+                        "string",
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "outcome_linked_to_object_of_search": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "outcome_object": {
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    },
+                    "removal_of_more_than_outer_clothing": {
+                      "type": [
+                        "boolean",
+                        "null"
+                      ]
+                    },
+                    "self_defined_ethnicity": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "type": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "externalDocs": {
+              "description": "Official Police API documentation",
+              "url": "https://data.police.uk/docs/"
+            },
+            "info": {
+              "description": "Focused community-maintained coverage of the crime, force, neighbourhood, and stop-and-search operations represented by the Jentic source. The public API requires no authentication. Crime locations are anonymised estimates.",
+              "title": "data.police.uk Police API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.1.0",
+            "paths": {
+              "/crime-categories": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/crime-categories/"
+                  },
+                  "operationId": "listCrimeCategories",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Month"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CrimeCategoryList"
+                          }
+                        }
+                      },
+                      "description": "Valid crime categories for the requested data set date."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "List crime categories",
+                  "tags": [
+                    "Crime"
+                  ]
+                }
+              },
+              "/crime-last-updated": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/crime-last-updated/"
+                  },
+                  "operationId": "getCrimeLastUpdated",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "properties": {
+                              "date": {
+                                "format": "date",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        }
+                      },
+                      "description": "Latest month represented in the crime data."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Get the latest crime data date",
+                  "tags": [
+                    "Crime"
+                  ]
+                }
+              },
+              "/crimes-at-location": {
+                "get": {
+                  "description": "Supply location_id or both lat and lng.",
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/crimes-at-location/"
+                  },
+                  "operationId": "getCrimesAtLocation",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Month"
+                    },
+                    {
+                      "$ref": "#/components/parameters/LocationId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Latitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Longitude"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CrimeList"
+                          }
+                        }
+                      },
+                      "description": "Crime records mapped to the requested location."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Get crimes at a location",
+                  "tags": [
+                    "Crime"
+                  ]
+                }
+              },
+              "/crimes-street/{crime_category}": {
+                "get": {
+                  "description": "Searches within one mile of a point or inside a custom polygon. Use either lat and lng together or poly. A custom area with more than 10,000 crimes can return 503. A GET URL over 4,094 characters returns 400; the provider suggests POST for complex polygons, but this focused specification does not define a POST body.",
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/crime-street/"
+                  },
+                  "operationId": "getStreetCrimes",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/CrimeCategory"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Month"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Latitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Longitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Polygon"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CrimeList"
+                          }
+                        }
+                      },
+                      "description": "Crime records for the requested area."
+                    },
+                    "400": {
+                      "description": "The GET request URL exceeds 4,094 characters."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    },
+                    "503": {
+                      "description": "A custom area contains more than 10,000 crimes."
+                    }
+                  },
+                  "summary": "Get street-level crimes",
+                  "tags": [
+                    "Crime"
+                  ]
+                }
+              },
+              "/forces": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/forces/"
+                  },
+                  "operationId": "listForces",
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ForceList"
+                          }
+                        }
+                      },
+                      "description": "Police forces available through the API."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "List police forces",
+                  "tags": [
+                    "Forces"
+                  ]
+                }
+              },
+              "/forces/{force_id}": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/force/"
+                  },
+                  "operationId": "getForce",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ForceId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Force"
+                          }
+                        }
+                      },
+                      "description": "Police force information."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Get a police force",
+                  "tags": [
+                    "Forces"
+                  ]
+                }
+              },
+              "/forces/{force_id}/people": {
+                "get": {
+                  "description": "The provider documentation uses the path suffix people.",
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/senior-officers/"
+                  },
+                  "operationId": "listSeniorOfficers",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ForceId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/SeniorOfficerList"
+                          }
+                        }
+                      },
+                      "description": "Senior officers and available contact details."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "List senior officers for a force",
+                  "tags": [
+                    "Forces"
+                  ]
+                }
+              },
+              "/outcomes-for-crime/{crime_id}": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/outcomes-for-crime/"
+                  },
+                  "operationId": "getOutcomesForCrime",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/CrimeId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/CrimeOutcomes"
+                          }
+                        }
+                      },
+                      "description": "Crime details and its recorded outcomes."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Get outcomes for a crime",
+                  "tags": [
+                    "Crime"
+                  ]
+                }
+              },
+              "/stops-force": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/stops-force/"
+                  },
+                  "operationId": "getForceStops",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ForceQuery"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Month"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/StopSearchList"
+                          }
+                        }
+                      },
+                      "description": "Stop-and-search records reported by the force."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Get stop and searches reported by a force",
+                  "tags": [
+                    "Stop and search"
+                  ]
+                }
+              },
+              "/stops-street": {
+                "get": {
+                  "description": "Supply either lat and lng together or a custom poly value.",
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/stops-street/"
+                  },
+                  "operationId": "getStreetStops",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/Month"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Latitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Longitude"
+                    },
+                    {
+                      "$ref": "#/components/parameters/Polygon"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/StopSearchList"
+                          }
+                        }
+                      },
+                      "description": "Stop-and-search records for the requested area."
+                    },
+                    "400": {
+                      "description": "The GET request URL exceeds 4,094 characters."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Get stop and searches by area",
+                  "tags": [
+                    "Stop and search"
+                  ]
+                }
+              },
+              "/{force_id}/neighbourhoods": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/neighbourhoods/"
+                  },
+                  "operationId": "listNeighbourhoods",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ForceId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/NeighbourhoodList"
+                          }
+                        }
+                      },
+                      "description": "Neighbourhoods for the requested police force."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "List neighbourhoods for a force",
+                  "tags": [
+                    "Neighbourhoods"
+                  ]
+                }
+              },
+              "/{force_id}/{neighbourhood_id}": {
+                "get": {
+                  "externalDocs": {
+                    "url": "https://data.police.uk/docs/method/neighbourhood/"
+                  },
+                  "operationId": "getNeighbourhood",
+                  "parameters": [
+                    {
+                      "$ref": "#/components/parameters/ForceId"
+                    },
+                    {
+                      "$ref": "#/components/parameters/NeighbourhoodId"
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/Neighbourhood"
+                          }
+                        }
+                      },
+                      "description": "Neighbourhood information."
+                    },
+                    "429": {
+                      "$ref": "#/components/responses/RateLimited"
+                    }
+                  },
+                  "summary": "Get a neighbourhood",
+                  "tags": [
+                    "Neighbourhoods"
+                  ]
+                }
+              }
+            },
+            "servers": [
+              {
+                "url": "https://data.police.uk/api"
+              }
+            ],
+            "tags": [
+              {
+                "name": "Crime"
+              },
+              {
+                "name": "Forces"
+              },
+              {
+                "name": "Neighbourhoods"
+              },
+              {
+                "name": "Stop and search"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "Police API (data.police.uk)"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:53.696255+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/data-police-uk/openapi.yml",
+        "version": "3.1.0"
+      }
+    ],
+    "sha256": "b4f6ec60360cb9ada3c1a7b8a7964ab3ff7ee167444f02717226a321c9038a00",
+    "source_id": "police-api-data-police-uk",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/data-police-uk/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}

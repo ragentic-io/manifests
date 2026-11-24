@@ -1,0 +1,605 @@
+{
+  "a2ui": {},
+  "app": "ocr-space",
+  "graph": {
+    "edges": [
+      {
+        "from": "ocr-space",
+        "kind": "EXPOSES",
+        "to": "operation:post:/parse/image"
+      },
+      {
+        "from": "ocr-space",
+        "kind": "EXPOSES",
+        "to": "operation:get:/parse/imageurl"
+      },
+      {
+        "from": "operation:post:/parse/image",
+        "kind": "ACCEPTS",
+        "to": "schema:OcrRequestFields"
+      },
+      {
+        "from": "operation:post:/parse/image",
+        "kind": "RETURNS",
+        "to": "schema:OcrResponse"
+      },
+      {
+        "from": "operation:get:/parse/imageurl",
+        "kind": "RETURNS",
+        "to": "schema:OcrResponse"
+      },
+      {
+        "from": "schema:OcrResponse",
+        "kind": "REFERENCES",
+        "to": "schema:ParsedResult"
+      },
+      {
+        "from": "schema:OverlayLine",
+        "kind": "REFERENCES",
+        "to": "schema:OverlayWord"
+      },
+      {
+        "from": "schema:ParsedResult",
+        "kind": "REFERENCES",
+        "to": "schema:TextOverlay"
+      },
+      {
+        "from": "schema:TextOverlay",
+        "kind": "REFERENCES",
+        "to": "schema:OverlayLine"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "ocr-space",
+        "kind": "application"
+      },
+      {
+        "deprecated": false,
+        "description": "Send exactly one of `url`, `file`, or `base64Image`.",
+        "id": "operation:post:/parse/image",
+        "kind": "operation",
+        "method": "post",
+        "name": "parseImage",
+        "path": "/parse/image",
+        "pointer": "#/paths/~1parse~1image/post",
+        "request": {
+          "content_types": [
+            "multipart/form-data"
+          ],
+          "required": true,
+          "type": "OcrRequestFields"
+        },
+        "responses": [
+          {
+            "status": "200",
+            "type": "OcrResponse"
+          }
+        ],
+        "safe": false,
+        "security": [
+          {
+            "apiKeyHeader": []
+          }
+        ],
+        "summary": "Parse an image or PDF"
+      },
+      {
+        "deprecated": false,
+        "description": "This GET endpoint accepts a remote image or PDF URL only; it does not accept file uploads or Base64 input.",
+        "id": "operation:get:/parse/imageurl",
+        "kind": "operation",
+        "method": "get",
+        "name": "parseImageUrl",
+        "parameters": [
+          {
+            "description": "URL of a remote image or PDF with a suitable content type.",
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "type": "string:uri"
+          },
+          {
+            "description": "Three-letter OCR language code; `auto` is supported by engines 2 and 3.",
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": false,
+            "description": "Return word-level position data.",
+            "in": "query",
+            "name": "isOverlayRequired",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "path": "/parse/imageurl",
+        "pointer": "#/paths/~1parse~1imageurl/get",
+        "responses": [
+          {
+            "status": "200",
+            "type": "OcrResponse"
+          }
+        ],
+        "safe": true,
+        "security": [
+          {
+            "apiKeyQuery": []
+          }
+        ],
+        "summary": "Parse an image or PDF from a URL"
+      },
+      {
+        "description": "Send exactly one input source: `url`, `file`, or `base64Image`.",
+        "id": "schema:OcrRequestFields",
+        "kind": "schema",
+        "name": "OcrRequestFields",
+        "type": "object"
+      },
+      {
+        "id": "schema:OcrResponse",
+        "kind": "schema",
+        "name": "OcrResponse",
+        "type": "object"
+      },
+      {
+        "id": "schema:OverlayLine",
+        "kind": "schema",
+        "name": "OverlayLine",
+        "type": "object"
+      },
+      {
+        "id": "schema:OverlayWord",
+        "kind": "schema",
+        "name": "OverlayWord",
+        "type": "object"
+      },
+      {
+        "id": "schema:ParsedResult",
+        "kind": "schema",
+        "name": "ParsedResult",
+        "type": "object"
+      },
+      {
+        "id": "schema:TextOverlay",
+        "kind": "schema",
+        "name": "TextOverlay",
+        "type": "object"
+      }
+    ]
+  },
+  "kind": "bundle",
+  "manifest": {
+    "apiVersion": "ragentic.dev/v1",
+    "kind": "ConnectorTemplate",
+    "metadata": {
+      "name": "ocr-space"
+    },
+    "spec": {
+      "base": {
+        "endpoint": "https://api.ocr.space",
+        "protocol": "openapi",
+        "specification": {
+          "document": {
+            "components": {
+              "schemas": {
+                "OcrRequestFields": {
+                  "description": "Send exactly one input source: `url`, `file`, or `base64Image`.",
+                  "properties": {
+                    "OCREngine": {
+                      "default": 2,
+                      "description": "OCR engine selection.",
+                      "enum": [
+                        1,
+                        2,
+                        3
+                      ],
+                      "type": "integer"
+                    },
+                    "base64Image": {
+                      "description": "Base64-encoded image or PDF.",
+                      "type": "string"
+                    },
+                    "detectOrientation": {
+                      "description": "Automatically rotate the image and return its text orientation.",
+                      "type": "boolean"
+                    },
+                    "file": {
+                      "description": "Multipart image or PDF file.",
+                      "format": "binary",
+                      "type": "string"
+                    },
+                    "filetype": {
+                      "description": "Override file type detection.",
+                      "enum": [
+                        "PDF",
+                        "GIF",
+                        "PNG",
+                        "JPG",
+                        "TIF",
+                        "BMP"
+                      ],
+                      "type": "string"
+                    },
+                    "isCreateSearchablePdf": {
+                      "default": false,
+                      "description": "Create a searchable PDF and enable overlay data.",
+                      "type": "boolean"
+                    },
+                    "isOverlayRequired": {
+                      "default": false,
+                      "description": "Return word-level position data.",
+                      "type": "boolean"
+                    },
+                    "isSearchablePdfHideTextLayer": {
+                      "default": false,
+                      "description": "Hide the text layer in a generated searchable PDF.",
+                      "type": "boolean"
+                    },
+                    "isTable": {
+                      "description": "Format parsed text line by line for table-like documents.",
+                      "type": "boolean"
+                    },
+                    "language": {
+                      "description": "Three-letter OCR language code; `auto` is supported by engines 2 and 3.",
+                      "type": "string"
+                    },
+                    "scale": {
+                      "default": false,
+                      "description": "Apply internal image upscaling.",
+                      "type": "boolean"
+                    },
+                    "url": {
+                      "description": "Remote image or PDF URL.",
+                      "format": "uri",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "OcrResponse": {
+                  "properties": {
+                    "ErrorDetails": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "ErrorMessage": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "IsErroredOnProcessing": {
+                      "type": "boolean"
+                    },
+                    "OCRExitCode": {
+                      "description": "Overall OCR status code.",
+                      "oneOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "ParsedResults": {
+                      "items": {
+                        "$ref": "#/components/schemas/ParsedResult"
+                      },
+                      "type": "array"
+                    },
+                    "ProcessingTimeInMilliseconds": {
+                      "oneOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "SearchablePDFURL": {
+                      "format": "uri",
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "OverlayLine": {
+                  "properties": {
+                    "MaxHeight": {
+                      "type": "number"
+                    },
+                    "MinTop": {
+                      "type": "number"
+                    },
+                    "Words": {
+                      "items": {
+                        "$ref": "#/components/schemas/OverlayWord"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "OverlayWord": {
+                  "properties": {
+                    "Height": {
+                      "type": "number"
+                    },
+                    "Left": {
+                      "type": "number"
+                    },
+                    "Top": {
+                      "type": "number"
+                    },
+                    "Width": {
+                      "type": "number"
+                    },
+                    "WordText": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "ParsedResult": {
+                  "properties": {
+                    "ErrorDetails": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "ErrorMessage": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "FileParseExitCode": {
+                      "oneOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "ParsedText": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "TextOrientation": {
+                      "oneOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "TextOverlay": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/TextOverlay"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "type": "object"
+                },
+                "TextOverlay": {
+                  "properties": {
+                    "HasOverlay": {
+                      "type": "boolean"
+                    },
+                    "Lines": {
+                      "items": {
+                        "$ref": "#/components/schemas/OverlayLine"
+                      },
+                      "type": "array"
+                    },
+                    "Message": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "securitySchemes": {
+                "apiKeyHeader": {
+                  "in": "header",
+                  "name": "apikey",
+                  "type": "apiKey"
+                },
+                "apiKeyQuery": {
+                  "in": "query",
+                  "name": "apikey",
+                  "type": "apiKey"
+                }
+              }
+            },
+            "info": {
+              "description": "Submit an image or PDF URL, a multipart file, or a Base64 image/PDF to the free OCR API. A free API key is available by registration; the documented free tier allows 500 requests per day per IP and 25,000 requests per month.",
+              "externalDocs": {
+                "description": "OCR.space API documentation",
+                "url": "https://ocr.space/ocrapi"
+              },
+              "title": "OCR.space OCR API",
+              "version": "1.0.0"
+            },
+            "openapi": "3.2.1",
+            "paths": {
+              "/parse/image": {
+                "post": {
+                  "description": "Send exactly one of `url`, `file`, or `base64Image`. The provider documents API key authentication in the `apikey` header for this POST endpoint. Searchable PDF creation is available with the documented request options.",
+                  "operationId": "parseImage",
+                  "requestBody": {
+                    "content": {
+                      "multipart/form-data": {
+                        "schema": {
+                          "allOf": [
+                            {
+                              "$ref": "#/components/schemas/OcrRequestFields"
+                            },
+                            {
+                              "oneOf": [
+                                {
+                                  "required": [
+                                    "url"
+                                  ]
+                                },
+                                {
+                                  "required": [
+                                    "file"
+                                  ]
+                                },
+                                {
+                                  "required": [
+                                    "base64Image"
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OcrResponse"
+                          }
+                        }
+                      },
+                      "description": "OCR processing result. Processing errors are reported in the JSON body."
+                    }
+                  },
+                  "security": [
+                    {
+                      "apiKeyHeader": []
+                    }
+                  ],
+                  "summary": "Parse an image or PDF"
+                }
+              },
+              "/parse/imageurl": {
+                "get": {
+                  "description": "This GET endpoint accepts a remote image or PDF URL only; it does not accept file uploads or Base64 input. Its API key is sent in the query string as documented by the provider.",
+                  "operationId": "parseImageUrl",
+                  "parameters": [
+                    {
+                      "description": "URL of a remote image or PDF with a suitable content type.",
+                      "in": "query",
+                      "name": "url",
+                      "required": true,
+                      "schema": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Three-letter OCR language code; `auto` is supported by engines 2 and 3.",
+                      "in": "query",
+                      "name": "language",
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "description": "Return word-level position data.",
+                      "in": "query",
+                      "name": "isOverlayRequired",
+                      "schema": {
+                        "default": false,
+                        "type": "boolean"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/OcrResponse"
+                          }
+                        }
+                      },
+                      "description": "OCR processing result. Processing errors are reported in the JSON body."
+                    }
+                  },
+                  "security": [
+                    {
+                      "apiKeyQuery": []
+                    }
+                  ],
+                  "summary": "Parse an image or PDF from a URL"
+                }
+              }
+            },
+            "servers": [
+              {
+                "description": "Free OCR API",
+                "url": "https://api.ocr.space"
+              }
+            ]
+          }
+        },
+        "type": "app"
+      },
+      "category": "app",
+      "connector": {},
+      "status": "draft",
+      "title": "OCR.space"
+    }
+  },
+  "protocol": "openapi",
+  "provenance": {
+    "fetched_at": "2026-11-18T18:35:43.578999+00:00",
+    "license": null,
+    "origins": [
+      {
+        "format": "openapi",
+        "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/ocrspace/openapi.yml",
+        "version": "3.2.1"
+      }
+    ],
+    "sha256": "20cb98070b3c8d08a2aed60267929f1ce37d98dd2e60e6a99c5fe6f70c0293b7",
+    "source_id": "ocr-space",
+    "source_updated": null,
+    "url": "https://raw.githubusercontent.com/SergiuPogor/awesome-openapi-specs/24e22880234a0c8b3d9e9284d82bc4bf007b1cc4/specs/ocrspace/openapi.yml"
+  },
+  "readiness": "discovered",
+  "review_required": {
+    "authentication": true,
+    "branding": true,
+    "connection_test": true,
+    "external_references": [],
+    "setup_guide": true,
+    "source_currency": true
+  },
+  "setup_verification": "not_live_verified",
+  "version": "1.0.0"
+}
