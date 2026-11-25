@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_static01.nyt.com_images_icons_t
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2c262a5f87d26a6e773ec47e09c990148c7852ae95a2d79c28bd298bb3667e29` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

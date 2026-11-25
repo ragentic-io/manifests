@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_Advicent_profile_im
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1a9e53816b934b64bc04892c2d702ff52e60558dd3be0de1597ac2a5249b3273` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

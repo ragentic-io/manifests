@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_docs.shorten.rest_assets_logo.p
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `62127b7d9017961f9258e6aa6fa0cbfeae9bea5c0c0975409fde688bc4b2a9a3` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_apis.guru_assets_images_no-logo
 | | |
 | --- | --- |
 | Categories | Open data & government, Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b757611c467ed234c56c9ee383e90b1cf9f121f8d2dc7110a78c837849f09093` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

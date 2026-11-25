@@ -13,7 +13,7 @@ logo: "https://www.amentum.io/static/img/favicon-32x32.png"
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6420619bd3818889b1f8adbdfdd951a8a23848dad265039685804956887c195a` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

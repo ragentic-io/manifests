@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `dff488423f47c77afe23e25413f3bc27d37b6e4312f5375ac7cbf73bb9f7a151` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.publora.com/api/v1` |
 | Credential | — |
 | Connection test | — |

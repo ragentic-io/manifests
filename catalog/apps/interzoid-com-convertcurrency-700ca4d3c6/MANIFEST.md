@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_interzoid_profile_i
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4e98654da737f796bdb20dbe023f6daccaa1dd0b1cf24d672598cb47f40ba4dc` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

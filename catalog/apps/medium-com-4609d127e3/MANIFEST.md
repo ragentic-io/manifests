@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_raw.githubusercontent.com_Mediu
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `aa1c0269bf17e9f91eebef4ed76175cd98c062a0eef033b221896f54697385d2` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

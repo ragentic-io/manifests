@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `72ac96844572d3c0fd12fa3885390b7a501122e599c870d254371bf198dc0885` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_pbs.twimg.com_profile_images_56
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `697b7779d6f24f0f029a412b196386925b56228ceba94f0cc7aaaf5831d67be7` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_AvazaHq_profile_ima
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7e97549857ff9c76ce8bfbeb92c89f93ec70aee7601236479a1967d99c476de7` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

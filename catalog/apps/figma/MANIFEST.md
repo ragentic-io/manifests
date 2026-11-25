@@ -14,7 +14,7 @@ Connect Figma and FigJam with an independent Ragentic integration through Figma'
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `49cc8249e5a55b27b71f36970b6bbc84de79837740db0d82018d08ebe2313c36` in `bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.figma.com` |
 | Credential | api_key_header (`X-Figma-Token`) |
 | Connection test | GET `https://api.figma.com/v1/me` |

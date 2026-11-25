@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `37f3e39d38484f9c56c333e178dae245c587fbf5d9fa03c51161a79f474965a7` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.frankfurter.dev/v2` |
 | Credential | — |
 | Connection test | — |

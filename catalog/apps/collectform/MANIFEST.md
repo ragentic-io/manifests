@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fb00dd7c960d3bb29494b2bf6004af424e648b6d076cc5c143ec94c16d39c514` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.collectform.com` |
 | Credential | — |
 | Connection test | — |

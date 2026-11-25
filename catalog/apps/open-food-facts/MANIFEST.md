@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6ff1e47d51989aec224a278801167ff646414e2812d29b1be99102f340016ded` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://world.openfoodfacts.org` |
 | Credential | — |
 | Connection test | — |

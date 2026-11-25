@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_d389zggrogs7qo.cloudfront.net_i
 | | |
 | --- | --- |
 | Categories | Social media, Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d97ce6ed6988eb341179bbbdbbf799dd7266058cd5acd663aade1fcc73eed67d` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

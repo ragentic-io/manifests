@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_pbs.twimg.com_profile_images_50
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `30bc6e07a592325ba558918dbff57fe60b298f205ead6968711bd06bb7749955` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

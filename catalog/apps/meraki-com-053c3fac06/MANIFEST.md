@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_n140.meraki.com_images_cisco-me
 | | |
 | --- | --- |
 | Categories | IoT & smart home, Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4bec7e208251e8aa5c8386ad72ba27c94bde9d987ae7728b05cd19b4bf98611a` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

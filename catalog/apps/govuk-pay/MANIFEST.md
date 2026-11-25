@@ -14,7 +14,7 @@ Connect to GOV.UK Pay with an independent Ragentic integration. Not affiliated w
 | | |
 | --- | --- |
 | Categories | Finance & payments, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `cc727703e6fcf6eccd2bcdf6ca20ee3dab3a830e4d74ea968253037051451820` in `bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://publicapi.payments.service.gov.uk` |
 | Credential | static_bearer |
 | Connection test | GET `https://publicapi.payments.service.gov.uk/v1/payments` |

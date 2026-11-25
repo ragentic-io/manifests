@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_apis.guru_assets_images_no-logo
 | | |
 | --- | --- |
 | Categories | Health & science |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `89ddd2c2e4fed88c3d91d08c989778b0cac2c4b184b3ef572c867a0dc9155ab3` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

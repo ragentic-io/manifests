@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e542cd9b09e0120a52eeb9e9f5e598f162a20b77a1ecd9c0424cb9cf8a5ce2c5` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://metaphysics-production.artsy.net/v2` |
 | Credential | — |
 | Connection test | — |

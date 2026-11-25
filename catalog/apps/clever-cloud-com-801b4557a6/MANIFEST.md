@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_clever_cloud_profil
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `40be752059003b537d883fd4d2c3747d3962627ef1cc7e92572c6ec48563670f` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

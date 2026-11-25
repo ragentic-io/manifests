@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `482af212e0b80f645016c330a0f60d083b0fe9b9c207712c606f889c652dc4d9` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.sendible.com` |
 | Credential | — |
 | Connection test | — |

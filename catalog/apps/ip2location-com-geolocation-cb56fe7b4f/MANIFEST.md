@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_ip2location_profile
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9c015d594f5eea0616a331d93e55c2905ed0c72ad3f9408f124928403373df4e` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

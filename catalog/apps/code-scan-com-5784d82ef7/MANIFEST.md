@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_CodeScanforSFDC_pro
 | | |
 | --- | --- |
 | Categories | Security & identity, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8fda6cb3b41704ad96549cdeddbae1a0220dc99adb54a1e46448834dd83b013f` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

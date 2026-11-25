@@ -12,7 +12,7 @@ categories: ["security"]
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `aa80b9d5cac53d2c381cc97efa89d84de83b2966567fe38ab68d3f9b7c3bd319` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.stytch.com` |
 | Credential | — |
 | Connection test | — |

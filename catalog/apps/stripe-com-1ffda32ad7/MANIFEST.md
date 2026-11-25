@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_stripe_profile_imag
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `49a5d1f4f0bc692a92877c33a61364c4b157d6f89e61bbbdaee910a816539813` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

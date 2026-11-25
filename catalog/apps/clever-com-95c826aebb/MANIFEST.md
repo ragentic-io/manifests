@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_clever_profile_imag
 | | |
 | --- | --- |
 | Categories | Education |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e61aaeab6653ac4548bb9871b53d80fb962bf37dfd89b6cd4a1184fe082211ff` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

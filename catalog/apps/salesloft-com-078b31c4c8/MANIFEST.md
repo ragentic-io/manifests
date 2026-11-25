@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_SalesLoft_profile_i
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `76fb8b4d464b41a9895cf5bb3adade66211a85cd87602c6fecda036e331b6b2a` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

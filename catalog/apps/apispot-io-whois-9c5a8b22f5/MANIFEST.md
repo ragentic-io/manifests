@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_s3.amazonaws.com_rapidapi-prod-
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9773f1bd81d3b213b2608336c057e11ed4f4a677a5f3e46bcd7a5a21027fd67f` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_cdn_mist_com_wp-content_uploads
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8d082954644d8d37c39ea60d647044b78332b2a939e42ab2415f252b3494289c` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

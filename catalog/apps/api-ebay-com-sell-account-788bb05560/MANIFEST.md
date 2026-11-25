@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter_com_ebay_profile_image.
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5181130e031cf7726a4eeb5e2f724e9c07147a5636ac1da456f8284592036307` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `69c2cd4b89ee78d1e93414914ac07af9a93372f3fbc0c4ac0ded8d9e212d58ff` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.lemlist.com/api` |
 | Credential | — |
 | Connection test | — |

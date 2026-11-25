@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_EVEMarketer_profile
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9d9c06f98eb4d163f0daf364837992c261fb55a28d5520cc9f6293deee0c92f1` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

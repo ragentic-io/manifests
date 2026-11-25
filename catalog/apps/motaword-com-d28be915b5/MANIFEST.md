@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_dentycj2qhk72.cloudfront.net_ne
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bef418ecd1231b541b8613b2a7968b68df86e4518dd8e06f762a295f78ac6608` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

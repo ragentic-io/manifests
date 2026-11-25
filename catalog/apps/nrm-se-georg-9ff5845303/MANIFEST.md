@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_apis.guru_assets_images_no-logo
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b4478bc0a01ac44c27fc9e83b0f273c9c2e3007aa755d6e796a460bfb4b8f584` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

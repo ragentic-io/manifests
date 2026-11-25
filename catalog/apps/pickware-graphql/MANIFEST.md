@@ -13,7 +13,7 @@ logo: "https://www.pickware.com/app/themes/pickware-theme/dist/static/favicon/fa
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `017eb4e0ef72aa360949f1270c9901b7125d0a40752a225a67e34d146022dcf0` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

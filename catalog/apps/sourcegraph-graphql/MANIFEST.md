@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `625f426b2ccb4be5219d047f6727e8da2e9d7b4a6db2699dd95dcf28dcb749ec` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://sourcegraph.com/.api/graphql` |
 | Credential | — |
 | Connection test | — |

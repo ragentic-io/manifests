@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/http_raw.githubusercontent.com_Mermad
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `369591cd5ef8818ad81cd44c8a09e3912ccc76a2afbfc772443b9cec2ba1f5e1` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

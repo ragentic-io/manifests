@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_apis.guru_assets_images_no-logo
 | | |
 | --- | --- |
 | Categories | IoT & smart home |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `89af950e999f4bc38d043f9a8cab0ec6da5b7f33fa4630a928575748059b26fb` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

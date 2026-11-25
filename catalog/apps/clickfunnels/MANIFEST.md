@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bff8c9a0421c39d022501182761153bbc22be010a5c84827265f1217363e4050` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://{subdomain}.myclickfunnels.com/api/v2` |
 | Credential | — |
 | Connection test | — |

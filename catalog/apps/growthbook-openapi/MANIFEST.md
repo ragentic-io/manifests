@@ -14,7 +14,7 @@ Independent connector for GrowthBook REST API. Not affiliated with or endorsed b
 | | |
 | --- | --- |
 | Categories | Software development, Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e41d5f2501bb46f1a685bc8ca423e2dee9ab5979cbe12a2ffdeb35efac4b3b62` in `bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.growthbook.io/api` |
 | Credential | static_bearer |
 | Connection test | GET `https://api.growthbook.io/api/v1/settings` |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_rebilly-core.redoc.ly_rb_apiLog
 | | |
 | --- | --- |
 | Categories | Finance & payments, E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9081edce29bc27273bca85adbc539528df369970fc88251b3b46fd8ca15824c5` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

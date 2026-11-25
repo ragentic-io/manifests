@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_CallControlLLC_prof
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ec0201bd13eaa9b517eb3722a05a1990d2ea2c03b3327907f70dc45bc661691d` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

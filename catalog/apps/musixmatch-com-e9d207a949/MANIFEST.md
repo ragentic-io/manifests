@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_Musixmatch_profile_
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `89e8d34bdf64eb5b04f91d65c430b0d6d2595036dfd220509f256d85c7188a1f` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

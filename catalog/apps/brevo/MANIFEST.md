@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `13d60b247596ab00519f6562b896c00deb5e84a693387102e38ab8fac4d021cf` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.brevo.com/v3` |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_pdfgeneratorapi_com_assets_web_
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `028b40a1e83f93a2ef4bc719ed2b8083a7dc0d5186693c55b18d54c6e38fccf6` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

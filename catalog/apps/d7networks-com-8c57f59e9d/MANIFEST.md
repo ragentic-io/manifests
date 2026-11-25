@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_d7sms_profile_image
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fe36c90f751b8786c3ab51f3d9ef6d020d21340dc05d6fc6c9cf311a39f4e323` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

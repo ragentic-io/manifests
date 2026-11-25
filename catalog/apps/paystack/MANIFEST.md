@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c5ba871a569774d755acf22fad6d0bf5693f2fccfd67f157486d8edcdd89b116` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.paystack.co` |
 | Credential | — |
 | Connection test | — |

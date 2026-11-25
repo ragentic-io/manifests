@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_s3.amazonaws.com_enterprise-mul
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b7852520a697b63f143ebd4482075fb85e949b816571be6cb3fb4e1da110d6d8` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

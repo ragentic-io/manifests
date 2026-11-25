@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_netatmo_profile_ima
 | | |
 | --- | --- |
 | Categories | IoT & smart home |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b039b0ecc3acd83e8f05d7d3250572de89939da060033e1533005df6f068acc7` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

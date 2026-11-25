@@ -12,7 +12,7 @@ categories: ["ecommerce", "travel"]
 | | |
 | --- | --- |
 | Categories | E-commerce, Travel & transport |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bb8c61e96701724b1687cc8720c9e8d4eef3225b5eab87ea2224f6bea7c0dd45` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.transport.nsw.gov.au/v1/tp` |
 | Credential | — |
 | Connection test | — |

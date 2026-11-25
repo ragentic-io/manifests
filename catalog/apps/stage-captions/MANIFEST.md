@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f8a0833030f948ce6751b772aa354cb7d620bdd0ad9996c860977dc92ee90095` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.stagecaptions.io` |
 | Credential | — |
 | Connection test | — |

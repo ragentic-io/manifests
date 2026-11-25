@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_beneship_profile_im
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c96610b24894384f949d9c2a5989d83ca7c2c00e9027c0abb464786b46b71c3d` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["security"]
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `51673808797439d5e0b861ea85461212fe963addd1879e6496f706e3f5f62e87` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://www.onyphe.io/api/v2` |
 | Credential | — |
 | Connection test | — |

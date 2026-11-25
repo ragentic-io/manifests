@@ -12,7 +12,7 @@ categories: ["health"]
 | | |
 | --- | --- |
 | Categories | Health & science |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fa626a01545d746e74c8fd2813f7ab5e857f953cbeecacd10f83bd2e53d95e3a` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.nal.usda.gov/fdc` |
 | Credential | — |
 | Connection test | — |

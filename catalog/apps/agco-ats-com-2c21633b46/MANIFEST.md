@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_AGCOcorp_profile_im
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4b2a22f80851ed5fa9d2ba7d162faa4420d3172ee1e50712d7f499c39f38ddb8` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

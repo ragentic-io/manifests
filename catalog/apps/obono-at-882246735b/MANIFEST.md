@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_obono_at_profile_im
 | | |
 | --- | --- |
 | Categories | Finance & payments, E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `492c33c8e619a55a01265faf4b1ed35967b1f86fdcf95198e6a7200caaae3aeb` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

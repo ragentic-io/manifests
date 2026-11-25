@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_ibanapi.com_assets_favicon_appl
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e00707c9309e8587c058831feade4de63486047ad24d5c68aa9a2810ed593ca4` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

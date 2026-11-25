@@ -14,7 +14,7 @@ Webflow Data API operations available to site API tokens, scoped by Webflow to t
 | | |
 | --- | --- |
 | Categories | Software development, Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `29f8ecbd9cbd090aa0096fee480f7f13d2a5d44b468496a16ad50782dcf58120` in `bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.webflow.com/v2` |
 | Credential | static_bearer |
 | Connection test | GET `https://api.webflow.com/v2/sites/{value}` |

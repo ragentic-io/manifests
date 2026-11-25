@@ -12,7 +12,7 @@ categories: ["productivity"]
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `754cb142640bc1c3299cb9856721ee280ecba0966bce633046833fdc5337bc7f` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://docs.superhuman.com/apis/v1` |
 | Credential | — |
 | Connection test | — |

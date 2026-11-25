@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_ipqualityscore.com_templates_im
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7f675ccf434eac0df8b3d107b82617212fb1c5099cdb85518eaad234b151e45e` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

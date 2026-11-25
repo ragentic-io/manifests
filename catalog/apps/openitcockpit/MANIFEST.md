@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `99ea3ec0376dbe2b0ba5a9424b0ac5bacc01733e52eb4c355da9856de0cb1cab` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://demo.openitcockpit.io` |
 | Credential | — |
 | Connection test | — |

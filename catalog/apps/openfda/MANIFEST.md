@@ -12,7 +12,7 @@ categories: ["health"]
 | | |
 | --- | --- |
 | Categories | Health & science |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c06609fc76cc160168079c4cf8eb94caaf1e3ab1152027edd6dd4d860b87acbc` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.fda.gov` |
 | Credential | — |
 | Connection test | — |

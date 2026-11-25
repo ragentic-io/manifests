@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_pbs.twimg.com_profile_images_53
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `10249c308f7b220ed3b3abb1c55789a036a061d650da74e5ebd9ce60509001a5` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

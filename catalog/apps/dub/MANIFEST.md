@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `930a90755552015a1f31cf302f4c08a9d17c3c8b289b623871c2476d637d94bb` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.dub.co` |
 | Credential | — |
 | Connection test | — |

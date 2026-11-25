@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6ecd738071bd80302d3c92fb988cc31b15478a276a99eed1ff63d0f77bdbfead` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.eventleaf.com` |
 | Credential | — |
 | Connection test | — |

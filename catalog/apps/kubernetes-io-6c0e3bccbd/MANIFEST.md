@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_upload.wikimedia.org_wikipedia_
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f29170c93c6088053751880684895995d3e6a00b42b5950f8e2d3895b743dba4` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

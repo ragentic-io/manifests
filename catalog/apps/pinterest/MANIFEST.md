@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `899f00cd94f6151af9a51035ae4b1b7a7c7b884b09cf3ce06cf36e84148e293e` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.pinterest.com/v5` |
 | Credential | — |
 | Connection test | — |

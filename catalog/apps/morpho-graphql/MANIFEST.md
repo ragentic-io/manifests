@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fcdfa2976408ef53cb390a07327ed4462cb2be8f74d6a190cea15cdebb49d490` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.morpho.org/graphql` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["education"]
 | | |
 | --- | --- |
 | Categories | Education |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2a237c2733caa1ced38dbaf66903da625c8779326641773d255de98a06387250` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://{subdomain}.coursebricks.app` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `977fb5b235b905ff71c500c247a31e21f2c79fdc303eb2e13e88a192bdb224cb` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://data.police.uk/api` |
 | Credential | — |
 | Connection test | — |

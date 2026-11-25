@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `252a55292b0ed70cf254b38f75604c16c785cd6a6f4bf17eb4a96c223bf06731` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://opendata.aemet.es/opendata` |
 | Credential | — |
 | Connection test | — |

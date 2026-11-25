@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b89363ce6cf687890a032ea36fd4ef41c8d11a8ab6722b2822dc2675d74c3204` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://developer.gadjian.com/v1` |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_github.com_open-policy-agent_op
 | | |
 | --- | --- |
 | Categories | Security & identity, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `64918871504de91468269f72c8ed6bbc1d606e8014ab28e96e45886cc20d4cd7` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

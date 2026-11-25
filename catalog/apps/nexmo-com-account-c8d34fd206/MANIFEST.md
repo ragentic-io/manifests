@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.vonage.com_content_dam_vona
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `11cdcd4e26fc6a48e1efe6b0b12391374dad04222cfedb991df2f51ac13f580a` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

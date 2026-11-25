@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_docs.vectara.com_img_vectara_wo
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `36e70556343f6a816791007bc6e2eed4c719e2d6d171a3b8b715f56d82edd762` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `aad700558d43cee224f40349ec12c869d954411e79ecc05b7666469e07aea9bb` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.collegefootballdata.com/` |
 | Credential | — |
 | Connection test | — |

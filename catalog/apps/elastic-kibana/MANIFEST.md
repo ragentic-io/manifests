@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ab1a9fccc55653a9917741a3b6a79380e4be3c6eeb2827c72dc34c7509e36a58` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://{kibana_url}` |
 | Credential | — |
 | Connection test | — |

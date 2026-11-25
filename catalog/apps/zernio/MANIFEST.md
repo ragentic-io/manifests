@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9036c9ae3e0da7662b14567255e144926ef8f532d8439a45a05e172423b897da` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://zernio.com/api` |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_openbankingproject-ch.github.io
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d1f3ef5bdb48f0928e0c0ce83d7ec06961e985044e46a4fa1e409a876f662734` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

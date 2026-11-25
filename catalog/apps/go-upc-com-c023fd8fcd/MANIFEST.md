@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_go-upc.com_img_favicon.png"
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `48274f638450b164ee32a3a73fe71d861eb045814a01245bbb2d5787216e50ba` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

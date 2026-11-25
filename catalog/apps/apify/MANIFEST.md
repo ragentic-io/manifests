@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b9d6d5f8192b296dc4bae9504b4a02e10a245889ed2db50cd6ae531276bcf3ed` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.apify.com` |
 | Credential | — |
 | Connection test | — |

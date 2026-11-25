@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b6935f27606e0f38226eff62261ee929ab873f73ff40297d92f5d8e77e5fbcc6` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://u2l.ai` |
 | Credential | — |
 | Connection test | — |

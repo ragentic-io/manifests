@@ -12,7 +12,7 @@ categories: ["location"]
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9405f4502feb76fa6540899599f7d62d8bbb6f001b84e34c6bffa258234f5b14` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.openchargemap.io/v3` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `aa61d0fbb561e68fd198485b4b9e0fa4b6c0bf98b2f1bc007e683f3787f74344` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.census.gov` |
 | Credential | — |
 | Connection test | — |

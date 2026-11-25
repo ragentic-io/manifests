@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d68d55643fcc85f69e0ddb7d5417e5fdd12c8538ec0a8cca7347b4bc21b3ebe7` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://cloud.activepieces.com/api` |
 | Credential | — |
 | Connection test | — |

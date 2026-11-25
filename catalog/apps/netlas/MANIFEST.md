@@ -12,7 +12,7 @@ categories: ["security"]
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `038c2362a7b8f2a0b276a93562b81d9e75d8dba7673aef377378e6ac1ad83137` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://app.netlas.io` |
 | Credential | — |
 | Connection test | — |

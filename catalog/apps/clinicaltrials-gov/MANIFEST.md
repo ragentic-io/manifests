@@ -12,7 +12,7 @@ categories: ["health"]
 | | |
 | --- | --- |
 | Categories | Health & science |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `0c0c6effd71b339559e8c229aa7ee210ecff76e786c4d2296de2e85a2070f817` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://clinicaltrials.gov/api/v2` |
 | Credential | — |
 | Connection test | — |

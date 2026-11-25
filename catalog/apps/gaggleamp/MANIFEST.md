@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d6917b987a9241faa4e150d2c2744a0781656be450115ee6f0ad67bbc9570d7d` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://secure6.gaggleamp.com/api/v1` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `56e57fd34175ff8e1ce44e510c6f6845ab951f515cae550ed86558923e9d8c2b` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://rest.coincap.io/v3` |
 | Credential | — |
 | Connection test | — |

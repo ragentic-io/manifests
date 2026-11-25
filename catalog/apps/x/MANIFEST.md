@@ -14,7 +14,7 @@ Connect to the X API v2 with an independent Ragentic integration using X's offic
 | | |
 | --- | --- |
 | Categories | Social media, Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `395b8afaaec161721704a2bff54b87ac486daaab19e37b70585b2c1b4a8c5822` in `bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.x.com` |
 | Credential | oauth2_authorization_code |
 | Connection test | GET `https://api.x.com/2/users/me` |

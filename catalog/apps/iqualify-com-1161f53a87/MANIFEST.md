@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_hello_iqualify_prof
 | | |
 | --- | --- |
 | Categories | Education |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7d1b573767b3ed95e416ae39471e6b798eaaf88a601c969ee8acbf7609d7bc5d` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

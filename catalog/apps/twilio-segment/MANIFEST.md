@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `0efb10a9f2fe796baa620592029d05ba07f9f8222cfbdd88ce5ea8e9ce91cca8` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.segmentapis.com` |
 | Credential | — |
 | Connection test | — |

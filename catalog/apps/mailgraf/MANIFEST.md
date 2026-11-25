@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `90fb39917684013f1af351130e8c956fe18b2bf72441fac5722dfa261081e5ee` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.mailgraf.com` |
 | Credential | — |
 | Connection test | — |

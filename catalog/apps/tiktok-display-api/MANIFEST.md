@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `447d2bc8c3da4fb9f00eb62032b0c0a37d8e36a205f32bb21d0b4f84ada895de` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://open.tiktokapis.com/v2` |
 | Credential | — |
 | Connection test | — |

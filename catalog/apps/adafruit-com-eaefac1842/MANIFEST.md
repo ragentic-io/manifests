@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_adafruit_profile_im
 | | |
 | --- | --- |
 | Categories | IoT & smart home |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5c61a6773372958cdc0de42499ff3680cce0391457140da7ca10ba58f2572d57` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

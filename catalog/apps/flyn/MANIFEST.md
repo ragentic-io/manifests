@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8f0e09d6b7e8d51cf24a3cb9980dbb19efbccd63640942a9330f45d24e76c528` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://www.flyn.to` |
 | Credential | — |
 | Connection test | — |

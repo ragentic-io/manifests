@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e3075d7baefe9675435771909d93fd020b3fdb90e77b6547e492c4443a8877ce` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.feedly.com/v3` |
 | Credential | — |
 | Connection test | — |

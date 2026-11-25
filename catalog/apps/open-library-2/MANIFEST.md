@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e4dbd77d1bcf0cf316bcacfbf2d7d66cf365164d1aa0c3365243d9d41218c761` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://openlibrary.org` |
 | Credential | — |
 | Connection test | — |

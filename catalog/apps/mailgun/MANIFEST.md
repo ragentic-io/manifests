@@ -12,7 +12,7 @@ categories: ["communication"]
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b27efea120b8479cd2f749ffa4a9293ba4fa008868605a1ce9cfeff154cfd71b` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.mailgun.net` |
 | Credential | — |
 | Connection test | — |

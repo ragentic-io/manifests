@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.appveyor.com_assets_img_app
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `da8f0a96b45cdbc7a34ca799c43beb1d39ba866453070fdc4a30673d0077036e` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

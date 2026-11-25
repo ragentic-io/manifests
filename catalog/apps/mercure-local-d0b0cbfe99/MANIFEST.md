@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_raw.githubusercontent.com_dungl
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4a11c78a5f9e94cefb9debbb0dbab28cec9c6d0e344e0745cd0ca60f43132fb7` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

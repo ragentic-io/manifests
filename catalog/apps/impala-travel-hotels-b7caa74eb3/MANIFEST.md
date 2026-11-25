@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_images.prismic.io_impala-v2_8d1
 | | |
 | --- | --- |
 | Categories | Travel & transport |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7722d39aa216b22961fd0b5cac16e1c66a8b2a2a1647af50175efc3c62f2aef0` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

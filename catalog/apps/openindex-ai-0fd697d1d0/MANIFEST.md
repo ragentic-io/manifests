@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_retriever.openindex.ai_.well-kn
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `05cf7856b4e50cf6342a19d7001815a92938b63fa9b2767748ee360381c56ebd` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

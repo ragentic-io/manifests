@@ -12,7 +12,7 @@ categories: ["productivity"]
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `41da7b7e8459322feea9f0c09e2cccc381a0f274e6970ea8febc76c07a09d196` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

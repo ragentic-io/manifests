@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `af54c1d7ff4e474a3070b02829bcb148836e56b0de5f42dd1f82668162d990cb` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://mandrillapp.com/api/1.4` |
 | Credential | — |
 | Connection test | — |

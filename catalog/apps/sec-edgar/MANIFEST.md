@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b165e69b552d8097ba308e9b8640ceee759d111ee40aec397dae7b82d03d089f` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://data.sec.gov` |
 | Credential | — |
 | Connection test | — |

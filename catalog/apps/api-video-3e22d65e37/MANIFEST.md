@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.datocms-assets.com_26885_15
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a6c08028fb46ad441e4b4e20b7b1e5a0b34229d9ce7ae0c6921a3d6740eaede4` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_gsmtasks.com_wp-content_uploads
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration, Travel & transport |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8b3ef9b1766465185b36a9d379afdf82ece895cb90759be825676803068d55e9` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

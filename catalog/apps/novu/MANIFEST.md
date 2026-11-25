@@ -12,7 +12,7 @@ categories: ["communication"]
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e2f1c59d8e03394d04d08ceac794cc0868f5ac43d6b2587b654ab85f303b78e5` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.novu.co` |
 | Credential | — |
 | Connection test | — |

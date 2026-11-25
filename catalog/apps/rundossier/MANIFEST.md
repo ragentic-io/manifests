@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `46fa0340a0e432fd2585ad5bdb766b3939ea8e1859737112f13c63406f253acf` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://rundossier.com/api/v1` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e4787ec7c0d9556e6946ac398597e35ad11964b594ee17c0687200039e4d88f7` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://apiv2.tracknow.io` |
 | Credential | — |
 | Connection test | — |

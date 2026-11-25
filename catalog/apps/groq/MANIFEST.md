@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d9d0f9bf583343cfa9a27e548982e2ed10bb39ff19e0ad2e1b6c775be4cc5b41` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.groq.com/openai/v1` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `de79b418335bcd5700d5c1dd63abcf27879e600b1fb2a77381b18328fa28a36f` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.attentivemobile.com/` |
 | Credential | — |
 | Connection test | — |

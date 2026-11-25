@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `882052dac0b3b5dfe7f58f65b5e6bfa61aaa496624df9705b029c624e9ca2ca3` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://backend.genpage.ai` |
 | Credential | — |
 | Connection test | — |

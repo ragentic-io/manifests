@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d078af1574c0f487744bd07a1b5a6f3c7b44c1f5fab5f934177b209e64b8e198` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.carapi.dev/v1` |
 | Credential | — |
 | Connection test | — |

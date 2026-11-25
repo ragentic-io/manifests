@@ -14,7 +14,7 @@ Connect GitHub's REST API (api.github.com) with a personal access token. Lists y
 | | |
 | --- | --- |
 | Categories | Software development, Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e538df31ca7d08db315aaa27748f578c3feb58604b26ab353c7abf7e759e5096` in `bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.github.com` |
 | Credential | static_bearer |
 | Connection test | GET `https://api.github.com/user` |

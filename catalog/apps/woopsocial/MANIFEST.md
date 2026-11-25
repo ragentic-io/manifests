@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e9828f797f2a88c052d725c3e0cfe7c5a40711277905d3bd8494a1d45e80f350` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.woopsocial.com/v1` |
 | Credential | — |
 | Connection test | — |

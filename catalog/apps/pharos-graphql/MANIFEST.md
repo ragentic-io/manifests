@@ -12,7 +12,7 @@ categories: ["health", "open-data"]
 | | |
 | --- | --- |
 | Categories | Health & science, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7f5a66089f2f9b123437a57480793a5a3374e3da88577a034128c19381a0041d` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://pharos-api.ncats.io/graphql` |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_static.redeal.se_APIDefinitions
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `eab0c2c5dde6ef92b455ed52f45bab87b68099535024e2e95e9d3a21dcdcbfb1` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.wolframcdn.com_images_icons
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `57ed33da679b1c591e57494aca6a13c2e4b21ccc951190ceac4e8b3c3d9ee61f` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

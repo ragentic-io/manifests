@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `af94b3fa93c64e4c348542e9cd60b1f075102842043c6147d9b987e012d94f5b` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://science.nasa.gov/wp-json/wp/v2` |
 | Credential | — |
 | Connection test | — |

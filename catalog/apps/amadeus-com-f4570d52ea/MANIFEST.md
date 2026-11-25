@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_amadeus.com_images_en_technolog
 | | |
 | --- | --- |
 | Categories | Travel & transport |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3e0444e5d8c08616bd068c4d9d80c46754c4a1822c4fa6754c7784c1b3069901` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

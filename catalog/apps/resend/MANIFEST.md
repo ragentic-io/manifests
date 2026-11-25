@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `dcee7087a9b512953ab70324ce76ccf49a6f76199eadd62fc3a3e653d2c83bfb` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.resend.com` |
 | Credential | — |
 | Connection test | — |

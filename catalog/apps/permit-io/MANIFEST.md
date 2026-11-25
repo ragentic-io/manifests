@@ -12,7 +12,7 @@ categories: ["security"]
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fb6570f61b464e437c6d3cacd5ac8fbb8e1d63a53a6697e394f10afb04c10e49` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

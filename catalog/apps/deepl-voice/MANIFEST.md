@@ -12,7 +12,7 @@ categories: ["ai", "communication"]
 | | |
 | --- | --- |
 | Categories | AI & language, Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `828545ced97c6dc09b1433629cde133269d7469720dd190dcb6d5c3842663ab8` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

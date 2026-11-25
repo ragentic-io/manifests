@@ -12,7 +12,7 @@ categories: ["productivity"]
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `79b790c3218c46db451972843fb818aec4031684df872c66bf84e7bea8891c87` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.canva.com/rest` |
 | Credential | — |
 | Connection test | — |

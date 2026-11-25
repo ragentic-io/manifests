@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `197b263974575847e020ac30d0b23959d85c66a1e185ec6662df411699bbbf5e` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.gbif.org/v1/` |
 | Credential | — |
 | Connection test | — |

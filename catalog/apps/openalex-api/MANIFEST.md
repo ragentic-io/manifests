@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6bab3af153f4b4294c6d59e6c3ad1a21720b8ed05fa54d001ee9d311f840c8f0` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.openalex.org` |
 | Credential | — |
 | Connection test | — |

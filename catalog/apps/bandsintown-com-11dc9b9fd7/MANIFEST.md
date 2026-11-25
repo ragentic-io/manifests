@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_Bandsintown_profile
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `408095460d8d5b61688f3cd02a3cdc1cd2499c5512f17521ec0ca87ae7d6237c` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

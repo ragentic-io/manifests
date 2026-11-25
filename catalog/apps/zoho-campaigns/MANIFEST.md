@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `677640ac3378bd40eac99bc57639db9035b2c7528df3c698600106770d38953e` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://campaigns.zoho.com/api/v1.1` |
 | Credential | — |
 | Connection test | — |

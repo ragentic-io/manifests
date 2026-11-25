@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8e1579d407deea1fbc6579f2d3c7ae4ded55ea0207a84acd5bf21dc8cf70bb22` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://eventmanager.vbotickets.com` |
 | Credential | — |
 | Connection test | — |

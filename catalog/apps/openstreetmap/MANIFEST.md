@@ -12,7 +12,7 @@ categories: ["location"]
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8994a4e4c02aac537a945ad352fef9e9d86d3f422bb3f231d4299325044a8cff` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.openstreetmap.org/api/0.6` |
 | Credential | — |
 | Connection test | — |

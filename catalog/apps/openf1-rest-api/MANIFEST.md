@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2b62c2c9ae6c304c3dc1312c1fefc26a883d99cd66502deeb66bc9e67f7e523c` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | `https://api.openf1.org/v1` |
 | Credential | — |
 | Connection test | — |

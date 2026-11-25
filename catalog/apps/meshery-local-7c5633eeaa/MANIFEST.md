@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_avatars.githubusercontent.com_u
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5b8b2be508076812eaf29ee8dc1bf526d4ef0c7be3dc302923f6ab5f36c83be1` in `browse-bundles/`, expires 2027-02-22 19:43 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |
