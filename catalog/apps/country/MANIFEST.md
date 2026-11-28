@@ -12,7 +12,7 @@ categories: ["location"]
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `330d96a5f4269895024d2e69da86b5d9a2852a717dbc38f5778f638fe90d2677` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

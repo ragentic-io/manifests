@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_taggun_io_profile_i
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `75ff80c55c59842aaf8f1ddbecb6f11d625546d0d6c612d76b37589505075c62` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

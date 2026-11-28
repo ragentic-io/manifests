@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/http_developers.gettyimages.com_image
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6e61a1e36b71aff921067a7768ab8d40d956734215159d937a65a996f98dcb0d` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

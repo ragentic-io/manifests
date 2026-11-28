@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_meilisearch.com_apple-touch-ico
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f6828997e30b65b7d0e6820647517209d0487a7751b2b734f044899cedb26433` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

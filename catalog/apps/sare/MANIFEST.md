@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8fa51f7b6593b6a3ecd749c81ab5d0240d9d826aeaaf83aadb0d7e41eb45e730` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://s.enewsletter.pl/api/v1/{uid}` |
 | Credential | — |
 | Connection test | — |

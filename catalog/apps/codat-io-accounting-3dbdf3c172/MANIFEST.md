@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_static.codat.io_public_branding
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `0dbc6fa199e9619ffd597e40c0d50a540d2d07fd3159d201245992af72a12ea5` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

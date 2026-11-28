@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b15203b2605476d3e6f2c36fbed333e6bf104a0e61d37fef623d4579becee131` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://chat.zulip.org/api/v1` |
 | Credential | — |
 | Connection test | — |

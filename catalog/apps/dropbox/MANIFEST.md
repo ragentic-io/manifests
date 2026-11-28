@@ -12,7 +12,7 @@ categories: ["productivity", "media"]
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration, Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e152f72624195554f2de2c47acbe5e9c7231aad8111b2e97f67ce3c14d2f9176` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.dropboxapi.com` |
 | Credential | — |
 | Connection test | — |

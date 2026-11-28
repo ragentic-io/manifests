@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.combell.com_build_website_i
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f0dc40fdd44e69db4a5d6eb58ea20c1dd0414cf2d7ca39bc514ae888c3d9f820` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

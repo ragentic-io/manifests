@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `08f42c0f4b95d1a0a5ae7107a2e52d918a6d019545463708b32243020872bc75` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://www.ncei.noaa.gov/access/services/data` |
 | Credential | — |
 | Connection test | — |

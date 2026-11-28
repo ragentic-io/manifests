@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_math.tools_branding_blackboard_
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `41255202d928ed18524b482a05eea0ac2d269116e2b25f0de9e3f716542a20f8` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

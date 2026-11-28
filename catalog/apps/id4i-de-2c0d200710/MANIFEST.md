@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_id4i_de_wp-content_uploads_2017
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e20ecc264fefa0aac0a2e9e793d0f2908fa3e8469e5308946bd2c708ccd4ea62` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

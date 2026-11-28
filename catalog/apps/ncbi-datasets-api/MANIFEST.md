@@ -12,7 +12,7 @@ categories: ["health"]
 | | |
 | --- | --- |
 | Categories | Health & science |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `168573624de8a77e9bded8e5115b7f5e5cf4a8c8960d56efb985bfad16c21401` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.ncbi.nlm.nih.gov/datasets/v2` |
 | Credential | — |
 | Connection test | — |

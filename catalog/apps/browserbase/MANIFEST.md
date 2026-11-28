@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `05e125e8c4235c7f98280746be9ae7ca56f87e19fe86fad15cc6032bbcb50319` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.browserbase.com` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3db8376384bd372dda0c7ca0a6402189fcb3ed9b04dfc6aa940d3c74a2b6f5f7` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.attio.com` |
 | Credential | — |
 | Connection test | — |

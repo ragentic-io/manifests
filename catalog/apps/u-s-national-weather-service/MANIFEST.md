@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5dea33d549bee584a8d58da5b0ff683abb467b4dcba84429cee59d754b7a3c8c` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.weather.gov` |
 | Credential | — |
 | Connection test | — |

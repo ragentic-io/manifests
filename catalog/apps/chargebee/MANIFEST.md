@@ -12,7 +12,7 @@ categories: ["finance", "business"]
 | | |
 | --- | --- |
 | Categories | Finance & payments, Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `827eb0d1cee89b8364852db203dbb021056f68d955a8a05e03aa6636aab14ad8` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

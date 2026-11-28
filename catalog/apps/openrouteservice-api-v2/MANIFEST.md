@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `24130a3ac1b06a1a2b3925747e9a9505aac1d467371a9da6325ec9fcacecc27d` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.openrouteservice.org` |
 | Credential | — |
 | Connection test | — |

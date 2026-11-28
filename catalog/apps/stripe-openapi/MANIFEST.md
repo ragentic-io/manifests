@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c489c1cb59dae65156e88c190184b81282c366d834066b9ff5c91145eff6d5cd` in `bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.stripe.com` |
 | Credential | static_bearer |
 | Connection test | GET `https://api.stripe.com/v1/account` |

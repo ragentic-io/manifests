@@ -12,7 +12,7 @@ categories: ["productivity", "media"]
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration, Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8631e0b9f57624f42ae4a3a5e771b0d30713c470c65d0141f9b6d7cd06b8dd6f` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://{admin_domain}/ghost/api/content` |
 | Credential | — |
 | Connection test | — |

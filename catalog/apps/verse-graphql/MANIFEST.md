@@ -13,7 +13,7 @@ logo: "https://verse.works/favicon.ico"
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5d20803227943b26d282a4c50c7ef44e5f76137a11847bf1489f47f31af81fc2` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

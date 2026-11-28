@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8ebe9dcfbe0181efd0b4c571d8b7976e91838332c33f2aa18877878258349132` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.postmarkapp.com` |
 | Credential | — |
 | Connection test | — |

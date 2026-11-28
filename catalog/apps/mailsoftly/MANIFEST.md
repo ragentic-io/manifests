@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `69c3baf64a6154df2450bdba589e5766cbf2e1a45215438078af1e1b992a2ddd` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://app.mailsoftly.com` |
 | Credential | — |
 | Connection test | — |

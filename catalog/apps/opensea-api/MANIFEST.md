@@ -12,7 +12,7 @@ categories: ["ecommerce"]
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `605addaa895eab34c51d6df41b37bf7e8a9f374c043613c5bb1e49a6d3db44fc` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.opensea.io` |
 | Credential | — |
 | Connection test | — |

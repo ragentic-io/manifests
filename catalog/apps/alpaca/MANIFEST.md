@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `08344de8a2c58572f2e5ba33382045c25ac5b1b4d7c96fa241e9041b9be9e315` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://paper-api.alpaca.markets` |
 | Credential | — |
 | Connection test | — |

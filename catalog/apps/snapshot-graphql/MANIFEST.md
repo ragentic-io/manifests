@@ -12,7 +12,7 @@ categories: ["finance", "social-media"]
 | | |
 | --- | --- |
 | Categories | Finance & payments, Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `343baaf7178736ad64e24035ea5a2f322366c28b74c040e47beeb380d4967725` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://hub.snapshot.org/graphql` |
 | Credential | — |
 | Connection test | — |

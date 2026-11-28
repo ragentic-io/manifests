@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_mailscript_com_images_favicon.s
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6222ef2157714af55780c185c363a6a5770d629637ec8a5acb76734f681e9740` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

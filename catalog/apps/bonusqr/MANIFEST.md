@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2e9225b48a0242eccc31905fe4df440324a8df8bfeeac15bb71a3b7ba9f970ba` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://app.bonusqr.com/api` |
 | Credential | — |
 | Connection test | — |

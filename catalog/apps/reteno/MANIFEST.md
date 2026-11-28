@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `400a838556ec629e4fb39ddb7f8e5eff667cc764006924a2c1490c0f60858785` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.reteno.com` |
 | Credential | — |
 | Connection test | — |

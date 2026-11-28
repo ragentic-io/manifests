@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c11a48a959adf3b72cd420f411c647f319b523a91850e4433975affda0bc5c16` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.airtable.com` |
 | Credential | — |
 | Connection test | — |

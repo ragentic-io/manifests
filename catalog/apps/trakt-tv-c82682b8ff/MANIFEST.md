@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_walter.trakt.tv_hotlink-ok_publ
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `22a72ae5b477761e50e4e567e598e7e2302e5f8f26d81798dd4a67fb5f251ba4` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

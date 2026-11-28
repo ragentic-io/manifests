@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `226f793f3c0f0490ab3177ba3e23fd49c125e091bd518ccb3e9cb6f7d340e253` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.graphjson.com` |
 | Credential | — |
 | Connection test | — |

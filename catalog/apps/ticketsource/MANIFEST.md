@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ff4703e365f363939773c1ba4bf8f378850abd000f748405d70d2db5317523f5` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.ticketsource.io` |
 | Credential | — |
 | Connection test | — |

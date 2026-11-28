@@ -12,7 +12,7 @@ categories: ["productivity"]
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `45268ba0d3d2024945350d0e9b9aa0ce8bece5765bb0f92987a4cc0e0b5dcabd` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://addcal.co` |
 | Credential | — |
 | Connection test | — |

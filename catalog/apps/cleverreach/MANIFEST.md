@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9471c85a9f39c83cb135bc2257587d541a94c41688d792a0245e6828cb5ad213` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://rest.cleverreach.com` |
 | Credential | — |
 | Connection test | — |

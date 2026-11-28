@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_qualtrics.com_apple-touch-icon.
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f811d5d9578041c656eebde9984249f62f859c408f119bf89152a98cf27ec677` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

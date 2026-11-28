@@ -12,7 +12,7 @@ categories: ["ecommerce"]
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bf6c194a8f67c51ddb2c5130cee76f932d4842db00beeac9b65a0c6f7d5b37f3` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.ebay.com{basePath}` |
 | Credential | — |
 | Connection test | — |

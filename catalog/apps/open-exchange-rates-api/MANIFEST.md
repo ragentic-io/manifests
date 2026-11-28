@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e2445d57b2b10f52f5654e012526372817b3f7e750726b1d037a10fa939aca49` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://openexchangerates.org/api` |
 | Credential | — |
 | Connection test | — |

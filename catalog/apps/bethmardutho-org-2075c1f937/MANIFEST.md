@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_bethmardutho.org_wp-content_upl
 | | |
 | --- | --- |
 | Categories | Education, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4d1b8ac90a300a90504b4ec4fd702cb73bde5a0b9a5725a91686712cb553cd6d` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

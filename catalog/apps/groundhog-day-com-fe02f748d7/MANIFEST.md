@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_groundhog-day.com_apple-touch-i
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d833fdd300c531c810a3db8ec39fe86d42ff1eef53d44b900c79bdb8e3c0d590` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

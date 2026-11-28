@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1ea1d27d4781b93dc39cab4333b0426d00e209e7ffbccf437549e4ddd36c2680` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://www.eventbriteapi.com/v3` |
 | Credential | — |
 | Connection test | — |

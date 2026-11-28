@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b4d2edc6cce93b3d88b33a86e2ed01c735949e66731ea9291ad346127f2f2b9d` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.openbrewerydb.org` |
 | Credential | — |
 | Connection test | — |

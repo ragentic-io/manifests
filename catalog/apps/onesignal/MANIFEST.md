@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3b4ae3df1734e9b82f367f5ec840b95d98e0d4b851015975b0df5b9b2a5c20ae` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://onesignal.com/api/v1` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["health"]
 | | |
 | --- | --- |
 | Categories | Health & science |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3527ea1b1fab6295a5162b249c469c1053a4ca700455f3eb6136788990ce6ea9` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.openhealthhub.com/OpenHealthhub/fhir/4` |
 | Credential | — |
 | Connection test | — |

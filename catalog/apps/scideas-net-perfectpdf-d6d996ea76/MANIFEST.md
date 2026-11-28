@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_scideas.net_media_logos_favicon
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1ac2fc045a4bf731d547af96ca91bd53b17e4da99dbaf238c573424763a11309` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

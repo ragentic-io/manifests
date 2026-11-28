@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3a04a341358f4ae66b025cbbcf5f9bec974900117fe05ba67c9f7b2abb6d56ba` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.harvardartmuseums.org` |
 | Credential | — |
 | Connection test | — |

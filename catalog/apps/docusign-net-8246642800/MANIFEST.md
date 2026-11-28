@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_DocuSign_profile_im
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration, Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5b0ff533762556e53d6b9a237bb9e250d70985186e0866e9725079299e04dd1e` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

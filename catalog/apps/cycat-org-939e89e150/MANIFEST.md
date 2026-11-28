@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_cycat.org_images_illustrations_
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `66828470abd4b0b945043fa0c266399f786ae3b7523eb1106ade8f7e1e28e988` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

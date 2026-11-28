@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b821c7f4a40fd295deaf189146feb65030e1ce01bf510ffa6ee8f927ae85a97d` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.temso.ai/v1` |
 | Credential | — |
 | Connection test | — |

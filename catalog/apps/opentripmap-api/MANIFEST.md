@@ -12,7 +12,7 @@ categories: ["travel"]
 | | |
 | --- | --- |
 | Categories | Travel & transport |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6ff788c789510554a1017c9f112b9f5ade5537c7197a36e4d0c385320808f7ca` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.opentripmap.com/0.1` |
 | Credential | — |
 | Connection test | — |

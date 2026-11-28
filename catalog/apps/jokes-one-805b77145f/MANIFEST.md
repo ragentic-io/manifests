@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_jokes.one_branding_smile_magent
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d8c9862010eeed7b6bfb76e0bd70e71f2c9ab162f80b496d4b17b13eb8c7d1cb` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

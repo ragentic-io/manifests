@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a22c6c4ea565552ce47c3be2dc42a8bce457530abe707b73129d9f0fdf7539aa` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.tidesandcurrents.noaa.gov/api/prod` |
 | Credential | — |
 | Connection test | — |

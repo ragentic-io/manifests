@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6e68b8f6d4ff90b5443f424dc51e0a097ca08e7c226df6f5e7df1de2cf5159ed` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.lettermint.co/v1` |
 | Credential | — |
 | Connection test | — |

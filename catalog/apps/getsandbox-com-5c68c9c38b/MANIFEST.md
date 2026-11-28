@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_getsandbox.com_lib_img_logo-whi
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9de3dd0bbfd81d183def21688a6eb6f4ebc632c5730d7d154bea678f69a82160` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

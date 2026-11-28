@@ -12,7 +12,7 @@ categories: ["travel"]
 | | |
 | --- | --- |
 | Categories | Travel & transport |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ef88285135a7bb581ade091cb28edde4a53c9d5a73f321a65a4df6785aba1646` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://www.universe.com` |
 | Credential | — |
 | Connection test | — |

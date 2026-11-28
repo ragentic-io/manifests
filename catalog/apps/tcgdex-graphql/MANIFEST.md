@@ -12,7 +12,7 @@ categories: ["media", "open-data"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `18027ff8c4f6c8ac35fde818c414f0a11ff502c0fc3373975e3ffa81ad98eb5c` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.tcgdex.net/v2/graphql` |
 | Credential | — |
 | Connection test | — |

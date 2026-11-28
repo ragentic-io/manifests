@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fd79a27da57a28ce17d528fb2784f05f4a50b34ef7081c3e9192cc55462a7227` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api-ssl.bitly.com/v4` |
 | Credential | — |
 | Connection test | — |

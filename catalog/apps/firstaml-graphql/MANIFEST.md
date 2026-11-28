@@ -13,7 +13,7 @@ logo: "https://www.firstaml.com/favicon.ico"
 | | |
 | --- | --- |
 | Categories | Finance & payments, Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e3669da8dc53b30fcc5e098e370af29cef805aa807e0ba8da9e3224b4e4b7a7a` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

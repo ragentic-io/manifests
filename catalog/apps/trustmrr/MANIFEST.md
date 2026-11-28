@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d3614dfaccaf8dddcbad92fefabba60a938e4d11a83aa6846af033971985aff2` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://trustmrr.com/api/v1` |
 | Credential | — |
 | Connection test | — |

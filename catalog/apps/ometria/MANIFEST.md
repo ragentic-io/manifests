@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2f952620e458686bacd776e65506d2ce13d7268f306cf16704ed65bf8cfba725` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.ometria.com/v2` |
 | Credential | — |
 | Connection test | — |

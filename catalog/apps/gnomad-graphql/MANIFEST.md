@@ -12,7 +12,7 @@ categories: ["health", "open-data"]
 | | |
 | --- | --- |
 | Categories | Health & science, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b4c1137a0060cb642c5dbbc3b1cbc714aaced6ed9aa7d8bde3a21ed44e62edf5` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://gnomad.broadinstitute.org/api` |
 | Credential | — |
 | Connection test | — |

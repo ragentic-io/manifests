@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fac139040c69a54431695b73f2659a4646a7f2782e17dd812030879ec83372b3` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://yespo.io` |
 | Credential | — |
 | Connection test | — |

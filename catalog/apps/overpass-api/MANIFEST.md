@@ -12,7 +12,7 @@ categories: ["location"]
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fa649ea7857b6a065d63e1b1f762c26005072e6f096e359d02628c6f6857aeb1` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://overpass-api.de/api` |
 | Credential | — |
 | Connection test | — |

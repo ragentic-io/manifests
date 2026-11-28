@@ -12,7 +12,7 @@ categories: ["communication"]
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b1c98f8691e969f3d21032b47b40479920e19d94c87a0fbf5e1c70be59b59996` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://qstash-{region}.upstash.io` |
 | Credential | — |
 | Connection test | — |

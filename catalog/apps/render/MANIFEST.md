@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d60ffdc0f61a2e7a337f320275eb08222efcc7dd99401e931eae15a18389e744` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.render.com/v1` |
 | Credential | — |
 | Connection test | — |

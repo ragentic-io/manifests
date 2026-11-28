@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_global-uploads.webflow.com_5ebb
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bcbe3217f210ce87b2ac41c480181b67f01fd338c544d58b99d8700ae2636139` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

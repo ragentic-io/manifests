@@ -12,7 +12,7 @@ categories: ["open-data", "location"]
 | | |
 | --- | --- |
 | Categories | Open data & government, Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ccdef352bb598c9e46935ea8a0da637c285217034a6e7d58a77ae286797b48fd` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://countries.trevorblades.com/` |
 | Credential | — |
 | Connection test | — |

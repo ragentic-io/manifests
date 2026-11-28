@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7f19f73c7a69a9981815073e2e7c13716dd28c40b7713967d22c0a48f60ca3b1` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.opendota.com/api` |
 | Credential | — |
 | Connection test | — |

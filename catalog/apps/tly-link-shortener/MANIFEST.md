@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5316ab239bd24bc5c62d85782cb08d247adf23361f80744d5ed4b9b91f413ade` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.t.ly` |
 | Credential | — |
 | Connection test | — |

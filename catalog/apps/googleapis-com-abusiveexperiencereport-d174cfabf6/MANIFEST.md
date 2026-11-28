@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.google.com_images_branding_
 | | |
 | --- | --- |
 | Categories | Data & analytics, Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `caa8e60e7142e19a29aeb37f3ca1b2a5b69263839473c4e497ca02b25e07fda4` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

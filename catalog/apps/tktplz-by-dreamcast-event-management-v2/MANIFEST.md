@@ -12,7 +12,7 @@ categories: ["travel"]
 | | |
 | --- | --- |
 | Categories | Travel & transport |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c21c9d917b3b55c201b2b3313dd32b7b983f766dccd9b4f114895c2587360306` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://staging-diy-reg.godreamcast.com/api/rest/v2` |
 | Credential | — |
 | Connection test | — |

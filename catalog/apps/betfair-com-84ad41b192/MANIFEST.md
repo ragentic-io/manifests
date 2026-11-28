@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_Betfair_profile_ima
 | | |
 | --- | --- |
 | Categories | Finance & payments, Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `941147a119159ce7941eaadc392a5dd4ba586530a1473c266bf7e721c4fe1407` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

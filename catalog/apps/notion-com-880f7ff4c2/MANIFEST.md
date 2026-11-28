@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_notion.com_front-static_logo-io
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6ca2edd932e51eda64ba5f4d925766101bd424adbb578b2ead2fa06b530cae86` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

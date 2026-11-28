@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_opencagedata.com_opencagelogo-g
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `859d11e8e048cd1c72205a7789b8d8952d5c3ace42763ba8cc63dce7d6541a81` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

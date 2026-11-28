@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4450241395ae23f065de5a14b28bc74fb1f6b4f43295c70636fddb95f59d61b9` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://app.tailor.video/api/v1` |
 | Credential | — |
 | Connection test | — |

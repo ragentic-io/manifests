@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6d9810e82dda995e9233526c3a5c6661188e72ee29310d2c821005abce2d24ec` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.rasa.io/v2` |
 | Credential | — |
 | Connection test | — |

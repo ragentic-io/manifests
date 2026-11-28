@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.clicksend.com_img_favicons_
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `121b2f58e406454839106cb09018b598596b31290cedb0c25a3d769e8771c83e` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

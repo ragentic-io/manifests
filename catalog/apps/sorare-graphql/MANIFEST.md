@@ -13,7 +13,7 @@ logo: "https://sorare.com/favicon.ico"
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `914be1376fc6695b2f8f4a3f74f5c25564684b3e6434ce756ed3f024d2b76d44` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

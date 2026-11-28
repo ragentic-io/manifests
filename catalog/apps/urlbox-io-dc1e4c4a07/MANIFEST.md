@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.urlbox.io_logos_logo4.png"
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fff329dde7170899b8a0d69e2529821f505d531d216bb4c4ae7bf44e8577454f` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

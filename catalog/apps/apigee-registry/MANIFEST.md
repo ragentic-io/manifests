@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `431c302bea24ceafba5d76045700fd2d7ae2b7a6790f5dc752e6e42a7ae9eecd` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://apigeeregistry.googleapis.com` |
 | Credential | — |
 | Connection test | — |

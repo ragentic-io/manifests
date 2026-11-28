@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_simplivpn.net_wp-content_upload
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `204262e8583c2649308e5185cb6670461f31704100873e3397c96e577528d063` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

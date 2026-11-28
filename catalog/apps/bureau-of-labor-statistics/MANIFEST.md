@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d5ff763aa9893a37b5e98f8546843a1ad2184e391288389d968b64b4cf6e9556` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.bls.gov` |
 | Credential | — |
 | Connection test | — |

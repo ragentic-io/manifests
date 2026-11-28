@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b0263970c22c978dfb9c4707ccb263aeb8a1c9b94713f8502caf506ae14608ef` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://dashboard.viralnote.app/api/v1` |
 | Credential | — |
 | Connection test | — |

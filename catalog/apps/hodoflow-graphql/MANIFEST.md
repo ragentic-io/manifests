@@ -13,7 +13,7 @@ logo: "https://hodoflow.com/favicon.ico"
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `784f2a1828ada0547eab6b6bd4e7f83a8dd3d244ab82cbf5bf480564e58e109c` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

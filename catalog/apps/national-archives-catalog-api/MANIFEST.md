@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d4c4fccaa9bd7959e0b53cb55acaaedcbc8c7431724ff7ab90e86f1c2401c6b9` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://catalog.archives.gov/api/v2/` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["health", "open-data"]
 | | |
 | --- | --- |
 | Categories | Health & science, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5b56f9983365d6b167e782243913ac19f1d324694e7dc59b11c12f8898506ee9` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://civicdb.org/api/graphql` |
 | Credential | — |
 | Connection test | — |

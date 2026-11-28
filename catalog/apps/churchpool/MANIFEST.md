@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `106517c72c741483c43e8e3687640370c03c7dc5df44d31f5265000c32733356` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.churchpool.com` |
 | Credential | — |
 | Connection test | — |

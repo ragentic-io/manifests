@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e130e2ed6c79265b482154d17d519d529d72de34baa84638e0fece311d35c980` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://{instance}/api/now` |
 | Credential | — |
 | Connection test | — |

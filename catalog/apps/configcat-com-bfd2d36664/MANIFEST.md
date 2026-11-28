@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_api.configcat.com_resources_con
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `798ac6b648def6e76c8996f5c6ae2879ad4a29f94bd7796f4ac26addbafda146` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

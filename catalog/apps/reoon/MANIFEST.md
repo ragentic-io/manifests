@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bac29becc95464bf79cb80d5d1f7570aff011493d624d4b13f1aaff16f91cc99` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://emailverifier.reoon.com/api/v1` |
 | Credential | — |
 | Connection test | — |

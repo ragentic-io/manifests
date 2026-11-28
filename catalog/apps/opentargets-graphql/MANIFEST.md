@@ -13,7 +13,7 @@ logo: "https://platform.opentargets.org/favicon.png"
 | | |
 | --- | --- |
 | Categories | Health & science |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `10ba2c81c68d3106a7d59f709a0637d84a5c2b196d1744ef521b82b46bb69203` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

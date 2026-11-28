@@ -12,7 +12,7 @@ categories: ["iot", "business"]
 | | |
 | --- | --- |
 | Categories | IoT & smart home, Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e055a0100257582625cb34734f2045680489668d789273b1e41b2e31dd7b9a4e` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.octopus.energy/v1/graphql/` |
 | Credential | — |
 | Connection test | — |

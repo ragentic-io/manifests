@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bb4d0eda0a5a387752fccf6a067de18c66864437eccd726983254f25a3b71afa` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://app.loops.so/api` |
 | Credential | — |
 | Connection test | — |

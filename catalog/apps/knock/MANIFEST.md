@@ -12,7 +12,7 @@ categories: ["communication"]
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `89b5554f68370abce076294f3dd89c0814a82f9bb12a161d3de7b24a12962823` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.knock.app` |
 | Credential | — |
 | Connection test | — |

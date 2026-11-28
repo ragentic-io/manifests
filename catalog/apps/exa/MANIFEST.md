@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a9449e859b8aed83b918470a118c6e47ad9e3b868eb2e6691753c49425a1e46d` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.exa.ai` |
 | Credential | — |
 | Connection test | — |

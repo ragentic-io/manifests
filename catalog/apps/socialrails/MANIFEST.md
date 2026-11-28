@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `47cc9f1a9f5ecfb06f7796f847c1be3d84ee23ef4540bc97ef0edc2560061698` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://socialrails.com/api/v1` |
 | Credential | — |
 | Connection test | — |

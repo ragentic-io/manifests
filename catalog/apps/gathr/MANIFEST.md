@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1b072ff8331758d50afb36c2ad38ad4c94aa1d02189d3f912acae93dc1df4702` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://gathr.com` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `20e7296850206f0fa34bd497d9b135bf9a422cd49e9c66d71caec6a73beefc01` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.klicktipp.com` |
 | Credential | — |
 | Connection test | — |

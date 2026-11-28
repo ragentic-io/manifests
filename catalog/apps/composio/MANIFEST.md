@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6a1d97a86b90ec7c960bdbb7309df1fbe41b8baa4fc3a10da187850f7dbbc547` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://backend.composio.dev` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b4eaacc2723a62f59604320ec3d7a9cfd8280e782dc8396607b67fa13515ced7` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://kitsu.app/api/graphql` |
 | Credential | — |
 | Connection test | — |

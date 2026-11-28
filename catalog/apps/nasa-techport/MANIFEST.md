@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `36cd96fcd93eee9923861f947ce9ecdfee2d54e7bc59a14c079e13900f8d961f` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://techport.nasa.gov` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fa612c365cfdc7d0eb262400f020ab4d567c875cf6ccad9ae0228c8ba57ad1b6` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.opencorporates.com/v0.4` |
 | Credential | — |
 | Connection test | — |

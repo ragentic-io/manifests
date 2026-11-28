@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fef67dc83159bafce68a622269f603397247d010abe83e328dc7ceed0d9c4ac3` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.supabase.com` |
 | Credential | — |
 | Connection test | — |

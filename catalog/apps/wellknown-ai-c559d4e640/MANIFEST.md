@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_wellknown.ai_icon.png"
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ab31cd9e0cf2e8cc6504a657b458edcc0b521a57717a526084e2aba57ae23d32` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

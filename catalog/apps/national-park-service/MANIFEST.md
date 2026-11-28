@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `65cd8a7cd0c0a264b99988bd816c0a526a9eabb5c61453ef80bf3a6bbbaca441` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://developer.nps.gov/api/v1` |
 | Credential | — |
 | Connection test | — |

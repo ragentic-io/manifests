@@ -12,7 +12,7 @@ categories: ["travel", "location"]
 | | |
 | --- | --- |
 | Categories | Travel & transport, Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bfc44ca8d53e785dcb9538b523ef667be76c3872f177856ca2061010fb564817` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.entur.io/journey-planner/v3/graphql` |
 | Credential | — |
 | Connection test | — |

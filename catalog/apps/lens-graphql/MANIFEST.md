@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d8b6b8c10e9d73172a00ca29a1ed2e3ec5dc8eefd5d099b84173d1dafc596db3` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.lens.xyz/graphql` |
 | Credential | — |
 | Connection test | — |

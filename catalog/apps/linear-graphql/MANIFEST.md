@@ -14,7 +14,7 @@ Independent connection to Linear. Not affiliated with or endorsed by Linear.
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6054a446403fa30c627e8d3a36b9542c0f68a015a83039bd0aa18e42f21f5acc` in `bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.linear.app/graphql` |
 | Credential | api_key_header (`Authorization`) |
 | Connection test | `https://api.linear.app/graphql` |

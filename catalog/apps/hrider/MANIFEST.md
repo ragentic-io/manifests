@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a326ec083e8b72445a29cc1aad1a8be48d0bbfd7e7668b43ee8e386668bda0f3` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://dev.hrider.net` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["open-data", "education"]
 | | |
 | --- | --- |
 | Categories | Open data & government, Education |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6c23c128b29b963776907e15e9edf062bca5e6f4110dcd23eb79aa2db9ab8860` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://portal.ehri-project.eu/api/graphql` |
 | Credential | — |
 | Connection test | — |

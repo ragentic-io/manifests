@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `14f1b85babd6c7e3fabd051d6804ef649fa3339c04e7154ec8577a0b2df72ea4` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.sendpulse.com/chatbots` |
 | Credential | — |
 | Connection test | — |

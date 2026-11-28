@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `84fea062c55027f86ebc4f715c48fca7dbf778082268222e034ee5b2123b9f58` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.usertour.io` |
 | Credential | — |
 | Connection test | — |

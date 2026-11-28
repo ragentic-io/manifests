@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_peoplegeneratorapi.live_static_
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `befc2a2e494efdadf2f4b781b429d2e4a583ea1866e1c148701b21975a8b511a` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

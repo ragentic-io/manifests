@@ -13,7 +13,7 @@ logo: "https://vendure.io/favicon.ico"
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5dc01030e9d9f76fee2656b2044881cfe14e4a23bff94d8d7f262e846d71945c` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

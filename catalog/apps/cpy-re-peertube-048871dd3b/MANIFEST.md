@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_joinpeertube.org_img_brand.png"
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ae42069a0549ef5771b89c2f9e5ecb1a34a9cf792d43147775fcf6209df12ea2` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

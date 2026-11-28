@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `24593d85c333084a4287a911aa44b58f395e4842aabad175e71115a72cfa940a` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.phantombuster.com/api/v2` |
 | Credential | — |
 | Connection test | — |

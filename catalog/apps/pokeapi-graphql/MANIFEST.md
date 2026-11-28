@@ -12,7 +12,7 @@ categories: ["media", "open-data"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2953ac746d70159ad7e032ccd07f8e6cf1128092c1bd7811c4d87e9c8449d7af` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://graphql.pokeapi.co/v1beta2` |
 | Credential | — |
 | Connection test | — |

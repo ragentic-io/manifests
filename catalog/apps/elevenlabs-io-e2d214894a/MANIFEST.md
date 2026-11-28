@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_elevenlabs.io_assets_icons_appl
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f233a66a3a412b23eefd0759febd0064d0ae10f03b438259835bb1579dbd84fe` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

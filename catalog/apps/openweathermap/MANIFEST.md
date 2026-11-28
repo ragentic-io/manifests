@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d083ee2e54750bc19cde026ab1bba1d26d5aeded07fca4e21f5ab1d4e49b4ad2` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.openweathermap.org` |
 | Credential | — |
 | Connection test | — |

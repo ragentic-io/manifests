@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_GameSparksltd_profi
 | | |
 | --- | --- |
 | Categories | Software development, Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8de79f2ce4dfeb62cea96f2b78db78834a4f8c4221b3e8c0f7f01f5e8470e08c` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

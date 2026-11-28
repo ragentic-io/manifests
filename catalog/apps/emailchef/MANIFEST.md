@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5f02ef5c3a2ed2096f7b25143d270c69243cce1af0f68543d39daa2d6d363f64` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://app.emailchef.com` |
 | Credential | — |
 | Connection test | — |

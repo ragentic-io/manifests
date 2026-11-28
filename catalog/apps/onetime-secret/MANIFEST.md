@@ -12,7 +12,7 @@ categories: ["security"]
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `479354d4c2a861806974fec1a7784179beb30fd87e2bcef4bd5f279db70b2f22` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://nz.onetimesecret.com` |
 | Credential | — |
 | Connection test | — |

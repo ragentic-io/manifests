@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `83545a9af16dc199352549afe146053a8cad44b2843bd476ffaf43741b460f98` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://sandbox-api.paddle.com` |
 | Credential | — |
 | Connection test | — |

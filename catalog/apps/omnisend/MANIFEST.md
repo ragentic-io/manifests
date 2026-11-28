@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c8fe307a6db3847ad56807b4181be4e9508e172a7a198ac66e1a0e4b65cd5815` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.omnisend.com/v3` |
 | Credential | — |
 | Connection test | — |

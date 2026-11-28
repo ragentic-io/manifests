@@ -14,7 +14,7 @@ Autodesk Platform Services Object Storage Service: buckets and objects, includin
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9afdee41c217105214286a0d303a4540cd76638d9d4593483d8103fab3b708b6` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://developer.api.autodesk.com` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["communication"]
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `06e666ae23f1f108a33603b105fc06339cda67eb8b79d3946154a4e96f8f4324` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.us.nylas.com` |
 | Credential | — |
 | Connection test | — |

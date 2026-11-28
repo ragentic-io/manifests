@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/http_www.hhs.gov_sites_all_themes_pro
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d6d2e8e477b2716fc6e006216e05be9eb4a1d8d4ab9949e24d63aed3a3cd57e4` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

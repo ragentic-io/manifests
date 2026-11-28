@@ -14,7 +14,7 @@ Independent connector for Ably Control API. Not affiliated with or endorsed by A
 | | |
 | --- | --- |
 | Categories | Communication, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ef4c53e74c0b1b81544cb64e25858a7b4260184ecfa8ed6e727d904f102adf90` in `bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://control.ably.net/v1` |
 | Credential | static_bearer |
 | Connection test | GET `https://control.ably.net/v1/me` |

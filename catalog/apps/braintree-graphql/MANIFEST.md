@@ -12,7 +12,7 @@ categories: ["finance", "ecommerce"]
 | | |
 | --- | --- |
 | Categories | Finance & payments, E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7c067b4203d53c668a8709ce29e5a40b3b2fb29687d2cd36b6543a37c7fe0cf7` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://payments.braintree-api.com/graphql` |
 | Credential | — |
 | Connection test | — |

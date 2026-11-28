@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www_credas_co_uk_wp-content_upl
 | | |
 | --- | --- |
 | Categories | Security & identity, Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `de127b2ae2b33eee023e52b12a07d13c67050f1248a6b339198384b12b09d875` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

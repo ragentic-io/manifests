@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_learnodo-newtonic.com_wp-conten
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d003c0fe671daf7b5a21997281059aaae72914a166fe64d4bfd22915545aa249` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

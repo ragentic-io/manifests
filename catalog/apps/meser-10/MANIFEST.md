@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2d2773ea227b4519abb6d34752964340387fac3eefb6a7c60f5daffabef55fe0` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://heb.mesereser.com/Services` |
 | Credential | — |
 | Connection test | — |

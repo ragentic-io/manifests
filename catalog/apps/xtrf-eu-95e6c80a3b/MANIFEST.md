@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_xtrf.eu_wp-content_uploads_2023
 | | |
 | --- | --- |
 | Categories | Business & CRM, AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5131e5e722ae0ffc1a1c1b8a4c0b5b6acc828156b29bce1d298e8f69b6745a87` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

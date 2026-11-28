@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/http_static.tumblr.com_wvuzcz9_LlKncf
 | | |
 | --- | --- |
 | Categories | Communication, Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d449dc4fac868f65b57a9fb2e48a58cf2ea2ddfd0fda8fbaa6108422e48e2824` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

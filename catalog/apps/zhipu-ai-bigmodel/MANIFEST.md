@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b5ff77b51895d8d73c6a70f8305de9d9d40553d0fb685088b88212e9faaec747` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://open.bigmodel.cn/api/` |
 | Credential | — |
 | Connection test | — |

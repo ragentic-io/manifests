@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ae15b11f4766087023257ce23fc85daa73f2022987137974da95be002eeb285d` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.mymosttrusted.net/v1` |
 | Credential | — |
 | Connection test | — |

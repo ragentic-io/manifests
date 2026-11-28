@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2cd71620d2bc65109475bcf1bfe290a8bb9bc3a3744dd963e6e2fc7d79581e2b` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://virtserver.swaggerhub.com/withfriends/Zapier-Withfriends/1.0.0` |
 | Credential | — |
 | Connection test | — |

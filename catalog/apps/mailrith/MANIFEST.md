@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c833d9536d0ae5b500b21ff7cf6fa75a8d433bbde3604a1d20cdb734e9322129` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.mailrith.com` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f44b5e96eed0ff31dcd35432c0f93953d74802b12bdb5c4bfde728e1094ffb9e` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.turso.tech` |
 | Credential | — |
 | Connection test | — |

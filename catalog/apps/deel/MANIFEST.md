@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d3ed76b9733f8a0c895aba6db5886a81c69ea4b2ba6f81a7249d5858b55de28c` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.letsdeel.com/rest` |
 | Credential | — |
 | Connection test | — |

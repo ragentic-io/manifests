@@ -14,7 +14,7 @@ Independent integration for Flagsmith Management API. Not affiliated with or end
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `71e58c432d6ba9ed5c2da1513748f547be93826db908c6b245d0c2e73cd50011` in `bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.flagsmith.com` |
 | Credential | api_key_header (`Authorization` 'Api-Key') |
 | Connection test | GET `https://api.flagsmith.com/api/v1/organisations/` |

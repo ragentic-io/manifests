@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_microcks.io_images_microcks-log
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2b8f415f380e71870732815bb13c0febed475002d77ec5ff8809134870af4ead` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

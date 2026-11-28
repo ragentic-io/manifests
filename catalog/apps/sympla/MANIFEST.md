@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `706de4abbb1806486126d50c594378d33749b435e41621d3f8e8aede22b6c6b9` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.sympla.com.br/public` |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_sakari.io_wp-content_uploads_cr
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ee8c3d8a725d3cc090982cd3a62046611d5fc5172787eb833e3cee28213027f4` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

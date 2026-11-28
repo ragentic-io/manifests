@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a6cabdc6529e6736652f4b16c77c4c04c77c72dc348f46575fe83389c4fe0f10` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.supersend.io/v2` |
 | Credential | — |
 | Connection test | — |

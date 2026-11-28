@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_developers.journy.io_developers
 | | |
 | --- | --- |
 | Categories | Data & analytics, Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `44b02c5941734e3189ab731db1ad98da319ff3df78ae19a1c5819bfc90d29530` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2002a45306fe97eae897989a5f368655765c14d785f436402b7ffef732762162` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://public-api.sessionboard.com` |
 | Credential | — |
 | Connection test | — |

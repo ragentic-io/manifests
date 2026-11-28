@@ -12,7 +12,7 @@ categories: ["open-data", "education"]
 | | |
 | --- | --- |
 | Categories | Open data & government, Education |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `08e7060d1c06575d13e343539e909ca85e54f5066c48fe3d78de7d32580573ef` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://spacex-production.up.railway.app/` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c561ea375d6e9f72f24939bb565c6cb8015ca011f49d9284186f3d90543f2f00` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.emailoctopus.com` |
 | Credential | — |
 | Connection test | — |

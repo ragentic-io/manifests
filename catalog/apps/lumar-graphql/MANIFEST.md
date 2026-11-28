@@ -13,7 +13,7 @@ logo: "https://www.lumar.io/wp-content/themes/lumar/favicon-32x32.png"
 | | |
 | --- | --- |
 | Categories | Marketing, Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `cc004e0d939b63d727d60cb1ffa1165257531f8c5fb2002f059e2ff95fcdf39e` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

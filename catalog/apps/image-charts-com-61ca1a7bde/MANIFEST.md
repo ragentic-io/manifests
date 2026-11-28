@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_imagecharts_profile
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6ae73f111f5d0bc63ea1ce24ae6e2a2b80b48d042e3805baf3170ae1b00204ab` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

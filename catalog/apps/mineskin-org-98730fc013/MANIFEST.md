@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_mineskin.org_img_mineskin-x256.
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `abb26bb144ba857ab2dea3b541ba10933ca93245947596f780c11c28bf734f01` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

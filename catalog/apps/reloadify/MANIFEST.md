@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a00760562c9753f0e23b98c3e5b4533c55ea2d87ed58c9999bed8c94282ae73e` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.reloadify.com` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4ca3352cad068a5ffaa93d4dfad9adaf6df79a97bcd28c8db2b7290c8d3082a2` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://app.homedrop.io/api/1.1/wf` |
 | Credential | — |
 | Connection test | — |

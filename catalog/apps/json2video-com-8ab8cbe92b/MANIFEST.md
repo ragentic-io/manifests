@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_json2video.com_images_json2vide
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `54493384dd0d5623c02595793a4d62fca9a55a7dcd1033dd168539d0dc575e4f` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

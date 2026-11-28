@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_Infermedica_profile
 | | |
 | --- | --- |
 | Categories | Health & science, AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1c73a5bc226f39b809036fa40c8a273ae158e359d4792cd80f8a298e5b0d61d8` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

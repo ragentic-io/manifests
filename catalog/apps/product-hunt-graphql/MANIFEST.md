@@ -12,7 +12,7 @@ categories: ["social-media", "marketing"]
 | | |
 | --- | --- |
 | Categories | Social media, Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ae1c275e2805f472c054d4206f343397121e4289404840436c671b8257417cb2` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | `https://api.producthunt.com/v2/api/graphql` |
 | Credential | — |
 | Connection test | — |

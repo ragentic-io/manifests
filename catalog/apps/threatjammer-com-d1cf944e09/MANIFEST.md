@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_threatjammer.com_threatjammer-r
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3fbb5d2801ea1182837e506d083e17f6d60cccf71065a433626b0340730868ac` in `browse-bundles/`, expires 2027-02-26 06:40 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |
