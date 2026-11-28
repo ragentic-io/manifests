@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.pdfblocks.com_assets_images
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ddca3018e930fdd5ca642c305a2565a4e2496cb4f335cd5c3bfdb008c9d4faf2` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

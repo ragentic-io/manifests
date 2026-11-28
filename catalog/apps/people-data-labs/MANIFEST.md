@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `827d4b36f4434e4691588d9901dd51f4a5d0ee191d9e2ef85f6e3cdfd549eed1` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.peopledatalabs.com` |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_PhiladelphiaGov_pro
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4122d7c3378d3d8690a2ea49a31894232d52b5cfa11fcca70b851b7667097517` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `9ca47e1e3a59734f0f550fbbe95d37bb02bafcd42314606cf029f597476f5ebc` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://console.neon.tech/api/v2` |
 | Credential | — |
 | Connection test | — |

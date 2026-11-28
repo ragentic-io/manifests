@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4e17ed2da44726fbb6c5eb811aa34de67df47430edac6af19b5c8d907c566c9a` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://www.dnd5eapi.co` |
 | Credential | — |
 | Connection test | — |

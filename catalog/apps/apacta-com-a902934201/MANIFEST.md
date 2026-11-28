@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_apactadk_profile_im
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7d1a456a7d172d6fc5f1c21c085e4844b161bb9ded104d3e80d4e0f44dcadc92` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

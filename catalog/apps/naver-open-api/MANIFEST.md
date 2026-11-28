@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8d7eb31a2fcf50f0fd5707f22ce79eaf396f8caee6f5cdbc143b3b8f4d2bc9b3` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://openapi.naver.com` |
 | Credential | — |
 | Connection test | — |

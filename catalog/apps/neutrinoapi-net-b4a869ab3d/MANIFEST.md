@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.neutrinoapi.com_img_NEUTRIN
 | | |
 | --- | --- |
 | Categories | Communication, Maps & location, AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8732b482d5268ce0d5ed85807d7b1019a93a35f53bf63a569cb4de995ea370bd` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://hashnode.com/favicon.ico"
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `274334683e4dd91a97c1381cab905262e0f2c39ebd0dee5cfddf9388fe94c3de` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

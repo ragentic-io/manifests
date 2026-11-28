@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/http_developer.twinehealth.com_images
 | | |
 | --- | --- |
 | Categories | Health & science |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6a65ca732fae96522316aae80d57deecf866c81bda2f2f55eeac0cb9cfa7c10b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

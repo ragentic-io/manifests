@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `17b3b10638774d071c04d51c2b70db70ec4f2a366820390b32c3dcf3e6323b38` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://connect.shoutout.social` |
 | Credential | — |
 | Connection test | — |

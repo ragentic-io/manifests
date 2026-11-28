@@ -14,7 +14,7 @@ Independent connector for the DigitalOcean API. Not affiliated with or endorsed 
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `0e4debd13ae03a3b3349a5558fb8fb8ff91a012b65a95119a82109b083c947f6` in `bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.digitalocean.com` |
 | Credential | static_bearer |
 | Connection test | GET `https://api.digitalocean.com/v2/account` |

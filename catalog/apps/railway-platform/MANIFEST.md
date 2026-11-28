@@ -15,7 +15,7 @@ Independent integration for Railway API. Not affiliated with or endorsed by Rail
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e43e60091fd5f66ed7e40a0a5d8c6c5c549242e404ba7519c2d78eaa514caba2` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://backboard.railway.com/graphql/v2` |
 | Credential | static_bearer |
 | Connection test | `https://backboard.railway.com/graphql/v2` |

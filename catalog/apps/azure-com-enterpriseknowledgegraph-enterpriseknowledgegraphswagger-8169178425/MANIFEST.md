@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_assets.onestore.ms_cdnfiles_one
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2beab34c7e3eb8480d9486266e1935441ba54b49ec69a67cba1e139af6f130d8` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

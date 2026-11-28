@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `01db17c79b9d692435393d133458369111c7747647a8f2b253dd200ea925889c` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://gitlab.com/api/graphql` |
 | Credential | — |
 | Connection test | — |

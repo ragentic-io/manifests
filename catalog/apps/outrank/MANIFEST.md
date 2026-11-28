@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `66052ac63f1e9aea836d5fbcecf140f5076c5e9369f5439150d61c0b5651e630` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://www.outrank.so/api/agent/v1` |
 | Credential | — |
 | Connection test | — |

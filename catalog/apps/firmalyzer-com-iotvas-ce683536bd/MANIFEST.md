@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_firmalyzer.com_static_img_apple
 | | |
 | --- | --- |
 | Categories | IoT & smart home, Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e3b53e0758d1639ff5b172ba46d6a88d03afb3f84f55aad3edd7057f69381200` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

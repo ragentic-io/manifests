@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `942ad5dccd06b814f38fa5fddf2ad1041451100e6aaf64f40f2cfc350c1e948b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.e2b.app` |
 | Credential | — |
 | Connection test | — |

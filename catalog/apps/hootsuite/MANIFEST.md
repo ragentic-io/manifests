@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1b564aebf44aefd9483b58337330bef34e40477d69c6ecafe48d29fde25c1421` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://platform.hootsuite.com` |
 | Credential | — |
 | Connection test | — |

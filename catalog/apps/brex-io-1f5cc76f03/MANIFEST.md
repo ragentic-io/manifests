@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_brex.io_img_logo_brex_small.png
 | | |
 | --- | --- |
 | Categories | Finance & payments, Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8a9974b1c2a9062a24b68a912b75e8808500e8ff74a393eb7a9cf1f976ecfd4a` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

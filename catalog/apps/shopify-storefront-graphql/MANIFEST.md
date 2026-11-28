@@ -12,7 +12,7 @@ categories: ["ecommerce"]
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4f740b79a65482d192a13576c322467417898d476b98eccd254c3c3b8de2594b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://{shop}.myshopify.com/api/2026-10/graphql.json` |
 | Credential | — |
 | Connection test | — |

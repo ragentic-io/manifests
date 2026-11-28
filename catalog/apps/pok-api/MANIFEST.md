@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `33e0a28d6fc5ce13b5fb9cd20987fcdfad07f06387d33c30cb20ccf91c7b1293` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://pokeapi.co` |
 | Credential | — |
 | Connection test | — |

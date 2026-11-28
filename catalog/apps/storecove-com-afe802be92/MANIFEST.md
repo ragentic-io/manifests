@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.storecove.com_assets_v2_log
 | | |
 | --- | --- |
 | Categories | Finance & payments, Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `240d2472c6041f3ead57176c2c16f2a081bd553717e477d9a81db00982a309d3` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

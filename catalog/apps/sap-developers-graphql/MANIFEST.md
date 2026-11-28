@@ -13,7 +13,7 @@ logo: "https://developers.sap.com/favicon.ico"
 | | |
 | --- | --- |
 | Categories | Software development, Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4e7f22fa9bf222cfbe1b6772111f328088bde2ed69ed8584fc44aa60f6554eb3` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

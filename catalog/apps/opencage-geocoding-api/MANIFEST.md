@@ -12,7 +12,7 @@ categories: ["location"]
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `47346b82c57c0ebc38ec5462b8f615f53cc842edf66f1b0f9c0279585ef5c6d7` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.opencagedata.com/geocode/v1` |
 | Credential | — |
 | Connection test | — |

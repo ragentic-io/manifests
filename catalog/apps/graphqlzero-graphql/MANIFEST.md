@@ -12,7 +12,7 @@ categories: ["software-development", "education"]
 | | |
 | --- | --- |
 | Categories | Software development, Education |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `0ea1b57f92dc99c2dc7ab5b0ac8ab2f9f71fb5b27f77ad68329cc9222197e83a` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://graphqlzero.almansi.me/api` |
 | Credential | — |
 | Connection test | — |

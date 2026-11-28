@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `dcae60c51f46676faa57a37adae655f5967ccc264dc7af1db6ba45fed6b763c4` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.mailjet.com` |
 | Credential | — |
 | Connection test | — |

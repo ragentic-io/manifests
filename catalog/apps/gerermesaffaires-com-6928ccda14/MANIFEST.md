@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.gerermesaffaires.com_wp-con
 | | |
 | --- | --- |
 | Categories | Business & CRM, Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1dd26f5199805ac37074b0c1740e0ce6766838d7c4855554d0247ac11d7afc3e` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f1fb9b1f1db1d31457f479e79dd91d6966684303de7a6e919c88608c84b34fe3` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://developers.hostinger.com` |
 | Credential | — |
 | Connection test | — |

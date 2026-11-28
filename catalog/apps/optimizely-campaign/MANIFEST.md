@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5144a48bd77b73faf45adcbeadd815b0c631765361a156ade3de84f69ab1c46d` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.campaign.episerver.net/rest` |
 | Credential | — |
 | Connection test | — |

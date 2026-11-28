@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_portal.apptigent.com_sites_port
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `175df1e0bb2557c428f1b974a0ad93000f5013a7790d92f89eb19e0031142db5` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

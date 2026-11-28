@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_apis.guru_branding_logo_vertica
 | | |
 | --- | --- |
 | Categories | Open data & government, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `891cd0dae3f3416d4cc3f320726ff6d8a677e1b2eddb52bb621a0bcb86805d77` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

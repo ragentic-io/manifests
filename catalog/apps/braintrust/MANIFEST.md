@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f286e8588940a5e3626f253b6b22887a841d25e0291f5ba5c99e9ef7e1e40401` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.braintrust.dev` |
 | Credential | — |
 | Connection test | — |

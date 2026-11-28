@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3a05b76b66eff1c8d6b407e0ee61d1996f964845bf71aa25d55d448f53c34d77` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://platform.unstructuredapp.io/` |
 | Credential | — |
 | Connection test | — |

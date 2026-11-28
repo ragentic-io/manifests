@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d042e15497d44a5c6ca559aa2bab6db279eb1641b7b1ee6ba1e65acfb46328a7` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://app.metricool.com/api` |
 | Credential | — |
 | Connection test | — |

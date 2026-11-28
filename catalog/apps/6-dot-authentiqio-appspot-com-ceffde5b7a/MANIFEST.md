@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.authentiq.com_theme_images_
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d300fbed15e49ac9a03387ffb6088ed6036b59750c2f78cea6a1d5d2debc2d89` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

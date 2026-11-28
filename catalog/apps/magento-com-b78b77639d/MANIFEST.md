@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_magento.com_sites_all_themes_ma
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ac69d8df0c3177fbc8b20c8d1e4eb09c5e740a89c8e495bc1cb0c4dc4601b77b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

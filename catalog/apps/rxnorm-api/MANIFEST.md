@@ -12,7 +12,7 @@ categories: ["health"]
 | | |
 | --- | --- |
 | Categories | Health & science |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8767c9ffe2e4ad7410836607556d8027e5d3fa2e874d2b448e0b3e7ab6a5cbcd` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://rxnav.nlm.nih.gov/REST` |
 | Credential | — |
 | Connection test | — |

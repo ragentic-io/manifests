@@ -12,7 +12,7 @@ categories: ["education"]
 | | |
 | --- | --- |
 | Categories | Education |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `653350baae7903f77b3b17b376285b0a976c7cba2166c7aee1375b5fe28bc601` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://opentdb.com` |
 | Credential | — |
 | Connection test | — |

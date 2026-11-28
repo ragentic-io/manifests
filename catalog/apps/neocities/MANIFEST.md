@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8d026499993c30c5fb017f92f2628206ef707ba611d99e3edf8dfe23ee522706` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://neocities.org` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7c500b184fbc73f37ee924323a042c7863bbd53d49169c6cc0a73abde0ff0db6` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.beehiiv.com/v2` |
 | Credential | — |
 | Connection test | — |

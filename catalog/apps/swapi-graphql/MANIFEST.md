@@ -12,7 +12,7 @@ categories: ["open-data", "education"]
 | | |
 | --- | --- |
 | Categories | Open data & government, Education |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `61d1cbcfa0cafddf5f4bdbe9f61cf6ce4ab5037001534b0643e5060414e063f8` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://swapi-graphql.netlify.app/graphql` |
 | Credential | — |
 | Connection test | — |

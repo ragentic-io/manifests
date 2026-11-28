@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_developers.apideck.com_icon.png
 | | |
 | --- | --- |
 | Categories | Finance & payments, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `95faf610e662b589b4a45f597d24aba7f30fda0d2d6aeffd3cd8e7acfe26c382` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_0.gravatar.com_blavatar_6531667
 | | |
 | --- | --- |
 | Categories | Travel & transport |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b8a72598474484d03be92cca9a906ded59042a0908eb90c4d28f7dd06fa5ba14` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5c3852685683a7360ba028b8b6bc555ddfb54b9c37762663fa20c4b32fb67d48` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.inngest.com/v2` |
 | Credential | — |
 | Connection test | — |

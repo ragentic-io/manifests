@@ -13,7 +13,7 @@ logo: "https://dagster.io/site-icons/favicon-light-32.png"
 | | |
 | --- | --- |
 | Categories | Data & analytics, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `62d71d3adedf8cc177c8676ec86f50c17586ba1d0a256b25968198f08b5030cb` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

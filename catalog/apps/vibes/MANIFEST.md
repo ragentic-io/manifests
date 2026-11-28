@@ -12,7 +12,7 @@ categories: ["communication"]
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4d2af3f14cb3af9c53f14a872880bb8aa43e6d8961b735876aaa390c51b77fab` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://public-api.vibescm.com` |
 | Credential | — |
 | Connection test | — |

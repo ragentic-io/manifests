@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fc6dd815a832a133eb73f01414eae7e9487d258d9f87d62e32d5fd8b1263bad5` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.sendgrid.com` |
 | Credential | — |
 | Connection test | — |

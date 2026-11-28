@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.labs64.com_content_uploads_
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f2239fed0bf72c4e4a2b3ac08e113087ec3e6974d141ec2623c204fd999cca45` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

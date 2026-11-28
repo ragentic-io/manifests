@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_api.i-cue.solutions_icue_icue_l
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ca3887d7060d7e118dda3b9fd08c6af177290853c833a9184165de7492938e28` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

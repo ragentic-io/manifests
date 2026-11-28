@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_cloud-elements.com_wp-content_u
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `34618ccddcf9b285bffc9be38109f4070ae3e63c0d21360a44e7537042bcbb4d` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

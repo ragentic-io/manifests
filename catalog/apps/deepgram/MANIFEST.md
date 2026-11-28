@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3cdb0c645ef16721ef0ea076ee83ace9699a704bc387d8904070b81816137359` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.deepgram.com` |
 | Credential | — |
 | Connection test | — |

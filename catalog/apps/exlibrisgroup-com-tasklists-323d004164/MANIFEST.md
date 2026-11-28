@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_exlibrisgroup.com_wp-content_up
 | | |
 | --- | --- |
 | Categories | Education |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `294e8fccdd70142f169c1327353e8550b16aae982a1f99afc13161ea43e2dbbe` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `729bc3e4d798bf0102100165cdfe5c9fea349f082a1f4a3b17a2630102c4062b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://openrouter.ai/api/v1` |
 | Credential | — |
 | Connection test | — |

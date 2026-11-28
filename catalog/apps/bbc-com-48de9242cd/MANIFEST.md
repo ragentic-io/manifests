@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_github.com_Mermade_bbcparse_blo
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5061e96735cb097c0ac71349e0692bd2a4c5dfd0eaf451e2c66823f6d96f6a92` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

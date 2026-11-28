@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `07c89763622f4e85a3639ca82063cd31ea533a75cee99e6d37bd605b7a853610` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.paved.com` |
 | Credential | — |
 | Connection test | — |

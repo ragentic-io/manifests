@@ -12,7 +12,7 @@ categories: ["ecommerce", "business"]
 | | |
 | --- | --- |
 | Categories | E-commerce, Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a1b6e8860cb19b727685cde775bcd6c2d827db7b7a649a1724c681fe534762ef` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://www.wixapis.com/graphql/alpha` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["communication"]
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7c7e1977276063d8ce3c57999a7402cef7c9c509235f4ef759710309d5295cef` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://{host}/admin` |
 | Credential | — |
 | Connection test | — |

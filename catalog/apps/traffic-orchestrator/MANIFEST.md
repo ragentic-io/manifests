@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2db840249ca1398ade983df2b43ff29899e94fb750ac6b649fefd226253954d7` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.trafficorchestrator.com/api/v1` |
 | Credential | — |
 | Connection test | — |

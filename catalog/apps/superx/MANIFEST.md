@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `808496ede51b30be0fc331bae9dfef92b2fcf662af201344554fa15b645988a9` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.superx.so` |
 | Credential | — |
 | Connection test | — |

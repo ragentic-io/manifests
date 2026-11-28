@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `23e59062094462559ed020092f5e5fbc2eabd46052286bce29ca61783727cee4` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://connect.mailerlite.com/api` |
 | Credential | — |
 | Connection test | — |

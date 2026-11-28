@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_deeparteffects_prof
 | | |
 | --- | --- |
 | Categories | AI & language, Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b125fde503f45045cc3de9733c8d17b62f2a158bb9e13e007942ed7259f2b1c2` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

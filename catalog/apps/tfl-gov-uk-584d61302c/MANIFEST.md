@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_TfL_profile_image.j
 | | |
 | --- | --- |
 | Categories | Travel & transport, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1b652b3e28a7deb7e361e67794731b9604574a6ce064506a063dd05b3b7196dc` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["software-development"]
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `710d50d627323d6fb390770b3cb09c59565bb519ea60b49c458a789f7bf361d8` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.convex.dev/v1` |
 | Credential | — |
 | Connection test | — |

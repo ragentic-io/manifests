@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_receptiveio_profile
 | | |
 | --- | --- |
 | Categories | Data & analytics, Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ea37a5616856ad5e492060ddfae1a25990d3c016adc7f3b5cb5de0e774904204` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

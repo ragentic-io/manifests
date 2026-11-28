@@ -12,7 +12,7 @@ categories: ["health"]
 | | |
 | --- | --- |
 | Categories | Health & science |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `04155d73f87354b71523be09ed88eae518dc4b0fc556c6fc50f81c012867b22d` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://{baseUrl}/v1` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fccdba84c7045bc17c4d466856537056a39a6061950860b3a30079763560b56e` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://datafa.st/api/v1` |
 | Credential | — |
 | Connection test | — |

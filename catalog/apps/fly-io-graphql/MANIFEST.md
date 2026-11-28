@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e0843968c30c6cb75f240a377e8837904098e758616cceffe1944c0e54088233` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.fly.io/graphql` |
 | Credential | — |
 | Connection test | — |

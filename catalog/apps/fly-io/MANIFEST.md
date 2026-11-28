@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `114571208fa63fe36d6e4086ac5475880635a34ae027b2c033bd1464d4ec0c2d` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.machines.dev` |
 | Credential | — |
 | Connection test | — |

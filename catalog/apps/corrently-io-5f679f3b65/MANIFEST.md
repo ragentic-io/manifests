@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_corrently.de_assets_img_Corrent
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fefc7c715ccc47d35ff48ae1885c64353b167d000bc9942cb586db78e3f41d43` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

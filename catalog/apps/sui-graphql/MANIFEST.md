@@ -12,7 +12,7 @@ categories: ["finance", "software-development"]
 | | |
 | --- | --- |
 | Categories | Finance & payments, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `61bf02d121b7a07b3b65c1bcaf2685c91ad3f1a59c4d552cefa23a8476b1f60b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://graphql.mainnet.sui.io/graphql` |
 | Credential | — |
 | Connection test | — |

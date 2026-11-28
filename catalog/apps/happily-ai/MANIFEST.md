@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1ad3d9a15076e7bd7ba4697338099f2fab8a680d13687baf605eaa8436492df5` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.happily.ai/prod` |
 | Credential | — |
 | Connection test | — |

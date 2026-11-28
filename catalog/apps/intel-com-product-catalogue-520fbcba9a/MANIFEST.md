@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.intel.com_content_dam_logos
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `03ce48bf7db239f0868cf49cb063835113c007e816775c628886aee99e514572` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["health", "open-data"]
 | | |
 | --- | --- |
 | Categories | Health & science, Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `11ceb8c8c8d924b4697bd0eedd9c1354dcc4ad8a26135af997ef5d42508241c8` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://dgidb.org/api/graphql` |
 | Credential | — |
 | Connection test | — |

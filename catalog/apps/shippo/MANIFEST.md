@@ -12,7 +12,7 @@ categories: ["ecommerce", "travel"]
 | | |
 | --- | --- |
 | Categories | E-commerce, Travel & transport |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f01620914877f5902251c8693451afacb0f1e660bfa9e7bf88ac921cca6bbf5b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.goshippo.com` |
 | Credential | — |
 | Connection test | — |

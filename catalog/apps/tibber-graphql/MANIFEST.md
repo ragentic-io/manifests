@@ -12,7 +12,7 @@ categories: ["iot"]
 | | |
 | --- | --- |
 | Categories | IoT & smart home |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `868f600d9d04ebc8417c1c52b17a456eb6e4c458d8eee610a09ae6f438bb51ad` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.tibber.com/v1-beta/gql` |
 | Credential | — |
 | Connection test | — |

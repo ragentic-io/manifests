@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `08b9b44b9c3eaefbe833edfed13ac875289b95c9382c9052e89291157bc9757b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.replicate.com/v1` |
 | Credential | — |
 | Connection test | — |

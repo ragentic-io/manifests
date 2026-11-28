@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_res.cloudinary.com_dnutsfp7d_im
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2677a9046ff367aeeb405ec726f8f17974af30fca0667e5f282a4c093fbd8a98` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

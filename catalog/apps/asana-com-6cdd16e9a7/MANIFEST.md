@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_d1gwm4cf8hecp4.cloudfront.net_i
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f45343deec98e6a27fc01cdbf94fcf3719e0612d7b5ad81fdcf2c598ab7ca7bc` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_flat.io_img_logo-flat.svg"
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fc90f08967c35b7723f188f88002a3031cb6cc03ab8bb64c658dc2a0a0ccc689` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `db225ecc00024bd867d57f774802d3108a51629d2e58e17e829adb1465f85fb5` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://wiza.co` |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/http_cnab-online.github.io_img_logo.p
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `cdd0ba2921ba5e7c6e72e2207c9740e18cf0e95a8f8799c93f86b3b3dd3ebeb0` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

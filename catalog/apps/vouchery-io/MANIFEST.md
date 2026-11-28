@@ -12,7 +12,7 @@ categories: ["ecommerce"]
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `77e953e02037df05f0e3b82c3bb6aa65866a3f52d7473780acf024f52e7b0c62` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://admin.sandbox.vouchery.app` |
 | Credential | — |
 | Connection test | — |

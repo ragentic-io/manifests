@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `53498b9bc5f6193d7a03a7691e21d7b6f6338d31cba70109aa57787c942b6b28` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://developer.openbanking.org.uk/open-banking/v2.3` |
 | Credential | — |
 | Connection test | — |

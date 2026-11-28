@@ -12,7 +12,7 @@ categories: ["iot", "cloud"]
 | | |
 | --- | --- |
 | Categories | IoT & smart home, Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1b4413d8f6fcd32f2b65b69f5bf20ced637cbc4cd3c93d9ffb95af2c4a1d28a2` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_contentgroove.com_wp-content_up
 | | |
 | --- | --- |
 | Categories | Media & entertainment, AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fcb2bf5ff002f5bea80d82cb571973d7eebfd9da9b00d4b1388aac36a0559376` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

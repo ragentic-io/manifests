@@ -12,7 +12,7 @@ categories: ["social-media", "communication"]
 | | |
 | --- | --- |
 | Categories | Social media, Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `bf6d62854061675a99f7449e9529328e0d82f0854f3e9364e081576fdba8fe6d` in `bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://discord.com/api/v10` |
 | Credential | api_key_header (`Authorization` 'Bot') |
 | Connection test | GET `https://discord.com/api/v10/users/@me` |

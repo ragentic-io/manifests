@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `09bcc27220afc65a35d7e6400e05b2a4328a597238f4a8b37fba50805ca81e63` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.topia.io/api/` |
 | Credential | — |
 | Connection test | — |

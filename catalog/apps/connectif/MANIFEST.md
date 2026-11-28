@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `490b1ac7bcbd3bacb9cfcde7e5afe8e57eb744119a8c196b4d3248c7efa54a30` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.connectif.cloud` |
 | Credential | — |
 | Connection test | — |

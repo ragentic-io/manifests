@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_facecheck.id_img_favicon.svg"
 | | |
 | --- | --- |
 | Categories | Security & identity, AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f482aaa9d7fd363bd85ca81787292a9a5b5059384ade3bb4fac88d97be01fa2b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

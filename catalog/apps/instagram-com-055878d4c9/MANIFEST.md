@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_twitter.com_instagram_profile_i
 | | |
 | --- | --- |
 | Categories | Social media, Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c75f478f6e38c66c5b21462e9ecff0eb22d19dba261a02c611f0effbde2936d5` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

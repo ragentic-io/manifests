@@ -12,7 +12,7 @@ categories: ["security"]
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ca78b2a6a571e29dd6212c64882f32a5432f309aa3e3d88a8628216c9588797a` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://misp.local` |
 | Credential | — |
 | Connection test | — |

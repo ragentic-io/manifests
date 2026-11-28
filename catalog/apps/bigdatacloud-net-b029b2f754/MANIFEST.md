@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_res.cloudinary.com_bigdatacloud
 | | |
 | --- | --- |
 | Categories | Maps & location |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `59f63b4e4c22f922eb8de2eb5f48666f1b5057b0845ab9265daf44dce6aeb606` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

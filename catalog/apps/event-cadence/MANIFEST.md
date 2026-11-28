@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7c0211cc473ce16e469d3bd71367c8541b40a791c191eacf65c9437df017beac` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://webhookconnect.eventcadence.com/connect` |
 | Credential | — |
 | Connection test | — |

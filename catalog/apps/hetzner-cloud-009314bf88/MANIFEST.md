@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www_hetzner_com_themes_hetzner_
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `25dca1fec25d8f89fa74572f24e2d1f771881d4db7990d2bc05e0adf16c852ec` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

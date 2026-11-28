@@ -14,7 +14,7 @@ Connect an Autodesk account with an independent Ragentic integration: translate 
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure, Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1f9a61940ebce6df8de3ccd7c2ffeb86c736a5f5a7f089ab0d215401f47ee7b5` in `bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://developer.api.autodesk.com` |
 | Credential | oauth2_authorization_code |
 | Connection test | GET `https://api.userprofile.autodesk.com/userinfo` |

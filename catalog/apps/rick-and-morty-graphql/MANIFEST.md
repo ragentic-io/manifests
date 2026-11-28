@@ -12,7 +12,7 @@ categories: ["media", "education"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment, Education |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `a7025cae684419bc51c7833edc42d6c68d4daec203ffe910002e8748185e264f` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://rickandmortyapi.com/graphql` |
 | Credential | — |
 | Connection test | — |

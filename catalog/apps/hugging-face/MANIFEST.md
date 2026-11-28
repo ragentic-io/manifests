@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `816e6def8cd836aa1035aad7e6d45ce6cc17e5d075692c5472dacdcfcd494315` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://huggingface.co` |
 | Credential | — |
 | Connection test | — |

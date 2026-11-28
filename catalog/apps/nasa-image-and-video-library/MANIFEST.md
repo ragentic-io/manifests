@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1fe95b08d716f76ecbb78ab17efbc74d87c9c047ef133a3305709dbf21559130` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://images-api.nasa.gov` |
 | Credential | — |
 | Connection test | — |

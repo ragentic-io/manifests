@@ -13,7 +13,7 @@ logo: "https://enode.com/favicon.ico"
 | | |
 | --- | --- |
 | Categories | IoT & smart home |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `965cf8acf816f32d2930dba76526290e81f5b3b765b6ea89d412647afffd238b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

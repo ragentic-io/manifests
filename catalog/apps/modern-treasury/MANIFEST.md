@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `006ceb1c4c5a3711ec048a3553dce675d977b40181d92016950378f33b2d09d0` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://app.moderntreasury.com` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `46cd6adcc067b10e95a1cc636a078a32c878e39c34323401d8af5cfeac12b3ed` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.postproxy.dev` |
 | Credential | — |
 | Connection test | — |

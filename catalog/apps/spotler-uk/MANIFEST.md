@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3511a6bc8f55ba71360328076e4a99e49bd03dd41aa47b7860ea480d930bc4a8` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.communigator.co.uk` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ee17b03e745378f682cd48df5c689274ebbfce93d56c2cc7aabb3a2ac066953a` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://graphql.anilist.co` |
 | Credential | — |
 | Connection test | — |

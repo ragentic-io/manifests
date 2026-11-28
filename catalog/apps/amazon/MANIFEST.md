@@ -12,7 +12,7 @@ categories: ["ecommerce"]
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `93b50ca00b0bde5985a9e9430b9f3f1135a1575911594c074c6fc5618058335b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://sellingpartnerapi-na.amazon.com` |
 | Credential | — |
 | Connection test | — |

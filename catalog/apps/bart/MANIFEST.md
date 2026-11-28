@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5c78c4dc8f22fa6b48b24e4a8795337a28a9599b62f60ea354f22539fdb1a80f` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.bart.gov/api` |
 | Credential | — |
 | Connection test | — |

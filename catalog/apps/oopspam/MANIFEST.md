@@ -12,7 +12,7 @@ categories: ["security"]
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fc8c16f8b114e27de80c4573c657eae6faa9fb08e84d60f84408b55adcd2517e` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.oopspam.com/v1` |
 | Credential | — |
 | Connection test | — |

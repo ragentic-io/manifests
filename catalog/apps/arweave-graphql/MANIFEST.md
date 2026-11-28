@@ -12,7 +12,7 @@ categories: ["cloud"]
 | | |
 | --- | --- |
 | Categories | Cloud & infrastructure |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `b079b48e858e92735122c798f13b7299d0a84b1bd5ff6acd558ddba10421ff13` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://arweave.net/graphql` |
 | Credential | — |
 | Connection test | — |

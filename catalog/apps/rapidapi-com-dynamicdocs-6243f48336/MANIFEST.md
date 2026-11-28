@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_advicement.io_images_logo_Advic
 | | |
 | --- | --- |
 | Categories | AI & language, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `40a5b69c32618c17b870e7b37091fc637f137551101fa46a2e65ed37e72605a2` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

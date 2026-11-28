@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.circl.lu_assets_images_circ
 | | |
 | --- | --- |
 | Categories | Security & identity |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fc75e031a02933217db82d14280119c963051d0e1cc45dbeb29d362a592e1b33` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

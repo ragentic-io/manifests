@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `5aabab3917fa7aa5b9a6794a5814ad8640e3314375e5d1f791ac148c94137b0d` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://www.openindex.ai/api/v1` |
 | Credential | — |
 | Connection test | — |

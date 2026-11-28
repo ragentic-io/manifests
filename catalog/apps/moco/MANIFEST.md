@@ -12,7 +12,7 @@ categories: ["finance", "business"]
 | | |
 | --- | --- |
 | Categories | Finance & payments, Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `774979219c5dbbdf1c6d2f815b58e3a5eb07e8b769b86830b365f57d15234fbe` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://{account}.mocoapp.com/api/v1` |
 | Credential | — |
 | Connection test | — |

@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `435ccaf3e0fe31113728dda44b0f95608dbc1e6e43d63c148452f8a920fc023c` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://limpiaudit.com/api/v1` |
 | Credential | — |
 | Connection test | — |

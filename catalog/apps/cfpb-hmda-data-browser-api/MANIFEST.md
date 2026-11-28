@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e8e6b27db3aeaabc6d50e4e5da70864ad5402eb56917518333141c3193027129` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://ffiec.cfpb.gov/v2/data-browser-api` |
 | Credential | — |
 | Connection test | — |

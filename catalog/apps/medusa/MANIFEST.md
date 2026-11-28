@@ -12,7 +12,7 @@ categories: ["ecommerce"]
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7e3b86976ef9e88d553f5a8327992575a3422c35ee078e02b42643e9806b8224` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.medusajs.com` |
 | Credential | — |
 | Connection test | — |

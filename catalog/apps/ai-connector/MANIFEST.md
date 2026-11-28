@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `565b540af37efd60d786ab60f0812dacc48ddd1a81652816671adb30793dc16f` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.mysaas.site` |
 | Credential | — |
 | Connection test | — |

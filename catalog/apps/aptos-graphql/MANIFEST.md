@@ -12,7 +12,7 @@ categories: ["finance"]
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `3ab2d9057714748de07ff41f23ac829dd1a0c3eb4486af71a01ea70358b0dccc` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.mainnet.aptoslabs.com/v1/graphql` |
 | Credential | — |
 | Connection test | — |

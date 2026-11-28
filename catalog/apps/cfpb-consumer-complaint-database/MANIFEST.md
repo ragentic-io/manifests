@@ -12,7 +12,7 @@ categories: ["open-data"]
 | | |
 | --- | --- |
 | Categories | Open data & government |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `569ce54cf8fab6e35aac91bb27b05adeed1096c73fd1b5dc63dd278abeec6daf` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/` |
 | Credential | — |
 | Connection test | — |

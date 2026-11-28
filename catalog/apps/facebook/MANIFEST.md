@@ -14,7 +14,7 @@ Connect Facebook Pages through the Meta Graph API v26.0 with an independent Rage
 | | |
 | --- | --- |
 | Categories | Social media, Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `520b5c6ae2642d5573bd73df7f23d8abeb644f6ca5770dc416a7e1aefb15395c` in `bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://graph.facebook.com` |
 | Credential | oauth2_authorization_code |
 | Connection test | GET `https://graph.facebook.com/v26.0/me` |

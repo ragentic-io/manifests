@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `43078d9ef7b8d32cd99db56b026ef34bc3f3e726bc0e514f50a7d2c3281f035a` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://www.billetweb.fr` |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_logoraisr.com_assets_images_con
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `6dbd5b69583c9ff4beaa70a3346568bf58a44668390079f409592bbf9d3d7464` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

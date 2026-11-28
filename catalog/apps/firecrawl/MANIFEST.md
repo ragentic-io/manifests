@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `17853e698345759c8127f4a00e582d775f3afb116fa5e35c38da6a7edf88e8a8` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.firecrawl.dev/v2` |
 | Credential | — |
 | Connection test | — |

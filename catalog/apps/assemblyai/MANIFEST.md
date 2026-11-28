@@ -12,7 +12,7 @@ categories: ["ai"]
 | | |
 | --- | --- |
 | Categories | AI & language |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `233380ecfddde55bae7e47e39adedac64c6d65609fc68965f178b51463a50f3d` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.assemblyai.com` |
 | Credential | — |
 | Connection test | — |

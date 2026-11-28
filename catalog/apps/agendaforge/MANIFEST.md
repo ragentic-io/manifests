@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `960a84e99490a874b20caf8a81b01c9769090892dcccb8f085d3e9f25432b3d1` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.agendaforge.app` |
 | Credential | — |
 | Connection test | — |

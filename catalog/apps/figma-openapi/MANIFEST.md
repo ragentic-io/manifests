@@ -13,7 +13,7 @@ logo: "https://manifests.ragentic.io/assets/figma/figma-icon-full-color-9798b710
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `967a86d63c320358faca2df0be30cdc51ec3a99f7e34e58be9c4c87000ec9574` in `bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.figma.com` |
 | Credential | api_key_header (`X-Figma-Token`) |
 | Connection test | GET `https://api.figma.com/v1/me` |

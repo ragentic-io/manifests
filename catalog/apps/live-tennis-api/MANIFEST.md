@@ -12,7 +12,7 @@ categories: ["media"]
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `fdb6ace4290669063760d3001e8c6805cfd4d6eaafecc8a6529e8658af89b6e8` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.livetennisapi.com/api/public/v1` |
 | Credential | — |
 | Connection test | — |

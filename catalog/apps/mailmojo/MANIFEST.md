@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `c7d022dda2229bfa5f814468b942215b9eeaad432b140ab3c7955db1e165c5eb` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.mailmojo.no` |
 | Credential | — |
 | Connection test | — |

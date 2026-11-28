@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `2a8c19e5799cfcfce6fc7618907e388501b8042679e0342c46e90c2d091b633b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.climbo.com` |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.moderatecontent.com_img_mdr
 | | |
 | --- | --- |
 | Categories | AI & language, Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4389f27c167c2106ec0869623b45d7ff8d5885cf229c8c719d4d893f718cf922` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_api.nativeads.com_docs_publishe
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f588a83272d4fa53da40d8c1793202a891b675bd1820b2b88a4f216ea8cb8aee` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

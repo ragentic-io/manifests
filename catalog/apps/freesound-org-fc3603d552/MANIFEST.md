@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_freesound.org_media_images_logo
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `71f932c2c53d93dde946164ae3544742f0e611fd5cb258762ac603a64abd7203` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

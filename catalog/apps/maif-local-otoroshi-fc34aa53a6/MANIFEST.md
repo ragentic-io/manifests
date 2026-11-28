@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_maif.github.io_otoroshi_assets_
 | | |
 | --- | --- |
 | Categories | Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `7725f1e545c0c6edbdc464d375dfb7ee4f0f75d57c676e2f06c956046ed16fe6` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

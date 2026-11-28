@@ -12,7 +12,7 @@ categories: ["social-media"]
 | | |
 | --- | --- |
 | Categories | Social media |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `4fcbd8d44ea89d776a9bc537ede52d8dfa2fbc6895f0cea29419773cf9f56d03` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.twittershots.com` |
 | Credential | — |
 | Connection test | — |

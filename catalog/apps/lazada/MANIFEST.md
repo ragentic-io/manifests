@@ -12,7 +12,7 @@ categories: ["ecommerce"]
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `cef09f51f0ca1bb8a571ba86acf16f28786226748edc06a80adced33477b8b38` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.lazada.sg/rest` |
 | Credential | — |
 | Connection test | — |

@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_sinao_app_icon.svg"
 | | |
 | --- | --- |
 | Categories | Finance & payments |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d75736c05fde48178ae4184c9b2b80aa791e10e6ffa63604bfe23c6e1a9ea1f8` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

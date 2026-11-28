@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `35f52b637e5e79a16b227fb43405e3471deaa8e4780f5baa44c2caa7e627a54f` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://documentation-resources.huwise.com/api/explore/v2.1` |
 | Credential | — |
 | Connection test | — |

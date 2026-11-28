@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_biztoc.com_favicon.png"
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `951070d872fe24d7ca81cc4d5ec03f17eb93a7c1e77240bea6f3125870c42e0b` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

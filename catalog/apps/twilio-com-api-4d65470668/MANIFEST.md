@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_static1.twilio.com_marketing_bu
 | | |
 | --- | --- |
 | Categories | Communication |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `ce41724716da32b4e589e61dcd4621e63bce6021a4bc0f44c947159c1a4ccf43` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

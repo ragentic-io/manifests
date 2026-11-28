@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `8bdbcd7d2d067c212ad978a8064e0da300e4d7eb8385c0244918b55fa0806bdc` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://public-api.luma.com` |
 | Credential | — |
 | Connection test | — |

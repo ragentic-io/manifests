@@ -12,7 +12,7 @@ categories: ["marketing"]
 | | |
 | --- | --- |
 | Categories | Marketing |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f61272f3c91d2b405c6c9bdeb2bd3b9ca3e8f4bd5bdf0fa5cc0eacc27645a650` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.sendfox.com` |
 | Credential | — |
 | Connection test | — |

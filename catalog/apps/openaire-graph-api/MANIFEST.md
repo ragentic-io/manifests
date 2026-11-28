@@ -12,7 +12,7 @@ categories: ["analytics"]
 | | |
 | --- | --- |
 | Categories | Data & analytics |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `98694c956fad88b0c37dd41ec3ca4fecc286d3f85c1ef8b28f99a5a0ad4499ef` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.openaire.eu/graph` |
 | Credential | — |
 | Connection test | — |

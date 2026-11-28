@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_versioneye.files.wordpress.com_
 | | |
 | --- | --- |
 | Categories | Open data & government, Software development |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `d9a3d10eb3b7aa5d70fef007b7f88f649675a97580842a6f9043fbd02a954b94` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

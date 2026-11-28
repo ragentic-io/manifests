@@ -13,7 +13,7 @@ logo: "https://monday.com/favicon.ico"
 | | |
 | --- | --- |
 | Categories | Productivity & collaboration |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f785cd69087f821114db5c4ecb59c937406aac6ba4b3a80cfab7521f51b4c6a1` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.monday.com/v2` |
 | Credential | api_key_header (`Authorization`) |
 | Connection test | `https://api.monday.com/v2` |

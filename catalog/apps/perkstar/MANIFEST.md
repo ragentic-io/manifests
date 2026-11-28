@@ -12,7 +12,7 @@ categories: ["ecommerce"]
 | | |
 | --- | --- |
 | Categories | E-commerce |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `e49908b9509a33538872c61146425343d3ecc332585a0e331b379830272d0560` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://dashboard.perkstar.co.uk/api/v1` |
 | Credential | — |
 | Connection test | — |

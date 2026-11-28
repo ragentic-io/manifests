@@ -12,7 +12,7 @@ categories: ["business"]
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `1d95277e602dfc077df45149cc0dd0d4fb8bb15c996fd94895a0dbd69b3ed791` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | `https://api.infusionsoft.com/crm` |
 | Credential | — |
 | Connection test | — |

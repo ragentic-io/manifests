@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_logo-core_clearbit_com_spotify.
 | | |
 | --- | --- |
 | Categories | Media & entertainment |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `07565b4733fea9cb56d5abab22e50b8eeece88f3b4b7faad1a2ee43daf4bbc02` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |

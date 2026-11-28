@@ -13,7 +13,7 @@ logo: "https://api.apis.guru/v2/cache/logo/https_www.datto.com_img_brand_datto-l
 | | |
 | --- | --- |
 | Categories | Business & CRM |
-| Signed bundle | Not signed yet: these sources are waiting for the signing job. |
+| Signed bundle | `f947a827745e09ce60a6dfaf74c734f7462d546bf272ab0f6a87fe2100fed128` in `browse-bundles/`, expires 2027-02-26 05:38 UTC |
 | Endpoint | — |
 | Credential | — |
 | Connection test | — |
